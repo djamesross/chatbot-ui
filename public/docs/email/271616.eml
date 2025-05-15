@@ -1,0 +1,484 @@
+25648     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin014.me.com by p133-mailgateway-smtp-6897ffc74b-cwtz5 (mailgateway 2320B100)
+	with SMTP id cba4de3f-0233-4753-83a8-0ba4a324ab09 
+	for <darrylross@icloud.com>; Sat, 8 Jul 2023 17:39:14 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: cba4de3f-0233-4753-83a8-0ba4a324ab09
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by st11p00im-smtpin014.me.com (Postfix) with ESMTPS id 461A1F40810
+	for <darrylross@icloud.com>; Sat,  8 Jul 2023 17:39:10 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTQ1oQXgcZFltVFVFfDlgc
+ AkZVVgNWWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0EGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnDBITHy5/QBtDVFY9EmYPOiEqMi0nXmMyEzofJD9hVyASOCRa
+ CGVZCBc4NzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LbXkl3Jd
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.54; helo=mail-ed1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-51e00695e21so3448893a12.1
+        for <darrylross@icloud.com>; Sat, 08 Jul 2023 10:39:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688837948; x=1691429948;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pjfV4wyFkq0JRAOBndccDJ11dN7iVRg9Hzm52a8NAG8=;
+        b=LbXkl3JdT108XcuVsTZrHvqcgTIXRcVoJH4my26JNS9m6QU5Rm5tu4SFwNBblaFe5J
+         PGJUhKzdFN/HlWIozDI18KA6rnhnr07w9WdlhEIqffuQ15Hh91bQEwelhImiMHH+/ulD
+         nBMJsmzp7h2/LuKlo0yykmT9IcHhVNWA+AXCZ3VMDmSqoCl+URdKUuzaCU6+WAD9PVJs
+         8ARiqr9fBeWS/ZzCZ+PYUv/Q75mw2fCwRjUt6xO/M7tinkQErBAe64gLxFY8srauulAM
+         EHQ10UOsovIA3cWjYfLH33RwiSk/yA6nwtG6B+W1hsi49Z18Wph/d7HCCzF4kh2uiL+n
+         B8VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688837948; x=1691429948;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pjfV4wyFkq0JRAOBndccDJ11dN7iVRg9Hzm52a8NAG8=;
+        b=SQReU8nwe0pKnBTblPMcYm4Pl/kn/AEZRtWeDJKpKQ8KYVtpT9VgThl0vMTM1H08qg
+         JPPDiYUwVjILKsbIanWiQSWiv2lrYtyOZ0jffHPlQ91Sb/jAbo30YCXrjA5LvBK2uBp4
+         AO++Lv4uXgiZnZ+zUADdrvPZUaJ0nD5ZOkTc598SpNvgT9ivS7jq7XwT0y4KDWcJFpCY
+         0cRW/Xy6zwZKmjOnK2MWKFCLPjDqns79elvWatcTViMjrszxdwhfweNbI9dMyChI/1SQ
+         VttXp00c5HXXUU9OLwwAwxKhl+zChIwOS/E53uKSMswsyM+aHS3CM00uiatsM9nuy73C
+         6tjw==
+X-Gm-Message-State: ABy/qLaHeXVl7Szy401EbcKvRDrIrluiqWfOjiXgBWEkbZqz2BU21hhw
+	m7lWkEJkB7iRYNILIGMzRAJoqwKV5cO1Y+3irjunhZcnLfQ=
+X-Google-Smtp-Source: APBJJlFgL+rzUiSu57yQt84WwYQ/Ozh2ocE+rxfJbwJ46b3XE0KrF8sKuoEQC/KhrMaRVsub92AewAAFnqh2Enu4h6M=
+X-Received: by 2002:aa7:da03:0:b0:51e:4439:f480 with SMTP id
+ r3-20020aa7da03000000b0051e4439f480mr3270866eds.34.1688837948389; Sat, 08 Jul
+ 2023 10:39:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <EE26EF8A-FA81-4879-9134-45BDB7D97305@icloud.com>
+ <CAFnbyREn-PmddPLR+2zr0=wyC0x=DMiRa=30j_VGJJgkAcwUzQ@mail.gmail.com>
+ <2B47E122-2323-4760-8715-86CC9A6D9754@icloud.com> <CAFnbyRFvZ=Ztg0DAQb6aXjv2VNtiq_4WV6a_TOphrymwY7SJnQ@mail.gmail.com>
+ <BA7AF8B0-9D5A-40C5-A50B-FDFDF36E71CA@icloud.com>
+In-Reply-To: <BA7AF8B0-9D5A-40C5-A50B-FDFDF36E71CA@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 8 Jul 2023 13:38:57 -0400
+Message-ID: <CAFnbyREykuhVOvy6-0JjV9XTSTZ_nUPfCySGQaBgAB-pUojbAQ@mail.gmail.com>
+Subject: Re: Regarding FaceTime Visits.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/mixed; boundary="000000000000ff6e3205fffd394b"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcHQm4bTRMScGtTT
+ WdMbloaZXlgRkJleFBdWVhNeUFfeBEKWFwXGQQaBB8aBRsaBBsSGAQYGxkEGx0QGx4aHxoRCl5
+ ZF0gZGnpLEQpNXBcdHREKTFoXaGtNTWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgaEgQfHhEKQl4XG
+ xEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJ
+ ueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQ
+ kAXaUkfS35heRtccx8RCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBduElhQYX4aWhp
+ CUhAZGhEKcGgXZkdnaWdtR29Yc1gQGRoRCnBoF2xheXoSY2ZAfxkcEBkaEQpwaBdoQHJgZWFlR
+ hxvUhAZGhEKcGgXbWRbH3xwGB5Tb0UQGRoRCnBoF2dITR0TXVtIS3NtEBkaEQpwaBdiY0MdY10
+ Tf0hSXhAZGhEKcGgXbBNiYW8aZkRkaUIQGRoRCnBrF24FX1kbY095GHtFEBkaEQpwSxdkRWNNT
+ 1luclNhZBAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: -hD1g98ZAygMfDp0OSJlhORzwsrgSkuR
+X-Proofpoint-ORIG-GUID: -hD1g98ZAygMfDp0OSJlhORzwsrgSkuR
+
+--000000000000ff6e3205fffd394b
+Content-Type: multipart/alternative; boundary="000000000000ff6e3005fffd3949"
+
+--000000000000ff6e3005fffd3949
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Attached is tutoring email. Services were paid through tutorax, not from
+me. It was offered through the CECCE board.
+
+On Sat, Jul 8, 2023 at 12:50=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Dear Cynthia,
+>
+> Charlotte is NOT responsible for missed parenting time whether it is
+> virtual or in person and it is unfair to blame her and make her feel even
+> remotely responsible. To suggest as much is to put responsibility for
+> following a court order that she is not allowed to know about on the
+> shoulders of a child. I have made it very clear to her that she does not
+> have to apologize for missed FaceTime, provide explanations, and should n=
+ot
+> feel bad. This is not a 'once here, once there' situation, it is a
+> documented and ongoing pattern that began more than 1 year ago. I expect
+> that you will not make her feel responsible for today or any future days,
+> tell her she keeps forgetting to call me, or that it=E2=80=99s her respon=
+sibility
+> to do ensure virtual parenting occurs as ordered. I do not care if you
+> deny, make excuses, blame me, make new allegations, just do not put this =
+on
+> her.
+>
+> As for tutoring, the VP was very clear that the board provided free
+> tutoring during school hours exclusively, not after school or evenings. I
+> welcome any emails or documentation showing she was incorrect.
+>
+> Best,
+>
+> Darryl Ross
+> darrylross@icloud.com
+> ___
+>
+> On Jul 8, 2023, at 12:26, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Sorry I was unaware Thursday FT did not happen. Charlotte usually manages
+> it well. Alice and I leave for soccer at 6pm on Thursday, so 5 pm works. =
+If
+> you can't reach them, please send me a text and I will follow up with gir=
+ls
+> to make sure they FT you.
+>
+> Tutoring has ended for the summer, our tutor Solomn has been absent for
+> a few weeks and we only have a few sessions left so I cancled as he was
+> unreliable the past two sessions. The School board offered this program, =
+I
+> did not pay. It was communicated through the school e-mail over the winte=
+r
+> and I believe you get those. I don't know why the VP didn't know about it
+> but I can assume she joined later in the year. Their school administratio=
+n
+> saw a lot of turnaround this past year. We were on the waitlist for a few
+> months and then both girls were offered a spot and we took one for
+> Charlotte as Alice did not want to cooperate.
+>
+> Alice and Charlotte both have soccer on Saturdays from 9-11 am, Charlotte
+> normally speaks to you afterwards. They did not have it last week
+> because of the holiday and Char was sick.
+>
+> Cynthia
+>
+> On Sat, Jul 8, 2023 at 11:57=E2=80=AFAM Darryl Ross <darrylross@icloud.co=
+m> wrote:
+>
+>> Dear Cynthia,
+>>
+>> Following up on your email below most recently I was unable to reach or
+>> communicate at all with Charlotte or Alice for scheduled FaceTime calls
+>> today, July 8, and Thursday, July 6, without prior notice or any
+>> communication at all. This is an ongoing issue that is impossible to
+>> address without your cooperation. Unfortunately to date I have only been
+>> ignored, aside from the email below which denies it happens at all.
+>>
+>> If there are more convenient days and times now that it is summer and
+>> tutoring has ended kindly let me know so that we can change the schedule=
+.
+>>
+>> With regard to tutoring, I was hoping you could clarify and provide
+>> further information about your decision to hire a tutor for Charlotte fo=
+r
+>> the last few weeks of school during the time that I had been talking to
+>> them on FaceTime. I value their education and support your decision to h=
+ire
+>> a tutor but the goal and purpose of the session were never clear to me a=
+nd
+>> Charlotte didn=E2=80=99t know why she was doing it either.
+>>
+>> Additionally, the board did not provide the tutoring, free of charge or
+>> otherwise, according the vice-principal. Please provide additional
+>> information as this is a matter of education, the purpose and outcome of
+>> which is unclear, and it appears you were solely responsible for hiring =
+and
+>> paying the fees and setting the schedule.
+>>
+>> Best,
+>>
+>> Darryl Ross
+>> darrylross@icloud.com
+>> ___
+>>
+>> On May 5, 2023, at 12:30, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl,
+>>
+>> The girls have never missed a FT and if they are busy they have always
+>> rescheduled. Their calendar is very busy now with soccer, babysitting an=
+d
+>> tutoring but they do make time to FT you twice a week normally for almos=
+t
+>> an hour. on Thursdays and Saturdays.
+>>
+>> The tutor was last minute as they only have limited availability. It's a
+>> free service offered by the board and will definitely help the girls wit=
+h
+>> their French levels. We were on a waitlist for months.
+>>
+>> The girls can FT Thursday 4-5 pm until the end of June and when tutoring
+>> ends, pick up at 5 pm if that works.
+>>
+>> Cynthia
+>>
+>>
+>
+
+--000000000000ff6e3005fffd3949
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div><br></div><div>Attached is tutoring email. Servic=
+es were paid through tutorax, not from me. It was offered through the CECCE=
+ board.=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Sat, Jul 8, 2023 at 12:50=E2=80=AFPM Darryl Ross &lt;=
+<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Dear Cyn=
+thia,<div><br></div><div>Charlotte is NOT responsible for missed parenting =
+time whether it is virtual or in person and it is unfair to blame her and m=
+ake her feel even remotely responsible. To suggest as much is to put respon=
+sibility for following a court order that she is not allowed to know about =
+on the shoulders of a child. I have made it very clear to her that she does=
+ not have to apologize for missed FaceTime, provide explanations, and shoul=
+d not feel bad. This is not a &#39;once here, once there&#39; situation, it=
+ is a documented and ongoing pattern that began more than 1 year ago. I exp=
+ect that you will not make her feel responsible for today or any future day=
+s, tell her she keeps forgetting to call me, or that it=E2=80=99s her respo=
+nsibility to do ensure virtual parenting occurs as ordered. I do not care i=
+f you deny, make excuses, blame me, make new allegations, just do not put t=
+his on her.</div><div><br></div><div>As for tutoring, the VP was very clear=
+ that the board provided free tutoring during school hours exclusively, not=
+ after school or evenings. I welcome any emails or documentation showing sh=
+e was incorrect.=C2=A0</div><div><br><div>
+<div>Best,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"mailto=
+:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></div><d=
+iv>___</div>
+
+</div>
+<div><br><blockquote type=3D"cite"><div>On Jul 8, 2023, at 12:26, Cynthia H=
+olmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmh=
+olm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi Darryl,<br><=
+div><br></div><div>Sorry I was unaware Thursday=C2=A0FT did not happen. Cha=
+rlotte usually manages it well. Alice and I leave for soccer at 6pm on Thur=
+sday, so 5 pm works. If you can&#39;t reach them, please send me a text and=
+ I will follow up with girls to make sure they FT you.</div><div><br></div>=
+<div>Tutoring=C2=A0has ended for the summer, our tutor Solomn has been abse=
+nt for a=C2=A0few weeks and we only have a=C2=A0few sessions left so=C2=A0I=
+ cancled=C2=A0as he was unreliable the=C2=A0past two sessions. The School b=
+oard offered this program, I did not pay. It was communicated through the s=
+chool e-mail over the winter and I believe=C2=A0you get those. I don&#39;t =
+know why the VP didn&#39;t know about it but I can assume she joined later =
+in the=C2=A0year. Their=C2=A0school=C2=A0administration saw a lot=C2=A0of t=
+urnaround this past year. We were on the waitlist=C2=A0for a few months and=
+ then both girls were offered a spot and we took one for Charlotte as Alice=
+ did not want to cooperate.</div><div><br></div><div>Alice and Charlotte bo=
+th have soccer on Saturdays=C2=A0from 9-11 am, Charlotte normally speaks to=
+ you afterwards. They did not have it last week because=C2=A0of the holiday=
+ and Char=C2=A0was sick.=C2=A0</div><div><br></div><div>Cynthia</div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat=
+, Jul 8, 2023 at 11:57=E2=80=AFAM Darryl Ross &lt;<a href=3D"mailto:darrylr=
+oss@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Dear Cynthia,<d=
+iv><br></div><div>Following up on your email below most recently I was unab=
+le to reach or communicate at all with Charlotte or Alice for scheduled Fac=
+eTime calls today, July 8, and Thursday, July 6, without prior notice or an=
+y communication at all. This is an ongoing issue that is impossible to addr=
+ess without your cooperation. Unfortunately to date I have only been ignore=
+d, aside from the email below which denies it happens at all.</div><div><br=
+></div><div>If there are more convenient days and times now that it is summ=
+er and tutoring has ended kindly let me know so that we can change the sche=
+dule.</div><div><br></div><div>With regard to tutoring, I was hoping you co=
+uld clarify and provide further information about your decision to hire a t=
+utor for Charlotte for the last few weeks of school during the time that I =
+had been talking to them on FaceTime. I value their education and support y=
+our decision to hire a tutor but the goal and purpose of the session were n=
+ever clear to me and Charlotte didn=E2=80=99t know why she was doing it eit=
+her.=C2=A0</div><div><br></div><div>Additionally, the board did not provide=
+ the tutoring, free of charge or otherwise, according the vice-principal. P=
+lease provide additional information as this is a matter of education, the =
+purpose and outcome of which is unclear, and it appears you were solely res=
+ponsible for hiring and paying the fees and setting the schedule.</div><div=
+><br><div>
+<div>Best,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"mailto=
+:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></div><d=
+iv>___</div>
+
+</div>
+<div><br><blockquote type=3D"cite"><div>On May 5, 2023, at 12:30, Cynthia H=
+olmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmh=
+olm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi Darryl,<br><=
+div><br></div><div>The girls have never missed a FT and if they are busy th=
+ey have always rescheduled. Their calendar is very busy now with soccer, ba=
+bysitting and tutoring but they do make time to FT you twice a week normall=
+y for almost an hour. on Thursdays and Saturdays.</div><div><br></div><div>=
+The tutor was last minute as they only have limited availability. It&#39;s=
+=C2=A0a free service offered by the board and will definitely help the girl=
+s with their French levels. We were on a waitlist for months.</div><div><br=
+></div><div>The girls can FT Thursday 4-5 pm until the end of June and when=
+ tutoring ends, pick up at 5 pm if that works.</div><div><br></div><div>Cyn=
+thia</div></div><div><br></div></div></blockquote></div></div></div></block=
+quote></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--000000000000ff6e3005fffd3949--
+--000000000000ff6e3205fffd394b
+Content-Type: message/rfc822; name="Tutoring Service.eml"
+Content-Disposition: attachment; filename="Tutoring Service.eml"
+Content-ID: <f_ljuagtcu0>
+X-Attachment-Id: f_ljuagtcu0
+
+Delivered-To: cynthmholm@gmail.com
+Received: by 2002:a17:906:4355:b0:993:a8ee:690d with SMTP id z21csp1210376ejm;
+        Sat, 8 Jul 2023 10:18:47 -0700 (PDT)
+X-Received: by 2002:a05:6a00:1a51:b0:682:3126:961a with SMTP id h17-20020a056a001a5100b006823126961amr7145807pfv.5.1688836727160;
+        Sat, 08 Jul 2023 10:18:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1688836727; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Tr/JVAfwvNbp8J+pl/wjKOGwYF4MdU0ioF4P0olI/S2Z9n2rBfNLLYfSK/dTEYq3Lu
+         +Zp9w/yYTUW3jntGKeJ8YXSD2IrBIdDFPK88xfmkiZbYjEXq6c1f5EJxfh2adDG4QCNN
+         7Cm9n+FlaeND/FgT/AkiSm0N3PRJ+t4MgdB+H6DiUh4R0lI5kmR0UbuienCNU3HchfS4
+         UEBbNBDzPQ4UPhjkPFYsoV3cIacA4+Hjfd1J9n741EnzCqJNV3gBXppPLjGTaJXYIgD2
+         GX6kbA9rdUkKcgbvmv9Apr69Bo4mZGX/oONd+7+aikw5TPbZqt6uX0wad3CMneatXcPQ
+         kt1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:in-reply-to:references:message-id:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=dToPglACXG/OC6YiVUI0srzXe3rOxLey9qBbZ3NPoY8=;
+        fh=4EYndg3WDetJjWyogXT8X1zWtJQvQOySxzN/Nr9SYGA=;
+        b=w2nWFXAnK39xFs7pI9/2JMr0mY5RdeWqh6k8foBj6/n9Vh5/3iVmJPTMKPVgv3KhqK
+         u4gVfzlYzgd61/XQqdqdlS5Zfj8KHuPqDYgh9/6T2MV2bv3A5aPcCra5iCZMeVb20BNc
+         wt9tKgUDXgk/ZVmb3vVxD96KRMmUhU6aBfGKH6WTnvr7QAWOVbbi/EkJ027MKwcYZ5We
+         qtp0BkiJovr/gpEMZcupimFhs9zomxXVldDThA1KiJ7oBYSdYajpjSFDjrS7xCiDLweX
+         B7IPQQ0YTguO6Lj9Ogxp/PM0t9cNwRDJgfuxsO7ENPXezubtbbSNO57yh/56Fn0WU5/1
+         8sJg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20221208 header.b=AsmtX5Sp;
+       spf=pass (google.com: domain of solomon.klar@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=solomon.klar@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <solomon.klar@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id c190-20020a624ec7000000b006828efba288sor5808178pfb.8.2023.07.08.10.18.46
+        for <cynthmholm@gmail.com>
+        (Google Transport Security);
+        Sat, 08 Jul 2023 10:18:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of solomon.klar@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20221208 header.b=AsmtX5Sp;
+       spf=pass (google.com: domain of solomon.klar@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=solomon.klar@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688836726; x=1691428726;
+        h=to:subject:in-reply-to:references:message-id:date:mime-version:from
+         :content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dToPglACXG/OC6YiVUI0srzXe3rOxLey9qBbZ3NPoY8=;
+        b=AsmtX5SpLwO8AqIiyqfPEMdLKpvZnpfZJFRDSBPu78vG36F3cqE2B6GUKJiCGmSujD
+         jcZTkrIJ3RNGQV2E8jOwofVfE5xAuMu4pokYPvjWIkR4dpbc+LRDMVT4YbfUd0/KIrTb
+         DsbWr0MrtJvPF1jokK6L6X3NEfoiHUnSXZd846PO4gchr7cgCHzje30OR85/8ZEpHTux
+         CuyEkPz8F53N7WDwMF+s7TQNuo3/Se9CXXLklR0M7zTXt9bJzyo2rA9dQ5aOf1acTTAP
+         GBBnq1zyj0frv26yr5GKaVnd67Ckgmjm19VLgHsixYZ/JUtWdks/1lObSaorlRX4A/Hy
+         Mknw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688836726; x=1691428726;
+        h=to:subject:in-reply-to:references:message-id:date:mime-version:from
+         :content-transfer-encoding:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dToPglACXG/OC6YiVUI0srzXe3rOxLey9qBbZ3NPoY8=;
+        b=Pm3P8oQqse4ZGDXy97mD1dFhIwoBdqtYt5WZfNAmxZZvJwZM9fKqEAg8Iuls5898YW
+         AWopL/KoAVTOVKqUBfueYNo76W/kBY2Pzul9P2XHAImYDfiAPtS2w8lstzWSmnH+BAAi
+         v0g/q2Zu9vUBImka2keICbcGCBYKpUAv2qG8sqeuvLEQRXz2hEQ9LEuCGolDP+pykdEX
+         v2FdwpRmhptgDVo4sII6VP0Zl+s/3Z2ZRjXEeQgIJrE5AfXUOIqU2vm/arJ+aXJ/Um/v
+         QwYxxrE5xBXMg7zY3vja8kcahkxIH6vf3CIwCHM/ciih9/+OFX+zRInMYgF/t5s2AVF1
+         wSDA==
+X-Gm-Message-State: ABy/qLaKv4MchFxgXqnr6WNxkBvApAeIvY5avpQR1qZ77WsyDYGo6atK
+	2ta/rJY54veyJ7KsfbxYY3RO/HYNlJY=
+X-Google-Smtp-Source: APBJJlG/Uy3Ap68Fw/5/7e4y7TqvRuPPKIRHZrsDocqesK9pEjSn52Z3Pl+YddIx9pZwWxLsZ4HWLA==
+X-Received: by 2002:a05:6a00:188e:b0:668:9dca:13ac with SMTP id x14-20020a056a00188e00b006689dca13acmr7988723pfh.7.1688836726426;
+        Sat, 08 Jul 2023 10:18:46 -0700 (PDT)
+Return-Path: <solomon.klar@gmail.com>
+Received: from smtpclient.apple ([2605:b100:910:7fb6:1173:bd2a:245c:c1ee])
+        by smtp.gmail.com with ESMTPSA id 26-20020aa7915a000000b00679efed4108sm4564208pfi.33.2023.07.08.10.18.46
+        for <cynthmholm@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Jul 2023 10:18:46 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-3D1ACD46-03A3-4918-9151-26CF81507245
+Content-Transfer-Encoding: 7bit
+From: Solomon Klar <solomon.klar@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 8 Jul 2023 10:18:35 -0700
+Message-Id: <5DC49C4A-941F-4138-924F-A91D0EA5958C@gmail.com>
+References: <CAFnbyRGdh3=2WTaGsVvOr28dtUHXK=oQJP4RWe3pjKWFQNFcvQ@mail.gmail.com>
+In-Reply-To: <CAFnbyRGdh3=2WTaGsVvOr28dtUHXK=oQJP4RWe3pjKWFQNFcvQ@mail.gmail.com>
+Subject: Re: Tutoring Service
+To: Cynthia Holmes <cynthmholm@gmail.com>
+X-Mailer: iPhone Mail (20D67)
+
+
+--Apple-Mail-3D1ACD46-03A3-4918-9151-26CF81507245
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Cynthia,=20
+
+I do confirm that we did tutor Charlotte through the Service Program Tutorax=
+. I was paid directly from Tutorax. I am not willing to share my personal in=
+formation of payment information. If you require to have more confirmation o=
+r documentation of the tutoring service you may need to contact Tutorax dire=
+ctly.=20
+
+Thank you.=20
+
+Kindest Regards,=20
+
+Solomon Klar
+
+> On Jul 8, 2023, at 10:13 AM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> =EF=BB=BF
+> Hi Soloman,
+>=20
+> Can you confirm the tutoring service that you worked for and how you were p=
+aid?=20
+>=20
+> Charlotte's father is demanding some proof of documentation.
+
+--Apple-Mail-3D1ACD46-03A3-4918-9151-26CF81507245
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"><meta http-equiv=3D"conten=
+t-type" content=3D"text/html; charset=3Dutf-8">Hi Cynthia,&nbsp;<div><br></d=
+iv><div>I do confirm that we did tutor Charlotte through the Service Program=
+ Tutorax. I was paid directly from Tutorax. I am not willing to share my per=
+sonal information of payment information. If you require to have more confir=
+mation or documentation of the tutoring service you may need to contact Tuto=
+rax directly.&nbsp;</div><div><br></div><div>Thank you.&nbsp;</div><div><br>=
+</div><div>Kindest Regards,&nbsp;<br><br><div dir=3D"ltr"><p class=3D"MsoNor=
+mal" style=3D"margin: 0cm 0cm 0.0001pt;"><span style=3D"background-color: rg=
+ba(255, 255, 255, 0);">Solomon Klar</span></p></div><div dir=3D"ltr"><br><bl=
+ockquote type=3D"cite">On Jul 8, 2023, at 10:13 AM, Cynthia Holmes &lt;cynth=
+mholm@gmail.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cit=
+e"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Hi Soloman,<div><br></div><div=
+>Can you confirm the tutoring service&nbsp;that you worked for and how you w=
+ere paid?&nbsp;</div><div><br></div><div>Charlotte's father is demanding som=
+e proof of documentation.</div></div>
+</div></blockquote></div></div></body></html>=
+
+--Apple-Mail-3D1ACD46-03A3-4918-9151-26CF81507245--
+
+--000000000000ff6e3205fffd394b--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1092906</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1688837954</integer>
+	<key>flags</key>
+	<integer>8590195847</integer>
+	<key>remote-id</key>
+	<string>4636</string>
+</dict>
+</plist>

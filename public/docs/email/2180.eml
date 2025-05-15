@@ -1,0 +1,961 @@
+61281     
+Return-path: <reynap@motivationandchange.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr28p00im-smtpin022.me.com by p72-mailgateway-smtp-d79b7bd47-kcv8m (mailgateway 2116B184)
+	with SMTP id 75af16f4-b3c7-4d0e-ac96-5ea7f54876bc 
+	for <darrylross@icloud.com>; Mon, 30 Aug 2021 15:05:49 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 75af16f4-b3c7-4d0e-ac96-5ea7f54876bc
+Received: from mail-oi1-f228.google.com (mail-oi1-f228.google.com [209.85.167.228])
+	by mr28p00im-smtpin022.me.com (Postfix) with ESMTPS id 517B72156210
+	for <darrylross@icloud.com>; Mon, 30 Aug 2021 15:05:44 +0000 (UTC)
+X-ICL-SCORE: 3.3320332300
+X-ICL-INFO: GAtbVUseBVFHSVVESgMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERAUdSVgDBTkLGAxZQAMB
+ EAkZGV5SAR0YCBAdHlUNGFtGERwNFA8aDQ8BGURfDRsYCBMbWFcMEhxIFBddFEIGEBZKWgIGW1tB
+ U1lJBgFMR0teVVhYUw4aREQaGVlaTxoQV1oeAgRaWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsNHEhL
+ EUoCDkwSFgkQFFUYARoURFccVAtAGBYSHg5RQgsaFwcZHFNeAxseA1obX1tMR0lXQkgGBFFbHgcH
+ CENFDwEJSBQXXRRCGBACSloMbFE0DiVHSAAGUkVJVkdIAAZSRUlWR0gABlJFSVZHSAAGUkVJVkdI
+ AAZSRUlWR0gABlIkICglQXkGUhgDHjIteWUtJwAlHSBDVRBGDxAtDEd2ERMdBVkWVUJcV1kUFEUS
+ UgMHCx8bCl9FETUQBRsXRVJMFhYLVQ==
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=motivationandchange.com
+x-dmarc-info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0
+x-dmarc-policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=motivationandchange-com.20150623.gappssmtp.com header.i=@motivationandchange-com.20150623.gappssmtp.com header.b=xYBNIkrm
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of reynap@motivationandchange.com designates 209.85.167.228 as permitted sender) smtp.mailfrom=reynap@motivationandchange.com
+Received-SPF: pass (spf.icloud.com: domain of reynap@motivationandchange.com designates 209.85.167.228 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.228; helo=mail-oi1-f228.google.com; envelope-from=reynap@motivationandchange.com
+Received: by mail-oi1-f228.google.com with SMTP id w19so20189105oik.10
+        for <darrylross@icloud.com>; Mon, 30 Aug 2021 08:05:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=motivationandchange-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:message-id:subject:mime-version;
+        bh=cvlTm4IOfR8d+v+f7Xh7DSQIafnLVYmaSX1P9orvJ7M=;
+        b=xYBNIkrmQZXTfpqKFsxDesQCmvOflfeU6kR36E0h/NAI+PGKQOeqEoIDO4zY4pfaOx
+         fMCSRacBTBN/ueH7bCb3CepjjEF1+pwol140FH3avsZb8HZ5Z3ZoInzoz6BJEz0fRBVs
+         2TPcnDmjEEnEV336FCXfcRWIDgG4zY2K6zH5k8abu0NAuNnmYqqXQMwWD6cKBwPxtOsZ
+         Q5zpqd/T7iyhYvOdhjM5ui5TcuxT5ArVm31ua5NNCGW/um+aBhkvdJa11mcmY8ytKS1L
+         H+NoTDTWgRSGgDTbqY+bMiFFc87eHjmk1f4mXTIJqaoYcBCdii1eMJHlGyMXsjd32y7M
+         N4cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:message-id:subject:mime-version;
+        bh=cvlTm4IOfR8d+v+f7Xh7DSQIafnLVYmaSX1P9orvJ7M=;
+        b=CdUr8jRJtaKvA+YTelbXWyGjm2YmtOJQntjeyyUfiTGP7eNlqoCtW0ea7U81UFYWJB
+         J5yi8GMplU4czor8oP61xLufCMpYgfpRm+cFaVpINLlw7M2WNs7PZjCtTEL6hINdik49
+         vLMNcdSNyxBm2f4EBZfiEf74GvCXl+bM7svNhPiMmpDZFxLy2FuBGDi0Gmd+mE8Sbtn7
+         Hab6SPCYNPaz2jrrlbVCHponoex32zDhgH35wColiyzQWK+k8Wi6LodBsWKEh2acS+ws
+         KYn53rbXaLniIqVC8x7Ck/vpwRBYAzj9/c3KQ2ceozvJMZ4dS62mi9bFn5xAqlM764WI
+         PD6Q==
+X-Gm-Message-State: AOAM533eYsaidsjc7NH7mt5SB6jdUmtd4/u9zAQlza4Dg25ildPbwnU9
+	G/78a+xmqp1ZlLc1SKxXDhfJQfQJuI/iRn1RUADEz1rOWsWRpHNMm+kadrOABNxHCJWaz6RYtJf
+	JFf/e9lLQip//79vOm+6xcoBzzszd8WBowKjhGzmazj1zU4ThSgDLrCy7QUMIPHYprcT2fQryPG
+	qM9zPyNJ4PSmJzGN7u40lgA9E=
+X-Google-Smtp-Source: ABdhPJyrST0c5Fo8cD++05W3asOUGPEFnvfQ7p4QEG/DcmYOxFBbsDN5PP7yt5c2HG1T72KMt3q2ziImMAIt
+X-Received: by 2002:aca:1703:: with SMTP id j3mr15587628oii.116.1630335943888;
+        Mon, 30 Aug 2021 08:05:43 -0700 (PDT)
+Received: from smtp02-ia4-sp1.mta.salesforce.com (smtp02-ia4-sp1.mta.salesforce.com. [13.110.74.225])
+        by smtp-relay.gmail.com with ESMTPS id r23sm3583736otu.7.2021.08.30.08.05.43
+        for <darrylross@icloud.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 Aug 2021 08:05:43 -0700 (PDT)
+X-Relaying-Domain: motivationandchange.com
+Received: from [10.180.158.50] ([10.180.158.50:44626] helo=na121-app1-20-ia4.ops.sfdc.net)
+	by mx2-ia4-sp1.mta.salesforce.com (envelope-from <reynap@motivationandchange.com>)
+	(ecelerity 4.2.38.62368 r(Core:release/4.2.38.0)) with ESMTPS (cipher=ECDHE-RSA-AES256-GCM-SHA384
+	subject="/C=US/ST=California/L=San Francisco/O=salesforce.com, inc./OU=0:app;1:ia4;2:ia4-sp1;3:na121;4:prod/CN=na121-app1-20-ia4.ops.sfdc.net") 
+	id 11/7D-38956-6C3FC216; Mon, 30 Aug 2021 15:05:42 +0000
+Date: Mon, 30 Aug 2021 15:05:42 +0000 (GMT)
+From: Patty Reyna <reynap@motivationandchange.com>
+To: "darrylross@icloud.com" <darrylross@icloud.com>
+Message-ID: <Z3AwC000000000000000000000000000000000000000000000QYNR9I00mzxEUISORyCjXscr3vvZtw@sfdc.net>
+Subject: CMC: Canadian Resources for you
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3721_850808071.1630335942592"
+X-SFDC-LK: 00Di0000000bJw3
+X-SFDC-User: 00531000008TtUY
+X-Sender: postmaster@salesforce.com
+X-mail_abuse_inquiries: http://www.salesforce.com/company/abuse.jsp
+X-SFDCOrgRelay: 00Di0000000bJw3
+X-SFDC-Binding: 1WrIRBV94myi25uB
+X-SFDC-EmailCategory: emailAuthorEmail
+X-SFDC-EntityId: 00Q3r00001Xg7B1
+X-SFDC-Interface: internal
+X-SFDC-Restrict: ^(.*)
+X-SFDCRelayAddr: smtp-relay.gmail.com
+X-SFDCRelayPort: 587
+X-SFDCTLS: 4
+X-MANTSH: 1TEIXR1geHVoaGkNHB1tfQEQbGBsfGBMaGxEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcfGhEKWUQXYklEBWJmclMFRWkRCllNF2RFRE8RCllJFxpxGhAadwYZGnEbEBp3BhgaB
+ hoRClleF2NjeREKQ04XXVtGWWJ7Z3x/Qh4ZR097XkdwZW5OX3BreGB1RFtZW1kRClhcFxkEGgQ
+ eHwdLGxsbHBpPHAUbHQQbGxoEHRoEGxkYEBseGh8aEQpeWRdzc1pCQREKTVwXGxwbEQpMWhdoa
+ U1raxEKQ1oXGBoTBBIfBBscHQQYGBIRCkJeFxsRCkReFxgRCkJFF258bWR4YkBJY0RhEQpCThd
+ 6E0sefWRSXEReUBEKQkwXZl9EWxtpGB98GmERCkJsF2RaHktBXHlsZx1hEQpCQBdhcH0faQVyc
+ HlTRxEKQlgXYmtOb296bGdaR0sRClpYFx8RCnBnF25wY05rWF9NaEwaEBoRCnBoF2JtTVobU31
+ iHFlhEBoRCnBoF2ReblpsHUBLUEBkEBoRCnBoF2V9WlJmQm0Bb2huEBoRCnBoF2Bnc1NHE0JpA
+ W4fEBoRCnBoF2ZFbkRaRVtmG05PEBoRCnB9F2tdGGBAa0tveX9rEBoRCnB9F2d/RkEfRRxZGmd
+ NEBoRCnB9F25OYlNyXkdSS0dMEBoRCnB9F2lNZl1ZYFNrXlAdEBoRCnB9F2FnRQFwfWBoWkJEE
+ BoRCnB9F2BQHFNYeE5NYVwcEBoRCnB9F25ScGMfHBlFbWcZEBoRCnB9F2BneGJcQ1hOZhtmEBo
+ RCnB9F24ZZnNuE1NtQhNIEBoRCnBnF3ptE0NGEhJJGh17EBoRCnBnF2JtRV9MfXhiRnxGEBoRC
+ nB9F2F8QHhQTm5GeGV/EBoRCnB9F2YZGHhlT3ptGH1vEBoRCnB/F2RaZ01rbn1LexwaEAcYGxE
+ KcF8XekAFX2xcRR1IcEgQBxkbEQpwfxdtZGlObQFNRXtMQBAHEhwRCnBfF2ZnHGlFWhhvRhpGE
+ BkaEQpwfxdsQGxQGQF9YWRpTRAZGhEKcF8XbV9NbkYBW2FbQkEQGhEKcH8XYmVGeXlZax5jH1A
+ QGhEKcF8Xbx9LfW8TAWlJRHgQGhEKcH8XZRN4fkMaQEd+QkcQGhEKcH8XZWMcfGVNa2FveBgQG
+ hEKcF8XZGFmRxtiUAFIaWgQGhEKcH8XbFhmfBhibWkfYGkQGhEKcF8XYAF5XHwZHmRBfhgQGhE
+ KcH8XZGVhTgFZW00cYB0QGhEKcF8XaR1tXF8THX94fh4QGhEKcH8XaG0bTXhsfnx9S3oQGhEKc
+ F8XYkkcQnBtGGZpfxMQGhEKcH8XZn5TZEt4W1BIb2kQGx0RCnBfF2dGSUtTb3J+SB9/EBoRCnB
+ sF2xaTVNsU08bWEdGEBoRCnBDF2VsYUhNGV9nE2ZhEAcYHBEKbX4XGhEKWE0XSxE=
+X-CLX-Shades: None
+
+------=_Part_3721_850808071.1630335942592
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Dear Darryl,
+
+
+
+Thank you for reaching out to us at the Center For Motivation and Change. W=
+e wish we had centers far and wide since there are too few evidence-based p=
+roviders who work in the way we do at CMC. We know it's frustrating to not =
+have the help you're looking for available in your local area, but more tre=
+atment providers who work in this way are cropping up. In an effort to be h=
+elpful we are including links and information for online and in-print resou=
+rces.
+
+
+
+CMC Resources:
+
+CMC is such a big believer in the transformational power of family involvem=
+ent that we wrote a book specifically for you. Beyond Addiction: How Scienc=
+e and Kindness Help People Change is co-authored by our Founders Drs. Foote=
+ and Wilkens and the Director of our Family Services, Dr. Nicole Kosanke. I=
+t is a resource for families, intended to be a roadmap for navigating terri=
+tory you may well have never been before, and is full of the latest informa=
+tion science has given us about how the use of substances affects the brain=
+/body, reward/memory systems, and motivation and learning. It thoroughly de=
+scribes the principles of a powerful approach called Community Reinforcemen=
+t and Family Training (CRAFT) and includes critical communication and behav=
+ior change skills for constructively moving forward. The CRAFT approach has=
+ been proven time and again in well-conducted research studies to positivel=
+y affect the whole family system. We also give very clear suggestions about=
+ ways you can think about your participation in the change process and hope=
+ that you consider reading so you can start to think about behavior change =
+in a different way.
+
+
+
+CMC offers Family Mondays, a monthly series of talks for family members who=
+ have a loved one struggling with addiction.  It is available remotely, reg=
+ardless of whether you=92re a client of ours or not.  You can read more, se=
+e upcoming offerings, and sign up at https://form.jotform.com/2017042384561=
+50.
+
+
+
+We also created The 20 Minute Guide, a workbook that distills motivational =
+strategies and CRAFT concepts down into a quick and easy workbook format. Y=
+ou can go directly to the website www.the20minuteguide.com and access all o=
+f the sessions for free or you can purchase the workbook in a variety of fo=
+rmats here.
+
+
+
+You can also listen to The Beyond Addiction Show, a weekly podcast hosted b=
+y CMC psychologist, Dr. Josh King, who interviews experts, researchers, and=
+ community leaders working to help people make positive changes in their li=
+ves. To find out more about the show or to listen to an episode, go to www.=
+motivationandchange.com/show or subscribe wherever you get your podcasts.
+
+
+
+CMC has a YouTube channel with a number of short videos available as resour=
+ces, which can be found at: https://www.youtube.com/channel/UCQks3xteBL1w4H=
+1_RBk6fxA.
+
+
+
+The founders of CMC have started a non-profit (501c3), The CMC:Foundation f=
+or Change in an effort to provide evidence-based resources to family member=
+s.  We know that many family members live in communities or areas of the co=
+untry where there is limited access (sometimes no access!) to evidence-base=
+d treatment options for their loved one or themselves and that financial re=
+sources are a significant factor when it comes to seeking help. The CMC:Fou=
+ndation website is full of helpful videos and on-line content that can be a=
+ccessed from any computer for free.  If you would like to better understand=
+ what we are doing or look at our resources on-line, please visit us at cmc=
+.ffc.org
+
+
+
+CMC is delighted to have partnered with Bountiful Films and Magnify Digital=
+ on a first-of-its-kind online resource based on the 20 Minute Guide, CRAFT=
+ and motivational strategies. Addiction. The Next Step is a website and an =
+Interactive Guide that enables visitors to define their own journey through=
+ videos, tips, and other tools designed to teach concerned family members h=
+ow to communicate in a manner that motivates their loved one toward change,=
+ while reducing family fear and stress. The Interactive Guide offers a rang=
+e of scenarios that families face when dealing with a substance use problem=
+ and is a free program that can be used at your convenience.
+
+
+
+Additional CRAFT Resources:
+
+https://www.smartrecovery.org/family/
+
+https://www.soberfamilies.com/podcasts
+
+https://alliesinrecovery.net/
+
+
+
+Dr. Robert Meyers is the father of the CRAFT approach and he has created se=
+veral ways you can find CRAFT support:
+
+
+
+WEBSITE: The website has a list of certified CRAFT providers. http://www.ro=
+bertjmeyersphd.com/craft.html
+
+
+
+
+BOOK: Get Your Loved One Sober: Alternatives to Nagging, Pleading, and Thre=
+atening, by Dr Robert Meyers and Brenda Wolfe
+
+
+
+
+ONLINE: Recently, Bob teamed up with Cadence Online to launch Parent CRAFT,=
+ an online training for parents concerned about changing drug and alcohol b=
+ehaviors in their children. The innovative online program takes the empiric=
+ally-studied behavioral science of CRAFT and brings it to life in an intera=
+ctive film-based course. The program aims to teach parents to understand th=
+eir child=92s substance use patterns, improve their communication skills, d=
+evelop methods of behavior management and learn when and how to guide them =
+to accept professional help. We recommend that you go to https://www.cadenc=
+eonline.com/ to access these CRAFT strategies.
+
+
+
+
+Ways to Find Providers Near You:
+
+Below is a small sampling of potential resources in Canada, but this is by =
+no means an exhaustive list. If you=92ve found a treatment provider or faci=
+lity you like who does evidence-based work, please pass their name/contact =
+info along to us, as we=92re always eager to hear about and connect with ot=
+hers in the field!
+
+
+
+One way to find practitioners trained in the Community Reinforcement Approa=
+ch (=93CRA=94, one of the approaches we use at CMC) is to go to the yellow =
+pages (however daunting that sounds) and look for a =93behavioral=94 or =93=
+cognitive-behavioral=94 therapist (a cognitive-behavioral orientation is th=
+e foundation of CRA). In Canada, there's also a national association called=
+ the Canadian Association of Cognitive & Behavioural Therapies. They have a=
+ link on their webpage with resources, http://www.cacbt.ca/en/links-and-res=
+ources, including a link to the Canadian Register of Health Service Psychol=
+ogists, http://crhsp.ca, where you can look up local providers.
+
+
+
+There is not currently a single listing for all the therapists who have bee=
+n trained in Motivational Interviewing, another evidence-based approach use=
+d at CMC, but you can ask therapists you find if they have this training an=
+d/or you can go to the website for the Motivational Interviewing Network of=
+ Trainers (MINT).
+
+
+
+Finally, there are some specific providers in Canada who CMC knows to be do=
+ing CRAFT and CRA:
+
+
+
+Treatment in northern Nova Scotia is entirely CRA and CRAFT based. A great =
+contact there is Greg Purvis, M.Sc., C. Psych. Phone #: 902-396-6536 greg.p=
+urvis@nshealth.ca http://novascotia.ca/dhw/addictions/
+
+The Salvation Army in Ontario is moving toward using CRA in all their locat=
+ions. You can contact your local Salvation Army for a centralized assessmen=
+t and referral to possible treatment centers that they run. A contact there=
+ is Tom Tuppeny, Salvation Army Ontario. Thomas_Tuppenney@can.salvationarmy=
+.org
+
+In the Toronto area, there is a referral agency set up through one of the h=
+ospitals, that can be helpful in investigating options. They=92re called th=
+e Family Navigation Project: www.sunnybrook.ca/familynavigation
+
+A former CMC psychologist, Dr. Tanya Cotler, is now in private practice in =
+Toronto. You can reach her via her website at tanyacotlerphd.com
+
+
+
+
+Patty Reyna
+
+
+Admissions and Intake Coordinator
+
+The Center for Motivation and Change
+p: 212.683.3339 x151 f: 212.683.3340
+w: www.motivationandchange.com
+
+CMC:NYC
+519 8th Ave, 9th Floor (between 35th and 36th Streets)
+New York, NY 10018
+
+
+CMC:Foundation for Change
+
+Our new Not-for-Profit. For more information, please visit cmcffc.org
+
+
+Our Book for Families:
+
+Beyond Addiction: How Science and Kindness Help People Change learn more
+
+
+Free Resources:
+
+The 20 Minute Guide: www.the20minuteguide.com
+
+--=20
+Patty Reyna
+Admissions and Intake Coordinator
+
+Center for Motivation and Change:Berkshires
+
+www.cmcberkshires.com
+
+f: facebook.com/CenterForMotivationAndChange
+t: @_TheCMC
+
+CMC:Berkshires
+100 Stone Manor Drive
+New Marlborough, MA 01230
+
+Phone 413 229 3333
+Direct 413 645 4650
+
+NOTICE OF CONFIDENTIALITY
+The information contained in this transmission is confidential and may be p=
+rivileged and/or contain confidential health information that is legally pr=
+otected by state and federal law, including the Health Insurance Portabilit=
+y and Accountability Act of 1996 and related regulations. This information =
+is intended only for the use of the individual or organization to whom it i=
+s addressed. If it is not meant for you please notify the sender immediatel=
+y by telephone so arrangements may be made to return the documents or destr=
+oy them. Use, disclosure, distribution or copying of documents transmitted =
+to you in error is strictly prohibited. Thank you.
+
+NOTICE TO CLIENTS
+There are inherent confidentiality risks in communicating via email. While =
+safeguards are in place to ensure your privacy, you should not use email co=
+mmunication if you are concerned about any breaches of privacy that may ina=
+dvertently occur. If you have received this email in error, please contact =
+CMC immediately at (212) 683 3339, (413) 229 3333, or admin@motivationandch=
+ange.com. Thank you.
+------=_Part_3721_850808071.1630335942592
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<html><style>p{margin-top:0px; margin-bottom:0px;}</style><body class=3D"se=
+tupTab"  style=3D" background-color:#CCCCCC; bEditID:b1st1; bLabel:body;"><=
+center ><table cellpadding=3D"0" width=3D"500" cellspacing=3D"0" id=3D"topT=
+able" height=3D"450" ><tr valign=3D"top" ><td  style=3D" background-color:#=
+FFFFFF; bEditID:r1st1; bLabel:header; vertical-align:middle; height:100; te=
+xt-align:left;"><img border=3D"0" bEditID=3D"r1sp1" bLabel=3D"headerImage" =
+id=3D"r1sp1" src=3D"https://thecmc.my.salesforce.com/servlet/servlet.ImageS=
+erver?id=3D0150Z00000ADu38&oid=3D00Di0000000bJw3" ></img></td></tr><tr vali=
+gn=3D"top" ><td  style=3D" background-color:#CCCCCC; bEditID:r2st1; bLabel:=
+accent1; height:5;"></td></tr><tr valign=3D"top" ><td styleInsert=3D"1" hei=
+ght=3D"300"  style=3D" background-color:#FFFFFF; bEditID:r3st1; color:#0000=
+00; bLabel:main; font-size:12pt; font-family:arial;"><table border=3D"0" ce=
+llpadding=3D"5" width=3D"550" cellspacing=3D"5" height=3D"400" ><tr valign=
+=3D"top" height=3D"400" ><td tEditID=3D"c1r1" style=3D" background-color:#F=
+FFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-fami=
+ly:arial;" aEditID=3D"c1r1" locked=3D"0" ><span id=3D"docs-internal-guid-3c=
+a3703e-6a8b-811b-909c-ec279f906a7a" style=3D""><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11=
+pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparen=
+t;font-weight:400;font-style:normal;font-variant:normal;text-decoration:non=
+e;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Dear Darry=
+l,</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt;"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
+color:#000000;background-color:transparent;font-weight:400;font-style:norma=
+l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
+ace:pre;white-space:pre-wrap;"><br></span></p><p dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11p=
+t;font-family:Calibri,sans-serif;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">We are unab=
+le to provide services outside of the country.  Here are some Canadian reso=
+urces that hopefully you will find helpful.</span></p><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font=
+-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:tr=
+ansparent;font-weight:400;font-style:normal;font-variant:normal;text-decora=
+tion:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><b=
+r></span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt;"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
+color:#000000;background-color:transparent;font-weight:400;font-style:norma=
+l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
+ace:pre;white-space:pre-wrap;">I will also send you another email shortly w=
+ith some other resources aimed at those out side of NY State incase that mi=
+ght be of help.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal;" id=3D"docs-inte=
+rnal-guid-15594552-7fff-9bf6-e180-4d24597e7440"><br></b></p><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D=
+"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-col=
+or:transparent;font-weight:400;font-style:normal;font-variant:normal;text-d=
+ecoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap=
+;">Thank you for reaching out to us at the Center For Motivation and Change=
+. We wish we had centers far and wide since there are too few evidence-base=
+d providers who work in the way we do at CMC. We know it's frustrating to n=
+ot have the help you're looking for available in your local area, but more =
+treatment providers who work in this way are cropping up. In an effort to b=
+e helpful we are including links and information for online and in-print re=
+sources.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt;"><b style=3D"font-weight:normal;"><br></b></p><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span sty=
+le=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;backgroun=
+d-color:transparent;font-weight:700;font-style:normal;font-variant:normal;t=
+ext-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre=
+-wrap;">CMC Resources:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;font-family=
+:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
+gn:baseline;white-space:pre;white-space:pre-wrap;">CMC is such a big believ=
+er in the transformational power of family involvement that we wrote a book=
+ specifically for you. </span><span style=3D"font-size:11pt;font-family:Cal=
+ibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;=
+font-style:italic;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre;white-space:pre-wrap;">Beyond Addiction: How Scienc=
+e and Kindness Help People Change</span><span style=3D"font-size:11pt;font-=
+family:Calibri,sans-serif;color:#000000;background-color:transparent;font-w=
+eight:400;font-style:normal;font-variant:normal;text-decoration:none;vertic=
+al-align:baseline;white-space:pre;white-space:pre-wrap;"> is co-authored by=
+ our Founders Drs. Foote and Wilkens and the Director of our Family Service=
+s, Dr. Nicole Kosanke. It is a resource for families, intended to be a road=
+map for navigating territory you may well have never been before, and is fu=
+ll of the latest information science has given us about how the use of subs=
+tances affects the brain/body, reward/memory systems, and motivation and le=
+arning. It thoroughly describes the principles of a powerful approach calle=
+d Community Reinforcement and Family Training (CRAFT) and includes critical=
+ communication and behavior change skills for constructively moving forward=
+. The CRAFT approach has been proven time and again in well-conducted resea=
+rch studies to positively affect the whole family system. We also give very=
+ clear suggestions about ways you can think about your participation in the=
+ change process and hope that you consider reading so you can start to thin=
+k about behavior change in a different way.&nbsp;</span></p><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=3D"fo=
+nt-weight:normal;"><br></b></p><p dir=3D"ltr" style=3D"line-height:1.38;mar=
+gin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;font-family:C=
+alibri,sans-serif;color:#000000;background-color:transparent;font-weight:40=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre;white-space:pre-wrap;">CMC offers </span><span st=
+yle=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;backgrou=
+nd-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pr=
+e-wrap;">Family Mondays</span><span style=3D"font-size:11pt;font-family:Cal=
+ibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre;white-space:pre-wrap;">, a monthly series of talks =
+for family members who have a loved one struggling with addiction.&nbsp; It=
+ is available remotely, regardless of whether you=92re a client of ours or =
+not.&nbsp; You can read more, see upcoming offerings, and sign up at </span=
+><a href=3D"https://form.jotform.com/210114373590144" style=3D"text-decorat=
+ion:none;"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;col=
+or:#1155cc;background-color:transparent;font-weight:400;font-style:normal;f=
+ont-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:n=
+one;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;w=
+hite-space:pre-wrap;">https://form.jotform.com/210114373590144</span></a><s=
+pan style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;ba=
+ckground-color:transparent;font-weight:400;font-style:normal;font-variant:n=
+ormal;text-decoration:none;vertical-align:baseline;white-space:pre;white-sp=
+ace:pre-wrap;">.&nbsp;</span></p><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal;"><br></b>=
+</p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
+pt;"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;w=
+hite-space:pre-wrap;">We also created </span><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:#000000;background-color:transparent;f=
+ont-weight:700;font-style:italic;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre;white-space:pre-wrap;">The 20 Minute=
+ Guide</span><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;c=
+olor:#000000;background-color:transparent;font-weight:400;font-style:normal=
+;font-variant:normal;text-decoration:none;vertical-align:baseline;white-spa=
+ce:pre;white-space:pre-wrap;">, a workbook that distills motivational strat=
+egies and CRAFT concepts down into a quick and easy workbook format. You ca=
+n go directly to the website </span><a href=3D"http://www.the20minuteguide.=
+com" style=3D"text-decoration:none;"><span style=3D"font-size:11pt;font-fam=
+ily:Calibri,sans-serif;color:#1155cc;background-color:transparent;font-weig=
+ht:400;font-style:normal;font-variant:normal;text-decoration:underline;-web=
+kit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:=
+baseline;white-space:pre;white-space:pre-wrap;">www.the20minuteguide.com</s=
+pan></a><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:=
+#000000;background-color:transparent;font-weight:400;font-style:normal;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
+e;white-space:pre-wrap;"> and access all of the sessions for free or you ca=
+n purchase the workbook in a variety of formats here.</span></p><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=
+=3D"font-weight:normal;"><br></b></p><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:#000000;background-color:transparent;font-wei=
+ght:400;font-style:normal;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre;white-space:pre-wrap;">You can also listen =
+to The Beyond Addiction Show, a weekly podcast hosted by CMC psychologist, =
+Dr. Josh King, who interviews experts, researchers, and community leaders w=
+orking to help people make positive changes in their lives. To find out mor=
+e about the show or to listen to an episode, go to</span><a href=3D"http://=
+www.motivationandchange.com/show" style=3D"text-decoration:none;"><span sty=
+le=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#1155cc;backgroun=
+d-color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-=
+skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;=
+"> www.motivationandchange.com/show</span></a><span style=3D"font-size:11pt=
+;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;=
+font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;=
+vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> or subscrib=
+e wherever you get your podcasts.</span></p><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal=
+;"><br></b></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt;"><span style=3D"font-size:11pt;font-family:Calibri,sans-seri=
+f;color:#000000;background-color:transparent;font-weight:400;font-style:nor=
+mal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-=
+space:pre;white-space:pre-wrap;">CMC has a </span><span style=3D"font-size:=
+11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transpar=
+ent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:n=
+one;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">YouTube =
+channel</span><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
+color:#000000;background-color:transparent;font-weight:400;font-style:norma=
+l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
+ace:pre;white-space:pre-wrap;"> with a number of short videos available as =
+resources, which can be found at: </span><a href=3D"https://www.youtube.com=
+/channel/UCQks3xteBL1w4H1_RBk6fxA" style=3D"text-decoration:none;"><span st=
+yle=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#1155cc;backgrou=
+nd-color:transparent;font-weight:400;font-style:normal;font-variant:normal;=
+text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration=
+-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap=
+;">https://www.youtube.com/channel/UCQks3xteBL1w4H1_RBk6fxA</span></a><span=
+ style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;backg=
+round-color:transparent;font-weight:400;font-style:normal;font-variant:norm=
+al;text-decoration:none;vertical-align:baseline;white-space:pre;white-space=
+:pre-wrap;">.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal;"><br></b></p><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><spa=
+n style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;back=
+ground-color:transparent;font-weight:400;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline;white-space:pre;white-spac=
+e:pre-wrap;">The founders of CMC have started a non-profit (501c3), </span>=
+<span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;=
+background-color:transparent;font-weight:700;font-style:italic;font-variant=
+:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-=
+space:pre-wrap;">The CMC:Foundation for Change</span><span style=3D"font-si=
+ze:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:trans=
+parent;font-weight:400;font-style:normal;font-variant:normal;text-decoratio=
+n:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> in a=
+n effort to provide evidence-based resources to family members.&nbsp; We kn=
+ow that many family members live in communities or areas of the country whe=
+re there is limited access (sometimes no access!) to evidence-based treatme=
+nt options for their loved one or themselves and that financial resources a=
+re a significant factor when it comes to seeking help. The CMC:Foundation w=
+ebsite is full of helpful videos and on-line content that can be accessed f=
+rom any computer for free.&nbsp; If you would like to better understand wha=
+t we are doing or look at our resources on-line, please visit us at&nbsp; <=
+/span><a href=3D"https://cmcffc.org/" style=3D"text-decoration:none;"><span=
+ style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#1155cc;backg=
+round-color:transparent;font-weight:400;font-style:normal;font-variant:norm=
+al;text-decoration:underline;-webkit-text-decoration-skip:none;text-decorat=
+ion-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-w=
+rap;">https://cmcffc.org/</span></a><span style=3D"font-size:11pt;font-fami=
+ly:Calibri,sans-serif;color:#000000;background-color:transparent;font-weigh=
+t:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre;white-space:pre-wrap;">.</span></p><p dir=3D"=
+ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=
+=3D"font-weight:normal;"><br></b></p><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;font-fa=
+mily:Calibri,sans-serif;color:#000000;background-color:transparent;font-wei=
+ght:400;font-style:normal;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre;white-space:pre-wrap;">CMC is delighted to =
+have partnered with Bountiful Films and Magnify Digital on a first-of-its-k=
+ind online resource based on the 20 Minute Guide, CRAFT and motivational st=
+rategies. </span><span style=3D"font-size:11pt;font-family:Calibri,sans-ser=
+if;color:#000000;background-color:transparent;font-weight:700;font-style:it=
+alic;font-variant:normal;text-decoration:none;vertical-align:baseline;white=
+-space:pre;white-space:pre-wrap;">Addiction. The Next Step</span><span styl=
+e=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background=
+-color:transparent;font-weight:400;font-style:normal;font-variant:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-=
+wrap;"> is a website and an Interactive Guide that enables visitors to defi=
+ne their own journey through videos, tips, and other tools designed to teac=
+h concerned family members how to communicate in a manner that motivates th=
+eir loved one toward change, while reducing family fear and stress. The Int=
+eractive Guide offers a range of scenarios that families face when dealing =
+with a substance use problem and is a free program that can be used at your=
+ convenience.</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal;"><br></b></p><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><spa=
+n style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;back=
+ground-color:transparent;font-weight:700;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline;white-space:pre;white-spac=
+e:pre-wrap;">Additional CRAFT Resources:</span></p><p dir=3D"ltr" style=3D"=
+line-height:2.16;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;=
+"><a href=3D"https://www.smartrecovery.org/family/" style=3D"text-decoratio=
+n:none;"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color=
+:#1155cc;background-color:transparent;font-weight:400;font-style:normal;fon=
+t-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:non=
+e;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;whi=
+te-space:pre-wrap;">https://www.smartrecovery.org/family/</span></a></p><p =
+dir=3D"ltr" style=3D"line-height:2.16;background-color:#ffffff;margin-top:0=
+pt;margin-bottom:0pt;"><a href=3D"https://www.soberfamilies.com/podcasts" s=
+tyle=3D"text-decoration:none;"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:#1155cc;background-color:transparent;font-weight:400=
+;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-te=
+xt-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseli=
+ne;white-space:pre;white-space:pre-wrap;">https://www.soberfamilies.com/pod=
+casts</span></a></p><p dir=3D"ltr" style=3D"line-height:2.16;background-col=
+or:#ffffff;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://alliesinre=
+covery.net/" style=3D"text-decoration:none;"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:#1155cc;background-color:transparent;f=
+ont-weight:400;font-style:normal;font-variant:normal;text-decoration:underl=
+ine;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertica=
+l-align:baseline;white-space:pre;white-space:pre-wrap;">https://alliesinrec=
+overy.net/</span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal;"><br></b></p><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><sp=
+an style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre;white-spa=
+ce:pre-wrap;">Dr. Robert Meyers is the father of the CRAFT approach and he =
+has created several ways you can find CRAFT support:</span></p><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=3D=
+"font-weight:normal;"><br></b></p><ul style=3D"margin-top:0;margin-bottom:0=
+;padding-inline-start:48px;"><li dir=3D"ltr" style=3D"list-style-type:disc;=
+font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-colo=
+r:transparent;font-weight:400;font-style:normal;font-variant:normal;text-de=
+coration:none;vertical-align:baseline;white-space:pre;" aria-level=3D"1"><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;" r=
+ole=3D"presentation"><span style=3D"font-size:11pt;font-family:Calibri,sans=
+-serif;color:#000000;background-color:transparent;font-weight:400;font-styl=
+e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre;white-space:pre-wrap;">WEBSITE: The website has a list of ce=
+rtified CRAFT providers. </span><a href=3D"http://www.robertjmeyersphd.com/=
+craft.html" style=3D"text-decoration:none;"><span style=3D"font-size:11pt;f=
+ont-family:Calibri,sans-serif;color:#1155cc;background-color:transparent;fo=
+nt-weight:400;font-style:normal;font-variant:normal;text-decoration:underli=
+ne;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical=
+-align:baseline;white-space:pre;white-space:pre-wrap;">http://www.robertjme=
+yersphd.com/craft.html</span></a></p></li></ul><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=3D"font-weight:nor=
+mal;"><br></b></p><ul style=3D"margin-top:0;margin-bottom:0;padding-inline-=
+start:48px;"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;f=
+ont-family:Calibri,sans-serif;color:#000000;background-color:transparent;fo=
+nt-weight:400;font-style:normal;font-variant:normal;text-decoration:none;ve=
+rtical-align:baseline;white-space:pre;" aria-level=3D"1"><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;" role=3D"presentat=
+ion"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;w=
+hite-space:pre-wrap;">BOOK: </span><span style=3D"font-size:11pt;font-famil=
+y:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight=
+:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-al=
+ign:baseline;white-space:pre;white-space:pre-wrap;">Get Your Loved One Sobe=
+r: Alternatives to Nagging, Pleading, and Threatening</span><span style=3D"=
+font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-colo=
+r:transparent;font-weight:400;font-style:normal;font-variant:normal;text-de=
+coration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;=
+">, by Dr Robert Meyers and Brenda Wolfe</span></p></li></ul><p dir=3D"ltr"=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b style=3D"f=
+ont-weight:normal;"><br></b></p><ul style=3D"margin-top:0;margin-bottom:0;p=
+adding-inline-start:48px;"><li dir=3D"ltr" style=3D"list-style-type:disc;fo=
+nt-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:=
+transparent;font-weight:400;font-style:normal;font-variant:normal;text-deco=
+ration:none;vertical-align:baseline;white-space:pre;" aria-level=3D"1"><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;" rol=
+e=3D"presentation"><span style=3D"font-size:11pt;font-family:Calibri,sans-s=
+erif;color:#000000;background-color:transparent;font-weight:400;font-style:=
+normal;font-variant:normal;text-decoration:none;vertical-align:baseline;whi=
+te-space:pre;white-space:pre-wrap;">ONLINE: Recently, Bob teamed up with Ca=
+dence Online to launch Parent CRAFT, an online training for parents concern=
+ed about changing drug and alcohol behaviors in their children. The innovat=
+ive online program takes the empirically-studied behavioral science of CRAF=
+T and brings it to life in an interactive film-based course. The program ai=
+ms to teach parents to understand their child=92s substance use patterns, i=
+mprove their communication skills, develop methods of behavior management a=
+nd learn when and how to guide them to accept professional help. We recomme=
+nd that you go to </span><a href=3D"https://www.cadenceonline.com/" style=
+=3D"text-decoration:none;"><span style=3D"font-size:11pt;font-family:Calibr=
+i,sans-serif;color:#1155cc;background-color:transparent;font-weight:400;fon=
+t-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-d=
+ecoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;w=
+hite-space:pre;white-space:pre-wrap;">https://www.cadenceonline.com/</span>=
+</a><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000=
+000;background-color:transparent;font-weight:400;font-style:normal;font-var=
+iant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;wh=
+ite-space:pre-wrap;"> to access these CRAFT strategies.</span></p></li></ul=
+><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
+"><b style=3D"font-weight:normal;"><br></b></p><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11=
+pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparen=
+t;font-weight:400;font-style:normal;font-variant:normal;text-decoration:non=
+e;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ways to Fi=
+nd Providers Near You:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;font-family=
+:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
+gn:baseline;white-space:pre;white-space:pre-wrap;">Below is a small samplin=
+g of potential resources in Canada, but this is by no means an exhaustive l=
+ist. If you=92ve found a treatment provider or facility you like who does e=
+vidence-based work, please pass their name/contact info along to us, as we=
+=92re always eager to hear about and connect with others in the field!</spa=
+n></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt;"><b style=3D"font-weight:normal;"><br></b></p><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-si=
+ze:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:trans=
+parent;font-weight:400;font-style:normal;font-variant:normal;text-decoratio=
+n:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">One w=
+ay to find practitioners trained in the Community Reinforcement Approach (=
+=93CRA=94, one of the approaches we use at CMC) is to go to the yellow page=
+s (however daunting that sounds) and look for a =93behavioral=94 or =93cogn=
+itive-behavioral=94 therapist (a cognitive-behavioral orientation is the fo=
+undation of CRA). In Canada, there's also a national association called the=
+ Canadian Association of Cognitive &amp; Behavioural Therapies. They have a=
+ link on their webpage with resources, </span><a href=3D"https://cacbt.ca/e=
+n/about/links-and-resources/" style=3D"text-decoration:none;"><span style=
+=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#1155cc;background-=
+color:transparent;font-weight:400;font-style:normal;font-variant:normal;tex=
+t-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-sk=
+ip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">=
+https://cacbt.ca/en/about/links-and-resources/</span></a><span style=3D"fon=
+t-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:t=
+ransparent;font-weight:400;font-style:normal;font-variant:normal;text-decor=
+ation:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">,=
+ including a link to the Canadian Register of Health Service Psychologists,=
+ http://crhsp.ca, where you can look up local providers.&nbsp;</span></p><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><=
+b style=3D"font-weight:normal;"><br></b></p><p dir=3D"ltr" style=3D"line-he=
+ight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:#000000;background-color:transparent;f=
+ont-weight:400;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre;white-space:pre-wrap;">There is not =
+currently a single listing for all the therapists who have been trained in =
+Motivational Interviewing, another evidence-based approach used at CMC, but=
+ you can ask therapists you find if they have this training and/or you can =
+go to the website for the Motivational Interviewing Network of Trainers (MI=
+NT).</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt;"><b style=3D"font-weight:normal;"><br></b></p><p dir=3D"ltr"=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
+=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-=
+color:transparent;font-weight:400;font-style:normal;font-variant:normal;tex=
+t-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-w=
+rap;">Finally, there are some specific providers in Canada who CMC knows to=
+ be doing CRAFT and CRA:</span></p><p dir=3D"ltr" style=3D"line-height:1.38=
+;margin-top:0pt;margin-bottom:0pt;"><b style=3D"font-weight:normal;"><br></=
+b></p><ul style=3D"margin-top:0;margin-bottom:0;padding-inline-start:48px;"=
+><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:C=
+alibri,sans-serif;color:#000000;background-color:transparent;font-weight:40=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre;" aria-level=3D"1"><p dir=3D"ltr" style=3D"line-h=
+eight:1.38;margin-top:0pt;margin-bottom:0pt;" role=3D"presentation"><span s=
+tyle=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;backgro=
+und-color:transparent;font-weight:400;font-style:normal;font-variant:normal=
+;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:p=
+re-wrap;">Treatment in northern Nova Scotia is entirely CRA and CRAFT based=
+. A great contact there is Greg Purvis, M.Sc., C. Psych. Phone #: 902-396-6=
+536 greg.purvis@nshealth.ca </span><a href=3D"http://novascotia.ca/dhw/addi=
+ctions/" style=3D"text-decoration:none;"><span style=3D"font-size:11pt;font=
+-family:Calibri,sans-serif;color:#1155cc;background-color:transparent;font-=
+weight:400;font-style:normal;font-variant:normal;text-decoration:underline;=
+-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-al=
+ign:baseline;white-space:pre;white-space:pre-wrap;">http://novascotia.ca/dh=
+w/addictions/</span></a></p></li><li dir=3D"ltr" style=3D"list-style-type:d=
+isc;font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-=
+color:transparent;font-weight:400;font-style:normal;font-variant:normal;tex=
+t-decoration:none;vertical-align:baseline;white-space:pre;" aria-level=3D"1=
+"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+;" role=3D"presentation"><span style=3D"font-size:11pt;font-family:Calibri,=
+sans-serif;color:#000000;background-color:transparent;font-weight:400;font-=
+style:normal;font-variant:normal;text-decoration:none;vertical-align:baseli=
+ne;white-space:pre;white-space:pre-wrap;">The Salvation Army in Ontario is =
+moving toward using CRA in all their locations. You can contact your local =
+Salvation Army for a centralized assessment and referral to possible treatm=
+ent centers that they run. A contact there is Tom Tuppeny, Salvation Army O=
+ntario. Thomas_Tuppenney@can.salvationarmy.org&nbsp;&nbsp;</span></p></li><=
+li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Cal=
+ibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre;" aria-level=3D"1"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt;" role=3D"presentation"><span sty=
+le=3D"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;backgroun=
+d-color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre=
+-wrap;">In the Toronto area, there is a referral agency set up through one =
+of the hospitals, that can be helpful in investigating options. They=92re c=
+alled the Family Navigation Project: </span><a href=3D"http://www.sunnybroo=
+k.ca/familynavigation" style=3D"text-decoration:none;"><span style=3D"font-=
+size:11pt;font-family:Calibri,sans-serif;color:#1155cc;background-color:tra=
+nsparent;font-weight:400;font-style:normal;font-variant:normal;text-decorat=
+ion:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:no=
+ne;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">www.sunny=
+brook.ca/familynavigation</span></a></p></li></ul><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size=
+: 11pt; font-family: Calibri, sans-serif; font-variant-numeric: normal; fon=
+t-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wr=
+ap;">A former CMC psychologist, Dr. Tanya Cotler, is now in private practic=
+e in Toronto. You can reach her via her website at </span><a href=3D"https:=
+//tanyacotlerphd.com/" style=3D"text-decoration-line: none;"><span style=3D=
+"font-size: 11pt; font-family: Calibri, sans-serif; color: rgb(17, 85, 204)=
+; font-variant-numeric: normal; font-variant-east-asian: normal; text-decor=
+ation-line: underline; text-decoration-skip-ink: none; vertical-align: base=
+line; white-space: pre-wrap;">tanyacotlerphd.com</span></a></p><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><br></p><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><b=
+r></p></span><span id=3D"docs-internal-guid-c80358a3-e734-a124-a1c1-c6b3151=
+bec94" style=3D"color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">=
+<font face=3D"Arial, sans-serif" size=3D"2"><p dir=3D"ltr" style=3D"margin-=
+top: 0pt; margin-bottom: 0pt; text-align: justify;"><span style=3D"vertical=
+-align: baseline;">--</span></p><div><font color=3D"#222222">Patty Reyna</f=
+ont></div></font></span><p style=3D"color: rgb(0, 0, 0); font-family: arial=
+; font-size: 12pt;"></p><div dir=3D"ltr" style=3D"color: rgb(34, 34, 34); f=
+ont-family: arial; font-size: 12pt; background-color: rgb(255, 255, 255);">=
+<font face=3D"Arial, sans-serif" size=3D"2">Admissions and Intake Coordinat=
+or<br><br></font><div><table border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" style=3D"color: rgb(34, 34, 34); font-family: Roboto, RobotoDraft, Helve=
+tica, Arial, sans-serif; background: none; border: 0px; margin: 0px; paddin=
+g: 0px;"><tbody><tr><td colspan=3D"2" style=3D"font-family: Arial, Helvetic=
+a, sans-serif; margin: 0px; color: rgb(51, 51, 51);"><b><font size=3D"2">Th=
+e Center for Motivation and Change</font></b></td></tr><tr><td valign=3D"to=
+p" width=3D"20" style=3D"font-family: Arial, Helvetica, sans-serif; margin:=
+ 0px; vertical-align: top; width: 20px; color: rgb(89, 135, 198);"><font si=
+ze=3D"2">p:</font></td><td valign=3D"top" style=3D"font-family: Arial, Helv=
+etica, sans-serif; margin: 0px; vertical-align: top; color: rgb(51, 51, 51)=
+;"><font size=3D"2">212.683.3339&nbsp;<span style=3D"color: rgb(34, 34, 34)=
+; font-family: arial;">x151</span>&nbsp;&nbsp;<span style=3D"color: rgb(89,=
+ 135, 198);">f:</span>&nbsp;212.683.3340</font></td></tr><tr><td valign=3D"=
+top" width=3D"20" style=3D"font-family: Arial, Helvetica, sans-serif; margi=
+n: 0px; vertical-align: top; width: 20px; color: rgb(89, 135, 198);"><font =
+size=3D"2">w:</font></td><td valign=3D"top" style=3D"font-family: Arial, He=
+lvetica, sans-serif; margin: 0px; vertical-align: top; color: rgb(51, 51, 5=
+1);"><a href=3D"http://www.motivationandchange.com/" target=3D"_blank" styl=
+e=3D"color: rgb(89, 135, 198);"><font size=3D"2">www.motivationandchange.co=
+m</font></a></td></tr></tbody></table><table class=3D"MsoNormalTable" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"395" style=3D"width: 2=
+96.25pt; margin-left: -1.5pt;"><tbody><tr><td style=3D"padding: 0in;"><tabl=
+e class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+><tbody></tbody></table></td></tr></tbody></table><table border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" style=3D"color: rgb(34, 34, 34); background:=
+ none; font-family: &quot;Times New Roman&quot;; border: 0px; margin: 0px; =
+padding: 0px;"><tbody><tr><td colspan=3D"2" style=3D"font-family: Arial, He=
+lvetica, sans-serif; margin: 0px; padding-top: 20px; color: rgb(89, 135, 19=
+8);"><strong><font size=3D"2">CMC:NYC</font></strong></td></tr><tr></tr><tr=
+><td colspan=3D"2" style=3D"font-family: Arial, Helvetica, sans-serif; marg=
+in: 0px; color: rgb(118, 118, 118);"><font size=3D"2">519 8th Ave, 9th Floo=
+r (between 35th and 36th Streets)</font></td></tr><tr><td colspan=3D"2" sty=
+le=3D"font-family: Arial, Helvetica, sans-serif; margin: 0px; color: rgb(11=
+8, 118, 118);"><font size=3D"2">New York, NY 10018</font></td></tr></tbody>=
+</table><font face=3D"Arial, sans-serif" size=3D"2"><br></font><table class=
+=3D"MsoNormalTable" border=3D"1" cellpadding=3D"0" width=3D"393" style=3D"w=
+idth: 294.75pt; background: rgb(236, 236, 236); border-top: none; border-ri=
+ght: none; border-bottom: none; border-image: initial; border-left: 3pt sol=
+id rgb(118, 118, 118);"><tbody><tr><td style=3D"border: none; padding: 3.75=
+pt;"><p class=3D"MsoNormal" style=3D"margin-bottom: 0.0001pt; line-height: =
+normal;"><font size=3D"2"><b><span style=3D"font-family: Arial, sans-serif;=
+ color: rgb(89, 135, 198);">CMC:Foundation for Change</span></b><span style=
+=3D"font-family: Arial, sans-serif; color: rgb(89, 135, 198);"><o:p></o:p><=
+/span></font></p></td></tr><tr><td style=3D"border: none; padding: 3.75pt;"=
+><p class=3D"MsoNormal" style=3D"margin-bottom: 0.0001pt; line-height: norm=
+al;"><font size=3D"2"><span style=3D"font-family: Arial, sans-serif; color:=
+ rgb(102, 102, 102);">Our new Not-for-Profit. For more information, ple</sp=
+an><span style=3D"font-family: Arial, sans-serif; color: rgb(102, 102, 102)=
+;">ase visit&nbsp;<o:p></o:p></span><a href=3D"https://cmcffc.org/" target=
+=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?q=3Dhttps://=
+cmcffc.org/&amp;source=3Dgmail&amp;ust=3D1551277505280000&amp;usg=3DAFQjCNH=
+X9vdEDKePy9WOTm9IcdlK-84dFQ" style=3D"color: rgb(89, 135, 198); font-family=
+: Arial, Helvetica, sans-serif;">cmcffc.org</a></font></p></td></tr></tbody=
+></table><font size=3D"2"><br></font><table class=3D"MsoNormalTable" border=
+=3D"1" cellpadding=3D"0" width=3D"393" style=3D"width: 294.75pt; background=
+: rgb(236, 236, 236); border-top: none; border-right: none; border-bottom: =
+none; border-image: initial; border-left: 3pt solid rgb(118, 118, 118);"><t=
+body><tr><td style=3D"border: none; padding: 3.75pt;"><p class=3D"MsoNormal=
+" style=3D"margin-bottom: 0.0001pt; line-height: normal;"><font size=3D"2">=
+<b><span style=3D"font-family: Arial, sans-serif; color: rgb(89, 135, 198);=
+">Our Book for Families:</span></b><span style=3D"font-family: Arial, sans-=
+serif; color: rgb(89, 135, 198);"><o:p></o:p></span></font></p></td></tr><t=
+r><td style=3D"border: none; padding: 3.75pt;"><p class=3D"MsoNormal" style=
+=3D"margin-bottom: 0.0001pt; line-height: normal;"><span style=3D"font-fami=
+ly: Arial, sans-serif; color: rgb(102, 102, 102);"><font size=3D"2">Beyond =
+Addiction: How Science and Kindness Help People Change&nbsp;<a href=3D"http=
+s://www.amazon.com/Beyond-Addiction-Science-Kindness-People/dp/1476709475" =
+target=3D"_blank"><span style=3D"color: rgb(89, 135, 198);">learn more</spa=
+n></a><o:p></o:p></font></span></p></td></tr></tbody></table><font size=3D"=
+2"><br></font><table class=3D"MsoNormalTable" border=3D"1" cellpadding=3D"0=
+" width=3D"393" style=3D"width: 294.75pt; background: rgb(236, 236, 236); b=
+order-top: none; border-right: none; border-bottom: none; border-image: ini=
+tial; border-left: 3pt solid rgb(118, 118, 118);"><tbody><tr><td style=3D"b=
+order: none; padding: 3.75pt;"><p class=3D"MsoNormal"><font size=3D"2"><str=
+ong><span style=3D"line-height: 13.91px; font-family: Arial, sans-serif; co=
+lor: rgb(89, 135, 198);">Free Resources:</span></strong><span style=3D"line=
+-height: 13.91px; font-family: Arial, sans-serif; color: rgb(89, 135, 198);=
+"><o:p></o:p></span></font></p></td></tr><tr><td style=3D"border: none; pad=
+ding: 3.75pt;"><p class=3D"MsoNormal"><span style=3D"line-height: 17.12px; =
+font-family: Arial, sans-serif; color: rgb(102, 102, 102);"><font size=3D"2=
+">The 20 Minute Guide:<b>&nbsp;</b><a href=3D"https://the20minuteguide.com/=
+" target=3D"_blank" data-saferedirecturl=3D"https://www.google.com/url?q=3D=
+https://the20minuteguide.com/&amp;source=3Dgmail&amp;ust=3D1551277505280000=
+&amp;usg=3DAFQjCNEzZLnLRfA2dGLb-7Nn21HzEQd8gA"><span style=3D"color: rgb(89=
+, 135, 198);">www.the20minuteguide</span><span style=3D"color: rgb(89, 135,=
+ 198);">.</span><wbr><span style=3D"color: rgb(89, 135, 198);">com</span></=
+a></font></span></p></td></tr></tbody></table></div></div></td></tr></table=
+></td></tr><tr valign=3D"top" ><td  style=3D" background-color:#CCCCCC; bEd=
+itID:r4st1; bLabel:accent2; height:5;"></td></tr><tr valign=3D"top" ><td  s=
+tyle=3D" background-color:#FFFFFF; bEditID:r5st1; bLabel:footer; vertical-a=
+lign:bottom; height:100; text-align:left;"><img border=3D"0" bEditID=3D"r5s=
+p1" bLabel=3D"footerImage" id=3D"r5sp1" src=3D"https://thecmc.my.salesforce=
+.com/servlet/servlet.ImageServer?id=3D0150Z00000ADu3N&oid=3D00Di0000000bJw3=
+" ></img></td></tr><tr valign=3D"top" ><td  style=3D" background-color:#CCC=
+CCC; bEditID:r6st1; bLabel:accent3; height:5;"></td></tr></table></center><=
+img src=3D"https://thecmc.my.salesforce.com/servlet/servlet.ImageServer?oid=
+=3D00Di0000000bJw3&esid=3D0183r00000h8UWr&from=3Dext"></body></html><br><br=
+>NOTICE OF CONFIDENTIALITY
+<br>The information contained in this transmission is confidential and may =
+be privileged and/or contain confidential health information that is legall=
+y protected by state and federal law, including the Health Insurance Portab=
+ility and Accountability Act of 1996 and related regulations. This informat=
+ion is intended only for the use of the individual or organization to whom =
+it is addressed. If it is not meant for you please notify the sender immedi=
+ately by telephone so arrangements may be made to return the documents or d=
+estroy them. Use, disclosure, distribution or copying of documents transmit=
+ted to you in error is strictly prohibited. Thank you.
+<br>
+<br>NOTICE TO CLIENTS
+<br>There are inherent confidentiality risks in communicating via email. Wh=
+ile safeguards are in place to ensure your privacy, you should not use emai=
+l communication if you are concerned about any breaches of privacy that may=
+ inadvertently occur. If you have received this email in error, please cont=
+act CMC immediately at (212) 683 3339, (413) 229 3333, or <A HREF=3D"mailto=
+:admin@motivationandchange.com">admin@motivationandchange.com</A>. Thank yo=
+u.
+------=_Part_3721_850808071.1630335942592--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>248981</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1630335949</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>431</string>
+</dict>
+</plist>

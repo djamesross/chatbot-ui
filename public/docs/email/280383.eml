@@ -1,0 +1,111 @@
+6297      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-central-1n-60-percent-22 by p133-mailgateway-smtp-8c9c79b9f-nwlf6 (mailgateway 2424B107)
+	with SMTP id b8f4cf2e-d1ce-4915-af71-9a2d398dfa84 
+	for <darrylross@icloud.com>; Sun, 8 Sep 2024 18:51:00 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: b8f4cf2e-d1ce-4915-af71-9a2d398dfa84
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by p00-icloudmta-smtpin-us-central-1n-60-percent-22.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-central-1n.k8s.cloud.apple.com (Postfix) with ESMTPS id 68ABDC0014A
+	for <darrylross@icloud.com>; Sun,  8 Sep 2024 18:50:58 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEQgYMWxkXXlNCBhAWSkoAD0xNTEhFSAgYV0FZAxNFU08MARELHxdcWyISFAceFB5VDRhZABNFV1sDHBVIFBddFhAWRAIWCkJPDgcWFQQ4WVUOGgwCWRtfW0IdHAoYRV1XCxlUAxNJHVBXQVcBGBdXWgdbGgkaWEBCEEgUBx4UHVMGRFQAQkweUQ0aHgoSVlNZD1UdAkofXVcLGVcFGBUQWwsRRFo0OXZYAAwrIyIPWhsjFA4tSkkIc08QHl4/HllnMyocLT0vVXoQHUAsMAoBUTcqMUshHFd2DxQQClkfXVcLGVcFGBUO
+X-ICL-Score: 3.3330330342
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PkAByBnP
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.54; helo=mail-ed1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5bf01bdaff0so3767789a12.3
+        for <darrylross@icloud.com>; Sun, 08 Sep 2024 11:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1725821458; x=1726426258; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=qWYx6KViy2OEHp5zXJ4rvSMjf3CmCxEXT0RElTmRvhM=;
+        b=PkAByBnPeOFGYpXHEYB4lWGHbNMFtSM51e00Kk0RBypWmzbFOwXuTPsCyDhBZJPtGB
+         1OmKpHt6/4d8Jkb64NMhQJUhty1+YQKHxrcMva8oHhiGcw7LAJ08xKrtf21JMQ/Dmt/8
+         76iIMSCYqnLbnA8OLxWorqk5rFiN9nTUayFwtJIDRTeUT5+fS/SmpJsKCKukdH0Mkijb
+         mGv9DjZy35wqM0T2uXD6e1wUaTrJ+wQeUgogro90LNBJLY2/t/tt11xx3gzrg41GX77T
+         RdOFDFrF1eRsN3dkZ+AEjfi86ZmCLuvObOYJztxGqHGbqdt/ayW8VQWAq8Rag+cqzMA4
+         IaCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1725821458; x=1726426258;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qWYx6KViy2OEHp5zXJ4rvSMjf3CmCxEXT0RElTmRvhM=;
+        b=YWv/Y3gGpwUjansnqM6gVWI+ICs/eivra2r/tRMOIWTaN3YYM2oodjmbdnf4LaZoy7
+         Vgc3Rw2Vrfwyw6TVvArSsWj4NTmkKtZ1v4/J1wJs8LHQ2gKHtQExsjTEOXZNdpmR+6/b
+         UBOAwiQXjSkpod6WhsV2w/lmVJEZXxS6KjCC2gYRZYmSjs4cZQSQ0u+Z2VaPPr0p+JDg
+         lKdjYnoCENT9LrIy98r96gH7e+fDWA99zt+n2dZGXCGDjuwDccijeLTfPhJPJWWMPbdg
+         pVVKB17vHBhhOijjl550+13n+8cOE7VWDt8u5BBNKKuGaA3+GHHgVjrIhm8TYB2bop0j
+         uSEA==
+X-Forwarded-Encrypted: i=1; AJvYcCV14C+Bg6nd2D374L6nDlmSjLyw6gaoQuEyeH9+vXWbrik51IZGo1ZOz8AmW5L7cfXiLeVaR/apRb1I@icloud.com
+X-Gm-Message-State: AOJu0YyKZ/Y2+KtfNE22pqFbu+9wDTTfsNHek5aME7715hlQJhxwgts7
+	2llLTkc7R3P7pFbb3yQKSsnxTg1ZU7ZGpUQwlO21FBGx5/7NR0/W1Ofj79KKubtKxDHUMTOYeAO
+	L2R2/rJkKOgDu7ZdVcwAA7s5uEZdQSg==
+X-Google-Smtp-Source: AGHT+IGHSTCdAzFiPLBnGWp33w/UjDL+gO8Fr8QAWPiv1VI7JutmcJvnB33lpa00C75MF9BtgEBsEdcpgLodvqS8ma8=
+X-Received: by 2002:a05:6402:3708:b0:5a4:622f:63c6 with SMTP id
+ 4fb4d7f45d1cf-5c3eac063cbmr2403977a12.13.1725821456935; Sun, 08 Sep 2024
+ 11:50:56 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 8 Sep 2024 14:50:46 -0400
+Message-ID: <CAFnbyREUwj-AawK=18E-eg8HfiQQ_eKJWeLrh9JGr1gU_H-Vdg@mail.gmail.com>
+Subject: Are the ages of the window?
+To: Barb <barbcollishaw@yahoo.ca>, Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000e2f0530621a01eed"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxscGxEKX00
+ XZEVETxEKWUkXGnEaEBp3BhseG3EYHxAadwYYGgYaEQpZXhdsbHkRCkNOF29BYR0fRWZBZ0JdS
+ FxTHGNbY1l4W118XWBseRoTckxzEQpYXBcZBBoEHxoFGxoaBBIYBB4YBBgcEBseGh8aEQpeWRd
+ Pbx9LXhEKTVwXBxMeEQpMWhdoaU1NaxEKTEYXTWsRCkNaFxgaEwQSHwQYGhIEHx4RCkJeFxsRC
+ kReFxgRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBI
+ bfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLa
+ UkRCkJAF2cYGF5PHVpwE35NEQpCWBdia05vb3psZ1pHSxEKWlgXHhEKcGgXaRhfZ09/UllIXFk
+ QGhEKcGgXaF9SZH5cQUdubBIQGhEKcH8XYHh9aH0TGwFhGEUQBxsYExEKcF8XYXJoXmsdQnoBT
+ 30QBxsZGBEKcH0Xa1x/UxgBYGcfeUQQGhEKcGwXZkZrHxhbbV9Gb28QBxkaEQptfhcaEQpYTRd
+ LEQ==
+X-Proofpoint-ORIG-GUID: EkK75oLkMhwbvy6IqIsRqwVwJFS09XfY
+X-Proofpoint-GUID: EkK75oLkMhwbvy6IqIsRqwVwJFS09XfY
+X-Authority-Info: v=2.4 cv=ceqArWDM c=1 sm=1 tr=0 ts=66ddf212 cx=c_pps a=EmBPEBpMjP/3QNnZKm4stQ==:117 a=EaEq8P2WXUwA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=tclcd6dtLQvEqt9_mmAA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=wwAePvBONnjDQaqHVNx2:22 a=7YpECbvlQQReuXKdpsOb:22
+
+--000000000000e2f0530621a01eed
+Content-Type: text/plain; charset="UTF-8"
+
+
+
+--000000000000e2f0530621a01eed
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br clear=3D"all"><br clear=3D"all"><div><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9L=
+HxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div><=
+/div></div>
+
+--000000000000e2f0530621a01eed--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1278949</integer>
+	<key>date-last-viewed</key>
+	<integer>1745403020</integer>
+	<key>date-received</key>
+	<integer>1725821460</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12169</string>
+</dict>
+</plist>

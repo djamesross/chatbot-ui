@@ -1,0 +1,123 @@
+6671      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt05022701.me.com by p133-mailgateway-smtp-dc675466f-v6hc4 (mailgateway 2416B100)
+	with SMTP id 555700f6-8342-452b-808d-22516a708fda 
+	for <darrylross@icloud.com>; Thu, 16 May 2024 20:34:32 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 555700f6-8342-452b-808d-22516a708fda
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	by st43p00im-qukt05022701.me.com (Postfix) with ESMTPS id D24D0D40173
+	for <darrylross@icloud.com>; Thu, 16 May 2024 20:34:31 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRVoQXgcZFltVFVFfDlgc
+ DEZVVgJQWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwCGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlJghNEilyUhU3HDAgTWZEEz46CBVLQAMHNx8OHxZ6cDsWPBEc
+ Sn5fFjJNETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KpHN4VCI
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.42 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.42 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.42; helo=mail-ej1-f42.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a59cf8140d0so333568366b.3
+        for <darrylross@icloud.com>; Thu, 16 May 2024 13:34:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715891671; x=1716496471; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=veY4877HkXCw8/Ei8smWEeEoaamtsejNkWqPb2LH2R8=;
+        b=KpHN4VCIqDiUzNqmknYDa6tI95p4AM6AtBPpWc6Zz8Wf2PiA4CdYK6dJm3NTJl/faC
+         7UH5ivMRw7tltc5TFse3taWsJsigokkHdeWvQXAMOWu1iw7WEzlhH39My4y75316cnoW
+         P1uyBLRUQLAAWvQHoGcHUBQ+MMJV8faNTzg3+LpgXXLHUwCT2bDjplWjO5DyT9Rk4gxa
+         iNtwwRySsLV+Ix5xfrP8RIuiixXax6Fl9EFo7wbH+YbIkMfrGXTbTbf1Obx6ygm/IjmJ
+         SUFq4AKjbCrMo38Nwzy/wm3I4MxPF3o7kuFvcAP+0PiIKagIA+iS/oHFsDTNVKV5hJIj
+         Dygw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715891671; x=1716496471;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=veY4877HkXCw8/Ei8smWEeEoaamtsejNkWqPb2LH2R8=;
+        b=WSq5jiIq/5oXJX0jKq2JPud3agsvYUR6EW+EaO4JvLOX2F9LTk/D+sqaL1tau71i4c
+         RypCxyuCjwE3rn4dnlqrjxN4A11cYK3eGrjiUb+evDREtqhbVmJ4wsfIVJ5kDJ854dhf
+         O5DiAYPGay07GU1+PI7eKpsHHkwJfp1K7E4XrT1Mx+eqJ/dOXIfXNqYHZ66WgprBji8s
+         nRfQnWSrwm2L2EBLFdDwTv0p0DflZwmBEIqh/gluzzsYIDDg7mtGOqhVTbayzMUIb48B
+         9aj7cneDTgM6HkRlczyIUYDMo43fQ+frrOFYjRmE1z10SmmcLPq81XohLsQaSLxboN8D
+         z4eg==
+X-Gm-Message-State: AOJu0Yx+vLe/oPhTcqGyf5AWBnIR1fN0zpnJig5U7chrG9dgbBQ9aZOE
+	liR7/mxPu+VVLPyZkONl0D4M4hFsg0bO3p8j8hc4psBhksKvrCdeb6P4Bw9CgCmx0wV2/en4Gcr
+	2di0y2SJbvd22FZHxfFmjboRA/y68Cw==
+X-Google-Smtp-Source: AGHT+IGrmU7kzHE+1/qxluFawU7y/j1Iw2POYMAnE7fUmiAUxsYFflJaw+8CHQDwk/bgGv8vn6sabB7Ukb5/nVkz3+I=
+X-Received: by 2002:a17:907:1b28:b0:a5a:5f31:7663 with SMTP id
+ a640c23a62f3a-a5a5f31777bmr1148185266b.56.1715891670643; Thu, 16 May 2024
+ 13:34:30 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 16 May 2024 16:34:19 -0400
+Message-ID: <CAFnbyRGSq+eQBdwBeVW5VrqKCnb3p5eBfhhnJFYcEwk2NitG4w@mail.gmail.com>
+Subject: Charlotte and Alice
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000807f610618982953"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdlQF5aZUNbH3tga
+ XV8GEV8b0diZWZyeGl7b1pgbkBjQREKWFwXGQQaBB8aBRsaGgQSGAQbHxIEGBIQGx4aHxoRCl5
+ ZF05MaGBQEQpNXBcYGxsRCkxaF2hhTUFrEQpMRhdNaxEKQ1oXGBoTBBIfBBgbEgQeGBEKQl4XG
+ xEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJ
+ ueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQ
+ kAXa0QbQ1JTaWZzbXgRCkJYF2JrTm9vemxnWkdLEQpaWBceEQpwaBdpGF9nT39SWUhcWRAaEQp
+ waBdsXhxFEhpzG3hlBRAaEQpwaBdlQVtsUnB9T2xmRRAaEQpwaBdpUk9nTX94YWJTWBAaEQpwa
+ BdjR0YfcmNvQUhrbBAaEQpwaBdmTFJve0loHVxnSBAaEQpwfxdgeH1ofRMbAWEYRRAHEx8RCnB
+ fF2FyaF5rHUJ6AU99EAcTGhEKcH0Xa1x/UxgBYGcfeUQQGhEKcGwXZkZrHxhbbV9Gb28QGhEKb
+ X4XGhEKWE0XSxE=
+X-Proofpoint-GUID: OjtpOiq5QJC_V2oVEmHOLXRCQEpJDjIk
+X-Proofpoint-ORIG-GUID: OjtpOiq5QJC_V2oVEmHOLXRCQEpJDjIk
+
+--000000000000807f610618982953
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl
+
+Charlotte had a fall yesterday on a treadmill which resulted in some big
+scrapes on her body. I kept her home today and she slept and is missing
+practice tonight.
+
+Alice has an earache and sore throat that is pretty close to infection this
+the  doc prescribed amoxicillin for 5 days. She is in Day 2.
+
+--000000000000807f610618982953
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi=C2=A0Darryl</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Charlotte had a fall yesterday on a treadmill which resulted in s=
+ome big scrapes on her body. I kept her home today and she slept and is mis=
+sing practice tonight.</div><div dir=3D"auto"><br></div><div dir=3D"auto">A=
+lice has an earache and sore throat that is pretty close to infection this =
+the =C2=A0doc prescribed amoxicillin for 5 days. She is in Day 2.=C2=A0</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto"><br clear=3D"all"><br clear=
+=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-=
+smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.goog=
+leusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lP=
+wWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+
+--000000000000807f610618982953--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1263830</integer>
+	<key>date-received</key>
+	<integer>1715891672</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

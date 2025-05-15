@@ -1,0 +1,143 @@
+6688      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin017.me.com by p72-mailgateway-smtp-7c55f457c-mngvf (mailgateway 2212B226)
+	with SMTP id ec6b38ed-76f6-4291-a2e8-44a04a72ea12 
+	for <darrylross@icloud.com>; Tue, 5 Apr 2022 19:10:49 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: ec6b38ed-76f6-4291-a2e8-44a04a72ea12
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	by pv33p00im-smtpin017.me.com (Postfix) with ESMTPS id C29805C3C6E
+	for <darrylross@icloud.com>; Tue,  5 Apr 2022 19:10:46 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQUxEVxBVWg1IWwsWEVwbDhNI
+ SxFMBRgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9SQlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeB0VAS8PIjJWQTMQNwUxE0obXxBPByBJdVs3SE4ROTRKeAwxMxwW
+ LgJeKBI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+x-dmarc-info: pass=pass; dmarc-policy=none; s=r1; d=r1
+x-dmarc-policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qyq7tDQZ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.45 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.45; helo=mail-lf1-f45.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id p10so657lfa.12
+        for <darrylross@icloud.com>; Tue, 05 Apr 2022 12:10:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fqd/VneZMEnpO80zfSgKLZbIEF95SKhFG1ncXvc37PY=;
+        b=Qyq7tDQZpnDWwgzBt5QJ0JIyMvohZ/6JHfgLwV7S8eyiboBgZ0bc64k1x/HIB4kECl
+         wHOareqGLgO+FnLge7EmoNBh4A+JylPXQQ/SIhgJEGgK8WBYrSe2eLsWA7/yAEh+9fL1
+         h3dIj9AWbFQT7yMwepe7N8oKckCGm8WbPvDsDId0YbBRCBoOWahyou4dnlgO7cT39wew
+         y8hWZDdy8c87+46lFPcvIlr9U+C3TbitlDRKnwGujdVkOPQlwEBbD6YNoYccdzdEKwKS
+         iVDvvojjjRmgofp3WXxhQ0Xu+osh+RdAZ/G0XORCH1vb1lFZJVzWSv56Fr5nsiZo+jc8
+         Zw/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fqd/VneZMEnpO80zfSgKLZbIEF95SKhFG1ncXvc37PY=;
+        b=yBTIWzViLbHQ4YrNsjioRvf/O99lkL/Lbrcx0B8/pWOuTZNB8ws0UH/00HzMKSLkyQ
+         AiPZjK0BdAnc1caPa1KgIEYDPhn4cZQR0N9pEpa7CC5v19tyYMXxHF+FH+HOLCIWPBU4
+         jsndIcB81HQRBfLp1Gr+sF9EUaDRiMMrzYslG9tLeP+etaQJ41Ib3TKoT6m+tAbFeM4F
+         5zjtrvIbr04LSlwL0PxN2vL+rFki2iAeWuumT52ROD7LyBZhIp757N3vGNUqPbVr2Mvw
+         4DzMRZAfc1KivxlCQCiQU6WIQoEL1iMly7BksRn6EH0vqfuhHOhQzPR/+TjsKNN4IFIY
+         QC4Q==
+X-Gm-Message-State: AOAM532+FrwC/MwCk0Y0q3AXfHpwzCO61SlcLb6sxeRcgPcig3JhwT7X
+	vb3AxErYanWvyQYAnuleo/HxXYAzwl22DrOZOv6DqPpm
+X-Google-Smtp-Source: ABdhPJwvMaaPPXweT2LwMDHkc0fybGit8rrC/SFC4v6bh4bIKcBJwn2vn21weJ6pqQjIKqUYpQwYjlieQsUVesersTM=
+X-Received: by 2002:a05:6512:22d3:b0:44a:518d:c23b with SMTP id
+ g19-20020a05651222d300b0044a518dc23bmr3608835lfu.21.1649185845699; Tue, 05
+ Apr 2022 12:10:45 -0700 (PDT)
+MIME-Version: 1.0
+References: <02FF453A-9A3E-45B4-80EC-6F6B2F45894F@icloud.com>
+In-Reply-To: <02FF453A-9A3E-45B4-80EC-6F6B2F45894F@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 5 Apr 2022 13:10:34 -0600
+Message-ID: <CAFnbyRH+wtViUJfwQeNcFkz-=e6aW1EmU=7wNLzNnDJzaV2hJg@mail.gmail.com>
+Subject: Re: Absences.
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="0000000000008067ac05dbed0072"
+X-MANTSH: 1TEIXWlwfHloaGkNHB1tfQEQbHxseGxkaGxEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXGxoaGhEKWUQXYkViQXljTGFde08RCllNF3pPWFlFREtGa0ZGRV0RCl9ZFxgbHhEKX
+ 00XZEVETxEKWUkXGnEaEBp3BhsTHnEbHR4QGncGGBoGGhEKWV4XbGx5EQpDThdfaV9nfkZaGm1
+ IcxhOXGx9UmdyZXpzZH5BQ1h9G0VkHBEKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQdHwQZHwQbH
+ xwQGx4aHxoRCl5ZF3BNQEB5EQpNXBcbHhsRCkxaF2hrTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQ
+ bHB0EHh8RCkJeFxsRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2Nre
+ xNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQRE
+ KQmwXb0tHUEFtGhJLaUkRCkJAF2keS3NveXh7UksTEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKW
+ lgXGBEKcGgXZWtTHRJJG3h4Zm0QGRoRCnBoF2NEaWkeQWhoeQFDEBkaEQpwaBduX0NwGxpgbGh
+ mQhAZGhEKcGgXYHxhfWYBU2Mde0IQGRoRCnBoF2VuWWxIWkJnZVp5EBkaEQpwbBdmRmsfGFttX
+ 0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+
+--0000000000008067ac05dbed0072
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi.
+Thank you for your message. Both girls have a cold and are resting at home.
+Their Covid test results have been negative and they will most likely
+return to school tomorrow.
+
+If anything changes in their health, I will let you know.
+
+Cynthia
+
+On Tue, Apr 5, 2022 at 12:17 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hello Cynthia,
+>
+> Can you kindly provide information about Charlotte & Alice=E2=80=99s abse=
+nces, if
+> they are ill, and how they are doing?
+>
+> Thank you,
+>
+> Darryl
+
+--0000000000008067ac05dbed0072
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi.</div><div dir=3D"auto">Thank you for your message. Bo=
+th girls have a cold and are resting at home. Their Covid test results have=
+ been negative and they will most likely return to=C2=A0school tomorrow.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">If anything changes in the=
+ir health, I will let you know.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Cynthia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Tue, Apr 5, 2022 at 12:17 PM Darryl Ross &lt;<a hr=
+ef=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex">Hello Cynthia,<br>
+<br>
+Can you kindly provide information about Charlotte &amp; Alice=E2=80=99s ab=
+sences, if they are ill, and how they are doing?<br>
+<br>
+Thank you,<br>
+<br>
+Darryl</blockquote></div></div>
+
+--0000000000008067ac05dbed0072--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>670821</integer>
+	<key>date-last-viewed</key>
+	<integer>1743955471</integer>
+	<key>date-received</key>
+	<integer>1649185849</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12126</string>
+</dict>
+</plist>

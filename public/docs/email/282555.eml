@@ -1,0 +1,270 @@
+11711     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09072702.me.com by p72-mailgateway-smtp-75bcfdd886-f4g7w (mailgateway 2216B301)
+	with SMTP id bb60c51d-ee0d-4270-bf26-c78550d2a54d 
+	for <darrylross@icloud.com>; Fri, 17 Jun 2022 19:42:40 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: bb60c51d-ee0d-4270-bf26-c78550d2a54d
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	by ci74p00im-qukt09072702.me.com (Postfix) with ESMTPS id 876706C00191
+	for <darrylross@icloud.com>; Fri, 17 Jun 2022 19:42:36 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MRE5RVVhYUw4aREQaGVlaTxkT
+ V1oeAQFVWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsOH0hLEUkHAUwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wMiALGDMJYwMCHSseHlh8VQEOET8ODV4JBT8EMRpTXS8aTA5K
+ LmpcEEQOFQA4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h9T6Qrhx
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.177 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.177 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.177; helo=mail-lj1-f177.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id y29so5760696ljd.7
+        for <darrylross@icloud.com>; Fri, 17 Jun 2022 12:42:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=MRRhlUaPzw/4hvRA64TccxVAVdrgoGwcqcZKzS3AKaw=;
+        b=h9T6QrhxfXfatClkdvGqnwyr7QHzXA49E0CoIlwKnrF2FcaNM/+OuXnAfibcoA/uem
+         SnZ8l57diMvUnRozD0W/RwDT9skeEWPNz1aMu+J9LJiIEMhcVCCV7sVrnbIGaooWHkDR
+         TGv0DP16KGYdtr8e4dK0DIsZOqTOdv3ZAPAVn7sk14JRruogtsvgr9p3X9FQa6bdAWcO
+         WsqV/ge2eYVYsajMSVjXLyQmNGEF/HVmZNVfHqlCVjJ5WSb1ozLQKOCK/jlaX+xapPew
+         VySu+pYYHkDBrU+XbSnHGfCT1DgCapdICiWZtTfdSslmX0vxjntr5kSajt/GnOqxG9Bq
+         a9HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=MRRhlUaPzw/4hvRA64TccxVAVdrgoGwcqcZKzS3AKaw=;
+        b=cZfawU0VoccYmTVoWsWAANz70mv9isYC3DtveSxryRRtRh2boLQm+4WHM7cteoWYpx
+         QQhtqSpbx7qVlHQ7FERSbkiq5xRKEZ/oYl6o6HzGoq63QIqvwVWyHybucGDdLk87DVvL
+         TNd19QLclctzGSi6/L6mG5zCRqxCth/Zmuq0oXy57MdHrLI7L2aQGpYNFrxS56tC24NJ
+         pCJ4Erp/6gxg0t9TauICSYbvFJG9cu1IGMM7sGtb/4Kapk/VV9KJYxJlW0hPDZcDNexY
+         bxVoZfiv9MKMXV1N7pEy7YwgYc7gX+swsxB8+deqMyA7k/kBZPopMc/VuWg2FTstu3iW
+         46Fg==
+X-Gm-Message-State: AJIora8E7FatW0Vp3fKqkOCqThBYAWEFEELjAgAV0hxSEzPbd0g9lNxw
+	HX+McFOE2NnLu/aZp8dxwEGybkPAchzH1ctRToI3WiyQ
+X-Google-Smtp-Source: AGRyM1vrwdjmeP/lnFvD1WL9XyV1H0t383aXmCn74qK/43jD9yQO4Y57YWSPp5m2HZn5lmsBYr6plBFOp/Oj9exrul8=
+X-Received: by 2002:a2e:b1c8:0:b0:258:642d:98b0 with SMTP id
+ e8-20020a2eb1c8000000b00258642d98b0mr5876009lja.447.1655494954413; Fri, 17
+ Jun 2022 12:42:34 -0700 (PDT)
+MIME-Version: 1.0
+References: <EDF70513-C320-4B98-ADFF-1DDDD3275854@gmail.com>
+ <7FFC8451-B799-4C4C-A612-CBF02719E26D@icloud.com> <CAFnbyRFT_18tDHjUMS+HHdEuUTpoCqoOmFz_N=r=2=MW95zMTA@mail.gmail.com>
+ <07977479-BCCE-4712-A665-9019B7A55B95@icloud.com>
+In-Reply-To: <07977479-BCCE-4712-A665-9019B7A55B95@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 17 Jun 2022 13:42:23 -0600
+Message-ID: <CAFnbyRGYmoK9UawdMifhJ7twwHv=hkpFbFbckMo5h=VZjr1wsw@mail.gmail.com>
+Subject: Re: FACETIME
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/related; boundary="000000000000b04c7c05e1a9f46c"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhsaGhsaGxEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThd5aGNJRWQTUE9EHGdlf2M
+ YXVtYHH98Q31dc3JDWmJHEhEKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQSGAQeGAQYHBAbHhofG
+ hEKXlkXcB5EGWMRCk1cFxkfEQpMWhdNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBgaEgQbHR0RCkJ
+ eFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbf
+ HhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUk
+ RCkJAF219GkVGX0dnR0FFEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXaXtfE0RkT
+ 1BZbXwQGRoRCnBoF29LHBt+XkNibEYZEBkaEQpwaBd6T2caYUlOYUYZXBAZGhEKcGgXZ1lkHF9
+ rSUt5U1wQGRoRCnBoF2ldGR5JHUMae01SEBkaEQpwYxdrR3pieHhNG0h/ZhAZGhEKcGwXZkZrH
+ xhbbV9Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: SBIcoN9zen6MOUI2wqr6UViWwYXipHm8
+X-Proofpoint-ORIG-GUID: SBIcoN9zen6MOUI2wqr6UViWwYXipHm8
+
+
+--000000000000b04c7c05e1a9f46c
+Content-Type: multipart/alternative;
+	boundary=000000000000b04c7b05e1a9f46b
+
+
+--000000000000b04c7b05e1a9f46b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=UTF-8
+
+Hi Darryl.
+
+We are here and all is well.
+
+We are staying with two friends:
+
+Chelsea Davidson
+
+Kyle Happy
+
+Both are friends from college and have kids of their own. Kyle has met the
+girls in Ottawa a few times. We plan to stay with Chelsea for a few days
+and then the remaining with Kyle.
+
+I have no plans to move to Calgary. We are all quite happy in Ottawa.
+
+We leave Thursday afternoon and arrive back in Ottawa a little after
+midnight.
+
+M=E2=80=99y mom is mailing the cards the girls showed you over FaceTime las=
+t night.
+
+
+On Fri, Jun 17, 2022 at 5:21 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I=E2=80=99m just following up on the information you said you would provi=
+de below.
+>
+> I hope the flight went well,
+>
+> Darryl
+>
+> On Jun 16, 2022, at 2:42 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Yes, that works for us, lets do 6pm. I know Alice has a gift she wants to
+> show you and I will pop it in the mail after she shows it to you.
+>
+> Can you send me your current address again?
+>
+> Honestly, I am not sure what has happened to Alison Boyce, we spoke about
+> responding to your correspondence the other week and I have not heard
+> anything back. I will send you our flight information and the friends we
+> are staying with later this evening.
+>
+> Thanks.
+>
+> Cynthia
+>
+> On Wed, Jun 15, 2022 at 7:43 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hi Cynthia,
+>>
+>> In lieu of my weekly FaceTime with Charlotte and Alice next Sunday, and
+>> since the school picnic is postponed, I kindly request that we arrange a
+>> time tomorrow after school to FaceTime with them.
+>>
+>> I will be available anytime that they are available.
+>>
+>> Darryl
+>>
+>> > On May 21, 2022, at 8:45 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>> wrote:
+>> >
+>> > Hi Darryl,
+>> >
+>> > I would like to start a weekly FaceTime on Sundays with the girls.
+>> Would 6-7pm work? I would feed them earlier.
+>> >
+>> > We are available this Sunday.
+>> >
+>> > Cynthia
+>>
+>>
+>
+
+--000000000000b04c7b05e1a9f46b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=UTF-8
+
+<div><br></div><div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">We are here and all is well.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">We are staying with two friends:</div><div dir=3D"=
+auto"><br></div><div dir=3D"auto">Chelsea Davidson=C2=A0</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Kyle Happy</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Both are friends from college and have kids of their ow=
+n. Kyle has met the girls in Ottawa a few times. We plan to stay with Chels=
+ea for a few days and then the remaining with Kyle.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">I have no plans to move to Calgary. We are all =
+quite happy in Ottawa.</div><div dir=3D"auto"><br></div><div dir=3D"auto">W=
+e leave Thursday afternoon and arrive back in Ottawa a little after midnigh=
+t.</div><div dir=3D"auto"><br></div><div dir=3D"auto">M=E2=80=99y mom is ma=
+iling the cards the girls showed you over FaceTime last night.<div><img src=
+=3D"cid:181732fe1a1361785b1" style=3D"max-width: 100%;"></div></div><div di=
+r=3D"auto"><br></div><div dir=3D"auto"><br><div class=3D"gmail_quote" dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 17, 2022 at 5:2=
+1 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@ic=
+loud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=
+=3D"word-wrap:break-word;line-break:after-white-space">Hi Cynthia,<div><br>=
+</div><div>I=E2=80=99m just following up on the information you said you wo=
+uld provide below.</div><div><br></div><div>I hope the flight went well,</d=
+iv><div><br></div><div>Darryl<br><div><br><blockquote type=3D"cite"><div>On=
+ Jun 16, 2022, at 2:42 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@=
+gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><=
+div><div dir=3D"ltr">Hi Darryl,<div><br></div><div>Yes, that works for us, =
+lets do 6pm. I know Alice has a gift she wants to show you and I will pop i=
+t in the mail after she shows it to you.</div><div><br></div><div>Can you s=
+end me your current address again?</div><div><br></div><div>Honestly, I am =
+not sure what has happened=C2=A0to Alison Boyce, we spoke about responding =
+to your correspondence the other week and I have not heard anything back. I=
+ will send you our flight information and the friends we are staying with l=
+ater this evening.</div><div><br></div><div>Thanks.</div><div><br></div><di=
+v>Cynthia</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, Jun 15, 2022 at 7:43 PM Darryl Ross &lt;<a href=3D"=
+mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color=
+:rgb(204,204,204);padding-left:1ex">Hi Cynthia,<br>
+<br>
+In lieu of my weekly FaceTime with Charlotte and Alice next Sunday, and sin=
+ce the school picnic is postponed, I kindly request that we arrange a time =
+tomorrow after school to FaceTime with them. <br>
+<br>
+I will be available anytime that they are available.<br>
+<br>
+Darryl<br>
+<br>
+&gt; On May 21, 2022, at 8:45 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl,<br>
+&gt; <br>
+&gt; I would like to start a weekly FaceTime on Sundays with the girls. Wou=
+ld 6-7pm work? I would feed them earlier.<br>
+&gt; <br>
+&gt; We are available this Sunday.<br>
+&gt; <br>
+&gt; Cynthia<br>
+<br>
+</blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+
+--000000000000b04c7b05e1a9f46b--
+
+--000000000000b04c7c05e1a9f46c
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=IMG_7130.jpg
+Content-Type: image/jpg;
+	name=IMG_7130.jpg
+X-Apple-Content-Length: 2046489
+Content-Id: <181732fe1a1361785b1>
+
+
+--000000000000b04c7c05e1a9f46c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>727100</integer>
+	<key>date-last-viewed</key>
+	<integer>1743012814</integer>
+	<key>date-received</key>
+	<integer>1655494960</integer>
+	<key>flags</key>
+	<integer>9160557953</integer>
+	<key>remote-id</key>
+	<string>794</string>
+</dict>
+</plist>

@@ -18,6 +18,7 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { LLMID } from "@/types"
 import { useParams, useRouter, useSearchParams } from "next/navigation"
 import { ReactNode, useContext, useEffect, useState } from "react"
+import { CorpusProvider } from "@/context/corpus-context"
 import Loading from "../loading"
 
 interface WorkspaceLayoutProps {
@@ -159,12 +160,12 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
     setChatSettings({
       model: (searchParams.get("model") ||
         workspace?.default_model ||
-        "gpt-4-1106-preview") as LLMID,
+        "gpt-4-turbo-2024-04-09") as LLMID,
       prompt:
         workspace?.default_prompt ||
-        "You are a friendly, helpful AI assistant.",
+        "Respond as concisely, accurately, and directly as possible.",
       temperature: workspace?.default_temperature || 0.5,
-      contextLength: workspace?.default_context_length || 4096,
+      contextLength: workspace?.default_context_length || 8192,
       includeProfileContext: workspace?.include_profile_context || true,
       includeWorkspaceInstructions:
         workspace?.include_workspace_instructions || true,
@@ -179,5 +180,9 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
     return <Loading />
   }
 
-  return <Dashboard>{children}</Dashboard>
+  return (
+    <CorpusProvider>
+      <Dashboard>{children}</Dashboard>
+    </CorpusProvider>
+  )
 }

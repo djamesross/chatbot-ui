@@ -1,0 +1,942 @@
+31681     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:7808:0:0:0:0:0 with SMTP id m8csp7067539ltj;
+        Wed, 27 Feb 2019 06:23:57 -0800 (PST)
+X-Google-Smtp-Source: AHgI3Ia6gc9tnfyP5hj2a2afBb11fEhHLXBMSsZrlJz6ubOrAjm48XQvIEttLAbWr6TuMFK3HVTa
+X-Received: by 2002:a17:906:4e98:: with SMTP id v24mr1791914eju.58.1551277437370;
+        Wed, 27 Feb 2019 06:23:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1551277437; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Q/ShmmHjWrpTFG23sHLhdH4nlztdRXkk4+0qRB1mcp/u/Ui0hE4p1wlvtrX8bOk1Jd
+         rGzrD7VQFHnv97ITl+CZ12bF4CJNy+xT/kDmNsEwITBXPtgBOK+VuQCTiZDBVu+bFveB
+         4f3MLxqUhn0rxd79FwrYLT/9fyiCTt1FCj61VhgGn/Aoo7aix+hBANWcZdjylyjcs3Fm
+         oQZ50PQ2nStXv39pLf+MIy4mE0GgpoD7YrDw+GNQJPWHKOne2kwOEyrH6Om0ApCRMtXL
+         CufGXnpr6gIjjAFuWD4QKn2MV9+8gMlYlswlJGvKu2Cykvpb3/TOPmXObwMzQFu6Z21F
+         D5JA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:dkim-signature;
+        bh=9wbTeDy/F0JRkmr4asnR1ESTzm0DzxXD4IlwHVji/Nc=;
+        b=Pjd+xbFnTCwGDiJ+d/jul8jtxcTppCq2/KfSqZTC4fsLCtrL2mUfmW1y5XC0Ttag1g
+         K3k4/AFy+B8YrTfNRXxTzgwnCjyu7XgbgNBE33SxJzfvXsz07bVK3uAKhEd5cyo/JiFQ
+         QN3Xt5taiFwBdRgahr+nwLA13oVCY5Tn8/yIzMRlhKO7MbU0rXK/2GAfWLxz4kuwMWNM
+         d0Sxqx3STwh1wRQzTg2va4LGyHCjrEZUXkwiWTmMIzapa3y0Wls5RaRMfzHOwy9wE5EY
+         lIIiHCoI4V6e5DHbB3Oc17oe5oy4Sc7YiyvrSp9BOfkEWLz2m7Hsh5bWsRW1HqJJacRe
+         Vnxg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-on-ca header.b=D+BDywZZ;
+       spf=pass (google.com: domain of heather.clark@casott.on.ca designates 40.107.70.116 as permitted sender) smtp.mailfrom=heather.clark@casott.on.ca
+Return-Path: <heather.clark@casott.on.ca>
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com (mail-eopbgr700116.outbound.protection.outlook.com. [40.107.70.116])
+        by mx.google.com with ESMTPS id j8si1315672edh.289.2019.02.27.06.23.56
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 27 Feb 2019 06:23:57 -0800 (PST)
+Received-SPF: pass (google.com: domain of heather.clark@casott.on.ca designates 40.107.70.116 as permitted sender) client-ip=40.107.70.116;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-on-ca header.b=D+BDywZZ;
+       spf=pass (google.com: domain of heather.clark@casott.on.ca designates 40.107.70.116 as permitted sender) smtp.mailfrom=heather.clark@casott.on.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=casott.onmicrosoft.com; s=selector1-casott-on-ca;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9wbTeDy/F0JRkmr4asnR1ESTzm0DzxXD4IlwHVji/Nc=;
+ b=D+BDywZZGJ1OHswSAryoMN0Z/rmzDUGyEd8Gar/lE+VCvhJoXgkOg5YC9gc4hs2ONwq1yAJrJxnZQec91X3PrWZRlT5cYVYJTwRxXu9KYOar3tCPkf7hQYjUi6k6+Tbgp8d0MGz/GBNlGNEyNyyv5b2fN8Dn+s1t3NYMnUzAblQ=
+Received: from BN6PR04MB0533.namprd04.prod.outlook.com (10.173.201.22) by
+ BN6PR04MB0741.namprd04.prod.outlook.com (10.172.199.8) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1643.18; Wed, 27 Feb 2019 14:23:52 +0000
+Received: from BN6PR04MB0533.namprd04.prod.outlook.com
+ ([fe80::cc47:404:ec73:8b54]) by BN6PR04MB0533.namprd04.prod.outlook.com
+ ([fe80::cc47:404:ec73:8b54%12]) with mapi id 15.20.1643.019; Wed, 27 Feb 2019
+ 14:23:52 +0000
+From: "Clark, Heather" <heather.clark@casott.on.ca>
+To: Darryl Ross <darrylondunlin@gmail.com>
+Subject: Re: Update
+Thread-Topic: Update
+Thread-Index:
+ AdS/HcqjkvQFPXsPS1SIzH/kYTLEVgA0gJ7zAPLezkAAAg9/AAABwgKwAWSkE0EAAA2GkAD5eqeAACTIYDAAC3DxgAAo9fRU
+Date: Wed, 27 Feb 2019 14:23:52 +0000
+Message-ID:
+ <BN6PR04MB0533EDA3A09015A7C1C282CFD9740@BN6PR04MB0533.namprd04.prod.outlook.com>
+References:
+ <BN6PR04MB0533573E6E4296A5C33B819AD9680@BN6PR04MB0533.namprd04.prod.outlook.com>
+ <BN6PR04MB053388874F25F0AF3D169BEFD9690@BN6PR04MB0533.namprd04.prod.outlook.com>
+ <A92255C7-6210-40D1-A38F-60E9C1D6A845@gmail.com>
+ <BN6PR04MB053343694BF6126D8D1102BDD9660@BN6PR04MB0533.namprd04.prod.outlook.com>
+ <7369862F-1FFF-440F-81EF-81C239DBBD22@gmail.com>
+ <BN6PR04MB0533A20820274AB1823D3974D9660@BN6PR04MB0533.namprd04.prod.outlook.com>
+ <BN6PR04MB05337BFDD08182C42EAB3138D97D0@BN6PR04MB0533.namprd04.prod.outlook.com>
+ <8C4C5297-B297-49DC-8C6A-79471273AE4B@gmail.com>
+ <BN6PR04MB05336937B73C4D62F5BC33EDD97D0@BN6PR04MB0533.namprd04.prod.outlook.com>
+ <CBF99D2C-3C4B-466D-8341-F9B6CD914BB4@gmail.com>
+ <BN6PR04MB05334159749B8A18FD8C6E1CD97B0@BN6PR04MB0533.namprd04.prod.outlook.com>,<600E2960-ECF8-44FA-A9E8-9A320EFE0E34@gmail.com>
+In-Reply-To: <600E2960-ECF8-44FA-A9E8-9A320EFE0E34@gmail.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=heather.clark@casott.on.ca; 
+x-originating-ip: [40.67.155.233]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b5064818-fea5-47dc-5f0b-08d69cbf32ed
+x-microsoft-antispam:
+ BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600127)(711020)(4605104)(2017052603328)(7153060)(7193020);SRVR:BN6PR04MB0741;
+x-ms-traffictypediagnostic: BN6PR04MB0741:
+x-ms-exchange-purlcount: 1
+x-microsoft-exchange-diagnostics:
+ =?Windows-1252?Q?1;BN6PR04MB0741;23:6lRe/zdocWqi1F+jxNtHI7xa3szPM5LLG2bHB?=
+ =?Windows-1252?Q?3jFLZXn1nFA3C6va2xg8PxG5Wxoal4cU9QTJKz3GSy7NNmlJ0yRKWbOp?=
+ =?Windows-1252?Q?zJgbJvEK+YHC0Toi0WK2KA3e72bkeXzwmQ8nCIMWhimCs2O19Dh8hCdx?=
+ =?Windows-1252?Q?ltia7xsyJSfsddjlqgDFUlL9hvOOR/cmVFNXy6gBrrU8AdNrpDSVRWUQ?=
+ =?Windows-1252?Q?FFY7XI6bFaQojWz4LT/1WF2cTbBor9QqoibZBvfX8UHEovT3AG7bp8kD?=
+ =?Windows-1252?Q?NMDLWT0ICNwdZ7pMJvEuxy9wC/fJWL3lAmYlz6/bs3r90S2Itq2FC/za?=
+ =?Windows-1252?Q?7JRkfLl7whCgOMUcE0oDJoyBo6FZ17qiv0LBQEtwQL1JqSlP+Nar7FbU?=
+ =?Windows-1252?Q?44TbOV8YxoZxkU37pvtATVkNM90CcklbwsNekkT9KUwEBxEVKSB3feYS?=
+ =?Windows-1252?Q?PXqZdRxftBp7Q+D5yuKLUWCIS/HMFqKa2D8L6+QbKA1MIlDzfLw8LmK1?=
+ =?Windows-1252?Q?/hfBhcj96VeeT2b/x/aVkJMUx/jNTxF5nyvIkrUH5MPUN9Vo0MWx/Tcj?=
+ =?Windows-1252?Q?h0e283WI8Fq2o4enAFtRAPKeJj4ugA1t+DVExjzrzYX5IkmikS6mcw6B?=
+ =?Windows-1252?Q?R4DD9wermhfFO00CLFHycp4BhHtl3uqvoXVWlDswvH0o7KsgmcHEYv48?=
+ =?Windows-1252?Q?R/o8iYvjs7A2PheQfgfM55zbOEFPmhH5SmM2x5KWjwY/Ls1L/TIoVqOd?=
+ =?Windows-1252?Q?AeSeA6mGN4g4NOQTVbJi0ccYnqIrTCrSC4kpuhPojGePnO5eR4Ftll6Y?=
+ =?Windows-1252?Q?0TOOWlAL8rJolEXMvUBzTYR6bbQiP6ZymUsFbldK+GZRra6FM0wUkhxj?=
+ =?Windows-1252?Q?2ILnNyvNDNSjWYu16dQXEyNwUA/Ak7yVxNd5nKSCovs+4VqfX9g6JqRg?=
+ =?Windows-1252?Q?QnvLElV480QhuzUmmwyGu2AmAB2XSso2mM6ihawAnXWTDxZ/N20b2mpb?=
+ =?Windows-1252?Q?A1mA6SJEPQCHj6Kd3yfckNEAkyCyUbW280wqNxMaspEU071GHh326vjO?=
+ =?Windows-1252?Q?Fl1kt/BRPfwJW1IWqa1P57IUpPGaTGPd75QSaMr5w5ixs8g2LL2WjNIg?=
+ =?Windows-1252?Q?USki4KmiMZQc4KXPranf/bIRAOwV3nbzxSpKBwyl4+RCpbEsSJnmelr3?=
+ =?Windows-1252?Q?OSzRmxg4KJdkPCxozj3wJgaT8AG7gUTuiLFfIqvH1X/H64TwbAbk2t/r?=
+ =?Windows-1252?Q?TrPii0J/XS7iUEueqovoVxCCfi1HBeviVR9U/b4QEtA+mXpA6jNqpYAf?=
+ =?Windows-1252?Q?V4ZgidfLJ2kmbZwP/ASQJ+CiYoD9D7hQUP9nz6c9FvVMKu++uBct5aq1?=
+ =?Windows-1252?Q?ilPhJ7vfrqvk9+1ZqzHSWocT17dBtbhLai+aOxYUniYrYS5RqnlGNLln?=
+ =?Windows-1252?Q?tLZM9d6UOIs8EcEjw4tpctsEBrobgPji+vR0byr8MxP3pWdSUro33FG1?=
+ =?Windows-1252?Q?fSbK//ifBrQ4as+GoiwPv3cs01rY5eFETdsjLpgAeVNxdnWWLENuPaz0?=
+ =?Windows-1252?Q?YeTFJ5IR0oxgGWdSzc0ktJwnn7wrQHdTj1383Dw4oHcyqg9KcdohIINY?=
+ =?Windows-1252?Q?R9soF50f8Cne9+BzeqQlDw=3D?=
+x-microsoft-antispam-prvs:
+ <BN6PR04MB07411EFF24878F1F32DA275AD9740@BN6PR04MB0741.namprd04.prod.outlook.com>
+x-forefront-prvs: 0961DF5286
+x-forefront-antispam-report:
+ SFV:NSPM;SFS:(10019020)(376002)(396003)(366004)(136003)(346002)(39830400003)(30584003)(199004)(189003)(25786009)(66066001)(102836004)(316002)(476003)(45080400002)(486006)(15650500001)(74482002)(68736007)(11346002)(33656002)(446003)(66574012)(5660300002)(256004)(74316002)(97736004)(52536013)(14444005)(5024004)(7736002)(86362001)(53936002)(8936002)(81156014)(71200400001)(71190400001)(8676002)(81166006)(3480700005)(3846002)(6246003)(6116002)(606006)(229853002)(7116003)(9686003)(6306002)(54896002)(7696005)(55016002)(6436002)(93886005)(105586002)(99286004)(26005)(186003)(14454004)(1411001)(2906002)(106356001)(478600001)(76176011)(6916009)(236005)(6506007)(53546011)(221733001);DIR:OUT;SFP:1102;SCL:1;SRVR:BN6PR04MB0741;H:BN6PR04MB0533.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: casott.on.ca does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info:
+ Z9L1HDnm15mKPqRTtkniQ7vRnpErhmRp5ECD14nAUDUmUKFsRAGDFQQ2LA80AMHNZVB2fT4+QdSd4KdQpJj8jxgUq2xskhItz/gnTd/ENWKppKQ/LGVzMftCSucVPAqRg9B4svIMoFTI07Z7ocvs8dAbuur/s+X1m1Q5AHDaIwvGY8lrEL+R2cDyRoWpXGAeLx5PQf5z2rJ1IIPmxoNoKqlsRO0t/bbTE1Z2l0FctkdrCZSoUpMiYk/jRcPljPV+0Qdgmew0Z1ImAECzcfhkU6byU1pC0OGaxOo5cwHUZP/Pf8+bRVRulPhvF782lVLmVqlTaxa5GrkdfGQTymX0zu2hkHPolkfyq+rjWXCWRf3DATbIzpBFbm1b6V/8oaPy7dtfuuqGJniLOHquK1w4ZaeqL8CrqO4xnrA1J0jI9TQ=
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR04MB0533EDA3A09015A7C1C282CFD9740BN6PR04MB0533namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: casott.on.ca
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5064818-fea5-47dc-5f0b-08d69cbf32ed
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2019 14:23:52.4605
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e6da767b-f287-4dbf-ae9f-9fe542f5efe5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR04MB0741
+
+--_000_BN6PR04MB0533EDA3A09015A7C1C282CFD9740BN6PR04MB0533namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Hi - I am still going to come see you and the girls tomorrow. I=92ll have t=
+ime later today to talk or tomorrow. Send me your number and I=92ll give yo=
+u a try.
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+
+________________________________
+From: Darryl Ross <darrylondunlin@gmail.com>
+Sent: Tuesday, February 26, 2019 1:50 PM
+To: Clark, Heather
+Subject: Re: Update
+
+Ok, I=92ll wait to hear. Should I still plan for Thursday?
+
+Darryl
+
+On Feb 26, 2019, at 8:23 AM, Clark, Heather <heather.clark@casott.on.ca<mai=
+lto:heather.clark@casott.on.ca>> wrote:
+
+Hi, Darryl, I think Krystle may be back today, so I am just waiting to hear=
+ back.  I'll let you know.
+
+Heather
+
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: February-25-19 2:50 PM
+To: Clark, Heather <heather.clark@casott.on.ca<mailto:heather.clark@casott.=
+on.ca>>
+Subject: Re: Update
+
+Hi Heather,
+
+Did you get my email last week? I=92d like to talk before Thursday, when th=
+e girls are with me.  I=92m free all day tomorrow and most of Wednesday.
+
+Darryl
+
+
+On Feb 20, 2019, at 3:49 PM, Clark, Heather <heather.clark@casott.on.ca<mai=
+lto:heather.clark@casott.on.ca>> wrote:
+
+Yes, no problem.  I am available most of the morning tommorow, give me a qu=
+ick email and I'll call you back.
+
+Heather
+
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: February-20-19 3:45 PM
+To: Clark, Heather <heather.clark@casott.on.ca<mailto:heather.clark@casott.=
+on.ca>>
+Subject: Re: Update
+
+Hi Heather,
+
+Thanks for reminding me! Yes, that date works. Would it be possible to talk=
+ before you come? I have some questions and would like to connect before th=
+e visit.
+
+Sorry for not getting back to you right away!
+
+Darryl
+
+
+
+On Feb 20, 2019, at 3:42 PM, Clark, Heather <heather.clark@casott.on.ca<mai=
+lto:heather.clark@casott.on.ca>> wrote:
+
+Hi, Darryl.
+
+Did you get this message?  Will the 28 work for you?
+
+From: Clark, Heather
+Sent: February-13-19 1:35 PM
+To: 'Darryl Ross' <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Subject: RE: Update
+
+I'm not out yet, but still working at it.
+
+This is far away, but can we schedule for Thursday Feb 28?  Around 5?
+
+Heather
+
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: February-13-19 12:43 PM
+To: Clark, Heather <heather.clark@casott.on.ca<mailto:heather.clark@casott.=
+on.ca>>
+Subject: Re: Update
+
+Digging - yes! I hope you didn=92t get buried.
+
+Thursday=92s are at my place, in Nepean (96 Stonebriar dr). By the time I p=
+ick them up and get here it=92s about 4:30. Let me know about next Thursday=
+. Alternately they=92ll be with me for the day Monday, because of a p.d. da=
+y.
+
+Let me know what works,
+Darryl
+
+On Feb 13, 2019, at 11:44 AM, Clark, Heather <heather.clark@casott.on.ca<ma=
+ilto:heather.clark@casott.on.ca>> wrote:
+Hello!  I'm sorry this got buried in my email.  I hope you are well, diggin=
+g out of all this snow.
+
+What time are the visits on Thursdays and where are you living right now?  =
+I may be able to do next Thursday, but will need to confirm the times with =
+you.
+
+Heather
+
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: February-08-19 3:49 PM
+To: Clark, Heather <heather.clark@casott.on.ca<mailto:heather.clark@casott.=
+on.ca>>
+Subject: Re: Update
+
+Hi Heather,
+
+It=92s nice to hear from you. The girls are with me Thursdays after school =
+- would that work? If not, I can try to arrange for a Monday or Friday.
+
+Hope all is well,
+
+Darryl
+
+On Feb 8, 2019, at 12:01 PM, Clark, Heather <heather.clark@casott.on.ca<mai=
+lto:heather.clark@casott.on.ca>> wrote:
+Hello, Darryl
+
+I wanted to let you know that Krystle is unexpectedly off, so I was asked t=
+o get in touch with you and plan a time to see you and the girls.
+
+I hope all is well and wanted to see when would be a good time for a visit.
+
+Heather
+
+Heather Clark, BSW
+Child Protection Services
+Children's Aid Society of Ottawa
+613-747-7800 ext. 3478
+(fax) 613-271-9088
+heather.clark@casott.on.ca<mailto:heather.clark@casott.on.ca>
+
+CONFIDENTIALITY NOTICE This e-mail transmission, and any documents, files o=
+r previous e-mail messages attached to it may contain information that is c=
+onfidential or legally privileged. If you are not the intended recipient, o=
+r a person responsible for delivering it to the intended recipient, you are=
+ hereby notified that you must not read this transmission and that any disc=
+losure, copying, printing, distribution or use of any of the information co=
+ntained in or attached to this transmission is STRICTLY PROHIBITED. If you =
+have received this transmission in error, please immediately notify the sen=
+der by return e-mail and delete the original transmission and its attachmen=
+ts without reading, printing, or saving in any manner. Thank you. AVIS DE C=
+ONFIDENTIALIT=C9 Le pr=E9sent courriel, ainsi que tout document, fichier ou=
+ courriel ant=E9rieur qui y est joint, peut contenir des renseignements con=
+fidentiels ou prot=E9g=E9s par le secret professionnel. Si vous n=92=EAtes =
+pas le destinataire vis=E9, ni son mandataire, nous vous signalons que vous=
+ ne devez pas le lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de =
+copier, d=92imprimer, de diffuser ou d=92utiliser l=92information qui y fig=
+ure ou qui y est jointe. Si cette communication vous a =E9t=E9 transmise pa=
+r erreur, veuillez en aviser l=92exp=E9diteur imm=E9diatement par courriel =
+et supprimer la communication originale ainsi que les pi=E8ces jointes sans=
+ les lire, les imprimer ou les sauvegarder de quelque mani=E8re que ce soit=
+. Merci.
+
+--_000_BN6PR04MB0533EDA3A09015A7C1C282CFD9740BN6PR04MB0533namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body>
+<div>
+<div>
+<div>
+<div style=3D"direction: ltr;">Hi - I am still going to come see you and th=
+e girls tomorrow. I=92ll have time later today to talk or tomorrow. Send me=
+ your number and I=92ll give you a try.
+</div>
+</div>
+<div><br>
+</div>
+<div class=3D"ms-outlook-ios-signature">Get <a href=3D"https://aka.ms/o0uke=
+f">Outlook for iOS</a></div>
+</div>
+<div>&nbsp;</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"dir=3D&quot;ltr&quot;"><font face=3D"Calib=
+ri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Dar=
+ryl Ross &lt;darrylondunlin@gmail.com&gt;<br>
+<b>Sent:</b> Tuesday, February 26, 2019 1:50 PM<br>
+<b>To:</b> Clark, Heather<br>
+<b>Subject:</b> Re: Update
+<div>&nbsp;</div>
+</font></div>
+<meta content=3D"text/html; charset=3Dutf-8">
+Ok, I=92ll wait to hear. Should I still plan for Thursday?<br>
+<br>
+<div id=3D"AppleMailSignature" dir=3D"ltr">Darryl&nbsp;</div>
+<div dir=3D"ltr"><br>
+On Feb 26, 2019, at 8:23 AM, Clark, Heather &lt;<a href=3D"mailto:heather.c=
+lark@casott.on.ca">heather.clark@casott.on.ca</a>&gt; wrote:<br>
+<br>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style>
+<!--
+@font-face
+	{font-family:"Cambria Math"}
+@font-face
+	{font-family:Calibri}
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif}
+span.apple-converted-space
+	{}
+span.EmailStyle19
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.MsoChpDefault
+	{font-size:10.0pt}
+@page WordSection1
+	{margin:72.0pt 72.0pt 72.0pt 72.0pt}
+div.WordSection1
+	{}
+-->
+</style>
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"">Hi, Darryl, I think Krystle may be =
+back today, so I am just waiting to hear back.&nbsp; I'll let you know.</sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"">&nbsp;</span></p>
+<p class=3D"MsoNormal"><span style=3D"">Heather</span></p>
+<p class=3D"MsoNormal"><span style=3D"">&nbsp;</span></p>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com">dar=
+rylondunlin@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> February-25-19 2:50 PM<br>
+<b>To:</b> Clark, Heather &lt;<a href=3D"mailto:heather.clark@casott.on.ca"=
+>heather.clark@casott.on.ca</a>&gt;<br>
+<b>Subject:</b> Re: Update</span></p>
+</div>
+</div>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">Hi Heather,</p>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Did you get my email last week? I=92d like to talk b=
+efore Thursday, when the girls are with me. &nbsp;I=92m free all day tomorr=
+ow and most of Wednesday.</p>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Darryl</p>
+<div>
+<p class=3D"MsoNormal"><br>
+<br>
+</p>
+<blockquote style=3D"margin-top:5.0pt; margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal">On Feb 20, 2019, at 3:49 PM, Clark, Heather &lt;<a h=
+ref=3D"mailto:heather.clark@casott.on.ca">heather.clark@casott.on.ca</a>&gt=
+; wrote:</p>
+</div>
+<p class=3D"MsoNormal">&nbsp;</p>
+<div>
+<div>
+<p class=3D"MsoNormal">Yes, no problem.&nbsp; I am available most of the mo=
+rning tommorow, give me a quick email and I'll call you back.</p>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Heather</p>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span class=
+=3D"apple-converted-space"><span lang=3D"EN-US">&nbsp;</span></span><span l=
+ang=3D"EN-US">Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com"><=
+span style=3D"color:purple">darrylondunlin@gmail.com</span></a>&gt;<span cl=
+ass=3D"apple-converted-space">&nbsp;</span><br>
+<b>Sent:</b><span class=3D"apple-converted-space">&nbsp;</span>February-20-=
+19 3:45 PM<br>
+<b>To:</b><span class=3D"apple-converted-space">&nbsp;</span>Clark, Heather=
+ &lt;<a href=3D"mailto:heather.clark@casott.on.ca"><span style=3D"color:pur=
+ple">heather.clark@casott.on.ca</span></a>&gt;<br>
+<b>Subject:</b><span class=3D"apple-converted-space">&nbsp;</span>Re: Updat=
+e</span></p>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<div>
+<p class=3D"MsoNormal">Hi Heather,</p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Thanks for reminding me! Yes, that date works. Would=
+ it be possible to talk before you come? I have some questions and would li=
+ke to connect before the visit.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Sorry for not getting back to you right away!</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Darryl</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><br>
+<br>
+<br>
+</p>
+</div>
+<blockquote style=3D"margin-top:5.0pt; margin-bottom:5.0pt">
+<div>
+<div>
+<p class=3D"MsoNormal">On Feb 20, 2019, at 3:42 PM, Clark, Heather &lt;<a h=
+ref=3D"mailto:heather.clark@casott.on.ca"><span style=3D"color:purple">heat=
+her.clark@casott.on.ca</span></a>&gt; wrote:</p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi, Darryl.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Did you get this message?&nbsp; Will the 28 work for=
+ you?</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span class=
+=3D"apple-converted-space"><span lang=3D"EN-US">&nbsp;</span></span><span l=
+ang=3D"EN-US">Clark, Heather<span class=3D"apple-converted-space">&nbsp;</s=
+pan><br>
+<b>Sent:</b><span class=3D"apple-converted-space">&nbsp;</span>February-13-=
+19 1:35 PM<br>
+<b>To:</b><span class=3D"apple-converted-space">&nbsp;</span>'Darryl Ross' =
+&lt;</span><a href=3D"mailto:darrylondunlin@gmail.com"><span lang=3D"EN-US"=
+ style=3D"color:#954F72">darrylondunlin@gmail.com</span></a><span lang=3D"E=
+N-US">&gt;<br>
+<b>Subject:</b><span class=3D"apple-converted-space">&nbsp;</span>RE: Updat=
+e</span></p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">I'm not out yet, but still working at it.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">This is far away, but can we schedule for Thursday F=
+eb 28?&nbsp; Around 5?</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Heather</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span class=
+=3D"apple-converted-space"><span lang=3D"EN-US">&nbsp;</span></span><span l=
+ang=3D"EN-US">Darryl Ross &lt;</span><a href=3D"mailto:darrylondunlin@gmail=
+.com"><span lang=3D"EN-US" style=3D"color:#954F72">darrylondunlin@gmail.com=
+</span></a><span lang=3D"EN-US">&gt;<span class=3D"apple-converted-space">&=
+nbsp;</span><br>
+<b>Sent:</b><span class=3D"apple-converted-space">&nbsp;</span>February-13-=
+19 12:43 PM<br>
+<b>To:</b><span class=3D"apple-converted-space">&nbsp;</span>Clark, Heather=
+ &lt;</span><a href=3D"mailto:heather.clark@casott.on.ca"><span lang=3D"EN-=
+US" style=3D"color:#954F72">heather.clark@casott.on.ca</span></a><span lang=
+=3D"EN-US">&gt;<br>
+<b>Subject:</b><span class=3D"apple-converted-space">&nbsp;</span>Re: Updat=
+e</span></p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Digging - yes! I hope you didn=92t get buried.&nbsp;=
+</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Thursday=92s are at my place, in Nepean (96 Stonebri=
+ar dr). By the time I pick them up and get here it=92s about 4:30. Let me k=
+now about next Thursday. Alternately they=92ll be with me for the day Monda=
+y, because of a p.d. day.&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Let me know what work=
+s,</p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Darryl&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+On Feb 13, 2019, at 11:44 AM, Clark, Heather &lt;<a href=3D"mailto:heather.=
+clark@casott.on.ca"><span style=3D"color:#954F72">heather.clark@casott.on.c=
+a</span></a>&gt; wrote:</p>
+</div>
+<blockquote style=3D"margin-top:5.0pt; margin-bottom:5.0pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello!&nbsp; I'm sorry this got buried in my email.&=
+nbsp; I hope you are well, digging out of all this snow.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">What time are the visits on Thursdays and where are =
+you living right now?&nbsp; I may be able to do next Thursday, but will nee=
+d to confirm the times with you.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Heather</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0c=
+m 0cm 0cm">
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span class=
+=3D"apple-converted-space"><span lang=3D"EN-US">&nbsp;</span></span><span l=
+ang=3D"EN-US">Darryl Ross &lt;</span><a href=3D"mailto:darrylondunlin@gmail=
+.com"><span lang=3D"EN-US" style=3D"color:#954F72">darrylondunlin@gmail.com=
+</span></a><span lang=3D"EN-US">&gt;<span class=3D"apple-converted-space">&=
+nbsp;</span><br>
+<b>Sent:</b><span class=3D"apple-converted-space">&nbsp;</span>February-08-=
+19 3:49 PM<br>
+<b>To:</b><span class=3D"apple-converted-space">&nbsp;</span>Clark, Heather=
+ &lt;</span><a href=3D"mailto:heather.clark@casott.on.ca"><span lang=3D"EN-=
+US" style=3D"color:#954F72">heather.clark@casott.on.ca</span></a><span lang=
+=3D"EN-US">&gt;<br>
+<b>Subject:</b><span class=3D"apple-converted-space">&nbsp;</span>Re: Updat=
+e</span></p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Heather,</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">It=92s nice to hear from you. The girls are with me =
+Thursdays after school - would that work? If not, I can try to arrange for =
+a Monday or Friday.&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hope all is well,</p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Darryl&nbsp;</p>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+On Feb 8, 2019, at 12:01 PM, Clark, Heather &lt;<a href=3D"mailto:heather.c=
+lark@casott.on.ca"><span style=3D"color:#954F72">heather.clark@casott.on.ca=
+</span></a>&gt; wrote:</p>
+</div>
+<blockquote style=3D"margin-top:5.0pt; margin-bottom:5.0pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello, Darryl</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">I wanted to let you know that Krystle is unexpectedl=
+y off, so I was asked to get in touch with you and plan a time to see you a=
+nd the girls.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">I hope all is well and wanted to see when would be a=
+ good time for a visit.</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">Heather</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12.0pt; f=
+ont-family:&quot;Arial&quot;,sans-serif">Heather Clark, BSW</span></b></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt; font=
+-family:&quot;Arial&quot;,sans-serif">Child Protection Services</span></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt; font=
+-family:&quot;Arial&quot;,sans-serif">Children's Aid Society of Ottawa</spa=
+n></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt; font=
+-family:&quot;Arial&quot;,sans-serif">613-747-7800 ext. 3478</span></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt; font=
+-family:&quot;Arial&quot;,sans-serif">(fax) 613-271-9088</span></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><a href=3D"mailto:heather.clark@casott.on.ca"><span =
+lang=3D"EN-US" style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,san=
+s-serif; color:#954F72">heather.clark@casott.on.ca</span></a></p>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+CONFIDENTIALITY NOTICE This e-mail transmission, and any documents, files o=
+r previous e-mail messages attached to it may contain information that is c=
+onfidential or legally privileged. If you are not the intended recipient, o=
+r a person responsible for delivering
+ it to the intended recipient, you are hereby notified that you must not re=
+ad this transmission and that any disclosure, copying, printing, distributi=
+on or use of any of the information contained in or attached to this transm=
+ission is STRICTLY PROHIBITED. If
+ you have received this transmission in error, please immediately notify th=
+e sender by return e-mail and delete the original transmission and its atta=
+chments without reading, printing, or saving in any manner. Thank you. AVIS=
+ DE CONFIDENTIALIT=C9 Le pr=E9sent courriel,
+ ainsi que tout document, fichier ou courriel ant=E9rieur qui y est joint, =
+peut contenir des renseignements confidentiels ou prot=E9g=E9s par le secre=
+t professionnel. Si vous n=92=EAtes pas le destinataire vis=E9, ni son mand=
+ataire, nous vous signalons que vous ne devez
+ pas le lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de copier, d=
+=92imprimer, de diffuser ou d=92utiliser l=92information qui y figure ou qu=
+i y est jointe. Si cette communication vous a =E9t=E9 transmise par erreur,=
+ veuillez en aviser l=92exp=E9diteur imm=E9diatement
+ par courriel et supprimer la communication originale ainsi que les pi=E8ce=
+s jointes sans les lire, les imprimer ou les sauvegarder de quelque mani=E8=
+re que ce soit. Merci.
+</body>
+</html>
+
+--_000_BN6PR04MB0533EDA3A09015A7C1C282CFD9740BN6PR04MB0533namp_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1110169</integer>
+	<key>date-last-viewed</key>
+	<integer>1746457081</integer>
+	<key>date-received</key>
+	<integer>1551277437</integer>
+	<key>flags</key>
+	<integer>25770064901</integer>
+	<key>remote-id</key>
+	<string>18770</string>
+</dict>
+</plist>

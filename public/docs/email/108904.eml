@@ -1,0 +1,455 @@
+22920     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin004.me.com by p72-mailgateway-smtp-5c7799b8b5-9p9f2 (mailgateway 2222B262)
+	with SMTP id 2f39a68d-8c3d-4c7f-9484-206bcd79bd24 
+	for <darrylross@icloud.com>; Thu, 25 Aug 2022 21:30:42 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 2f39a68d-8c3d-4c7f-9484-206bcd79bd24
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	by pv33p00im-smtpin004.me.com (Postfix) with ESMTPS id 808B994A210
+	for <darrylross@icloud.com>; Thu, 25 Aug 2022 21:30:40 +0000 (UTC)
+X-ICL-SCORE: 3.3320333300
+X-ICL-INFO: GAtbVUseBVFHSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRkoIGFNCSURXEFVaDUhb
+ CxYRXBsbAkhLEUkHBkwSFgkQFFUYARoURFcIRERfVxQHHhQdTxVEVABGTwAYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFC
+ QFtSUR82EUUqWmNXOBEkRgxSRFoFVFE1RV0OIDdBHkQ2ZXpPREhLLypIdyIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=h7aJDuZM
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.128.170 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.128.170 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.128.170; helo=mail-yw1-f170.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-3378303138bso534571547b3.9
+        for <darrylross@icloud.com>; Thu, 25 Aug 2022 14:30:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc;
+        bh=lKwgrDRWkDzUYmdz5z54zp5hioZmn9/OQIXz2pyicJA=;
+        b=h7aJDuZMV6L4T0OTdosDyfTQ2pLvhqPvmVz5M4DDAHIjbCnORh9lsyI9lieGlwoLTV
+         dtb95UIgPzljiZT2RwZZkVquiJ4o5P2FuMmdGmvVawIyy77a/hfDM9Y/p6kixFSoixqB
+         /It8BHeEf62JYwme0zEUZmplitCrv7lCE3hr+6kacdAqfbwb5NBze91deXGyLNKZGCtD
+         kJJ3gfa6sSS3A02wjR5NTtNxggTGIDLLYTlecsqFiUPjLSPTm5WSHu9FuotHdRuKQ7/0
+         pRBJhAUpFO2jNZyUKeMfZazOv3WSqL05XCru4nOvR95WIulCzQBhhqVK5uAk6JI23MyQ
+         FHlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc;
+        bh=lKwgrDRWkDzUYmdz5z54zp5hioZmn9/OQIXz2pyicJA=;
+        b=Hqc/3yczwAj+Om0teaAG5nTMx9ki6qTbibHkpUP2ZnT8qKfK7/UH5VKe1LDHIjJrnC
+         gOEaKJkpN86Rh9QDHkX2Y5wxfoYfA6UfE+ri0Uy9yHchl7w1bxHR042vUPGdG7KCPN9g
+         Rhjt37sZ1G2XDmtZBfCNBXp7Udf7f1I4v6qwCIUQJ/N6wXkHOKBkD7GSA+dM9woOtOUA
+         U5GjdCFV0XbC/sBemRtLXwRWIsZjX1sGdadc/YT3m/e0R8C6lHR67S9H6bSknc73kLLm
+         qBo7CugHZA3j2n2yVRempv8zonWfNb7sAR66E3DDEodNKNMfF5w4zqlb5T8m7XxWbS1p
+         zI7Q==
+X-Gm-Message-State: ACgBeo0JDiIzyKGDzDlwJjpJAOiXJjAMv8hTXB/aA6adHi8Q8xkuaIaF
+	OgVt1RSpY39YLLYZ2gbBkz1vG06Jfuzx9tHeJAlALEYXz2JW+w==
+X-Google-Smtp-Source: AA6agR5bqeNlgO2EEEexel2f18WZjAhm723+YlfEQnH9DnAF0/oMCysTxhQ6X4E0gVLCX2J86JXUIZLMhudjvnMIWjQ=
+X-Received: by 2002:a81:1e02:0:b0:335:9996:fa88 with SMTP id
+ e2-20020a811e02000000b003359996fa88mr5642601ywe.105.1661463039632; Thu, 25
+ Aug 2022 14:30:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <27281DD7-4B5E-468B-A9CE-3B3CF032C454@icloud.com>
+ <CAKimwG61+r2GjgXkqO9jw4-Hf1sDn17zPuFqgtj2absfjzq08Q@mail.gmail.com>
+ <FA1FFE08-864B-4BDA-A28A-AFC52B152A1F@icloud.com> <CAKimwG5vDjTfNbDdOnLgS2v5bu5e2=iiP2=Gy1g-_pH6R8WzTw@mail.gmail.com>
+ <CAKimwG5562p7v8t=9UpFwf0eczSUU=7Cyd2YsEk0ihBg5NyAtw@mail.gmail.com> <4CD7E56A-5E90-41B3-A0AA-BFE269B74031@icloud.com>
+In-Reply-To: <4CD7E56A-5E90-41B3-A0AA-BFE269B74031@icloud.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Thu, 25 Aug 2022 17:30:03 -0400
+Message-ID: <CAKimwG58kd3jOw2RjU5MhB1tbr8p-7B=m8BB8x3NUL-11-XRxA@mail.gmail.com>
+Subject: Re: Update.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000048f8de05e717827c"
+X-MANTSH: 1TEIXWlwZGVoaGkNHB0tNT0ReQ0QeHhsbEQpMQxcbGgQbGxgEHBMEGBgfEBseGh8
+ aEQpMWRcbGhoaEQpZRBdhHUB7WWNwT155GBEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGBsdEQpfT
+ RdkRURPEQpZSRcacRoQGncGGxMdcRsSHRAadwYYGgYaEQpZXhdoY3kRCkNOF2VlXmEHTBJLSxN
+ kf0kTRFxhGGlhX1l4H1wZGG1iGwceEQpYXBcZBBoEHhwHSx8bGRtMHRsFGxoaBB0aBBsTEgQbH
+ xAbHhofGhEKXlkXS3pzHEgRCk1cFxsSExEKTFoXTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQbGBI
+ EGx0aEQpCXhcbEQpCRRdsG0BJbGJdek0fXBEKQk4XYnxbX0UfZ2tMXHARCkJMF2l9BWEYRkVDT
+ WNsEQpCbBd6TwEYbUkbU0VuRREKQkAXb2RaRRkFektPRV4RCkJYF2JrTm9vemxnWkdLEQpNXhc
+ bEQpaWBcbEQpwaBdjWUYZR3x4RGZbbRAZGhEKcGgXbFxJQHxbQn5zRmgQGRoRCnBoF2ZzYWlMH
+ xJBTx5YEBkaEQpwaBdne0docGtyQhpBaxAZGhEKcGgXa3p+Tm9sHGJ9SHIQGRoRCnBsF29Pcnl
+ zQGREUHxbEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: OOtK-f8aa9NUc9nvK2CKusR5v32GH1-4
+X-Proofpoint-ORIG-GUID: OOtK-f8aa9NUc9nvK2CKusR5v32GH1-4
+
+--00000000000048f8de05e717827c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Great.  Talk to you then.
+
+Allison
+
+On Thu, Aug 25, 2022 at 5:26 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Allison,
+>
+> Tuesday at 2 pm works for me.
+>
+> Thanks,
+>
+> Darryl
+>
+> On Aug 25, 2022, at 5:17 PM, Allison Lendor <allison@lendorguest.ca>
+> wrote:
+>
+> Sorry Darryl, Tuesday at 2pm or later is good for me.  Wednesday I am
+> available at 11:30am.  Which day and time works for you?
+>
+> Allison
+>
+> On Thu, Aug 25, 2022 at 5:13 PM Allison Lendor <allison@lendorguest.ca>
+> wrote:
+>
+>> Good afternoon Darryl,
+>>
+>> Yes, I have time.  Does Tuesday, August 30 at 1pm work for you?
+>>
+>> Allison
+>>
+>> On Thu, Aug 25, 2022 at 1:11 PM Darryl Ross <darrylross@icloud.com>
+>> wrote:
+>>
+>>> Hi Allison,
+>>>
+>>> Do you have a little time to talk this week or early next week?
+>>>
+>>> Darryl
+>>>
+>>> On Aug 18, 2022, at 12:43 PM, Allison Lendor <allison@lendorguest.ca>
+>>> wrote:
+>>>
+>>> Good afternoon Darryl,
+>>>
+>>> There has not been any communication from Alison Boyce since I forwarde=
+d
+>>> her last email on August 5, 2022 - then I left on vacation.
+>>>
+>>> I see that there has been a lot of communication between you and Cynthi=
+a
+>>> during my absence.  If you still want to talk to me, I do have some tim=
+e
+>>> later this afternoon or tomorrow morning.  Let me know.
+>>>
+>>> Allison
+>>>
+>>> On Thu, Aug 18, 2022 at 12:40 PM Darryl Ross <darrylross@icloud.com>
+>>> wrote:
+>>>
+>>>> Hi Allison,
+>>>>
+>>>> I=E2=80=99m just checking in to see if there=E2=80=99s been any commun=
+ication with
+>>>> Alison, or any other updates.
+>>>>
+>>>> And apologies for the deluge of emails, especially while you ere away.
+>>>>
+>>>> Darryl
+>>>
+>>>
+>>>
+>>> --
+>>>
+>>> *Allison Lendor*
+>>> *Lendor Guest LLP*
+>>> *Barristers & Solicitors*
+>>> *209 - 460 West Hunt Club Road*
+>>> *Ottawa, ON*
+>>> *K2E 0B8*
+>>>
+>>> *Tel.: (613)247-7964 ext 3*
+>>> *Fax: (613)233-9995*
+>>>
+>>>
+>>> *This email and any files transmitted with it are confidential and
+>>> intended solely for the use of the individual or entity to whom they ar=
+e
+>>> addressed and may be protected by solicitor-client privilege. If you ha=
+ve
+>>> received this email in error please notify us by e-mail reply and delet=
+e it
+>>> from your system; you may not copy this message or disclose its content=
+s to
+>>> anyone.*
+>>>
+>>>
+>>>
+>>
+>> --
+>>
+>> *Allison Lendor*
+>> *Lendor Guest LLP*
+>> *Barristers & Solicitors*
+>> *209 - 460 West Hunt Club Road*
+>> *Ottawa, ON*
+>> *K2E 0B8*
+>>
+>> *Tel.: (613)247-7964 ext 3*
+>> *Fax: (613)233-9995*
+>>
+>>
+>> *This email and any files transmitted with it are confidential and
+>> intended solely for the use of the individual or entity to whom they are
+>> addressed and may be protected by solicitor-client privilege. If you hav=
+e
+>> received this email in error please notify us by e-mail reply and delete=
+ it
+>> from your system; you may not copy this message or disclose its contents=
+ to
+>> anyone.*
+>>
+>
+>
+> --
+>
+> *Allison Lendor*
+> *Lendor Guest LLP*
+> *Barristers & Solicitors*
+> *209 - 460 West Hunt Club Road*
+> *Ottawa, ON*
+> *K2E 0B8*
+>
+> *Tel.: (613)247-7964 ext 3*
+> *Fax: (613)233-9995*
+>
+>
+> *This email and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed and may be protected by solicitor-client privilege. If you have
+> received this email in error please notify us by e-mail reply and delete =
+it
+> from your system; you may not copy this message or disclose its contents =
+to
+> anyone.*
+>
+>
+>
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--00000000000048f8de05e717827c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Great.=C2=A0 Talk to you then.<br><div><br></div><div>Alli=
+son</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Thu, Aug 25, 2022 at 5:26 PM Darryl Ross &lt;<a href=3D"mailto:=
+darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div>Hi Allison,<div><br></div>=
+<div>Tuesday at 2 pm works for me.=C2=A0</div><div><br></div><div>Thanks,</=
+div><div><br></div><div>Darryl</div><div><div><br><blockquote type=3D"cite"=
+><div>On Aug 25, 2022, at 5:17 PM, Allison Lendor &lt;<a href=3D"mailto:all=
+ison@lendorguest.ca" target=3D"_blank">allison@lendorguest.ca</a>&gt; wrote=
+:</div><br><div><div dir=3D"ltr">Sorry Darryl, Tuesday at 2pm or later is g=
+ood for me.=C2=A0 Wednesday I am available at 11:30am.=C2=A0 Which day and =
+time works for you?<br><div><br></div><div>Allison</div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 25, 202=
+2 at 5:13 PM Allison Lendor &lt;<a href=3D"mailto:allison@lendorguest.ca" t=
+arget=3D"_blank">allison@lendorguest.ca</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Good afternoon Darr=
+yl,<br><div><br></div><div>Yes, I have time.=C2=A0 Does Tuesday, August 30 =
+at 1pm work for you?</div><div><br></div><div>Allison</div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 25, =
+2022 at 1:11 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" ta=
+rget=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div>Hi Allison,<div><br></div><div>Do=
+ you have a little time to talk this week or early next week?</div><div><br=
+></div><div>Darryl<br><div><br><blockquote type=3D"cite"><div>On Aug 18, 20=
+22, at 12:43 PM, Allison Lendor &lt;<a href=3D"mailto:allison@lendorguest.c=
+a" target=3D"_blank">allison@lendorguest.ca</a>&gt; wrote:</div><br><div><d=
+iv dir=3D"ltr">Good afternoon Darryl,<br><div><br></div><div>There has not =
+been any communication from Alison Boyce since I forwarded her last email o=
+n August 5, 2022 - then I left on vacation.=C2=A0=C2=A0</div><div><br></div=
+><div>I see that there has been a lot of communication between you and Cynt=
+hia during my absence.=C2=A0 If you still want to talk to me, I do have som=
+e time later this afternoon or tomorrow morning.=C2=A0 Let me know.</div><d=
+iv><br></div><div>Allison</div></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Thu, Aug 18, 2022 at 12:40 PM Darryl Ross=
+ &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@=
+icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">Hi Allison,<br>
+<br>
+I=E2=80=99m just checking in to see if there=E2=80=99s been any communicati=
+on with Alison, or any other updates. <br>
+<br>
+And apologies for the deluge of emails, especially while you ere away.<br>
+<br>
+Darryl</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=
+=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" =
+size=3D"3">Allison Lendor</font></i><br></div><div><div style=3D"font-size:=
+13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor =
+Guest LLP</font></span></i></div><div style=3D"font-size:13px;margin:0cm 0c=
+m 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Barristers &amp; So=
+licitors</font></font></span></i></div><div style=3D"font-size:13px"><i><sp=
+an><font face=3D"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</f=
+ont></font></span></i></div><div style=3D"font-size:13px"><i><span><font fa=
+ce=3D"Calibri"><font size=3D"3">Ottawa, ON</font></font></span></i></div><d=
+iv style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3=
+">K2E 0B8</font></font></span></i></div><div style=3D"font-size:13px"><i><f=
+ont face=3D"Calibri"><font size=3D"3"><br clear=3D"none"></font></font></i>=
+</div><div style=3D"font-size:13px"><font size=3D"3"></font></div><div styl=
+e=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><fo=
+nt size=3D"3">Tel.: (613)247-7964 ext 3</font></font></span></i></div><div =
+style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">F=
+ax: (613)233-9995</font></font></span></i></div><div style=3D"font-size:13p=
+x"><span style=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-siz=
+e:small;font-style:italic;white-space:nowrap"><br></span></div><div style=
+=3D"font-size:13px"><br></div><div style=3D"font-size:13px"></div><div styl=
+e=3D"font-size:13px"><var></var></div></div><div style=3D"margin:0cm 0cm 0p=
+t"><i style=3D"font-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt=
+">This email and any files transmitted with it are confidential and intende=
+d solely for the use of the individual or entity to whom they are addressed=
+ and may be protected by solicitor-client privilege. If you have received t=
+his email in error please notify us by e-mail reply and delete it from your=
+ system; you may not copy this message or disclose its contents to anyone.<=
+/span></i></div><div><font size=3D"3"></font></div><div style=3D"margin:0cm=
+ 0cm 0pt"><font face=3D"Calibri"><font size=3D"3"><i></i></font></font></di=
+v><div></div></div><div></div></div></div></div>
+</div></blockquote></div><br></div></div></blockquote></div><br clear=3D"al=
+l"><div><br></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"=
+><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-s=
+ize:13px"><font face=3D"Calibri" size=3D"3">Allison Lendor</font></i><br></=
+div><div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font fa=
+ce=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span></i></div><div styl=
+e=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><fo=
+nt size=3D"3">Barristers &amp; Solicitors</font></font></span></i></div><di=
+v style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3"=
+>209 - 460 West Hunt Club Road</font></font></span></i></div><div style=3D"=
+font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Ottawa, ON=
+</font></font></span></i></div><div style=3D"font-size:13px"><i><span><font=
+ face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></span></i></div><d=
+iv style=3D"font-size:13px"><i><font face=3D"Calibri"><font size=3D"3"><br =
+clear=3D"none"></font></font></i></div><div style=3D"font-size:13px"><font =
+size=3D"3"></font></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i=
+><span><font face=3D"Calibri"><font size=3D"3">Tel.: (613)247-7964 ext 3</f=
+ont></font></span></i></div><div style=3D"font-size:13px"><i><span><font fa=
+ce=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font></font></span></i>=
+</div><div style=3D"font-size:13px"><span style=3D"font-family:tahoma,sans-=
+serif;color:rgb(204,0,0);font-size:small;font-style:italic;white-space:nowr=
+ap"><br></span></div><div style=3D"font-size:13px"><br></div><div style=3D"=
+font-size:13px"></div><div style=3D"font-size:13px"><var></var></div></div>=
+<div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><span lang=3D=
+"EN-US" style=3D"font-size:12pt">This email and any files transmitted with =
+it are confidential and intended solely for the use of the individual or en=
+tity to whom they are addressed and may be protected by solicitor-client pr=
+ivilege. If you have received this email in error please notify us by e-mai=
+l reply and delete it from your system; you may not copy this message or di=
+sclose its contents to anyone.</span></i></div><div><font size=3D"3"></font=
+></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri"><font size=
+=3D"3"><i></i></font></font></div><div></div></div><div></div></div></div><=
+/div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"marg=
+in:0cm 0cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" size=3D"=
+3">Allison Lendor</font></i><br></div><div><div style=3D"font-size:13px;mar=
+gin:0cm 0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor Guest LL=
+P</font></span></i></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><=
+i><span><font face=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors=
+</font></font></span></i></div><div style=3D"font-size:13px"><i><span><font=
+ face=3D"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</font></fo=
+nt></span></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Ca=
+libri"><font size=3D"3">Ottawa, ON</font></font></span></i></div><div style=
+=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B=
+8</font></font></span></i></div><div style=3D"font-size:13px"><i><font face=
+=3D"Calibri"><font size=3D"3"><br clear=3D"none"></font></font></i></div><d=
+iv style=3D"font-size:13px"><font size=3D"3"></font></div><div style=3D"fon=
+t-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=
+=3D"3">Tel.: (613)247-7964 ext 3</font></font></span></i></div><div style=
+=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Fax: (=
+613)233-9995</font></font></span></i></div><div style=3D"font-size:13px"><s=
+pan style=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-size:sma=
+ll;font-style:italic;white-space:nowrap"><br></span></div><div style=3D"fon=
+t-size:13px"><br></div><div style=3D"font-size:13px"></div><div style=3D"fo=
+nt-size:13px"><var></var></div></div><div style=3D"margin:0cm 0cm 0pt"><i s=
+tyle=3D"font-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt">This =
+email and any files transmitted with it are confidential and intended solel=
+y for the use of the individual or entity to whom they are addressed and ma=
+y be protected by solicitor-client privilege. If you have received this ema=
+il in error please notify us by e-mail reply and delete it from your system=
+; you may not copy this message or disclose its contents to anyone.</span><=
+/i></div><div><font size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0p=
+t"><font face=3D"Calibri"><font size=3D"3"><i></i></font></font></div><div>=
+</div></div><div></div></div></div></div>
+</div></blockquote></div><br></div></div></blockquote></div><br clear=3D"al=
+l"><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0=
+cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allis=
+on Lendor</font></i><br></div><div><div style=3D"font-size:13px;margin:0cm =
+0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font>=
+</span></i></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span>=
+<font face=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors</font><=
+/font></span></i></div><div style=3D"font-size:13px"><i><span><font face=3D=
+"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</font></font></spa=
+n></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><=
+font size=3D"3">Ottawa, ON</font></font></span></i></div><div style=3D"font=
+-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font>=
+</font></span></i></div><div style=3D"font-size:13px"><i><font face=3D"Cali=
+bri"><font size=3D"3"><br clear=3D"none"></font></font></i></div><div style=
+=3D"font-size:13px"><font size=3D"3"></font></div><div style=3D"font-size:1=
+3px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Te=
+l.: (613)247-7964 ext 3</font></font></span></i></div><div style=3D"font-si=
+ze:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-999=
+5</font></font></span></i></div><div style=3D"font-size:13px"><span style=
+=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-s=
+tyle:italic;white-space:nowrap"><br></span></div><div style=3D"font-size:13=
+px"><br></div><div style=3D"font-size:13px"></div><div style=3D"font-size:1=
+3px"><var></var></div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"f=
+ont-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt">This email and=
+ any files transmitted with it are confidential and intended solely for the=
+ use of the individual or entity to whom they are addressed and may be prot=
+ected by solicitor-client privilege. If you have received this email in err=
+or please notify us by e-mail reply and delete it from your system; you may=
+ not copy this message or disclose its contents to anyone.</span></i></div>=
+<div><font size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font =
+face=3D"Calibri"><font size=3D"3"><i></i></font></font></div><div></div></d=
+iv><div></div></div></div></div>
+
+--00000000000048f8de05e717827c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>961663</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1661463042</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>855</string>
+</dict>
+</plist>

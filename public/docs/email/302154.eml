@@ -1,0 +1,482 @@
+24053     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin029.me.com by p72-mailgateway-smtp-544bc87f4c-97rfj (mailgateway 2225B401)
+	with SMTP id 591b568a-1339-4ca3-bed0-0390bed70b2b 
+	for <darrylross@icloud.com>; Sat, 8 Oct 2022 15:42:56 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 591b568a-1339-4ca3-bed0-0390bed70b2b
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	by st11p00im-smtpin029.me.com (Postfix) with ESMTPS id 72D39920DC0
+	for <darrylross@icloud.com>; Sat,  8 Oct 2022 15:42:55 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQUhEVxBVWg1IWwsWEVwbDhNI
+ SxFMARgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9SRlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeF81MRARKE0IYT09DgU6Gll4MhBKDkAse30gLyoyJB91QwwBESxG
+ DnJZBDQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ROhrqm3K
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.41; helo=mail-lf1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id g1so11045119lfu.12
+        for <darrylross@icloud.com>; Sat, 08 Oct 2022 08:42:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6MulIaVRFe3Ut0hPM3ZKNGPEsmFAf49pGIq8Y43gmxU=;
+        b=ROhrqm3KTaeMCRBOjkbd38p6tqKBRGyxKvdXtVBjDkXOk5whW6bkDf0xsSms6eJ5Od
+         cbuEi5ZF2wB5HKaQOf0gjv4guOWYp76fiMeN4uiWChdAk223XKszVeaKg0jDRcvN0px6
+         17wvOhW9wt+4hPxRXRwp0O5EoswcF3wxYg3/kdFXW74CCpCX3KTfqo2OmasrNUnlu3aQ
+         3F5C+l4Jbzs3Rq1WhZXnH7rKXIkgnYNUdrWDqzWqe0h3wS1mF0pNz+W/vpGI0t4fQ8za
+         so0cbRCrF0JVvj4gTUaGlDb4qcoRKZq7G/1dR57252nmDYkM1DFOwQxKpzJIuop3J5hr
+         vDYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6MulIaVRFe3Ut0hPM3ZKNGPEsmFAf49pGIq8Y43gmxU=;
+        b=vs/T6+wx8yDRtMbdbs8XIuWP8nOI//ouujku7d7VApamOdiwbidq3IRtmeuAhACBoO
+         vJoTkUprEBmOKC+4F76zbrKtXlKTenu0fS9R6WnrpOv6I/E69ekW+cQWEAuwTAJrbKWp
+         jk5+V9mUvztNiPX065rinIyHxFGxjjpxebWMdBF8pwjxe9u/Md3CQPDHfHBj18a3FqcQ
+         +LV6EMUexkN5d6hb1fC/TmstVoJadPnTyJElurerErj685/kC+njbRyjURucfz2iIRnn
+         9RiGeR9ZfwdeGP6B8ayKxjk4uJcc2rcaK3e3oTAgwxrUoZ/fJzayr3b52eF0gO6n29Ch
+         OqJg==
+X-Gm-Message-State: ACrzQf3h1vadyJ/lFlbZbVTtWydlhyqidkj1NjbSBP8nf2d7Wnz/asap
+	vE9Tg2F9HGFfq/GfAAl9Dq7vRNjzumeSKcV4gf7T/ax7fPw=
+X-Google-Smtp-Source: AMsMyM6ML6lRGLQqqeLe/dVnarPJhVYWNqM/JwO0g2NBJA5IAuWzTZS53tFaRlX2p7lf+m4EtlFQF49+wjjrQg3aPXw=
+X-Received: by 2002:a05:6512:3ba0:b0:4a2:6e24:faae with SMTP id
+ g32-20020a0565123ba000b004a26e24faaemr3508671lfv.505.1665243774462; Sat, 08
+ Oct 2022 08:42:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRGb2gBN_7my=N8Hrojwgymq0PvbED+B59WM3SD-y30FkA@mail.gmail.com>
+ <E887D11C-8018-4F08-8B6C-932AEF1F0854@gmail.com> <CAFnbyRGuSabNUquHxq40U=B6WhF-DEmjEtN=p-5g_0oxVEUqWA@mail.gmail.com>
+ <C6AD2EBF-1B71-4814-971B-AE2C76B842CE@icloud.com> <CAFnbyRGwjNV4mjAn0AM3zWqfbt5ocgu5LW-Y33b9NoenS7juoA@mail.gmail.com>
+ <302714C9-FBD8-4EA1-BC42-F9D7267634BC@icloud.com> <CAFnbyRH1MxdQqzyC-AFU3f_j89crHOTSr2LYT9chsr=5mpYE=w@mail.gmail.com>
+ <FB097746-A4F8-482C-B1AF-C7EB76C69CBE@icloud.com> <CAFnbyRE16ZpCDW9Pn-rBOmq6gaT+dpWg4YMY2O+Hv7a3zJUujA@mail.gmail.com>
+In-Reply-To: <CAFnbyRE16ZpCDW9Pn-rBOmq6gaT+dpWg4YMY2O+Hv7a3zJUujA@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 8 Oct 2022 11:42:43 -0400
+Message-ID: <CAFnbyRHiWDiw_58W_HwcMbiNPe3h7TKKBZSTSgEunthJ1vBofA@mail.gmail.com>
+Subject: Re: Thanksgiving
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000a42e8505ea87c7bd"
+X-MANTSH: 1TEIXWV4bG1oaGkNHB15TTk0aHBgaGx0aGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGh8RCllEF2JFYkF5Y0xhXXtPEQpZTRduT0ZDXE9YEQpfWRcYGBoRCl9NF2RFRE8RC
+ llJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XG21HG3VEY2JlGFwZWXtGRRx
+ TcEJnXkZcR3hAbkF4H20RClhcFxkEGgQeEwcdGEkfHx1JGQUbHQQbHRgEEhkEGxwQGx4aHxoRC
+ l5ZF0tOUBJLEQpNXBcYGx8RCkxaF2lNXWsRCkxGF2xraxEKQ1oXGBoTBBIfBBscHQQeGxEKQl4
+ XGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8e
+ HJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSRE
+ KQkAXb08SYxMfRxNPQE0RCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwZxdocnhcQFsZT
+ 39FExAZGhEKcGgXZl4FRU5kQV1rH2AQGRoRCnBoF2ROa1Jrcx98YllDEBkaEQpwaBdrAWhue31
+ THFBuGxAZGhEKcGgXbGMfYmZkHwV+WB8QGRoRCnBoF21pHXITXhkZU0VHEBkaEQpwbBdmRmsfG
+ FttX0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: 1Gm1_nIHO2v3sQlo6yZhMtlvmRjDkR5G
+X-Proofpoint-ORIG-GUID: 1Gm1_nIHO2v3sQlo6yZhMtlvmRjDkR5G
+
+--000000000000a42e8505ea87c7bd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+I want to confirm that my mother will drop off for 1 pm and Holly will
+ drop off for 7 pm on Sunday, October 9.
+
+Please confirm on your end.
+
+Cynthia
+
+On Thu, Oct 6, 2022 at 4:27 PM Cynthia Holmes <cynthmholm@gmail.com> wrote:
+
+> Hi,
+>
+> Darryl, I already agreed to an additional two hours. It=E2=80=99s been ex=
+tended
+> from 4 hour visit to 6 hour visit.
+>
+>
+> Thanks.
+>
+> Cynthia
+>
+>
+> On Thu, Oct 6, 2022 at 4:09 PM Darryl Ross <darrylross@icloud.com> wrote:
+>
+>> Hi Cynthia,
+>>
+>> You asked if I would like additional time Sunday and you suggested 1-7,
+>> and asked for my response. I responded, and you are telling me exactly w=
+hen
+>> I can see them without discussion or consideration. The judge=E2=80=99s =
+ruling was
+>> clear: we have shared decision making. I understand the girls have plans
+>> with their cousins in the morning, and I don=E2=80=99t see any reason th=
+ey can=E2=80=99t
+>> come to my place afterwards. This is a family holiday, the first since t=
+he
+>> ruling, and they have not been allowed to spend time with me or see me f=
+or
+>> any holiday, under any conditions, for more than 2 years because they we=
+re
+>> unlawfully withheld.
+>>
+>> Refusing to consider an additional hour on a long weekend is unreasonabl=
+e
+>> given the history and the judge=E2=80=99s ruling. Visits have been going=
+ very well
+>> and the girls are completely comfortable and want more time. There is no
+>> school Monday and this is not only reasonable but justified.
+>>
+>> If you are unwilling to agree to an extra hour then I think an additiona=
+l
+>> visit Monday is a reasonable alternative. Either way these are decision
+>> that should be made in agreement, with the girls best interests in mind,
+>> following the Judge=E2=80=99s ruling.
+>>
+>> Darryl
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Oct 6, 2022, at 3:41 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl,
+>>
+>> I previously agreed extending the Sunday visit to 1-7 pm and that is
+>> firm, thanks.
+>>
+>> Also I spoke to my lawyer Monday about your email to my mother about dro=
+p
+>> off and also your concerns about Tuesday=E2=80=99s visit to the clinic, =
+I am
+>> requesting you go through your lawyer on your concerns who can advise yo=
+u
+>> and if needed, reach out to Alison B when necessary.
+>>
+>>
+>> Going forward, please do not email my mother.
+>>
+>> Cynthia
+>>
+>> On Thu, Oct 6, 2022 at 3:19 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>>
+>>> Hi Cynthia,
+>>>
+>>> I want to firm up the extended time with the girls this Sunday for
+>>> Thanksgiving. I am planning a meal with them, as well as time for some
+>>> activities. I think that more than 2 hour is appropriate, especially gi=
+ven
+>>> how well visits have been going and that they have been asking for more
+>>> time, and because Monday is a holiday. Can they be dropped off would be
+>>> after the run with their cousins in the morning, or by noon?
+>>>
+>>> Darryl
+>>>
+>>> On Sep 22, 2022, at 2:45 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>>> wrote:
+>>>
+>>> Hi Darryl,
+>>>
+>>> Let's keep the original time for Thanksgiving on Sunday. I forgot the
+>>> girls and cousins planned a race that Sunday morning, so the girls can =
+miss
+>>> the soccer game that night.
+>>>
+>>> If on that Sunday, you would like a few more hours, please let me know,
+>>> I would suggest 1-7 pm so that you could have a meal.
+>>>
+>>> I followed up with Allison on the therapist and will let you know.
+>>>
+>>> Cynthia
+>>>
+>>> On Tue, Sep 20, 2022 at 1:39 PM Darryl Ross <darrylross@icloud.com>
+>>> wrote:
+>>>
+>>>> Hi Cynthia,
+>>>>
+>>>> I will agree to change from the current 2-6 pm, to 11 am - 5 pm on
+>>>> Sunday. Please confirm.
+>>>>
+>>>> I don=E2=80=99t know if you intentionally used not seeing an aunt who =
+lives in
+>>>> another province and has a child as a priority over my relationship wi=
+th
+>>>> the girls in light of Justice Smoji=E2=80=99s ruling about unlawfully =
+withholding
+>>>> our daughters from me for more than two years, or the damage that it
+>>>> caused. I will assume that it was not. This is a holiday and a long
+>>>> weekend, and it has been more than 3 years since they have been allowe=
+d to
+>>>> see their dad on or around Thanksgiving, let alone all other holidays,
+>>>> special events, birthdays, and on and on. I think that priorities have=
+ to
+>>>> be discussed and agreed on. Related is the matter of court ordered par=
+ental
+>>>> reunification therapy, as it pertains to parenting time and moving for=
+ward.
+>>>> I did not receive any potential counsellors from you by the judges dea=
+dline
+>>>> or to date. Can you please send me contact information for counsellor=
+=E2=80=99s
+>>>> that you have found. Did you contact Marianne Cuhaci? If yes please up=
+date.
+>>>> If you have not found counsellors please explain why and what you are =
+doing
+>>>> about it, or when I can expect to receive names.
+>>>>
+>>>> Thank you,
+>>>>
+>>>> Darryl
+>>>>
+>>>>
+>>>>
+>>>> On Sep 20, 2022, at 12:33 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>> wrote:
+>>>>
+>>>> Hi Darryl,
+>>>>
+>>>> The game begins at 6 pm so pick up would have to be at 5 pm on Sunday.
+>>>> That would mean Sunday 1-5, does that work for you?
+>>>>
+>>>> Unfortunately, that Saturday extended time won't work as we are all
+>>>> celebrating Heather's birthday that evening, they have not seen her in=
+ 3
+>>>> years. I can extend sunday for a few more hours, say 11-5?
+>>>>
+>>>>
+>>>>
+>>>> On Tue, Sep 20, 2022 at 12:25 PM Darryl Ross <darrylondunlin@gmail.com=
+>
+>>>> wrote:
+>>>>
+>>>>> Hi Cynthia,
+>>>>>
+>>>>> The girls can certainly be ready to be picked up at 6 pm, but I will
+>>>>> have to check with my mom to see if our visit can be moved to Saturda=
+y or
+>>>>> earlier Sunday. George plays with a band at a local restaurant Saturd=
+ay and
+>>>>> Sunday afternoons, but I think we can arrange something for Saturday,
+>>>>>
+>>>>> Given that it is a long weekend and holiday I wanted to discuss
+>>>>> arranging a longer visit with the girls or an additional visit for th=
+at
+>>>>> weekend. Visits have been going very well, the girls are very comfort=
+able,
+>>>>> and they have been asking for longer visits. If me mom is available I=
+=E2=80=99m
+>>>>> proposing Saturday 12:30 pm - 7:30 pm.
+>>>>>
+>>>>> Darryl
+>>>>>
+>>>>> On Sep 20, 2022, at 10:57 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>> Hi Darryl,
+>>>>>
+>>>>> My sisters are visiting for Thanksgiving and have booked soccer game
+>>>>> tickets for the girls, Dennis and I to join them for Sunday October 9=
+ at 6
+>>>>> pm.
+>>>>>
+>>>>> The girls are available :
+>>>>> Earlier that day, Sunday Oct 9 noon-4 pm or
+>>>>> Saturday, Oct 8 from 1-5 pm?
+>>>>>
+>>>>> Can you let me know if either of those dates would suit?
+>>>>>
+>>>>> Thanks
+>>>>>
+>>>>> Cynthia
+>>>>>
+>>>>>
+>>>>>
+>>>>
+>>>
+>>
+
+--000000000000a42e8505ea87c7bd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">I want to confirm that my mother will drop off for 1 pm and Holly will=
+ =C2=A0drop off for 7 pm on Sunday, October 9.</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Please confirm on your end.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Cynthia=C2=A0</div><div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 6, 2022 at 4:27 PM=
+ Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;paddin=
+g-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"auto">Hi,</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">Darryl, I already agreed to an=
+ additional two hours. It=E2=80=99s been extended from 4 hour visit to 6 ho=
+ur visit.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">Thanks.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cy=
+nthia=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br><div cla=
+ss=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On Th=
+u, Oct 6, 2022 at 4:09 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@iclo=
+ud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t-width:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(=
+204,204,204)"><div style=3D"line-break:after-white-space">Hi Cynthia,<div><=
+br></div><div>You asked if I would like additional time Sunday and you sugg=
+ested 1-7, and asked for my response. I responded, and you are telling me e=
+xactly when I can see them without discussion or consideration. The judge=
+=E2=80=99s ruling was clear: we have shared decision making. I understand t=
+he girls have plans with their cousins in the morning, and I don=E2=80=99t =
+see any reason they can=E2=80=99t come to my place afterwards. This is a fa=
+mily holiday, the first since the ruling, and they have not been allowed to=
+ spend time with me or see me for any holiday, under any conditions, for mo=
+re than 2 years because they were unlawfully withheld.</div><div><br></div>=
+<div>Refusing to consider an additional hour on a long weekend is unreasona=
+ble given the history and the judge=E2=80=99s ruling. Visits have been goin=
+g very well and the girls are completely comfortable and want more time. Th=
+ere is no school Monday and this is not only reasonable but justified.=C2=
+=A0</div><div><br></div><div>If you are unwilling to agree to an extra hour=
+ then I think an additional visit Monday is a reasonable alternative. Eithe=
+r way these are decision that should be made in agreement, with the girls b=
+est interests in mind, following the Judge=E2=80=99s ruling.</div></div><di=
+v style=3D"line-break:after-white-space"><div><br></div><div>Darryl</div><d=
+iv><br></div><div><br></div><div><br></div><div><br></div><div><br></div><d=
+iv><br></div><div><br><div><br><blockquote type=3D"cite"><div>On Oct 6, 202=
+2, at 3:41 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" t=
+arget=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=
+=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div dir=3D"auto">I p=
+reviously agreed extending the Sunday visit to 1-7 pm and that is firm, tha=
+nks.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Also I spoke to my =
+lawyer Monday about your email to my mother about drop off and also your co=
+ncerns about Tuesday=E2=80=99s visit to the clinic, I am requesting you go =
+through your lawyer on your concerns who can advise you and if needed, reac=
+h out to Alison B when necessary.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Going forward, please do not email my=
+ mother.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</=
+div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Thu, Oct 6, 2022 at 3:19 PM Darryl Ross &lt;<a href=3D"mailto:darrylr=
+oss@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left-width:1px;border-left-style:solid;padding-left:1ex;border-left-co=
+lor:rgb(204,204,204)"><div style=3D"line-break:after-white-space">Hi Cynthi=
+a,<div><br></div><div>I want to firm up the extended time with the girls th=
+is Sunday for Thanksgiving. I am planning a meal with them, as well as time=
+ for some activities. I think that more than 2 hour is appropriate, especia=
+lly given how well visits have been going and that they have been asking fo=
+r more time, and because Monday is a holiday. Can they be dropped off would=
+ be after the run with their cousins in the morning, or by noon?</div></div=
+><div style=3D"line-break:after-white-space"><div><br></div><div>Darryl=C2=
+=A0</div><div><div><br><blockquote type=3D"cite"><div>On Sep 22, 2022, at 2=
+:45 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=
+=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"l=
+tr">Hi Darryl,<div><br></div><div>Let&#39;s keep the original=C2=A0time for=
+ Thanksgiving on Sunday. I forgot the girls and cousins planned a race that=
+ Sunday morning, so the girls can miss the soccer game that night.</div><di=
+v><br></div><div>If on that Sunday, you would like a few more hours, please=
+ let me know, I would suggest 1-7 pm so that you could have a meal.</div><d=
+iv><br></div><div>I followed up with Allison on the therapist and will let =
+you know.</div><div><br></div><div>Cynthia</div></div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 20, 2022 at 1:3=
+9 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_bl=
+ank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-le=
+ft-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"><div>Hi=
+ Cynthia,<div><br></div><div>I will agree to change from the current 2-6 pm=
+, to 11 am - 5 pm on Sunday. Please confirm.<br><div><br></div><div>I don=
+=E2=80=99t know if you intentionally used not seeing an aunt who lives in a=
+nother province and has a child as a priority over my relationship with the=
+ girls in light of Justice Smoji=E2=80=99s ruling about unlawfully withhold=
+ing our daughters from me for more than two years, or the damage that it ca=
+used. I will assume that it was not. This is a holiday and a long weekend, =
+and it has been more than 3 years since they have been allowed to see their=
+ dad on or around Thanksgiving, let alone all other holidays, special event=
+s, birthdays, and on and on. I think that priorities have to be discussed a=
+nd agreed on. Related is the matter of court ordered parental reunification=
+ therapy, as it pertains to parenting time and moving forward. I did not re=
+ceive any potential counsellors from you by the judges deadline or to date.=
+ Can you please send me contact information for counsellor=E2=80=99s that y=
+ou have found. Did you contact Marianne Cuhaci? If yes please update. If yo=
+u have not found counsellors please explain why and what you are doing abou=
+t it, or when I can expect to receive names.</div><div><br></div><div>Thank=
+ you,</div><div><br></div><div>Darryl</div><div><br></div><div><br></div><d=
+iv><br><div><div><blockquote type=3D"cite"><div>On Sep 20, 2022, at 12:33 P=
+M, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_bl=
+ank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi =
+Darryl,<div><br></div><div>The game begins at 6 pm so pick up would have to=
+ be at 5 pm on Sunday. That would mean Sunday 1-5, does that work for you?<=
+/div><div><br></div><div>Unfortunately, that Saturday extended time won&#39=
+;t work as we are all celebrating=C2=A0Heather&#39;s birthday that evening,=
+ they have not seen her in 3 years. I can extend=C2=A0sunday for a few more=
+ hours, say 11-5?<br><div><br></div><div><br></div></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 20, 20=
+22 at 12:25 PM Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com" =
+target=3D"_blank">darrylondunlin@gmail.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-wid=
+th:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,2=
+04,204)"><div><div style=3D"margin:0px;font-stretch:normal;font-size:13px;l=
+ine-height:normal;font-family:&quot;Helvetica Neue&quot;">Hi Cynthia,</div>=
+<div style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:nor=
+mal;font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></div><div =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;f=
+ont-family:&quot;Helvetica Neue&quot;">The girls can certainly be ready to =
+be picked up at 6 pm, but I will have to check with my mom to see if our vi=
+sit can be moved to Saturday or earlier Sunday. George plays with a band at=
+ a local restaurant Saturday and Sunday afternoons, but I think we can arra=
+nge something for Saturday,</div><div style=3D"margin:0px;font-stretch:norm=
+al;font-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;=
+;min-height:15px"><br></div><div style=3D"margin:0px;font-stretch:normal;fo=
+nt-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;">Giv=
+en that it is a long weekend and holiday I wanted to discuss arranging a lo=
+nger visit with the girls or an additional visit for that weekend. Visits h=
+ave been going very well, the girls are very comfortable, and they have bee=
+n asking for longer visits. If me mom is available I=E2=80=99m proposing Sa=
+turday 12:30 pm - 7:30 pm.</div><div style=3D"margin:0px;font-stretch:norma=
+l;font-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;;=
+min-height:15px"><br></div><div style=3D"margin:0px;font-stretch:normal;fon=
+t-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;">Darr=
+yl</div><div><br><blockquote type=3D"cite"><div>On Sep 20, 2022, at 10:57 A=
+M, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_bl=
+ank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi =
+Darryl,<br><div><br></div><div>My sisters are visiting for Thanksgiving=C2=
+=A0and have booked soccer game tickets for the girls, Dennis and I to join =
+them for Sunday October 9 at 6 pm.=C2=A0</div><div><br></div><div>The girls=
+ are available :</div><div>Earlier that day, Sunday Oct 9 noon-4 pm or</div=
+><div>Saturday, Oct 8 from 1-5 pm?</div><div><br></div><div>Can you let me =
+know if either of those dates would suit?</div><div><br></div><div>Thanks</=
+div><div><br></div><div>Cynthia</div></div>
+</div></blockquote></div><br></div></blockquote></div>
+</div></blockquote></div><br></div></div></div></div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</blockquote></div></div>
+
+--000000000000a42e8505ea87c7bd--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>984822</integer>
+	<key>date-last-viewed</key>
+	<integer>1743890341</integer>
+	<key>date-received</key>
+	<integer>1665243776</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>19077</string>
+</dict>
+</plist>

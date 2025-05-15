@@ -1,0 +1,224 @@
+11369     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09071702.me.com by p72-mailgateway-smtp-9755c6c8d-4tqmr (mailgateway 2221B214)
+	with SMTP id b5baf1fc-0f77-49aa-a8fc-d54efe118424 
+	for <darrylross@icloud.com>; Thu, 11 Aug 2022 22:32:28 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: b5baf1fc-0f77-49aa-a8fc-d54efe118424
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	by ci74p00im-qukt09071702.me.com (Postfix) with ESMTPS id 0C65211800EA
+	for <darrylross@icloud.com>; Thu, 11 Aug 2022 22:32:26 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQUBEVxBVWg1IWwsWEVwbDhNI
+ SxFMCRgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9STlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeHcEEw0UAQl0cg0PHCAcP1kLDww3SzAzXw4DFEtfHTt4XQUMTiQu
+ D2JSERI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qeqmvFp6
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.49 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.49; helo=mail-lf1-f49.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id f20so27343696lfc.10
+        for <darrylross@icloud.com>; Thu, 11 Aug 2022 15:32:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=S2A84CdBY8NqNsgHLfuOydrO4tJARUrybWmY/6lmY48=;
+        b=qeqmvFp6KHx9I46xRH6KTa6l4inQurXV0sDScbFDhWvCJVEQmMj+s/sP7K81pMhb18
+         3RdJB5d7vZtGqOzFs3BjO25hyYn2h1cKFqhDwoodANpLW2H+ujo2d27XzEymFgG8O6QM
+         69671yV19KOpXls1Jau/Myg2d0NfraMBQZ0pXSYOcA4QVFppZ4a0vU0UsCH3nvK0oEiY
+         ceKAVbtBYsQLAlZgoKZIxP4VIUaepMEz2rM+5tfnu2OPExNaJSCuIdU6Wwxcgel6clU5
+         vpOg4I8nYPX134gPylzZB4gFMMpT1kjao0m6Z2XED3UdSB+LYXsb34TmZMuFc/cKE2JT
+         iUGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=S2A84CdBY8NqNsgHLfuOydrO4tJARUrybWmY/6lmY48=;
+        b=lRxeyf+XiL2L3elfmDN5PwzE4OxMtwNRjUzwZurtw5aVWcPHBsjaKLVb0Tesxvr2YS
+         mtWyj1IksOtkVFzWDFfGIf85LBuccXLjPaG8xqx7H8DKkX6y7KNJSaK0m1s0y3zuYfJ2
+         bN+3psJNw0WfSF7bfH5C75/u4v8IfOHKeDQxKh7BacZ1rEwGwnZ6CRCnhd5ocktZ10fX
+         e6OYRIC/Mg2a6+TIpXuWWBDC30sf/YqcJEuBvm3yd3DvmG8CNGUTjTB7Kunqu3USFcvr
+         xSJQyHudqZZcx3fEVV1HZ7CiOe/D96/F2zrvNcgKqDgkAbeXBbWTW8kEKhGR8Z8ieoxz
+         UJ0A==
+X-Gm-Message-State: ACgBeo1CpSfdimkKwk8dpdZ8EkUV0UmFaK059ntnYYN8TmYfJ2GaFKBL
+	f7VLOpEoBvRDFa6H+lJI/1sqiDDs1XLakz+Cz2tvdMdE
+X-Google-Smtp-Source: AA6agR52+xjCQPVKIXzve5kybZAHBPReGc3PHluQEdh6uoSQX7sfgJ76Qoo3537qzXeHbrMdBAiNedttoeGUXwk/IRQ=
+X-Received: by 2002:a05:6512:31c6:b0:48b:2771:d0d2 with SMTP id
+ j6-20020a05651231c600b0048b2771d0d2mr401903lfe.382.1660257145221; Thu, 11 Aug
+ 2022 15:32:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRGgDtaAa6HZJEvpraVFB-jSCmxhFxKwmq+f1Y5wxksDfA@mail.gmail.com>
+ <F4D79274-7963-4C78-8DC5-1E94B960A8F0@icloud.com>
+In-Reply-To: <F4D79274-7963-4C78-8DC5-1E94B960A8F0@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 11 Aug 2022 18:32:14 -0400
+Message-ID: <CAFnbyRHAfftrvqDDozeFkGi=myN-GKo8aa29jCHkgy7BYwRdsg@mail.gmail.com>
+Subject: Re: Charlotte
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="0000000000006077ba05e5febd86"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoTGhkaGxEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdofURQQkkfYHBCE3B7GnB
+ +S0dvRx5/Q3pdYkUfWkZ1ehEKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQSGAQeGAQZGhAbHhofG
+ hEKXlkXS2FTTX0RCk1cFxIeEQpMWhdoa01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGxwdBB4TEQp
+ CXhcbEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RC
+ kJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1B
+ BbRoSS2lJEQpCQBd6bmBzH0lrHXNOTBEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF
+ 29yeBl7YkMdYH5uEBkaEQpwaBdjExkaW1xZYUhjbBAZGhEKcGgXY1loRWR4X1prE18QGRoRCnB
+ oF2tCb3pTXkRbT31mEBkaEQpwaBdvZmBMc2FQXkETfhAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRC
+ m1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: BWnzhc5JZh9ZQ0ZTamEm4UiPwHo5pl_P
+X-Proofpoint-ORIG-GUID: BWnzhc5JZh9ZQ0ZTamEm4UiPwHo5pl_P
+
+--0000000000006077ba05e5febd86
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+We are out. Doctor  says to monitor for th=C3=A9 Time being and then take a=
+ction
+depending on symptoms. I will  send more details later tonight.
+
+She will give you a quick call when we get home.
+
+Cynthia
+
+On Thu, Aug 11, 2022 at 4:04 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> Thank you for letting me know and keeping me up to date but your email is
+> vague and unclear about what happened and when.
+>
+> Approximately what time did she hit head at soccer this morning?
+> Who was responsible for picking her up?
+> What time did they notify you?
+> What time did you bring her to CHEO?
+>
+> This is the first time you have told me about soccer camp: what soccer
+> camp is it, and where?
+>
+> Please provide answers as soon as possible so I can understand what
+> happened to Charlotte and how serious her accident was.
+>
+> Darryl
+>
+> On Aug 11, 2022, at 3:40 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Charlotte hit her head on a soccer post this morning at soccer. At noon
+> they told the parents picking her up and I  left office and brought her
+> into CHEO.
+>
+> She can s doing ok, head is sore, hearing is altered, no vison problems
+> and she did not  vomit or faint.
+>
+> We are waiting to see the doctor, they don=E2=80=99t seem overly concerne=
+d. She is
+> eating and drinking well.
+>
+> Once we speak to the doctor I will let you know.
+>
+> She will call you  later when we get home.
+>
+> Alice is with my mom.
+>
+> Thanks.
+>
+> Cynthia
+>
+>
+>
+
+--0000000000006077ba05e5febd86
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi,</div><div dir=3D"auto"><br></div><div dir=3D"auto">We=
+ are out. Doctor =C2=A0says to monitor for th=C3=A9 Time being and then tak=
+e action depending on symptoms. I will =C2=A0send more details later tonigh=
+t.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">She will give you=
+ a quick call when we get home.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Cynthia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Thu, Aug 11, 2022 at 4:04 PM Darryl Ross &lt;<a hr=
+ef=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><div style=3D"line-break:after-white-=
+space">Hi Cynthia,<div><br></div><div>Thank you for letting me know and kee=
+ping me up to date but your email is vague and unclear about what happened =
+and when.=C2=A0</div><div><br></div><div>Approximately what time did she hi=
+t head at soccer this morning?</div><div>Who was responsible for picking he=
+r up?=C2=A0</div><div>What time did they notify you?</div><div>What time di=
+d you bring her to CHEO?</div><div><br></div><div>This is the first time yo=
+u have told me about soccer camp: what soccer camp is it, and where?</div><=
+div><br></div><div>Please provide answers as soon as possible so I can unde=
+rstand what happened to Charlotte and how serious her accident was.</div></=
+div><div style=3D"line-break:after-white-space"><div><br></div><div>Darryl<=
+/div><div><div><br><blockquote type=3D"cite"><div>On Aug 11, 2022, at 3:40 =
+PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_b=
+lank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div style=3D"margi=
+n:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Hi Darry=
+l,</span></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;=
+line-height:normal;min-height:20.3px"><span></span><br></div><div style=3D"=
+margin:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Cha=
+rlotte hit her head on a soccer post this morning at soccer. At noon they t=
+old the parents picking her up and I=C2=A0<span>=C2=A0</span>left office an=
+d brought her into CHEO.</span></div><div style=3D"margin:0px;font-stretch:=
+normal;font-size:17px;line-height:normal;min-height:20.3px"><span></span><b=
+r></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-he=
+ight:normal"><span>She can s doing ok, head is sore, hearing is altered, no=
+ vison problems and she did not=C2=A0<span>=C2=A0</span>vomit or faint.</sp=
+an></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-h=
+eight:normal;min-height:20.3px"><span></span><br></div><div style=3D"margin=
+:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>We are wa=
+iting to see the doctor, they don=E2=80=99t seem overly concerned. She is e=
+ating and drinking well.</span></div><div style=3D"margin:0px;font-stretch:=
+normal;font-size:17px;line-height:normal;min-height:20.3px"><span></span><b=
+r></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-he=
+ight:normal"><span>Once we speak to the doctor I will let you know.</span><=
+/div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-heigh=
+t:normal;min-height:20.3px"><span></span><br></div><div style=3D"margin:0px=
+;font-stretch:normal;font-size:17px;line-height:normal"><span>She will call=
+ you=C2=A0<span>=C2=A0</span>later when we get home.</span></div><div style=
+=3D"margin:0px;font-stretch:normal;font-size:17px;line-height:normal;min-he=
+ight:20.3px"><span></span><br></div><div style=3D"margin:0px;font-stretch:n=
+ormal;font-size:17px;line-height:normal"><span>Alice is with my mom.=C2=A0<=
+/span></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;lin=
+e-height:normal;min-height:20.3px"><span></span><br></div><div style=3D"mar=
+gin:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Thanks=
+.</span></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;l=
+ine-height:normal;min-height:20.3px"><span></span><br></div><div style=3D"m=
+argin:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Cynt=
+hia=C2=A0</span></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+
+--0000000000006077ba05e5febd86--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>951140</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801347</integer>
+	<key>date-received</key>
+	<integer>1660257148</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12234</string>
+</dict>
+</plist>

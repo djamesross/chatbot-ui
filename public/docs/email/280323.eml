@@ -1,0 +1,216 @@
+10881     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06032501.me.com by p133-mailgateway-smtp-85b556849d-229xx (mailgateway 2415B105)
+	with SMTP id 2e874fee-10ac-477e-9169-2467d224976f 
+	for <darrylross@icloud.com>; Mon, 29 Apr 2024 13:02:48 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 2e874fee-10ac-477e-9169-2467d224976f
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	by st43p00im-qukt06032501.me.com (Postfix) with ESMTPS id 89E3F16403C3
+	for <darrylross@icloud.com>; Mon, 29 Apr 2024 13:02:44 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdSTloQXgcZFltVFVFfDlgc
+ AkZVVgJbWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEUwJGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQkFitTNjkIAANeFAEiE1hcFwZLTTI/CQ8YWAgBJQsbeU8lMxUz
+ Sg1zMxM/ETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kLGma4Xt
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.49 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.49; helo=mail-ed1-f49.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56e1f3462caso5601297a12.3
+        for <darrylross@icloud.com>; Mon, 29 Apr 2024 06:02:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714395764; x=1715000564; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=obHqi8fjrXnjgT2SkjP1131F2YR5eK5dQGEPkAgZln4=;
+        b=kLGma4XtiW0fqADhs8gPoFTZBRVTcI7z12rhZm0tCmUYQteolO5WQHUAn7coEswtj6
+         0AshFSop3Cs1Jq50JBtUVlbPxKNMxf3lzSxylNyCA1W9QdQBINKwRDKO1St4TZhMg+MS
+         g1CgK02lEPRpXj2fKZdYq/hPsD6lQX547ozginbv8yHjrBzxsI0Mjam70xBULd5YwML2
+         qg5W148qv0BZweallY6mcBTvA0KzJryaF732CTnQJVTopDcmAV7vWBS4xMu0GxqE7RHt
+         eSaPMSO1X6mFMDLyapcIva+/sJuTdtD8UARvijwKp3Wu27vq0wO4m2/WcVkp+PVZHNZQ
+         krNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714395764; x=1715000564;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=obHqi8fjrXnjgT2SkjP1131F2YR5eK5dQGEPkAgZln4=;
+        b=S+fLietTdzNk88Y5IsTFgd2XG6U+7yJH8WYjePsbknWBs7c66eZTsTCtqelMFI+hg9
+         WNeSy/0F6F1ExDQaC4QzsVlfnRD14hylUQQMviLPN/4pyeTaixW7SgaB8NQEMuBbTLzd
+         74GMlh/os+7GiKzkXtkLIVS/06Rf9wEL5603zrKdxPnAPfYZPy5nDAqk7X6VeUVCt5/K
+         BlDuTkQkeD688QYLG73C/k/b2BJQWPjFIom7hjPKIap28Vn46nuVo8MP8cgn5PRlrtYj
+         kvloLQy54IKPG8aCtSnGWmwRd8lGvRaU+liBtlWX8eLW7PgFDYuCAQxFXV8APHXrBUjF
+         /o2w==
+X-Gm-Message-State: AOJu0Yz+P6BrDDM/iQsbWCe1Imtabr4FQ1wfqicuW+8jccRkC2o/W58H
+	fV2Xez6MXlGQuHXLWkjZ+2gbr1hIQp4udorQtZ3RKTp6KUhFD2y2mkz9mj5hv6GW4LKFQnFYHPX
+	Y0n/k2FpyK0UBca488H0rpkb/WSNrHCp5
+X-Google-Smtp-Source: AGHT+IGOwJu4J7Y+MFAPYYgj4iqVLBYWxFlgYArzg1FIu3UtTC+qbQb9CodwfsPN52fGIdxbN/HXHpJpq/o0fr4IGlI=
+X-Received: by 2002:a17:906:4a83:b0:a55:5e89:a158 with SMTP id
+ x3-20020a1709064a8300b00a555e89a158mr4218949eju.68.1714395763961; Mon, 29 Apr
+ 2024 06:02:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRF_9YvYeJjYWpDDPZrGy6+OFCrHfXXcrs_QbABNq=nCsg@mail.gmail.com>
+ <0C45B637-C671-4D3D-ACDE-ED2F6BF895A0@icloud.com>
+In-Reply-To: <0C45B637-C671-4D3D-ACDE-ED2F6BF895A0@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 29 Apr 2024 09:02:32 -0400
+Message-ID: <CAFnbyRFcR5AA86a+mgUkhjus2+EG99z-qgRs+O-PJsD2=EQfFw@mail.gmail.com>
+Subject: Re: This week - Tournament June 8-9
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000083ff1106173bdecb"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdhGW1dXGxpbEtpY
+ 09yXkhCZlxTbVNrbENHaEYaUlpSYBEKWFwXGQQaBB8aBRsaGgQdGgQbExIEGx8QGx4aHxoRCl5
+ ZF05wfhJ4EQpNXBceGxEKTFoXaGNNQWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgaEgQeExEKQl4XG
+ xEKREkXGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRd
+ oEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aE
+ ktpSREKQkAXbGNmaRgYHR9YbRgRCkJYF2JrTm9vemxnWkdLEQpaWBceEQpwaBdlQl1BXVJ+EhN
+ CaRAaEQpwaBdrTUVuBWN4fHhebBAaEQpwaBdkXwF7SElPQ156WxAaEQpwaBdlRnpza2JmfElNR
+ xAaEQpwaBd6YnofSGZLbl5OXBAaEQpwaBdhRENYYGwZUn1OfhAaEQpwaBd6SHteGENyeBxQGBA
+ aEQpwaBdlfF97QkcackJ+exAaEQpwfxdgeH1ofRMbAWEYRRAHGxscEQpwXxdhcmheax1CegFPf
+ RAHGxMcEQpwfRdrXH9TGAFgZx95RBAaEQpwfRdrXH9TGAFgZx95RBAaEQpwbBdmRmsfGFttX0Z
+ vbxAaEQptfhcaEQpYTRdLEQ==
+X-Proofpoint-ORIG-GUID: K3GwvFCFaCIeXtbhLvyGyAFimBl0xpxJ
+X-Proofpoint-GUID: K3GwvFCFaCIeXtbhLvyGyAFimBl0xpxJ
+
+--00000000000083ff1106173bdecb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks to you both!
+
+Just a heads up, as you can see she has a tournament in Kingston June 8-9.
+I have to book the hotel for minimum of two nights, so Friday and Saturday.
+
+I won=E2=80=99t know the schedule until later but we will be away and not s=
+ure when
+we get back Sunday. Alice will most likely stay in town so I can save money
+on eating out that=E2=80=99s still in the air.
+
+
+
+
+
+
+On Mon, Apr 29, 2024 at 8:49=E2=80=AFAM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> For this week Friday works. I=E2=80=99ll let you about next week.
+>
+> Can you confirm Charlotte will be at practice on May 14 & 16?
+>
+> I=E2=80=99ve already been added to Alice=E2=80=99s Team Snap.
+>
+> Darryl
+>
+>
+> On Apr 29, 2024, at 08:28, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> =EF=BB=BF
+>
+> Hi there,
+>
+> Charlotte continues to have practices Tuesday night and I have been told
+> Alice will most likely have games on Tuesday nights when Ottawa opens the
+> fields for play.
+>
+> For the next few weeks the girls are available Monday or Friday nights fo=
+r
+> evening visits.
+>
+> Does it work to have a set day or move it around based on your
+> availability?
+>
+> Please let me know your preference for this week, tonight or Friday.
+>
+> Thanks for your flexibility, Fall and Spring are a bit wonky as they sort
+> out teams and play time with city.
+>
+> Darryl I understand you can see Charlotte=E2=80=99s schedule, I will see =
+if I can
+> add you to Alice=E2=80=99s team snap.
+>
+>
+>
+
+--00000000000083ff1106173bdecb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thanks to you both!</div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">Just a heads up, as you can see she has a tournament in Kings=
+ton June 8-9. I have to book the hotel for minimum of two nights, so Friday=
+ and Saturday.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I w=
+on=E2=80=99t know the schedule until later but we will be away and not sure=
+ when we get back Sunday. Alice will most likely stay in town so I can save=
+ money on eating out that=E2=80=99s still in the air.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto"><br clear=3D"all"><br clear=3D"all"><div dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmai=
+l_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com=
+/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU6=
+4sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div><div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr =
+29, 2024 at 8:49=E2=80=AFAM Darryl Ross &lt;<a href=3D"mailto:darrylross@ic=
+loud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">For=
+ this week Friday works. I=E2=80=99ll let you about next week.=C2=A0</div><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr">Can you confirm Charlotte will b=
+e at practice on May 14 &amp; 16?</div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">I=E2=80=99ve already been added to Alice=E2=80=99s Team Snap.=C2=
+=A0</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Darryl</div><div dir=
+=3D"ltr"><br></div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 29=
+, 2024, at 08:28, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com=
+" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br><br></blockquote=
+></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF</div></blockquo=
+te></div><div dir=3D"auto"><blockquote type=3D"cite"><div dir=3D"ltr"><div =
+dir=3D"auto">Hi there,</div><div dir=3D"auto"><br></div><div dir=3D"auto">C=
+harlotte continues to have practices Tuesday night and I have been told Ali=
+ce will most likely have games on Tuesday nights when Ottawa opens the fiel=
+ds for play.</div><div dir=3D"auto"><br></div><div dir=3D"auto">For the nex=
+t=C2=A0few weeks the girls are available Monday or Friday nights for evenin=
+g visits.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Does it work t=
+o have a set day or move it around based on your availability?</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">Please let me know your preference f=
+or this week, tonight or Friday.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Thanks for your flexibility, Fall and Spring are a bit wonky as t=
+hey sort out teams and play time with city.</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Darryl I understand you can see Charlotte=E2=80=99s sch=
+edule, I will see if I can add you to Alice=E2=80=99s team snap.<br clear=
+=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmai=
+l_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9L=
+HxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div><=
+/div></div>
+</div></blockquote></div></blockquote></div></div>
+
+--00000000000083ff1106173bdecb--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1254721</integer>
+	<key>date-last-viewed</key>
+	<integer>1744139989</integer>
+	<key>date-received</key>
+	<integer>1714395768</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12071</string>
+</dict>
+</plist>

@@ -1,0 +1,217 @@
+10941     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09070901.me.com by p72-mailgateway-smtp-d649796ff-czbnd (mailgateway 2305B150)
+	with SMTP id d4d18c9f-ff40-4d18-92cb-42264ec27a7d 
+	for <darrylross@icloud.com>; Sat, 10 Dec 2022 03:51:49 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: d4d18c9f-ff40-4d18-92cb-42264ec27a7d
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	by ci74p00im-qukt09070901.me.com (Postfix) with ESMTPS id 474AE50800D2
+	for <darrylross@icloud.com>; Sat, 10 Dec 2022 03:51:47 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ5MQU9EVxBVWg1IWwsWEVwbBx9I
+ SxFMBhgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVxTWB9SQVZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeE8aQ04cMzoFRAhALCcyThtPCi1OICRBaAEJJgMnLSIFXztBOB8W
+ HFIAFBI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SYWcdxPN
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.46 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.46 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.46; helo=mail-ej1-f46.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id n20so15853342ejh.0
+        for <darrylross@icloud.com>; Fri, 09 Dec 2022 19:51:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=E27+t3lPMnkv+IRy3I4uiRIbQOglR3sDjM4TwAr5B7k=;
+        b=SYWcdxPNGaP1BL3RZqpMmFdzXSnFIihAEPoS7iiDASZycSIdjtPcSNxm8tOONvFAQh
+         97nmDYMxkUznbhXkDJIFZoeuYShy4mCcTjSkKrg9o7gGgVhmjRHA29+ThveEPqsDVC55
+         uHm2b51Ysf9M2wO9CNFFlklbKlaAZ3PntNTvx4PYDfFgPWcHRPi1KBKgn38vW9+Ra6r2
+         3Z45qZp0qBIl80Cu3pYuz/+uVYnwE45/gGpVjrVLwZzPjPBdj5g83B6dwy4lmNJ55CR/
+         JBOnMH+nQSIQrdX5GRjnD5PbBOfD9IOmo0EasxOKnSMm1VMTm3Kpm4uTMBGyjTXcRN3r
+         u9wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E27+t3lPMnkv+IRy3I4uiRIbQOglR3sDjM4TwAr5B7k=;
+        b=4PkuSSZVA9rgNDRAzHeXZo+M+CXFlHnsOrA0WBKF1Lh/cAXibc5014R2q6EhzhPXUg
+         WCOSYyjrvnZRUvgTdsuHICXjYx/p9/XgbNQsfTTyDv09GQdzpIekk7MPODI6OE5rasDL
+         i61332/6H0lnFHUPboxN1xq/k0GJEpjs7Mv7EONwv3eVsJq2mKB7JJ2YCRmn9yn7/exV
+         5iImfEH/U/8Df1WlFHUCExZlcAuwvtM4TB+W5AEeSHD7fb3ub8fCm8lth7MVF9QRzW4N
+         Wpjg4WHawQSasA+CB7QcXV/+4u4ycMce7rmip3Uvhs0a/f2Xf7/wuptYFpspvj3+Rn6n
+         JEnQ==
+X-Gm-Message-State: ANoB5plknSZ/oEZY0DXbuaLOlIJvdZIQnBIwQp2lfJMUKfiTgKBDmqLz
+	cUEiOGNgfq4uisCtmnboKxB8Dhp6/QjHx8QyGhA=
+X-Google-Smtp-Source: AA0mqf4M/NU1KnsOttCc/v+Flj65VKm/Jwpwirj6yLZElJFXQFrx3lnH3vM2ufTmRuX6Mh4KNJaCgwh+gYedpQth5jw=
+X-Received: by 2002:a17:906:99cb:b0:7bb:7dda:7d3c with SMTP id
+ s11-20020a17090699cb00b007bb7dda7d3cmr32440736ejn.182.1670644306624; Fri, 09
+ Dec 2022 19:51:46 -0800 (PST)
+MIME-Version: 1.0
+References: <CAHSn17oLzZXfXrkWzisd-i45yFonFOssknhuACEJPZ02GWd1dw@mail.gmail.com>
+In-Reply-To: <CAHSn17oLzZXfXrkWzisd-i45yFonFOssknhuACEJPZ02GWd1dw@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 9 Dec 2022 22:51:35 -0500
+Message-ID: <CAFnbyRHyx67zDB5rj5UAE6+yhX7FS9X7kSzAZZ5iY4Ayadb6vg@mail.gmail.com>
+Subject: Re: Charlotte
+To: Nathalie Tremblay <trembna@ecolecatholique.ca>, Sophie Morneau <morneso@ecolecatholique.ca>, 
+	=?UTF-8?B?w4lyaWMgR2lyb3V4?= <girouer@ecolecatholique.ca>
+Cc: darrylross@icloud.com
+Content-Type: multipart/alternative; boundary="00000000000071459405ef713074"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoTGx0aGxEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThd6QEBLaHtwexlScB0fc3B
+ rXmZdGnMeElpza3J1cEATRhEKWFwXGQQaBB4TBx0YSR8fHUkZBRsaGgQSGAQeGAQYExAbHhofG
+ hEKXlkXS1NLSF8RCk1cFx0eEQpMWhdoaU1NaxEKTEYXbGtrEQpDWhcYGhMEEh8EGBsSBB4cEQp
+ CXhcbEQpEXhcZEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTW
+ H4aX14RCkJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJ
+ sF29LR1BBbRoSS2lJEQpCQBd6bmBzH0lrHXNOTBEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYF
+ xgRCnBnF2F6a2NMYkhyQGltEBsSEQpwaBdvQh5sSGRhEh1uGBAZGhEKcGgXekxmXF1jaFNlGWI
+ QGRoRCnBoF29yWwVsXX9CXl1dEBkaEQpwaBdjQ3x4Xm9BcEBoXBAbEhEKcGgXZE5kWEJiXRpiG
+ mAQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: PjjaBQZQ3xZ75YZAtLw0Y48pYAX_Zj9l
+X-Proofpoint-ORIG-GUID: PjjaBQZQ3xZ75YZAtLw0Y48pYAX_Zj9l
+
+--00000000000071459405ef713074
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+Charlotte is feeling a bit better after resting.
+
+I will reach out to school Monday to follow up.
+
+Thank you
+
+Cynthia
+
+On Fri, Dec 9, 2022 at 5:10 PM Sophie Morneau <morneso@ecolecatholique.ca>
+wrote:
+
+> Bonsoir,
+>
+> J=E2=80=99esp=C3=A8re que vous allez bien. Un incident est arriv=C3=A9 ce=
+ midi avec
+> Charlotte et un autre =C3=A9l=C3=A8ve pendant la r=C3=A9cr=C3=A9ation deh=
+ors. Elle a re=C3=A7u un
+> coup =C3=A0 la t=C3=AAte.  Charlotte m=E2=80=99a dit que la situation ava=
+it =C3=A9t=C3=A9 r=C3=A9gl=C3=A9e par
+> l=E2=80=99=C3=A9ducatrice pr=C3=A9sente. Par contre, juste avant de parti=
+r =C3=A0 la maison, elle
+> m=E2=80=99a dit qu=E2=80=99elle avait mal =C3=A0 la t=C3=AAte.
+>
+> Je vous laisse savoir pour que vous gardez un oeil sur elle et vous
+> assurez qu=E2=80=99elle va bien. Laisse-moi savoir s=E2=80=99il y a quoiq=
+ue ce soit.
+>
+> Merci et bonne fin de semaine,
+>
+> Mme Sophie
+> --
+> Sophie Morneau
+> Enseignante de sciences, =C3=A9tudes sociales et ALF
+> =C3=89cole =C3=A9l=C3=A9mentaire catholique Sainte-Kateri
+> (613) 741-6754
+>
+>
+>
+> ------------------------------
+> Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent conten=
+ir de
+> l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou co=
+nfidentielle, sujette au
+> droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99in=
+dividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+> l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie ou
+> distribution non autoris=C3=A9e du contenu de ce courriel est interdite. =
+Si vous
+> croyez que ce message est un pourriel au sens de la Loi canadienne
+> anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivante=
+ :
+> pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par erre=
+ur,
+> veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel et =
+supprimer de
+> votre syst=C3=A8me ce message et tout document joint. Merci de votre
+> collaboration.
+> ------------------------------
+>
+
+--00000000000071459405ef713074
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hello,</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>Charlotte is feeling a bit better after resting.</div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">I will reach out to school Monday to follow up.</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">Thank you</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div><div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 9, 2022=
+ at 5:10 PM Sophie Morneau &lt;<a href=3D"mailto:morneso@ecolecatholique.ca=
+">morneso@ecolecatholique.ca</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">Bonsoir,<div><br></div><div dir=3D"auto">J=E2=80=99esp=C3=A8re que=
+ vous allez bien. Un incident est arriv=C3=A9 ce midi avec Charlotte et un =
+autre =C3=A9l=C3=A8ve pendant la r=C3=A9cr=C3=A9ation dehors. Elle a re=C3=
+=A7u un coup =C3=A0 la t=C3=AAte.=C2=A0 Charlotte m=E2=80=99a dit que la si=
+tuation avait =C3=A9t=C3=A9 r=C3=A9gl=C3=A9e par l=E2=80=99=C3=A9ducatrice =
+pr=C3=A9sente. Par contre, juste avant de partir =C3=A0 la maison, elle m=
+=E2=80=99a dit qu=E2=80=99elle avait mal =C3=A0 la t=C3=AAte.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Je vous laisse savoir pour que vous g=
+ardez un oeil sur elle et vous assurez qu=E2=80=99elle va bien. Laisse-moi =
+savoir s=E2=80=99il y a quoique ce soit.=C2=A0</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Merci et bonne fin de semaine,</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">Mme Sophie</div>-- <br><div dir=3D"ltr" data-=
+smartmail=3D"gmail_signature"><div dir=3D"ltr">Sophie Morneau<div>Enseignan=
+te de sciences, =C3=A9tudes sociales et ALF</div><div><span style=3D"color:=
+rgb(34,34,34)">=C3=89cole =C3=A9l=C3=A9mentaire catholique Sainte-Kateri</s=
+pan><br></div><div><span style=3D"color:rgb(34,34,34)">(613) 741-6754</span=
+></div><div><span style=3D"color:rgb(34,34,34)"><br></span></div><div><br><=
+/div></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></blockquote></div></div>
+
+--00000000000071459405ef713074--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1048556</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1670644309</integer>
+	<key>flags</key>
+	<integer>8590195717</integer>
+	<key>remote-id</key>
+	<string>18989</string>
+</dict>
+</plist>

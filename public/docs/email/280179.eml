@@ -1,0 +1,273 @@
+14493     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr55p00im-qukt02072301.me.com by p133-mailgateway-smtp-657d4976d9-mgcp5 (mailgateway 2318B155)
+	with SMTP id c7e65709-24fe-4dcc-a990-dd0652856397 
+	for <darrylross@icloud.com>; Mon, 12 Jun 2023 14:17:46 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: c7e65709-24fe-4dcc-a990-dd0652856397
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mr55p00im-qukt02072301.me.com (Postfix) with ESMTPS id 654129C02B2
+	for <darrylross@icloud.com>; Mon, 12 Jun 2023 14:17:42 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTRFoQXgcZFltVFVFfDlgc
+ AkZVVgNRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0DGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQkMwMrE09RXlY2PxUeEVtxKBRPM0JBQWYRDTZSJyJqBFQ2Lyc/
+ HGVMVhRPETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eQKZbbLW
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.53; helo=mail-ed1-f53.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-51478f6106cso7761257a12.1
+        for <darrylross@icloud.com>; Mon, 12 Jun 2023 07:17:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686579460; x=1689171460;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=stFyE27Go8VPzGSafA2xxbubtlE3z1rVEsQ2YYra8r8=;
+        b=eQKZbbLWe6Kh47EwvpldRrCDEGNiTygL31wse1CQcvR0PE0nzPf0GnCeqW9qcd4fK5
+         NUj0J5NG0PrwfYBZk4s9RGkn5mcEI+HPTvG/hvEdBoz/VNdXMkFb/FncpOxtQqh2txET
+         TpWBJfgDtQb7ZfjOYR3q/YTJ6yPHW5Gn3XjDnZ7eJTvSStQoTfnLvvd/sKVHmCsKXDXa
+         ZqusamnOm7uTlLdacAHXcXwYDnB9xJjZD45JA5hvtkz57ZQFW4nJ+SNhSp8Z4iV9lX2A
+         EIoynLn5i44vMSpF2KhaawupNpBVnkyFQdZLNd78bzb+aTJFffgbOREoEPtEKWF7NwnC
+         8L7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686579460; x=1689171460;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=stFyE27Go8VPzGSafA2xxbubtlE3z1rVEsQ2YYra8r8=;
+        b=fB/Wye3RcuqGBnYmP0cHKUF41jynBcMbPSELs/s/5pKNtkk4QOH+WLiU3atq6U06yJ
+         qCXWojlp2ibh9prCrCZUIVAKSTlho7sDgtsP+c0PV1a8Vrse1feba075g+REQb6qs4Op
+         /HLYEq2u6LUrdxO9V/u0RCbfSgj9yOMpkBufKHI9aY7b7CEiUfmuOHgChBa+61i6xz79
+         4UQvNyzIpKf6ORoQM0yVmAbC3Bv96zWNdMhh/KZ/yoK4Z3Abf7RbdO8lm0aACfdLB01H
+         /pkV233hWgwkDNQgNC5ka8DaUMX7T3jSkNJSoBmLcClfzKgqDm0EJTNVwAQj1yyzxTkp
+         hL1w==
+X-Gm-Message-State: AC+VfDw6Lu3caaBBu0gk3wwBbaVG2ZDE9isyJTzYtVlkt68fU4oABLdX
+	e/Rt6yKPC1WSyXQPIiO3xG5SEJB73zMZB241POa9yfVZ
+X-Google-Smtp-Source: ACHHUZ5SAAHp+pmVIhuXZJQ6urbps8r8Qw0uEUljBYkhi37MVPM56c9OQ7K9U0PRTCzAWDZlm10cX4jPsoFje0+6uVE=
+X-Received: by 2002:a17:906:da87:b0:96f:6a03:eca with SMTP id
+ xh7-20020a170906da8700b0096f6a030ecamr9168004ejb.48.1686579459661; Mon, 12
+ Jun 2023 07:17:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <CALP-miEX_jj5HkDm_NBUHstOS0278gFFbTRW2kBC-DRhCEi6Sg@mail.gmail.com>
+In-Reply-To: <CALP-miEX_jj5HkDm_NBUHstOS0278gFFbTRW2kBC-DRhCEi6Sg@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 12 Jun 2023 10:17:28 -0400
+Message-ID: <CAFnbyRFFzMd7ah4CFsiikGJa6U59qPsxO4PZZ26CVAHdUz4a6w@mail.gmail.com>
+Subject: =?UTF-8?B?RndkOiBDw6lyw6ltb25pZSAtIFByw6lzZW5jZXMgw6AgY29uZmlybWVyIGV0IGRlcm5p?=
+	=?UTF-8?B?w6hyZXMgaW5mb3M=?=
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000009424c205fdef6185"
+X-MANTSH: 1TEIXR1geHFoaGkNHB1tfQV4bGBoTGhMaGBEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgfEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBofcRgYGxAadwYYGgYaEQpZXhdsbHkRCkNOF0xBW31GHgdgQFgeXnJ9HxN
+ QEnJyU2seZ1x1GhlhcmJdEQpYXBcZBBoEHxoFGx0EGxsbBBsfHwQbHRwQGx4aHxoRCl5ZF0hcZ
+ xhCEQpNXBcHGxoaEQpMWhdoaUFNaxEKTEYXbE1rEQpDWhcYGhMEEh8EGBoSBB8ZEQpCXhcbEQp
+ EXhcYEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG
+ 3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2l
+ JEQpCQBdmU2lsaR4aa2NIaxEKQlgXYmtOb296bGdaR0sRClpYFx8RCnBnF2dHc0VdT01eHR9ME
+ BoRCnBoF2ljch97SWtjZk1YEBoRCnBoF2AeAWdMU2ZGGBlDEBoRCnBoF2dcY296QRxMHkFpEBo
+ RCnBoF2BefFNNUEdkZnpOEBoRCnBoF2NDfHheb0FwQGhcEBsYEQpwfRduRkFjHU5lHkV7SxAaE
+ QpwZxdhemtjTGJIckBpbRAbGBEKcH0XYWJgW0VkY2tAHXwQGhEKcH8Xb0RhUBITfxscEn4QBxs
+ bGREKcF8XZHhpR1hBQ3hHYEIQGhEKcH8XbUJnS01HS359RHwQBxgZEQpwXxd6X2JBGWJFZWZTb
+ xAHGRoRCnBsF2ZGax8YW21fRm9vEBoRCm1+FxoRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: fkqWl4-Jjr4tXW59z8XXyA4Mv_03KXHw
+X-Proofpoint-GUID: fkqWl4-Jjr4tXW59z8XXyA4Mv_03KXHw
+
+--0000000000009424c205fdef6185
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Here is more info about Charlotte's graduation, she mentioned both you and
+Holly plan on attending. Can you please let me know by June 16th?  I would
+like to extend the tickets to Ben and Sam if you two are not planning on
+attending.
+
+Thanks.
+
+Cynthia
+
+---------- Forwarded message ---------
+From: Nathalie Tremblay <trembna@ecolecatholique.ca>
+Date: Mon, Jun 12, 2023 at 8:32=E2=80=AFAM
+Subject: C=C3=A9r=C3=A9monie - Pr=C3=A9sences =C3=A0 confirmer et derni=C3=
+=A8res infos
+To:
+
+
+Chers parents,
+
+Vous trouverez dans ce courriel des informations sur la c=C3=A9r=C3=A9monie=
+ des
+finissants, la fa=C3=A7on de confirmer la pr=C3=A9sence de votre enfant et =
+de ses
+invit=C3=A9s et le dernier rappel pour les photos manquantes.
+
+*Date et heure*
+La c=C3=A9r=C3=A9monie des finissants d=C3=A9butera =C3=A0 13h30 le mercred=
+i, 21 juin. Vous
+devrez arriver par la porte principale pour *entrer au gymnase =C3=A0 parti=
+r de
+13h15 afin de commencer =C3=A0 l'heure*. Tous les finissants seront attendu=
+s =C3=A0
+la biblioth=C3=A8que avant 13h30.
+*Go=C3=BBter*
+Un l=C3=A9ger go=C3=BBter sera servi et non un repas.
+*Confirmation de la pr=C3=A9sence du finissant et nombre d'invit=C3=A9s au =
+plus tard
+le lundi, 19 juin*
+Veuillez confirmer dans le document ci-joint, *Pr=C3=A9sences - C=C3=A9r=C3=
+=A9monie des
+finissants 22-23
+<https://docs.google.com/document/d/1xk3B_j1aYDqD-0ATHAeZjcTWp-eKx42vMqYaIY=
+xQ-Eo/edit?usp=3Dsharing>,*
+la pr=C3=A9sence ou l'absence de votre enfant et son nombre d'invit=C3=A9s(=
+4 maximum) *au
+plus tard le lundi, 19 juin*.
+*Dernier rappel - Photos de maternelle et/ou finissant, s'il y a lieu*
+Si votre enfant ne fr=C3=A9quentait pas Sainte-Kateri en maternelle et =C3=
+=A0 sa
+prise de photo de finissant, et que vous ne l'avez pas d=C3=A9j=C3=A0 fait,=
+ veuillez
+me faire parvenir ces photos par courriel svp. Je les transmettrai au
+comit=C3=A9 de planification de la c=C3=A9r=C3=A9monie.
+
+N'h=C3=A9sitez pas =C3=A0 communiquer avec moi si n=C3=A9cessaire.
+Merci beaucoup et au plaisir de vous rencontrer =C3=A0 la c=C3=A9r=C3=A9mon=
+ie des
+finissants 2022-2023 de notre =C3=A9cole,
+Madame Nathalie
+-----
+Nathalie Tremblay, EAO
+Enseignante de 6e ann=C3=A9e
+=C3=89cole =C3=A9l=C3=A9mentaire catholique Sainte-Kateri
+(613) 741-6754
+[image: apple]
+
+
+------------------------------
+Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent contenir=
+ de
+l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou conf=
+identielle, sujette au
+droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99indi=
+vidu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie ou
+distribution non autoris=C3=A9e du contenu de ce courriel est interdite. Si=
+ vous
+croyez que ce message est un pourriel au sens de la Loi canadienne
+anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivante :
+pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par erreur=
+,
+veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel et su=
+pprimer de
+votre syst=C3=A8me ce message et tout document joint. Merci de votre
+collaboration.
+------------------------------
+
+--0000000000009424c205fdef6185
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div><br></div><div>Here is more info about Char=
+lotte&#39;s graduation, she mentioned both you and Holly plan=C2=A0on atten=
+ding. Can you please let me know by June 16th?=C2=A0 I would like to extend=
+ the tickets to Ben and Sam if you two are not planning on attending.</div>=
+<div><br></div><div>Thanks.</div><div><br></div><div>Cynthia</div><div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">----------=
+ Forwarded message ---------<br>From: <strong class=3D"gmail_sendername" di=
+r=3D"auto">Nathalie Tremblay</strong> <span dir=3D"auto">&lt;<a href=3D"mai=
+lto:trembna@ecolecatholique.ca">trembna@ecolecatholique.ca</a>&gt;</span><b=
+r>Date: Mon, Jun 12, 2023 at 8:32=E2=80=AFAM<br>Subject: C=C3=A9r=C3=A9moni=
+e - Pr=C3=A9sences =C3=A0 confirmer et derni=C3=A8res infos<br>To: <br></di=
+v><br><br><div dir=3D"ltr">Chers parents,=C2=A0<div><br></div><div>Vous tro=
+uverez dans ce courriel des informations sur la c=C3=A9r=C3=A9monie des fin=
+issants, la fa=C3=A7on de confirmer la pr=C3=A9sence de votre enfant et de =
+ses invit=C3=A9s et le dernier rappel pour les photos manquantes.</div><div=
+><br></div><div><b>Date et heure</b></div><div>La c=C3=A9r=C3=A9monie des f=
+inissants d=C3=A9butera =C3=A0 13h30 le mercredi, 21=C2=A0juin. Vous devrez=
+ arriver par la porte principale pour <u>entrer au gymnase =C3=A0 partir de=
+ 13h15 afin de commencer =C3=A0 l&#39;heure</u>. Tous les finissants seront=
+ attendus =C3=A0 la biblioth=C3=A8que avant 13h30.</div><div><div><b>Go=C3=
+=BBter</b></div><div>Un l=C3=A9ger go=C3=BBter sera servi et non un repas.=
+=C2=A0</div></div><div><b>Confirmation de la pr=C3=A9sence du finissant et =
+nombre d&#39;invit=C3=A9s au plus tard le lundi, 19 juin</b></div><div>Veui=
+llez confirmer dans le document ci-joint,=C2=A0<b><a href=3D"https://docs.g=
+oogle.com/document/d/1xk3B_j1aYDqD-0ATHAeZjcTWp-eKx42vMqYaIYxQ-Eo/edit?usp=
+=3Dsharing" target=3D"_blank">Pr=C3=A9sences - C=C3=A9r=C3=A9monie des fini=
+ssants 22-23</a>,</b> la=C2=A0pr=C3=A9sence ou l&#39;absence de votre enfan=
+t et son nombre d&#39;invit=C3=A9s(4 maximum) <u>au plus tard le lundi, 19 =
+juin</u>.</div><div><div><b>Dernier rappel - Photos de maternelle et/ou fin=
+issant, s&#39;il y a lieu</b></div><div>Si votre enfant ne fr=C3=A9quentait=
+ pas Sainte-Kateri en maternelle et =C3=A0 sa prise de photo de finissant, =
+et que vous ne l&#39;avez pas d=C3=A9j=C3=A0=C2=A0fait, veuillez me faire p=
+arvenir ces photos par courriel svp. Je les transmettrai au comit=C3=A9 de =
+planification de la c=C3=A9r=C3=A9monie.</div><div><br></div><div>N&#39;h=
+=C3=A9sitez pas =C3=A0 communiquer avec moi si n=C3=A9cessaire.</div><div>M=
+erci beaucoup et au plaisir de vous rencontrer =C3=A0 la c=C3=A9r=C3=A9moni=
+e des finissants 2022-2023 de notre =C3=A9cole,=C2=A0</div></div><div>Madam=
+e Nathalie</div><div><div><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv>-----<br></div><div dir=3D"ltr">Nathalie Tremblay, EAO<div>Enseignante d=
+e 6e ann=C3=A9e</div><div>=C3=89cole =C3=A9l=C3=A9mentaire catholique Saint=
+e-Kateri=C2=A0</div><div>(613) 741-6754</div><div><img src=3D"https://sdk.b=
+itmoji.com/render/panel/3060f99d-8d67-4681-9735-1bb214d455ef-a1aaab0b-08d6-=
+4ce3-80a2-d365c7a1d73c-v1.png?transparent=3D1&amp;palette=3D1" alt=3D"apple=
+" width=3D"96" height=3D"96"><br><br></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></div></div></div>
+
+--0000000000009424c205fdef6185--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1131983</integer>
+	<key>date-last-viewed</key>
+	<integer>1744822731</integer>
+	<key>date-received</key>
+	<integer>1686579466</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12125</string>
+</dict>
+</plist>

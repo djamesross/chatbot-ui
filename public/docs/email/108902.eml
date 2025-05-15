@@ -1,0 +1,305 @@
+13722     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin012.me.com by p72-mailgateway-smtp-749855b995-2t6pr (mailgateway 2225B382)
+	with SMTP id 3ca1378d-a632-4616-b526-223b0fe07256 
+	for <darrylross@icloud.com>; Tue, 4 Oct 2022 21:02:43 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 3ca1378d-a632-4616-b526-223b0fe07256
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	by st11p00im-smtpin012.me.com (Postfix) with ESMTPS id ED4B3142D3C
+	for <darrylross@icloud.com>; Tue,  4 Oct 2022 21:02:40 +0000 (UTC)
+X-ICL-SCORE: 3.3320330300
+X-ICL-INFO: GAtbVUseBVFHSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRkoIGFNCTkRXEFVaDUhb
+ CxYRXBsbAkhLEUkHAUwSFgkQFFUYARoURFcIRERfVxQHHhQdTxVEVABGTwcYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFD
+ TEdXNDA+KgIoXVAwExQlEw52cldCEh4hKX1YUA9UIA1Id2IAXhEuP0ByZyIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=0PNpzTsX
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.128.177 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.128.177 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.128.177; helo=mail-yw1-f177.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-333a4a5d495so146449377b3.10
+        for <darrylross@icloud.com>; Tue, 04 Oct 2022 14:02:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v+lJ6itK1LlplqS4/zE43+22Ms/1X3Joyi01Q5AYONU=;
+        b=0PNpzTsXtdOskDP6prrJXtIn6FUZuGBNHYut/iLf29dJ4+SSTdwNAZPZez2s8PmxW3
+         AijSdf+KVjLFPnIkXJxL57nTotXmSyOG6oLdFJ7r9KeK9e4XT+250mgZed35NKaT6lUt
+         5n4DVCLfBh6qE8SdrdZ1pejUmWgvUsO8WBFvw3RpxBSLxk+Gu5xlGYmoGlWgDnlOsim2
+         Pwwy+1OgxAjcyqTZJHfv44DhGY5pzniA866oG4MJPWbpzXBN+pazV3RKZTpYZSZ7q/nI
+         Z/t9arqolxCim/6MTvycf0ApFDqqWa6NTDuo6p+VyrsL9mMfj8HLDXC4mqiQorvYlL8e
+         c1XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v+lJ6itK1LlplqS4/zE43+22Ms/1X3Joyi01Q5AYONU=;
+        b=qmKnFG33IYV5QjGcLoxvzWGCI11W5IaQ0/Gu9bdVWFpJN3zmxJARuuu3QuMuemImUi
+         1XG87vbEbiJ0r2kGS4D8IKZ19m7/1o25GkK5kTWFTy6ULFR3VbozkxpH6PY8IrmhGlxi
+         foobgn9HZ2o98GI9l7sZ64B+JoFUOTwPALnUC8SmPOgWXFCGkMSZ8xrN1qAWA7r222Rr
+         HLtPJgrlXui7nTAuVbGRbRJ5Q60TIoIjZG0RALp5XxI2FPR4dnqLkTbf1nWnqtOiojVs
+         LVpTb6krL8VOZsw5O/1Te/u9edfVl9neuAbmkT0xuG2kgqY/TsVCie/1z0ed6tgO+ND3
+         EBVA==
+X-Gm-Message-State: ACrzQf0C1Zl4r5Xcm8tHhS8OfMNujPDFTAyhwU/lgxK2AGnn9cX9j1cS
+	ndO1x5+1twcYMCftgULSrxQjHokIV0qf0OKP93E75WQ8bIQ=
+X-Google-Smtp-Source: AMsMyM4xCrMXl2IKcp/KJia4nXHdcBV10ypg5HTewI7Pnsum6Qih7FxNgch7ajTY+elAH/yg7bjLX9XtT3KMN1wfgM4=
+X-Received: by 2002:a0d:c706:0:b0:34d:1b70:1c7 with SMTP id
+ j6-20020a0dc706000000b0034d1b7001c7mr26282016ywd.284.1664917360046; Tue, 04
+ Oct 2022 14:02:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <YT1PR01MB33402E5FEB1C80322BC29D10F95B9@YT1PR01MB3340.CANPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <YT1PR01MB33402E5FEB1C80322BC29D10F95B9@YT1PR01MB3340.CANPRD01.PROD.OUTLOOK.COM>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Tue, 4 Oct 2022 17:02:04 -0400
+Message-ID: <CAKimwG44waVEGLuPmfRfmCdvFD57kxVQMn2z-Fz0GTb+hHH8BQ@mail.gmail.com>
+Subject: Fwd: Ross v. Holmes-Costs Endorsement-October 3 2022
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/mixed; boundary="000000000000d3a7df05ea3bc713"
+X-MANTSH: 1TEIXWV4eGVoaGkNHB1tfQV4bGhscGBkaGBEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGh8RCllEF2EdQHtZY3BPXnkYEQpZTRduT0ZDXE9YEQpfWRcYGhIRCl9NF2RFRE8RC
+ llJFxpxGhAadwYbEhJxGx8aEBp3BhgaBhoRClleF2hjeREKQ04XY0QaZXVCXmFcbVtGUhNGWV8
+ Sck9ge2YbSF8eZksbZlsRClhcFxkEGgQeEwcdGEkfHx1JGQUbGgQbHBgEGRoEHhAbHhofGhEKX
+ lkXS0lBe2cRCk1cFxsfGREKTFoXaGlNTWsRCkxGF2xraxEKQ1oXGBoTBBIfBBsYEgQbHR0RCkJ
+ eFxsRCkJFF2wbQElsYl16TR9cEQpCThdifFtfRR9na0xccBEKQkwXaX0FYRhGRUNNY2wRCkJsF
+ 3pPARhtSRtTRW5FEQpCQBdkTAVyW0sfRXpiQhEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxs
+ RCnBnF2FLGVIFW354RRh6EBkaEQpwaBdoZ35aHVxJeWwdYBAZGhEKcGgXbV5MRhl6f34TZVIQG
+ RoRCnBoF2tjRh4BQgVhaGBBEBkaEQpwaBdmTWdhfGJ6GmthXBAZGhEKcGgXaB1iRXlQenhIc0I
+ QGRoRCnBnF2gYRG95H3JgBWdPEBkaEQpwaxdlcmlgXAVNWhxTRBAZGhEKcEsXYUNBe396TE5MH
+ FAQGRoRCnBsF29PcnlzQGREUHxbEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: In0O_htKvGqlx9lsu8XeJQL1bu4La1Lq
+X-Proofpoint-GUID: In0O_htKvGqlx9lsu8XeJQL1bu4La1Lq
+
+
+--000000000000d3a7df05ea3bc713
+Content-Type: multipart/alternative;
+	boundary=000000000000d3a7dd05ea3bc711
+
+
+--000000000000d3a7dd05ea3bc711
+Content-Type: text/plain;
+	charset=UTF-8
+
+Good afternoon Darryl,
+
+I hope this email finds you well.  I am forwarding to you the email we
+received with Justice Somji's costs decision.  As you will see, it is
+disappointing. She has ordered no court costs to either party. There is not
+much more that I can say about her decision at this time.  If you would
+like to discuss and debrief, then please let me know.
+
+Allison
+
+---------- Forwarded message ---------
+From: Gloyn, Tina (JUD) <Tina.Gloyn@ontario.ca>
+Date: Mon, Oct 3, 2022 at 3:15 PM
+Subject: Ross v. Holmes-Costs Endorsement-October 3 2022
+To: Allison Lendor <allison@lendorguest.ca>, Alison Boyce <
+Alison.Boyce@mannlawyers.com>
+
+
+Good Afternoon Counsel,
+
+
+
+Please see attached the costs endorsement in the above matter.
+
+
+
+Kindly confirm receipt.
+
+
+
+Regards,
+
+
+Tina
+
+
+
+*Tina Gloyn*
+
+Judicial Assistant
+
+Superior Court of Justice - Judges' Chambers
+
+Ottawa Courthouse
+
+161 Elgin Street, 5th Floor
+
+Ottawa, ON  K2P 2K1
+
+613-239-1231 (T)
+
+613-239-1507 (F)
+
+tina.gloyn@ontario.ca
+
+
+
+
+-- 
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--000000000000d3a7dd05ea3bc711
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=UTF-8
+
+<div dir=3D"ltr">Good afternoon=C2=A0Darryl,<div><br></div><div>I hope this=
+ email finds you well.=C2=A0 I am forwarding to you the email=C2=A0we recei=
+ved with Justice Somji&#39;s costs decision.=C2=A0 As you will see, it is d=
+isappointing. She has ordered no court costs to either party. There is not =
+much more that I can say about her decision at this time.=C2=A0 If you woul=
+d like to discuss and debrief, then please let me know.</div><div><br></div=
+><div>Allison<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">---------- Forwarded message ---------<br>From: <strong class=3D=
+"gmail_sendername" dir=3D"auto">Gloyn, Tina (JUD)</strong> <span dir=3D"aut=
+o">&lt;<a href=3D"mailto:Tina.Gloyn@ontario.ca">Tina.Gloyn@ontario.ca</a>&g=
+t;</span><br>Date: Mon, Oct 3, 2022 at 3:15 PM<br>Subject: Ross v. Holmes-C=
+osts Endorsement-October 3 2022<br>To: Allison Lendor &lt;<a href=3D"mailto=
+:allison@lendorguest.ca">allison@lendorguest.ca</a>&gt;, Alison Boyce &lt;<=
+a href=3D"mailto:Alison.Boyce@mannlawyers.com">Alison.Boyce@mannlawyers.com=
+</a>&gt;<br></div><br><br><div class=3D"msg-1061315391705879035">
+
+
+
+
+
+<div lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:b=
+reak-word">
+<div class=3D"m_-1061315391705879035WordSection1">
+<p class=3D"MsoNormal">Good Afternoon Counsel,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Please see attached the costs endorsement in the abo=
+ve matter.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Kindly confirm receipt.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Regards,<u></u><u></u></p>
+<p class=3D"MsoNormal"><br>
+Tina<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;font-family:&quot=
+;Lucida Handwriting&quot;;color:#1f497d">Tina Gloyn<u></u><u></u></span></b=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">Judicial Assistant<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">Superior Court of Justice - Judges=
+&#39; Chambers<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">Ottawa Courthouse<u></u><u></u></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">161 Elgin Street, 5<sup>th</sup> F=
+loor<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">Ottawa, ON=C2=A0 K2P 2K1<u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">613-239-1231 (T)<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d">613-239-1507 (F)<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;color:#1f497d"><a href=3D"mailto:tina.gloyn@ontar=
+io.ca" target=3D"_blank"><span style=3D"color:blue">tina.gloyn@ontario.ca</=
+span></a>=C2=A0
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+</div></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i s=
+tyle=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allison Lendor</f=
+ont></i><br></div><div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i>=
+<span><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span></i><=
+/div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=
+=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors</font></font></sp=
+an></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri">=
+<font size=3D"3">209 - 460 West Hunt Club Road</font></font></span></i></di=
+v><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=
+=3D"3">Ottawa, ON</font></font></span></i></div><div style=3D"font-size:13p=
+x"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></=
+span></i></div><div style=3D"font-size:13px"><i><font face=3D"Calibri"><fon=
+t size=3D"3"><br clear=3D"none"></font></font></i></div><div style=3D"font-=
+size:13px"><font size=3D"3"></font></div><div style=3D"font-size:13px;margi=
+n:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Tel.: (613)=
+247-7964 ext 3</font></font></span></i></div><div style=3D"font-size:13px">=
+<i><span><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font><=
+/font></span></i></div><div style=3D"font-size:13px"><span style=3D"font-fa=
+mily:tahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-style:italic=
+;white-space:nowrap"><br></span></div><div style=3D"font-size:13px"><br></d=
+iv><div style=3D"font-size:13px"></div><div style=3D"font-size:13px"><var><=
+/var></div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13=
+px"><span lang=3D"EN-US" style=3D"font-size:12pt">This email and any files =
+transmitted with it are confidential and intended solely for the use of the=
+ individual or entity to whom they are addressed and may be protected by so=
+licitor-client privilege. If you have received this email in error please n=
+otify us by e-mail reply and delete it from your system; you may not copy t=
+his message or disclose its contents to anyone.</span></i></div><div><font =
+size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Cal=
+ibri"><font size=3D"3"><i></i></font></font></div><div></div></div><div></d=
+iv></div></div></div></div></div>
+
+--000000000000d3a7dd05ea3bc711--
+
+--000000000000d3a7df05ea3bc713
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Ross and Holmes Cost Dec Somji J October 3 2022 .pdf"
+Content-Type: application/pdf;
+	name="Ross and Holmes Cost Dec Somji J October 3 2022 .pdf"
+X-Apple-Content-Length: 315610
+Content-Id: <183a4cca1cc35a64dc01>
+
+
+--000000000000d3a7df05ea3bc713--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>994278</integer>
+	<key>date-last-viewed</key>
+	<integer>1741018598</integer>
+	<key>date-received</key>
+	<integer>1664917363</integer>
+	<key>flags</key>
+	<integer>8623686789</integer>
+	<key>remote-id</key>
+	<string>886</string>
+</dict>
+</plist>

@@ -1,0 +1,184 @@
+9928      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-2d-100-percent-32 by p158-mailgateway-smtp-64554c65cb-zh6bq (mailgateway 2512B141)
+	with SMTP id 39ac36ab-a1c4-4fc6-a3b2-37c38bee6235 
+	for <darrylross@icloud.com>; Mon, 21 Apr 2025 14:50:11 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 39ac36ab-a1c4-4fc6-a3b2-37c38bee6235
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	by p00-icloudmta-smtpin-us-east-2d-100-percent-32.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-2d.k8s.cloud.apple.com (Postfix) with ESMTPS id D12A3C000AC
+	for <darrylross@icloud.com>; Mon, 21 Apr 2025 14:50:09 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgEOTEFARhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxISARsEQUBIEBdfUQ4QVwUYFRBGFgdECxYRXBsHH0hLEUwJGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDFVcV0DQ01LHwECfDQcECxCKgcBVToDUR0yBRs0JQEhMCsdbAkqOiBCOw1RIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lhd6MH7n
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.49 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.49; helo=mail-ej1-f49.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac34257295dso766759066b.2
+        for <darrylross@icloud.com>; Mon, 21 Apr 2025 07:50:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745247009; x=1745851809; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7WuVMurSGaIq5LsTG/ndqO6i1mSG4G9KNFQ0cqmuWm4=;
+        b=lhd6MH7nakPrcPBIF14QLLSeuuSOnL6Zz7EkYWkM+LUrJ5pln4I0o/4YC0sgbN/mfg
+         MGDx6Jjm1LJdkoLTm8sPo/HRNqD0lOuYhTgsb0TZ5h51E5rzz/667Z/be0x03R69UaO3
+         TUEyDQgNi/LqdRVzp6DMojPyLcLQkJSE9EgarhY9UWbX5y4kNEuIET0ODpRBMYq9f6ji
+         aKFMbu4po+U3pEUrsUgOpSqGOlZdsCv7XwTPU1ydjtKDJ685m7vT/Ji4AQtV9Rzckshl
+         cS6kbxw2oTqS+l6HOPZ8H8CAyJqDvsWvkuGwRzm4NRmSmxfQC6kx3Q+2lz+STIqEHL2n
+         x1lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745247009; x=1745851809;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7WuVMurSGaIq5LsTG/ndqO6i1mSG4G9KNFQ0cqmuWm4=;
+        b=eChIZfdlNeSHAo3lNL85NA87BPaVdeT7Rf93fjSAP2It/V0RJXDEC2ZMePJRpsQ7lo
+         L/5YyZU0nkGaRn13zSKxugugnRsAxuJRIbCInRIQJrbmAXAvsrsVhsatANeDaDdWR4cd
+         eqwntc89EV23JLDn/N7wOmevUDSC/OBLpYe5JVvgwBg3VcHWFBORwDXy9hL0h+Z3arop
+         ZcSaEr6DY0pVVSJF+ZS8jFM/Z/9nIEk1xfskIAUSbreV40xDFKQ78AcJ935xQtwb7yym
+         LK25jqub+sEpWJaV9vfBQSddGkbOs9JwcPS9ClXf7kQt1LQqpgp0Dq9HjFeaNm1U2YzG
+         oKxg==
+X-Gm-Message-State: AOJu0YxKfAzmWuXJcNgzPxrXlyUOS4UQFVZvBq0mvVgrVdAl9au9kYLT
+	iOCC7pAz8/lxXhJcp95swKFQL/Cn2mvmHK91BTcWqbjhDCz8bNrwtz61QV5942avnHsYPilsyfs
+	Xz+iGpsb0/AQyqdvC3YzSMPw5NQb1UobV
+X-Gm-Gg: ASbGncvckn45X2HAwG077r7waDqpGRj9w1L53hDAaovtXAP2wKtijsWqHplIfwJBqKt
+	LWFegZQ780F86WbxxvduxFtyoboOc0gY/pbFi5fu58MnJv2NkX5nJlpDK0WS+jEegJz7yJxEgN+
+	xBf8HzA4/V66bgQcVSUs04iCU7yDT5SbxrTsUE1rq7tL3lsCR6zlJLIF81nVXnuxmms0E=
+X-Google-Smtp-Source: AGHT+IGHQad1vjx5n+DAgZ+HMDrxQYfYQ9GbMQ4PiJjxzSH8Uznxvh0hFutStfyFWbRndOvx9GaH8nQJk+nPMWktfQg=
+X-Received: by 2002:a17:907:72c8:b0:ac2:842c:8d04 with SMTP id
+ a640c23a62f3a-acb74b1db92mr1030072866b.17.1745247008630; Mon, 21 Apr 2025
+ 07:50:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRG8Wz-5GNPiHAbkcVsmwBhOpkc3bmi8u0RUG=qoFvM_RQ@mail.gmail.com>
+ <8DCED965-5357-4483-AF8A-B8F62C100A59@icloud.com>
+In-Reply-To: <8DCED965-5357-4483-AF8A-B8F62C100A59@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 21 Apr 2025 10:49:57 -0400
+X-Gm-Features: ATxdqUEEeIr7KpHqlUAFV2_Pk_LYhhEKuA8j3uxlienshEq0kqSGuFnqvgx-pOM
+Message-ID: <CAFnbyRF-Aka64-hy2JViiJ5R777Oz7jJ5-VPxGGS-Zk_CF5C=g@mail.gmail.com>
+Subject: Re: Easter weekend and the following weekend
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000feae7f06334afb6b"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsdHhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsfHnEZHhAadwYYGgYaEQpZXhdsbHkRCkNOFxJvRhl8B3tLEntuH
+ khzGXtmXWIeQnp6UnNjUntefHMeEQpYXBcZBBoEHxsFGxoEGxwYBBkaBBgSEBseGh8aEQpeWRd
+ MZQUBExEKTVwXBxIbEQpMWhdoa01NaxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4TEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdiQBwSfwVQaXtJeREKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2lLeGQFWRNncmlhEBoRCnB
+ oF2JFXVJrZhgTQ21OEBoRCnBoF21/RUBCXm1Gfx5eEBoRCnBoF29fU0gBE0t4aEJvEBoRCnBoF
+ 2ZMGFhDch9sU1oaEBoRCnBoF2MFeExHcGx8BR14EBoRCnBoF2lpTxMaUxxZTHpDEBoRCnBoF3p
+ +cHgeb0NHRG9TEBoRCnB/F2B4fWh9ExsBYRhFEAcbGhgRCnBfF2FyaF5rHUJ6AU99EAcbGRoRC
+ nB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEBoRCm1
+ +FxoRClhNF0sR
+X-Proofpoint-GUID: 8El3V-Qa8QD4bY3QLwH4hPPxYIxQtVY4
+X-Authority-Info: v=2.4 cv=TclstQQh c=1 sm=1 tr=0 ts=68065b22 cx=c_apl:c_pps a=MFA1YlRTXiFem52YpcrAug==:117 a=XR8D0OoHHMoA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=UaajbtIvlikC1KDPwKoA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=CE02TGkTRvuK_obvgNgA:9 a=qMRQdsYjKR5362W0:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-ORIG-GUID: 8El3V-Qa8QD4bY3QLwH4hPPxYIxQtVY4
+
+--000000000000feae7f06334afb6b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi there.
+
+We are leaving now.
+As for Saturday it just depends on Alice practice. I will aim for 11 am
+
+
+
+
+On Tue, Apr 15, 2025 at 2:39=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+> I=E2=80=99ll be available to spend time with the girls on Monday, April 2=
+1.
+>
+> Regarding April 27, please let me know what time you plan to drop the
+> girls off on Saturday.
+>
+> Darryl
+>
+> On Apr 14, 2025, at 19:14, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl
+>
+> We are visiting Kelly et al in Kington Saturday and overnight this weeken=
+d
+> for Easter.
+>
+> Can the girls visit you all day Monday ?
+>
+> Also we have organized the OSU teams to watch Ottawa women=E2=80=99s firs=
+t soccer
+> match on Sunday April 27 at Landsdowne and they are meeting the players.
+> Can I bring the girls over for the Saturday instead?
+>
+>
+>
+>
+
+--000000000000feae7f06334afb6b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi there.</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">We are leaving now.</div><div dir=3D"auto">As for Saturday it just depe=
+nds on Alice practice. I will aim for 11 am<br clear=3D"all"><br clear=3D"a=
+ll"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
+mail=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleuse=
+rcontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRA=
+uqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div=
+><div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Tue, Apr 15, 2025 at 2:39=E2=80=AFPM Darryl Ross &=
+lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-break:afte=
+r-white-space"><div>Hi Cynthia,</div><div><br></div><div>I=E2=80=99ll be av=
+ailable to spend time with the girls on Monday, April 21.</div><div><br></d=
+iv><div>Regarding April 27, please let me know what time you plan to drop t=
+he girls off on Saturday.</div></div><div style=3D"line-break:after-white-s=
+pace"><div><br></div><div>Darryl</div><div><br><blockquote type=3D"cite"><d=
+iv>On Apr 14, 2025, at 19:14, Cynthia Holmes &lt;<a href=3D"mailto:cynthmho=
+lm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><b=
+r><div><div dir=3D"auto">Hi Darryl</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">We are visiting Kelly et al in Kington Saturday and overnight th=
+is weekend for Easter.</div><div dir=3D"auto"><br></div><div dir=3D"auto">C=
+an the girls visit you all day Monday ?</div><div dir=3D"auto"><br></div><d=
+iv dir=3D"auto">Also we have organized the OSU teams to watch Ottawa women=
+=E2=80=99s first soccer match on Sunday April 27 at Landsdowne and they are=
+ meeting the players.=C2=A0 Can I bring the girls over for the Saturday ins=
+tead?</div><div dir=3D"auto"><br clear=3D"all"><div dir=3D"auto"><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb=
+5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_c=
+A"><br></div></div></div></div>
+</div></blockquote></div><br></div></blockquote></div></div>
+
+--000000000000feae7f06334afb6b--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1346179</integer>
+	<key>date-last-viewed</key>
+	<integer>1745775118</integer>
+	<key>date-received</key>
+	<integer>1745247011</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>20228</string>
+</dict>
+</plist>

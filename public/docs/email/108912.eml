@@ -1,0 +1,316 @@
+15876     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin014.me.com by p72-mailgateway-smtp-797bcc955d-q8m6b (mailgateway 2216B271)
+	with SMTP id 287459ef-6ff4-45e3-bdf5-7275c08399ef 
+	for <darrylross@icloud.com>; Thu, 26 May 2022 16:17:24 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 287459ef-6ff4-45e3-bdf5-7275c08399ef
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by st11p00im-smtpin014.me.com (Postfix) with ESMTPS id 25546F410FB
+	for <darrylross@icloud.com>; Thu, 26 May 2022 16:17:22 +0000 (UTC)
+X-ICL-SCORE: 3.3320333300
+X-ICL-INFO: GAtbVUseBVFHSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRUkJGFNCSURXEFVaDUhb
+ CxYRXBsbF0hLEUkHBkwSFgkQFFUYARoURFcIRERfVxQHHhQdTwBEVABGTwAYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFA
+ PVFDAzA2IDQVR10YBCgDNiJfZTdDFjJKGwJbDxg1C1wfcUEGTVQqMVN6ZyIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=DnrHG+YZ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.170 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.170 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.170; helo=mail-yb1-f170.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-yb1-f170.google.com with SMTP id s14so3298275ybc.10
+        for <darrylross@icloud.com>; Thu, 26 May 2022 09:17:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=pSNA/y/nhE0+t5xzbKU5SW4CwVpytHyXot/N36s5eO4=;
+        b=DnrHG+YZfXuicgsneNJ+DVAsYgsJmoXANbrFMveTvrATqe59faYbTb29LXSVEkhHyT
+         SOrWB/OA0O3Tk0uEDXqXL/CWcKHhbwPSaQx57VS+MnHXWqAdQTBFRWyr8QNkbeH+VZ6u
+         jd1aNH92R/EnF+oTgN+tgBin7ShcqVTewGz94fNC1F5Nc2zmSJYoK8JFMTMpp09wiQkw
+         rxagOlFsg6Y0MdhnVIgyJVHFX5N6iknaJY1keGvDT0EB1fBUdsWw0dygcFcIvntfoyuY
+         Si3zGYPwmM0fc9lafq9T3QDWNC4+jt8RN1FACL4Xwg1CqC9dTAayPaE/byYALJhjJBu2
+         lkgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=pSNA/y/nhE0+t5xzbKU5SW4CwVpytHyXot/N36s5eO4=;
+        b=8JGqTfsWgxnQl4L5OzxYJQpGlKMWOZf6rndepiR1pMOUsv4njnZaJ2f6v7vwD6XHqJ
+         uOgAVgkV7G8uPy6bimyn6P5bnhrrR0kCbW3SJ+JR0uB5w2PeYsxrAWDE4BwGFgNB9TFr
+         fwdcVbBUTp1ob9FAGeC0T8OgI8dM2+QlBbcE8Cwc1bo/d0WNqAPksCwVYfHH3XaIbXou
+         JJSQVSLeZACb4PN3zR5xC2d5Zsvzn4DoD0mWdGIof7lbRFSs5/Gp1S1K6v7rD4qZvdiP
+         LYoggG/b8kxLdr2XNU0QDWrQ/+R9Arttf0ID62QEhWant8o843LsfzBxBNs9eMGCgin5
+         XF4w==
+X-Gm-Message-State: AOAM530OE+7xu6WgBRa/cea6K2F3lZ3VmBqlKsyusOxPUF5EwM2kbiQZ
+	PLp2koAHJBD8r0ddNHiN1Wv5nUYRo4UCFp2f5tgECqnwHewseA==
+X-Google-Smtp-Source: ABdhPJx//E3yaSf94R+0VQlLOlDzeZtcZyVjSyknGTETdxNWZtxlEDkcBYxosLZJdflo+sFo2SXarv9Ay/fC5GY3jfk=
+X-Received: by 2002:a25:ce8b:0:b0:655:8bac:7f32 with SMTP id
+ x133-20020a25ce8b000000b006558bac7f32mr9000596ybe.619.1653581842537; Thu, 26
+ May 2022 09:17:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <26FB3FCB-8B01-404A-8B67-080169DE589A@icloud.com>
+ <CAKimwG7tdpoxQ+Gpowh=SCcXWKj1j0_ADMY1av2XY1nDrfNKvA@mail.gmail.com> <B5D9F566-BDFD-409E-A7F6-CCB882104515@icloud.com>
+In-Reply-To: <B5D9F566-BDFD-409E-A7F6-CCB882104515@icloud.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Thu, 26 May 2022 12:16:46 -0400
+Message-ID: <CAKimwG7EauaEOFCmwkzqQeAZoSU6oT=c2mmmLm+gAwd8-LF+JQ@mail.gmail.com>
+Subject: Re: Update.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000054f41705dfec86f6"
+X-MANTSH: 1TEIXWV4bG1oaGkNHB15TTk0aHxgaHhsaGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGhoRCllEF2VAWFxfWW9HQUVOEQpZTRd6T1hZRURLRmtGRkVdEQpfWRcYGBoRCl9NF
+ 2RFRE8RCllJFxpxGhAadwYYGhpxGxMSEBp3BhgaBhoRClleF2hueREKQ04XZxxkHwcSQVlpfXk
+ dZ0ASEl5HcGlrZGNOXxhMYF0YZhsRClhcFxkEGgQeHAdLHxsZG0wdGwUbGgQbHBgEGRoEGBMQG
+ x4aHxoRCl5ZF3BSf1NfEQpNXBcYHhMRCkxaF01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGBsTBBs
+ dGhEKQl4XGxEKQkUXbBtASWxiXXpNH1wRCkJOF2J8W19FH2drTFxwEQpCTBdpfQVhGEZFQ01jb
+ BEKQmwXek8BGG1JG1NFbkURCkJAF29kWkUZBXpLT0VeEQpCWBdia05vb3psZ1pHSxEKTV4XGxE
+ KWlgXGxEKcGgXbH1sQUxuWX1CBU8QGRoRCnBoF21wGgVeYAUZQGZmEBkaEQpwaBdrfERSGxMaf
+ 2N5fxAZGhEKcGgXYk4feX1ZX2R9QlIQGRoRCnBoF2QafFMFG05FHwVvEBkaEQpwbBdvT3J5c0B
+ kRFB8WxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-ORIG-GUID: M6N5-8ksCWS7Mj88tmZCANIdu2fJw2L1
+X-Proofpoint-GUID: M6N5-8ksCWS7Mj88tmZCANIdu2fJw2L1
+
+--00000000000054f41705dfec86f6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Good afternoon Darryl,
+
+Thank you for your understanding.
+
+I will get back to you with answers to your questions later today.
+
+In terms of the trip, given Cynthia's unpredictable behaviour, I will send
+her lawyer a letter inquiring about the trip as well as the other issues.
+
+Allison
+
+On Thu, May 26, 2022 at 12:11 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Allison,
+>
+> No problem. I saw your auto-reply and knew you would get back to me when
+> you could.
+>
+> One more question about the trip they=E2=80=99re taking: would you recomm=
+end I ask
+> Cynthia about it directly, or is it something for you to ask her lawyer?
+>
+> Thank you,
+>
+> Darryl
+>
+> On May 26, 2022, at 12:03 PM, Allison Lendor <allison@lendorguest.ca>
+> wrote:
+>
+> Good afternoon Darryl,
+>
+> Thank you for your email. I apologize for the delay in getting back to
+> you.  I have been in trial mode for the past few weeks, which just paused=
+.
+> I am catching up on emails now.
+>
+> A letter was supposed to go out to Alison Boyce, but I just did a quick
+> check and I don't see that it has.  I will double check and get back to y=
+ou.
+>
+> Allison
+>
+> On Thu, May 26, 2022 at 11:58 AM Darryl Ross <darrylross@icloud.com>
+> wrote:
+>
+>> Hi Allison,
+>>
+>> To follow up my last email, did you communicate with Alison Boyce about
+>> getting FaceTime visits? And did you share my updated address with her a=
+s
+>> well? In email and text Cynthia indirectly asked me how I was doing in
+>> Smiths Falls, so I want to find out if she was updated, or does not know=
+.
+>> Charlotte and Alice didn=E2=80=99t know that I moved either.
+>>
+>> Thank you,
+>>
+>> Darryl
+>
+>
+>
+> --
+>
+> *Allison Lendor*
+> *Lendor Guest LLP*
+> *Barristers & Solicitors*
+> *209 - 460 West Hunt Club Road*
+> *Ottawa, ON*
+> *K2E 0B8*
+>
+> *Tel.: (613)247-7964 ext 3*
+> *Fax: (613)233-9995*
+>
+>
+> *This email and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed and may be protected by solicitor-client privilege. If you have
+> received this email in error please notify us by e-mail reply and delete =
+it
+> from your system; you may not copy this message or disclose its contents =
+to
+> anyone.*
+>
+>
+>
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--00000000000054f41705dfec86f6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Good afternoon Darryl,<br><div><br></div><div>Thank you fo=
+r your understanding.=C2=A0=C2=A0</div><div><br></div><div>I will get back =
+to you with answers to your=C2=A0questions later today.=C2=A0=C2=A0</div><d=
+iv><br></div><div>In terms of the trip, given Cynthia&#39;s unpredictable b=
+ehaviour, I will send her lawyer a letter inquiring about the trip as well =
+as the other issues.</div><div><br></div><div>Allison</div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 26, =
+2022 at 12:11 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">d=
+arrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div style=3D"overflow-wrap: break-word;">Hi Allison,<d=
+iv><br></div><div>No problem. I saw your auto-reply and knew you would get =
+back to me when you could.</div><div><br></div><div>One more question about=
+ the trip they=E2=80=99re taking: would you recommend I ask Cynthia about i=
+t directly, or is it something for you to ask her lawyer?=C2=A0</div><div><=
+br></div><div>Thank you,</div><div><br></div><div>Darryl</div><div><div><br=
+><blockquote type=3D"cite"><div>On May 26, 2022, at 12:03 PM, Allison Lendo=
+r &lt;<a href=3D"mailto:allison@lendorguest.ca" target=3D"_blank">allison@l=
+endorguest.ca</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Good afternoon =
+Darryl,<br><div><br></div><div>Thank you for your email. I apologize for th=
+e delay in getting back to you.=C2=A0 I have been in trial mode for the pas=
+t few weeks, which just paused.=C2=A0 I am catching up on emails now.</div>=
+<div><br></div><div>A letter was supposed to go out to Alison Boyce, but I =
+just did a quick check and I don&#39;t see that it has.=C2=A0 I will double=
+ check and get back to you.</div><div><br></div><div>Allison</div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, M=
+ay 26, 2022 at 11:58 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud=
+.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex">Hi Allison,<br>
+<br>
+To follow up my last email, did you communicate with Alison Boyce about get=
+ting FaceTime visits? And did you share my updated address with her as well=
+? In email and text Cynthia indirectly asked me how I was doing in Smiths F=
+alls, so I want to find out if she was updated, or does not know. Charlotte=
+ and Alice didn=E2=80=99t know that I moved either.<br>
+<br>
+Thank you,<br>
+<br>
+Darryl</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=
+=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" =
+size=3D"3">Allison Lendor</font></i><br></div><div><div style=3D"font-size:=
+13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor =
+Guest LLP</font></span></i></div><div style=3D"font-size:13px;margin:0cm 0c=
+m 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Barristers &amp; So=
+licitors</font></font></span></i></div><div style=3D"font-size:13px"><i><sp=
+an><font face=3D"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</f=
+ont></font></span></i></div><div style=3D"font-size:13px"><i><span><font fa=
+ce=3D"Calibri"><font size=3D"3">Ottawa, ON</font></font></span></i></div><d=
+iv style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3=
+">K2E 0B8</font></font></span></i></div><div style=3D"font-size:13px"><i><f=
+ont face=3D"Calibri"><font size=3D"3"><br clear=3D"none"></font></font></i>=
+</div><div style=3D"font-size:13px"><font size=3D"3"></font></div><div styl=
+e=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><fo=
+nt size=3D"3">Tel.: (613)247-7964 ext 3</font></font></span></i></div><div =
+style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">F=
+ax: (613)233-9995</font></font></span></i></div><div style=3D"font-size:13p=
+x"><span style=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-siz=
+e:small;font-style:italic;white-space:nowrap"><br></span></div><div style=
+=3D"font-size:13px"><br></div><div style=3D"font-size:13px"></div><div styl=
+e=3D"font-size:13px"><var></var></div></div><div style=3D"margin:0cm 0cm 0p=
+t"><i style=3D"font-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt=
+">This email and any files transmitted with it are confidential and intende=
+d solely for the use of the individual or entity to whom they are addressed=
+ and may be protected by solicitor-client privilege. If you have received t=
+his email in error please notify us by e-mail reply and delete it from your=
+ system; you may not copy this message or disclose its contents to anyone.<=
+/span></i></div><div><font size=3D"3"></font></div><div style=3D"margin:0cm=
+ 0cm 0pt"><font face=3D"Calibri"><font size=3D"3"><i></i></font></font></di=
+v><div></div></div><div></div></div></div></div>
+</div></blockquote></div><br></div></div></blockquote></div><br clear=3D"al=
+l"><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0=
+cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allis=
+on Lendor</font></i><br></div><div><div style=3D"font-size:13px;margin:0cm =
+0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font>=
+</span></i></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span>=
+<font face=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors</font><=
+/font></span></i></div><div style=3D"font-size:13px"><i><span><font face=3D=
+"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</font></font></spa=
+n></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><=
+font size=3D"3">Ottawa, ON</font></font></span></i></div><div style=3D"font=
+-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font>=
+</font></span></i></div><div style=3D"font-size:13px"><i><font face=3D"Cali=
+bri"><font size=3D"3"><br clear=3D"none"></font></font></i></div><div style=
+=3D"font-size:13px"><font size=3D"3"></font></div><div style=3D"font-size:1=
+3px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Te=
+l.: (613)247-7964 ext 3</font></font></span></i></div><div style=3D"font-si=
+ze:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-999=
+5</font></font></span></i></div><div style=3D"font-size:13px"><span style=
+=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-s=
+tyle:italic;white-space:nowrap"><br></span></div><div style=3D"font-size:13=
+px"><br></div><div style=3D"font-size:13px"></div><div style=3D"font-size:1=
+3px"><var></var></div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"f=
+ont-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt">This email and=
+ any files transmitted with it are confidential and intended solely for the=
+ use of the individual or entity to whom they are addressed and may be prot=
+ected by solicitor-client privilege. If you have received this email in err=
+or please notify us by e-mail reply and delete it from your system; you may=
+ not copy this message or disclose its contents to anyone.</span></i></div>=
+<div><font size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font =
+face=3D"Calibri"><font size=3D"3"><i></i></font></font></div><div></div></d=
+iv><div></div></div></div></div>
+
+--00000000000054f41705dfec86f6--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>727399</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1653581844</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>785</string>
+</dict>
+</plist>

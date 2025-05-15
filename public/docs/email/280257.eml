@@ -1,0 +1,144 @@
+7599      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17093401.me.com by p133-mailgateway-smtp-6b494658c-7dt6s (mailgateway 2322B85)
+	with SMTP id c86f9134-9b82-4b7d-affc-0b0b5277484b 
+	for <darrylross@icloud.com>; Tue, 15 Aug 2023 13:13:01 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: c86f9134-9b82-4b7d-affc-0b0b5277484b
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	by ms11p00im-qufv17093401.me.com (Postfix) with ESMTPS id 54AFF6004D8
+	for <darrylross@icloud.com>; Tue, 15 Aug 2023 13:13:00 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRloQXgcZFltVFVFfDlgc
+ DEZVVgJTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwBGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlHUEMHBBfZDceTRwQS0ACEgATVBQCfHchGC48NExldTQvVDRC
+ G2ZmVTMdJzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y1To13Rf
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.41; helo=mail-ej1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-99357737980so716359366b.2
+        for <darrylross@icloud.com>; Tue, 15 Aug 2023 06:13:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692105179; x=1692709979;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=askDAz789WclyyR20IBKktGsC5CAKHuxYw6m3/Uw+Qg=;
+        b=Y1To13Rfwlu/aO6/BxqTfY2OU3NGbapb0bv2gIOhmpxGsfklCv8V7qc5pWfPIy9yoN
+         pCbAIKjPUicKmJMtuny6m2cqND1CkB/7byWDtpLiCI6Ren4tXzDFOJI5VrTJDBUGE6ho
+         goCLd88H8em+fPatf8aavG+Fn3rPnbv33OWLsK2e/lAiD4j9Y3gUtXXfCTF+Ja61fPJo
+         xeeZczVXdpl1XuYn9uIVeryGuO0Jde5E7rT57Vy1VT4YyJxA16j9rJ9Fbi9fvByeoxIU
+         2wMNmJ91OuE4c/Vv/Q2SqA0Ok8i4GQ0ElsUjHtDQtM9rxO7CqwhPNoX5rF/T3RU6JwvV
+         K2qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692105179; x=1692709979;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=askDAz789WclyyR20IBKktGsC5CAKHuxYw6m3/Uw+Qg=;
+        b=M9aV96FVHHKpermB2cxpRBXrdt9ipAOeugkgHIkrlh2NIvU51qmAROPAKFP4q3DNtM
+         Evu/2JIDpeBK0+r9paIsfjXW5ItFfjzyOGjxz6A0myq3LER7QhhQfTiGAFjfqR7c80JF
+         u/ND0tboQbC/YnqCiCXQuS1leVQO54u3YytnaqjeVrp3VSBt8XGwCR9lOart8u9+MusA
+         vSnI2Zb6qkQX0MAY6MI3VPx22PEg/PpJiJ0rz+b8lUiX0OqI4MtfFmUbYFPuk+dIbq5R
+         5r4YO6WH1aurix0AZNxPxZ+B/+oeDCDDGAVHHSROa1JtZBg4XMWyGdf+AYjkHSrlCIjm
+         kJKw==
+X-Gm-Message-State: AOJu0YyWGsKtQ8tMlRhOqVuxlK1wgDyys17fpYMbuN5ChSvrIs10mkSu
+	NIUFrAkvbVzECNoOuqphFC3JzhE3S/kGUOsSyHz4oMPU
+X-Google-Smtp-Source: AGHT+IHS3BVGRn016W8DyKMSh8xD7YGhl2oKxtRmRS1nHxbgpbL7M3iHe06eB36oIJ3hjz5FpV3hg4fNVXCZCjz9EDE=
+X-Received: by 2002:a17:906:9e:b0:99b:237e:6ee with SMTP id
+ 30-20020a170906009e00b0099b237e06eemr11415060ejc.30.1692105179343; Tue, 15
+ Aug 2023 06:12:59 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 15 Aug 2023 09:12:48 -0400
+Message-ID: <CAFnbyRGh8jkhoRUk4zg3p4puj2czLACmWZC4UCVZ-R5cVP7FdA@mail.gmail.com>
+Subject: Tuesday visits
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Holly Ross <hollygammie@gmail.com>, 
+	Michelle Williams <michelle.williams@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="000000000000232f6d0602f5f08e"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQYGxsZGxsaGBEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF2tDdWZsG25bUkBgGk9dW2t
+ LHnhhRVprYURZQHN+HFMTEQpYXBcZBBoEHxoFGxoEEwQbBB0fEBseGh8aEQpeWRdJb3gfGREKT
+ VwXGxsTEQpMWhdoYU1BaxEKTEYXTWsRCkNaFxgaEwQSHwQYGxIEHhsRCkJeFxsRCkRJFxgRCkJ
+ cFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybngaY
+ mMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF2c
+ YUEVOTnxkbx9yEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXZm5vXXhsQRgYBVIQG
+ RoRCnBoF2lgSUNNYxtvaXJzEBkaEQpwaBdjSW9mYkxJEh0BUBAZGhEKcGgXbkROTGsdEkAYZkM
+ QGRoRCnBoF29HbBxJG2VYBWMdEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: Ai_LF1DqxjJ0ewqAa4RKopAKnsjYT6y9
+X-Proofpoint-GUID: Ai_LF1DqxjJ0ewqAa4RKopAKnsjYT6y9
+
+--000000000000232f6d0602f5f08e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+Charlotte=E2=80=99s coach has moved Tuesday night  practices to 6:30 pm to
+accommodate the the shorter days, their last practice is September 12 for
+the season.
+
+Going forward, Charlotte will need to be there for 6:15 pm. Can you kindly
+confirm you are able to accommodate this? This is important for Charlotte.
+
+ The visiting hours are extended on Tuesday this summer and their new
+school schedule begin  August 29 which will mean back for shorter periods
+time for visits.
+
+For August 29, September 5th and September 12 the visits will be a bit
+shorter, however Sunday visits have been extended to 8 hours which exceeds
+the court ordered time of weekly in person visits.
+
+I have not received the soccer Fall schedule but when I do, I will be sure
+to let you know to give you time to accommodate.
+
+
+Cynthia
+
+--000000000000232f6d0602f5f08e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hello,<div dir=3D"auto"><br></div><div dir=3D"auto">Charlotte=E2=80=99=
+s coach has moved Tuesday night =C2=A0practices to 6:30 pm to accommodate t=
+he the shorter days, their last practice is September 12 for the season.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">Going forward, Charlotte w=
+ill need to be there for 6:15 pm. Can you kindly confirm you are able to ac=
+commodate this? This is important for Charlotte.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">=C2=A0The visiting hours are extended on Tuesday t=
+his summer and their new school schedule begin =C2=A0August 29 which will m=
+ean back for shorter periods time for visits.<br></div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">For August 29, September 5th and September 12 the=
+ visits will be a bit shorter, however Sunday visits have been extended to =
+8 hours which exceeds the court ordered time of weekly in person visits.=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I have not received =
+the soccer Fall schedule but when I do, I will be sure to let you know to g=
+ive you time to accommodate.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div>
+</div>
+
+--000000000000232f6d0602f5f08e--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1163603</integer>
+	<key>date-received</key>
+	<integer>1692105181</integer>
+	<key>flags</key>
+	<integer>2207613451393</integer>
+</dict>
+</plist>

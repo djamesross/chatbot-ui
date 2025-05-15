@@ -1,0 +1,126 @@
+6441      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr28p00im-smtpin023.me.com by p133-mailgateway-smtp-9f9f9b478-pf29g (mailgateway 2317B210)
+	with SMTP id 539a8d09-0aa9-4b2c-823f-0c14e25d1b57 
+	for <darrylross@icloud.com>; Thu, 1 Jun 2023 00:34:46 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 539a8d09-0aa9-4b2c-823f-0c14e25d1b57
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	by mr28p00im-smtpin023.me.com (Postfix) with ESMTPS id CB9761A72DB8
+	for <darrylross@icloud.com>; Thu,  1 Jun 2023 00:34:44 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdST1oQXgcZFltVFVFfDlgc
+ DEZVVgJaWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwIGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnMDVbPQgIWw0eOlAACwRiKDQeVhlMVUxXOC8PKBsIeQoELy0E
+ E2ZdMhcYATcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gzVHpw0I
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.48 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.48 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.48; helo=mail-ej1-f48.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-974265a1a40so337398066b.0
+        for <darrylross@icloud.com>; Wed, 31 May 2023 17:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685579683; x=1688171683;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=R5P/OZGZOgtxN5dp2A78u55AmW/F8P8wpEAdpCOQkcU=;
+        b=gzVHpw0I9hDX8d4LLzhv+wS8SoFi6c/J/9XX9TEZpGipZvQDctRpltURrL5NrMEHMa
+         pNr+k1B5aQB8T+xaOI08U8ZTCQz9uPgPTogo2/qBDl8wmtAuc6fJHtIZbGos2jdem8xl
+         svWlc+TE06H5Qadh14g3WCj2AjoCxtOoQBzGva2nadNovgU8+OI0TnaaKL8TL6GavOSv
+         pzLM95CpUBrwTxzZkAiUz3LV0n1eZWWTouibLS4saXxcLwtxcfZNAk4EyPJGZe8yMjXe
+         LC55a6RXpzseeZeMyujOmyY3GNx41FJBLhoyncKbNB2X1ulqouTMKJwzLq7beUYz5LLX
+         iBGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685579683; x=1688171683;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R5P/OZGZOgtxN5dp2A78u55AmW/F8P8wpEAdpCOQkcU=;
+        b=DZrlZEQl2RZ70cXZsiuGUCCQajspKVFVQWdBA+VcA4GXMZ76g3S1PYzDBkGicylr0q
+         EW3h2rxyErEp0yvQ65vL+6iHaNrUjAd1IoOXyJO7xqIRJBsowMnR8ndAxpNjHuP8Z4xy
+         na7LLM5YpqX88+E0wFXeQOtKfoUAWPUPcGZBSYLu/PYczFxC7xzGYxokTrsOYscZXUF1
+         pB+E41mDBwIIouYkO+xmzo5NgR3sABuVC7LLivOiYPla9mJLIa4+gTs+UlBuJPXnBZvT
+         9DOPbh9V0/zEwlxyQnhzHp5l78B3hKE0sMyehEWewMV9ReLMuiIpz0T+pzGptZe71yPc
+         ORVg==
+X-Gm-Message-State: AC+VfDyC8hXdl12SVadWtrb1En4D8ubSgeZJFUcBXMU0o1/nfPyv1ROD
+	TWWci3IaSsh5pvhyw2ZoG1AYdMywXpJ3e80jpld9DI0dorA=
+X-Google-Smtp-Source: ACHHUZ6X4DhOIsIK1zo+u/ZFSyAv7gr1dypxs5DZ9EKN9Xx1aAYsc4Td98O/iktokGWnyKUAfbCuyh2QA4HujDVjznk=
+X-Received: by 2002:a17:907:9484:b0:973:e5bf:281e with SMTP id
+ dm4-20020a170907948400b00973e5bf281emr164268ejc.27.1685579683307; Wed, 31 May
+ 2023 17:34:43 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 31 May 2023 20:34:32 -0400
+Message-ID: <CAFnbyREEL=Jp8mokC6ws4TJAg0n4ez5MVi_c8OhqVKskVkPbag@mail.gmail.com>
+Subject: Trip to Saskatoon this summer and overnight camp
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Michelle Williams <michelle.williams@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="00000000000043a55005fd069aca"
+X-MANTSH: 1TEIXR1geGFoaGkNHB1tfQEQaExsfGxsaGBEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBsbEQpfTRdkRURPE
+ QpZSRcacRoQGncGGxMbcRscGBAadwYYGgYaEQpZXhdsbHkRCkNOF31ofkZZblBQbE5MUGIaR3A
+ YUkZDEnVsGUIcT2FFZHoaEQpYXBcZBBoEHxoFGxoaBB0bBBscGgQTGBAbHhofGhEKXlkXSFhzU
+ msRCk1cFxgeHhEKTFoXaGlNTWsRCkxGF01rEQpDWhcYGhMEEh8EGBsSBB4SEQpCXhcbEQpESRc
+ bEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4c
+ m54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQp
+ CQBdpTFlFa29HbxtOGBEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2cSbF9SThlSB
+ RxrEBkaEQpwaBduZHN9aERzbnJGSBAZGhEKcGgXaVhja1l/SRh/QGgQGRoRCnBoF2l5SE5uHlh
+ rHEBtEBkaEQpwaBdoQ3xrXXpYGVJfRhAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF
+ 0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: WBTlsDzzFdfzH0mZ2xli8_F3h6eKoNP0
+X-Proofpoint-ORIG-GUID: WBTlsDzzFdfzH0mZ2xli8_F3h6eKoNP0
+
+--00000000000043a55005fd069aca
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+
+This is to confirm the girls and I will be away from July 20-29
+visiting family and friends in Saskatoon. We will be staying with my
+sister, my mom's cottage at Wakaw Lake and my friend Amy's cottage at Emma
+Lake. We moved the dates to accommodate family and friends visits and
+soccer tournaments.
+
+The girls will be away at Summer camp again this year from August 6-11.
+
+Cynthia
+
+--00000000000043a55005fd069aca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>This is to confirm the g=
+irls and I will be away from July 20-29 visiting=C2=A0family and friends in=
+ Saskatoon. We will be staying with my sister, my mom&#39;s cottage at Waka=
+w Lake and my friend Amy&#39;s cottage at Emma Lake. We moved the dates to =
+accommodate family and friends visits and soccer tournaments.</div><div><br=
+></div><div>The girls will be away at Summer camp again this year from Augu=
+st=C2=A06-11.</div><div><br></div><div>Cynthia</div></div>
+
+--00000000000043a55005fd069aca--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1128095</integer>
+	<key>date-last-viewed</key>
+	<integer>1744822751</integer>
+	<key>date-received</key>
+	<integer>1685579686</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12140</string>
+</dict>
+</plist>

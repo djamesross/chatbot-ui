@@ -1,0 +1,562 @@
+27509     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:7b81:0:0:0:0:0 with SMTP id i1csp977045ltj;
+        Wed, 6 Jan 2021 13:12:02 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJypChy9QLsTZLOLr051entcy5lSjhfein1arvwdbY+t4IELSi4iSOSKhodZW5yCXMi/6b7L
+X-Received: by 2002:a05:620a:95e:: with SMTP id w30mr6326400qkw.97.1609967522120;
+        Wed, 06 Jan 2021 13:12:02 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1609967522; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=SiMYPizfYhVsaXkfE4NmfwPBGXGtc+VLO46Dyn0Fa/RqX+QI+QUoMjEAWu1xnwtU5b
+         L1oq1floIzkSu2RJSgdNum5KuGJBDX7SWSYzc1neMIkZQRkpXNRNoZMteWCz8VyACCe+
+         72HAdVlC5F9L04IS8gT8iwFhGfe7wNeO27yGZ/G6131rAtGHfqWBPQFlBLRquKyJQsey
+         ant0i29OXjr49p7YjnfXRigr3AMMty1nTZN8LFWvfd8GPIc+wg7Ws7sJr0HDMfVgjaai
+         1dfHYVAgwtAiMFOmjcZuNmA6wSAWhG2uw2TzQoPQjxSLro6LjSrUYOSeJQw4xQ9J6QSo
+         QUJA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:cc:to
+         :from:dkim-signature;
+        bh=fommr0JJ9ULz/08qDGbdHTdB0DwnxiyJPF4OQOsYEa0=;
+        b=E8c9u8n/OQ6NlTAaHgZurN7rj9ukLQaP7bMRx+ue2IaIVTSQjZ7RrA+NhKLUhbU5Hp
+         H9vqlM+DqtpVjG5bW5ffnUUY6ZjHqG4x6lPjGk0fnNaz138P13Um8ncF4CxAMDl2LQtr
+         nSg03yDgSbILtXoHWvJoMDosTh8+j2fzbxvIMIwMH6E+WO/WEJfGBhWEkuK97AIhep6H
+         00niIhVpjHrZWiFOA7dzI+QLVT8mwG/VDrg/Jvlw/5e1n3bdkHBK+8utM6wV+X3h3r/s
+         y8PRs1y7MjBc+ffBudrhTqwNqdvhBjhYSdxOQqMkaQsyRxFLD7ii3g0slIvs7w8RR2DH
+         h3vQ==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@AlgonquinLivecom.onmicrosoft.com header.s=selector2-AlgonquinLivecom-onmicrosoft-com header.b=NusqTgng;
+       arc=pass (i=1 spf=pass spfdomain=algonquincollege.com dkim=pass dkdomain=algonquincollege.com dmarc=pass fromdomain=algonquincollege.com);
+       spf=pass (google.com: domain of ridgwal@algonquincollege.com designates 40.107.66.42 as permitted sender) smtp.mailfrom=ridgwal@algonquincollege.com
+Return-Path: <ridgwal@algonquincollege.com>
+Received: from CAN01-QB1-obe.outbound.protection.outlook.com (mail-eopbgr660042.outbound.protection.outlook.com. [40.107.66.42])
+        by mx.google.com with ESMTPS id k5si2056997qko.264.2021.01.06.13.12.01
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 06 Jan 2021 13:12:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of ridgwal@algonquincollege.com designates 40.107.66.42 as permitted sender) client-ip=40.107.66.42;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@AlgonquinLivecom.onmicrosoft.com header.s=selector2-AlgonquinLivecom-onmicrosoft-com header.b=NusqTgng;
+       arc=pass (i=1 spf=pass spfdomain=algonquincollege.com dkim=pass dkdomain=algonquincollege.com dmarc=pass fromdomain=algonquincollege.com);
+       spf=pass (google.com: domain of ridgwal@algonquincollege.com designates 40.107.66.42 as permitted sender) smtp.mailfrom=ridgwal@algonquincollege.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MOT+e0DJV4kOrFgbuVJOJxAw5qloru+ugVAUL9ir/msjuhwWHKh03BPmpADGPwp0q/WYjo5blzQK/dQZWhLoaDxfJMavAnRexJKMU86kYJ2jKGv7E7LgcBawhMgqNSaVkjgRxh+YiCTANWG17wf/DnS+EcXVkfXnZLPctH9n2aDG/x9B6skIuXePFv5N6+q0LqFvEcAL+X1uOeEF+pnEvgqSyyrUpRBki6ffUyAIfilxJyy6MSnB/QsRPTt/KAWcZAAGOccvwiDP6hPido43RPAlR9Loynw33DF6L0wJ8saQ045X7uhXTQr9OwmFpj4pRuISCZvd4+kxvY3SePCqUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fommr0JJ9ULz/08qDGbdHTdB0DwnxiyJPF4OQOsYEa0=;
+ b=aF0WTpZh7VhmMIiS9pKtG3tCHYflwK+NpRdIY3U1paWYIfZ4DX5OKlxaptIBwfeueuMn08WY+4lhxqck/YRwiI4QInGrskUn6X2IKIMwMiyH9DS6xjTUSFi2jzZaZKOnubJEnHmFq/FzI4hhnWeeYgfdlBpaJUTLBLLjVD5gNIE6zb4ksqpjvWbO9edefxceQHHV/99u7nmFHYviFijmo4sjP1opMzexHJVXmPOwoHsa3WdzCTji43Q9eqdZUYhThG83MbCY5icLFHerHKthkcQULaxfs56kC/+kTjbOCqJg4zgGeLG2ks+zq3ILctFK697unt4TppU1H12N5sWHkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=algonquincollege.com; dmarc=pass action=none
+ header.from=algonquincollege.com; dkim=pass header.d=algonquincollege.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=AlgonquinLivecom.onmicrosoft.com;
+ s=selector2-AlgonquinLivecom-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fommr0JJ9ULz/08qDGbdHTdB0DwnxiyJPF4OQOsYEa0=;
+ b=NusqTgngBhE3EQfWLX1pqRRn2E7tL5rb0Uo9cccNjZJizVRAOXa8uE+N77eUFKvb5IRul8zqpeyB/+WmNX8HkCxoHp0snekRxD/RUNWpEL1bf4+TE5Wpd4RNcS1SL8/7EIpVAzTPVdqJacypEsQABNOUY2mRUiYFlGM6XiOT2Y4=
+Received: from YTXPR0101MB0910.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:6::10)
+ by YTOPR0101MB2009.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:16::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.19; Wed, 6 Jan
+ 2021 21:12:00 +0000
+Received: from YTXPR0101MB0910.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::2d6d:b041:165:c6b0]) by YTXPR0101MB0910.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::2d6d:b041:165:c6b0%7]) with mapi id 15.20.3742.006; Wed, 6 Jan 2021
+ 21:12:00 +0000
+From: Leigh Ridgway <ridgwal@algonquincollege.com>
+To: Leslie Wyman <wymanl@algonquincollege.com>
+CC: Adele Yamada <yamadaa@algonquincollege.com>, Alan Stewart
+	<stewara@algonquincollege.com>, Anthony Tremmaglia
+	<tremmaa@algonquincollege.com>, Calvin Climie <climiec@algonquincollege.com>,
+	Claire Chesnais <chesnac@algonquincollege.com>, Corinne Lipsett Baynes
+	<lipsetc@algonquincollege.com>, Darryl Ross <darrylondunlin@gmail.com>, Dawn
+ More <mored@algonquincollege.com>, Howard Kravitz
+	<kravith@algonquincollege.com>, Jamie Baynes <baynesj@algonquincollege.com>,
+	Janna Louise Holmes <holmesj@algonquincollege.com>, Janna Redmond
+	<redmonj@algonquincollege.com>, Jean Timbury <timburj@algonquincollege.com>,
+	Jenna MacDonald <macdonj@algonquincollege.com>, Jennifer Matecki
+	<mateckj@algonquincollege.com>, Jonathan Parker
+	<parkerj@algonquincollege.com>, John Cloutier <cloutij@algonquincollege.com>,
+	Julie Warrington <warrinj@algonquincollege.com>, Krista Kelly
+	<kellyk1@algonquincollege.com>, Lou Di-Millo <dimilll@algonquincollege.com>,
+	Marina Westbrook <westbrm@algonquincollege.com>, Linda McDevitt
+	<mcdevil@algonquincollege.com>, Mark Quirie <quiriem@algonquincollege.com>,
+	Myriam Thanasse <thanasm@algonquincollege.com>, Natasha Mazurka
+	<mazurkn@algonquincollege.com>, Rich Lauzon <lauzonr@algonquincollege.com>,
+	Rosarii Mooney <mooneyr@algonquincollege.com>, Sandy Schlieman
+	<schlies@algonquincollege.com>, Timothy Bowstead
+	<bowstet@algonquincollege.com>, David Haley <haleyd@algonquincollege.com>,
+	Robyn Heaton <heatonr@algonquincollege.com>
+Subject: RE: Question re new curriculum
+Thread-Topic: Question re new curriculum
+Thread-Index: AQHW5GbfUUEOPGc0SUyw9ZPlHW2UT6obBaFw
+Date: Wed, 6 Jan 2021 21:11:59 +0000
+Message-ID:
+ <YTXPR0101MB0910F2738792BE72C6A035F6D4D00@YTXPR0101MB0910.CANPRD01.PROD.OUTLOOK.COM>
+References:
+ <YTOPR0101MB173930D4108DB6CEB61FD0C8C6300@YTOPR0101MB1739.CANPRD01.PROD.OUTLOOK.COM>
+ <YTXPR0101MB2109E8BC7F810022DD62003EB6D00@YTXPR0101MB2109.CANPRD01.PROD.OUTLOOK.COM>
+In-Reply-To:
+ <YTXPR0101MB2109E8BC7F810022DD62003EB6D00@YTXPR0101MB2109.CANPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: algonquincollege.com; dkim=none (message not signed)
+ header.d=none;algonquincollege.com; dmarc=none action=none
+ header.from=algonquincollege.com;
+x-originating-ip: [174.116.78.89]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: eee47c6a-f2d7-400f-e82e-08d8b287b511
+x-ms-traffictypediagnostic: YTOPR0101MB2009:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs:
+ <YTOPR0101MB2009C1F3292E22805A9BE92FD4D00@YTOPR0101MB2009.CANPRD01.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ txu9OuVtyYYmyJN9hOWnqt2NhadQXqg3w5p04iZXKwBwKKSbceQsJzG4Iip/E/HJ8gjUcJ9ssh9zgnheApFRtYg3GeBKYHroOI+ADr5bxPUdTLoZM+N1ns745xkEQqH8ADcuI/M+h9AieQQ6akHvSx7F6A2HP2JMg3fJ61KAIBd09cpzHfun1N8WUbyRfrYLta+fugOZZI/Fy8SfCeLvWIMa3nVAkFjnpSM6NGZ1kaGS38ZRZ+RS/a2Jwdgb6j1puc71FIZ0G/GsuAmEED73iRMRycBU7um6sCSHCJNwA+xN80iI5PjMB1C+iQjOVrs+JWcaWAXiHf652Aar9c1kHrmax/VV2prEHndkVlwxZJWpCoFj3FXOhVYBB6LNDV5H6bHFv9fsq/2eWYxdl0KVCQ==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YTXPR0101MB0910.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(396003)(346002)(39860400002)(136003)(26005)(186003)(5660300002)(52536014)(33656002)(9686003)(53546011)(6506007)(6636002)(7696005)(55016002)(66556008)(66446008)(66946007)(786003)(8676002)(6862004)(66476007)(107886003)(54906003)(316002)(3480700007)(4326008)(86362001)(71200400001)(2906002)(8936002)(76116006)(64756008)(478600001)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata:
+ =?us-ascii?Q?sQaUHdTI67dUPCmBfNy7bS71Rg5XJFXg9eD1eRwWTlXc5V7J4TayiSmb21LR?=
+ =?us-ascii?Q?SYnOFMqSIipn/AxFlfqeTkmpXt2MSvmLLkiFVzaqoGGO59AnPXR6zZ8qc6yf?=
+ =?us-ascii?Q?HKY37masa0PVAiIBnKg7iftwIv0JG+LQ8pY8un4TfmzJSDLAWhIRmgEJbVVn?=
+ =?us-ascii?Q?s5J+PJIkgHJ6JzXL+5mh6bhzDM7vKC4EK2JnALzFMzRF13PxDj9PU7gFfl6O?=
+ =?us-ascii?Q?dyzlLCk8vwyPTvXJYZzdYSHZqbnNufWTGRXoNynJ88RYXj7yGrmdbF3XlTBF?=
+ =?us-ascii?Q?o0dui+rVd0oMTSSL+wjyVafbZ+3jWgJY2VUQ9SpzZT2Tv8fsuCO9ctKtZDTe?=
+ =?us-ascii?Q?XoQaX4HcMIsy44xWOLSeUVNyhKdJ1EoHBGDCKB6Mya3fT+urK/UeCkvvX8et?=
+ =?us-ascii?Q?Vmfx1t/oYu2J6yMxWG/pih5JIbBH9X+IzgVWgogM2SHHSo/jVeRrJyreHf1q?=
+ =?us-ascii?Q?mA47L4Qsx4YaC9475AFUHWupjd44SXiWTEIqdM5uI1i40Clop/t8eiGerjz1?=
+ =?us-ascii?Q?3FQtXQuPdhThz1F8ceUc/F+lm5qINAgBgsNCeLUDMfAFa2XFx5DJGaZCbmEB?=
+ =?us-ascii?Q?MmegKu0kiJwFcRM3Rv8RBMKOWVditKT3NXvXELYcQjQhOKf4JXccuzMuhW3j?=
+ =?us-ascii?Q?isW4w2ITnGaYdxhAeiqXNGuzfaYFBWJAOGDKw2qUvnp8IDwaWZhlprS0xs1K?=
+ =?us-ascii?Q?tunYwAjDiIuBdMgHIQ9et0mNzx36eMB8bbsIbHDhTDJe+YWw21gXQQBpj5oN?=
+ =?us-ascii?Q?WWJk34QRl+l+JkCn0BiCogG7bVX2ACO8xAx383uI1nlhQNahqTxjuEi5MrLM?=
+ =?us-ascii?Q?j0ZWrVNR+QyQMXduXjGHAv4h069VeEDb7MMJVjJldg76s2dnqKvgT/TMni/D?=
+ =?us-ascii?Q?u62Xcfb+umGYFLQ0W1YKMmDiV9xNtGbMRlhZWTpEauB9uCKRtzJHeiE5xkZy?=
+ =?us-ascii?Q?z88KJN4gIUUMaN8ezBduBNnKU3rnhvLlY48XhfLODUE=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_YTXPR0101MB0910F2738792BE72C6A035F6D4D00YTXPR0101MB0910_"
+MIME-Version: 1.0
+X-OriginatorOrg: algonquincollege.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: YTXPR0101MB0910.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: eee47c6a-f2d7-400f-e82e-08d8b287b511
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2021 21:11:59.7685
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ec1bd924-0a6a-4aa9-aa89-c980316c0449
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LR41xrzwDxJ2BlhisoI2a2h9Nljn1wpoUjfzYOc7uMVxgpSWaRBfRWWmLIJI/PQzi/E0KB5wGo0Z+rXg1PzKXiRjrimswCr3JlpUk0g117g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YTOPR0101MB2009
+
+--_000_YTXPR0101MB0910F2738792BE72C6A035F6D4D00YTXPR0101MB0910_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Good afternoon Leslie
+Thank you for your question and the opportunity to clarify.
+Please know that there is no assumption on my part that only a faculty memb=
+er who is assigned to teach a specific course can do that specific developm=
+ent.  Courses are often developed by one faculty member and then taught by =
+another faculty member.
+Once we receive Ministry approval, I will be in touch with the plan for mov=
+ing forward.
+If anyone has any other questions, please let me know.
+Cheers
+Leigh
+Acting Chair, General Arts and Science,
+613-727-4723 ex 5591
+Algonquin College, 1385 Woodroffe Ave, Room B224, Ottawa, Ontario On K2G 1V=
+B, Canada
+
+This E-mail contains privileged and confidential information intended only =
+for the individual or entity named in the message. If the reader of this me=
+ssage is not the intended recipient, or the agent responsible to deliver it=
+ to the intended recipient, you are hereby notified that any review, dissem=
+ination, distribution or copying of this communication is prohibited. If th=
+is communication was received in error, please notify the sender by reply E=
+-mail immediately, and delete and destroy the original message.
+
+
+
+
+
+
+
+
+From: Leslie Wyman <wymanl@algonquincollege.com>
+Sent: Wednesday, January 6, 2021 3:03 PM
+To: Leigh Ridgway <ridgwal@algonquincollege.com>
+Cc: Adele Yamada <yamadaa@algonquincollege.com>; Alan Stewart <stewara@algo=
+nquincollege.com>; Anthony Tremmaglia <tremmaa@algonquincollege.com>; Calvi=
+n Climie <climiec@algonquincollege.com>; Claire Chesnais <chesnac@algonquin=
+college.com>; Corinne Lipsett Baynes <lipsetc@algonquincollege.com>; Darryl=
+ Ross <darrylondunlin@gmail.com>; Dawn More <mored@algonquincollege.com>; H=
+oward Kravitz <kravith@algonquincollege.com>; Jamie Baynes <baynesj@algonqu=
+incollege.com>; Janna Louise Holmes <holmesj@algonquincollege.com>; Janna R=
+edmond <redmonj@algonquincollege.com>; Jean Timbury <timburj@algonquincolle=
+ge.com>; Jenna MacDonald <macdonj@algonquincollege.com>; Jennifer Matecki <=
+mateckj@algonquincollege.com>; Jonathan Parker <parkerj@algonquincollege.co=
+m>; John Cloutier <cloutij@algonquincollege.com>; Julie Warrington <warrinj=
+@algonquincollege.com>; Krista Kelly <kellyk1@algonquincollege.com>; Lou Di=
+-Millo <dimilll@algonquincollege.com>; Marina Westbrook <westbrm@algonquinc=
+ollege.com>; Linda McDevitt <mcdevil@algonquincollege.com>; Mark Quirie <qu=
+iriem@algonquincollege.com>; Myriam Thanasse <thanasm@algonquincollege.com>=
+; Natasha Mazurka <mazurkn@algonquincollege.com>; Rich Lauzon <lauzonr@algo=
+nquincollege.com>; Rosarii Mooney <mooneyr@algonquincollege.com>; Sandy Sch=
+lieman <schlies@algonquincollege.com>; Timothy Bowstead <bowstet@algonquinc=
+ollege.com>; David Haley <haleyd@algonquincollege.com>
+Subject: Question re new curriculum
+
+Leigh,
+
+With the pending approvals of the new foundations and following the Coordin=
+ator meeting yesterday there are questions and comments swirling around reg=
+arding who can develop the new courses.
+
+I have been told that there is an assumption that only the faculty member w=
+ho is assigned to teach a specific course can do that specific development.
+
+Can you please use reply all to inform all GAS full-time faculty as to whet=
+her or not this is the case. That way everyone has the same information and=
+ in these times of escalating tensions about the planning for GAS programs =
+consistent messaging is key.
+
+Thank you
+
+
+Leslie Wyman
+Union Steward Local 415
+Algonquin College
+
+
+
+
+--_000_YTXPR0101MB0910F2738792BE72C6A035F6D4D00YTXPR0101MB0910_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Bradley Hand ITC";
+	panose-1:3 7 4 2 5 3 2 3 2 3;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.xmsonormal, li.xmsonormal, div.xmsonormal
+	{mso-style-name:x_msonormal;
+	mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.xmsonormal0, li.xmsonormal0, div.xmsonormal0
+	{mso-style-name:x_msonormal0;
+	mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.xmsochpdefault, li.xmsochpdefault, div.xmsochpdefault
+	{mso-style-name:x_msochpdefault;
+	mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+span.xmsohyperlink
+	{mso-style-name:x_msohyperlink;
+	color:#0563C1;
+	text-decoration:underline;}
+span.xmsohyperlinkfollowed
+	{mso-style-name:x_msohyperlinkfollowed;
+	color:#954F72;
+	text-decoration:underline;}
+span.xemailstyle18
+	{mso-style-name:x_emailstyle18;
+	font-family:"Calibri",sans-serif;
+	color:#385623;}
+span.xemailstyle19
+	{mso-style-name:x_emailstyle19;
+	font-family:"Calibri",sans-serif;
+	color:#385623;
+	font-weight:normal;
+	font-style:normal;}
+span.xemailstyle20
+	{mso-style-name:x_emailstyle20;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle27
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#385623;
+	font-weight:normal;
+	font-style:normal;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Good afternoon Leslie<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Thank you for your question and the o=
+pportunity to clarify.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Please know that there is no assumpti=
+on on my part that only a faculty member
+</span><span style=3D"font-size:14.0pt;font-family:&quot;Calibri&quot;,sans=
+-serif;color:#385723;mso-style-textfill-fill-color:#385723;mso-style-textfi=
+ll-fill-alpha:100.0%">who is assigned to teach a specific course can do tha=
+t specific development.&nbsp; Courses are often developed
+ by one faculty member and then taught by another faculty member.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Once we receive Ministry approval, I =
+will be in touch with the plan for moving forward.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">If anyone has any other questions, pl=
+ease let me know.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Cheers<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt;font-family:&quot=
+;Bradley Hand ITC&quot;;color:#385623">Leigh<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Acting Chair, General Arts and Scienc=
+e,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">613-727-4723 ex 5591<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623">Algonquin College, 1385 Woodroffe Ave=
+, Room B224, Ottawa, Ontario On K2G 1VB, Canada<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#385623">This E-mail contains privileged and co=
+nfidential information intended only for the individual or entity named in =
+the message. If the reader of this message is
+ not the intended recipient, or the agent responsible to deliver it to the =
+intended recipient, you are hereby notified that any review, dissemination,=
+ distribution or copying of this communication is prohibited. If this commu=
+nication was received in error,
+ please notify the sender by reply E-mail immediately, and delete and destr=
+oy the original message.
+</span><span lang=3D"EN-CA" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#385623"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#385623">&nbsp;</span><span lang=3D"EN-CA" styl=
+e=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#385=
+623"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-CA" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#385623">&nbsp;<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385723;mso-style-textfill-fill-color:#385723;=
+mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385723;mso-style-textfill-fill-color:#385723;=
+mso-style-textfill-fill-alpha:100.0%"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#385623"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
+font-family:&quot;Calibri&quot;,sans-serif"> Leslie Wyman &lt;wymanl@algonq=
+uincollege.com&gt;
+<br>
+<b>Sent:</b> Wednesday, January 6, 2021 3:03 PM<br>
+<b>To:</b> Leigh Ridgway &lt;ridgwal@algonquincollege.com&gt;<br>
+<b>Cc:</b> Adele Yamada &lt;yamadaa@algonquincollege.com&gt;; Alan Stewart =
+&lt;stewara@algonquincollege.com&gt;; Anthony Tremmaglia &lt;tremmaa@algonq=
+uincollege.com&gt;; Calvin Climie &lt;climiec@algonquincollege.com&gt;; Cla=
+ire Chesnais &lt;chesnac@algonquincollege.com&gt;; Corinne Lipsett
+ Baynes &lt;lipsetc@algonquincollege.com&gt;; Darryl Ross &lt;darrylondunli=
+n@gmail.com&gt;; Dawn More &lt;mored@algonquincollege.com&gt;; Howard Kravi=
+tz &lt;kravith@algonquincollege.com&gt;; Jamie Baynes &lt;baynesj@algonquin=
+college.com&gt;; Janna Louise Holmes &lt;holmesj@algonquincollege.com&gt;;
+ Janna Redmond &lt;redmonj@algonquincollege.com&gt;; Jean Timbury &lt;timbu=
+rj@algonquincollege.com&gt;; Jenna MacDonald &lt;macdonj@algonquincollege.c=
+om&gt;; Jennifer Matecki &lt;mateckj@algonquincollege.com&gt;; Jonathan Par=
+ker &lt;parkerj@algonquincollege.com&gt;; John Cloutier &lt;cloutij@algonqu=
+incollege.com&gt;;
+ Julie Warrington &lt;warrinj@algonquincollege.com&gt;; Krista Kelly &lt;ke=
+llyk1@algonquincollege.com&gt;; Lou Di-Millo &lt;dimilll@algonquincollege.c=
+om&gt;; Marina Westbrook &lt;westbrm@algonquincollege.com&gt;; Linda McDevi=
+tt &lt;mcdevil@algonquincollege.com&gt;; Mark Quirie &lt;quiriem@algonquinc=
+ollege.com&gt;;
+ Myriam Thanasse &lt;thanasm@algonquincollege.com&gt;; Natasha Mazurka &lt;=
+mazurkn@algonquincollege.com&gt;; Rich Lauzon &lt;lauzonr@algonquincollege.=
+com&gt;; Rosarii Mooney &lt;mooneyr@algonquincollege.com&gt;; Sandy Schliem=
+an &lt;schlies@algonquincollege.com&gt;; Timothy Bowstead &lt;bowstet@algon=
+quincollege.com&gt;;
+ David Haley &lt;haleyd@algonquincollege.com&gt;<br>
+<b>Subject:</b> Question re new curriculum<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Leigh,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">With the pending approvals of the new foundations an=
+d following the Coordinator meeting yesterday there are questions and comme=
+nts swirling around regarding who can develop the new courses.<o:p></o:p></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I have been told that there is an assumption that on=
+ly the faculty member who is assigned to teach a specific course can do tha=
+t specific development.&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Can you please use reply all to inform all GAS full-=
+time faculty as to whether or not this is the case. That way everyone has t=
+he same information and in these times of escalating tensions about the pla=
+nning for GAS programs consistent
+ messaging is key.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thank you<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div id=3D"divtagdefaultwrapper">
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-fa=
+mily:&quot;Georgia&quot;,serif;color:#006FC9;background:white">Leslie Wyman=
+</span></i><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif;color:navy"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-fa=
+mily:&quot;Georgia&quot;,serif;color:#006FC9;background:white">Union Stewar=
+d Local 415</span></i><span style=3D"font-size:10.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:navy"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-fa=
+mily:&quot;Georgia&quot;,serif;color:#006FC9;background:white">Algonquin Co=
+llege</span></i><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quo=
+t;,sans-serif;color:navy"><o:p></o:p></span></p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div>
+<p class=3D"xmsonormal"><span lang=3D"EN-CA">&nbsp;</span><o:p></o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_YTXPR0101MB0910F2738792BE72C6A035F6D4D00YTXPR0101MB0910_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1004298</integer>
+	<key>date-last-viewed</key>
+	<integer>1746566040</integer>
+	<key>date-received</key>
+	<integer>1609967522</integer>
+	<key>flags</key>
+	<integer>25770065025</integer>
+	<key>remote-id</key>
+	<string>3752</string>
+</dict>
+</plist>

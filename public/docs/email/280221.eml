@@ -1,0 +1,878 @@
+43643     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17094201.me.com by p133-mailgateway-smtp-7676fb8bcc-d4ddt (mailgateway 2323B104)
+	with SMTP id b332b0ed-2a86-4323-9071-694fe5210182 
+	for <darrylross@icloud.com>; Thu, 31 Aug 2023 12:51:05 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: b332b0ed-2a86-4323-9071-694fe5210182
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by ms11p00im-qufv17094201.me.com (Postfix) with ESMTPS id 6B2C3AC36FA
+	for <darrylross@icloud.com>; Thu, 31 Aug 2023 12:51:01 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTQ1oQXgcZFltVFVFfDlgc
+ AkZVVgNWWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0EGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqKhEEBxN7DiBGOzwgAWRSDCU/LS4uSUEpDRA0JzJ7CxQzFyUh
+ AV17C0MmETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S8qa7TqJ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.54; helo=mail-ed1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so1028825a12.1
+        for <darrylross@icloud.com>; Thu, 31 Aug 2023 05:50:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693486233; x=1694091033; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WGuuCewLA3wPH+88MP76zkWBf4IEfi6PgMDEjEesQ7w=;
+        b=S8qa7TqJ4XcbG3hwMb43bbeONcLSqo/9YclRM7L9xARdRxhfeVFCqLdMgcLQKvaVEo
+         39f2fUlfYMBYVc9eOyQ4ycvYYItzqMW1Z3lBn/tVglw2nKIJ56gIhpkPKYMNW8Wc+uYl
+         KvvHKvDNqwUVfmneDFbMp/Cct7EBgOzxPpKuns4nHP7QIgQWgDgPDSYZPTvuj54AK6xs
+         tlmRVgl20Jp9YUoekM/PyJYm65EfsAZe4mX183G9ln/4oux9fq+fNNXcXzkoDq0+RIFg
+         N5QS3QQy2yas3sMHMBQpH2O1dJuEWi/zg1gbiqX+74BfUe7beqzHMyFoZ6z/40UTBIyT
+         90nA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693486233; x=1694091033;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WGuuCewLA3wPH+88MP76zkWBf4IEfi6PgMDEjEesQ7w=;
+        b=OC1mknAEwvbQtWkPxvNhQlqtIKwqcGiEzBuOmgdNs6ZFrIyQGjGH2qGvBrrjBLTqgh
+         cvOBxpaqQPZ0a6wl9Hx6w3TUYG0y1qUJh4oUPuP1ey/RXZCE3DkYndSX6A4F86If138v
+         +yL5bequ8Zh6ni1euExZYzCUr6zF8N6Zu4X5b/ZsoPWMveK5ZpLhfnPcUwMbByCUOJ93
+         +vDor9rJ7qFqxMT+VWJRBBSj6Yf2fhMCvQ59AUTOH3bthZI3ttS3mPTN4IpuL0RGgEFe
+         oAdEP5fARN0+OsXovIJC/VTC4Qg187DEdHw/v+zJAoaqstiI0FTiu5sbspfVosbhDizv
+         p98g==
+X-Gm-Message-State: AOJu0YwSIedzBbt9uUOX/fzwKK9tAm/nllnWazkg4iph1NEWkPKeT+Qe
+	/kVPjyv+H0D1wYQJRo09HkyWIiWZino+zhH18Pwb/0KW
+X-Google-Smtp-Source: AGHT+IHz4pTIO8yPfctKDKfKT+qrH7zUStVesXSKM1oWVtRu9tiAVIMvOArFlwKaKj+6wiVg6bIlEsJ/rWmtCBh7HwE=
+X-Received: by 2002:a17:906:cf87:b0:99b:c845:791d with SMTP id
+ um7-20020a170906cf8700b0099bc845791dmr3705871ejb.76.1693486233204; Thu, 31
+ Aug 2023 05:50:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <DCezqm4wRv2E6MWE3PptlA@geopod-ismtpd-23>
+In-Reply-To: <DCezqm4wRv2E6MWE3PptlA@geopod-ismtpd-23>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 31 Aug 2023 08:50:22 -0400
+Message-ID: <CAFnbyRH_hbpkK8B3BZWyTdnPFKYVywKxiRPJK=vFnCVymMi6_w@mail.gmail.com>
+Subject: Fwd: New Event: Fall Assessments, September 24, 11:00 AM
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000005cba640604377dde"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQbExseGxMaGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF19EYxpaU0UeThxQQ05IXUR
+ ARkt8bEtOblp+GUZrSHxcEQpYXBcZBBoEHxoFGxoEEwQbHQQYGxkQGx4aHxoRCl5ZF0lgQGx4E
+ QpNXBcbExkRCkxaF2xhWUdrEQpMRhdsTWsRCkNaFxgaEwQSHwQYGhIEHx4RCkJeFxsRCkJcFxs
+ RCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybngaYmMRC
+ kJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF2JwGVN
+ lTWQccnIcEQpCWBdia05vb3psZ1pHSxEKWlgXGxoRCnBnF2J6HBxMG0F8R20fEAcZEhEKcGgXb
+ V9iZXNEUk9leV4QGhEKcGgXYXpgW11eTRxeXgEQGhEKcGgXb096AUR7H0dLbkUQGhEKcGgXYgV
+ 8XklfGGVuekAQGhEKcGgXbXkYbh0cGxJmWRwQGhEKcH0Xa2N/En1kZHlmY3AQGhEKcH0XZG1pX
+ 3tIYFBJHn0QGhEKcH0XZGluUHhrT39bTl8QGhEKcH0XaB8baHhtSFJSRVoQGhEKcH0XZmdpEml
+ 7bksSaXkQGhEKcH0XZGF6QVxOEmVtb1IQGhEKcH0XZ1oYBXpeb0NLTWAQGhEKcH0XYxpcYFwYf
+ 05NeWcQGhEKcH0XZFBlS18YQGlEbWUQGhEKcH0Xb0NNZU17Xk5lZn8QGhEKcH0XZH9JZRlbe2w
+ deU4QBx4SEQpwfRdgSVh6f1tkYAVPeRAHHRIRCnB9F2RsTmUdU0tuT2xcEAccGhEKcH0XYRtBR
+ mBuUGEZWk4QBx4SEQpwfRdmZXB7RVtMHmZcHBAaEQpwfxdgT1BjR25bcH8bRxAHHxMRCnBfF2x
+ CTU5BT3hgfWh7EAcTBB0RCnB/F29EYVASE38bHBJ+EAcbGBsRCnBfF2RJfHhfG39/TlBEEAcbH
+ RkRCnB/F2NYQUZgfB9mQ0xkEAcZGBEKcF8XZmR8HltpaH19SFIQBx4SEQpwXxdmeW1FRGsZeUh
+ IexAHHBoRCnBfF297RmV+HU1eZFpmEAceEhEKcGwXZkZrHxhbbV9Gb28QGhEKbX4XGhEKWE0XS
+ xE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: unI0pyo4d6zidbwnjlaVFadDpT3lAbVv
+X-Proofpoint-ORIG-GUID: unI0pyo4d6zidbwnjlaVFadDpT3lAbVv
+
+--0000000000005cba640604377dde
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Same as this Sunday
+
+---------- Forwarded message ---------
+From: 2014 Girls Force Academy Steel <donotreply@email.teamsnap.com>
+Date: Thu, Aug 31, 2023 at 8:17 AM
+Subject: New Event: Fall Assessments, September 24, 11:00 AM
+To: <cynthmholm@gmail.com>
+
+
+<http://email.teamsnap.com/ls/click?upn=3DYGDhJHk72kYkzbfksAWZ1ww2-2BLlU5NG=
+rJ-2BHC0hWaUS8-3D0x9X_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9=
+VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B=
+03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2=
+Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B=
+1sRwlScQzGJSglGXrNVD6X1YDHn-2BIGncMe9MkyAC3891eVmZAZkehnDnAQJSGSWZ0cCFrZ8iT=
+BoDA8M-2B-2BQI-2BREJWUzSBcwaU3UBQWrhiGc6fnSxkMDwcXG11G3h7byik8s8NwDjLvGcrXs=
+zV5iYszna0-2FlBkhI6nHBHiPfvP7jAhnFnAg0cvobWeSyu4u08TRDZ-2BdEiTkLEGz8R2BpuEL=
+fmbEAYj-2Fl2-2Bl862m7njJ2bvwt4fVnKF19CkOnJWfnGQ1mXjlcLBCGhpQMPGsbUcWy-2Bu4b=
+dK-2B0I10udCI6-2FmcUZ3knvyRBtT2jIl1YOy4Ta57K>
+
+A new 2014 Girls Force Academy Steel event has been created:
+Fall Assessments
+Sunday, September 24, 2023
+11:00 AM=E2=80=9312:15 PM
+ARRIVAL TIME
+10:45 AM
+LOCATION
+George Nelms Park, 5571 Mitch Owens Rd, Manotick
+<https://www.google.com/maps/search/5571+Mitch+Owens+Rd,+Manotick?entry=3Dg=
+mail&source=3Dg>
+View
+map
+<http://email.teamsnap.com/ls/click?upn=3DxaNkgeXf73g6X52A6WgCzlzphvjtn11tb=
+lFJTarvTc9b-2Fq1hM7WZxieO09kDX036iRzdCif0DW6NSGKEIWSDq3K-2BtQHXa1IPz-2FfmfK=
+Zuu6M-3DhJd2_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm=
+9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-=
+2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B=
+-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1sdZL9mch=
+VdwyPv-2FD4d-2FPiqKPLLGp8TKawBBZQ1AXewZgnDaJtXW-2FSFUcBHMqFXdAa05QoIqTq-2BM=
+JVYaq-2FrdCyFVAxTXDnIBHNZk26wxwomleYTgaa4ofX0kAucNrfYZ4YXuQ05Sb1iqh2NxlEBK0=
+t5PejDnxqQUnTDI8YsB6dL8bKobWn9I9-2Fn9tdniw4QtvJ5EQJMYEjHca-2FEVqof2ogh54Byu=
+r3w4-2FghLfuuOvAWAdgjZ2nDX9ziUc4yGXWvW81XbBj20T7QFbfulPvzkSndeSuS6RCyjmXaPe=
+JiOOwB46kCgZzsz0FnAfkVV3TMG6F>
+
+Availability
+Alice hasn't replied.
+Add Alice's Availability
+<http://email.teamsnap.com/ls/click?upn=3DYGDhJHk72kYkzbfksAWZ162ZJF3crBfev=
+GHeqqeu6mFHbWOB3l4rspZynjhWL7dVZ5rg8tkyEm-2BRBA8yRoMU4cYRe3nCdfcBrOFkCt-2Fa=
+xPhltqPdXM-2FWkSkrTZArms28VdtNBb4IQW9d4lnVvgVusYZxffrA3WRCGabguRUh9mHxuxkVw=
+JnN9oOPXFvZKA3sxaVjqK1jMpb3nPrZ1GYcjAT-2BqBOJ8-2BHplAmz97rDjI4iNf1ZhYi9gk09=
+q5wzzX0EL3nk_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm=
+9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-=
+2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B=
+-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1s3J4P8BW=
+4LLt7oIo-2BAUdYeVV3Jl33gYExrMGpiTflwbnRktfAjVjbaSFdMYaB9hWiciYHQBnFjzmFaQyv=
+e653gjXH1Ug6jZ46uHPYW4cLkCMvzKvUGrNnackn4wGAbP7ofuP5Sb6WP-2FOLZ6ZEZm2tf8VgG=
+MAOjCUHVOCaIn-2F9RNmgHxgfGj45Oxg0kDJQ9yaf8ypnmxmuHoErVmnIPlxsnibSfx99O8EzF9=
+ziZx9shmU1Mw8L50QBCObGia2C7-2Fjchx2qAoGs3U9hVhUGm2m-2FAQVLbyKRnwj0HLkMHJkLs=
+9LFzJhx9MhGOa-2By4Csgklno>
+
+Assignments
+
+Don't forget to volunteer to bring snacks, drinks, or help with other
+tasks.
+Add Assignment
+<http://email.teamsnap.com/ls/click?upn=3Dmujn5KpotsH7pAx2OFiL8BCLUIhSNA1CR=
+K8QfxJ-2BLEJLo2a7Po-2BecBwRKYLoR4KhuhuBEpKGbHfDrbqXR1fgstjH2WPBW8i7S1umdZOJ=
+4JwL7QwKTzMvRzxjXZMW-2BuF7r1KRWtcwwl8ZgfoS7eIFTNDwihkCPGU5-2Bmv1X0gOLHhdW70=
+RBd-2B9wJAV2F8DBPrFss-2BHIwWeBROohWsDqn-2FLx5nB7cLvpyXwpuJevV8H2ogWQ6NbcxKi=
+dkkq8zJ-2BwVVs8V3AXNmIvVHKmZPARlybSsmU0m6iW2KdK6-2BFeU6dF8n5NoVjpsYYmNrslkD=
+M1NSVKRc8aCkBYxItxhPpqKbYi4cFmXcsSM3It87GaJaeVyvw4fyZ1lCLQRwq-2Fnl1-2B-2Be1=
+BecPzeUjtIom08CX4I80mbrZ3zJGdtmCvQ0AhUpqLGKXGMystqRjrRycoPLR8KuJVjpuYr5lD97=
+a8yLUpaCSBju2OuGJJm8KMpH0UvmQmTJ8pKi0gVKrjRQXgOqzfy2KN2EjrtmXVFdWLoxrRADYAT=
+8di-2FRwI9GQNtDA2Wa-2Fx7-2FbkgxZJEQdRJ89BeNzg7z9adw6LJYoIvwcgz4gIOgYQAqQpp4=
+a-2Fib3piSBPPm92AlXeL2SQBT4N-2FNd08umwSLsCaF-_gph5yBD-2FEpXdkKIlLPOe9kf5flS=
+i1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI=
+375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xz=
+TYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4f=
+GNEDm-2B21RgTQpRjgOcB74B1sTTSeaSSe0BioUqtxbcJp01Q-2BDRcuj1u5Rtba-2BehFgovQP=
+UrCPX4vTEios3unUKvF-2F6o35eEIF2rtE7FqdbfO6zXLc-2FRf0o-2BMDxKinQJjmDGn12J8oI=
+KE4k6G4ydqDAZ3W19AHFc-2BllhAnZxKCoKR-2BVwCT9IYo35yq1Y-2B4zZZWbbFUlrjAJNYCf-=
+2FLOvFDq51HaT6xL8IxCAyo-2FDEwIzD63DVFduucn1w0kW4Rb7Z7zz0vJ0jY023zUxXzApGEza=
+-2FpZdGV-2BBG69e2N1n17VzrJyBoNlcsQRxbddvY3WlBEnJa6HqPENCrVXgANI-2FBFF09h>
+
+Do More with the App
+
+Chat with teammates, manage availability, assignments, schedule and more in
+the mobile app:
+<http://email.teamsnap.com/ls/click?upn=3DvGp-2FjszQFYXNi5ibZtzgjqSsKTkYLHs=
+Hv1Gh9rFV-2FdImScOdB-2Fk6fIeD7nS8TV74HoT-2BWaS7fn76CHAUYM18u-2BFu4FcuTOxje2=
+Kw1wUn2Pts-2FPhwy1VPTCkCajiVKKwr8lLsoQPtNA6hofiha9gWsQ-3D-3DSKh1_gph5yBD-2F=
+EpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9=
+fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141Ljj=
+Q9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4=
+wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1sTT9y7HMnEqdCdIIGLbZfsVwDyM1h2A=
+Y30lYGmZa74qUpIdrjkBGYe4FA2J6N4nQEXY9-2FyCaYq5wGYYiUhlziE5lFe1YEOKVU6UKGJt4=
+DYRbde4sQdkRMOZC2rCDyfCgetmO3puQXezKQDHsMK658JjfzPuU8G3NBmBdy1dvjLJO7sJSjsK=
+Q97Q6USLfFZZVt5kNBe6SwDxqv7NvIT7laHIVh2s7SnuErDL0r5DcsDIg21fD8Pi33SwAWrENdX=
+Jy-2FmhncWClHvWWvSecHgkl1Hw64U0h714UZ-2BM83-2Fwyl8SrW6aazy-2BOIk9OlEfXMrvZA=
+>
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUOjHcYEVY5j=
+J-2BSdGODxNkfzhvkhV8BDuCVYePZd9eprDh021UHJufGjRGgm06uQc3eAMbgUq35vcdsOs5Z-2=
+BiSukB-2FR359Ds2T4EBD6GZQdat0j9UCk7EJQwlTJxWmb7pk5EU0prriOgQriy0YHkXRIF-2FW=
+tae1Lb9HfG8CrNtVx-2B8CJUqca2XIt8H8M4s-2FVHAvXlFMQI-2BXxhot0ofvlj1oicUbRYc0w=
+V-2FuRTQYN8uBKjTE-2BXcrjOAnxn5798Vo7FjenS6W3gQYnURjReLwSOyYh1BBtcqjMugL6fwh=
+ZqZv7Ua5NQKJfMxAh9T6wYKft-2BVJU03ZZWA4Nkh8BgK0JBnrc4bC5RHkaD7IS2V4cboUBuby6=
+zy9EZ-2FMYTQsL2fHTnZBLRHtRrF3UdlOB1GycgrKlc-3DA1I__gph5yBD-2FEpXdkKIlLPOe9k=
+f5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13=
+Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctyw=
+FB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nX=
+VrL4fGNEDm-2B21RgTQpRjgOcB74B1s4N67RK5bvlz8AdmWvXPlhTIm72LaJ8G9btA9IonADpAf=
+Hp3w0UOlLz3uunUxzzJimEl0ij3m-2FnqHKO77smOVJK-2B7wpixdda87CKIHCSxK2lXLdbeuQG=
+rG9nkGJqUMM0sZboZA2ayEEUnevT4ueV8NlUE3tQWxZpVKON9xeGbGtHOC8es9qPnAqJGV9oUta=
+zCWrSXrQSpqAxsatlrBuRCOxkGBn2fkEF-2B71sTl5bvjrF5hwjJ-2BxKu7bXqH-2BjdNfY502N=
+jB7hRWiGQ1gHJlXASbFjiP0y0QWUaBDomLd9zKyXYtbxmCQkB82OZZ8PY0Ake>
+Sign In
+<http://email.teamsnap.com/ls/click?upn=3Dmujn5KpotsH7pAx2OFiL8BCLUIhSNA1CR=
+K8QfxJ-2BLEJLo2a7Po-2BecBwRKYLoR4Kh4SS0UHHkQiIDMUUR0G1qVRHZMLhi6-2B6OWefzQv=
+4gjd7PMNophrShagqnXctWR2XW62bGDNAveR01MaJnw2OHqcoPSk06ELnuNJZWaLGfjea4gyYH9=
+rUo-2F-2BaEQNuv9i3Ix557bhmuuTrtAK44V3Mr0mdOjsDAKrJzhN3yxIDzFX-2FpIOtGpSMFr9=
+uKAY8YKn3sXWOaGj1vpfX6z6W1xHuMIbwf-2BFFdidccVklT70EtFDtnfXU7vuPN162hY7jqEzn=
+dLA8uUNa-2BqYa8-2BPNS-2BBl1w4VVtJUBS7YnjWsKZqyKpihwpY-2BOSf8xGAqRPw-2BqJ6GT=
+h0qGOIG3v-2F2j71tEowcyRdw-2FqZ-2FVExZegIEcvBDiyY7Xr1yPmwfsH-2B5OtWMTJO06PeA=
+dR0WT73JSiCpPRxyhB3kx3ww9cnAgZVYU5ImuaiRQQVC0nWv4-2BYrQO26-2F7MCnIeI4HWo6i-=
+2BuBVkR8zpxSslsJXbzmmrY7eg7sC4aW42XT5vCn4MEH9tfVGLqhYIgi5VaiA3Iu5Q8Dau4bg-2=
+B2sjtpu8xppTjNxyWxCjiQbiBg-3Df7a__gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2Th=
+T6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skd=
+E-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FF=
+ZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21Rg=
+TQpRjgOcB74B1s1rDMtW7mFckMBJ54kfXMEupCHv3sYJ3FEkiqLTs1MnxU-2FKFeyw26E97z7Gi=
+TeAKjCJNL4fF3kY7Kynedo8RdgT0W-2FqX7EL8qZ0EzrSyPirUlEhwfy8SI-2FM5-2FvmzqMALj=
+P7uxiPNH2aiDuEP9x58mGVlhcaxV0hBBfGyJirxHDbWTeQbbziEM7ICz-2B-2BVtvcMjapKULdE=
+u3YQLjV9aLjGnhvUejA09veKaBZUz-2FhONd9vcV8ZPASN6q6DFHUqC2YtVjSb6bBiKOTVIyIKp=
+b6m8JkGbp4xVVclbPuUFKNm8Z1yAZuLJufNElQw4X6evpqLz>
+
+If you prefer not to receive email from *2014 Girls Force Academy
+Steel*, update
+your communication preferences
+<http://email.teamsnap.com/ls/click?upn=3DHriSoJ-2BIgA7vg8bKshF7u-2FqJ1wcDn=
+nMG27qUCo75DJmEdKOIWjKozQANAynuH77iCNnxsziREa9P9a0Z3qsh3v7y02Z-2F08lo2CmZRh=
+fyFV3JOxZtYbl-2BepxCmx35-2FFqmwu0SlsA-2Favd5xgRJtgezE9Wf7Oa-2BVrVziN1zpN9YE=
+-2FKSeFYZazUINdNG8aS9ehI65LZ9eu2sQt-2Bcuxbdb-2Fn9BA-3D-3DYEaE_gph5yBD-2FEpX=
+dkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPl=
+J4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9p=
+rjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyD=
+xOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1sPvUan3IOwUnyZJBipOsfC5yZo6eW2wY3Z=
+ZZs7ByQyG1umw1nIN3WW71elQRKYHYaiIaEUQdwxuB-2FuoS2vdV2ChWuZbe6kHbfypL1Z4BRqZ=
+wsUxD6uvEDkFtsIJ4Sxe4HC5NjJBQrN27OD8zBp0qK0J-2BwmYT1GpFFfjaN5O8H7qLiIgskDEK=
+R2b4APXjdAXNXPr0p9KGdCvx6aPQfQfmnjIgAkAdbWlARNKLx0crFNU2hJbca8w9WEmYhVu1399=
+wTuTuV-2Bb-2B1mXYuKnVbRzpgGxvWL-2FySzqVs2smMy623ZrO1wt7l-2BmJCvHVNj36QSesj>=
+.
+
+Copyright =C2=A9 2023 TeamSnap, all rights reserved. View our Privacy Polic=
+y
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUFoLp2IPrRn=
+70-2B65xgSDsMKQ0YKFStW3fcAOdn5V33MqJz4i_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDq=
+sJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0=
+KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114=
+Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-=
+2B21RgTQpRjgOcB74B1ss-2Bl85j6V0mvl0ZYDg7NBeVsx5ct2KPgkjiiBRqMgNzvaLfS6WnQnz=
+7GK-2FM9WogdcrjkSF0tAzZuHM-2B4FW7ifIb5fet85aU0soBQm7QWFtzHCyOUAZvH47mlOvapc=
+cSDbiGWJXG-2BElJzWQuTnHxuX9mgWaHeIdKZ31N3tPY-2FoAk5rww-2Bp65K-2BZFUS3i6CVdk=
+H-2FHdsGIbjqHlf-2Bk1rlr0hMdI6PhBIEc-2FTqmodcp0iGc9Img2ohTrq6IAHJK1Q2De1VUPe=
+bF0WUqanpMqQ291vF0tIUWZmZmGByls5LlygQkMv9B70AVFsmkvLlLJf0PLl>
+.
+TeamSnap World HQ, 2040 14th Street,
+<https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?ent=
+ry=3Dgmail&source=3Dg>
+Boulder,
+CO 80302
+<https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?ent=
+ry=3Dgmail&source=3Dg>
+
+--0000000000005cba640604377dde
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Same as this Sunday</div><div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message ----=
+-----<br>From: <strong class=3D"gmail_sendername" dir=3D"auto">2014 Girls F=
+orce Academy Steel</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:donotr=
+eply@email.teamsnap.com">donotreply@email.teamsnap.com</a>&gt;</span><br>Da=
+te: Thu, Aug 31, 2023 at 8:17 AM<br>Subject: New Event: Fall Assessments, S=
+eptember 24, 11:00 AM<br>To:  &lt;<a href=3D"mailto:cynthmholm@gmail.com">c=
+ynthmholm@gmail.com</a>&gt;<br></div><br><br><u></u>
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+ =20
+  <div style=3D"background:#f6f6f6">
+    <div style=3D"display:none;font-size:1px;color:#ffffff;line-height:1px;=
+max-height:0px;max-width:0px;opacity:0;overflow:hidden">
+     =20
+    </div>
+    <div style=3D"background-color:#f6f6f6">
+     =20
+      <div style=3D"margin:0px auto;max-width:600px">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"font-size:0px;width:100%" align=3D"center" border=3D"0">
+          <tbody>
+            <tr>
+              <td style=3D"text-align:center;vertical-align:top;direction:l=
+tr;font-size:0px;padding:20px 0px;padding-bottom:8px;padding-top:8px">
+               =20
+                <div class=3D"m_3422423970964920101mj-column-per-100" style=
+=3D"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;te=
+xt-align:left;width:100%">
+                  <table role=3D"presentation" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" border=3D"0">
+                    <tbody>
+                       =20
+                      <tr>
+                        <td style=3D"word-wrap:break-word;font-size:0px;pad=
+ding:10px 25px" align=3D"left">
+                          <table role=3D"presentation" cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"border-collapse:collapse;border-spacing:0px" align=
+=3D"left" border=3D"0">
+                            <tbody>
+                              <tr>
+                                <td style=3D"width:145px">
+                                  <a href=3D"http://email.teamsnap.com/ls/c=
+lick?upn=3DYGDhJHk72kYkzbfksAWZ1ww2-2BLlU5NGrJ-2BHC0hWaUS8-3D0x9X_gph5yBD-2=
+FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B=
+9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141Lj=
+jQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS=
+4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1sRwlScQzGJSglGXrNVD6X1YDHn-2BI=
+GncMe9MkyAC3891eVmZAZkehnDnAQJSGSWZ0cCFrZ8iTBoDA8M-2B-2BQI-2BREJWUzSBcwaU3U=
+BQWrhiGc6fnSxkMDwcXG11G3h7byik8s8NwDjLvGcrXszV5iYszna0-2FlBkhI6nHBHiPfvP7jA=
+hnFnAg0cvobWeSyu4u08TRDZ-2BdEiTkLEGz8R2BpuELfmbEAYj-2Fl2-2Bl862m7njJ2bvwt4f=
+VnKF19CkOnJWfnGQ1mXjlcLBCGhpQMPGsbUcWy-2Bu4bdK-2B0I10udCI6-2FmcUZ3knvyRBtT2=
+jIl1YOy4Ta57K" style=3D"color:#1a6baf" target=3D"_blank"><img alt=3D"" heig=
+ht=3D"auto" src=3D"https://emails.teamsnap.com/2017/12/TeamSnap_Logo-400x88=
+.png" style=3D"border:none;border-radius:0px;display:block;font-size:13px;o=
+utline:none;text-decoration:none;width:100%;height:auto" width=3D"145"></a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+               =20
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     =20
+     =20
+      <div style=3D"border-top-right-radius:15px;border-top-left-radius:15p=
+x;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-bot=
+tom:none;border-top:none;background-color:white;margin:0px auto;max-width:6=
+00px;background:#ffffff" class=3D"m_3422423970964920101Section--top-radius =
+m_3422423970964920101Section--bottom-radius">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"border-top-right-radius:15px;border-top-left-radius:15px;border-bott=
+om-right-radius:15px;border-bottom-left-radius:15px;font-size:0px;width:100=
+%;background:#ffffff" align=3D"center" border=3D"0" width=3D"100%">
+          <tbody>
+            <tr>
+              <td style=3D"text-align:center;vertical-align:top;direction:l=
+tr;font-size:0px;padding:20px 0px;padding-bottom:0px">
+               =20
+                <div class=3D"m_3422423970964920101mj-column-per-100" style=
+=3D"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;te=
+xt-align:left;width:100%">
+                  <table role=3D"presentation" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" border=3D"0" style=3D"border-top-right-radius:15px;b=
+order-top-left-radius:15px;border-bottom-right-radius:15px;border-bottom-le=
+ft-radius:15px">
+                    <tbody>
+                        <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:0px 25px" align=
+=3D"left">
+      <div style=3D"color:#494949;font-family:Open Sans,Helvetica Neue,Helv=
+etica,Arial,sans-serif;font-size:16px;line-height:27px;text-align:left">
+       =20
+        <p>
+          A new 2014 Girls Force Academy Steel event has been created:
+        </p>
+      </div>
+    </td>
+  </tr>
+
+    <tr>
+  <td style=3D"word-wrap:break-word;font-size:0px;padding:0 25px" align=3D"=
+left">
+    <div style=3D"color:#393939;font-family:Open Sans,Helvetica Neue,Helvet=
+ica,Arial,sans-serif;font-size:24px;font-weight:bold;line-height:33px;text-=
+align:left">
+      <div class=3D"m_3422423970964920101heading-smaller-on-mobile">
+       =20
+<span>            <span>Fall Assessments</span>
+</span>        <br>
+<span>         =20
+          <span class=3D"m_3422423970964920101noLink">Sunday, September 24,=
+ 2023</span>
+         =20
+            <br><span class=3D"m_3422423970964920101noLink" style=3D"white-=
+space:nowrap">11:00 AM=E2=80=9312:15 PM</span>
+</span>      </div>
+    </div>
+  </td>
+</tr>
+
+    <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px" alig=
+n=3D"left">
+      <table cellpadding=3D"0" cellspacing=3D"0" style=3D"border-top-right-=
+radius:15px;border-top-left-radius:15px;color:#393939;font-family:Open Sans=
+,Helvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;line-height:27px;=
+table-layout:auto" width=3D"100%" border=3D"0">
+          <tbody><tr>
+            <td style=3D"font-family:Open Sans,Helvetica Neue,Helvetica,Ari=
+al,sans-serif;width:20px;padding-right:12px;padding-top:22px" width=3D"20" =
+valign=3D"top">
+              <img width=3D"20" src=3D"https://equipment-locker.teamsnap.co=
+m/mcfeely/images/arrival-icon.png">
+            </td>
+            <td colspan=3D"2" style=3D"font-family:Open Sans,Helvetica Neue=
+,Helvetica,Arial,sans-serif;padding-top:22px">
+              <div style=3D"font-weight:700;font-size:13px;line-height:19.5=
+px;color:#afafaf">ARRIVAL TIME</div>
+              <div class=3D"m_3422423970964920101noLink" style=3D"line-heig=
+ht:25.5px">
+<span>                  10:45 AM
+</span>              </div>
+            </td>
+          </tr>
+        <tr>
+          <td style=3D"font-family:Open Sans,Helvetica Neue,Helvetica,Arial=
+,sans-serif;width:20px;padding-right:12px;padding-top:22px" width=3D"20" va=
+lign=3D"top">
+            <img width=3D"20" src=3D"https://equipment-locker.teamsnap.com/=
+mcfeely/images/location-icon.png">
+          </td>
+          <td colspan=3D"2" style=3D"font-family:Open Sans,Helvetica Neue,H=
+elvetica,Arial,sans-serif;padding-top:22px">
+            <div style=3D"font-weight:700;font-size:13px;line-height:19.5px=
+;color:#afafaf">LOCATION</div>
+            <div style=3D"line-height:25.5px">
+<span>                George Nelms Park<span class=3D"m_3422423970964920101=
+noLink">, <a href=3D"https://www.google.com/maps/search/5571+Mitch+Owens+Rd=
+,+Manotick?entry=3Dgmail&amp;source=3Dg">5571 Mitch Owens Rd, Manotick</a><=
+/span>
+</span>                <a href=3D"http://email.teamsnap.com/ls/click?upn=3D=
+xaNkgeXf73g6X52A6WgCzlzphvjtn11tblFJTarvTc9b-2Fq1hM7WZxieO09kDX036iRzdCif0D=
+W6NSGKEIWSDq3K-2BtQHXa1IPz-2FfmfKZuu6M-3DhJd2_gph5yBD-2FEpXdkKIlLPOe9kf5flS=
+i1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI=
+375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xz=
+TYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4f=
+GNEDm-2B21RgTQpRjgOcB74B1sdZL9mchVdwyPv-2FD4d-2FPiqKPLLGp8TKawBBZQ1AXewZgnD=
+aJtXW-2FSFUcBHMqFXdAa05QoIqTq-2BMJVYaq-2FrdCyFVAxTXDnIBHNZk26wxwomleYTgaa4o=
+fX0kAucNrfYZ4YXuQ05Sb1iqh2NxlEBK0t5PejDnxqQUnTDI8YsB6dL8bKobWn9I9-2Fn9tdniw=
+4QtvJ5EQJMYEjHca-2FEVqof2ogh54Byur3w4-2FghLfuuOvAWAdgjZ2nDX9ziUc4yGXWvW81Xb=
+Bj20T7QFbfulPvzkSndeSuS6RCyjmXaPeJiOOwB46kCgZzsz0FnAfkVV3TMG6F" style=3D"co=
+lor:#1a6baf" target=3D"_blank">View map</a>
+            </div>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+
+
+ =20
+ =20
+  <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:22px 25px 16px"=
+>
+      <p style=3D"font-size:1px;margin:0px auto;border-top:6px solid #f6f6f=
+6;width:100%"></p>
+     =20
+    </td>
+  </tr>
+
+ =20
+  <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px;paddi=
+ng-bottom:0px" align=3D"left">
+      <div style=3D"color:#393939;font-family:Open Sans,Helvetica Neue,Helv=
+etica,Arial,sans-serif;font-size:15px;line-height:27px;text-align:left">
+        <h2 style=3D"font-size:20px;margin:0">Availability</h2>
+      </div>
+    </td>
+  </tr>
+
+    <tr>
+      <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px;pad=
+ding-bottom:0px" align=3D"left">
+        <div style=3D"color:#393939;font-family:Open Sans,Helvetica Neue,He=
+lvetica,Arial,sans-serif;font-size:15px;line-height:27px;text-align:left">
+          Alice hasn&#39;t replied.
+        </div>
+      </td>
+    </tr>
+    <tr class=3D"m_3422423970964920101Button--info">
+      <td style=3D"word-wrap:break-word;font-size:0px;padding:25px 25px 16p=
+x" align=3D"center">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"border-top-right-radius:15px;border-top-left-radius:15px;border-bott=
+om-right-radius:15px;border-bottom-left-radius:15px;border-collapse:separat=
+e" align=3D"center" border=3D"0">
+          <tbody>
+            <tr>
+              <td style=3D"border:1px solid #175990;border-radius:3px;color=
+:#ffffff" align=3D"center" valign=3D"middle" bgcolor=3D"#1A6BAF">
+               =20
+                <a href=3D"http://email.teamsnap.com/ls/click?upn=3DYGDhJHk=
+72kYkzbfksAWZ162ZJF3crBfevGHeqqeu6mFHbWOB3l4rspZynjhWL7dVZ5rg8tkyEm-2BRBA8y=
+RoMU4cYRe3nCdfcBrOFkCt-2FaxPhltqPdXM-2FWkSkrTZArms28VdtNBb4IQW9d4lnVvgVusYZ=
+xffrA3WRCGabguRUh9mHxuxkVwJnN9oOPXFvZKA3sxaVjqK1jMpb3nPrZ1GYcjAT-2BqBOJ8-2B=
+HplAmz97rDjI4iNf1ZhYi9gk09q5wzzX0EL3nk_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqs=
+Jv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0K=
+I9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114X=
+d-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2=
+B21RgTQpRjgOcB74B1s3J4P8BW4LLt7oIo-2BAUdYeVV3Jl33gYExrMGpiTflwbnRktfAjVjbaS=
+FdMYaB9hWiciYHQBnFjzmFaQyve653gjXH1Ug6jZ46uHPYW4cLkCMvzKvUGrNnackn4wGAbP7of=
+uP5Sb6WP-2FOLZ6ZEZm2tf8VgGMAOjCUHVOCaIn-2F9RNmgHxgfGj45Oxg0kDJQ9yaf8ypnmxmu=
+HoErVmnIPlxsnibSfx99O8EzF9ziZx9shmU1Mw8L50QBCObGia2C7-2Fjchx2qAoGs3U9hVhUGm=
+2m-2FAQVLbyKRnwj0HLkMHJkLs9LFzJhx9MhGOa-2By4Csgklno" style=3D"text-decorati=
+on:none;border:1px solid #175990;border-color:transparent;display:block;pad=
+ding:8px 32px;background:#1a6baf;color:#ffffff;font-family:Open Sans,Helvet=
+ica Neue,Helvetica,Arial,sans-serif;font-size:18px;font-weight:bold;line-he=
+ight:27px;text-transform:none;margin:0px;min-width:250px" target=3D"_blank"=
+>
+                  Add Alice&#39;s Availability
+                </a>
+               =20
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+
+ =20
+ =20
+  <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:22px 25px 16px"=
+>
+      <p style=3D"font-size:1px;margin:0px auto;border-top:6px solid #f6f6f=
+6;width:100%"></p>
+     =20
+    </td>
+  </tr>
+
+ =20
+  <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px;paddi=
+ng-bottom:0px" align=3D"left">
+      <div style=3D"color:#393939;font-family:Open Sans,Helvetica Neue,Helv=
+etica,Arial,sans-serif;font-size:15px;line-height:27px;text-align:left">
+        <h2 style=3D"font-size:20px;margin:0">Assignments</h2>
+        <p>
+          Don&#39;t forget to
+            volunteer
+          to bring snacks, drinks, or help with other tasks.
+        </p>
+      </div>
+    </td>
+  </tr>
+
+ =20
+
+ =20
+  <tr class=3D"m_3422423970964920101Button--info">
+      <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px;pad=
+ding-top:16px;padding-bottom:16px" align=3D"center">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"border-top-right-radius:15px;border-top-left-radius:15px;border-coll=
+apse:separate" align=3D"center" border=3D"0">
+            <tbody>
+                <tr>
+                  <td style=3D"border:1px solid #175990;border-radius:3px;c=
+olor:#ffffff" align=3D"center" valign=3D"middle" bgcolor=3D"#1A6BAF">
+                    <a style=3D"text-decoration:none;border:1px solid #1759=
+90;border-color:transparent;display:block;padding:8px 32px;background:#1a6b=
+af;color:#ffffff;font-family:Open Sans,Helvetica Neue,Helvetica,Arial,sans-=
+serif;font-size:18px;font-weight:bold;line-height:27px;text-transform:none;=
+margin:0px;min-width:250px" href=3D"http://email.teamsnap.com/ls/click?upn=
+=3Dmujn5KpotsH7pAx2OFiL8BCLUIhSNA1CRK8QfxJ-2BLEJLo2a7Po-2BecBwRKYLoR4KhuhuB=
+EpKGbHfDrbqXR1fgstjH2WPBW8i7S1umdZOJ4JwL7QwKTzMvRzxjXZMW-2BuF7r1KRWtcwwl8Zg=
+foS7eIFTNDwihkCPGU5-2Bmv1X0gOLHhdW70RBd-2B9wJAV2F8DBPrFss-2BHIwWeBROohWsDqn=
+-2FLx5nB7cLvpyXwpuJevV8H2ogWQ6NbcxKidkkq8zJ-2BwVVs8V3AXNmIvVHKmZPARlybSsmU0=
+m6iW2KdK6-2BFeU6dF8n5NoVjpsYYmNrslkDM1NSVKRc8aCkBYxItxhPpqKbYi4cFmXcsSM3It8=
+7GaJaeVyvw4fyZ1lCLQRwq-2Fnl1-2B-2Be1BecPzeUjtIom08CX4I80mbrZ3zJGdtmCvQ0AhUp=
+qLGKXGMystqRjrRycoPLR8KuJVjpuYr5lD97a8yLUpaCSBju2OuGJJm8KMpH0UvmQmTJ8pKi0gV=
+KrjRQXgOqzfy2KN2EjrtmXVFdWLoxrRADYAT8di-2FRwI9GQNtDA2Wa-2Fx7-2FbkgxZJEQdRJ8=
+9BeNzg7z9adw6LJYoIvwcgz4gIOgYQAqQpp4a-2Fib3piSBPPm92AlXeL2SQBT4N-2FNd08umwS=
+LsCaF-_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUc=
+bpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8s=
+I9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2Bsqn=
+FvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1sTTSeaSSe0BioU=
+qtxbcJp01Q-2BDRcuj1u5Rtba-2BehFgovQPUrCPX4vTEios3unUKvF-2F6o35eEIF2rtE7Fqdb=
+fO6zXLc-2FRf0o-2BMDxKinQJjmDGn12J8oIKE4k6G4ydqDAZ3W19AHFc-2BllhAnZxKCoKR-2B=
+VwCT9IYo35yq1Y-2B4zZZWbbFUlrjAJNYCf-2FLOvFDq51HaT6xL8IxCAyo-2FDEwIzD63DVFdu=
+ucn1w0kW4Rb7Z7zz0vJ0jY023zUxXzApGEza-2FpZdGV-2BBG69e2N1n17VzrJyBoNlcsQRxbdd=
+vY3WlBEnJa6HqPENCrVXgANI-2FBFF09h" target=3D"_blank">Add Assignment</a>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+      </td>
+    </tr>
+
+
+
+  <tr>
+    <td style=3D"word-wrap:break-word;font-size:0px;padding:0">
+     =20
+    </td>
+  </tr>
+
+
+                       =20
+<tr>
+  <td style=3D"word-wrap:break-word;font-size:0px;padding:16px 25px">
+    <p style=3D"font-size:1px;margin:0px auto;border-top:6px solid #f6f6f6;=
+width:100%"></p>
+   =20
+  </td>
+</tr>
+
+
+<tr>
+  <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px;padding=
+-bottom:0px" align=3D"left">
+    <div style=3D"color:#393939;font-family:Open Sans,Helvetica Neue,Helvet=
+ica,Arial,sans-serif;font-size:15px;line-height:27px;text-align:left">
+      <h2 style=3D"font-size:20px;margin:0">Do More with the App</h2>
+      <p>Chat with teammates, manage availability, assignments, schedule an=
+d more in the mobile app:</p>
+    </div>
+  </td>
+</tr>
+
+
+<tr>
+  <td style=3D"word-wrap:break-word;font-size:0px;padding:10px 25px" align=
+=3D"left">
+    <table cellpadding=3D"0" cellspacing=3D"0" style=3D"border-top-right-ra=
+dius:15px;border-top-left-radius:15px;color:#393939;font-family:Open Sans,H=
+elvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;table-layout:auto" =
+width=3D"100%" border=3D"0">
+      <tbody><tr>
+        <td width=3D"135" align=3D"center">
+          <a href=3D"http://email.teamsnap.com/ls/click?upn=3DvGp-2FjszQFYX=
+Ni5ibZtzgjqSsKTkYLHsHv1Gh9rFV-2FdImScOdB-2Fk6fIeD7nS8TV74HoT-2BWaS7fn76CHAU=
+YM18u-2BFu4FcuTOxje2Kw1wUn2Pts-2FPhwy1VPTCkCajiVKKwr8lLsoQPtNA6hofiha9gWsQ-=
+3D-3DSKh1_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pT=
+xUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQ=
+J8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2B=
+sqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1sTT9y7HMnEq=
+dCdIIGLbZfsVwDyM1h2AY30lYGmZa74qUpIdrjkBGYe4FA2J6N4nQEXY9-2FyCaYq5wGYYiUhlz=
+iE5lFe1YEOKVU6UKGJt4DYRbde4sQdkRMOZC2rCDyfCgetmO3puQXezKQDHsMK658JjfzPuU8G3=
+NBmBdy1dvjLJO7sJSjsKQ97Q6USLfFZZVt5kNBe6SwDxqv7NvIT7laHIVh2s7SnuErDL0r5DcsD=
+Ig21fD8Pi33SwAWrENdXJy-2FmhncWClHvWWvSecHgkl1Hw64U0h714UZ-2BM83-2Fwyl8SrW6a=
+azy-2BOIk9OlEfXMrvZA" style=3D"color:#1a6baf" target=3D"_blank">
+              <img alt=3D"" height=3D"auto" src=3D"https://equipment-locker=
+.teamsnap.com/mcfeely/images/appBadge-apple@2x.png" style=3D"border:none;di=
+splay:block;outline:none;text-decoration:none;width:135px;height:auto" widt=
+h=3D"135">
+          </a>
+        </td>
+        <td width=3D"135" align=3D"center">
+          <a href=3D"http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2F=
+CDed0gzHnUOjHcYEVY5jJ-2BSdGODxNkfzhvkhV8BDuCVYePZd9eprDh021UHJufGjRGgm06uQc=
+3eAMbgUq35vcdsOs5Z-2BiSukB-2FR359Ds2T4EBD6GZQdat0j9UCk7EJQwlTJxWmb7pk5EU0pr=
+riOgQriy0YHkXRIF-2FWtae1Lb9HfG8CrNtVx-2B8CJUqca2XIt8H8M4s-2FVHAvXlFMQI-2BXx=
+hot0ofvlj1oicUbRYc0wV-2FuRTQYN8uBKjTE-2BXcrjOAnxn5798Vo7FjenS6W3gQYnURjReLw=
+SOyYh1BBtcqjMugL6fwhZqZv7Ua5NQKJfMxAh9T6wYKft-2BVJU03ZZWA4Nkh8BgK0JBnrc4bC5=
+RHkaD7IS2V4cboUBuby6zy9EZ-2FMYTQsL2fHTnZBLRHtRrF3UdlOB1GycgrKlc-3DA1I__gph5=
+yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYv=
+Ev-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo=
+141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciC=
+ZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOcB74B1s4N67RK5bvlz8AdmWvXPlhTIm=
+72LaJ8G9btA9IonADpAfHp3w0UOlLz3uunUxzzJimEl0ij3m-2FnqHKO77smOVJK-2B7wpixdda=
+87CKIHCSxK2lXLdbeuQGrG9nkGJqUMM0sZboZA2ayEEUnevT4ueV8NlUE3tQWxZpVKON9xeGbGt=
+HOC8es9qPnAqJGV9oUtazCWrSXrQSpqAxsatlrBuRCOxkGBn2fkEF-2B71sTl5bvjrF5hwjJ-2B=
+xKu7bXqH-2BjdNfY502NjB7hRWiGQ1gHJlXASbFjiP0y0QWUaBDomLd9zKyXYtbxmCQkB82OZZ8=
+PY0Ake" style=3D"color:#1a6baf" target=3D"_blank">
+              <img alt=3D"" height=3D"auto" src=3D"https://equipment-locker=
+.teamsnap.com/mcfeely/images/appBadge-google@2x.png" style=3D"border:none;d=
+isplay:block;outline:none;text-decoration:none;width:135px;height:auto" wid=
+th=3D"135">
+          </a>
+        </td>
+      </tr>
+    </tbody></table>
+  </td>
+</tr>
+
+                        <tr class=3D"m_3422423970964920101Button--default">
+                          <td style=3D"word-wrap:break-word;font-size:0px;p=
+adding:25px 25px 32px" align=3D"center">
+                            <table role=3D"presentation" cellpadding=3D"0" =
+cellspacing=3D"0" style=3D"border-bottom-right-radius:15px;border-bottom-le=
+ft-radius:15px;border-collapse:separate" align=3D"center" border=3D"0">
+                              <tbody>
+                                <tr>
+                                  <td style=3D"color:#494949" align=3D"cent=
+er" valign=3D"middle" bgcolor=3D"#ffffff">
+                                     =20
+
+     =20
+      <a style=3D"border:1px solid #d6d6d6;border-radius:3px;color:#3e9de7!=
+important;text-decoration:none;font-weight:bold;font-family:&#39;Open Sans&=
+#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-size:16px;display:=
+block;padding:10px 20px;background:#ffffff;min-width:200px" href=3D"http://=
+email.teamsnap.com/ls/click?upn=3Dmujn5KpotsH7pAx2OFiL8BCLUIhSNA1CRK8QfxJ-2=
+BLEJLo2a7Po-2BecBwRKYLoR4Kh4SS0UHHkQiIDMUUR0G1qVRHZMLhi6-2B6OWefzQv4gjd7PMN=
+ophrShagqnXctWR2XW62bGDNAveR01MaJnw2OHqcoPSk06ELnuNJZWaLGfjea4gyYH9rUo-2F-2=
+BaEQNuv9i3Ix557bhmuuTrtAK44V3Mr0mdOjsDAKrJzhN3yxIDzFX-2FpIOtGpSMFr9uKAY8YKn=
+3sXWOaGj1vpfX6z6W1xHuMIbwf-2BFFdidccVklT70EtFDtnfXU7vuPN162hY7jqEzndLA8uUNa=
+-2BqYa8-2BPNS-2BBl1w4VVtJUBS7YnjWsKZqyKpihwpY-2BOSf8xGAqRPw-2BqJ6GTh0qGOIG3=
+v-2F2j71tEowcyRdw-2FqZ-2FVExZegIEcvBDiyY7Xr1yPmwfsH-2B5OtWMTJO06PeAdR0WT73J=
+SiCpPRxyhB3kx3ww9cnAgZVYU5ImuaiRQQVC0nWv4-2BYrQO26-2F7MCnIeI4HWo6i-2BuBVkR8=
+zpxSslsJXbzmmrY7eg7sC4aW42XT5vCn4MEH9tfVGLqhYIgi5VaiA3Iu5Q8Dau4bg-2B2sjtpu8=
+xppTjNxyWxCjiQbiBg-3Df7a__gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3EvTr=
+x3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fawrq=
+j-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxmoSw=
+Rr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRjgOc=
+B74B1s1rDMtW7mFckMBJ54kfXMEupCHv3sYJ3FEkiqLTs1MnxU-2FKFeyw26E97z7GiTeAKjCJN=
+L4fF3kY7Kynedo8RdgT0W-2FqX7EL8qZ0EzrSyPirUlEhwfy8SI-2FM5-2FvmzqMALjP7uxiPNH=
+2aiDuEP9x58mGVlhcaxV0hBBfGyJirxHDbWTeQbbziEM7ICz-2B-2BVtvcMjapKULdEu3YQLjV9=
+aLjGnhvUejA09veKaBZUz-2FhONd9vcV8ZPASN6q6DFHUqC2YtVjSb6bBiKOTVIyIKpb6m8JkGb=
+p4xVVclbPuUFKNm8Z1yAZuLJufNElQw4X6evpqLz" target=3D"_blank">Sign In</a>
+
+
+
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+               =20
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     =20
+     =20
+      <div style=3D"margin:0px auto;max-width:600px">
+        <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"font-size:0px;width:100%" align=3D"center" border=3D"0">
+          <tbody>
+            <tr>
+              <td style=3D"text-align:center;vertical-align:top;direction:l=
+tr;font-size:0px;padding:20px 0px">
+               =20
+                <div class=3D"m_3422423970964920101mj-column-per-100" style=
+=3D"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;te=
+xt-align:left;width:100%">
+                  <table role=3D"presentation" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" border=3D"0">
+                    <tbody>
+                      <tr>
+                        <td style=3D"word-wrap:break-word;font-size:0px;pad=
+ding:0px 25px" align=3D"center">
+                          <div style=3D"color:#a6a6a6;font-family:Open Sans=
+,Helvetica Neue,Helvetica,Arial,sans-serif;font-size:11px;line-height:18px;=
+text-align:center">
+                                </div></td></tr><tr>
+    <td>
+      <p style=3D"border-radius:3px;color:#959595;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;te=
+xt-align:center;line-height:20px;font-size:12px;margin:0 0 10px 0;padding:1=
+0px;text-align:center" align=3D"center">
+        If you prefer not to receive email from <strong>2014 Girls Force Ac=
+ademy Steel</strong>, <a style=3D"color:#4a90e2" href=3D"http://email.teams=
+nap.com/ls/click?upn=3DHriSoJ-2BIgA7vg8bKshF7u-2FqJ1wcDnnMG27qUCo75DJmEdKOI=
+WjKozQANAynuH77iCNnxsziREa9P9a0Z3qsh3v7y02Z-2F08lo2CmZRhfyFV3JOxZtYbl-2Bepx=
+Cmx35-2FFqmwu0SlsA-2Favd5xgRJtgezE9Wf7Oa-2BVrVziN1zpN9YE-2FKSeFYZazUINdNG8a=
+S9ehI65LZ9eu2sQt-2Bcuxbdb-2Fn9BA-3D-3DYEaE_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1c=
+eDqsJv2ThT6k3EvTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375=
+cu0KI9skdE-2Fawrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz=
+114Xd-2FFZdDxmoSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNE=
+Dm-2B21RgTQpRjgOcB74B1sPvUan3IOwUnyZJBipOsfC5yZo6eW2wY3ZZZs7ByQyG1umw1nIN3W=
+W71elQRKYHYaiIaEUQdwxuB-2FuoS2vdV2ChWuZbe6kHbfypL1Z4BRqZwsUxD6uvEDkFtsIJ4Sx=
+e4HC5NjJBQrN27OD8zBp0qK0J-2BwmYT1GpFFfjaN5O8H7qLiIgskDEKR2b4APXjdAXNXPr0p9K=
+GdCvx6aPQfQfmnjIgAkAdbWlARNKLx0crFNU2hJbca8w9WEmYhVu1399wTuTuV-2Bb-2B1mXYuK=
+nVbRzpgGxvWL-2FySzqVs2smMy623ZrO1wt7l-2BmJCvHVNj36QSesj" target=3D"_blank">=
+update your communication preferences</a>.
+        <br>
+        Copyright =C2=A9 2023 TeamSnap, all rights reserved. <span style=3D=
+"white-space:nowrap">View our <a style=3D"color:#a6a6a6" href=3D"http://ema=
+il.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUFoLp2IPrRn70-2B65xgSD=
+sMKQ0YKFStW3fcAOdn5V33MqJz4i_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k3E=
+vTrx3K9VvU0wkcDm9pTxUcbpAT4E-2BYvEv-2B9fPlJ4C-2B5AC13Vk2yI375cu0KI9skdE-2Fa=
+wrqj-2B03EjJQVT-2FQJ8sI9Fsb432Zdo141LjjQ9prjr4IpSctywFB4xzTYz114Xd-2FFZdDxm=
+oSwRr-2Bo7Iyt-2B-2BsqnFvWfFzLBciCZmeeS4wyDxOQoXu0m3nXVrL4fGNEDm-2B21RgTQpRj=
+gOcB74B1ss-2Bl85j6V0mvl0ZYDg7NBeVsx5ct2KPgkjiiBRqMgNzvaLfS6WnQnz7GK-2FM9Wog=
+dcrjkSF0tAzZuHM-2B4FW7ifIb5fet85aU0soBQm7QWFtzHCyOUAZvH47mlOvapccSDbiGWJXG-=
+2BElJzWQuTnHxuX9mgWaHeIdKZ31N3tPY-2FoAk5rww-2Bp65K-2BZFUS3i6CVdkH-2FHdsGIbj=
+qHlf-2Bk1rlr0hMdI6PhBIEc-2FTqmodcp0iGc9Img2ohTrq6IAHJK1Q2De1VUPebF0WUqanpMq=
+Q291vF0tIUWZmZmGByls5LlygQkMv9B70AVFsmkvLlLJf0PLl" target=3D"_blank">Privac=
+y Policy</a>.</span>
+        <br>
+        TeamSnap World HQ, <span class=3D"m_3422423970964920101noLink"><a h=
+ref=3D"https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+803=
+02?entry=3Dgmail&amp;source=3Dg">2040 14th Street,</a></span> <span class=
+=3D"m_3422423970964920101noLink" style=3D"white-space:nowrap"><a href=3D"ht=
+tps://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?entry=
+=3Dgmail&amp;source=3Dg">Boulder, CO 80302</a></span>
+      </p>
+    </td>
+  </tr>
+
+                         =20
+                       =20
+                     =20
+                    </tbody>
+                  </table>
+                </div>
+               =20
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     =20
+    </div>
+  <img src=3D"http://email.teamsnap.com/wf/open?upn=3DVBjCVHbcZuVp1fVx0fHJU=
+dSTYQrf6QGCGMYrNLVa0DvnWXz9L50zbXGPRWXzmYCOxT9BaiUHfyY3d08CPvNzbiXG9EtJ1zAG=
+QGa5InCFmaVJDWmaXDsbtE-2F9B8pLAqqRxN1uuAipEvnKnib4VD4OhMGqkWF-2BRnY1xfYe24t=
+VSUQ9ERFtQQpolhf-2BlHzqRa2nKJwxZgQlUzYsatVYJ9-2BPV7oaYTJl0NsjdljTTdvKrKHQqe=
+qe-2FhBP27Yph8ehkPFYaI5nUkABDeK5K7w0hjFRIsjEwRwgYPmCEMCrUitglssW64tqWP8bc-2=
+B9nYlf7HCzN-2FnAxlFQdHjC6sbNMeofMUnI0tGV2iOmXRuICrEV8nT569DzxKy-2Fjff5PsaGh=
+HGBpcchZf4excB-2BkBvWWn8eWUmjnhoMM4237SvAJOYR9ZqE7Kc5ZFuc-2FiXwz-2FQ5XlvmY5=
+LIxyijDpOIrrASRhV9IJAazei9pMvOMNMNmUCKCD3-2FaJCVxyXUSP1FwtKnuHKdw8zxb-2Fn8g=
+vo9PFGLgiMG4sIvWfJDU0Z6oqYNM7q0JJrH-2FfOyOkr4YHtBvseaVPNkp" alt=3D"" width=
+=3D"1" height=3D"1" border=3D"0" style=3D"height:1px!important;width:1px!im=
+portant;border-width:0!important;margin-top:0!important;margin-bottom:0!imp=
+ortant;margin-right:0!important;margin-left:0!important;padding-top:0!impor=
+tant;padding-bottom:0!important;padding-right:0!important;padding-left:0!im=
+portant"></div>
+
+</div></div>
+
+--0000000000005cba640604377dde--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1166025</integer>
+	<key>date-last-viewed</key>
+	<integer>1745785885</integer>
+	<key>date-received</key>
+	<integer>1693486265</integer>
+	<key>flags</key>
+	<integer>2207613451393</integer>
+	<key>remote-id</key>
+	<string>12321</string>
+</dict>
+</plist>

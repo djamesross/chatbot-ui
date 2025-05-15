@@ -1,0 +1,328 @@
+16076     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr55p00im-qukt02072101.me.com by p133-mailgateway-smtp-d96586b5c-rxbw4 (mailgateway 2319B150)
+	with SMTP id 677884f0-211b-4cc5-aaca-e783fe002197 
+	for <darrylross@icloud.com>; Sun, 2 Jul 2023 16:06:29 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 677884f0-211b-4cc5-aaca-e783fe002197
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	by mr55p00im-qukt02072101.me.com (Postfix) with ESMTPS id A75574E401C1
+	for <darrylross@icloud.com>; Sun,  2 Jul 2023 16:06:27 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSTloQXgcZFltVFVFfDlgc
+ DEZVVgJbWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwJGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQkGy0FQTdaThtYICcON3cAAxgvIg0+W184GBgsODMFQS9DKT8h
+ KGlOJQMdETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nIZF0E5g
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.49 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.49; helo=mail-ej1-f49.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-991fe70f21bso422351866b.3
+        for <darrylross@icloud.com>; Sun, 02 Jul 2023 09:06:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688313986; x=1690905986;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BdJfk5Zf/NC03hnbzvPPsQ7z8k9p/JCfZAcqvqxsCuk=;
+        b=nIZF0E5gXphA8sXWJj8OY4bggjqOO8szoOlTlsMAXyQ1Hb+dtzFCx1YQlmzS8L2i86
+         FQT5ZBqncHcRY793tGZ3tai9EpOVaubkb2bklQu8DmuaXX2npS2nnjbQCYJNL44O5suz
+         C6mkOJG8oaxbSs9PTaoOJOchuj6aQ8tHSrJb8FFo662Ps4O75a3DgczYxFuyifnV2mjg
+         KpauG2hJpz4Q7gnV2QnPih4nJZe09iPaJo1pxyiMFwEPu9KTxayr0TADl8XYbIHBC7gh
+         nJ07XUC2LIHenDqR1NxwLL438HElKNhleqQZrSEM37emgyhnfAI6Njjwr4bja8O/lZ0g
+         epJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688313986; x=1690905986;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BdJfk5Zf/NC03hnbzvPPsQ7z8k9p/JCfZAcqvqxsCuk=;
+        b=hnZkTIyo0MieR7tggTaYmTxvdp27XM5OT9gHHqW9jcBE8S4c/GPpdsx4lfcuk2ki+C
+         tE3OYExEERYRLLGopPQ1/mbuNkUsshzYzTEzSgta8RTLA+hrdx38A6V31Cj3lv94Sk2T
+         xojv6XFQ/WBKbrfWK3k+syqzH8UzBwkzoj8YFmR9Hc4TYS5zPBD1tKfMukaJ58HDRFx3
+         Htqnw7r8Px4G70iDB7IqvwDXaVFwYs6kdoYs/28S2uOgsRPhIF74kwe1YQkn19/yd3MX
+         3wzat6V7scHK/G6QGC9hTJPeoJHkenn3/R0uHL/pAGTe6s4n2SLpYyTfkP5gxVbPIbki
+         3+aQ==
+X-Gm-Message-State: ABy/qLbEZka2XeO4VkCLbigZCVUnZ5cX7jZTfyK9biSAr7v48FsOx0Jr
+	jQ/m/pVmac10ATRtdGLtBRYOtIYgYQ/4paG3eGTal1gf
+X-Google-Smtp-Source: APBJJlGIT4gC7Z2HkFmApqu+Fw7JLYg8cmWgCWnPDfp7jAisCrv0hkLYPOVf0HyfZ3Fr8lXnlTubr60YXqWh1CMppHM=
+X-Received: by 2002:a17:906:8699:b0:94e:e30e:7245 with SMTP id
+ g25-20020a170906869900b0094ee30e7245mr5543530ejx.8.1688313985657; Sun, 02 Jul
+ 2023 09:06:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRHrjdY0musVpBKf0OFJ-psiy1Nf6FK_QRBAHTheo2VSTA@mail.gmail.com>
+ <342D3F9E-D9D8-4686-ACFB-74015A339B5C@icloud.com> <CAFnbyRF5icC5_9gyP_FgcRF2ejt_=aJ+07zd+V0j6S1gPHZyFQ@mail.gmail.com>
+ <21E9536A-334D-4574-8D86-A47AA211587F@icloud.com>
+In-Reply-To: <21E9536A-334D-4574-8D86-A47AA211587F@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 2 Jul 2023 12:06:14 -0400
+Message-ID: <CAFnbyRFnTc6Ojxy-YAyOG6amVDzFkiZmaJOK5wM6PYVPYxGvdw@mail.gmail.com>
+Subject: Re: Today- postpone visit due to illness
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>, 
+	Michelle Williams <michelle.williams@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="00000000000062717405ff833b54"
+X-MANTSH: 1TEIXR1geHVoaGkNHB1tfQEQbGBsfGB8aGBEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBsTEQpfTRdkRURPE
+ QpZSRcacRoQGncGGxMTcRsTHxAadwYYGgYaEQpZXhdsbHkRCkNOF11AeF9yb2hLdVNnZHUYQ10
+ bB01cexpNXQceUFIbemRlEQpYXBcZBBoEHxoFGxoaBB0bBBscGgQTGhAbHhofGhEKXlkXSBsaf
+ 0wRCk1cFx8ZGxEKTFoXaGNNQWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgbEgQeExEKQl4XGxEKREk
+ XGBEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8e
+ HJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSRE
+ KQkAXbFlFfWdtf0FCfXwRCkJYF2JrTm9vemxnWkdLEQpaWBcYEQpwaBdpeGNraXxjTW5eXBAZG
+ hEKcGgXZ1xCTXlFW1hGHmAQGRoRCnBoF2xHc0RNeFAfU19pEBkaEQpwaBdgX25bG1lMf0FCfxA
+ ZGhEKcGgXZEcffk8SYAFnAXsQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: wjRuXEBa_yMN_2iw1-gvQ0gw-4zx1PNO
+X-Proofpoint-ORIG-GUID: wjRuXEBa_yMN_2iw1-gvQ0gw-4zx1PNO
+
+--00000000000062717405ff833b54
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Charlotte and Alice did end up speaking to you yesterday Darryl. I
+convinced Alice to have a quick chat and Charlotte said a quick hi while
+she was on the couch lying down.
+
+I am not actively withholding access. She has been bed ridden for two days
+vomiting 8-10 times and I have been providing around the clock care while
+taking care of Ali.
+
+Charlotte is receiving an IV right now for fluids and resting. I will have
+to monitor for rest of the day to make sure it=E2=80=99s not an appendiciti=
+s. She
+will FaceTime later today.
+
+As for Ali she will join Charlotte to visit you when she is feeling better.
+
+Cynthia
+
+
+
+
+
+On Sun, Jul 2, 2023 at 11:58 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Cynthia,
+>
+> If Charlotte is sick enough to need to go to the ER and then rest in bed
+> at home, that is one issue. If she can FaceTime with me today I would agr=
+ee
+> that is reasonable and that we can extend parenting time on Tuesday. We d=
+id
+> it before without issue
+>
+> Alice is not sick and can be picked up by mom on her way in.
+>
+> Completely reasonable and follow the court order.
+>
+> I asked you to let my mom pick Alice up. There are no grounds to withhold
+> and hide her unless something else is going on. But for some reason you
+> chose to deny contact with Charlotte yesterday, and are hiding Alice
+> somewhere. I=E2=80=99m scared you=E2=80=99re doing it again and are going=
+ to refuse access
+> to them and leave the province or have left the province or city and no
+> more visits will happen, and that=E2=80=99s what=E2=80=99s already happen=
+ed so many times,
+> so I=E2=80=99m doing exactly what I need to do and if you read the judge=
+=E2=80=99s order
+> she makes it very, very clear that the responsibility lies entirely on yo=
+u.
+>
+> I=E2=80=99m asking you to send me the address where Alice can be picked u=
+p and to
+> drop Charlotte off, or if she=E2=80=99s too sick to let me FaceTime her a=
+nd extend
+> Tuesday=E2=80=99s visit. That=E2=80=99s reasonable and a good agreeable w=
+ay to move forward
+> without police. Please send me the address and I will ask just my mom to
+> pick her up. She is still on her way in.
+>
+> Please help me make this reasonable for the girls.
+>
+> Darryl Ross
+> darrylross@icloud.com
+> ___
+>
+> On Jul 2, 2023, at 11:07, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> I am sorry you feel the need to go to this extreme measure, this puts a
+> lot of stress on me who is trying to care for a sick child at an emergenc=
+y
+> room.
+>
+> Alice has asked to visit you with Charlotte and I am confident we can mak=
+e
+> up the 4 hours allocated hours lost today.
+>
+> Cynthia
+>
+> On Sun, Jul 2, 2023 at 10:55 AM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hello Cynthia,
+>>
+>> If I don=E2=80=99t hear back with confirmation by 11:30 am, giving my mo=
+m time to
+>> pick up Alice I will be attending your house with the police to pick the=
+m
+>> up at noon. If Alice or Charlotte are not there the police will treat th=
+em
+>> as missing and illegally withheld
+>> Best,
+>>
+>> Darryl Ross
+>> darrylross@icloud.com
+>> ___
+>>
+>> On Jul 2, 2023, at 10:34, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl and Holly,
+>>
+>> We will have to postpone the girls visit today. Charlotte is still sick
+>> and I have brought her to Queensway hospital to be checked out. I did th=
+is
+>> because it was recommended by nurse practitioner at telehealth due to he=
+r
+>> continual vomiting and signs of dehydration bc of dizziness.
+>>
+>> Charlotte is ok now, we are in the waiting room awaiting to be admitted.
+>> She didn=E2=80=99t vomit in the way here but still is lethargic.
+>>
+>> Alice is with family friends and has asked to visit you when Charlotte i=
+s
+>> feeling better.
+>>
+>> I will keep you posted on Charlotte.
+>>
+>> As it stands , if she is better, Monday they are free during the day and
+>> Tuesday after 12:30.
+>>
+>>
+>> Cynthia
+>>
+>>
+>>
+>
+
+--00000000000062717405ff833b54
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Charlotte and Alice did end up speaking to you yesterday =
+Darryl. I convinced Alice to have a quick chat and Charlotte said a quick h=
+i while she was on the couch lying down.=C2=A0</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">I am not actively withholding access. She has been b=
+ed ridden for two days vomiting 8-10 times and I have been providing around=
+ the clock care while taking care of Ali.</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">Charlotte is receiving an IV right now for fluids and res=
+ting. I will have to monitor for rest of the day to make sure it=E2=80=99s =
+not an appendicitis. She will FaceTime later today.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">As for Ali she will join Charlotte to visit you=
+ when she is feeling better.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Cynthia=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jul 2, =
+2023 at 11:58 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">d=
+arrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
+><div style=3D"line-break:after-white-space"><div>Cynthia,</div><div><br></=
+div><div>If Charlotte is sick enough to need to go to the ER and then rest =
+in bed at home, that is one issue. If she can FaceTime with me today I woul=
+d agree that is reasonable and that we can extend parenting time on Tuesday=
+. We did it before without issue</div><div><br></div><div>Alice is not sick=
+ and can be picked up by mom on her way in.</div><div><br></div><div>Comple=
+tely reasonable and follow the court order.</div><div><br></div><div>I aske=
+d you to let my mom pick Alice up. There are no grounds to withhold and hid=
+e her unless something else is going on. But for some reason you chose to d=
+eny contact with Charlotte yesterday, and are hiding Alice somewhere. I=E2=
+=80=99m scared you=E2=80=99re doing it again and are going to refuse access=
+ to them and leave the province or have left the province or city and no mo=
+re visits will happen, and that=E2=80=99s what=E2=80=99s already happened s=
+o many times, so I=E2=80=99m doing exactly what I need to do and if you rea=
+d the judge=E2=80=99s order she makes it very, very clear that the responsi=
+bility lies entirely on you.</div><div><br></div><div>I=E2=80=99m asking yo=
+u to send me the address where Alice can be picked up and to drop Charlotte=
+ off, or if she=E2=80=99s too sick to let me FaceTime her and extend Tuesda=
+y=E2=80=99s visit. That=E2=80=99s reasonable and a good agreeable way to mo=
+ve forward without police. Please send me the address and I will ask just m=
+y mom to pick her up. She is still on her way in.</div><div><br></div><div>=
+Please help me make this reasonable for the girls.</div></div><div style=3D=
+"line-break:after-white-space"><div><div><br></div><div>Darryl Ross</div><d=
+iv><a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@ic=
+loud.com</a></div><div>___</div>
+
+</div>
+<div><br><blockquote type=3D"cite"><div>On Jul 2, 2023, at 11:07, Cynthia H=
+olmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmh=
+olm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darryl,</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">I am sorry you feel the nee=
+d to go to this extreme measure, this puts a lot of stress on me who is try=
+ing to care for a sick child at an emergency room.=C2=A0</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Alice has asked to visit you with Charlott=
+e and I am confident we can make up the 4 hours allocated hours lost today.=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div><div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Su=
+n, Jul 2, 2023 at 10:55 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icl=
+oud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
+#ccc solid;padding-left:1ex"><div style=3D"line-break:after-white-space"><d=
+iv>Hello Cynthia,</div><div><br></div><div dir=3D"auto">If I don=E2=80=99t =
+hear back with confirmation by 11:30 am, giving my mom time to pick up Alic=
+e I will be attending your house with the police to pick them up at noon. I=
+f Alice or Charlotte are not there the police will treat them as missing an=
+d illegally withheld</div></div><div style=3D"line-break:after-white-space"=
+><div>
+<div>Best,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"mailto=
+:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></div><d=
+iv>___</div>
+
+</div>
+<div><br><blockquote type=3D"cite"><div>On Jul 2, 2023, at 10:34, Cynthia H=
+olmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmh=
+olm@gmail.com</a>&gt; wrote:</div><br><div>Hi Darryl and Holly,<div dir=3D"=
+auto"><br></div><div dir=3D"auto">We will have to postpone the girls visit =
+today. Charlotte is still sick and I have brought her to Queensway hospital=
+ to be checked out. I did this because it was recommended by nurse practiti=
+oner at telehealth due to her continual vomiting and signs of dehydration b=
+c of dizziness.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Charlott=
+e is ok now, we are in the waiting room awaiting to be admitted. She didn=
+=E2=80=99t vomit in the way here but still is lethargic.</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Alice is with family friends and has asked=
+ to visit you when Charlotte is feeling better.</div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">I will keep you posted on Charlotte.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">As it stands , if she is better, Mond=
+ay they are free during the day and Tuesday after 12:30.=C2=A0</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia<=
+/div>
+</div></blockquote></div><br></div></blockquote></div></div>
+</div></blockquote></div><br></div></blockquote></div></div>
+
+--00000000000062717405ff833b54--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1141363</integer>
+	<key>date-last-viewed</key>
+	<integer>1742230544</integer>
+	<key>date-received</key>
+	<integer>1688313989</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12101</string>
+</dict>
+</plist>

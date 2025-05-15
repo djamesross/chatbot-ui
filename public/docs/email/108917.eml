@@ -1,0 +1,376 @@
+19803     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr28p00im-smtpin020.me.com by p72-mailgateway-smtp-689ff67499-twmcj (mailgateway 2216B285)
+	with SMTP id 966e3b47-3608-4917-b44f-3b832a9da3a8 
+	for <darrylross@icloud.com>; Fri, 27 May 2022 18:36:17 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 966e3b47-3608-4917-b44f-3b832a9da3a8
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	by mr28p00im-smtpin020.me.com (Postfix) with ESMTPS id A08B4A5633
+	for <darrylross@icloud.com>; Fri, 27 May 2022 18:36:16 +0000 (UTC)
+X-ICL-SCORE: 3.3320333300
+X-ICL-INFO: GAtbVUseBVFHSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRUkJGFNCQERXEFVaDUhb
+ CxYRXBsbF0hLEUkHD0wSFgkQFFUYARoURFcIRERfVxQHHhQdTwBEVABGTwkYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFD
+ M1hvUwU9VTMedkUnXj4RGiFgZRFAPwMmJwhBMCwfFRxJU2QTMDs1NEFXdyIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=ImF0LlaN
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.179 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.179 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.179; helo=mail-yb1-f179.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-yb1-f179.google.com with SMTP id i187so9239279ybg.6
+        for <darrylross@icloud.com>; Fri, 27 May 2022 11:36:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=exU4LoqL2oAWM/0u3AFxa9FjT4Y3iF/ZPBeW1I+Hl4Q=;
+        b=ImF0LlaNPPBbf4hcX8QYzw5OTNR08gUNa6jsv83gfwHdzii8eaLB3CGTFdIUoHNblw
+         lI2TFN3NlLabqBxJE3u+0VukAc2lYfWRNtpsY+K5FK6Y+NxDU6tqsIjSeCs5VYRzWoAg
+         y4+FL9wzBtURqhZFYGL4f+AMu4U+BSP6LoAIo/DAali/GwamrNMcfXzcqP9rANq5YkGI
+         R8RmXdNwR/u/fJhiU8N2NC/da7gQEhi6wPQmHrk9C5TSIbN2EzcyuRx8+Yv5QjGna8/s
+         DT7BXm54wR9qrhqJkj7OemOVF9cKu0W+NVkEwHkoswBE2gU0JuHRmeXLfoQekXBrJTNG
+         Ri6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=exU4LoqL2oAWM/0u3AFxa9FjT4Y3iF/ZPBeW1I+Hl4Q=;
+        b=3TC8xwDch91RUZlisTrj8mQ4wI9xz3aXcn4mumwXf2ddzeTvKVSmPAdFdgIYhAGlct
+         vmQtvw/HbWZQ7tIiO1kMsiTTc8TeCxXegTCVUCNZ8DOLhIyI/CBa47ANUovU95pfEwYv
+         UiEFvh9pebTkc/sx0eVO7cyhLbEf7smP2+q8dbQdnvq4LBApB8vr330N/xghXDzWCGOS
+         iAedIVcOtr2DqK9Kbm2irLmgYwD+q4s2aJMXHCJlvItvtTX6LkK1Tt2SgX4de3kXHFtQ
+         rfZEl5gAVaU8q4p6JzZmz++jLw/wEAv5yOu8dMjALzNaTkDtwXV7myirxkkDF1IchlSW
+         +lnQ==
+X-Gm-Message-State: AOAM5331CRCv6FVc2r6RcFxOKk4hxxoz4vebR4ugC570e+1l7NBm/QI/
+	y9qac68Navq+CzZxtbiYVUvNZ+mrUBf65/C1RGi8Cx8bh/w1VbUG
+X-Google-Smtp-Source: ABdhPJzNoPDzZHAIx8vgtgepaTl7LmD12oKEXrC+3pYkqpVFMu8g31ZQ9CvPxtFttaViD3yIEAM45w1AGaRx+rkzbsw=
+X-Received: by 2002:a25:b6c7:0:b0:648:44ff:332e with SMTP id
+ f7-20020a25b6c7000000b0064844ff332emr44999108ybm.444.1653676576018; Fri, 27
+ May 2022 11:36:16 -0700 (PDT)
+MIME-Version: 1.0
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Fri, 27 May 2022 14:35:40 -0400
+Message-ID: <CAKimwG4KhY1pD3DfFsE+GwmYPSs5FeQ_8wRYfsk1cRqEBSC9gA@mail.gmail.com>
+Subject: Draft letter to Alison Boyce for your review and comments
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000e32a4f05e0029469"
+X-MANTSH: 1TEIXR1geHFoaGkNHB1tfQV4bGBoTGB8aGBEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhoaEQpZRBdlQFhcX1lvR0FFThEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGxITEQpfT
+ RdkRURPEQpZSRcacRoQGncGGxwTcRMdEBp3BhgaBhoRClleF2hueREKQ04XbR5jbH94YFJsUGV
+ 5eW0ff0FMW1JuXxwHQXhmGmxNHmYRClhcFxkEGgQeHQcfEhwcS09JSQUbGhoEHRsEGxwaBBMaE
+ BseGh8aEQpeWRdwUlgcHREKTVwXGBsSEQpMWhdoaU1NaxEKQ1oXGBoTBBIfBBgbEwQbHRMRCkJ
+ eFxsRCkJFF2wbQElsYl16TR9cEQpCThdifFtfRR9na0xccBEKQkwXaX0FYRhGRUNNY2wRCkJsF
+ 3pPARhtSRtTRW5FEQpCQBdpZH55RVBzSwVsSREKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxs
+ RCnBoF2cfXn4eWm5iYlx+EBkaEQpwaBdnBUUcTEFQHkNGThAZGhEKcGgXY256aR1kTkttHB4QG
+ RoRCnBoF2daGh5GGFgYSxt/EBkaEQpwaBdnHH59W29+ExlAGRAZGhEKcGwXb09yeXNAZERQfFs
+ QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: G4IFURJxFzOSSG5UkfqxDu6-kRL0Fg4L
+X-Proofpoint-ORIG-GUID: G4IFURJxFzOSSG5UkfqxDu6-kRL0Fg4L
+
+--000000000000e32a4f05e0029469
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Good afternoon Darryl,
+
+Please see below the draft letter for Alison Boyce we discussed yesterday.
+Sorry I was unable to get back to you yesterday.  Let me know if you would
+like me to make any changes or additions to the letter.
+
+*Good afternoon Ms. Boyce,*
+
+*I am writing to provide information about Mr. Ross=E2=80=99 new residence =
+and to
+raise some concerns which have arisen.*
+
+*New address*
+
+
+
+
+*Mr. Ross moved on May 1, 2022 and his new address is 1266 Marygrove Cir.,
+Nepean, ON, K2C 2C9 *
+
+*Vacation for children in June, 2022*
+
+*Mr. Ross has learned that your client has already booked a vacation for
+the children without first discussing it with him, or providing any details
+about the vacation which will impact his parenting time.  I understand that
+your client first booked a trip to Calgary in June for herself, Charlotte
+and Alice. We understand that the intention of the trip is to spend time
+with her boyfriend who lives in Calgary. Mr. Ross is concerned that your
+client intends on moving to Calgary with Charlotte and Alice.  Please
+advise if this is her intention.*
+
+*Mr. Ross=E2=80=99 right to information about Charlotte and Alice/joint
+decision-making*
+
+*On May 11, 2022, Mr. Ross sent an email to your client requesting
+information about Charlotte and Alice=E2=80=99s missed school days, their h=
+ealth
+and to update me him anything else of importance.  His request has not been
+answered.  Would you please speak to your client about this issue as Mr.
+Ross has a right to receive information about the children, and you client
+cannot continue to make unilateral decisions about the health and well
+being of the children.  In fact, the parties still have joint custody, and
+decisions pertaining to the children are to be made jointly and not
+unilaterally by Ms. Holmes.*
+
+*Parenting time with Charlotte and Alice*
+
+*Mr. Ross continues to insist that there is no reason that he cannot have
+in person parenting time with the children.  Your client continues to
+refuse his in-person parenting time.  Although she recently offered some
+virtual FaceTime for Mr. Ross to have with the children, those times have
+been cancelled frequently, and they are irregular.  Given the comments made
+by Justice Somji, and pending her decision, we expected that your client
+would move forward with establishing regular parenting time with the
+children.  Would you please speak to your client about this issue so that
+we can establish a regular parenting schedule, in the best interest of the
+children?*
+
+*We look forward to hearing from you at your earliest opportunity.*
+
+*Regards,*
+
+*Allison Lendor*
+
+
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--000000000000e32a4f05e0029469
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Good afternoon Darryl,<div><br></div><div>Please see below=
+ the draft letter for Alison Boyce we discussed yesterday.=C2=A0 Sorry I wa=
+s unable to get back to you yesterday.=C2=A0 Let me know if you would like =
+me to make any changes or additions to the letter.</div><div><br></div><div=
+><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-s=
+ize:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US=
+" style=3D"font-family:Arial,sans-serif;background-image:initial;background=
+-position:initial;background-size:initial;background-repeat:initial;backgro=
+und-origin:initial;background-clip:initial"><b><i>Good afternoon Ms. Boyce,=
+</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>I am writing to provide in=
+formation about Mr.
+Ross=E2=80=99 new residence and to raise some concerns which have arisen.</=
+i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>New address</i></span><=
+/u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><i><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial">Mr. Ross moved on May 1, 2=
+022 and his new
+address is 1266 Marygrove Cir.,</span><span lang=3D"EN-US" style=3D"font-fa=
+mily:Arial,sans-serif"><br>
+<span style=3D"background-image:initial;background-position:initial;backgro=
+und-size:initial;background-repeat:initial;background-origin:initial;backgr=
+ound-clip:initial">Nepean, ON,</span> <span style=3D"background-image:initi=
+al;background-position:initial;background-size:initial;background-repeat:in=
+itial;background-origin:initial;background-clip:initial">K2C 2C9</span></sp=
+an><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;color:rgb(136=
+,136,136);background-image:initial;background-position:initial;background-s=
+ize:initial;background-repeat:initial;background-origin:initial;background-=
+clip:initial"><br>
+<br>
+</span><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;backgroun=
+d-image:initial;background-position:initial;background-size:initial;backgro=
+und-repeat:initial;background-origin:initial;background-clip:initial"></spa=
+n></i></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>Vacation for children i=
+n June, 2022</i></span></u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Mr. Ross has learned that =
+your client has
+already booked a vacation for the children without first discussing it with
+him, or providing any details about the vacation which will impact his
+parenting time.=C2=A0 I understand that your
+client first booked a trip to Calgary in June for herself, Charlotte and Al=
+ice.
+We understand that the intention of the trip is to spend time with her
+boyfriend who lives in Calgary. Mr. Ross is concerned that your client inte=
+nds
+on moving to Calgary with Charlotte and Alice.=C2=A0
+Please advise if this is her intention.</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>Mr. Ross=E2=80=99 right=
+ to information about Charlotte
+and Alice/joint decision-making</i></span></u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>On May 11, 2022, Mr. Ross =
+sent an email to your
+client requesting information about Charlotte and Alice=E2=80=99s missed sc=
+hool days,
+their health and to update me him anything else of importance.=C2=A0 His re=
+quest has not been answered.=C2=A0 Would you please speak to your client ab=
+out this
+issue as Mr. Ross has a right to receive information about the children, an=
+d you
+client cannot continue to make unilateral decisions about the health and we=
+ll
+being of the children.=C2=A0 In fact, the parties
+still have joint custody, and decisions pertaining to the children are to b=
+e
+made jointly and not unilaterally by Ms. Holmes.</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>Parenting time with Cha=
+rlotte and Alice</i></span></u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Mr. Ross continues to insi=
+st that there is no
+reason that he cannot have in person parenting time with the children.=C2=
+=A0 Your client continues to refuse his in-person
+parenting time.=C2=A0 Although she recently
+offered some virtual FaceTime for Mr. Ross to have with the children, those=
+ times
+have been cancelled frequently, and they are irregular.=C2=A0 Given the com=
+ments made by Justice Somji, and
+pending her decision, we expected that your client would move forward with
+establishing regular parenting time with the children.=C2=A0 Would you plea=
+se speak to your client about
+this issue so that we can establish a regular parenting schedule, in the be=
+st
+interest of the children?</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>We look forward to hearing=
+ from you at your
+earliest opportunity.</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Regards,</i></b></span></p=
+>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Allison Lendor</i></b></sp=
+an></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial">=C2=A0</span></p><div><br></div>=
+-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_s=
+ignature"><div dir=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div styl=
+e=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri"=
+ size=3D"3">Allison Lendor</font></i><br></div><div><div style=3D"font-size=
+:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor=
+ Guest LLP</font></span></i></div><div style=3D"font-size:13px;margin:0cm 0=
+cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Barristers &amp; S=
+olicitors</font></font></span></i></div><div style=3D"font-size:13px"><i><s=
+pan><font face=3D"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</=
+font></font></span></i></div><div style=3D"font-size:13px"><i><span><font f=
+ace=3D"Calibri"><font size=3D"3">Ottawa, ON</font></font></span></i></div><=
+div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"=
+3">K2E 0B8</font></font></span></i></div><div style=3D"font-size:13px"><i><=
+font face=3D"Calibri"><font size=3D"3"><br clear=3D"none"></font></font></i=
+></div><div style=3D"font-size:13px"><font size=3D"3"></font></div><div sty=
+le=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><f=
+ont size=3D"3">Tel.: (613)247-7964 ext 3</font></font></span></i></div><div=
+ style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">=
+Fax: (613)233-9995</font></font></span></i></div><div style=3D"font-size:13=
+px"><span style=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-si=
+ze:small;font-style:italic;white-space:nowrap"><br></span></div><div style=
+=3D"font-size:13px"><br></div><div style=3D"font-size:13px"></div><div styl=
+e=3D"font-size:13px"><var></var></div></div><div style=3D"margin:0cm 0cm 0p=
+t"><i style=3D"font-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt=
+">This email and any files transmitted with it are confidential and intende=
+d solely for the use of the individual or entity to whom they are addressed=
+ and may be protected by solicitor-client privilege. If you have received t=
+his email in error please notify us by e-mail reply and delete it from your=
+ system; you may not copy this message or disclose its contents to anyone.<=
+/span></i></div><div><font size=3D"3"></font></div><div style=3D"margin:0cm=
+ 0cm 0pt"><font face=3D"Calibri"><font size=3D"3"><i></i></font></font></di=
+v><div></div></div><div></div></div></div></div></div></div>
+
+--000000000000e32a4f05e0029469--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>732607</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1653676577</integer>
+	<key>flags</key>
+	<integer>9160621061</integer>
+	<key>remote-id</key>
+	<string>780</string>
+</dict>
+</plist>

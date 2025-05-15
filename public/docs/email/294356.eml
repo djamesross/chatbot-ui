@@ -1,0 +1,477 @@
+22664     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:6f53:0:0:0:0:0 with SMTP id k19csp3386562ltp;
+        Fri, 24 May 2019 07:41:12 -0700 (PDT)
+X-Received: by 2002:a1f:8606:: with SMTP id i6mr5447769vkd.20.1558708872020;
+        Fri, 24 May 2019 07:41:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1558708872; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lnoZqtLNVCHITZ/BtdmLecpQcFW5NQU7Q4e60kgdgc4CnZ8QKRx1uEIoMKB8HWIPLM
+         co9QT+SIPMfFapln5aYojMC9yR1AWtkDHcElEhXjcSySMME3TPAaYc8gjftuLnx3Puzo
+         2erP271ZgPTSvj7xiy2CCRHJP09W/9xR33D22nI30W5DgY5jym8FZpXVFhM31WrxOaZ5
+         gENCMi779NsrQO4JHpcyIKFN8BCX9+h1F8rhftxvnahxrgb8WVhv6k3fsnZr28NjuLWR
+         PCK5DkamA6NyPrvfHYCgkOziOAzYTlmFiULzMLv51poqefOLw++YIz13snrUT5HgQ3yp
+         Tawg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:dkim-signature;
+        bh=Lgs0ABm2fU7bi5skeAfli4D4T1c5Q0lITpMilBFOT8U=;
+        b=c0dJyTmUi5AfeujnRz0we4goy79UCEhcaUEkVnqVKP9KvyuqMjpCQsURUyRHpC1wTI
+         kThTO4S7KwbQnmEKHS4XxafRSI5C3XcetDjc/nkVkk/n+IPgu9i3Br+m7cAEARvOGF8M
+         Fn5X7MIDZfXoAgHqVUPEaK1Q+jV1WRmvj0XbRcCtDVv3zLka4GgNq8+gPgK9CKlHIpE3
+         ACrEd0D+f2M+lVh2TyNHPzRn6FonQCiQW1hA3S7rlDCDHF2OFgA+SDL8047ILBIyiEr+
+         0nCyKDiv8lHD29DKs/QgDB/7U3h0sgQCGnw9j0YRGTizRsw/8Dlpa1mn8V9mFKuUZYoy
+         o93g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZTAPFVqX;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q20sor1176432vsj.29.2019.05.24.07.41.11
+        for <darrylondunlin@gmail.com>
+        (Google Transport Security);
+        Fri, 24 May 2019 07:41:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZTAPFVqX;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Lgs0ABm2fU7bi5skeAfli4D4T1c5Q0lITpMilBFOT8U=;
+        b=ZTAPFVqXDsSEFR7xKBHav/ie4hCiOZ3uYJpDqki5e8wyr9J+rZlhIRQx8WfNaeK5Rv
+         NrBW7DQm/UJJHViHa5n2aPJqyo35y5s966G2PBmKh8zxOAVTWGn761ttG9HcWmLgIJTr
+         ngp4XBFBNQzxSLb/EJJgozoWjnc9ucBgFfMWjjHrPDi7rTCa/m0spwY5S7Jes5ILrzkN
+         InZd4VFP/MiJ3YM47xbXGDJgs1ZCwGzHE2kfNlqz7m7UskFry3skFFiz8ERR9sr1NXCo
+         dIFI5JnQTwfLqghEYcM4lIyjJgfZE2ksuObxUcTIdxCZyA+eDiOcQVfhwiZQlWca7FyU
+         gUJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Lgs0ABm2fU7bi5skeAfli4D4T1c5Q0lITpMilBFOT8U=;
+        b=DFZbl5ENO6ADb0PVdgt+xim9bwJlAq3zSdh5j2UDfevgLAJqnyLy/5EqHrOIVRP9BE
+         N+ZlH74mUyYOj5rwaQ8N92Cu/KceIWNP5oDc6N/pRiRha/o1gSAfLb8eyjjHiDvvs9bE
+         ipa2Q6eDEga91M0Lb8WgVpIyAS52XLddgDbegsGYRQLlmszISj5/pa9dOJfGU9lAo51e
+         FlOXyi3C0Jl2Uj1OLBzesdPVGKQve4PYgN5OXvhBrrZpxxFep2EKRYU2DqhyQAXkOD1S
+         IAFiD9PFHgNM+rTVqgfAy0XT0VJ5fB6pTf8ND9JE3bpcaC+hag1+781BqBfBwBxMewyh
+         K5dA==
+X-Gm-Message-State: APjAAAX6gQ1kViK40/mvkPz5HJcrC+lv+Jxwx3Cbs8XWo/7/lZhILgrM
+	/1y4tQHvo+CpaFSiZgIGyvwPHGUI
+X-Google-Smtp-Source: APXvYqxF1fxBQi9C3zy+n2+a6wj2TSOkItb3ILI/EHRQSGhHzyUCAHbfyKNzaB+sEpobDFbR0bv3cA==
+X-Received: by 2002:a67:e98e:: with SMTP id b14mr46322644vso.145.1558708871484;
+        Fri, 24 May 2019 07:41:11 -0700 (PDT)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [10.117.216.79] ([184.151.246.193])
+        by smtp.gmail.com with ESMTPSA id d81sm708720vkf.39.2019.05.24.07.41.10
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 May 2019 07:41:11 -0700 (PDT)
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-4FD50143-2B30-4682-9B16-36B3128A2E74
+Mime-Version: 1.0 (1.0)
+Subject: Re: Meeting
+From: Cynthia Holmes <cynthmholm@gmail.com>
+X-Mailer: iPhone Mail (16E227)
+In-Reply-To: <DM6PR04MB5242B0B0D18C9AB624DCEAFDAA010@DM6PR04MB5242.namprd04.prod.outlook.com>
+Date: Fri, 24 May 2019 10:41:09 -0400
+Cc: Darryl Ross <darrylondunlin@gmail.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <E165677C-DCB6-4175-9725-DF90347274C3@gmail.com>
+References: <BN7PR04MB52333785E6CF9B43D76E432CAA000@BN7PR04MB5233.namprd04.prod.outlook.com> <C8574ABC-2D63-4B25-8150-D0C02B17630A@gmail.com> <DM6PR04MB52427CE625CD718F156DAA67AA010@DM6PR04MB5242.namprd04.prod.outlook.com> <DM6PR04MB5242B0B0D18C9AB624DCEAFDAA010@DM6PR04MB5242.namprd04.prod.outlook.com>
+To: "Latouche, Krystle" <Krystle.Latouche@casott.on.ca>
+
+
+--Apple-Mail-4FD50143-2B30-4682-9B16-36B3128A2E74
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Yes.=20
+
+Sent from my iPhone
+
+> On May 23, 2019, at 12:17 PM, Latouche, Krystle <Krystle.Latouche@casott.o=
+n.ca> wrote:
+>=20
+> Okay so , it looks like Darryl you are not available on Wednesday and Cynt=
+hia you are available Wednesday=E2=80=99s and any other day would need to be=
+ from 3pm on. As a compromise can we then schedule the meeting for Thursday M=
+ay 30th at 3pm here at the office?
+> =20
+> From: Latouche, Krystle=20
+> Sent: May 23, 2019 11:36 AM
+> To: Darryl Ross <darrylondunlin@gmail.com>
+> Cc: Cynthia Holmes <cynthmholm@gmail.com>
+> Subject: RE: Meeting
+> =20
+> Here are some dates and time I am available, please let me know if any i t=
+hese dates/times work for you both Wednesday May 29th between 9a.m-4p.m. Thu=
+rsday May 30 anytime, Friday May 31st 9a.m. -4p.m, June 4th anytime, June 5t=
+h anytime and June 7th 9-a.m. -3p.m.
+> =20
+> From: Darryl Ross <darrylondunlin@gmail.com>=20
+> Sent: May 22, 2019 2:01 PM
+> To: Latouche, Krystle <Krystle.Latouche@casott.on.ca>
+> Cc: Cynthia Holmes <cynthmholm@gmail.com>
+> Subject: Re: Meeting
+> =20
+> Hi Krystle and Cynthia,=20
+> =20
+> Courses are done now so I=E2=80=99m very flexible, other than Wednesday=E2=
+=80=99s, and occasional meetings. Let me know what works for you you two.=20=
+
+> =20
+> Darryl=20
+>=20
+> On May 22, 2019, at 13:02, Latouche, Krystle <Krystle.Latouche@casott.on.c=
+a> wrote:
+>=20
+> Hi Cynthia and Darryl,
+> =20
+> Sorry for the delay in arranging a meeting. However, I wanted to see If we=
+ could schedule a meeting here at the office to discuss your file on where w=
+e are now, what=E2=80=99s been going on, worries/concerns, safety plan, reco=
+mmendations and next steps. Can you both provide some dates and times you ar=
+e available?
+> =20
+> Kind regards,
+> =20
+> Krystle Latouche, B.S.W
+> Child Protection Worker                                                   =
+=20
+> Ongoing Services
+> The Children's Aid Society of Ottawa
+> 150 Katimavik Rd
+> Kanata, ON K2L 2N2
+> Telephone: (613) 747-7800 ext. 3133
+> Email: krystle.latouche@casott.on.ca
+> =20
+> =20
+> CONFIDENTIALITY NOTICE
+> This e-mail transmission, and any documents, files or previous e-mail mess=
+ages attached to it may contain information that is confidential or legally p=
+rivileged. If you are not the intended recipient, or a person responsible fo=
+r delivering it to the intended recipient, you are hereby notified that you m=
+ust not read this transmission and that any disclosure, copying, printing, d=
+istribution or use of any of the information contained in or attached to thi=
+s transmission is STRICTLY PROHIBITED. If you have received this transmissio=
+n in error, please immediately notify the sender by return e-mail and delete=
+ the original transmission and its attachments without reading, printing, or=
+ saving in any manner. Thank you.
+>=20
+> =20
+> AVIS DE CONFIDENTIALIT=C3=89
+> Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=
+=C3=A9rieur qui y est joint, peut contenir des renseignements confidentiels o=
+u prot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=AAte=
+s pas le destinataire vis=C3=A9, ni son mandataire, nous vous signalons que v=
+ous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT de divulg=
+uer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utiliser l=E2=80=
+=99information qui y figure ou qui y est jointe. Si cette communication vous=
+ a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=80=99exp=C3=A9=
+diteur imm=C3=A9diatement par courriel et supprimer la communication origina=
+le ainsi que les pi=C3=A8ces jointes sans les lire, les imprimer ou les sauv=
+egarder de quelque mani=C3=A8re que ce soit. Merci.
+>=20
+>=20
+> CONFIDENTIALITY NOTICE
+> This e-mail transmission, and any documents, files or previous e-mail mess=
+ages attached to it may contain information that is confidential or legally p=
+rivileged. If you are not the intended recipient, or a person responsible fo=
+r delivering it to the intended recipient, you are hereby notified that you m=
+ust not read this transmission and that any disclosure, copying, printing, d=
+istribution or use of any of the information contained in or attached to thi=
+s transmission is STRICTLY PROHIBITED. If you have received this transmissio=
+n in error, please immediately notify the sender by return e-mail and delete=
+ the original transmission and its attachments without reading, printing, or=
+ saving in any manner. Thank you.
+>=20
+>=20
+> AVIS DE CONFIDENTIALIT=C3=89
+> Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=
+=C3=A9rieur qui y est joint, peut contenir des renseignements confidentiels o=
+u prot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=AAte=
+s pas le destinataire vis=C3=A9, ni son mandataire, nous vous signalons que v=
+ous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT de divulg=
+uer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utiliser l=E2=80=
+=99information qui y figure ou qui y est jointe. Si cette communication vous=
+ a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=80=99exp=C3=A9=
+diteur imm=C3=A9diatement par courriel et supprimer la communication origina=
+le ainsi que les pi=C3=A8ces jointes sans les lire, les imprimer ou les sauv=
+egarder de quelque mani=C3=A8re que ce soit. Merci.
+
+--Apple-Mail-4FD50143-2B30-4682-9B16-36B3128A2E74
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Yes.&nbsp;<br><br><div id=3D"AppleMailSigna=
+ture" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On May 23, 2=
+019, at 12:17 PM, Latouche, Krystle &lt;<a href=3D"mailto:Krystle.Latouche@c=
+asott.on.ca">Krystle.Latouche@casott.on.ca</a>&gt; wrote:<br><br></div><bloc=
+kquote type=3D"cite"><div dir=3D"ltr">
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+
+
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Okay so , it looks like Darryl you are not available o=
+n Wednesday and Cynthia you are available Wednesday=E2=80=99s and any other d=
+ay would need to be from 3pm on. As a compromise can we then schedule the me=
+eting for Thursday May 30<sup>th</sup>
+ at 3pm here at the office?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0=
+cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-language=
+:EN-CA">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language:E=
+N-CA"> Latouche, Krystle
+<br>
+<b>Sent:</b> May 23, 2019 11:36 AM<br>
+<b>To:</b> Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com">darry=
+londunlin@gmail.com</a>&gt;<br>
+<b>Cc:</b> Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthm=
+holm@gmail.com</a>&gt;<br>
+<b>Subject:</b> RE: Meeting<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here are some dates and time I am available, please l=
+et me know if any i these dates/times work for you both Wednesday May 29<sup=
+>th</sup> between 9a.m-4p.m. Thursday May 30 anytime, Friday May 31<sup>st</=
+sup> 9a.m. -4p.m, June 4<sup>th</sup>
+ anytime, June 5<sup>th</sup> anytime and June 7<sup>th</sup> 9-a.m. -3p.m.<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0=
+cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"mso-fareast-language=
+:EN-CA">From:</span></b><span lang=3D"EN-US" style=3D"mso-fareast-language:E=
+N-CA"> Darryl Ross &lt;</span><a href=3D"mailto:darrylondunlin@gmail.com"><s=
+pan lang=3D"EN-US" style=3D"mso-fareast-language:EN-CA">darrylondunlin@gmail=
+.com</span></a><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-CA">&gt=
+;
+<br>
+<b>Sent:</b> May 22, 2019 2:01 PM<br>
+<b>To:</b> Latouche, Krystle &lt;</span><a href=3D"mailto:Krystle.Latouche@c=
+asott.on.ca"><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-CA">Kryst=
+le.Latouche@casott.on.ca</span></a><span lang=3D"EN-US" style=3D"mso-fareast=
+-language:EN-CA">&gt;<br>
+<b>Cc:</b> Cynthia Holmes &lt;</span><a href=3D"mailto:cynthmholm@gmail.com"=
+><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-CA">cynthmholm@gmail.=
+com</span></a><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-CA">&gt;=
+<br>
+<b>Subject:</b> Re: Meeting<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi Krystle and Cynthia,&nbsp;<span style=3D"mso-farea=
+st-language:EN-CA"><o:p></o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Courses are done now so I=E2=80=99m very flexible, ot=
+her than Wednesday=E2=80=99s, and occasional meetings. Let me know what work=
+s for you you two.&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div id=3D"AppleMailSignature">
+<p class=3D"MsoNormal">Darryl&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+On May 22, 2019, at 13:02, Latouche, Krystle &lt;<a href=3D"mailto:Krystle.L=
+atouche@casott.on.ca">Krystle.Latouche@casott.on.ca</a>&gt; wrote:<o:p></o:p=
+></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal">Hi Cynthia and Darryl,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Sorry for the delay in arranging a meeting. However, I=
+ wanted to see If we could schedule a meeting here at the office to discuss y=
+our file on where we are now, what=E2=80=99s been going on, worries/concerns=
+, safety plan, recommendations and next
+ steps. Can you both provide some dates and times you are available?<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">Kind regards,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;color:black;mso-fa=
+reast-language:EN-CA">Krystle Latouche, B.S.W</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><i><span style=3D"font-size:12.0pt;color:black;mso-fa=
+reast-language:EN-CA">Child Protection Worker&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp;</span></i><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">Ongoing Services</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"http://www.casott.on.ca/en/" target=3D"_bl=
+ank" title=3D"http://www.casott.on.ca/en/
+Ctrl+Click or tap to follow the link"><span style=3D"font-size:10.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:blue;mso-fareast-language:EN-CA">Th=
+e Children's
+ Aid Society of Ottawa</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">150 Katimavik Rd</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">Kanata, ON K2L 2N2</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">Telephone: (613) 747-7800 ext. 3133</span><o:p></o:p></p>=
+
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-farea=
+st-language:EN-CA">Email:
+</span><a href=3D"mailto:krystle.latouche@casott.on.ca"><span style=3D"font-=
+size:12.0pt;color:blue;mso-fareast-language:EN-CA">krystle.latouche@casott.o=
+n.ca</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-CA"><o:p>&nbsp=
+;</o:p></span></p>
+<p>CONFIDENTIALITY NOTICE<br>
+This e-mail transmission, and any documents, files or previous e-mail messag=
+es attached to it may contain information that is confidential or legally pr=
+ivileged. If you are not the intended recipient, or a person responsible for=
+ delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmission=
+ and that any disclosure, copying, printing, distribution or use of any of t=
+he information contained in or attached to this transmission is STRICTLY PRO=
+HIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return e=
+-mail and delete the original transmission and its attachments without readi=
+ng, printing, or saving in any manner. Thank you.<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-CA"><o:p>&nbsp=
+;</o:p></span></p>
+<p>AVIS DE CONFIDENTIALIT=C3=89<br>
+Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=C3=
+=A9rieur qui y est joint, peut contenir des renseignements confidentiels ou p=
+rot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=AAtes p=
+as le destinataire vis=C3=A9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT de d=
+ivulguer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utiliser l=
+=E2=80=99information qui y figure ou qui y est jointe. Si cette communicatio=
+n vous a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=80=99ex=
+p=C3=A9diteur
+ imm=C3=A9diatement par courriel et supprimer la communication originale ain=
+si que les pi=C3=A8ces jointes sans les lire, les imprimer ou les sauvegarde=
+r de quelque mani=C3=A8re que ce soit. Merci.<o:p></o:p></p>
+</div>
+</blockquote>
+</div>
+</div>
+<br>
+<p>CONFIDENTIALITY NOTICE<br>
+This e-mail transmission, and any documents, files or previous e-mail messag=
+es attached to it may contain information that is confidential or legally pr=
+ivileged. If you are not the intended recipient, or a person responsible for=
+ delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmission=
+ and that any disclosure, copying, printing, distribution or use of any of t=
+he information contained in or attached to this transmission is STRICTLY PRO=
+HIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return e=
+-mail and delete the original transmission and its attachments without readi=
+ng, printing, or saving in any manner. Thank you.</p>
+<br>
+<p>AVIS DE CONFIDENTIALIT=C3=89<br>
+Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=C3=
+=A9rieur qui y est joint, peut contenir des renseignements confidentiels ou p=
+rot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=AAtes p=
+as le destinataire vis=C3=A9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT de d=
+ivulguer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utiliser l=
+=E2=80=99information qui y figure ou qui y est jointe. Si cette communicatio=
+n vous a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=80=99ex=
+p=C3=A9diteur
+ imm=C3=A9diatement par courriel et supprimer la communication originale ain=
+si que les pi=C3=A8ces jointes sans les lire, les imprimer ou les sauvegarde=
+r de quelque mani=C3=A8re que ce soit. Merci.</p>
+
+
+</div></blockquote></body></html>=
+
+--Apple-Mail-4FD50143-2B30-4682-9B16-36B3128A2E74--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>9527</integer>
+	<key>date-last-viewed</key>
+	<integer>1746457182</integer>
+	<key>date-received</key>
+	<integer>1558708872</integer>
+	<key>flags</key>
+	<integer>8590195717</integer>
+	<key>remote-id</key>
+	<string>15259</string>
+</dict>
+</plist>

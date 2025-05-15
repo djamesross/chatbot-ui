@@ -1,0 +1,322 @@
+16012     
+Return-path: <hollygammie@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33072501.me.com by p72-mailgateway-smtp-55584f64c8-qqczx (mailgateway 2308B178)
+	with SMTP id dd9936f6-938d-4eea-98f8-144cb05fe13d 
+	for <darrylross@icloud.com>; Wed, 1 Feb 2023 14:41:43 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: dd9936f6-938d-4eea-98f8-144cb05fe13d
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	by ms13p00im-qukt33072501.me.com (Postfix) with ESMTPS id 185A91FC0148
+	for <darrylross@icloud.com>; Wed,  1 Feb 2023 14:41:41 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERB8XXFobEhgLGhFVdgUY
+ GA8bVlNZD1dZABNFElEPFBAKWRtfW0BVCg8HRRIEUkxXXkJWAQBVW01VVVhYUw4aREQaGVlaTxkf
+ V1oeBAVMEhYJEBRVGAEaFERXCEREX1cUBx4UHVoERFQAQ0seUQ0aHgoSVlNZD1dZAhNFElEPFBAK
+ WRtfW0BVFA8TRRIKITQ/FERMZk8AOzYJJDBoWElBDTIVKGJhDDsOEg9VYWRWHzwNBkEFRzodKQM7
+ G3pwMBMeJhoZWVpMEhQHHhQeVQ0YR0RXClMLQBEYFAUBXEQNBgomHhtcWRcRVwUYFRI=
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lxd6r2BE
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of hollygammie@gmail.com designates 209.85.167.43 as permitted sender) smtp.mailfrom=hollygammie@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of hollygammie@gmail.com designates 209.85.167.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.43; helo=mail-lf1-f43.google.com; envelope-from=hollygammie@gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id v17so23680675lfd.7
+        for <darrylross@icloud.com>; Wed, 01 Feb 2023 06:41:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=po/Zu5ssAHYOBdFe4Je3Z2gU1XDoxnT3kv1iJyFzZg4=;
+        b=Lxd6r2BEjbHfqEDe5bPPETASHVRswrRchl+aimeVG2Eb+C4I6MzwdAXi830Bpn5eqz
+         jhM6KVEvgDGfW+Y+IYCLqm74bf2j4RskpQwTMpZMs3MFwxh6m2Quz18AR0MbYHlqhahs
+         jpV7us74h0F6EP8kxKkywOmxYMrtQH6+AJhXU6XbnMxTN5cSrE0EwcYugPQ0sy1PPwiE
+         jVB1L+Z0vSEN9EVQ63xYTb5wS+8syvWSmFslCq3pYLhdSUBYT8JYaWOl8MQuMcKk7z7E
+         FJsy1ce2zxoyD7+rlygixQ4SdmDHKj2/Zk2lVRRXzNcMI3houij6u4CansfgmKP1nRo9
+         XkRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=po/Zu5ssAHYOBdFe4Je3Z2gU1XDoxnT3kv1iJyFzZg4=;
+        b=wKk9EIfAhMVJbq5IyV0rT2sH2vlc9VwSO3nXuil3UWOxrO6O7Jk2L2DLOZUJDEFZW9
+         TihYLYDqe1aPBZ93x6HYOpeKdTCZc8JLv2NTQyio3Xx7nPNA569cCEVem7tBM9FxR7k7
+         8uBikKk65faa7O0njCXrXSMtgLqaVuHE+8fQFcYSPXkQ9wN50JkQ2wEVY2JPcSXVAr4v
+         y+2Y8S0A7MSqAop+M5aP7n7ZLLXkPa4vqY57XtoYHV10v+pimyRXVpshtd189hsflEEw
+         UsbO9+RrGpIxxoY2Vz4lEmbUohGCf5PhMW1okXnzCyu1vtQTAJtNPsiTrfUnTTbU6Hkv
+         L/tQ==
+X-Gm-Message-State: AO0yUKV7Q8+wpc8dJOs1wkv/E1cPpnVI8XdS07B2f2p+xKdKkSwBOinT
+	0S81nQgEYFDo7S2ywhqyWr5B0lx/clq+k/0aCkgrFY5HnPA=
+X-Google-Smtp-Source: AK7set9L1mfVOuDelOuq9U4D3WbhLZNBUkxSFNSQEDoXuHSUI/fI+kWLi5Eh7F43pV4B2QtkfZrne145ij9kH20bDFs=
+X-Received: by 2002:a05:6512:a84:b0:4cc:8fb8:b263 with SMTP id
+ m4-20020a0565120a8400b004cc8fb8b263mr378152lfu.112.1675262500736; Wed, 01 Feb
+ 2023 06:41:40 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFr34Vwqnu-cfh5dLC0Pxd8ahkS6qqFmyE9G5_rHd8nFbdcqqQ@mail.gmail.com>
+ <CAFnbyREToOPC0-aQ=HbrHoSU3rLh==hRfQtvEvCJabPnWrCyCA@mail.gmail.com>
+ <CAFr34Vy3r_DCt=vheH=k+TrwZBMwqqR-L27yT_oOUUnk+6a7Uw@mail.gmail.com> <CAFnbyRHYWrrP46aSxbEgSSZFab=J+eeJ=yLuCmBM+bdB83YUwQ@mail.gmail.com>
+In-Reply-To: <CAFnbyRHYWrrP46aSxbEgSSZFab=J+eeJ=yLuCmBM+bdB83YUwQ@mail.gmail.com>
+From: Holly Ross <hollygammie@gmail.com>
+Date: Wed, 1 Feb 2023 09:41:27 -0500
+Message-ID: <CAFr34VybNOoSHXn+4tTbPRWnNwtx-QR4jEkq95qXhPeLcJFRfg@mail.gmail.com>
+Subject: Fwd: Supervision at Dad visits
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000430f4d05f3a47214"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQYGxsZGh0aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBd6fU5vWGhnUn5peBEKWU0Xbk9GQ1xPWBEKX1kXGB4TEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBgTcRsTHBAadwYYGgYaEQpZXhdsbHkRCkNOF0EeEmIbUE1kfH1mW01iHhx
+ AbBkfRRpJZh9lREYdTntDEQpYXBcZBBoEHxoESE9eSxsFGxoEEwQYGRIEGBgQGx4aHxoRCl5ZF
+ 0hvaB1oEQpNXBcYExkRCkxaF2lNTWsRCkxGF2xraxEKQ1oXGBoTBBIfBBscHQQeGREKQl4XGxE
+ KQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdja39QaUZmf
+ R4cEhEKQk4XY1Nja3sTWH4aX14RCkJMF2BEWUN4XBJZf1tAEQpCbBdlRWJAYhNBTmFjUhEKQkA
+ XaWsYeXNIRkxYRW0RCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwZxdhc15ic2RDbh9lH
+ RAZGhEKcGgXY0l/aX8TX0FQZR8QGRoRCnBoF2BGSxNlT35aUkhOEBoRCnBoF2FQHkVsHnAdWF5
+ EEBoRCnBoF2J4W1ptYWNfH0NrEBoRCnBoF2V8aUxrQWl8cH9rEBoRCnBsF2hlSRoeZ25jUh8FE
+ BkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: k48H1zgNVWLqgH46jF35o0cL5Onl7dQi
+X-Proofpoint-ORIG-GUID: k48H1zgNVWLqgH46jF35o0cL5Onl7dQi
+
+--000000000000430f4d05f3a47214
+Content-Type: text/plain; charset="UTF-8"
+
+---------- Forwarded message ---------
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon., Jan. 30, 2023, 5:53 p.m.
+Subject: Re: Supervision at Dad visits
+To: Holly Ross <hollygammie@gmail.com>
+
+
+Hi Holly,
+
+This is a court ordered decision to have you, the grandmother supervise,
+twice a week , 3 hours and 4 hours respectively.
+
+If you are unable to do this please advise.
+
+Cynthia
+
+On Mon, Jan 30, 2023 at 10:41 AM Holly Ross <hollygammie@gmail.com> wrote:
+
+> I am actually shocked to hear that Alice is having any real trust issues
+> with her Father.
+>
+> As she apparently trusts me , I can tell you that what I have observed is
+> quite the opposite when she is with her Dad.
+> She is open and shares  her problems with him quite freely; her personal
+> health issues, school issues and friends etc.
+> She asks him to look after her meals, meds & to give her advise.  She.
+> goes to him if she is not well, upset - sad, confused or angry etc.
+> None of this has involved my input at any time!
+> They go to him...not me, as I would expect
+>
+> Something doesn't add up.
+>
+> Can you be more specific about her concerns ?
+> Has she explained why she might feel this way ?
+>
+> Is it possible she has over- heard others talking? ......
+> She is still so impressionable.
+> Perhaps both of you need to speak with her.
+>
+> My other question is ....
+> That if I cannot be present
+> at all visits does that really mean you would not allow them to visit
+> their Dad ?
+> That would be so sad for them.
+> They need and want a Mom and Dad in their life.
+>
+> What do you think ?
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> On Fri., Jan. 27, 2023, 7:51 p.m. Cynthia Holmes, <cynthmholm@gmail.com>
+> wrote:
+>
+>> Hi,
+>>
+>> Sorry for the late reply.
+>>
+>> I understand your concerns. I am just not comfortable with having the
+>> girls unsupervised at this time, nor is Alice , who has repeatedly told me
+>> she just feels safe with Grammy there.
+>>
+>>
+>> Thanks for understanding.
+>>
+>> Cynthia
+>> On Mon, Jan 23, 2023 at 12:13 PM Holly Ross <hollygammie@gmail.com>
+>> wrote:
+>>
+>>> Hi Cynthia
+>>>
+>>> I've been wanting to contact to you for awhile...
+>>> First of all to reassure you that at no time in all these months has
+>>> there been any problems that Darryl has not been able to handle himself.
+>>> Its been great - and the girls clearly trust him and feel secure and
+>>> loved.
+>>> They cook,  create, play and work on school work and always learning
+>>> something new !
+>>> Wow they are growing up so fast . Right?
+>>>
+>>> I have felt for some time now that I really do not need to be there.
+>>> Dont get me wrong...I love being with the girls - they are truly
+>>> special. And I will continue to visit.
+>>> But supervision just isnt required.
+>>> As for me ....I have always kept up the supervision schedule so you
+>>> would feel more comfortable, even though Darryl is going into his second
+>>> year of documented sobriety.
+>>>
+>>> I have gladly cancelled or rescheduled events in our life here to make
+>>> this happen.  This was an important step for you, Darryl and the girls.
+>>>
+>>> However I drive a long way, as you know, to make this happen and with
+>>> winter here the roads are becoming less safe.
+>>>
+>>> So perhaps its time we let Darryl and the girls have some independance.
+>>>
+>>> The girls are older now and  always have contact with you by phone and
+>>> internet.
+>>>
+>>> I hope you will agree its time.
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+
+--000000000000430f4d05f3a47214
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">---------- Forwarded message ---------<br>From: <strong c=
+lass=3D"gmail_sendername" dir=3D"auto">Cynthia Holmes</strong> <span dir=3D=
+"auto">&lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmail.com</a>=
+&gt;</span><br>Date: Mon., Jan. 30, 2023, 5:53 p.m.<br>Subject: Re: Supervi=
+sion at Dad visits<br>To: Holly Ross &lt;<a href=3D"mailto:hollygammie@gmai=
+l.com">hollygammie@gmail.com</a>&gt;<br></div><br><br><div dir=3D"auto">Hi =
+Holly,</div><div dir=3D"auto"><br></div><div dir=3D"auto">This is a court o=
+rdered decision to have you, the grandmother supervise, twice a week , 3 ho=
+urs and 4 hours respectively.</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">If you are unable to do this please advise.</div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">Cynthia=C2=A0</div><div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 30, 2023 at 10:41 A=
+M Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" target=3D"_blank"=
+ rel=3D"noreferrer">hollygammie@gmail.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
+lid;padding-left:1ex"><div dir=3D"auto">I am actually shocked to hear that =
+Alice is having any real trust=C2=A0issues with her Father.<div dir=3D"auto=
+"><br><div dir=3D"auto">As she apparently trusts me , I can tell you that w=
+hat I have observed is quite the opposite when she is with her Dad.</div><d=
+iv dir=3D"auto">She is open and shares=C2=A0 her problems with him quite fr=
+eely; her personal health issues, school issues and friends etc.</div><div =
+dir=3D"auto">She asks him to look after her meals, meds &amp; to give her a=
+dvise.=C2=A0 She. goes to him if she is not well, upset - sad, confused or =
+angry etc.</div><div dir=3D"auto">None of this has involved my input at any=
+ time!</div><div dir=3D"auto">They go to him...not me, as I would expect</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">Something doesn&#39;t add =
+up.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Can you be more spec=
+ific about her concerns ?</div><div dir=3D"auto">Has she explained why she =
+might feel this way ?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Is=
+ it possible she has over- heard others talking? ......</div><div dir=3D"au=
+to">She is still so impressionable.</div><div dir=3D"auto">Perhaps both of =
+you need to speak with her.</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">My other question is ....</div><div dir=3D"auto">That if I cannot be pr=
+esent</div><div dir=3D"auto">at all visits does that really mean you would =
+not allow them to visit their Dad ?</div><div dir=3D"auto">That would be so=
+ sad for them.</div><div dir=3D"auto">They need and want a Mom and Dad in t=
+heir life.</div><div dir=3D"auto"><br></div><div dir=3D"auto">What do you t=
+hink ?</div></div></div><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"aut=
+o"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto=
+"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div di=
+r=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto"><br></div><br><br><div class=3D"gmail_quote" dir=3D"aut=
+o"><div dir=3D"ltr" class=3D"gmail_attr">On Fri., Jan. 27, 2023, 7:51 p.m. =
+Cynthia Holmes, &lt;<a href=3D"mailto:cynthmholm@gmail.com" rel=3D"noreferr=
+er noreferrer noreferrer" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Hi,</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Sorry for the=C2=A0late reply.=
+=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I understand your=
+ concerns. I am just not comfortable with having the girls unsupervised at =
+this time, nor is Alice , who has repeatedly told me she just feels safe wi=
+th Grammy there.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">Thanks for understanding.</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Cynthia=C2=A0<br><div class=3D"gmail_quote" dir=3D"a=
+uto"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 23, 2023 at 12:13 PM=
+ Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" rel=3D"noreferrer =
+noreferrer noreferrer noreferrer" target=3D"_blank">hollygammie@gmail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Hi =
+Cynthia<div dir=3D"auto"><br></div><div dir=3D"auto">I&#39;ve been wanting =
+to contact to you for awhile...</div><div dir=3D"auto">First of all to reas=
+sure you that at no time in all these months has there been any problems th=
+at Darryl has not been able to handle himself.</div><div dir=3D"auto">Its b=
+een great - and the girls clearly trust him and feel secure and loved.</div=
+><div dir=3D"auto">They cook,=C2=A0 create, play and work on school work an=
+d always learning something new !</div><div dir=3D"auto">Wow they are growi=
+ng up so fast . Right?</div><div dir=3D"auto"><br></div><div dir=3D"auto">I=
+ have felt for some time now that I really do not need to be there.=C2=A0</=
+div><div dir=3D"auto">Dont get me wrong...I love being with the girls - the=
+y are truly special. And I will continue to visit.</div><div dir=3D"auto">B=
+ut supervision just isnt required.=C2=A0=C2=A0</div><div dir=3D"auto">As fo=
+r me ....I have always kept up the supervision schedule so you would feel m=
+ore=C2=A0comfortable, even though Darryl is going into his second year of d=
+ocumented sobriety.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I ha=
+ve gladly cancelled or rescheduled events in our life here to make this hap=
+pen.=C2=A0 This was an important step for you, Darryl and the girls.</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">However I drive a long way, as=
+ you know, to make this happen and with winter here the roads are becoming =
+less safe.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">So perh=
+aps its time we let Darryl and the girls have some independance.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">The girls are older now and=C2=A0 =
+always have contact with you by phone and internet.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">I hope you will agree its time.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div=
+><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div></div>
+</blockquote></div></div>
+</blockquote></div></div></div>
+</blockquote></div></div>
+</div>
+
+--000000000000430f4d05f3a47214--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1042750</integer>
+	<key>date-last-viewed</key>
+	<integer>1683579959</integer>
+	<key>date-received</key>
+	<integer>1675262503</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>899</string>
+</dict>
+</plist>

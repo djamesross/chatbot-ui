@@ -1,0 +1,556 @@
+38006     
+Return-path: <38yx-YxcKAGgJXObK-YNGXKY-JS-TUXKVReMUUMRK.IUS@doclist.bounces.google.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01061502.me.com by p72-mailgateway-smtp-597d7776b5-pfnng (mailgateway 2302B297)
+	with SMTP id 4cb233c9-fc6b-47f5-b7b7-b403adf7216a 
+	for <darrylross@icloud.com>; Wed, 23 Nov 2022 14:23:49 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 4cb233c9-fc6b-47f5-b7b7-b403adf7216a
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by qs51p00im-qukt01061502.me.com (Postfix) with ESMTPS id DCF209000D4
+	for <darrylross@icloud.com>; Wed, 23 Nov 2022 14:23:47 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERERASU5PLAEFPDl3USgt
+ NgQ8VWl4JS0yP1oyYxs2ICEtISpVezcgNDQ8VnljMTUdCRQUWUUWWxsJAhZTUxFbHgkYH1xTTBYW
+ C1VYVlJfVx4JGB9cU0wWFgtVWENfEkhbVEdBHg5XW0tXTlYHBEBVEQMbFw0UDxQQCloJRgdPE05U
+ WR9fWQUZHEgUF10UQgUNFEpaXVcLGVQXAUkdUFVHVwEYF1daB1saCRpaEFIGSFsBGBdXWgdbGgka
+ WhBbCxFEREsZRUINEhwIWhJRQANYSlESSwUCVUVUBxIbCBtWFBhUWhkABVVYTwIRGwJQB0FNVE8e
+ cFENGh4KElZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=google.com
+X-DMARC-Info: pass=pass; dmarc-policy=reject; s=r1; d=r1; pdomain=google.com
+X-DMARC-Policy: v=DMARC1; p=reject; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Res5P/ir
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of 38yx-YxcKAGgJXObK-YNGXKY-JS-TUXKVReMUUMRK.IUS@doclist.bounces.google.com designates 209.85.219.72 as permitted sender) smtp.mailfrom=38yx-YxcKAGgJXObK-YNGXKY-JS-TUXKVReMUUMRK.IUS@doclist.bounces.google.com
+Received-SPF: pass (spf.icloud.com: domain of 38yx-YxcKAGgJXObK-YNGXKY-JS-TUXKVReMUUMRK.IUS@doclist.bounces.google.com designates 209.85.219.72 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.72; helo=mail-qv1-f72.google.com; envelope-from=38yx-YxcKAGgJXObK-YNGXKY-JS-TUXKVReMUUMRK.IUS@doclist.bounces.google.com
+Received: by mail-qv1-f72.google.com with SMTP id h15-20020a0cf8cf000000b004c6aea90e75so7117304qvo.8
+        for <darrylross@icloud.com>; Wed, 23 Nov 2022 06:23:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:date:message-id:references:reply-to:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=19uTKf+I8RvKhgt8QVt3vkpC4CHlHnTgoHfihqcecrs=;
+        b=Res5P/iruFwxTKkDnZXPggpuUJ5jlIQrEWB20xLPLNWqEb9yZe4eKqHZNzMMTrtSua
+         cx3vKuUBE27N+U3R1z74nyzRbeT9TX4wgYA5YWT3huxXmGvSEb/5rdq1Rl053uBpnJwu
+         ESJxVQB3EWEjVkzyhKVQ5n9ArNJAxdcJxjRQywB1gcI0EEKRLjrnacC/+zPOqAMuCNXO
+         9l+Bpwm7xcULP9K6IcZjvD7SvRt4kGRzC970oOiMa7y0E9K2kMe1ypGqo+jAhDCA9L02
+         X9mTSXyDyD8Q2iYmbZl0npcwHY+afCys6XKNg4s45tpmJ0Jb1yl5QCyYM74NqWJKD6Kz
+         6ORw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:date:message-id:references:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=19uTKf+I8RvKhgt8QVt3vkpC4CHlHnTgoHfihqcecrs=;
+        b=fTc73MiTNFdDqak3vdQDySK5SOE+M8iVIgWBSTvKpZDniZgAM7lSWwLJRX54fjBDP7
+         c/ATcnITJIfUirGQvU8Zvnvhdz/500P91pUN+RX+In24GcAjakDjRCulcBrWcRHKuYwZ
+         0IfRotialvaFYPpdl1mwxHkPdewdiGtEbTzJ6CmbdHV0DH2g1/tQ5kk58dyz0ggZ+bet
+         QS4LYDEv805BMo/tMoOhEEzwun6HhcgBPP08FlLeP+Y+/irOAzyz4nb6XaaU8qxQt4SD
+         uXPlqQOFIA/vuEG5A8w2FBvboRAVREcKbQ57+XRqObqOFM0Ms9Vr0UW82R+6aGi9S+aq
+         Cu9w==
+X-Gm-Message-State: ANoB5pkJN/285p3a9vwFvKfvu/cPBPM9e/PAHsqi/m75OYVEwKk6N7ye
+	VdPPDxt2Y2D8f2OiCjDqD+8G2WHdAJ5VIyFQ1kHMeDeOTbMUd8btyku2Np2zt9R9MPGaguq6xb6
+	3cLBW1BJyHeEsi3vJ
+X-Google-Smtp-Source: AA0mqf6tPlXQNyMBYsvTHZC34yN9qi3VYNMWukliHHXvJnUF8wV3lhkMmW6I0/x94Hd90XTaTV0QiG8nV6s=
+MIME-Version: 1.0
+X-Received: by 2002:ac8:7dcf:0:b0:3a5:6652:4414 with SMTP id
+ c15-20020ac87dcf000000b003a566524414mr9851522qte.645.1669213427109; Wed, 23
+ Nov 2022 06:23:47 -0800 (PST)
+Reply-To: Steffany Henry <henryst@ecolecatholique.ca>
+X-No-Auto-Attachment: 1
+References: <16b47d4b-b308-416a-b545-d708c5caf1ba@docs-share.google.com>
+Message-ID: <autogen-java-37e35470-aec8-4aa2-a037-6dfc2fe4428f@google.com>
+Date: Wed, 23 Nov 2022 14:23:47 +0000
+Subject: =?UTF-8?Q?Document_shared_with_you=3A_=22Feuille_de_r=C3=A9vision_=2D_Le?=
+	=?UTF-8?Q?s_pionniers=2Edocx=22?=
+From: "Steffany Henry (via Google Docs)" <drive-shares-dm-noreply@google.com>
+To: darrylross@icloud.com
+Cc: aalcastelli@gmail.com, aasomonye@gmail.com, amylforan@gmail.com, 
+	annie.sauve@ottawa.ca, aprilmccoleman@gmail.com, bacchiochilucie@gmail.com, 
+	caro.iza1801@gmail.com, cynthmholm@gmail.com, danielsaucier@gmail.com, 
+	diala.makdessi@yahoo.ca, formica1982@gmail.com, frazerwp@gmail.com, 
+	geoff2nev@hotmail.com, gracemorg29@gmail.com, itabaldeeb@yahoo.ca, 
+	jean-marc.sauve@ca.ibm.com, kelly.levillain@inspection.gc.ca, 
+	lilian.adirika@gmail.com, luckyfort@hotmail.com, lynnpatry@hotmail.com, 
+	m.m.ethier@icloud.com, mansour83@hotmail.com, manuelle.ethier@icloud.com, 
+	mathieu.levillain@dfo-mpo.gc.ca, mathieugauthier@rogers.com, 
+	nada_kubba@hotmail.com, natasha.vanasse@ocsb.ca, nebil.muaied@gmail.com, 
+	pvpanais@gmail.com, randymay74@hotmail.com, sauciera@gmail.com, 
+	silvia_m8@hotmail.com, suleimanalawad@hotmail.com, thegavans@live.ca, 
+	vickie.panais@gmail.com, ziadmakdessi@yahoo.com
+Content-Type: multipart/alternative; boundary="00000000000060a58605ee2409ba"
+X-MANTSH: 1TEIXW1kfGFoaGkNHB1tfQV4aGBoTGhsaGxEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXBxwZEQpZRBdiQGRBTxwBQwVzUxEKWU0XbktYQREKWUkXGnEaEBp3BgceGXEbGhgaG
+ RAYHRwcHXcGBxgaBhoRClleF2xseREKQ04XHxp7bhh+ZBJcfmNDXUJkb2deZUxQTWNjR1NcEnp
+ eZUYRClhcFxkEGgQeEwcdGEkfHx1JGQUbGhoEEhgEGx8SBBgTEBseGh8aEQpeWRdLWRNtehEKT
+ VwXBxsTHBEKTFoXbnxiUkVBEQpFWRdoa2sRCkxfF3oFBQUFBQUFBQUdEQpNThdoEQpMRhdna2s
+ RCkNaFxgaEwQSHwQYGxMEHRgRCkJeFxsRCkRJFxkcEQpCXBcbEQpeThcbEQpCSxdvSVgaYmVYY
+ mBdXBEKQkkXb0lYGmJlWGJgXVwRCkJFF2Nof2lmcG1gfWRAEQpCThdvSVgaYmVYYmBdXBEKQkw
+ XZRhZemVfG01eXXkRCkJsF2VsaWNkTExCAVNHEQpCQBd6UxlyWl5AaUEfaREKQlgXYmtOb296b
+ GdaR0sRClpYFxwRCnBnF2lmaXtraUlraUdJEBoRCnBoF2BGbUNPGh1efF1aEBoRCnBoF25Tf1N
+ GAU1nc3h4EBoRCnBoF2t7c3xaQE9Tf3xJEBoRCnBoF2JfeF96eE1BYmsbEBoRCnBoF2NDfHheb
+ 0FwQGhcEBkdEQpwfRdrRRhLZlAfTVtmRBAaEQpwZxdhemtjTGJIckBpbRAYGBEKcGsXYWt7Rx1
+ 9T0hZbF0QBx4aEQpwSxdjGBhlfkt+QnJ9BRAHGxsaEQpwfxdvRGFQEhN/GxwSfhAHGxsSEQpwX
+ xdjW1JNHnpYfE9dExAaEQpwbBd6fB0ZGWEeElIBXRAaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: Dark
+X-Proofpoint-GUID: 50QD2TN8vTIiwhNEMtOfzgIImyv8PtOl
+X-Proofpoint-ORIG-GUID: 50QD2TN8vTIiwhNEMtOfzgIImyv8PtOl
+
+--00000000000060a58605ee2409ba
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: quoted-printable
+
+I've shared an item with you:
+
+Feuille de r=C3=A9vision - Les pionniers.docx
+https://docs.google.com/document/d/1GjsAjet6Z9qBZOZRE5_wSwD7iCbH1AXV/edit?u=
+sp=3Dsharing&rtpof=3Dtrue&sd=3Dtrue&ts=3D637e2cf2
+
+It's not an attachment -- it's stored online. To open this item, just click=
+ =20
+the link above.
+
+Bonjour =C3=A0 tous,
+
+Voici la feuille d`=C3=A9tudes au sujet des pionniers pour l`=C3=A9valuatio=
+n en =20
+=C3=A9tudes sociales.
+
+L`=C3=A9valuation aura lieu mercredi le 30 novembre.
+
+Merci,
+
+Mme Steffany
+
+--=20
+Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent contenir=
+ de=20
+l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou conf=
+identielle, sujette au=20
+droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99indi=
+vidu ou =C3=A0 l=E2=80=99organisme ou =C3=A0=20
+l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie ou=
+=20
+distribution non autoris=C3=A9e du contenu de ce courriel est interdite. Si=
+ vous=20
+croyez que ce message est un pourriel au sens de la Loi canadienne=20
+anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivante :=
+=20
+pourriel@ecolecatholique.ca <mailto:pourriel@ecolecatholique.ca> . Si vous=
+=20
+avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par=20
+retour de courriel et supprimer de votre syst=C3=A8me ce message et tout=20
+document joint. Merci de votre collaboration.
+
+
+--00000000000060a58605ee2409ba
+Content-Type: text/x-amp-html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html><html amp4email><head><meta charset=3D"utf-8"><script async =
+src=3D"https://cdn.ampproject.org/v0.js"></script><script async custom-elem=
+ent=3D"amp-list" src=3D"https://cdn.ampproject.org/v0/amp-list-0.1.js"></sc=
+ript><script async custom-template=3D"amp-mustache" src=3D"https://cdn.ampp=
+roject.org/v0/amp-mustache-0.2.js"></script><script async custom-element=3D=
+"amp-form" src=3D"https://cdn.ampproject.org/v0/amp-form-0.1.js"></script><=
+script async custom-element=3D"amp-bind" src=3D"https://cdn.ampproject.org/=
+v0/amp-bind-0.1.js"></script><script async custom-element=3D"amp-timeago" s=
+rc=3D"https://cdn.ampproject.org/v0/amp-timeago-0.1.js"></script><style amp=
+4email-boilerplate>body{visibility:hidden}</style><style amp-custom>.materi=
+al-button{-webkit-appearance: none; cursor: pointer; outline: none;}.materi=
+al-button:focus {outline: 1px solid transparent;}.material-button:disabled{=
+cursor: initial; outline: none;}.material-button-filled{background-color: #=
+1a73e8; color: #fff;}.material-button-filled:hover{background-color: #1b55c=
+9; box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60,64,=
+67,0.15);}.material-button-filled:focus{background-color: #1b5fb9; box-shad=
+ow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60,64,67,0.15);}.=
+material-button-filled:active{background-color: #1b63c1; box-shadow: 0 1px =
+2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);}.materia=
+l-button-filled:disabled{background-color: rgba(60, 64, 67, .12); color: rg=
+ba(60, 64, 67, .38);}.material-button-transparent{background-color: transpa=
+rent; color: #1a73e8;}.material-button-transparent:hover{background-color: =
+rgba(26, 115, 232, .04);}.material-button-transparent:focus{background-colo=
+r: rgba(26, 115, 232, .12);}.material-button-transparent:active{background-=
+color: rgba(26, 115, 232, .12); box-shadow: 0 1px 3px 1px rgba(60, 64, 67, =
+.15);}.material-button-transparent:disabled{background-color: transparent; =
+color: #3c4043; opacity: 0.38;}@media screen and (max-width: 600px){.conten=
+t-spacer{height: 24px;}.content-spacer-small{height: 12px;}}@media screen a=
+nd (min-width: 601px){.content-spacer{height: 32px;}.content-spacer-small{h=
+eight: 20px;}}.dynamic-content-container-wrapper {margin-left: -6px; table-=
+layout: fixed; width: calc(100% + 12px);}.dynamic-content-container-wrapper=
+ * {hyphens: auto; overflow-wrap: break-word; word-wrap: break-word; word-b=
+reak: break-word;}#dynamic-content-container, .thumbnail-link {border: 1px =
+solid #DADCE0; border-radius: 8px; box-sizing: border-box;}#dynamic-content=
+-container {display: inline-block; max-width: 100%; padding: 20px; width: 4=
+05px;}#dynamic-content-container > * + * {margin-top: 18px;}.dynamic-conten=
+t-heading {display: flex; flex-direction: row;}.dynamic-content-heading > *=
+ + * {margin-left: 10px;}#star-form, #star-button {height: 22px; position: =
+relative; width: 22px;}#star-button {background: none; border: none; displa=
+y: block; outline: none; z-index: 1;}#star-button[disabled] {opacity: 0.4;}=
+#star-button:not([disabled]) {cursor: pointer;}#star-button:not([disabled])=
+:hover + .star-button-circle, #star-button:not([disabled]):focus + .star-bu=
+tton-circle{display: block; outline: 1px solid transparent;}.star-button-ci=
+rcle {background-color: #F1F3F4; border-radius: 50%; display: none; height:=
+ 32px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, =
+-50%); width: 32px;}.unstarred-icon, .starred-icon {bottom: 0; left: 0; pos=
+ition: absolute; right: 0; top: 0; visibility: hidden;}#star-button.starred=
+ > .starred-icon, #star-button.unstarred > .unstarred-icon {visibility: vis=
+ible;}#star-error-message {color: #D93025; font: 400 14px/16px Roboto, Aria=
+l, Helvetica, sans-serif; margin-top: 5px;}.display-none {display: none;}.t=
+humbnail-link {display: block; overflow: hidden; position: relative;}.thumb=
+nail-open {align-items: center; background-color: #202124; bottom: 0; color=
+: white; display: none; font: 400 14px/16px Google Sans, Roboto, Arial, Hel=
+vetica, sans-serif; justify-content: center; left: 0; letter-spacing: 0.15p=
+x; opacity: 65%; position: absolute; right: 0; top: 0; z-index: 1;}.thumbna=
+il-link:hover > .thumbnail-open, .thumbnail-link:focus > .thumbnail-open {d=
+isplay: flex;}amp-img.cover img {object-fit: cover; object-position: 0 0;}.=
+large-icon-container {align-items: center; display: flex; height: 100%; jus=
+tify-content: center;}.dynamic-message {align-items: center; display: flex;=
+ flex-direction: row;}.dynamic-message > amp-img {flex-shrink: 0;}.dynamic-=
+message > span {color: #5F6368; font: 400 14px/18px Roboto, Arial, Helvetic=
+a, sans-serif; letter-spacing: 0; margin-left: 18px;}.dynamic-message-summa=
+ry {margin-left: 16px; margin-top: 4px;}.blue-text-header {color: #1a73e8; =
+font-weight: 500;}.horizontal-rule-wrapper {margin-top: 16px;}#amp-timeago =
+{display: inline;}</style></head><body><amp-list diffable binding=3D"refres=
+h-evaluate" src=3D"https://drive.google.com/sharing/dynamicmail/fetchinvite=
+?ts=3D637e2cf2&amp;shareService=3Dkix_shadowdocs&amp;hl=3Den&amp;id=3D1GjsA=
+jet6Z9qBZOZRE5_wSwD7iCbH1AXV&amp;dynamicEmailToken=3DAXXCjH6e-54NwulNf12fkl=
+5kGmRYRR-tHhDRn_iTkm60iIm8LZEq6pHJbx4H4T0tgo9xknvk8Z0VhzflxqgSZk3z1P8MvkOIX=
+edkwYoZ_O3DsH2TJcT62jjzp1DejVw%3D&amp;resourcekey&amp;buildLabel=3Ddrive.ex=
+plorer_20221115.11_p1" single-item items=3D"." layout=3D"container"><templa=
+te type=3D"amp-mustache"><table style=3D"border-collapse: collapse; width: =
+100%; background-color: white; text-align: center;" role=3D"presentation"><=
+tr><td style=3D"padding: 24px 0 16px 0;"><table style=3D"border-collapse: c=
+ollapse;font-family: Roboto, Arial, Helvetica, sans-serif;hyphens: auto; ov=
+erflow-wrap: break-word; word-wrap: break-word; word-break: break-word;disp=
+lay: inline-block; width: 90%;max-width: 700px;min-width: 280px; text-align=
+: left;" role=3D"presentation"><tr><td style=3D"padding: 0;"><table style=
+=3D"width:100%; border: 1px solid #dadce0; border-radius: 8px; border-spaci=
+ng: 0; table-layout:fixed; border-collapse: separate;" role=3D"presentation=
+"><tr><td style=3D"padding: 4.5%;" dir=3D"ltr"><div style=3D"margin-bottom:=
+32px;font-family: Google Sans, Roboto, Arial, Helvetica, sans-serif; font-s=
+tyle: normal; font-size: 28px; line-height: 36px; color: #3c4043;">Steffany=
+ Henry shared a document</div><table style=3D"border-collapse: collapse;fon=
+t-family: Roboto, Arial, Helvetica, sans-serif; font-size:16px; line-height=
+:24px; color:#202124; letter-spacing:0.1px; table-layout:fixed; width:100%;=
+ overflow-wrap: break-word;" role=3D"presentation"><tr><td style=3D"padding=
+: 0; vertical-align:top; width:50px;"><!--[if mso]><v:oval xmlns:v=3D"urn:s=
+chemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word"=
+ style=3D"height:50px;width:50px;" fill=3D"t" stroke=3D"f"><v:fill type=3D"=
+frame" src=3D"https://ssl.gstatic.com/s2/profiles/images/silhouette64.png" =
+alt=3D"Unknown profile photo" style=3D"height:50px;width:50px;"/></v:oval><=
+![endif]--><div style=3D"mso-hide:all;"><amp-img style=3D"border-radius:50%=
+; display:block;" width=3D"50" height=3D"50" src=3D"https://ssl.gstatic.com=
+/s2/profiles/images/silhouette64.png" alt=3D"Unknown profile photo"></amp-i=
+mg></div></td><td style=3D"padding: 0; vertical-align:top; padding-left:12p=
+x;"><div style=3D"padding-top:12px;">Steffany Henry (<a href=3D"mailto:henr=
+yst@ecolecatholique.ca" style=3D"color:inherit;text-decoration:none">henrys=
+t@ecolecatholique.ca</a>) has invited you to <b>view</b> the following docu=
+ment:</div><div style=3D"margin-top:24px; color:#5F6368">Bonjour =C3=A0 tou=
+s,<br><br>Voici la feuille d`=C3=A9tudes au sujet des pionniers pour l`=C3=
+=A9valuation en =C3=A9tudes sociales.<br><br>L`=C3=A9valuation aura lieu me=
+rcredi le 30 novembre.<br><br>Merci,<br><br>Mme Steffany</div></td></tr></t=
+able><table class=3D"dynamic-content-container-wrapper" role=3D"presentatio=
+n"><tr style=3D"height: 20px;"></tr><tr><td id=3D"dynamic-content-container=
+" role=3D"presentation" tabindex=3D"0"><div class=3D"dynamic-content-headin=
+g"><a href=3D"https://docs.google.com/document/d/1GjsAjet6Z9qBZOZRE5_wSwD7i=
+CbH1AXV/edit?usp=3Dsharing_eil_se_dm&amp;rtpof=3Dtrue&amp;sd=3Dtrue&amp;ts=
+=3D637e2cf2" target=3D"_blank" style=3D"color: #3c4043; display: inline-blo=
+ck; max-width: 100%; text-decoration: none; vertical-align: top;display: fl=
+ex; flex-direction: column; justify-content: center;"><div style=3D"line-he=
+ight: 18px; overflow: hidden; text-overflow: ellipsis;display: flex;"><span=
+ style=3D"display: inline-block; vertical-align: top; min-width: 26px; widt=
+h: 26px;"><amp-img src=3D"https://ssl.gstatic.com/docs/doclist/images/media=
+type/icon_1_word_x64.png" width=3D"18" height=3D"18" style=3D"vertical-alig=
+n: top;" role=3D"presentation"></amp-img></span><span style=3D"font: 500 14=
+px/18px Google Sans, Roboto, Arial, Helvetica, sans-serif; display: inline;=
+ letter-spacing: 0.2px;">Feuille de r=C3=A9vision - Les pionniers.docx</spa=
+n></div></a><form id=3D"star-form" action-xhr=3D"https://drive.google.com/s=
+haring/dynamicmail/star?ts=3D637e2cf2&amp;shareService=3Dkix_shadowdocs&amp=
+;hl=3Den&amp;id=3D1GjsAjet6Z9qBZOZRE5_wSwD7iCbH1AXV&amp;dynamicEmailToken=
+=3DAXXCjH6e-54NwulNf12fkl5kGmRYRR-tHhDRn_iTkm60iIm8LZEq6pHJbx4H4T0tgo9xknvk=
+8Z0VhzflxqgSZk3z1P8MvkOIXedkwYoZ_O3DsH2TJcT62jjzp1DejVw%3D&amp;resourcekey&=
+amp;buildLabel=3Ddrive.explorer_20221115.11_p1" method=3D"post" on=3D"submi=
+t: dynamic-content-container.focus, AMP.setState({starButton: {value: starB=
+utton =3D=3D null ? {{starredByRequester}} : starButton.value, inProgress: =
+true, error: false}}); submit-success: AMP.setState({starButton: {value: !s=
+tarButton.value, inProgress: false, error: false}}); submit-error: AMP.setS=
+tate({starButton: {inProgress: false, error: true}});"><input type=3D"hidde=
+n" name=3D"starred" value=3D"{{#starredByRequester}}false{{/starredByReques=
+ter}}{{^starredByRequester}}true{{/starredByRequester}}" data-amp-bind-valu=
+e=3D"starButton.value ? 'false' : 'true'"><button id=3D"star-button" class=
+=3D"{{#starredByRequester}}starred{{/starredByRequester}}{{^starredByReques=
+ter}}unstarred{{/starredByRequester}}" data-amp-bind-class=3D"starButton.va=
+lue ? 'starred' : 'unstarred'" type=3D"submit" aria-live=3D"polite" aria-la=
+bel=3D"{{#starredByRequester}}Starred{{/starredByRequester}}{{^starredByReq=
+uester}}Unstarred{{/starredByRequester}}" data-amp-bind-aria-label=3D"starB=
+utton.value ? 'Starred' : 'Unstarred'" title=3D"Star in Drive" data-amp-bin=
+d-disabled=3D"starButton.inProgress"><amp-img src=3D"https://fonts.gstatic.=
+com/s/i/googlematerialicons/star_border/v8/gm_grey-48dp/1x/gm_star_border_g=
+m_grey_48dp.png" layout=3D"fixed" width=3D"22" height=3D"22" role=3D"presen=
+tation" aria-hidden=3D"true" class=3D"unstarred-icon"></amp-img><amp-img sr=
+c=3D"https://fonts.gstatic.com/s/i/googlematerialicons/star/v8/gm_grey-48dp=
+/1x/gm_star_gm_grey_48dp.png" layout=3D"fixed" width=3D"22" height=3D"22" r=
+ole=3D"presentation" aria-hidden=3D"true" class=3D"starred-icon"></amp-img>=
+</button><div class=3D"star-button-circle"></div></form></div><div id=3D"st=
+ar-error-message" class=3D"display-none" data-amp-bind-class=3D"starButton.=
+error ? '' : 'display-none'">Something went wrong. Try again</div><a href=
+=3D"https://docs.google.com/document/d/1GjsAjet6Z9qBZOZRE5_wSwD7iCbH1AXV/ed=
+it?usp=3Dsharing_eil_se_dm&amp;rtpof=3Dtrue&amp;sd=3Dtrue&amp;ts=3D637e2cf2=
+" target=3D"_blank" class=3D"thumbnail-link"><amp-layout layout=3D"responsi=
+ve" width=3D"386" height=3D"202">{{#thumbnailUrl}}<amp-img class=3D"cover" =
+src=3D"{{thumbnailUrl}}" layout=3D"fill"><div class=3D"large-icon-container=
+" fallback><amp-img src=3D"https://drive-thirdparty.googleusercontent.com/2=
+56/type/application/vnd.openxmlformats-officedocument.wordprocessingml.docu=
+ment" width=3D"80" height=3D"80"></amp-img></div></amp-img>{{/thumbnailUrl}=
+}{{^thumbnailUrl}}<div class=3D"large-icon-container"><amp-img src=3D"https=
+://drive-thirdparty.googleusercontent.com/256/type/application/vnd.openxmlf=
+ormats-officedocument.wordprocessingml.document" width=3D"80" height=3D"80"=
+></amp-img></div>{{/thumbnailUrl}}</amp-layout><div class=3D"thumbnail-open=
+">Open</div></a>{{#summaryDescription}}<div><div class=3D"dynamic-message">=
+<amp-img src=3D"https://www.gstatic.com/docs/documents/share/images/smart_s=
+ummary.png" layout=3D"fixed" width=3D"16" height=3D"16" role=3D"presentatio=
+n" aria-hidden=3D"true"></amp-img><span><span class=3D"blue-text-header">Su=
+mmary</span></span></div><div class=3D"dynamic-message dynamic-message-summ=
+ary"><span>{{summaryDescription}}</span></div><div class=3D"horizontal-rule=
+-wrapper"><div style=3D"height: 1px; background-color: #DADCE0;"></div></di=
+v></div>{{/summaryDescription}}{{#ownerOrCreatorMessage}}<div class=3D"dyna=
+mic-message"><amp-img src=3D"https://www.gstatic.com/docs/documents/share/i=
+mages/person.png" layout=3D"fixed" width=3D"16" height=3D"16" role=3D"prese=
+ntation" aria-hidden=3D"true"></amp-img><span>{{ownerOrCreatorMessage}}</sp=
+an></div>{{/ownerOrCreatorMessage}}{{#lastEdited}}<div class=3D"dynamic-mes=
+sage"><amp-img src=3D"https://www.gstatic.com/docs/documents/share/images/c=
+lock.png" layout=3D"fixed" width=3D"16" height=3D"16" role=3D"presentation"=
+ aria-hidden=3D"true"></amp-img><span>Last edited by {{lastEdited.editor}} =
+<amp-timeago id=3D"amp-timeago" layout=3D"fixed-height" height=3D"1" dateti=
+me=3D"{{lastEdited.datetime}}" locale=3D"en">{{lastEdited.datetime}}</amp-t=
+imeago></span></div>{{/lastEdited}}</td></tr></table><table style=3D"border=
+-collapse: collapse;" role=3D"presentation"><tr style=3D"height: 32px"><td>=
+</td></tr></table><div><a href=3D"https://docs.google.com/document/d/1GjsAj=
+et6Z9qBZOZRE5_wSwD7iCbH1AXV/edit?usp=3Dsharing_eip_se_dm&amp;rtpof=3Dtrue&a=
+mp;sd=3Dtrue&amp;ts=3D637e2cf2" class=3D"material-button material-button-fi=
+lled" target=3D"_blank" tabindex=3D"0" role=3D"button" style=3D"padding: 0 =
+24px;font: 500 14px/36px Google Sans, Roboto, Arial, Helvetica, sans-serif;=
+ border: none; border-radius: 18px; box-sizing: border-box; display: inline=
+-block; letter-spacing: .25px; min-height: 36px; text-align: center; text-d=
+ecoration: none;">Open</a></div><table style=3D"border-collapse: collapse;"=
+ role=3D"presentation"><tr style=3D"height: 32px"><td></td></tr></table><di=
+v style=3D"font-size: 12px; color: #5F6368">If you don't want to receive fi=
+les from this person, <a href=3D"https://drive.google.com/drive/blockuser?b=
+lockerEmail=3Ddarrylross@icloud.com&amp;blockeeEmail=3Dhenryst@ecolecatholi=
+que.ca&amp;usp=3Dsharing_eib_se_dm" target=3D"_blank" style=3D"color: #1a73=
+e8; text-decoration: none;">block the sender</a> from Drive</div></td></tr>=
+</table><table style=3D"border-collapse: collapse; width: 100%;" role=3D"pr=
+esentation"><tr><td style=3D"padding: 24px 4.5%"><table style=3D"border-col=
+lapse: collapse; width: 100%;" dir=3D"ltr"><tr><td style=3D"padding: 0;font=
+-family: Roboto, Arial, Helvetica, sans-serif; color: #5F6368; width: 100%;=
+ font-size: 12px; line-height: 16px; min-height: 40px; letter-spacing: .3px=
+;">Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA<br/>=
+ You have received this email because <a href=3D"mailto:henryst@ecolecathol=
+ique.ca" style=3D"color:inherit;text-decoration:none">henryst@ecolecatholiq=
+ue.ca</a> shared a document with you from Google Docs.</td><td style=3D"pad=
+ding: 0;padding-left: 20px; min-width: 96px"><a href=3D"https://workspace.g=
+oogle.com/" target=3D"_blank"><amp-img src=3D"https://www.gstatic.com/docs/=
+documents/share/images/googleworkspace_logo_192x80.png" width=3D"96" height=
+=3D"40" alt=3D"Google logo"></amp-img></a></td></tr></table></td></tr></tab=
+le></td></tr></table></td></tr></table></template><div role=3D"list"><table=
+ style=3D"border-collapse: collapse; width: 100%; background-color: white; =
+text-align: center;" role=3D"presentation"><tr><td style=3D"padding: 24px 0=
+ 16px 0;"><table style=3D"border-collapse: collapse;font-family: Roboto, Ar=
+ial, Helvetica, sans-serif;hyphens: auto; overflow-wrap: break-word; word-w=
+rap: break-word; word-break: break-word;display: inline-block; width: 90%;m=
+ax-width: 700px;min-width: 280px; text-align: left;" role=3D"presentation">=
+<tr><td style=3D"padding: 0;"><table style=3D"width:100%; border: 1px solid=
+ #dadce0; border-radius: 8px; border-spacing: 0; table-layout:fixed; border=
+-collapse: separate;" role=3D"presentation"><tr><td style=3D"padding: 4.5%;=
+" dir=3D"ltr"><div style=3D"margin-bottom:32px;font-family: Google Sans, Ro=
+boto, Arial, Helvetica, sans-serif; font-style: normal; font-size: 28px; li=
+ne-height: 36px; color: #3c4043;">Steffany Henry shared a document</div><ta=
+ble style=3D"border-collapse: collapse;font-family: Roboto, Arial, Helvetic=
+a, sans-serif; font-size:16px; line-height:24px; color:#202124; letter-spac=
+ing:0.1px; table-layout:fixed; width:100%; overflow-wrap: break-word;" role=
+=3D"presentation"><tr><td style=3D"padding: 0; vertical-align:top; width:50=
+px;"><!--[if mso]><v:oval xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=
+=3D"urn:schemas-microsoft-com:office:word" style=3D"height:50px;width:50px;=
+" fill=3D"t" stroke=3D"f"><v:fill type=3D"frame" src=3D"https://ssl.gstatic=
+.com/s2/profiles/images/silhouette64.png" alt=3D"Unknown profile photo" sty=
+le=3D"height:50px;width:50px;"/></v:oval><![endif]--><div style=3D"mso-hide=
+:all;"><amp-img style=3D"border-radius:50%; display:block;" width=3D"50" he=
+ight=3D"50" src=3D"https://ssl.gstatic.com/s2/profiles/images/silhouette64.=
+png" alt=3D"Unknown profile photo"></amp-img></div></td><td style=3D"paddin=
+g: 0; vertical-align:top; padding-left:12px;"><div style=3D"padding-top:12p=
+x;">Steffany Henry (<a href=3D"mailto:henryst@ecolecatholique.ca" style=3D"=
+color:inherit;text-decoration:none">henryst@ecolecatholique.ca</a>) has inv=
+ited you to <b>view</b> the following document:</div><div style=3D"margin-t=
+op:24px; color:#5F6368">Bonjour =C3=A0 tous,<br><br>Voici la feuille d`=C3=
+=A9tudes au sujet des pionniers pour l`=C3=A9valuation en =C3=A9tudes socia=
+les.<br><br>L`=C3=A9valuation aura lieu mercredi le 30 novembre.<br><br>Mer=
+ci,<br><br>Mme Steffany</div></td></tr></table><table style=3D"border-spaci=
+ng:0 4px; table-layout:fixed; width:100%; overflow-wrap: break-word;" role=
+=3D"presentation"><tr style=3D"height:28px;"></tr><tr><td style=3D"padding:=
+ 0;"><a href=3D"https://docs.google.com/document/d/1GjsAjet6Z9qBZOZRE5_wSwD=
+7iCbH1AXV/edit?usp=3Dsharing_eil_se_dm&amp;rtpof=3Dtrue&amp;sd=3Dtrue&amp;t=
+s=3D637e2cf2" target=3D"_blank" style=3D"color: #3c4043; display: inline-bl=
+ock; max-width: 100%; text-decoration: none; vertical-align: top;border: 1p=
+x solid #DADCE0; border-radius: 16px; white-space: nowrap;"><div style=3D"l=
+ine-height: 18px; overflow: hidden; text-overflow: ellipsis;padding: 6px 12=
+px;"><span style=3D"display: inline-block; vertical-align: top; min-width: =
+26px; width: 26px;"><amp-img src=3D"https://ssl.gstatic.com/docs/doclist/im=
+ages/mediatype/icon_1_word_x64.png" width=3D"18" height=3D"18" style=3D"ver=
+tical-align: top;" role=3D"presentation"></amp-img></span><span style=3D"fo=
+nt: 500 14px/18px Google Sans, Roboto, Arial, Helvetica, sans-serif; displa=
+y: inline; letter-spacing: 0.2px;">Feuille de r=C3=A9vision - Les pionniers=
+.docx</span></div></a></td></tr></table><table style=3D"border-collapse: co=
+llapse;" role=3D"presentation"><tr style=3D"height: 32px"><td></td></tr></t=
+able><div><a href=3D"https://docs.google.com/document/d/1GjsAjet6Z9qBZOZRE5=
+_wSwD7iCbH1AXV/edit?usp=3Dsharing_eip_se_dm&amp;rtpof=3Dtrue&amp;sd=3Dtrue&=
+amp;ts=3D637e2cf2" class=3D"material-button material-button-filled" target=
+=3D"_blank" tabindex=3D"0" role=3D"button" style=3D"padding: 0 24px;font: 5=
+00 14px/36px Google Sans, Roboto, Arial, Helvetica, sans-serif; border: non=
+e; border-radius: 18px; box-sizing: border-box; display: inline-block; lett=
+er-spacing: .25px; min-height: 36px; text-align: center; text-decoration: n=
+one;">Open</a></div><table style=3D"border-collapse: collapse;" role=3D"pre=
+sentation"><tr style=3D"height: 32px"><td></td></tr></table><div style=3D"f=
+ont-size: 12px; color: #5F6368">If you don't want to receive files from thi=
+s person, <a href=3D"https://drive.google.com/drive/blockuser?blockerEmail=
+=3Ddarrylross@icloud.com&amp;blockeeEmail=3Dhenryst@ecolecatholique.ca&amp;=
+usp=3Dsharing_eib_se_dm" target=3D"_blank" style=3D"color: #1a73e8; text-de=
+coration: none;">block the sender</a> from Drive</div></td></tr></table><ta=
+ble style=3D"border-collapse: collapse; width: 100%;" role=3D"presentation"=
+><tr><td style=3D"padding: 24px 4.5%"><table style=3D"border-collapse: coll=
+apse; width: 100%;" dir=3D"ltr"><tr><td style=3D"padding: 0;font-family: Ro=
+boto, Arial, Helvetica, sans-serif; color: #5F6368; width: 100%; font-size:=
+ 12px; line-height: 16px; min-height: 40px; letter-spacing: .3px;">Google L=
+LC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA<br/> You have r=
+eceived this email because <a href=3D"mailto:henryst@ecolecatholique.ca" st=
+yle=3D"color:inherit;text-decoration:none">henryst@ecolecatholique.ca</a> s=
+hared a document with you from Google Docs.</td><td style=3D"padding: 0;pad=
+ding-left: 20px; min-width: 96px"><a href=3D"https://workspace.google.com/"=
+ target=3D"_blank"><amp-img src=3D"https://www.gstatic.com/docs/documents/s=
+hare/images/googleworkspace_logo_192x80.png" width=3D"96" height=3D"40" alt=
+=3D"Google logo"></amp-img></a></td></tr></table></td></tr></table></td></t=
+r></table></td></tr></table></div></amp-list></body></html>
+--00000000000060a58605ee2409ba
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><table style=3D"border-collapse: collapse; width: =
+100%; background-color: white; text-align: center;" role=3D"presentation"><=
+tr><td style=3D"padding: 24px 0 16px 0;"><table style=3D"border-collapse: c=
+ollapse;font-family: Roboto, Arial, Helvetica, sans-serif;hyphens: auto; ov=
+erflow-wrap: break-word; word-wrap: break-word; word-break: break-word;disp=
+lay: inline-block; width: 90%;max-width: 700px;min-width: 280px; text-align=
+: left;" role=3D"presentation"><tr><td style=3D"padding: 0;"><table style=
+=3D"width:100%; border: 1px solid #dadce0; border-radius: 8px; border-spaci=
+ng: 0; table-layout:fixed; border-collapse: separate;" role=3D"presentation=
+"><tr><td style=3D"padding: 4.5%;" dir=3D"ltr"><div style=3D"margin-bottom:=
+32px;font-family: Google Sans, Roboto, Arial, Helvetica, sans-serif; font-s=
+tyle: normal; font-size: 28px; line-height: 36px; color: #3c4043;">Steffany=
+ Henry shared a document</div><table style=3D"border-collapse: collapse;fon=
+t-family: Roboto, Arial, Helvetica, sans-serif; font-size:16px; line-height=
+:24px; color:#202124; letter-spacing:0.1px; table-layout:fixed; width:100%;=
+ overflow-wrap: break-word;" role=3D"presentation"><tr><td style=3D"padding=
+: 0; vertical-align:top; width:50px;"><!--[if mso]><v:oval xmlns:v=3D"urn:s=
+chemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word"=
+ style=3D"height:50px;width:50px;" fill=3D"t" stroke=3D"f"><v:fill type=3D"=
+frame" src=3D"https://ssl.gstatic.com/s2/profiles/images/silhouette64.png" =
+alt=3D"Unknown profile photo" style=3D"height:50px;width:50px;"/></v:oval><=
+![endif]--><div style=3D"mso-hide:all;"><img style=3D"border-radius:50%; di=
+splay:block;" width=3D"50" height=3D"50" src=3D"https://ssl.gstatic.com/s2/=
+profiles/images/silhouette64.png" alt=3D"Unknown profile photo"></div></td>=
+<td style=3D"padding: 0; vertical-align:top; padding-left:12px;"><div style=
+=3D"padding-top:12px;">Steffany Henry (<a href=3D"mailto:henryst@ecolecatho=
+lique.ca" style=3D"color:inherit;text-decoration:none">henryst@ecolecatholi=
+que.ca</a>) has invited you to <b>view</b> the following document:</div><di=
+v style=3D"margin-top:24px; color:#5F6368">Bonjour =C3=A0 tous,<br><br>Voic=
+i la feuille d`=C3=A9tudes au sujet des pionniers pour l`=C3=A9valuation en=
+ =C3=A9tudes sociales.<br><br>L`=C3=A9valuation aura lieu mercredi le 30 no=
+vembre.<br><br>Merci,<br><br>Mme Steffany</div></td></tr></table><table sty=
+le=3D"border-spacing:0 4px; table-layout:fixed; width:100%; overflow-wrap: =
+break-word;" role=3D"presentation"><tr style=3D"height:28px;"></tr><tr><td =
+style=3D"padding: 0;"><a href=3D"https://docs.google.com/document/d/1GjsAje=
+t6Z9qBZOZRE5_wSwD7iCbH1AXV/edit?usp=3Dsharing_eil_m&amp;rtpof=3Dtrue&amp;sd=
+=3Dtrue&amp;ts=3D637e2cf2" target=3D"_blank" style=3D"color: #3c4043; displ=
+ay: inline-block; max-width: 100%; text-decoration: none; vertical-align: t=
+op;border: 1px solid #DADCE0; border-radius: 16px; white-space: nowrap;"><d=
+iv style=3D"line-height: 18px; overflow: hidden; text-overflow: ellipsis;pa=
+dding: 6px 12px;"><span style=3D"display: inline-block; vertical-align: top=
+; min-width: 26px; width: 26px;"><img src=3D"https://ssl.gstatic.com/docs/d=
+oclist/images/mediatype/icon_1_word_x64.png" width=3D"18" height=3D"18" sty=
+le=3D"vertical-align: top;" role=3D"presentation"></span><span style=3D"fon=
+t: 500 14px/18px Google Sans, Roboto, Arial, Helvetica, sans-serif; display=
+: inline; letter-spacing: 0.2px;">Feuille de r=C3=A9vision - Les pionniers.=
+docx</span></div></a></td></tr></table><table style=3D"border-collapse: col=
+lapse;" role=3D"presentation"><tr style=3D"height: 32px"><td></td></tr></ta=
+ble><div><!--[if mso]><v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml=
+" xmlns:w=3D"urn:schemas-microsoft-com:office:word" href=3D"https://docs.go=
+ogle.com/document/d/1GjsAjet6Z9qBZOZRE5_wSwD7iCbH1AXV/edit?usp=3Dsharing_ei=
+p_m&amp;rtpof=3Dtrue&amp;sd=3Dtrue&amp;ts=3D637e2cf2" style=3D"height:36px;=
+v-text-anchor:middle;width:100px;" arcsize=3D"50%" stroke=3D"f" fillcolor=
+=3D"#1a73e8"><w:anchorlock/><center style=3D"color:#ffffff;font-family:Aria=
+l,Helvetica,sans-serif;font-weight:500;font-size:14px;">Open </center></v:r=
+oundrect><![endif]--><a href=3D"https://docs.google.com/document/d/1GjsAjet=
+6Z9qBZOZRE5_wSwD7iCbH1AXV/edit?usp=3Dsharing_eip_m&amp;rtpof=3Dtrue&amp;sd=
+=3Dtrue&amp;ts=3D637e2cf2" class=3D"material-button material-button-filled"=
+ target=3D"_blank" tabindex=3D"0" role=3D"button" style=3D"mso-hide:all;pad=
+ding: 0 24px;font: 500 14px/36px Google Sans, Roboto, Arial, Helvetica, san=
+s-serif; border: none; border-radius: 18px; box-sizing: border-box; display=
+: inline-block; letter-spacing: .25px; min-height: 36px; text-align: center=
+; text-decoration: none;background-color: #1a73e8; color: #fff; cursor: poi=
+nter;">Open</a></div><table style=3D"border-collapse: collapse;" role=3D"pr=
+esentation"><tr style=3D"height: 32px"><td></td></tr></table><div style=3D"=
+font-size: 12px; color: #5F6368">If you don't want to receive files from th=
+is person, <a href=3D"https://drive.google.com/drive/blockuser?blockerEmail=
+=3Ddarrylross@icloud.com&amp;blockeeEmail=3Dhenryst@ecolecatholique.ca&amp;=
+usp=3Dsharing_eib_m" target=3D"_blank" style=3D"color: #1a73e8; text-decora=
+tion: none;">block the sender</a> from Drive</div></td></tr></table><table =
+style=3D"border-collapse: collapse; width: 100%;" role=3D"presentation"><tr=
+><td style=3D"padding: 24px 4.5%"><table style=3D"border-collapse: collapse=
+; width: 100%;" dir=3D"ltr"><tr><td style=3D"padding: 0;font-family: Roboto=
+, Arial, Helvetica, sans-serif; color: #5F6368; width: 100%; font-size: 12p=
+x; line-height: 16px; min-height: 40px; letter-spacing: .3px;">Google LLC, =
+1600 Amphitheatre Parkway, Mountain View, CA 94043, USA<br/> You have recei=
+ved this email because <a href=3D"mailto:henryst@ecolecatholique.ca" style=
+=3D"color:inherit;text-decoration:none">henryst@ecolecatholique.ca</a> shar=
+ed a document with you from Google Docs.</td><td style=3D"padding: 0;paddin=
+g-left: 20px; min-width: 96px"><a href=3D"https://workspace.google.com/" ta=
+rget=3D"_blank"><img src=3D"https://www.gstatic.com/docs/documents/share/im=
+ages/googleworkspace_logo_192x80.png" width=3D"96" height=3D"40" alt=3D"Goo=
+gle logo"></a></td></tr></table></td></tr></table></td></tr></table></td></=
+tr></table></body></html>
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+>
+--00000000000060a58605ee2409ba--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1108135</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1669213429</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>4210</string>
+</dict>
+</plist>

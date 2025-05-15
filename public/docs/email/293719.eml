@@ -1,0 +1,268 @@
+13281     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33072101.me.com by p133-mailgateway-smtp-6f4b589d88-45hfp (mailgateway 2314B262)
+	with SMTP id 42c362ad-2ebc-43fc-84bd-334f78b1906b 
+	for <darrylross@icloud.com>; Fri, 14 Apr 2023 16:29:17 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 42c362ad-2ebc-43fc-84bd-334f78b1906b
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by ms13p00im-qukt33072101.me.com (Postfix) with ESMTPS id E494A5900127
+	for <darrylross@icloud.com>; Fri, 14 Apr 2023 16:29:14 +0000 (UTC)
+X-ICL-SCORE: 3.333033030000
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkVJRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQFoQXgcZFltVFVFfDlgc
+ DEZVVgJVWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwHGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlSDVbMwsGdBIaMQEfQVJGVicuVCBFRV0YNBFfMkljZAYiHQEt
+ DwACBCoLNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JtRsaC1h
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.47 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.47 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.47; helo=mail-ej1-f47.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id dx24so2944106ejb.11
+        for <darrylross@icloud.com>; Fri, 14 Apr 2023 09:29:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681489754; x=1684081754;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2/SmXyfaIG7apdc3YbkQR3/mYfNsfqQ7qhZWFCBnVrs=;
+        b=JtRsaC1h1Wjw1tUMATIZcjymFHBAivVQRyI1MRpZ1gTY1wv+qmjIDRA9sO+OBnIfrv
+         b/bkLSzEal2DHwGkozOi6HUyBNoI8T1+KQJcyx4/6JowazKC4Ai0WGYotFpdTVb29cSH
+         cDSst9w9Aj+P+CMaB2UOfiemJOftZCFEuiy7CFPMlVp2eoQxna5EpVstTHTkDVp4cNxy
+         nEDO999Amn+oqMck8LGGxvb9xq+x6uIMh5RiS7x3WQ3ORpWRUWP/3kCzSyq59FSrPbzb
+         3Why9f2LDK9cl/uYftAnNwlcbiSx/MhOgfjSVcEPRjy2x/FgnKEL1E3ERB6ZLGe4yp2I
+         BDuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681489754; x=1684081754;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2/SmXyfaIG7apdc3YbkQR3/mYfNsfqQ7qhZWFCBnVrs=;
+        b=W06zMbAZLA39AKYQjJCm0HLq0tjVBTWr56lAl5FICSV7XVNpy6cTjN7IXjiVEhs+QF
+         PTqoH3e/6thHf4PKrHfdv0USjuDc16+NEmqHnKfSc4TG9ULfUGRBrPZEXc+eFDKKlK0N
+         hAbuM9/k8w4b/EPKTzorJJxHfK2RxtgOg5hxLLDcEA1k14EhwgEWuvuQ05Jx5RxLnGhY
+         vGEA7io+3GlEUmDMba39OLeBdjjDFVnshS/zE9zRN8EV0bQQVWPfNeVV7lLEfBEw3LVH
+         nt+GU6bQuqaWQA/4rK7YUQDOUdIfNn6KKmbEHqGdeT4MF0FntcWuBHuOFn51i2jLn4uL
+         +0og==
+X-Gm-Message-State: AAQBX9dxE5av+mcXwKQVVR8wxiFD73O+TIPU0/W7K5upIwOjZVSlOg40
+	7r+TwpTZ/snc9HGYSyvg3+1wAt3QGzbP9o9CyrfGMUx7
+X-Google-Smtp-Source: AKy350ZWvH5cWw0249djZARzfhv5pinllzDLkSTlrfHIJ1pB7JSbG+LzIytAkuKWL99Pibg78PtUu945MnT4z8CrYgw=
+X-Received: by 2002:a17:906:55c9:b0:94a:597f:30ee with SMTP id
+ z9-20020a17090655c900b0094a597f30eemr3200195ejp.15.1681489753873; Fri, 14 Apr
+ 2023 09:29:13 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRGoMT_hfj-K=6z21VbpP4_CQRMHN5aRPFjgpVd5T4HrkA@mail.gmail.com>
+ <D7B35CB0-A19D-4993-95BF-332AAC7738F8@icloud.com> <CAFnbyRFqv+bE+e4Dv1UgqRzpaqOLr=RsRAjrUsPSP5A+V7=Upg@mail.gmail.com>
+ <296F9248-6A8F-4DE0-B659-015F2AA2523D@icloud.com>
+In-Reply-To: <296F9248-6A8F-4DE0-B659-015F2AA2523D@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 14 Apr 2023 12:29:02 -0400
+Message-ID: <CAFnbyRG=L=Ds6BpoHgh9bp4RW2W=ukzAh9E1SRdWdgZw04f_rQ@mail.gmail.com>
+Subject: Re: Soccer
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <alison.boyce@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="00000000000079222505f94e577b"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdnSWVLbUBHSXB4Q
+ ntoWgdtTHpca2FSTRoceG4bB1kaexEKWFwXGQQaBB8aBRsaBBMEGx0EGBgcEBseGh8aEQpeWRd
+ ISFN6GBEKTVwXHR4RCkxaF01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGBsSBB4dEQpCXhcbEQpES
+ RcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x
+ 4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJE
+ QpCQBdiHmNNQH1YYG5zBREKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2VMWWwZRml
+ QRlBQEBkaEQpwaBdpf09fEwFfQWZEARAZGhEKcGgXZUYSXkNnU3NhQUcQGRoRCnBoF2VHZUdYb
+ HhuWXNwEBkaEQpwaBdiQk8aSWduUlNzExAZGhEKcGgXaEsfeVJTbFtAEn0QGRoRCnBoF2IfWht
+ CYHJbG09zEBkaEQpwaBdhGXNzZ09cc1lPaxAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRC
+ lhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: McOaGjmcZRhQBp-GfPvAKxg06RD1-s0Q
+X-Proofpoint-GUID: McOaGjmcZRhQBp-GfPvAKxg06RD1-s0Q
+
+--00000000000079222505f94e577b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+I am not agreeable to increase parenting time, or a change in supervision.
+It's important to note, in 2022, I agreed to extend Sunday visits and since
+the judgement I have provided consistent access to the girls even on
+holidays and long weekends. They have only missed a visit due to illness in
+which you called enforcement.
+
+My lawyer is aware of my position.
+
+Fortunately, Alice's practice with her team is on Sunday from noon-1 pm,
+thus they will be dropped off at the same time as usual.
+
+Charlotte will make up her 3-4 pm Sunday practice during the week for the
+month.
+
+The schedule will change from May-September once they are playing outdoors.
+He explained practices will most likely not take place Sunday afternoons
+but they will move to three times a week so Tuesday visits may have to
+switch to another day.
+
+Cynthia
+
+
+
+
+On Fri, Apr 14, 2023 at 11:33 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I can confirm Sunday drop off at noon.
+>
+> I had a conversation with Allison about how to make progress on the issue
+> of supervision and increasing parenting time given that reunification
+> therapy is not an option and requesting the case be referred to OCL seems
+> the best way. Before making a request to the judge I have to see if you=
+=E2=80=99re
+> agreeable. Please let me know by April 19.
+>
+> Darryl
+>
+> On Apr 14, 2023, at 08:36, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> I will be in touch for times for now it will be Sunday afternoon, just
+> confirming time.
+>
+>
+> On Thu, Apr 13, 2023 at 8:03 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hi Cynthia,
+>>
+>> As I=E2=80=99ve communicated previously my mom is not available Saturday=
+s so the
+>> girls will not be available Sunday for practice until we move to
+>> unsupervised visits. If you are agreeable to unsupervised visits it will=
+ be
+>> possible to move my time with them to Saturdays. If not then Sunday visi=
+ts
+>> will continue as agreed until I the order is updated.
+>>
+>> Darryl
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Apr 13, 2023, at 19:18, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl,
+>>
+>> Alice now has practices this Sunday at 1 pm- 2 pm and then Charlotte at
+>> 3-4 pm for the Spring season.
+>>
+>> I=E2=80=99m willing to skip Charlotte=E2=80=99s this week but going forw=
+ard we will have
+>> to look at a different time on weekends until the Summer schedule which
+>> begins May 11.
+>>
+>> I am going to speak to the director tomorrow and get an exact idea of
+>> what we can expect and I will let you know.
+>>
+>> The visits have been going ok and I want to make sure you have your
+>> agreed upon time as well.
+>>
+>> I will be in touch but wanted to give you a heads up as I just learned.
+>>
+>>
+>>
+>
+
+--00000000000079222505f94e577b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">I am not agreeable to increase parenting time, or a c=
+hange in supervision. It&#39;s important to note, in 2022, I agreed to exte=
+nd Sunday visits and since the=C2=A0judgement I have provided consistent ac=
+cess to the=C2=A0girls even on holidays and long weekends. They have only m=
+issed a visit=C2=A0due to illness in which you called enforcement.</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">My lawyer is aware of my positio=
+n.</div><div dir=3D"auto"><br></div><div>Fortunately, Alice&#39;s practice =
+with her team is on Sunday from noon-1 pm, thus they will be dropped off at=
+ the same time as usual.</div><div><br></div><div>Charlotte will make up he=
+r 3-4 pm Sunday practice during the week for the month.</div><div><br></div=
+><div>The schedule will change from May-September once they are playing=C2=
+=A0outdoors. He explained=C2=A0practices will most likely not take place Su=
+nday afternoons but they will move to three times=C2=A0a week so Tuesday vi=
+sits may have to switch to another day.=C2=A0</div><div><br></div><div>Cynt=
+hia</div></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Fri, Apr 14, 2023 at 11:33 AM Darryl Ross &lt;<a =
+href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div>Hi Cynthia,<div><br></div><div>I can confirm Sunday drop off at noon=
+.</div><div><br></div><div>I had a conversation with Allison about how to m=
+ake progress on the issue of supervision and increasing parenting time give=
+n that reunification therapy is not an option and requesting the case be re=
+ferred to OCL seems the best way. Before making a request to the judge I ha=
+ve to see if you=E2=80=99re agreeable. Please let me know by April 19.=C2=
+=A0</div></div><div><div><br></div><div>Darryl</div><div><div><div><br><blo=
+ckquote type=3D"cite"><div>On Apr 14, 2023, at 08:36, Cynthia Holmes &lt;<a=
+ href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.co=
+m</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darryl,</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">I will be in touch for times for now =
+it will be Sunday afternoon, just confirming time.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto"><br></div><div><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 13, 2023 at 8:03 PM Darryl Ross=
+ &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@=
+icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div>Hi Cynthia,<div><span><br></span></div><div><font style=3D"=
+color:rgb(0,0,0)">As I=E2=80=99ve communicated previously my mom is not ava=
+ilable Saturdays so the girls will not be available Sunday for practice unt=
+il we move to unsupervised visits. If you are agreeable to unsupervised vis=
+its it will be possible to move my time with them to Saturdays. If not then=
+ Sunday visits will continue as agreed until I the order is updated.</font>=
+</div></div><div><div><br></div><div>Darryl</div><div><br></div><div><br></=
+div><div><br></div><div><br></div><div><br></div><div><br></div><div><div><=
+br><blockquote type=3D"cite"><div>On Apr 13, 2023, at 19:18, Cynthia Holmes=
+ &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@g=
+mail.com</a>&gt; wrote:</div><br><div>Hi Darryl,<div dir=3D"auto"><br></div=
+><div dir=3D"auto">Alice now has practices this Sunday at 1 pm- 2 pm and th=
+en Charlotte at 3-4 pm for the Spring season.=C2=A0</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">I=E2=80=99m willing to skip Charlotte=E2=80=99s=
+ this week but going forward we will have to look at a different time on we=
+ekends until the Summer schedule which begins May 11.=C2=A0</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">I am going to speak to the director t=
+omorrow and get an exact idea of what we can expect and I will let you know=
+.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">The visits have =
+been going ok and I want to make sure you have your agreed upon time as wel=
+l.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I will be in touch bu=
+t wanted to give you a heads up as I just learned.</div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></div></blockquote></div></div>
+
+--00000000000079222505f94e577b--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1078303</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801604</integer>
+	<key>date-received</key>
+	<integer>1681489757</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>14763</string>
+</dict>
+</plist>

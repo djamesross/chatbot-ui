@@ -1,0 +1,276 @@
+12879     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr55p00im-qukt07011702.me.com by p133-mailgateway-smtp-8588b56cd7-fv2ch (mailgateway 2316B325)
+	with SMTP id 8dcea153-413a-433d-aa9d-b509f792efeb 
+	for <darrylross@icloud.com>; Sun, 14 May 2023 23:00:12 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 8dcea153-413a-433d-aa9d-b509f792efeb
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	by mr55p00im-qukt07011702.me.com (Postfix) with ESMTPS id 615C144400DD
+	for <darrylross@icloud.com>; Sun, 14 May 2023 23:00:11 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQVoQXgcZFltVFVFfDlgc
+ DEZVVgJUWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwGGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqKgMVJz1UXFEROj9CLmMBBEMUNEIrYkIXODhNORpIURg2GiAw
+ KWRnEUYuETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gIg+GRMa
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.46 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.46 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.46; helo=mail-ej1-f46.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-965e93f915aso2125317966b.2
+        for <darrylross@icloud.com>; Sun, 14 May 2023 16:00:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684105210; x=1686697210;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FMplYu43nHYXJRAEH96+TtZycvcq32xrsvsQJciPbEQ=;
+        b=gIg+GRMa/z9v+g9nsNjMybZSNOq1344QEzjUJF8IWAZV8cOkVhqdK/8ifq8gQaG/iW
+         5R3mEk+0cJcNWGdd+Mbq4xR+Docd82xKARcLIalftGBuzIHlQZWyBlDOoTQkOtOrpiQE
+         LSj+MEAvCQZKhgMX3/gHtr9JJDSXEmUaFn3ltlvpJn3e130mTRSyRFaUw2dWgIcpArrl
+         iDKhQKj02kRYSHUIcV+gHBzNOBGU/aZpdhjxfd4FwmbybIW4hqVc5udmLFu5Gh5rSJsb
+         Wjh0TeN7rYS3i3nGxhJGCJL+tmMv0xxPnBc3bwXq4JGTzZ+g3WzdobH5sVXa0fUYSSEa
+         uKEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684105210; x=1686697210;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FMplYu43nHYXJRAEH96+TtZycvcq32xrsvsQJciPbEQ=;
+        b=K7kICU4KSF38bh97ATTlJ7v8FzRZdIPefJxpKKeJs4+PLXh8CSti0L1it3wfqsjC1i
+         rjR2NTRv4dE7sGogKMQtN01KwXRs5wvShrdnTM3F4jp7TOG5gAm3BRTupvGZ/rKfqcEL
+         36Fr4vyBzyo26cUpZNXXLY/OPB9rWn71TRhsaEdpcqciL6sqvNt82MbddKWqZqYa4PR6
+         Uvmnky70nv4QGfmYqCu0LwVnIHljPfikfoDkE/OJtxcLKRXFc+b/yJRm9hOlRQZW2sqh
+         OV7Pu+22NLAf9pHp4aGVgW5xzlkUlcNTPzA6G6FgpJ+fmWYMdjiv4QFb/I/f1h0QZGqU
+         NS/A==
+X-Gm-Message-State: AC+VfDx/77gl4uNcB5F+r7WO+hPwKw5CFydt+JPv1Jeajgl+89nuf0Z2
+	iAa3BXWLvx1xJMeac7Fq4/W9QeU0adFuuQmgE2Vz/QoSvPc=
+X-Google-Smtp-Source: ACHHUZ6lUmqg9cdotWQPQYVpfiOy2XIMmAcZ9KCOW/p4Yzu6ocWnhTB1J3+kGDIH5mJp0cA7zAET2A/4nEG21io7ALg=
+X-Received: by 2002:a17:907:9285:b0:966:484a:3350 with SMTP id
+ bw5-20020a170907928500b00966484a3350mr21174582ejc.35.1684105210265; Sun, 14
+ May 2023 16:00:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRH2GvKtEGMV2__o6=5v3Ku99_Qt94YyAnyfu3dxVZYFdg@mail.gmail.com>
+ <F43D8B20-2CF5-4B6E-AD19-9DC990996783@icloud.com>
+In-Reply-To: <F43D8B20-2CF5-4B6E-AD19-9DC990996783@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 14 May 2023 18:59:59 -0400
+Message-ID: <CAFnbyRH_zsPEdj3dCY5VS7f6mR5SRtuMA+NbxgzCcFGQTQs3Ww@mail.gmail.com>
+Subject: Re: Tuesday
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Cc: Allison Lendor <allison@lendorguest.ca>, 
+	Michelle Williams <michelle.williams@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="000000000000d2841405fbaf4cec"
+X-MANTSH: 1TEIXR1geHVoaGkNHB1tfQEQaExsfGxkaGxEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBoZEQpfTRdkRURPE
+ QpZSRcacRoQGncGGxIZcRsZGRAadwYYGgYaEQpZXhdsbHkRCkNOF1kSGGdPU1kcemtSc2BLfGx
+ Bb3pub01iU01lRF8ZU0VMEQpYXBcZBBoEHxoFGxoaBB0bBBscGgQTGxAbHhofGhEKXlkXSEZdU
+ 30RCk1cFwccEhEKTFoXTV1rEQpMRhdiTWsRCkNaFxgaEwQSHwQYGxIEHhwRCkJeFxsRCkReFxg
+ RCkRJFxgRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXa
+ BIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJ
+ LaUkRCkJAF2gBS0xra1wdQ09bEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXZnIeW
+ 35OX3pPcAEQGRoRCnBoF2IdHmFsWlJLHUhCEBkaEQpwaBd6HHBEYkxNcxlJbBAZGhEKcGgXaVJ
+ QRW5zZAFPZEwQGRoRCnBoF2VsfnBSHkV6SEt9EBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XG
+ xEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: s82Meys6PAxYJaVFkEPDEgHygOnu3yof
+X-Proofpoint-ORIG-GUID: s82Meys6PAxYJaVFkEPDEgHygOnu3yof
+
+--000000000000d2841405fbaf4cec
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+I just received the schedule a few days ago and informed you when I found
+out. Again I had emailed you more than 6 weeks ago informing you that this
+change would be coming.I also respected your Sunday visits and has
+Charlotte miss Spring training on Sunday with her team for a smoother
+transition.
+
+That=E2=80=99s very disappointing that you and Holly are not able to suppor=
+t
+Charlotte=E2=80=99s soccer practice this week. As I noted, she  has been mi=
+ssing
+her Sundays practices for 8 weeks to accommodate your Sunday visits. I
+emailed this to you. May I add I have incurred all these costs to the girls
+activities.
+
+I know Charlotte's eager to start practicing with her team regularly and
+wants to continue visit you and Holly at your home as well. I am unclear as
+to why your mother is unable to drive the girls a bit earlier Tuesday and
+extend Sunday=E2=80=99s visit by another generous two hours. Especially whe=
+n Holly
+was able to be earlier on Sundays before.
+
+I receive schedule on team snap and have communicated to you their official
+schedule with practice and game times.
+
+I will be seeking further legal counsel tomorrow on this issue.
+
+Best,
+
+Cynthia
+
+On Sun, May 14, 2023 at 5:02 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hello Cynthia,
+>
+> Thank you for informing me about the soccer schedule for Charlotte and
+> Alice. As per our current schedule and given the timing, I am unable to
+> accommodate the proposed changes for the upcoming week on limited notice.=
+ I
+> would find it very helpful to have communication in advance to reduce the
+> number of times competing and conflicting plans are made.
+>
+> Please forward an official soccer schedule, which could be a team email o=
+r
+> a link to the team's online schedule. This will allow me to better
+> understand the girls' schedule and see what modifications to the schedule
+> are possible.
+>
+> Please note that an agreed upon schedule has to be included in the draft
+> order before it can be submitted to the court, specifying the days and
+> times. Until we have the official schedule and agree on any changes, this
+> may delay the final order.
+>
+>
+>
+> Thanks again for your understanding and cooperation.
+>
+> Darryl
+>
+> > On May 12, 2023, at 18:44, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> >
+> > Hi Darryl
+> >
+> > As previously communicated about possible upcoming changes to the girls
+> competitive  soccer the Spring schedule was just released. Charlotte
+> practice begins next week at 730 pm on Tuesday.  Her games on Monday at 7
+> pm, practices Saturday at 10 am and Tuesday at 730 pm.
+> >
+> > Alice practices are Wednesday at 515 pmand Saturday at 9am, games
+> Thursday at 7 pm.
+> >
+> > Two options:
+> > We can change the Tuesday visits to Friday 430-730
+> > Or
+> > We can increase Sunday time:
+> > Sunday from 130-730 to 1130-730
+> > Tuesday 430-630 with Golly bringing them back here.
+> >
+> >
+> > Please let me know which options works for you both. I still insist on
+> Holly being present.
+> >
+> > Cynthia
+>
+>
+
+--000000000000d2841405fbaf4cec
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">I just received the schedule a few days ago and informe=
+d you when I found out. Again I had emailed you more than 6 weeks ago infor=
+ming you that this change would be coming.I also respected your Sunday visi=
+ts and has Charlotte miss Spring training on Sunday with her team for a smo=
+other transition.</div><div dir=3D"auto"><br></div><div dir=3D"auto">That=
+=E2=80=99s very disappointing that you and Holly are not able to support Ch=
+arlotte=E2=80=99s soccer practice this week. As I noted, she =C2=A0has been=
+ missing her Sundays practices for 8 weeks to accommodate your Sunday visit=
+s. I emailed this to you. May I add I have incurred all these costs to the =
+girls activities.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I know=
+ Charlotte&#39;s eager to start practicing with her team regularly and want=
+s to continue visit you and Holly at your home as well. I am unclear as to =
+why your mother is unable to drive the girls a bit earlier Tuesday and exte=
+nd Sunday=E2=80=99s visit by another generous two hours. Especially when Ho=
+lly was able to be earlier on Sundays before.</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">I receive schedule on team snap and have communicated=
+ to you their official schedule with practice and game times.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">I will be seeking further legal couns=
+el tomorrow on this issue.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">Best,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</=
+div><div dir=3D"auto"><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Sun, May 14, 2023 at 5:02 PM Darryl Ross &=
+lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">Hello Cynthia,<br>
+<br>
+Thank you for informing me about the soccer schedule for Charlotte and Alic=
+e. As per our current schedule and given the timing, I am unable to accommo=
+date the proposed changes for the upcoming week on limited notice. I would =
+find it very helpful to have communication in advance to reduce the number =
+of times competing and conflicting plans are made.<br>
+<br>
+Please forward an official soccer schedule, which could be a team email or =
+a link to the team&#39;s online schedule. This will allow me to better unde=
+rstand the girls&#39; schedule and see what modifications to the schedule a=
+re possible.<br>
+<br>
+Please note that an agreed upon schedule has to be included in the draft or=
+der before it can be submitted to the court, specifying the days and times.=
+ Until we have the official schedule and agree on any changes, this may del=
+ay the final order.<br>
+<br>
+<br>
+<br>
+Thanks again for your understanding and cooperation.<br>
+<br>
+Darryl<br>
+<br>
+&gt; On May 12, 2023, at 18:44, Cynthia Holmes &lt;<a href=3D"mailto:cynthm=
+holm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl <br>
+&gt; <br>
+&gt; As previously communicated about possible upcoming changes to the girl=
+s competitive=C2=A0 soccer the Spring schedule was just released. Charlotte=
+ practice begins next week at 730 pm on Tuesday.=C2=A0 Her games on Monday =
+at 7 pm, practices Saturday at 10 am and Tuesday at 730 pm.<br>
+&gt; <br>
+&gt; Alice practices are Wednesday at 515 pmand Saturday at 9am, games Thur=
+sday at 7 pm.<br>
+&gt; <br>
+&gt; Two options:<br>
+&gt; We can change the Tuesday visits to Friday 430-730 <br>
+&gt; Or<br>
+&gt; We can increase Sunday time:<br>
+&gt; Sunday from 130-730 to 1130-730<br>
+&gt; Tuesday 430-630 with Golly bringing them back here.<br>
+&gt; <br>
+&gt; <br>
+&gt; Please let me know which options works for you both. I still insist on=
+ Holly being present. <br>
+&gt; <br>
+&gt; Cynthia<br>
+<br>
+</blockquote></div></div>
+
+--000000000000d2841405fbaf4cec--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1100229</integer>
+	<key>date-last-viewed</key>
+	<integer>1745523346</integer>
+	<key>date-received</key>
+	<integer>1684105212</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>11999</string>
+</dict>
+</plist>

@@ -1,0 +1,130 @@
+6870      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33111502.me.com by p133-mailgateway-smtp-85b556849d-2b5br (mailgateway 2415B105)
+	with SMTP id 99fecfbc-5b0a-4fca-98a5-71b93acf4e0f 
+	for <darrylross@icloud.com>; Tue, 7 May 2024 12:07:11 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 99fecfbc-5b0a-4fca-98a5-71b93acf4e0f
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	by ms13p00im-qukt33111502.me.com (Postfix) with ESMTPS id 00243580118
+	for <darrylross@icloud.com>; Tue,  7 May 2024 12:07:08 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdTRFoQXgcZFltVFVFfDlgc
+ DEZVVgNRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEU0DGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqBkxUBAtZYA0sIC0GKgQDNw8hNUAWWncjAhcEADkGcDoCPABK
+ L1VxLTMfJzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XwtFuZQZ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.53 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.53 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.53; helo=mail-ej1-f53.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a59c5c9c6aeso561891266b.2
+        for <darrylross@icloud.com>; Tue, 07 May 2024 05:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715083627; x=1715688427; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=E4S6liKm+gLo8uBB7fJrd1fgpDc9ukEZ9NcAntHXeRw=;
+        b=XwtFuZQZag0UPnH8Aw9ZiGPVAqARkbp4yvgJ0Z+gW5HxuKhAVmxaZaM/G26m+HtdXK
+         vWOwYZAE5ixANrJBdRT7bIf8pMtu9BNlc0sG6SX5fFQMTOoI6YIsFZHXsojQzfHAWKMP
+         Mg2qQDsbcHa8L+aHb4TCY4vfXyZiVg94GwK/PLQf2cgVo6FGaNStxozYzrF6WaPD1QID
+         Uy0g27p/HjBZsLS23yWHYHP2ITd2EPLW2oAbMuKwkUxVRyaZpX3B7EkX31NRA/30FFCf
+         rQ31q5QKLmSaZgkGu/HwDLqFUUb/zRueenEjY9VTYhzCZA4nlRFlqUtkC5rC5dewnjB9
+         zMdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715083627; x=1715688427;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E4S6liKm+gLo8uBB7fJrd1fgpDc9ukEZ9NcAntHXeRw=;
+        b=vcaYahniWGtbBNDMSk5oKEBWA8NP7xpfzn0dZWC2QnAx6adU0t9gBwoaUQX2w5xl5U
+         u+L4F6zme834HJ73t14Op9kxMG7ox1nGtXoQUpK0ackpn7r8WE0BTtRc/nC1/aZdDAQg
+         4/7n/yGttcqW+iF3LVT7MsM79EBCZYLMPWWQaP+Snr7XBgzaxYvJSkTOA64eNS6FLHqe
+         yrUdbqCidIWz6efL+nh1Yp4RaDhAb7mKXUKVUJrMVD2YCsleFPnMOAizmD9GkUFJ27D9
+         CErHhEt+umNRwFH6P/n6lxyQZxv0fXnh9JrT83HIKKkfwVbd/knk4cvRX/2mIvdFZnwi
+         D+1w==
+X-Gm-Message-State: AOJu0YzSErmH2DPunvo3VwZapYHc1Qw27HfJ5BGhDFAgS3t/zvAFbwD9
+	BM4K2DnHek44m1KdSMr1B9ja4UKEPor5/bqrsd13bEt9z9TeMCIiKnsC/DvkY7ljqoYYwfWnpV0
+	ZpQOXEIG1fo2/SQ12j8h5IxIIdN7Nyg==
+X-Google-Smtp-Source: AGHT+IFokXGCEuQ74FB5RnijSTiBfIYyVN2KEiyG28HzC+b0oJ8w0+V9BABGeZkW8bahUC6F1YjRyYeVAyr8HnRqR2k=
+X-Received: by 2002:a17:907:e86:b0:a59:c6fd:5160 with SMTP id
+ ho6-20020a1709070e8600b00a59c6fd5160mr5286473ejc.76.1715083627395; Tue, 07
+ May 2024 05:07:07 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 7 May 2024 08:06:55 -0400
+Message-ID: <CAFnbyRHs52ssiVoYYKqR45UzXS7njAAwnbwA6FXwEf=WeGOFfA@mail.gmail.com>
+Subject: This weekend
+To: Darryl Ross <darrylross@icloud.com>, Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="0000000000005f010c0617dc063c"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcafkdBGU5yE30ZR
+ FJoYWIaaH5hWngef0tgB3leSGx9bREKWFwXGQQaBB8aBRsdBBsbGwQbHx8EGB4aEBseGh8aEQp
+ eWRdOSB0eYxEKTVwXGx0eEQpMWhdpTU1rEQpMRhdNaxEKQ1oXGBoTBBIfBBgbEgQfGREKQl4XG
+ xEKRF4XGBEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRd
+ oEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aE
+ ktpSREKQkAXY2J6aU5+bRkecmERCkJYF2JrTm9vemxnWkdLEQpaWBceEQpwaBdpGF9nT39SWUh
+ cWRAaEQpwaBdiQkJHQkJMaUVgaBAaEQpwaBdlHBh/f0Bpb2RAXxAaEQpwaBd6SGNTRG19Y0kFS
+ xAaEQpwaBdlTB1DG1xZZGtQGxAaEQpwaBdmHQVBE3JhYGx7YxAaEQpwfxdgeH1ofRMbAWEYRRA
+ HGxoSEQpwXxdhcmheax1CegFPfRAHGxoZEQpwfRdrXH9TGAFgZx95RBAaEQpwbBdmRmsfGFttX
+ 0ZvbxAaEQptfhcaEQpYTRdLEQ==
+X-Proofpoint-GUID: 0Tmk3dX9W3nxBKH0BTKpR4UaJ-StbFWG
+X-Proofpoint-ORIG-GUID: 0Tmk3dX9W3nxBKH0BTKpR4UaJ-StbFWG
+
+--0000000000005f010c0617dc063c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I=E2=80=99m hoping to switch days this weekend to celebrate Mother's Day. T=
+he only
+thing that is pending is Charlotte=E2=80=99s possible weekend practice. Nor=
+mally
+they add one for the weekend by Wednesday.
+
+Pending Charlotte doesn=E2=80=99t have a practice this weekend, Ali has a p=
+ractice
+until noon on Saturday and I can drop them off after.
+
+Cynthia
+
+--0000000000005f010c0617dc063c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br clear=3D"all">Hi,</div><div dir=3D"auto"><br></div><d=
+iv dir=3D"auto">I=E2=80=99m hoping to switch days this weekend to celebrate=
+ Mother&#39;s Day. The only thing that is pending is Charlotte=E2=80=99s po=
+ssible weekend practice. Normally they add one for the weekend by Wednesday=
+.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Pending Charlotte does=
+n=E2=80=99t have a practice this weekend, Ali has a practice until noon=C2=
+=A0on Saturday and I can drop them off after.</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">Cynthia</div><div dir=3D"auto"><div dir=3D"auto"><div=
+ dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><=
+div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIor=
+K4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdE=
+hi_cA"><br></div></div></div></div>
+
+--0000000000005f010c0617dc063c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1258986</integer>
+	<key>date-received</key>
+	<integer>1715083631</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

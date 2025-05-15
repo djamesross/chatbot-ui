@@ -1,0 +1,286 @@
+16335     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01061502.me.com by p133-mailgateway-smtp-749447c794-vll6v (mailgateway 2402B76)
+	with SMTP id 624662fd-d997-4f1f-a217-0e37f3e3144e 
+	for <darrylross@icloud.com>; Thu, 2 Nov 2023 11:30:21 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 624662fd-d997-4f1f-a217-0e37f3e3144e
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	by qs51p00im-qukt01061502.me.com (Postfix) with ESMTPS id 9CD5D900180
+	for <darrylross@icloud.com>; Thu,  2 Nov 2023 11:30:17 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdST1oQXgcZFltVFVFfDlgc
+ DEZVVgJaWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwIGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqFAo+B0kGRCMvKVYDDnFyCB4zD1oVWA87ECAEGTBYVDMCGk0t
+ QFVwEgMINzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aVgaOuPc
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.48 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.48 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.48; helo=mail-ej1-f48.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-9d242846194so121091566b.1
+        for <darrylross@icloud.com>; Thu, 02 Nov 2023 04:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698924615; x=1699529415; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Krmgqx/+nJRYWQQTtVmR/D0k++wDk0WQauE2+ReDT3I=;
+        b=aVgaOuPcMpuio9jYiSwR9p061GF9wDXfDKMKwBznrZNdMcHfy4G8fNzpsn2i+uXeSI
+         MA1ASE2NzCUahXqpQ/E2iTIDEs1aOKJe3n4zqXWheI0EVM0txC8cmpvDrHYNjM99uJBM
+         1w2FvRV8jL4MxJXRwILabI2dqHwBttopKL5URE5kg7dIprgr6ibeaDnj/d+V8FynrtWJ
+         EHW8heoz7y32QTeMYx7XEgpUJfP2/C4fP5cW6pigBHABxR6bMyPKqn2njGXu7U5d1Wlw
+         XrDs29m5FBo660WpwfsvnflJUw4jIEBhFug5vI/WWeCm9xAzzl8qmjIqmUyl/ikgYWBl
+         w2yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698924615; x=1699529415;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Krmgqx/+nJRYWQQTtVmR/D0k++wDk0WQauE2+ReDT3I=;
+        b=V/+ko8fGjqgcgawcm5au+oyFTAGSCXQgnKHh99oYXJUeJFY4krcR322DZCke2esH7L
+         x2hCtvfticcE0ixq+BTpRWDodMvZ0g/0RhC2S+TuB7v6U4wCJYiNBoI1OSVPF5BTfzbt
+         T2h0/DQpiJ76B6CXEnrv6ftpRrw5RdjBWt89XA2OrtMM5hTmmFp5IWKKrxjUc+sXKNQH
+         HLBnEHp++l2S6LVDwxrBf875UNn0P6SSaAK5Ju9mV527ieC76TizRzOXP63T65Z9uF08
+         DZzAzRtHEnXDIyds820d+1bGPCDp5fWFTxWEQUxMCua1er5OjOvyYAMuG7FfR8IVItzq
+         Sp0A==
+X-Gm-Message-State: AOJu0YwAwY4pTkBN2k2hJrYCDUwL3KeV3O7JhXZvwbQeLBDXBsyaBL0y
+	JMtmnISADojuKVr9YWTqPnZXAHMaMa3dkvM++cxbWtjU
+X-Google-Smtp-Source: AGHT+IGcMDATTNn3gFl5mpNMg62o8tZS+SZpNY6tVWfagCU1rspIv2IgTqBz1cRzGtMy5PPp+RmrHbAltYgo2NoyRvE=
+X-Received: by 2002:a17:907:1c0c:b0:9c7:59d1:b2c6 with SMTP id
+ nc12-20020a1709071c0c00b009c759d1b2c6mr4928147ejc.11.1698924615126; Thu, 02
+ Nov 2023 04:30:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOP-EfxVALsWFeig5cSzRcS+xDRR3sNr+QR+HQWRn37NdMLYRA@mail.gmail.com>
+In-Reply-To: <CAOP-EfxVALsWFeig5cSzRcS+xDRR3sNr+QR+HQWRn37NdMLYRA@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 2 Nov 2023 07:30:04 -0400
+Message-ID: <CAFnbyRHasXp16rAZP0tvADjkJi-mh9YeYbnHhbQwc+Z8eFpvqQ@mail.gmail.com>
+Subject: Fwd: F2011 - Age Group & Planning Overview - message prior to offers
+ being released
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000002f53b7060929b616"
+X-MANTSH: 1TEIXWV4eGVoaGkNHB1tfQV4bGRgaGxsaGBEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGh8RCllEF2JFYkF5Y0xhXXtPEQpZTRduT0ZDXE9YEQpfWRcYGBoRCl9NF2RFRE8RC
+ llJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XbHJaentDcgdwG0RiTmR8Q2V
+ HRW9uaHVYbnNQQGhNfRkRClhcFxkEGgQfGgUbGgQbHBgEGRoEGBMQGx4aHxoRCl5ZF0lPeVBGE
+ QpNXBcYGR4RCkxaF2hpTU1rEQpMRhdsTWsRCkNaFxgaEwQSHwQYGxIEHhIRCkJeFxsRCkJcFxs
+ RCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybngaYmMRC
+ kJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF25aGxo
+ ZXUZufRkbEQpCWBdia05vb3psZ1pHSxEKWlgXGxgRCnBnF2NmUksceh17fm5GEBoRCnBoF2lMQ
+ m5zH2ZHXkhBEBoRCnBoF2tZEltbEk9+bkdlEBoRCnBoF2lMb1gTUkh7fX5yEBoRCnBoF2ZfS05
+ DaE9Dfm1hEBoRCnBoF2xoE3x+SGcbHBpgEBoRCnB9F2d5S1gdZEIFYkNYEBoRCnB9F2NPa2ETU
+ lweckNkEBoRCnB9F21QGHp+Y2xwc1hnEBoRCnB9F2lmc0JcXERBGFN/EBoRCnB9F2JPe1IBTVN
+ zZlBtEBoRCnB9F2JJQh1ae3NsAV9uEBoRCnB9F21sfUJeSU9OU0xrEBoRCnB9F29cRGd4YElFT
+ mlLEBoRCnB9F2t9H2lQZXpGeRNwEBoRCnB9F2UafUlrYkQZZk1tEBoRCnB9F2VrTwEZY0cfWkl
+ CEBoRCnB9F2VeWkFTaxNpT0xCEBoRCnB/F2FPHxl5SWlceRpmEAcSHhEKcF8XellCTG5/QkBMa
+ GAQGhEKcH8XYVwZc0J5b3lCQF4QBxISEQpwXxdjeRISYGtdH2BfbhAZGhEKcH8XZV5bQ1JEf3J
+ CRVkQBxsbHBEKcF8XZQV/bB1eQU4fXHAQGhEKcH8XekJtH0d4YGcZAWUQBxkEHxEKcF8Xb2QeT
+ l1iT20FXWEQGhEKcH8XYHh9aH0TGwFhGEUQBxgdEQpwXxdhcmheax1CegFPfRAHGxkRCnB/F2N
+ wEwVPZkJzW1tjEAccHBEKcF8Xa3gaUhhtWE9QYEsQGhEKcF8XaHoBe14YXQVFaHMQGhEKcH8XZ
+ nlJS2RkWVgZYWMQGhEKcF8Xb1xEZ3hgSUVOaUsQGhEKcF8XbBkcfXBbUAFlTWMQGRoRCnBfF21
+ efFNBE09lckEcEBkaEQpwXxdpfF4bTWVCWG98ARAZGhEKcF8XZkZMZWByWUMSYRsQBxkSEQpwb
+ BdmRmsfGFttX0ZvbxAaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: FXpPQiX-Z1nHdNViOmoEDB_rDYzjBgW3
+X-Proofpoint-ORIG-GUID: FXpPQiX-Z1nHdNViOmoEDB_rDYzjBgW3
+
+--0000000000002f53b7060929b616
+Content-Type: text/plain; charset="UTF-8"
+
+FYI
+
+
+
+---------- Forwarded message ---------
+From: Craig Stead, Director, Soccer Operations <craig.stead@osu.ca>
+Date: Wed, Nov 1, 2023 at 9:43 PM
+Subject: F2011 - Age Group & Planning Overview - message prior to offers
+being released
+To: Craig Stead, Director, Soccer Operations <craig.stead@osu.ca>
+
+
+Hello Everyone,
+
+We are beginning to process the individual offers to families momentarily.
+Prior doing so, we wanted to share a bit more information on the overall
+view, and what you can expect throughout the winter season:
+
+   - The club will forming three groups: White, Blue, Iron
+   - The expected corresponding levels of play for next summer, would be
+   White (Regional), Blue (Competitive 1), Iron (Competitive 2)
+   - By next Spring, rosters will need to be in the range of 14-18 players,
+   for play at the 11v11 format
+   - The coaching team will monitor players all winter (ongoing
+   assessments), and will try/test players at different levels as they see fit
+   and as is developmentally appropriate to do so
+
+For winter play:
+
+   - We will be fielding 3 teams in the local U13 indoor league, called
+   "The Coliseum" - these games are on Saturday mornings - *note - a group
+   of girls will be called to play this Saturday morning (1/3 teams is
+   scheduled for week 1) - follow up on this coming shortly*
+   - The level of play can vary, and so please allow the coaches a few
+   weeks to work out the best rostering models (how to ensure all teams are
+   having successful seasons)
+
+If you have any questions, please reply to this note, cc to Rene, as the
+Coach for the White & Blue teams, to be assisted and work with Melina
+(primary lead for the Iron team).
+
+Thank you,
+
+
+Craig Stead
+Director, Soccer Operations & Community Engagement
+Ottawa South United
+
+  craig.stead@osu.ca
+  www.osu.ca
+<https://www.facebook.com/OSUSoccer>
+<https://www.instagram.com/ottawasouthunited/?hl=en>
+<http://twitter.com/OSUSoccer>
+
+
+
+
+
+Happy with our assistance? Please consider leaving us a Google Review:
+https://g.page/r/CXxgsWmIS44FEAg/review
+
+--0000000000002f53b7060929b616
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">FYI</div><div dir=3D"auto"><br></div><div dir=3D"auto"><b=
+r></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">---------- Forwarded message ---------<br>From: <strong class=3D"gma=
+il_sendername" dir=3D"auto">Craig Stead, Director, Soccer Operations</stron=
+g> <span dir=3D"auto">&lt;<a href=3D"mailto:craig.stead@osu.ca">craig.stead=
+@osu.ca</a>&gt;</span><br>Date: Wed, Nov 1, 2023 at 9:43 PM<br>Subject: F20=
+11 - Age Group &amp; Planning Overview - message prior to offers being rele=
+ased<br>To: Craig Stead, Director, Soccer Operations &lt;<a href=3D"mailto:=
+craig.stead@osu.ca">craig.stead@osu.ca</a>&gt;<br></div><br><br><div dir=3D=
+"ltr">Hello Everyone,<div><br></div><div>We are beginning to process the in=
+dividual offers to families momentarily. Prior doing so, we wanted to share=
+ a bit more information on the overall view, and what you can expect throug=
+hout the winter season:</div><div><ul><li>The club will forming three group=
+s: White, Blue, Iron</li><li>The expected corresponding levels of play for =
+next summer, would be White (Regional), Blue (Competitive 1), Iron (Competi=
+tive=C2=A02)</li><li>By next Spring, rosters will need to be in the range o=
+f 14-18 players, for play at the 11v11 format</li><li>The coaching team wil=
+l monitor players all winter (ongoing assessments), and will try/test playe=
+rs=C2=A0at different levels as they see fit and as is developmentally appro=
+priate to do so</li></ul><div>For winter play:</div></div><div><ul><li>We w=
+ill be fielding 3 teams in the local U13 indoor league, called &quot;The Co=
+liseum&quot; - these games are on Saturday mornings - <b>note - a group of =
+girls will be called to play this Saturday morning (1/3 teams is scheduled =
+for week 1) - follow up on this coming shortly</b></li><li>The level of pla=
+y can vary, and so please allow the coaches a few weeks to work out the bes=
+t rostering models (how to ensure all teams are having successful seasons)<=
+/li></ul><div>If you have any questions, please reply to this note, cc to R=
+ene, as the Coach for the White &amp; Blue teams, to be assisted and work w=
+ith Melina (primary lead for the Iron team).</div></div><div><br></div><div=
+><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_si=
+gnature"><div dir=3D"ltr">Thank you,<br><br><table style=3D"direction:ltr;b=
+order-radius:0">
+                    <tbody><tr> <td>  <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family:Arial;line-height:1.15;padding-bottom:10px;colo=
+r:#000"> <tbody><tr> <td valign=3D"top" style=3D"vertical-align:top;padding=
+-right:16px;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"line-height:1.2"> <tbody><tr> <td style=3D"width:65px;padding:0">  </=
+td> </tr> </tbody></table><img width=3D"78" height=3D"96" src=3D"https://ci=
+3.googleusercontent.com/mail-sig/AIorK4wEOSibqpFu9D6YnPk6Yng5Mp_eULkboQk8Gn=
+srFR0qtk3wm-6Oe5miIvRBPxAxBfB-THTBg78"> </td> <td valign=3D"top" style=3D"v=
+ertical-align:top;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"line-height:1.2"> <tbody><tr> <td valign=3D"top" style=3D"verti=
+cal-align:top;padding-right:45px;line-height:1.2"><span style=3D"font-famil=
+y:Arial;font-size:16px;color:#191c2b;text-transform:initial;font-weight:bol=
+d"><br>Craig Stead </span><br> <span style=3D"font-size:12px;letter-spacing=
+:0px;font-family:Arial;text-transform:initial;font-weight:normal;color:#333=
+"> Director, Soccer Operations &amp; Community Engagement </span><br> <span=
+ style=3D"font-size:12px;letter-spacing:0px;font-family:Arial;text-transfor=
+m:initial;font-weight:bold;color:#444"> Ottawa South United </span> </td> <=
+td valign=3D"top" style=3D"vertical-align:top;line-height:0%"> <table cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-size:12px;line-height:1.2"> <t=
+body><tr> <td style=3D"line-height:0"> <table cellpadding=3D"0" cellspacing=
+=3D"0"> <tbody><tr> <td style=3D"line-height:0%;padding-bottom:6px"><br> </=
+td> </tr> <tr> <td style=3D"line-height:0%;padding-bottom:6px"> <table cell=
+padding=3D"0" cellspacing=3D"0" style=3D"line-height:14px;font-size:12px;fo=
+nt-family:Arial"> <tbody><tr> <td style=3D"font-family:Arial;font-weight:bo=
+ld;font-size:12px;color:#191c2b"> <img src=3D"https://cdn.gifo.wisestamp.co=
+m/social/envelope/191C2B/13/trans.png" style=3D"vertical-align:-2px;line-he=
+ight:1.2"> </td> <td style=3D"width:5px;font-size:1pt;line-height:0" width=
+=3D"5">=C2=A0</td> <td style=3D"font-family:Arial;font-size:12px"> <a href=
+=3D"mailto:craig.stead@osu.ca" style=3D"text-decoration:none;font-size:12px=
+;font-family:Arial" target=3D"_blank"> <span style=3D"line-height:1.2;color=
+:#212121;font-family:Arial;white-space:nowrap;font-size:12px"> craig.stead@=
+osu.ca </span> </a> </td> </tr> </tbody></table> </td> </tr> <tr> <td style=
+=3D"line-height:0%;padding-bottom:6px"> <table cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"line-height:14px;font-size:12px;font-family:Arial"> <tbody=
+><tr> <td style=3D"font-family:Arial;font-weight:bold;font-size:12px;color:=
+#191c2b"> <img src=3D"https://cdn.gifo.wisestamp.com/social/browser/191C2B/=
+13/trans.png" style=3D"vertical-align:-2px;line-height:1.2"> </td> <td styl=
+e=3D"width:5px;font-size:1pt;line-height:0" width=3D"5">=C2=A0</td> <td sty=
+le=3D"font-family:Arial;font-size:12px"> <a href=3D"http://www.osu.ca" styl=
+e=3D"text-decoration:none;font-size:12px;font-family:Arial" target=3D"_blan=
+k"> <span style=3D"line-height:1.2;color:#212121;font-family:Arial;white-sp=
+ace:nowrap;font-size:12px"> www.osu.ca </span> </a> </td> </tr> </tbody></t=
+able> </td> </tr> </tbody></table> </td> </tr> <tr> <td style=3D"padding-to=
+p:8px;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+width:100%;line-height:1.2"> <tbody><tr> <td> <table border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0"><tbody><tr><td align=3D"left" style=3D"padding-r=
+ight:6px;text-align:center;padding-top:0"> <a href=3D"https://www.facebook.=
+com/OSUSoccer" style=3D"font-size:11px;color:#444;text-decoration:none" tar=
+get=3D"_blank"> <img width=3D"24" height=3D"24" src=3D"https://cdn.gifo.wis=
+estamp.com/social/facebook/191C2B/48/circle/background.png" style=3D"float:=
+left;border:none" border=3D"0"> </a> </td><td align=3D"left" style=3D"paddi=
+ng-right:6px;text-align:center;padding-top:0"> <a href=3D"https://www.insta=
+gram.com/ottawasouthunited/?hl=3Den" style=3D"font-size:11px;color:#444;tex=
+t-decoration:none" target=3D"_blank"> <img width=3D"24" height=3D"24" src=
+=3D"https://cdn.gifo.wisestamp.com/social/instagram/191C2B/48/circle/backgr=
+ound.png" style=3D"float:left;border:none" border=3D"0"> </a> </td><td alig=
+n=3D"left" style=3D"padding-right:6px;text-align:center;padding-top:0"> <a =
+href=3D"http://twitter.com/OSUSoccer" style=3D"font-size:11px;color:#444;te=
+xt-decoration:none" target=3D"_blank"> <img width=3D"24" height=3D"24" src=
+=3D"https://cdn.gifo.wisestamp.com/social/twitter/191C2B/48/circle/backgrou=
+nd.png" style=3D"float:left;border:none" border=3D"0"> </a> </td></tr></tbo=
+dy></table> <div style=3D"height:1px!important"></div> </td> </tr> </tbody>=
+</table> </td> </tr> </tbody></table> </td> </tr> </tbody></table><br><br><=
+br><br><br> </td> </tr> </tbody></table><table cellpadding=3D"0" cellspacin=
+g=3D"0" border=3D"0"><tbody><tr><td></td></tr></tbody></table></td></tr></t=
+body></table> =20
+                  <img src=3D"https://tracy.srv.wisestamp.com/px/5985447519=
+059968.png" alt=3D"">Happy with our assistance? Please consider leaving us =
+a Google Review:=C2=A0<a href=3D"https://g.page/r/CXxgsWmIS44FEAg/review" t=
+arget=3D"_blank">https://g.page/r/CXxgsWmIS44FEAg/review</a><br></div></div=
+></div></div></div>
+</div></div>
+
+--0000000000002f53b7060929b616--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>ff9bf1</string>
+	<key>conversation-id</key>
+	<integer>1188843</integer>
+	<key>date-last-viewed</key>
+	<integer>1744820790</integer>
+	<key>date-received</key>
+	<integer>1698924621</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12110</string>
+</dict>
+</plist>

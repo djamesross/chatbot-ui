@@ -1,0 +1,198 @@
+9955      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06030501.me.com by p133-mailgateway-smtp-756ddf6989-rmk55 (mailgateway 2324B162)
+	with SMTP id 15844a86-2e97-4ba5-8b3b-744bb14ad577 
+	for <darrylross@icloud.com>; Mon, 11 Sep 2023 00:51:01 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 15844a86-2e97-4ba5-8b3b-744bb14ad577
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	by st43p00im-qukt06030501.me.com (Postfix) with ESMTPS id 0B527268016C
+	for <darrylross@icloud.com>; Mon, 11 Sep 2023 00:50:57 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdTQ1oQXgcZFltVFVFfDlgc
+ DEZVVgNWWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEU0EGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlSDgFJ0xBZ1U9FyA8PHhiOhYhCCdIAg8MQzgoQiFDWww3FFAj
+ IXcdNAYsJzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ONCTDTu4
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.54; helo=mail-ej1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-99c1c66876aso489071366b.2
+        for <darrylross@icloud.com>; Sun, 10 Sep 2023 17:50:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694393455; x=1694998255; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9SlOIG+WiisODpStYDYecnUf+bfikwaLSbkgdKcLi+o=;
+        b=ONCTDTu4zfWl0+apsnbECsjfZ2I6wjKBtE8eDvI32+kQqGAp78GepHGO2Semika5lQ
+         NbMq+KKA94aCJEMfU9Wgz2ER23uFc05S9All8NpSbudZopezA7qLtM/RCd8gqTlVmRTZ
+         Po/mz+DCMdXlChCrXVaVL37CM4UYLAatU4O+Q+tI0a2iNFz11qMg2nknSphgkqUUyeEu
+         IH6CxllyipZm9Py3OY6ocA3x2htTzGgLSsOWODPjgl+lqnLu7nmt4VEZ3TWDUoUt2tW3
+         S+aPvdqqrdd9Rs1O9fi/iEc3DVs2AivH2o38Ha33K02vII86J+SaiLqCM3o5mVgu0Csa
+         IDuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694393455; x=1694998255;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9SlOIG+WiisODpStYDYecnUf+bfikwaLSbkgdKcLi+o=;
+        b=l8liOtTxmq5V86FlByACqIZkHPMdTwhceNQK3sdydgvf/hAVIJHfDHlC8SUsD86KoJ
+         Lv0bLzUqdCGtheV7cXXWJBWBRxj0PXlvEaiveYHtAT81AeTV5cOgHJ935sJ+Rpckj3m1
+         +5B79hYwFW7/hGJA2pcdN+YF1ObIJxCYqmgT9Y8eI0xgTP3dmYUFyP7yGTnS3CYqPNkz
+         kEtT5cLR200wT35GAvHhXFKXabfq+5Ap74RHrO7B5amFMU2mZShAGJ1+Uuza/jHqdMke
+         SqbVHu9ok3tw+SAg7HDJ3d/lxgBFGffMH8aADj593Ie29kq65Cm/idNp3bl1cqTzOFD7
+         XMPg==
+X-Gm-Message-State: AOJu0Yz+PLVczGlbF7p3ZFl/3pYFVzGJ+YFoUYQWVGsy0KMrl8+D5oVh
+	IjjF5VnUXuYTM8caCdl+dpq0U5YQibGV54hhOaCyxZY0
+X-Google-Smtp-Source: AGHT+IFpXgkj+xXXO+CPlaarSTytpKklJg+/JQ2NjyhIhQE3/u7jxiI2+oIVu4kk7TP6zmO6dd1oz/YC1h2RV+V39TY=
+X-Received: by 2002:a17:906:1d:b0:9a1:b67e:415 with SMTP id
+ 29-20020a170906001d00b009a1b67e0415mr6916354eja.73.1694393455225; Sun, 10 Sep
+ 2023 17:50:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREOXqx5Yp1oDNPP7jAarP43UXz_QMb0fu=8Ju7H1abPDw@mail.gmail.com>
+ <CAFnbyRHmzgyG_wZ+nMPV0L1F0M=2cOWNCvYnTX9R791+O3B_Nw@mail.gmail.com> <6BA480EE-39CA-4917-A67A-AB9AC60FB83B@icloud.com>
+In-Reply-To: <6BA480EE-39CA-4917-A67A-AB9AC60FB83B@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 10 Sep 2023 20:50:44 -0400
+Message-ID: <CAFnbyRG=AcP4qQ7HnFKDHTXcXnP029n6AN5YsmnBm6TYG+VsUA@mail.gmail.com>
+Subject: Re: Septmeber
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000002302706050ab882"
+X-MANTSH: 1TEIXR1gYEloaGkNHB0tNT0ReQ0QZGRofEQpMQxcbGgQbGxgEEhwEHx8QGx4aHxo
+ RCkxZFxsaGh8RCllEF2JFYkF5Y0xhXXtPEQpZTRduT0ZDXE9YEQpfWRcYGBoRCl9NF2RFRE8RC
+ llJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XTHNYTHNoG2heX0ZJZ2Jsbmd
+ ldXoHGkB+X0tfU2FifEIRClhcFxkEGgQfGgUbHQQbGxsEGx8fBBsfHRAbHhofGhEKXlkXSWRrQ
+ WQRCk1cFxgdGREKTFoXaGtNTWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgbEgQfHhEKQl4XGxEKQlw
+ XGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJueBpiY
+ xEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQkAXbRo
+ eT3wBGUdPa1sRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdjGkxPYllfcBIBQxAZG
+ hEKcGgXZmYdH19lHFJFG30QGRoRCnBoF2hMRnNoWR9GGUlmEBkaEQpwaBdpU3Nwf1NEfGQZEhA
+ ZGhEKcGgXYWYZYE1EeUByXXIQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: fYrfYB1BtulcMHFDMO_P-0jTuauyKHVh
+X-Proofpoint-ORIG-GUID: fYrfYB1BtulcMHFDMO_P-0jTuauyKHVh
+
+--00000000000002302706050ab882
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ok
+
+On Sun, Sep 10, 2023 at 8:27 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Yes, I agree to switch this week=E2=80=99s visit from Tuesday=E2=80=99s t=
+o Wednesday.
+>
+> Darryl
+>
+> On Sep 10, 2023, at 09:10, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Please get back to me today in this as I need to coordinate drop offs on
+> my end.
+>
+> Alice=E2=80=99s last practice has been moved to Tuesday this week so she =
+in
+> unavailable Tuesday as well.
+>
+> This does free up Wednesday this week if that works better than Monday.
+>
+> Please let me know as soon as possible.
+>
+> On Wed, Sep 6, 2023 at 5:21 PM Cynthia Holmes <cynthmholm@gmail.com>
+> wrote:
+>
+>> Hi Darryl,
+>>
+>> Charlotte has her last practice next Tuesday and it's important that she
+>> attends. Especially that she missed her past two Tuesday night practices
+>> because you choose to keep her at your place and  not bring her to the
+>> practices.
+>>
+>> I am proposing for next week to have your weekday visit on Monday in lie=
+u
+>> of Tuesday. Please let me know if that works for your schedule so I can
+>> coordinate drop offs.
+>>
+>> The following week, Charlotte's new round of practices takes place Monda=
+y
+>> nights so we can return to Tuesday until Fall Assessments are sorted out=
+.
+>>
+>> I also sent you two e-mails flagging that the girls will be late Sunday
+>> 17 & 24th because Alice has Fall assessment in Manotick until 12:15.
+>>
+>> Best,
+>> Cynthia
+>>
+>
+>
+
+--00000000000002302706050ab882
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Ok</div><div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Sun, Sep 10, 2023 at 8:27 PM Darryl Ross &lt;<a=
+ href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-break:after-whi=
+te-space">Yes, I agree to switch this week=E2=80=99s visit from Tuesday=E2=
+=80=99s to Wednesday.</div><div style=3D"line-break:after-white-space"><div=
+><br></div><div>Darryl<br><div><div><br><blockquote type=3D"cite"><div>On S=
+ep 10, 2023, at 09:10, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmai=
+l.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div>=
+<div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Please get back to me today in this as I need to coordinate drop offs =
+on my end.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alice=E2=80=
+=99s last practice has been moved to Tuesday this week so she in unavailabl=
+e Tuesday as well.</div><div dir=3D"auto"><br></div><div dir=3D"auto">This =
+does free up Wednesday this week if that works better than Monday.</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Please let me know as soon as po=
+ssible.=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Wed, Sep 6, 2023 at 5:21 PM Cynthia Holmes &lt;<a href=
+=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi Dar=
+ryl,<div><br></div><div>Charlotte has her last practice=C2=A0next Tuesday a=
+nd it&#39;s=C2=A0important that she attends. Especially that she missed her=
+ past two Tuesday night practices because you choose to keep her at your pl=
+ace and=C2=A0 not bring her to the practices.</div><div><br></div><div>I am=
+ proposing=C2=A0for next week to have your weekday visit on Monday in lieu =
+of Tuesday. Please let me know if that works for your schedule so I can coo=
+rdinate drop offs.</div><div><br></div><div>The following week, Charlotte&#=
+39;s new round of practices takes place Monday nights so we can return to T=
+uesday until Fall Assessments=C2=A0are sorted out.</div><div><br></div><div=
+>I also sent you two e-mails=C2=A0flagging that the girls will be late Sund=
+ay 17 &amp; 24th because Alice has Fall assessment=C2=A0in Manotick until 1=
+2:15.</div><div><br></div><div>Best,</div><div>Cynthia</div></div>
+</blockquote></div></div>
+</div></blockquote></div><br></div></div></div></blockquote></div></div>
+
+--00000000000002302706050ab882--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1169795</integer>
+	<key>date-last-viewed</key>
+	<integer>1741271243</integer>
+	<key>date-received</key>
+	<integer>1694393461</integer>
+	<key>flags</key>
+	<integer>2207613451393</integer>
+	<key>remote-id</key>
+	<string>12157</string>
+</dict>
+</plist>

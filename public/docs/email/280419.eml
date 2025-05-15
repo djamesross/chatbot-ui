@@ -1,0 +1,335 @@
+18711     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-1a-100-percent-29 by p158-mailgateway-smtp-7bd6dc4c56-hnwr4 (mailgateway 2428B83)
+	with SMTP id 0db87a3d-2fb5-468c-a6cb-7376f328d01e 
+	for <darrylross@icloud.com>; Sat, 2 Nov 2024 14:33:31 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 0db87a3d-2fb5-468c-a6cb-7376f328d01e
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	by p00-icloudmta-smtpin-us-west-1a-100-percent-29.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-west-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id 12AEBC000A5
+	for <darrylross@icloud.com>; Sat,  2 Nov 2024 14:33:26 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgAOTEFNRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxIcARsEQU1IEBdfUQ4QVwUYFRBGFgdECxYRXBsHEUhLEUwEGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDABW3NJDzwXRAEGfAs9TCAhAmRfDCMRJzsoCHkHI0ECQSpiRBo4EFcYU1pRIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=icHExW/5
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.44; helo=mail-ed1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c9709c9b0cso4177608a12.1
+        for <darrylross@icloud.com>; Sat, 02 Nov 2024 07:33:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1730558006; x=1731162806; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n0DWWfDASLVgqZho2ZKNtTHswA8j0420zIhITylYBaE=;
+        b=icHExW/54Jl15+1YRPtH1DIc8TGBVAtcTReWgrFeruYVfMBpJh6tgSIjzb0T87cZ+N
+         4bJxo8vA6JiNAC992fa+YzWoIOy0p6EIDwA+1h1lg+73sUdp3+X1e721Xvo654IpEOaL
+         FTO1MgPHb17VCLMW0KcKBMHKq7YIxYrznnirf5HjtV0mY3rtMnBqUnbmyX7BCGiUmCgl
+         499rBww0h+80SVLqcJo1saJp7ucinU67MrqXyeXLVuu+JXA4wtOkjqjx1mowt7lIFaYr
+         tdKSTGGPfwbhLDKqxPE77ObQV014rWpxX2gwJdWBFqhyynXRISmokmCR2piH1oezTJMh
+         tpKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730558006; x=1731162806;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n0DWWfDASLVgqZho2ZKNtTHswA8j0420zIhITylYBaE=;
+        b=F5flOA0tELrm7dNp5XS3rIV+pl46mO4H7XodgaUwor6y4hbZ/hC6PJzJcVTfg3SRZH
+         lztaafW8m7XW6MvBAhNKKtPYGAIsX2Z3J4o8brNV8oEsgsc9Ji4WFq2YgHq/Ya/K1a+Q
+         +Bv+9aSGVXJ9x80MymL3wYi8xAYFMdMouL3jbfVs19yTVoSzXirmxvjmRqS6JfpQOeQl
+         5zLs55BBANgnzmfRrfw6V27Z6MzVeKXDnackHdtMsBjvpJDYB+CJvZBDLnmCzZr9n82n
+         aPg0G2ESYvradU8W8fp3GWbymd4KIRLUZRl/khxYJPT3azMdkPN/kMvnE/K00RlzzUzX
+         5CAg==
+X-Gm-Message-State: AOJu0YyDrRv+pZMpf+BJ7aEuGcykbJs1Pnj8J2RCIWqT9VIaJ2ZrYElw
+	oz/4V9pWV9ritO680QzL64ePcrYvcM6nTzZ7Xh54y54/jxPQFuC+maGM4NxBMvJ4YkswbF8yZHp
+	VYJhQ0fMf5psRo2GmH1szHSLpDfdUnExa
+X-Google-Smtp-Source: AGHT+IE6W/DA0TnpYRp0z01X3dajJd2npi66mXtJ1aMpOSUpN2gpZEYZU6o4w9xJfWYZ3APfdlIK0eWZp4kdmUyO7AY=
+X-Received: by 2002:a17:907:3f98:b0:a9a:6314:40e7 with SMTP id
+ a640c23a62f3a-a9e3a5a063amr1287495266b.17.1730558005748; Sat, 02 Nov 2024
+ 07:33:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREw1VnqY78MMLBfeFmajdXchxb5ayYqaRG9fOc87cCj6g@mail.gmail.com>
+ <61F8CF4D-EDA3-42EF-AF37-B84E3CDBAE42@icloud.com> <CAFnbyRF5qfGVsp9NmgJj59SnYFJujPvf0930zt4JuFk_14mYNg@mail.gmail.com>
+ <20129D27-DF74-45DE-A976-D314430ECAF2@icloud.com>
+In-Reply-To: <20129D27-DF74-45DE-A976-D314430ECAF2@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 2 Nov 2024 10:33:14 -0400
+Message-ID: <CAFnbyRGykE+zEq3y6JiH5FVzTinVhALP8OeV8d6RRrxMi1o+jg@mail.gmail.com>
+Subject: Re: Today and next week
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000003228e70625eeef46"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOFx1oTm9ff0B5bxldZ
+ nhPG0J8ZWtCG1trfHJzTmJ1HHUeEQpYXBcZBBoEHxoFGxoEEwQYGRIEGBgQGx4aHxoRCl5ZF09
+ 9E1B5EQpNXBcHGxgSEQpMWhdoa01NbxEKTEYXYk1rEQpDWhcYGhMEEh8EGBoSBB4eEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdiZW9oXntfUk9AaxEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2JbG1JYWX1kGRJLEBoRCnB
+ oF2lzb3sfZ2JrWUcFEBoRCnBoF2AYRxh8BXhackUdEBoRCnBoF2JrGB0FQVx7WERZEBoRCnBoF
+ 2BgGV5aX19iARN8EBoRCnBoF2xbZENDH2saYxhlEBoRCnBoF2xYHRkYfEtoTVpLEBwaEQpwaBd
+ vGEhBUkR5bxhPRRAaEQpwfxdgeH1ofRMbAWEYRRAHExMRCnBfF2FyaF5rHUJ6AU99EAcbGx4RC
+ nB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnB
+ sF2ZGax8YW21fRm9vEBoRCm1+FxoRClhNF0sR
+X-Proofpoint-ORIG-GUID: 7BdEuUjSE3wLRe1hVOAh1qAVXYdH_6_4
+X-Proofpoint-GUID: 7BdEuUjSE3wLRe1hVOAh1qAVXYdH_6_4
+X-Authority-Info: v=2.4 cv=Yo5dRJYX c=1 sm=1 tr=0 ts=67263837 cx=c_pps a=2f/BrsI30kxfi1RG7K8GXg==:117 a=VlfZXiiP6vEA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=-fPkscW5osVp99nDY0gA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=nlD2kdmkZFwBKGRrFVwA:9 a=UUFIYeJf6QGi68Qy:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=7YpECbvlQQReuXKdpsOb:22
+
+--0000000000003228e70625eeef46
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for this, I look forward to receiving the letter.
+
+As for the safety planning , it will need to be fleshed out more and I
+would like to have communication with them.
+
+For a firdt sleepover I will want to be in town.
+
+Thanks for understanding
+
+
+
+On Wed, Oct 30, 2024 at 9:48=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+>
+> The girls would sleep comfortably at my place; they can have the bedroom,
+> and I=E2=80=99ll use the daybed in the living room. If there=E2=80=99s a =
+minor health
+> concern, I=E2=80=99ll handle it as needed and keep you updated. For any
+> emergencies, standard procedures apply (e.g., 911 for emergencies or mino=
+r
+> care as needed).
+>
+>
+> For ongoing treatment and support, I continue with my addiction specialis=
+t
+> monthly and have been stable and sober since March 2021. I also meet week=
+ly
+> with a psychiatrist as part of my routine. I will contacted my addiction
+> specialist tomorrow morning and asked him to provide an updated letter
+> confirming my stability and treatment.
+>
+>
+> The girls are comfortable with and excited about the idea of staying over
+> this weekend.
+>
+>
+> Looking forward to your reply after you=E2=80=99ve reviewed.
+>
+>
+> Best,
+>
+> Daryl
+>
+> On Oct 30, 2024, at 10:46, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl.
+>
+> This is a big ask and I need  some time to digest this and discuss with m=
+y
+> lawyer and counsellor and the girls. To feel comfortable about this for t=
+he
+> future,  I would like some idea of where the girls will sleep and what is
+> the protocol if one of the girls gets sick or hurt or if something happen=
+s
+> to you. A clear plan and communication is needed.
+>
+> Additionally can you share treatment/support you are currently receiving
+> and do you have a plan in place.
+>
+> With thanks,
+> Cynthia
+>
+>
+>
+>
+> On Mon, Oct 28, 2024 at 2:30=E2=80=AFPM Darryl Ross <darrylross@icloud.co=
+m> wrote:
+>
+>> Hi,
+>>
+>> Since you=E2=80=99ll be away, I=E2=80=99d like the girls to spend Saturd=
+ay afternoon
+>> through Sunday afternoon with me. If that doesn=E2=80=99t work, Friday e=
+vening
+>> through Saturday afternoon would be an alternative.
+>>
+>> Let me know if this can work.
+>>
+>> Darryl
+>>
+>> On Oct 27, 2024, at 07:44, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi ,
+>>
+>> Yes for today drop off around 10 and pick up 320 for Charlotte practice.
+>>
+>> This week Wednesday works. Thursday is Halloween.
+>>
+>> I am away Oct 31-Nov.5 and girls are at my moms and coordinate the
+>> weekend visit.
+>>
+>>
+>>
+>>
+>
+
+--0000000000003228e70625eeef46
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thanks for this, I look forward to receiving the letter.<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">As for the safety planni=
+ng , it will need to be fleshed out more and I would like to have communica=
+tion with them.</div><div dir=3D"auto"><br></div><div dir=3D"auto">For a fi=
+rdt sleepover I will want to be in town.<br clear=3D"all"><br>Thanks for un=
+derstanding=C2=A0<br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><i=
+mg src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3=
+JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div><=
+/div></div></div><div><br></div><div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Wed, Oct 30, 2024 at 9:48=E2=80=AFPM Darr=
+yl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-b=
+reak:after-white-space"><p style=3D"margin:0px;font-stretch:normal;line-hei=
+ght:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:=
+normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-feature-settings:normal;color:rgb(14,14,14)">Hi C=
+ynthia,</p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;fo=
+nt-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-v=
+ariant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian=
+:normal;font-feature-settings:normal;color:rgb(14,14,14);min-height:17px"><=
+br></p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;font-s=
+ize-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-varia=
+nt-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:nor=
+mal;font-feature-settings:normal;color:rgb(14,14,14)">The girls would sleep=
+ comfortably at my place; they can have the bedroom, and I=E2=80=99ll use t=
+he daybed in the living room. If there=E2=80=99s a minor health concern, I=
+=E2=80=99ll handle it as needed and keep you updated. For any emergencies, =
+standard procedures apply (e.g., 911 for emergencies or minor care as neede=
+d).</p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;font-s=
+ize-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-varia=
+nt-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:nor=
+mal;font-feature-settings:normal;color:rgb(14,14,14);min-height:17px"><br><=
+/p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;font-size-=
+adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-l=
+igatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-feature-settings:normal;color:rgb(14,14,14)">For ongoing treatment and=
+ support, I continue with my addiction specialist monthly and have been sta=
+ble and sober since March 2021. I also meet weekly with a psychiatrist as p=
+art of my routine. I will contacted my addiction specialist tomorrow mornin=
+g and asked him to provide an updated letter confirming my stability and tr=
+eatment.</p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;f=
+ont-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-=
+variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asia=
+n:normal;font-feature-settings:normal;color:rgb(14,14,14);min-height:17px">=
+<br></p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;font-=
+size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-vari=
+ant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;font-feature-settings:normal;color:rgb(14,14,14)">The girls are comfor=
+table with and excited about the idea of staying over this weekend.</p><p s=
+tyle=3D"margin:0px;font-stretch:normal;line-height:normal;font-size-adjust:=
+none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligature=
+s:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-fe=
+ature-settings:normal;color:rgb(14,14,14);min-height:17px"><br></p><p style=
+=3D"margin:0px;font-stretch:normal;line-height:normal;font-size-adjust:none=
+;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:no=
+rmal;font-variant-numeric:normal;font-variant-east-asian:normal;font-featur=
+e-settings:normal;color:rgb(14,14,14)">Looking forward to your reply after =
+you=E2=80=99ve reviewed.</p><p style=3D"margin:0px;font-stretch:normal;line=
+-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alterna=
+tes:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;font-feature-settings:normal;color:rgb(14,14,14);m=
+in-height:17px"><br></p><p style=3D"margin:0px;font-stretch:normal;line-hei=
+ght:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:=
+normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-feature-settings:normal;color:rgb(14,14,14)">Best=
+,</p><p style=3D"margin:0px;font-stretch:normal;line-height:normal;font-siz=
+e-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant=
+-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;font-feature-settings:normal;color:rgb(14,14,14)">Daryl</p></div><div sty=
+le=3D"line-break:after-white-space"><div><br><blockquote type=3D"cite"><div=
+>On Oct 30, 2024, at 10:46, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm=
+@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br>=
+<div><div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">This is a big ask and I need =C2=A0some time to digest this and d=
+iscuss with my lawyer and counsellor and the girls. To feel comfortable abo=
+ut this for the future, =C2=A0I would like some idea of where the girls wil=
+l sleep and what is the protocol if one of the girls gets sick or hurt or i=
+f something happens to you. A clear plan and communication is needed.</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Additionally can you share tr=
+eatment/support you are currently receiving and do you have a plan in place=
+.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">With thanks,</di=
+v><div dir=3D"auto">Cynthia</div><div dir=3D"auto"><br clear=3D"all"><div d=
+ir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gm=
+ail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.c=
+om/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJ=
+U64sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div><div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oc=
+t 28, 2024 at 2:30=E2=80=AFPM Darryl Ross &lt;<a href=3D"mailto:darrylross@=
+icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex"><div style=3D"line-break:after-white-space"=
+>Hi,<div><br></div><div><div style=3D"margin:0px;font-style:normal;font-var=
+iant-caps:normal;font-stretch:normal;line-height:normal;font-family:&quot;.=
+SF NS&quot;;font-size-adjust:none;font-kerning:auto;font-variant-alternates=
+:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;font-feature-settings:normal;color:rgb(14,14,14)">Sin=
+ce you=E2=80=99ll be away, I=E2=80=99d like the girls to spend Saturday aft=
+ernoon through Sunday afternoon with me. If that doesn=E2=80=99t work, Frid=
+ay evening through Saturday afternoon would be an alternative.</div><div st=
+yle=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stretch:n=
+ormal;line-height:normal;font-family:&quot;.SF NS&quot;;font-size-adjust:no=
+ne;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:=
+normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feat=
+ure-settings:normal;color:rgb(14,14,14);min-height:17px"><br></div><div sty=
+le=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stretch:no=
+rmal;line-height:normal;font-family:&quot;.SF NS&quot;;font-size-adjust:non=
+e;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:n=
+ormal;font-variant-numeric:normal;font-variant-east-asian:normal;font-featu=
+re-settings:normal;color:rgb(14,14,14)">Let me know if this can work.</div>=
+</div></div><div style=3D"line-break:after-white-space"><div><div><br></div=
+><div>Darryl</div><div><br><blockquote type=3D"cite"><div>On Oct 27, 2024, =
+at 07:44, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=
+=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"a=
+uto">Hi ,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Yes for today =
+drop off around 10 and pick up 320 for Charlotte practice.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">This week Wednesday works. Thursday is H=
+alloween.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am away Oct =
+31-Nov.5 and girls are at my moms and coordinate the weekend visit.<br clea=
+r=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9L=
+HxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div><=
+/div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></blockquote></div></div>
+
+--0000000000003228e70625eeef46--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1289018</integer>
+	<key>date-last-viewed</key>
+	<integer>1745403272</integer>
+	<key>date-received</key>
+	<integer>1730558011</integer>
+	<key>flags</key>
+	<integer>2757369265285</integer>
+	<key>remote-id</key>
+	<string>12402</string>
+</dict>
+</plist>

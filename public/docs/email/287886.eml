@@ -1,0 +1,271 @@
+14583     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-3a-60-percent-32 by p158-mailgateway-smtp-75dc68d6fd-qbnpd (mailgateway 2429B103)
+	with SMTP id 8ea17002-8ca1-48e7-9a67-982a3b08fae7 
+	for <darrylross@icloud.com>; Tue, 4 Mar 2025 15:11:53 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 8ea17002-8ca1-48e7-9a67-982a3b08fae7
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by p00-icloudmta-smtpin-us-west-3a-60-percent-32.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-west-3a.k8s.cloud.apple.com (Postfix) with ESMTPS id 4B093C0028A
+	for <darrylross@icloud.com>; Tue,  4 Mar 2025 15:11:52 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgEOTEFNRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxISARsEQU1IEBdfUQ4QVwUYFRBGFgdECxYRXBsHH0hLEUwEGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDI9BlcmPRAeLhpgYxNIDgEVP14EV0MJEjIdAV0DLz8HLy91fQQ6DiUlKglBIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wh41D+tI
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.44; helo=mail-ej1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-abf42913e95so595194966b.2
+        for <darrylross@icloud.com>; Tue, 04 Mar 2025 07:11:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741101110; x=1741705910; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jJdtl11kq19J/zrAIHyIOThqC86BYaubbgCjT3LzW+k=;
+        b=Wh41D+tIpTVT2o8VjkJ5U5e3oqJBP8ChDBVmspjkWNGlnnKNObJqtesNYt7QnBdQx6
+         tHUrVmdZ7e+uOHkkx1cvD3UgXVS9N92bxFVtyFusQV9+76EFFf0T36gSn7HRj4xMuXqa
+         JFuOvtRTcJZ9Z4aLzfZCxq0zxWKDupxBxwIEHaisoMcJ8PZLbjvIiex2OfLoxwIgOlQO
+         xYOVxF4SKvPTNWoF3sx4E5j2MysfuuVxqxXP3BzlrM8fGwqqMyWGZmbvkuOljlF1mMge
+         b9dQKtVjwbGZoMI71vQjBEXdMT4SzU82pqKxy8NJnhWVU53/zTs6hCMUjVu9YPcYPZQs
+         5UkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741101110; x=1741705910;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jJdtl11kq19J/zrAIHyIOThqC86BYaubbgCjT3LzW+k=;
+        b=Yi/lGqH9RAL37CwYpI6R2VjXyKLh888ZFovv/do3LbqGr3FISUy8cIO70fMjgIgJu4
+         4mtS/a9VsrYwGdYbCGYwYjyJu5SCvAAplSRtCVV2/LdU5i9iJCwptsJSW/KDZEZ1EebP
+         L2v2nhRVrGIj1XM7QYd95fqfWM9N1JQ0M6V+JxyqP2z2m0yLLA34JEGdQKsO1wVFmzD2
+         gh26z0RG2MrtSZxXziTttt8fsjEfApiEj7llvb6JfBvFZkRh7d6f182Lk9f/xJLC3qRz
+         2swKENMersaDiEJDEkzwsbIvieSBMdI5zVoQUJLibwwdegN1AJgn/MIcux33c4DFfNRX
+         X3CA==
+X-Gm-Message-State: AOJu0YwkPg9zus9TS9am7AJ61tzi/V8IX5ywUosxymQTz1BJubrxvpla
+	K47k7jFqD03TkUWcxD4Cxosjn789ewcijT42oBhlEONucSBpAEOBuTipCXuApBWpYheZjKXoYoX
+	GpS/sYuBCRGLipIW4U9s7IqV15GCzhqHu
+X-Gm-Gg: ASbGncsVZBsXb7MjaEhZNfRFuy6luvMcqVYGSjHZD9yJVH0LggIRG6n9RhdulIAaU/+
+	k+p27CB2k/MT6jk5swfdoMPv5Q0GBRE0RmEH4JNR9syo4XlLGDu+SbjiW0fSEsUrndwGDsyxKUu
+	pEpZsNBB08xLQvsD44hVElUaAx/5JFMMgxhyoWC+cl59eUOorVMnMvBIAwCD0=
+X-Google-Smtp-Source: AGHT+IGzYABt/PRIWUpaAo8uJlwVRBW0mWg78WOJo/Hocq1hhmQyYpb0Odor60AmW1m/liwpq72WPAQM9mrozzk57eU=
+X-Received: by 2002:a17:907:3e20:b0:ac1:ff43:82ae with SMTP id
+ a640c23a62f3a-ac1ff43873amr179275466b.2.1741101110190; Tue, 04 Mar 2025
+ 07:11:50 -0800 (PST)
+MIME-Version: 1.0
+References: <4EC63CE7-BE99-47C4-9C82-F3E4A2F9D77B@icloud.com>
+ <CAFnbyRGK11Mc6oDk2G2yajN2SrMNaiVrF7SycegFvqN4PYEiag@mail.gmail.com> <9F7DFC7B-01FA-4DDD-8D21-1304981BA2C0@icloud.com>
+In-Reply-To: <9F7DFC7B-01FA-4DDD-8D21-1304981BA2C0@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 4 Mar 2025 10:11:39 -0500
+X-Gm-Features: AQ5f1JpDrswxijs81-RH8ipCanIj9dFTpYi61f4xN77fojKGpAeWISS4UTsRgCc
+Message-ID: <CAFnbyREE6aDHixYbPUq=wgbGn256ptEe1kaZFaXWEKfOwCRR9w@mail.gmail.com>
+Subject: Re: Consent letter
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000030eae1062f85b12e"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF19PbmdGGHIdGkEfZ
+ 3J7bnJsQRxtZGIYUlpIfWlPY2VPEQpYXBcZBBoEHxsFGxoEGxwYBBkaBB4QGx4aHxoRCl5ZF08
+ FZlB+EQpNXBcHGBoSEQpMWhdoa01NbxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4eEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdlYVMBSUETHh5LEhEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2VuH0tTbkJwbnprEBoRCnB
+ oF2BHaHwZfm5fYGFzEBoRCnBoF29dEhtBYEJ/HEdlEBoRCnBoF2dQeU1rcm5ZSEZGEBoRCnBoF
+ 20ZQnhlWRNwQkRNEBoRCnBoF29vG2VTfWZOfHptEBoRCnBoF2wfUnodSBhNYU9CEBoRCnBoF3p
+ vWBJtbUwdAQEaEBoRCnB/F2B4fWh9ExsBYRhFEAcbGxMRCnBfF2FyaF5rHUJ6AU99EAcbGhwRC
+ nB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnB
+ sF2ZGax8YW21fRm9vEAceEhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-GUID: ueDMl2X70k5MXQDXFk6GNH2xpbWCeIOe
+X-Authority-Info: v=2.4 cv=M5u3Kzws c=1 sm=1 tr=0 ts=67c71838 cx=c_apl:c_pps a=Wv8LZU+Qh79jBM16Q2fFLA==:117 a=Vs1iUdzkB0EA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=1BLaETmW6LIdzvLGl1UA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=386JkloYVQbLWTCaoIkA:9 a=2LugKSRL13aOVpbl:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-ORIG-GUID: ueDMl2X70k5MXQDXFk6GNH2xpbWCeIOe
+
+--00000000000030eae1062f85b12e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I realize the passport number are blank as I was going to fill them in when
+received and birth certificate when I get it all back today.
+
+As for address that is what I have been given. I will add a unit number.
+
+I will send all of  this evening - so to be clear, you will print it off
+and have it signed by your witness and pass it to me Sunday morning at drop=
+?
+
+
+
+
+On Tue, Mar 4, 2025 at 9:48=E2=80=AFAM Darryl Ross <darrylross@icloud.com> =
+wrote:
+
+> Hi Cynthia,
+>
+> The consent letter you provided is missing required information and canno=
+t
+> be signed as is. I=E2=80=99ll prepare a travel consent letter for signing=
+. Before I
+> finalize it, I=E2=80=99ll need:
+>
+> 1. Their passport numbers once you receive them tomorrow.
+> 2. Their birth certificate registration numbers.
+> 3. The full and exact address of the accommodations, including the unit
+> number.
+>
+> Also, a witness must be present at the time I sign=E2=80=94I cannot have =
+the
+> letter witnessed by a neighbor I have never met and after the fact.
+>
+> Once I have the necessary details, I=E2=80=99ll finalize the document and=
+ arrange
+> for a time to sign it with a valid witness. I=E2=80=99ll print it and hav=
+e it ready
+> on Sunday when you pick the girls up.
+>
+> Let me know when you have the missing information.
+>
+> Darryl
+>
+> On Mar 3, 2025, at 20:58, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Please review before Sunday and flag anything as I will pick it up when I
+> drop off girls Sunday morning to leave time to have a witness sign.
+>
+> We leave 4 am Monday morning.
+>
+>
+>
+>
+> On Mon, Mar 3, 2025 at 8:19=E2=80=AFPM Darryl Ross <darrylross@icloud.com=
+> wrote:
+>
+>> =EF=BB=BFHi Cynthia,
+>>
+>> I received the travel consent letter. I=E2=80=99ll take some time to rev=
+iew it
+>> and will have it ready for pickup next Sunday.
+>>
+>>
+>> Darryl
+>>
+>> On Mar 3, 2025, at 15:17, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl
+>>
+>> I printed out a consent letter for you to sign tonight in case customs
+>> ask for it.
+>>
+>> I will have my neighbour the guarantor sign it once you sign.
+>>
+>> I left the passport number blank until I can pick up tomorrow.
+>>
+>>
+>>
+>>
+>
+
+--00000000000030eae1062f85b12e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">I realize the passport number are blank as I was going to=
+ fill them in when received and birth certificate when I get it all back to=
+day.</div><div dir=3D"auto"><br></div><div dir=3D"auto">As for address that=
+ is what I have been given. I will add a unit number.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">I will send all of =C2=A0this evening - so to=
+ be clear, you will print it off and have it signed by your witness and pas=
+s it to me Sunday morning at drop?<br clear=3D"all"><br clear=3D"all"><div =
+dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"g=
+mail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.=
+com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50B=
+JU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div><div><br=
+><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Tue, Mar 4, 2025 at 9:48=E2=80=AFAM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex"><div style=3D"line-break:after-white-sp=
+ace"><div style=3D"color:rgb(0,0,0)">Hi Cynthia,</div><div style=3D"color:r=
+gb(0,0,0)"><br></div><div style=3D"color:rgb(0,0,0)">The consent letter you=
+ provided is missing required information and cannot be signed as is. I=E2=
+=80=99ll prepare a travel consent letter for signing. Before I finalize it,=
+ I=E2=80=99ll need:</div><div style=3D"color:rgb(0,0,0)"><br></div><div sty=
+le=3D"color:rgb(0,0,0)"><span style=3D"white-space:pre-wrap">	</span>1.<spa=
+n style=3D"white-space:pre-wrap">	</span>Their passport numbers once you re=
+ceive them tomorrow.</div><div style=3D"color:rgb(0,0,0)"><span style=3D"wh=
+ite-space:pre-wrap">	</span>2.<span style=3D"white-space:pre-wrap">	</span>=
+Their birth certificate registration numbers.</div><div style=3D"color:rgb(=
+0,0,0)"><span style=3D"white-space:pre-wrap">	</span>3.<span style=3D"white=
+-space:pre-wrap">	</span>The full and exact address of the accommodations, =
+including the unit number.</div><div style=3D"color:rgb(0,0,0)"><br></div><=
+div style=3D"color:rgb(0,0,0)">Also, a witness must be present at the time =
+I sign=E2=80=94I cannot have the letter witnessed by a neighbor I have neve=
+r met and after the fact.</div><div style=3D"color:rgb(0,0,0)"><br></div><d=
+iv style=3D"color:rgb(0,0,0)">Once I have the necessary details, I=E2=80=99=
+ll finalize the document and arrange for a time to sign it with a valid wit=
+ness. I=E2=80=99ll print it and have it ready on Sunday when you pick the g=
+irls up.</div><div style=3D"color:rgb(0,0,0)"><br></div><div style=3D"color=
+:rgb(0,0,0)">Let me know when you have the missing information.</div></div>=
+<div style=3D"line-break:after-white-space"><div style=3D"color:rgb(0,0,0)"=
+><br></div><div style=3D"color:rgb(0,0,0)">Darryl</div><div><br><blockquote=
+ type=3D"cite"><div>On Mar 3, 2025, at 20:58, Cynthia Holmes &lt;<a href=3D=
+"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt=
+; wrote:</div><br><div><div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">Please review before Sunday and flag anything a=
+s I will pick it up when I drop off girls Sunday morning to leave time to h=
+ave a witness sign.</div><div dir=3D"auto"><br></div><div dir=3D"auto">We l=
+eave 4 am Monday morning.<br clear=3D"all"><br clear=3D"all"><div dir=3D"au=
+to"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_sign=
+ature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-=
+sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iX=
+on9fAkdEhi_cA"><br></div></div></div></div><div><br></div><div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 3, 202=
+5 at 8:19=E2=80=AFPM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.co=
+m" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-wid=
+th:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,2=
+04,204)"><div dir=3D"auto"><div dir=3D"ltr">=EF=BB=BF<span>Hi Cynthia,</spa=
+n><span><br></span><span><br></span><div><span>I received the travel consen=
+t letter. I=E2=80=99ll take some time to review it and will have it ready f=
+or pickup next Sunday.</span></div></div></div><div dir=3D"auto"><div dir=
+=3D"ltr"><div><span><br></span><span><br></span><div><span>Darryl</span><di=
+v><br><blockquote type=3D"cite"><div>On Mar 3, 2025, at 15:17, Cynthia Holm=
+es &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm=
+@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darryl</div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto">I printed out a consent letter =
+for you to sign tonight in case customs ask for it.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">I will have my neighbour the guarantor sign it =
+once you sign.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I left th=
+e passport number blank until I can pick up tomorrow.<br clear=3D"all"><br =
+clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3=
+.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvi=
+di4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+</div></blockquote></div><br><div></div></div></div></div></div></blockquot=
+e></div></div>
+</div></blockquote></div><br></div></blockquote></div></div>
+
+--00000000000030eae1062f85b12e--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1325138</integer>
+	<key>date-last-viewed</key>
+	<integer>1744641133</integer>
+	<key>date-received</key>
+	<integer>1741101113</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>14459</string>
+</dict>
+</plist>

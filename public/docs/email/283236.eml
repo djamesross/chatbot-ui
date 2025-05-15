@@ -1,0 +1,163 @@
+9378      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-1a-20-percent-5 by p158-mailgateway-smtp-777f694959-h5s2d (mailgateway 2429B81)
+	with SMTP id 6b968053-b0ba-4c2c-a133-eae6600cecc4 
+	for <darrylross@icloud.com>; Wed, 19 Feb 2025 14:36:29 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 6b968053-b0ba-4c2c-a133-eae6600cecc4
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	by p00-icloudmta-smtpin-us-east-1a-20-percent-5.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id D72E1C000C3
+	for <darrylross@icloud.com>; Wed, 19 Feb 2025 14:36:24 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgAOTEBLRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxIcARsEQEtIEBdfUQ4QVwUYFRBGFgdECxYRXBsHEUhLEU0CGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDEdeHoTAB4tMy1ZDwc3FhcSGm9PCkIrBEYefwA3OTMXABAJVQ8HQBBEMFhnIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cQUaihtn
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.52 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.52 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.52; helo=mail-ed1-f52.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5dee1626093so1814802a12.1
+        for <darrylross@icloud.com>; Wed, 19 Feb 2025 06:36:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1739975783; x=1740580583; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zoJ39J14oNyQRWp9lzjMHAy7OTIg+AWrWqUC2sEzqM0=;
+        b=cQUaihtnDOrmjfZUFFqYC4XBiJclWA9F5HaLfftcxJuHDdYtboblG+xbv9HjeQOCc/
+         9YdTseBu68Uae7hHPwIpkhCNhgrAtCogVcLfd7trTa56zSlA+GduRJmEK/1f8Zrxxs87
+         B0xv9daRKM2fzbDNF3XJ5d3/h58fcwu7b7hI7jvMe53nnGlH0H/uqtIr2oscXIC3JABz
+         6xIjuQb821VcS6HL5uJm3D4eq6is9peoCiaAM+zMTSDGnzWZVShKww0rM4lOJTVsALGQ
+         mqXe+DAqeXCDeMEi1W/VqeXxMiciUtIJ92zZrbJpRFQ6X1g1YB7AAJ2x+IzDGZoylpEg
+         Xfxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739975783; x=1740580583;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zoJ39J14oNyQRWp9lzjMHAy7OTIg+AWrWqUC2sEzqM0=;
+        b=kce8yB3+tpkFgZLpzMfEzgZK3uVfsksTptifUkkJBCsFL+ZnANhtokNo9MzVij53mm
+         Z7XZ5fCvhZpY1HX6XLXYRQ/vrrvsN71q+3GEF48DWlCNE73Fsv6Tb1GAxTNhkNXOVLEV
+         lZ2VQLw/Yg9uDoert59EnB9gh5WnMvks5hqhRjrWTXu/JjVOvUB8U4CeFtst4Gdx1TVC
+         gGSHJPYYCYno8rjji7sbthibmBePvtVXHJGF8BQJSCvPEIU0dPHowpsBt5P2bhot3cHK
+         wANSCrPJhz40CUjix4CTNejuSis/+ye0tnnWL8zlNNH1SVxqv2K8TssvZXjvvheKEDhJ
+         Frag==
+X-Gm-Message-State: AOJu0YyQEgTozfNd0qa7bFcNDI4eT7PoaoGQWmMT2SOxv2NYF0tCg6p+
+	kUQX2mZXd9Wcarqdx057NVNetfXb4AxvVdDhgfYk76A9A5vwZXLUWoOqbmqvjgUJhYEz9IFd1pR
+	2K4+iktyw6AJN7/PjmEgepmT+3mX4uZTT
+X-Gm-Gg: ASbGnctvYkwDShqGKhZRahAZmuUumOo18ssDSk2V38U/9ieEjBM/I9XEpSbcrbCZVdM
+	dPhSm/7oVlTapn/y5x0NaNh/wMr2jcOkXCG8WUCdo7E1H/BWG1t6Hu87n6i0Wl0hVybUmUS9ieQ
+	Wu/d9QVg3/TZVy9o9meuQLWOaGkJcg2w==
+X-Google-Smtp-Source: AGHT+IFRoKjr9PrbJiGLLDdy6Xw5l+olXu2zoNKI04NXd7/vUmCm9j4u3h5wPTz6eMP5xGuv8H/n8Xl6tV+oVVmHyoQ=
+X-Received: by 2002:a17:907:d307:b0:abb:aa8f:c9cd with SMTP id
+ a640c23a62f3a-abbcc7f2ab3mr393154666b.28.1739975782456; Wed, 19 Feb 2025
+ 06:36:22 -0800 (PST)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 19 Feb 2025 09:36:10 -0500
+X-Gm-Features: AWEUYZks6J9OCZ4tF29L5HclqGirgqyGEr4iebgQv6yHbZz-ApqEVUsmfAQ782A
+Message-ID: <CAFnbyRFeHLqugKDUi9eBoqeb_yh7Rb1fO6ULJqwh9cmr9v3HhQ@mail.gmail.com>
+Subject: Update
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000006e6a76062e7faea4"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF3JjUlMZRm4Zb0VOE
+ lJHa08de0BZbXBBGUx8f2JwTU9mEQpYXBcZBBoEHxoFGxoEGxwTBBsZHAQZGxAbHhofGhEKXlk
+ XTxwfb28RCk1cFxscGhEKTFoXaU1daxEKTU4XaWsRCkxGF01rEQpDWhcYGhMEEh8EGBoSBB8YE
+ QpCXhcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2g
+ SG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS
+ 2lJEQpCQBdoTh14BXATXxp6QxEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2hQfklOemMbUml
+ lEBoRCnBoF25HUBhJcnkFRUVQEBoRCnBoF2heRxN/Q1B6U2FEEBoRCnBoF3odRm4aYVBnZXxJE
+ BoRCnBoF2habGQeRW5/Th5gEBoRCnBoF2xnHRxfRnpERUJZEBoRCnBoF3pnZUBSXwFyGF9jEBo
+ RCnBoF2dQZx8aeVl9c2tzEBoRCnB/F2B4fWh9ExsBYRhFEAcbGhgRCnBfF2FyaF5rHUJ6AU99E
+ AcbGh8RCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEAcZGhEKbX4XGhEKWE0XSxE
+ =
+X-Authority-Info: v=2.4 cv=ce4ormDM c=1 sm=1 tr=0 ts=67b5ec69 cx=c_apl:c_pps a=h/2l+vn1J2DkYOOB9BQDdQ==:117 a=T2h4t0Lz3GQA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=HtuR3AOgBYxLywRIVMkA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=94nOxVbhg4ZZi-NTMxkA:9 a=cALFpehBvmsWH1xO:21 a=wwAePvBONnjDQaqHVNx2:22 a=xo5jKAKm-U-Zyk2_beg_:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-GUID: XIxy3lD3Eod8xmAe7QjsGZk3fVUHZgeL
+X-Proofpoint-ORIG-GUID: XIxy3lD3Eod8xmAe7QjsGZk3fVUHZgeL
+
+--0000000000006e6a76062e7faea4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi there,
+
+Charlotte is home sick today. She is running a fever and very stuffed up.
+
+The girls passport applications were denied and I am required to produced
+birth certificates with parents l names . This request takes at least 15
+business days and is only processed through Toronto office.
+
+There is a chance we will not have them in time and I may have to postpone
+our trip. We are all feeling anxious about it.
+
+Alice has expressed that she would like to speak to a therapist, someone
+she can trust. She wants a girl and to meet virtually.
+
+She is also struggling in her studies and having a hard time focusing. Her
+she has noticed this and so has her teacher Ashlee and myself.
+
+I am looking into getting her some help and possibly tested. A big factor
+will be the cost as I am the only one with benefits and cannot cover much
+of the difference.
+
+There is a great practice in Hamilton that has treated Kelly=E2=80=99s fami=
+ly and
+Ben and Sam. Who are reasonably priced. This would be for individual
+counselling. I=E2=80=99m going to send info to you.
+
+If you have some suggestions please send them over.
+
+--0000000000006e6a76062e7faea4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br clear=3D"all">Hi there,</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">Charlotte is home sick today. She is running a fever =
+and very stuffed up.</div><div dir=3D"auto"><br></div><div dir=3D"auto">The=
+ girls passport applications were denied and I am required to produced birt=
+h certificates with parents l names . This request takes at least 15 busine=
+ss days and is only processed through Toronto office.=C2=A0</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">There is a chance we will not have th=
+em in time and I may have to postpone our trip. We are all feeling anxious =
+about it.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alice has expr=
+essed that she would like to speak to a therapist, someone she can trust. S=
+he wants a girl and to meet virtually.</div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">She is also struggling in her studies and having a hard time=
+ focusing. Her she has noticed this and so has her teacher Ashlee and mysel=
+f.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am looking into get=
+ting her some help and possibly tested. A big factor will be the cost as I =
+am the only one with benefits and cannot cover much of the difference.=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">There is a great pra=
+ctice in Hamilton that has treated Kelly=E2=80=99s family and Ben and Sam. =
+Who are reasonably priced. This would be for individual counselling. I=E2=
+=80=99m going to send info to you.=C2=A0</div><div dir=3D"auto"><br></div><=
+div dir=3D"auto">If you have some suggestions please send them over.=C2=A0<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto"><div dir=3D"auto"><div d=
+ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><di=
+v dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4=
+yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi=
+_cA"><br></div></div></div></div>
+
+--0000000000006e6a76062e7faea4--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1320206</integer>
+	<key>date-last-viewed</key>
+	<integer>1744641129</integer>
+	<key>date-received</key>
+	<integer>1739975789</integer>
+	<key>flags</key>
+	<integer>2207647005845</integer>
+	<key>remote-id</key>
+	<string>14448</string>
+</dict>
+</plist>

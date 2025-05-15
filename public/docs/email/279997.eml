@@ -1,0 +1,139 @@
+6463      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin025.me.com by p72-mailgateway-smtp-746db9575-jrn96 (mailgateway 2216B293)
+	with SMTP id d566f1fe-21fb-423a-8079-72d6371c61bf 
+	for <darrylross@icloud.com>; Mon, 13 Jun 2022 18:05:22 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: d566f1fe-21fb-423a-8079-72d6371c61bf
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	by st11p00im-smtpin025.me.com (Postfix) with ESMTPS id 22AB3601F7
+	for <darrylross@icloud.com>; Mon, 13 Jun 2022 18:05:20 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAgRMRE5UVVhYUw4aREQaGVlaTwQS
+ V1oeAQFQWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsTHkhLEUkHBEwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk8IzI+AwNRTVRWQU5zG1Y2QF9aOnEAIVhJUDZPBQEgM0xSMk5wUQ8UEApZ
+ G19bXFdZFBRFElIDBwsfGwpfRRE1EAUbF0VSTBYWC1U=
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H+du4iuh
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.222.172 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.222.172 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.222.172; helo=mail-qk1-f172.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id 15so4624586qki.6
+        for <darrylross@icloud.com>; Mon, 13 Jun 2022 11:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Q7f/YMZXM0Ht4+QVk8gR4ZeT321UBHUuRW4q+jY1I/0=;
+        b=H+du4iuhE77jWex/yfmwFFO9JxdoHATvlnIOq/hY+N8E1arwSY47XwkWbYdcuHXTnj
+         8JUwm/K2ztrLrhVUv50h1cY6SUboY9tVQ7qOQwo0djWZj/cRyXRvBEOXl55ZleZRZYJw
+         GuXkFxPTZcYdxqxzdFrP/HoEs/zQ6AOCgHke8cXZtTApnENVPBF2rWTtz5mFKpAFKCw+
+         yemYvsd1L9rdfeFoVUIEIC9CJr2AScTNqedcZFP6vbkGP5HhHEA+VSIdGVm5/+jC6755
+         AedWvm0WLa+QuG9bXtGUk72WvQXIXw4KTnlkpd3Zg+m827JMZ4hUme8HTpg6xGp3/C9p
+         XjHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Q7f/YMZXM0Ht4+QVk8gR4ZeT321UBHUuRW4q+jY1I/0=;
+        b=4sZPFnUasNgcH9zzhf12gZnNlNMJtsMcYmpTIZJXFCBlnJ1HYIZotIyE8xEVxSiWRr
+         ShlRDLRJioSOPn55bdg6HFthE8d47ebso+KwjbPyPYzvjxD2FmtYk1k13AH1v/TuWKCw
+         Lba8z3wmIw/pRBIvDlZ0k8p4fuDOJ22R/CZnZV3XfirnN1ApG+GQRpf2Qen1P1ljeWjV
+         76m/GpJx8YCmMGZf76GzSTlpe1Eoby9CTfrSx7jqos4cM3l+umh1grIc817jDdW2i7wA
+         Hfg+r+Sj5YXk+K5JJTUX58snCHM+iyiKzeu8JXZPoeySCCRXGce/RYXEhjPekXFIrPeq
+         o6hg==
+X-Gm-Message-State: AOAM532nYlrl1tSlb/vqv7DhF8Uus8TBhsFwxnChwHivGwY8UWehTVAh
+	6obCD9FBQ9QVaJZ8n00lmUcgs8pkOg8=
+X-Google-Smtp-Source: ABdhPJyeCwbZ5MCdENmr21gl7bZXMPJCpcm/pv1aKKQonuZ3zRcd10ZRPdPRf9yiaYBLEBc2zW65Vg==
+X-Received: by 2002:a05:620a:3727:b0:6a7:5055:952 with SMTP id de39-20020a05620a372700b006a750550952mr963897qkb.411.1655143520242;
+        Mon, 13 Jun 2022 11:05:20 -0700 (PDT)
+Received: from [192.168.2.175] (bras-base-mankon0402w-grc-17-174-95-90-241.dsl.bell.ca. [174.95.90.241])
+        by smtp.gmail.com with ESMTPSA id bx14-20020a05622a090e00b00304efba3d84sm5498696qtb.25.2022.06.13.11.05.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Jun 2022 11:05:17 -0700 (PDT)
+Content-Type: text/plain;
+	charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
+Subject: Re: Postpone FT
+From: Cynthia Holmes <cynthmholm@gmail.com>
+In-Reply-To: <C1F7104C-9FD0-4162-891B-46CD2ACE5945@icloud.com>
+Date: Mon, 13 Jun 2022 14:05:15 -0400
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <EEEF3538-066C-4C99-BA6C-06A757BF54E6@gmail.com>
+References: <CAFnbyRFmRbK1=gkR+xNayTkAtvw0QYu6Ysj43ZJ=E3kzEiN69A@mail.gmail.com>
+ <C1F7104C-9FD0-4162-891B-46CD2ACE5945@icloud.com>
+To: Darryl Ross <darrylross@icloud.com>
+X-Mailer: Apple Mail (2.3608.120.23.2.7)
+X-MANTSH: 1TEIXWV4fGVoaGkNHB1tfQEQbGxoZGxkaGBEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGhoRCllEF2JFYkF5Y0xhXXtPEQpZTRd6T1hZRURLRmtGRkVdEQpfWRcYGBoRCl9NF
+ 2RFRE8RCllJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XE2VTGEdmGmR8aH5
+ mXmleTElsWBhEH3t4fFwHfVwbEh4RClhcFxkEGgQeHAdLHxsZG0wdGwUbGgQbHBgEGRoEGBMQG
+ x4aHxoRCl5ZF3AZeW4SEQpNXBcbHRMRCkxaF2hrTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQYGBg
+ EGx0YEQpCXhcbEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTW
+ H4aX14RCkJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJ
+ sF29LR1BBbRoSS2lJEQpCQBdpZXMfGUkdGBxHcxEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYF
+ xgRCnBoF2ZCbExfBUtwHW9iEBkaEQpwaBdnSEtyfmFZE2FaUxAZGhEKcGgXZWcFHhNHbWRuYUk
+ QGRoRCnBoF2sYGENJTXhyGEdHEBkaEQpwaBdmQH0aS1hNeHBCTxAZGhEKcGwXZkZrHxhbbV9Gb
+ 28QGRoRCnBDF3psS3IcHn9cGGxfEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: 9Oy2mL0NVBTLtCtfcFr2n5QRVv-Wv184
+X-Proofpoint-ORIG-GUID: 9Oy2mL0NVBTLtCtfcFr2n5QRVv-Wv184
+
+Hi Darryl,
+
+Girls are well rested and thanks for understanding. They are available =
+at 6 pm.
+
+Cynthia
+
+> On Jun 13, 2022, at 1:58 PM, Darryl Ross <darrylross@icloud.com> =
+wrote:
+>=20
+> Hi Cynthia,
+>=20
+> I hope the girls got a good rest, and are having a good day at school. =
+I am available today from 4:15 pm on.
+>=20
+> Best,
+> Darryl
+>=20
+>> On Jun 12, 2022, at 5:59 PM, Cynthia Holmes <cynthmholm@gmail.com> =
+wrote:
+>>=20
+>> Hi Darryl,=20
+>>=20
+>> Unfortunately we have to postpone to Monday night, the girls are both =
+exhausted and in tears.=20
+>>=20
+>> Charlotte was at a sleepover last night and had little sleep.=20
+>>=20
+>> They both agreed to chat tmrw when they are feeling better.
+>>=20
+>> Thanks=20
+>> Cynthia=20
+>=20
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>751015</integer>
+	<key>date-last-viewed</key>
+	<integer>1741270631</integer>
+	<key>date-received</key>
+	<integer>1655143522</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12195</string>
+</dict>
+</plist>

@@ -1,0 +1,230 @@
+11691     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06031502.me.com by p133-mailgateway-smtp-9f9f9b478-bsbcc (mailgateway 2317B210)
+	with SMTP id a2b964d5-352c-4383-b51c-c0b5c6f1efaa 
+	for <darrylross@icloud.com>; Wed, 31 May 2023 12:45:04 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: a2b964d5-352c-4383-b51c-c0b5c6f1efaa
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	by st43p00im-qukt06031502.me.com (Postfix) with ESMTPS id 7A9035140191
+	for <darrylross@icloud.com>; Wed, 31 May 2023 12:45:00 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdTR1oQXgcZFltVFVFfDlgc
+ DEZVVgNSWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEU0AGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlGk0QMzVkcA8aIR4kNFJHED8DADgPYF8GNEk5AAhvTxgDJi5B
+ J3dGJR4xETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JOXThgdS
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.50 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.50 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.50; helo=mail-ej1-f50.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-973f8dbcc02so653475566b.3
+        for <darrylross@icloud.com>; Wed, 31 May 2023 05:45:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685537100; x=1688129100;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hOvl2cPVPE1u3mcRUqdcqxp2YFdLfWCm6w0oH3FzNpY=;
+        b=JOXThgdScRRsj0HoO5ptwNnkwnnOdQ3pIHYBhShMXNf8XETnMFSx4zn8VnJTxb3SO2
+         f6ZesR6sUYv7AHrU7kqNHI6xG+do7A2atrBv6KSAxVUkVuqrx1Uliu8tZvcrwagqfSZj
+         ZZtqK9pMmV7nrtSzzzfrmkVi8uyXDsOD6wz5j8dlu8mkCgoo/UQrZE32eM2Dle/7fAbz
+         zXFplJ/Y1YmS1Yxy639c4dXmB5zdcdet/8B83WmA9f0rZ6Jw/a4F12CcNkiycRPNYsG3
+         5ACahStQCwkSWy8Lnlabr2CPFcIjAsPgVtp0+tl8LxJkWlKAxb42WMRAQPwdaFtAU425
+         yltw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685537100; x=1688129100;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hOvl2cPVPE1u3mcRUqdcqxp2YFdLfWCm6w0oH3FzNpY=;
+        b=cJDV4Oss0LVlLvn1Qovb7c62xF79Lg9Tze/EL2lc8LdBgSDbNW22LrexCyA90oEulT
+         K6CEHF30HZ/sruMzBk2R32fWPPVNi8OW4s3QejsBy9uMEF6+kEggf/ymTUvhsmjvPCf6
+         MJb3gabvEKpwZMKfylO0HgEqWC0Ht8SU49Kz1/zC8+XqqQPZ5oHDCAcg1env44i2kjDw
+         h64rQBqpZ3wuRYPQZvK31FG57j/cDAw1TNFBfGJeTCtOPC4tjNRSxN/YfNJRHX+nyyGx
+         LJh+3KrUtjgmqP5l4CeeBzBwDd7XMDZEVN250s+Z2f/Vijtnr3rz1I5YGmXtC20lUkVI
+         e7Jg==
+X-Gm-Message-State: AC+VfDzDkATYBka4HeFhGiqDWdhVv+ZofCaAHF5tGUkn4zu9Ru5//7sE
+	XrNXpjR29guR7e3+6xHXhcnDGtNdKOfgIfN3m9AYYUYSQ2g=
+X-Google-Smtp-Source: ACHHUZ4LuyQTvkWra1cCGDRwkGjxoU4CDv45EIiyTClvldgtuDmP1j16w3lXGZZwXnp+tCp5aVpDHa8jJ4RFoLlEflM=
+X-Received: by 2002:a17:907:a428:b0:94e:48ac:9a51 with SMTP id
+ sg40-20020a170907a42800b0094e48ac9a51mr5398960ejc.4.1685537099921; Wed, 31
+ May 2023 05:44:59 -0700 (PDT)
+MIME-Version: 1.0
+References: <1D8C5670-7A55-498A-8062-C4B8788634D1@icloud.com>
+In-Reply-To: <1D8C5670-7A55-498A-8062-C4B8788634D1@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 31 May 2023 08:44:48 -0400
+Message-ID: <CAFnbyRGo4vDMTFmoXxSLbqrJzfOwPidA0_wp_yzv_H6_GpGkHw@mail.gmail.com>
+Subject: Re: Urgent Matter: Inappropriate Content Shared with Our Daughter
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000018bc8e05fcfcb0f2"
+X-MANTSH: 1TEIXWV4bG1oaGkNHB15TTk0aHBgaGRsaGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGh8RCllEF2JFYkF5Y0xhXXtPEQpZTRduT0ZDXE9YEQpfWRcYGBoRCl9NF2RFRE8RC
+ llJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XZAdJWGhGYn1yQxJLTGZYTH1
+ nZ3xfW3BsRltfcEZyZUgRClhcFxkEGgQfGgUbGgQbHBgEGRoEHxAbHhofGhEKXlkXSFhlckURC
+ k1cFwcbExEKTFoXaGtNTWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgbEgQfGhEKQl4XGxEKQlwXGxE
+ KXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJueBpiYxEKQ
+ k4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQkAXZ0VpT0l
+ /HEBTYXsRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdrX0xlTVhzbW9MTRAZGhEKc
+ GgXZ29ETllnUlNzWU4QGRoRCnBoF2leEmVuH3NiWEhGEBkaEQpwaBdkXUdufW1zU2trTxAZGhE
+ KcGgXek1tX0cYHh9iYGwQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: N-crBlHWXi8afLrfWMMVuqZFlquZlXOb
+X-Proofpoint-ORIG-GUID: N-crBlHWXi8afLrfWMMVuqZFlquZlXOb
+
+--00000000000018bc8e05fcfcb0f2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+I searched over both accounts(after having to ask permission for
+their passwords) and did not find anything. I am assuming you deleted it.
+
+This was an obvious error as sometimes this has happened because of
+pastvonline schooling and google drives being open.
+
+Cynthia
+
+On Sun, May 28, 2023 at 3:04=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Dear Cynthia,
+>
+> I am writing to address a matter of utmost importance that has recently
+> come to my attention.
+>
+> It was recently discovered that drafts of your affidavit were uploaded to
+> our daughter=E2=80=99s school Drive account. These documents were uploade=
+d in 2021
+> and were accessible on her account for over two years.
+>
+> The content of these documents is deeply concerning. They include
+> extensive details about legal matters which are not only inappropriate bu=
+t
+> potentially damaging for a child of any age to read. I am particularly
+> worried about the impact this may have had on our daughters given their
+> ages.
+>
+> I want to remind you of the court order that explicitly prohibits either
+> of us from involving our daughters in legal issues or discussing them. Th=
+is
+> situation appears to be a clear violation of that order. I am sharing thi=
+s
+> information at this time to make you aware of this breech.
+>
+> Moreover, I have learned that the affidavits were shared with your sister=
+,
+> who appears to have written part or all of the documents. The material in
+> these documents is included in the motion material I was served in Octobe=
+r
+> of 2021, and used by the judge in making her decision. This issue will ha=
+ve
+> to be addressed further given the seriousness of the implications this
+> raises.
+>
+> For now I believe it is in the best interest of our daughters to address
+> this issue promptly and appropriately because while this is a much more
+> serious issue, it is not isolated. I urge you to never use either of our
+> daughter's school accounts to store and share legal documents and to take
+> immediate steps to ensure that they do not have access to any legal
+> documents in your home or on any devices they might use. This includes
+> access to email and text messages that mention legal issues or matters
+> related to custody and access.
+>
+> It is imperative that such an incident does not occur in the future. It i=
+s
+> crucial that we shield our children from our legal disputes and ensure
+> their emotional well-being is not compromised.
+>
+> Thank you for your immediate attention to this matter.
+>
+> Best regards,
+> Best,
+>
+> Darryl Ross
+> darrylross@icloud.com
+> ___
+>
+>
+
+--00000000000018bc8e05fcfcb0f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>I searched over both acc=
+ounts(after having to ask permission for their=C2=A0passwords) and did not =
+find anything. I am assuming=C2=A0you deleted it.=C2=A0</div><div><br></div=
+><div>This was an obvious=C2=A0error as sometimes this has happened because=
+=C2=A0of pastvonline schooling and google drives being open.</div><div><br>=
+</div><div>Cynthia</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Sun, May 28, 2023 at 3:04=E2=80=AFPM Darryl Ross=
+ &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><di=
+v dir=3D"auto"><div dir=3D"auto"><div>Dear Cynthia,</div><div><br></div><di=
+v>I am writing to address a matter of utmost importance that has recently c=
+ome to my attention.=C2=A0</div><div><br></div><div>It was recently discove=
+red that drafts of your affidavit were uploaded to our daughter=E2=80=99s s=
+chool Drive account. These documents were uploaded in 2021 and were accessi=
+ble on her account for over two years.</div><div><br></div><div>The content=
+ of these documents is deeply concerning. They include extensive details ab=
+out legal matters which are not only inappropriate but potentially damaging=
+ for a child of any age to read. I am particularly worried about the impact=
+ this may have had on our daughters given their ages.</div><div><br></div><=
+div>I want to remind you of the court order that explicitly prohibits eithe=
+r of us from involving our daughters in legal issues or discussing them. Th=
+is situation appears to be a clear violation of that order. I am sharing th=
+is information at this time to make you aware of this breech.</div><div><br=
+></div><div>Moreover, I have learned that the affidavits were shared with y=
+our sister, who appears to have written part or all of the documents. The m=
+aterial in these documents is included in the motion material I was served =
+in October of 2021, and used by the judge in making her decision. This issu=
+e will have to be addressed further given the seriousness of the implicatio=
+ns this raises.</div><div><br></div><div>For now I believe it is in the bes=
+t interest of our daughters to address this issue promptly and appropriatel=
+y because while this is a much more serious issue, it is not isolated. I ur=
+ge you to never use either of our daughter&#39;s school accounts to store a=
+nd share legal documents and to take immediate steps to ensure that they do=
+ not have access to any legal documents in your home or on any devices they=
+ might use. This includes access to email and text messages that mention le=
+gal issues or matters related to custody and access.</div><div><br></div><d=
+iv>It is imperative that such an incident does not occur in the future. It =
+is crucial that we shield our children from our legal disputes and ensure t=
+heir emotional well-being is not compromised.</div><div><br></div><div>Than=
+k you for your immediate attention to this matter.</div><div><br></div><div=
+>Best regards,</div><div>
+<div>Best,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"mailto=
+:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></div><d=
+iv>___</div>
+
+</div>
+
+
+<br></div></div></div></blockquote></div>
+
+--00000000000018bc8e05fcfcb0f2--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1127281</integer>
+	<key>date-last-viewed</key>
+	<integer>1744822752</integer>
+	<key>date-received</key>
+	<integer>1685537104</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12451</string>
+</dict>
+</plist>

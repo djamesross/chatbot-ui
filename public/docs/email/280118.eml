@@ -1,0 +1,294 @@
+13712     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin013.me.com by p72-mailgateway-smtp-665867859c-gb92q (mailgateway 2305B152)
+	with SMTP id e16fe314-3698-480a-b829-d6f63e260300 
+	for <darrylross@icloud.com>; Tue, 13 Dec 2022 13:23:49 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: e16fe314-3698-480a-b829-d6f63e260300
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	by pv33p00im-smtpin013.me.com (Postfix) with ESMTPS id 41AB55C632A
+	for <darrylross@icloud.com>; Tue, 13 Dec 2022 13:23:43 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQUxEVxBVWg1IWwsWEVwbBxFI
+ SxFMBRgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9SQlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdkckQj0iA09+eSUbQDA1CkVhEA8bFjI5RWUoHhgAOgl/RwYHGDQ4
+ PA1VACQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hvoo4LE1
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.45 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.45; helo=mail-ed1-f45.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id m19so17662663edj.8
+        for <darrylross@icloud.com>; Tue, 13 Dec 2022 05:23:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NRzSiVcwOi2H8q6ztglomomzMyJXfGBdAo3emaQ7S9w=;
+        b=hvoo4LE1PKRvXWgShtNnTUABESOTYpBBf98TJiz46Ncyk11gDULQ3XeLosUUugKIkR
+         8+JveR4dUi7xOGK60JeFTLMYznXANheA190tScXADZIrp4XiF8ZB5dHfI2Lz1AM6Qwvy
+         2JDBwYq4WPfZ8TklBOB1QfnvYksYTa2ASCoCCz9/lG+eKhDS+5H/cepRWdMi8k5VBP0f
+         OSmPGcdI83zTUmT/jSyTAMblgl0YcOupuW75ZpLkJHRfwkLNdUo30lwhE471mqC0HS/Q
+         hmDCkmmEqwO7oTapJSAzTpDkDsUoZ5gHOLXeVT9W9dKEDtdHarfWZxBJOD+Rn4cTH2e/
+         b5dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NRzSiVcwOi2H8q6ztglomomzMyJXfGBdAo3emaQ7S9w=;
+        b=fk2PZZZijQBZvMfRAf1pNO15WjOYVT/F1Ovi8tZf0NfcrT5l1S2OaCGvpGO2Nt8Y/m
+         YE923S7aBdVLWiOPJqC67CYET46dR5ymXQl0NAUt/JH7G3U22I9pYKAcFxdPkn48fdEL
+         x6D6ikRJhhb0wZyrIgwfPRw8j7V6aP1gsZhj5Z1veQ8q+rYeGgXdfQig/erso5GKGAOB
+         RLggahpfBjH+usPzoJZVFGat+zZXA8hI+MhcAXUFNOG3H6cWbqiaEBXZwrm4tZZNwr4R
+         bY9shcgQE2kyx0qVVQI132E47UKAHz6U9uT8o/QTkPCThrZbtFhdnepIn36/PZ5c5eYT
+         uohQ==
+X-Gm-Message-State: ANoB5plLEO9ud3Qg3qjUuJCysD6P5JGft/2zARxlAk46cJ567vDRBhNQ
+	0GJspf/B64Lf4MD+EDvR2awIoY3i7P1HDv6AxYJ6C3or
+X-Google-Smtp-Source: AA0mqf6gPLW4AK80mBk0tnp2qCrx+9Hy/FcpBWM1NAQQi5Apo0dnsE48MGM1kpfRL6JDBH88dloxTSkRU0rHL05yLis=
+X-Received: by 2002:a05:6402:c1b:b0:46c:b7a3:c978 with SMTP id
+ co27-20020a0564020c1b00b0046cb7a3c978mr16441289edb.120.1670937822643; Tue, 13
+ Dec 2022 05:23:42 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRGcbat6ZUY2BFYWXYVQEri-jU_i7QwsA7rXu1W+KeL==Q@mail.gmail.com>
+ <66E880D8-48D6-4E14-90C3-0F614D80E7EC@icloud.com> <CAFnbyRFYYoz78+QAB4pd0rSki8zjV-r6H7qrXpj4bvTcV8ZOhA@mail.gmail.com>
+ <C21E4479-FA0B-44E4-B9C2-72902E0E2806@icloud.com> <CAFnbyRHYaNO=UC5JEcO097Oz1z8Y9jjeb-1JEmsOMxiMwzKHRA@mail.gmail.com>
+ <C52832FA-1492-48A5-B552-A4184EDD8BA3@icloud.com>
+In-Reply-To: <C52832FA-1492-48A5-B552-A4184EDD8BA3@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 13 Dec 2022 08:23:31 -0500
+Message-ID: <CAFnbyRFqF7DDt7NOGn9VBruWrzbpEAuSJkafMqOqdraROD=cbQ@mail.gmail.com>
+Subject: Re: Alice
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000005c48b605efb587cc"
+X-MANTSH: 1TEIXWlwZGVoaGkNHB0tNT0ReQ0QeHBoSEQpMQxcbGgQbGxgEHBMEGBgfEBseGh8
+ aEQpMWRcbGhoaEQpZRBdiRWJBeWNMYV17TxEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGBgaEQpfT
+ RdkRURPEQpZSRcacRoQGncGGBoacRsTHBAadwYYGgYaEQpZXhdsbHkRCkNOF19vbRJsTh1dbGV
+ cWW5QdWUfUxl7aGsaSx5QXERzbm9eEQpYXBcZBBoEHhMHHRhJHx8dSRkFGxoaBB0aBBsTEgQbH
+ xAbHhofGhEKXlkXS1BDbAERCk1cFx8bEQpMWhdNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBgaEgQ
+ eHxEKQl4XGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCR
+ RdoEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0
+ aEktpSREKQkAXZVtYQWNcfEleQBMRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdhX
+ X8aaUVIe0JFRhAZGhEKcGgXax5nck1ZZ2NYRX8QGRoRCnBoF2Npen1kWHkaUB9PEBkaEQpwaBd
+ rXlJgRE1lR1JJSRAZGhEKcGgXY0hgWGRsQRMeW1sQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptf
+ hcbEQpYTRdLEQ==
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: uEG8Fd7wFOvsDz_O5y3QBA0a4zvnYDEt
+X-Proofpoint-ORIG-GUID: uEG8Fd7wFOvsDz_O5y3QBA0a4zvnYDEt
+
+--0000000000005c48b605efb587cc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Since I extended the time beginning  Nov. 20th by two hours on Sundays from
+a 4-hour visit to six hours,  I don't agree to make up more time with Alice
+as she already visited you for 4.5 hours this past Saturday to make up for
+the time she was sick at home on Sunday, December 4th.
+
+I don't agree to make up time for this past Sunday December 11th as that
+was your mom's responsibility to be there for the supervised time.
+Additionally you advised me at 11:28 am that morning she would be late and
+we delivered the girls when your mom arrived at 2:35 pm.
+
+
+
+Cynthia
+
+On Mon, Dec 12, 2022 at 3:59 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I=E2=80=99d like to plan a day to make up the time missed Dec. 4 (1.5 hou=
+rs) and
+> yesterday (2 hours). My mom isn=E2=80=99t available later this week or Sa=
+turday, so
+> would Wednesday after school work?
+>
+> Also can you let me know why Char and Ali missed school today, and how
+> they are doing?
+>
+> Thank you,
+>
+> Darryl
+>
+> On Dec 8, 2022, at 3:19 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Charlotte has an appointment for her nails until 11:30 am and we booked i=
+t
+> two weeks ago as the lady fills up. Can I bring them both to you at
+> noon-430? We can look at making up the 1.5 hours another time.
+>
+> On Thu, Dec 8, 2022 at 2:34 PM Darryl Ross <darrylross@icloud.com> wrote:
+>
+>> Hi Cynthia,
+>>
+>> My mom has asked if the girls available this Saturday because the
+>> following weekend is potentially a problem.
+>>
+>> Please let me know,
+>>
+>> Darryl
+>>
+>> On Dec 7, 2022, at 1:44 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl,
+>>
+>> The girls are available next Saturday, Dec. 17 at that time. Can your mo=
+m
+>> drop off the girls after the visit?
+>>
+>> Cynthia
+>>
+>> On Wed, Dec 7, 2022 at 10:09 AM Darryl Ross <darrylross@icloud.com>
+>> wrote:
+>>
+>>> Hi Cynthia,
+>>>
+>>> I am writing to plan a time to make up the 6 hours of parenting time fo=
+r
+>>> this past Sunday. The girls have soccer Sundays until 12:30 and my mom
+>>> isn=E2=80=99t available earlier so it=E2=80=99s not possible to extend =
+Sunday which leaves
+>>> Saturday. My mom is available during the day until 4:30 pm. Saturday
+>>> morning 10-4 or 10:30-4:30 pm works for us as make up time.
+>>>
+>>> Please let me know if the the girls are available.
+>>>
+>>> Darryl
+>>>
+>>>
+>>> > On Dec 4, 2022, at 9:33 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>>> wrote:
+>>> >
+>>> > Hi,
+>>> >
+>>> > Ali e didn=E2=80=99t get her shot yesterday she was booked for a adul=
+t clinic
+>>> by accident. I rebooked her on a few weeks.
+>>> >
+>>> > She got sick on the afternoon with body aches, high fever and sore
+>>> throat so I kept her home. She is still sleeping and I won=E2=80=99t ta=
+ke her to
+>>> soccer. Charlotte is going with a friend and my mom will bring her to y=
+our
+>>> house.
+>>> >
+>>> > If she is doing better I will bring her to your house but I expect to
+>>> keep her home to rest and not spread to yourself and mom.
+>>> >
+>>> > I will keep you posted about today and school tomorrow.
+>>>
+>>>
+>>
+>
+
+--0000000000005c48b605efb587cc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div><br></div><div>Since I extended the time be=
+ginning=C2=A0 Nov. 20th by two hours on Sundays from a 4-hour visit to six =
+hours,=C2=A0 I don&#39;t=C2=A0agree to make up more time with Alice as she =
+already visited you for 4.5 hours this past Saturday to make up for the tim=
+e she was sick at home on Sunday, December=C2=A04th.</div><div><br></div><d=
+iv>I don&#39;t=C2=A0agree to make up time for this past Sunday December 11t=
+h as that was your mom&#39;s responsibility=C2=A0to be there for the superv=
+ised time. Additionally you advised me at 11:28 am that morning she would b=
+e late and we delivered the girls=C2=A0when your mom arrived at=C2=A02:35 p=
+m.</div><div><br></div><div><br></div><div><br></div><div>Cynthia</div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On M=
+on, Dec 12, 2022 at 3:59 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@ic=
+loud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div>Hi Cynthia,<div><br></div><div>I=E2=
+=80=99d like to plan a day to make up the time missed Dec. 4 (1.5 hours) an=
+d yesterday (2 hours). My mom isn=E2=80=99t available later this week or Sa=
+turday, so would Wednesday after school work?</div><div><br></div><div>Also=
+ can you let me know why Char and Ali missed school today, and how they are=
+ doing?</div><div><br></div><div>Thank you,</div><div><br></div><div>Darryl=
+</div><div><div><br><blockquote type=3D"cite"><div>On Dec 8, 2022, at 3:19 =
+PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_b=
+lank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi=
+ Darryl,<div><br></div><div>Charlotte has an appointment for her nails unti=
+l 11:30 am and we booked it two=C2=A0weeks ago as the lady fills up. Can I =
+bring them both to you at noon-430? We can look at making up the 1.5 hours =
+another time.</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Thu, Dec 8, 2022 at 2:34 PM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv>Hi Cynthia,<div><br></div><div>My mom has asked if the girls available t=
+his Saturday because the following weekend is potentially a problem.</div><=
+div><br></div><div>Please let me know,</div><div><br></div><div>Darryl=C2=
+=A0</div><div><div><br><blockquote type=3D"cite"><div>On Dec 7, 2022, at 1:=
+44 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D=
+"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr"=
+>Hi Darryl,<div><br></div><div>The girls are available next Saturday, Dec. =
+17 at that time. Can your mom drop off the girls after the visit?</div><div=
+><br></div><div>Cynthia</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, Dec 7, 2022 at 10:09 AM Darryl Ross &=
+lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@ic=
+loud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">Hi Cynthia,<br>
+<br>
+I am writing to plan a time to make up the 6 hours of parenting time for th=
+is past Sunday. The girls have soccer Sundays until 12:30 and my mom isn=E2=
+=80=99t available earlier so it=E2=80=99s not possible to extend Sunday whi=
+ch leaves Saturday. My mom is available during the day until 4:30 pm. Satur=
+day morning 10-4 or 10:30-4:30 pm works for us as make up time. <br>
+<br>
+Please let me know if the the girls are available.<br>
+<br>
+Darryl<br>
+<br>
+<br>
+&gt; On Dec 4, 2022, at 9:33 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynth=
+mholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; Ali e didn=E2=80=99t get her shot yesterday she was booked for a adult=
+ clinic by accident. I rebooked her on a few weeks.<br>
+&gt; <br>
+&gt; She got sick on the afternoon with body aches, high fever and sore thr=
+oat so I kept her home. She is still sleeping and I won=E2=80=99t take her =
+to soccer. Charlotte is going with a friend and my mom will bring her to yo=
+ur house.<br>
+&gt; <br>
+&gt; If she is doing better I will bring her to your house but I expect to =
+keep her home to rest and not spread to yourself and mom.<br>
+&gt; <br>
+&gt; I will keep you posted about today and school tomorrow.<br>
+<br>
+</blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--0000000000005c48b605efb587cc--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1024813</integer>
+	<key>date-last-viewed</key>
+	<integer>1745523341</integer>
+	<key>date-received</key>
+	<integer>1670937829</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12209</string>
+</dict>
+</plist>

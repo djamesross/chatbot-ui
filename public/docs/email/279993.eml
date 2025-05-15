@@ -1,0 +1,306 @@
+14140     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01061102.me.com by p72-mailgateway-smtp-67c496c5fc-6n5vw (mailgateway 2216B257)
+	with SMTP id 4e12a21b-ca68-4254-91a4-89e1a93e8ede 
+	for <darrylross@icloud.com>; Tue, 24 May 2022 22:12:25 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 4e12a21b-ca68-4254-91a4-89e1a93e8ede
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	by qs51p00im-qukt01061102.me.com (Postfix) with ESMTPS id 1653133604FC
+	for <darrylross@icloud.com>; Tue, 24 May 2022 22:12:23 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQU5EVxBVWg1IWwsWEVwbDhNI
+ SxFMBxgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9SQFZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeGw1IissH0hicAtFMRcENVFjBhMjK0IVRQNQB0heAAlgdCFBPlch
+ G3IOOgI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EMRrn2AM
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.47 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.47 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.47; helo=mail-lf1-f47.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id p4so31311365lfg.4
+        for <darrylross@icloud.com>; Tue, 24 May 2022 15:12:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=XoEjR1wAVx6JfuB202qXRRy0KzmhMeNCyJ7tIdldnGQ=;
+        b=EMRrn2AM844UH96ofN8S3FDURAVVOc8938fAUGADuxFPg+sqsn1hVItT9xj2azK2na
+         7mEoK0xdwaXUkYmO/sEjrQuKf1mCRWWigq+inrpH9NrfgWVFYlxnylhONiT4o2HvxWcr
+         GZp/i+bXCHkfdXsIzBLkKOK0SUUbdCq2mNhhZ0/QNVppLZDnkZaHMboVc1p1PZfymCpE
+         Q9Bj/j184dyEMnCsgPXwOXqU6rQ+z87W3bFv9ZJZDbJK1lOn8sDpdTeU0zxWCY50J6FM
+         IX9N92Ue4N1zjlnwoZkIaIw42Z3/ZjL5Ue5tApi6DR53XJlgn7LWu7Trvn2TLjDq3E5/
+         4deQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=XoEjR1wAVx6JfuB202qXRRy0KzmhMeNCyJ7tIdldnGQ=;
+        b=xD5pfYcj5nQ1kU7vfjaooBlHPLKbjKdbXkSBUgLz6YdTJDjrb5wdxUqiVAfq/f/+2K
+         IaAc+XbFHKf+pH8OeAAD0H0lavnXm88xA75DLOTrP8e7YQ3bOTkqxy00XNjcAT1dLrLl
+         AWTzy+QJJDjiaEBHiIiQcWaEWMUgf2MDkaIj1cNINZ6SDsAfoygt+9U7d+ESCl8BuehI
+         saIyrAKp2f6IE9KQGMMwSvWGALHvC3VgCpw7RqmbCBVtmIvAoBkBBBrsU7ixC+r+GHnD
+         DMuJQUHxnbahCaNd4RkJuTQUYJlY/lklAS5Xs/X0NZy+ow9933UpJVDhzUqtgxOxxzAo
+         ONWQ==
+X-Gm-Message-State: AOAM532WhLhgNMQksqnpXzoONu/RBCwVNEN63m40oxAx8lPTqYOzru1N
+	hHAHlUfarD87hTRdL/QoSzlpPEoB9NbNPJ7fmI4kJaUK
+X-Google-Smtp-Source: ABdhPJyGQmhbPZCK6O5QxsGm9W6NwOOsb1Sl/SDoXGK8Ktq3ZZ1er8QF7KxrC+YL1tNY3iMdatyzl+CZHgOOJYQrxT4=
+X-Received: by 2002:a05:6512:c08:b0:478:6a03:220d with SMTP id
+ z8-20020a0565120c0800b004786a03220dmr10139850lfu.479.1653430343034; Tue, 24
+ May 2022 15:12:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <EDF70513-C320-4B98-ADFF-1DDDD3275854@gmail.com>
+ <BA405020-AE80-477F-AB9C-979D0DFEE4BE@icloud.com> <CAFnbyRG7LY3CWdsdfBMmrheZv1XmWZnvStKOj1J7Bn5nRFy0KQ@mail.gmail.com>
+ <C9CAD010-C2AB-4844-BD08-E836EB904EAE@icloud.com> <CAFnbyRH+ii=_s50JMPBusu-nxHy2jXux8nYhAEMJ2k3Pk43-ZQ@mail.gmail.com>
+ <F9B16351-3CFD-43BF-9C12-84336621EC98@icloud.com> <CAFnbyRE86hofAhHyX8QG+=Cfcc0eKPU+zjecLUmbc4io3q1uPQ@mail.gmail.com>
+ <C55FEF69-6B54-4EFE-881A-100A680FA618@icloud.com> <CAFnbyRHbWOPNDJpo52tPMr1JDKEW+9hju5BQes3fE4NU+X7nnA@mail.gmail.com>
+In-Reply-To: <CAFnbyRHbWOPNDJpo52tPMr1JDKEW+9hju5BQes3fE4NU+X7nnA@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 24 May 2022 18:12:12 -0400
+Message-ID: <CAFnbyRHZWWRJh0RFi0HqsMaUdfZM5mu52r18wqPBC4G1VcB8Xw@mail.gmail.com>
+Subject: Re: FACETIME
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000041ebe805dfc94048"
+X-MANTSH: 1TEIXW1kfGFoaGkNHB1tfQV4aGBoTGBkaGxEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaGhEKWUQXYkViQXljTGFde08RCllNF3pPWFlFREtGa0ZGRV0RCl9ZFxgYGhEKX
+ 00XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThd+bBlkH35TbH9
+ fRh0fTXMeZ3lFZlBJQXwacnl4TU5DSREKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQSGAQbHxIEG
+ BIQGx4aHxoRCl5ZF3BdXFBAEQpNXBcfExEKTFoXaU1NaxEKTEYXbGtrEQpDWhcYGhMEEh8EGxw
+ dBB4dEQpCXhcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RC
+ kJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1B
+ BbRoSS2lJEQpCQBdtfRpFRl9HZ0dBRREKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF
+ 25cR0dITVNrWUUaEBkaEQpwaBdkemBfYn8bYWR6ZhAZGhEKcGgXaXtjeUdfYxp8cFsQGRoRCnB
+ oF2dnXnJIUERlfH1FEBkaEQpwaBdpaB9FHERrX1N/SBAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRC
+ m1+FxsRClhNF0sR
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: TF3N5TyFUul75gY4MSoLzckV0XSRgdic
+X-Proofpoint-ORIG-GUID: TF3N5TyFUul75gY4MSoLzckV0XSRgdic
+
+--00000000000041ebe805dfc94048
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+Is there a problem connecting?
+
+Girls are waiting.
+
+On Tue, May 24, 2022 at 6:09 PM Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+
+> Please contact: cynthmholm@gmail.com
+>
+> On Tue, May 24, 2022 at 6:07 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hi,
+>>
+>> As this happens every time, please wait and let me call them.
+>>
+>>
+>>
+>> On May 24, 2022, at 6:02 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>>
+>> Hi.
+>>
+>> The girls are calling you on your iCloud address from my computer.
+>>
+>> Are you available?
+>>
+>> On Tue, May 24, 2022 at 9:57 AM Darryl Ross <darrylross@icloud.com>
+>> wrote:
+>>
+>>> Hi Cynthia,
+>>>
+>>> I=E2=80=99m glad to see that your power is back on. I=E2=80=99m sure it=
+ is a big relief.
+>>>
+>>> Is 6 pm still a good time to FaceTime with Charlotte and Alice, or woul=
+d
+>>> an earlier time be better?
+>>>
+>>> Darryl
+>>>
+>>>
+>>> On May 23, 2022, at 4:51 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>>> wrote:
+>>>
+>>>
+>>> Hi Darryl.
+>>>
+>>> We are without internet or phone service at the moment, so I will have
+>>> to postpone.
+>>>
+>>> The girls are gone tmrw from school as it=E2=80=99s closed so if we get=
+ it back
+>>> earlier I will coordinate with you.
+>>>
+>>>
+>>> On Sun, May 22, 2022 at 6:04 PM Darryl Ross <darrylross@icloud.com>
+>>> wrote:
+>>>
+>>>> Sure. Thank you for letting me know. I will FaceTime Charlotte and
+>>>> Alice at 6 pm tomorrow.
+>>>>
+>>>> Darryl
+>>>>
+>>>> On May 22, 2022, at 5:04 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>> wrote:
+>>>>
+>>>> Hi Darryl.
+>>>> I hope you are all well in Smith Falls. Unfortunately, we do not have
+>>>> power and my cell service is wonky at the moment.
+>>>>
+>>>> Can we try to FT Monday night? I am hoping we get our power back by
+>>>> then. I will keep you posted.
+>>>>
+>>>> The girls are ok, having fun with neighbours and they are at a bday
+>>>> party right now.
+>>>>
+>>>> Our neighbour Maureen has power so we have been able to save some food=
+.
+>>>>
+>>>> Cynthia
+>>>>
+>>>> On Sat, May 21, 2022 at 4:52 PM Darryl Ross <darrylross@icloud.com>
+>>>> wrote:
+>>>>
+>>>>> Hi Cynthia,
+>>>>>
+>>>>> I am available tomorrow 6-7 pm, and every week following.
+>>>>>
+>>>>> I look forward to talking to them.
+>>>>>
+>>>>> Darryl
+>>>>>
+>>>>> > On May 21, 2022, at 8:45 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>> wrote:
+>>>>> >
+>>>>> > Hi Darryl,
+>>>>> >
+>>>>> > I would like to start a weekly FaceTime on Sundays with the girls.
+>>>>> Would 6-7pm work? I would feed them earlier.
+>>>>> >
+>>>>> > We are available this Sunday.
+>>>>> >
+>>>>> > Cynthia
+>>>>>
+>>>>>
+>>>>
+>>>
+>>
+
+--00000000000041ebe805dfc94048
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Is there a problem connecting?</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">Girls are waiting.</div><div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Tue, May 24, 2022 at 6:09 PM Cynthia =
+Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Pleas=
+e contact: <a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthm=
+holm@gmail.com</a></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Tue, May 24, 2022 at 6:07 PM Darryl Ross &lt;<a h=
+ref=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"word=
+-wrap:break-word;line-break:after-white-space">Hi,<div><br></div><div>As th=
+is happens every time, please wait and let me call them.</div></div><div st=
+yle=3D"word-wrap:break-word;line-break:after-white-space"><div><br></div><d=
+iv><br><div><br><blockquote type=3D"cite"><div>On May 24, 2022, at 6:02 PM,=
+ Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blan=
+k">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi.<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">The girls are calling yo=
+u on your iCloud address from my computer.</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">Are you available?=C2=A0</div><div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 24, 2022 at 9:5=
+7 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_bl=
+ank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex"><div style=3D"word-wrap:break-word;line-break:after-white-space">Hi =
+Cynthia,<div><br></div><div>I=E2=80=99m glad to see that your power is back=
+ on. I=E2=80=99m sure it is a big relief.</div><div><br></div><div>Is 6 pm =
+still a good time to FaceTime with Charlotte and Alice, or would an earlier=
+ time be better?</div></div><div style=3D"word-wrap:break-word;line-break:a=
+fter-white-space"><div><br></div><div>Darryl</div><div><br><div><br><blockq=
+uote type=3D"cite"><div>On May 23, 2022, at 4:51 PM, Cynthia Holmes &lt;<a =
+href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com=
+</a>&gt; wrote:</div><br><div><div><br></div><div dir=3D"auto">Hi Darryl.</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">We are without internet o=
+r phone service at the moment, so I will have to postpone.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">The girls are gone tmrw from school as i=
+t=E2=80=99s closed so if we get it back earlier I will coordinate=C2=A0with=
+ you.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br><div class=3D"=
+gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, May=
+ 22, 2022 at 6:04 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.co=
+m" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
+olid;padding-left:1ex"><div style=3D"word-wrap:break-word;line-break:after-=
+white-space"><div>Sure. Thank you for letting me know. I will FaceTime Char=
+lotte and Alice at 6 pm tomorrow.</div></div><div style=3D"word-wrap:break-=
+word;line-break:after-white-space"><div><br></div><div>Darryl</div><div><br=
+><blockquote type=3D"cite"><div>On May 22, 2022, at 5:04 PM, Cynthia Holmes=
+ &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@g=
+mail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darryl.</div><di=
+v dir=3D"auto">I hope you are all well in Smith Falls. Unfortunately, we do=
+ not have power and my cell service is wonky at the moment.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Can we try to FT Monday night? I am h=
+oping we get our power back by then. I will keep you posted.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">The girls are ok, having fun with nei=
+ghbours and they are at a bday party right now.</div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">Our neighbour Maureen has power so we have been abl=
+e to save some food.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cyn=
+thia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Sat, May 21, 2022 at 4:52 PM Darryl Ross &lt;<a href=3D"mailto:=
+darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-=
+left-color:rgb(204,204,204)">Hi Cynthia,<br>
+<br>
+I am available tomorrow 6-7 pm, and every week following.<br>
+<br>
+I look forward to talking to them.<br>
+<br>
+Darryl<br>
+<br>
+&gt; On May 21, 2022, at 8:45 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl,<br>
+&gt; <br>
+&gt; I would like to start a weekly FaceTime on Sundays with the girls. Wou=
+ld 6-7pm work? I would feed them earlier.<br>
+&gt; <br>
+&gt; We are available this Sunday.<br>
+&gt; <br>
+&gt; Cynthia<br>
+<br>
+</blockquote></div></div>
+</div></blockquote></div><br></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</blockquote></div></div>
+
+--00000000000041ebe805dfc94048--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>727100</integer>
+	<key>date-received</key>
+	<integer>1653430345</integer>
+	<key>flags</key>
+	<integer>9127066757</integer>
+</dict>
+</plist>

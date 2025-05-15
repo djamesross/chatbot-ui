@@ -1,0 +1,273 @@
+15085     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-central-1n-20-percent-7 by p158-mailgateway-smtp-777f694959-wckll (mailgateway 2429B81)
+	with SMTP id b50540c9-2117-4100-be1a-5ba559529a31 
+	for <darrylross@icloud.com>; Thu, 20 Feb 2025 15:10:45 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: b50540c9-2117-4100-be1a-5ba559529a31
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	by p00-icloudmta-smtpin-us-central-1n-20-percent-7.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-central-1n.k8s.cloud.apple.com (Postfix) with ESMTPS id AE66EC0015E
+	for <darrylross@icloud.com>; Thu, 20 Feb 2025 15:10:43 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgAOTEFLRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxIcARsEQUtIEBdfUQ4QVwUYFRBGFgdECxYRXBsHEUhLEUwCGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcAND8cA2MKEgBSHwBEWwU0DgIAGmVxDyBPCzNIZVIERCFXTzV+WFUyES0eC1ZnIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TkCpBmmO
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.42 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.42 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.42; helo=mail-ed1-f42.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e02eba02e8so1403827a12.0
+        for <darrylross@icloud.com>; Thu, 20 Feb 2025 07:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740064224; x=1740669024; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xzgkJ5dq708QlYAadr0NumNoYHEGs52TAGglcCaAEQA=;
+        b=TkCpBmmOFRph6i1dIAjQUF4FgWv8lrp3jjFbLoER7kfer8sPmJEsOlDp7Gg4TrJ5nX
+         CDDewnvhUU/XBISvqM2Xvw5S4dzTaZF/heUTUTRzC8F5uhO8DuNdZ8bbius2aEHMSh6A
+         WyC1QCGLL1Wk8+NBAmWJYeX4s2oGeUndSsa12D5i9uX/sOue05oct7t3JlyAmABNLFtR
+         N9F8GdEN4kXL6BoK1XP4R57VEU1ZtI+7pBaOQIvRxEj5WjKNfuvi/aUO/tyQ6fzCocUo
+         AoUQeZrKgQFB8LVm2J6Bi1hfE48q8NFseya3q4J/G9UMcnIplPEiHzJ0eusnDg0obOUh
+         ZJhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740064224; x=1740669024;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xzgkJ5dq708QlYAadr0NumNoYHEGs52TAGglcCaAEQA=;
+        b=qEr0LCN3565R06DvTLYGK6HB2+D9LnfjA8TWr+uw5Mfy3kYmQQSyPfIyfec2DMIEjl
+         TuEdf6xcz5J1yfRUnv+xl6Wpgvt9AvhUhFSJWqUGDVOuRL17cuBGcLNbN6JA2HI1l2wY
+         1mNTsjaKUdIAtMzdtNtOqJ082wzgFHQc5PY7+MPuLeYg99CvfoxIrfVBzbSww07pjbst
+         n6rzASTUM2XkULZIC5vBhx4p+aUgM4HrVTqhPhEbXL+3VIosnZ+DZEDIzoQkGVt1MUg+
+         2Luo4Ph0RJqKt8emevF2+h0G9Nw1LTqujV7pEuFIIf/AzzI9WXRGnfwv4+uvq0ZHXHsD
+         gDwg==
+X-Gm-Message-State: AOJu0YzEQ53oveAnEmYkOs7V5AHWcL/u0fZJUyJFk0j/awwNBO0KLV9/
+	IrMpXDA5eQ4c/uD8pP/+kzYr7LyWTdXh4A/EJxYGAbJylpcBqrLw5sHo0hFFI/eFggP2AINv09K
+	varY8xKfxqaNSV+ZSxwdOYNgtihFVib20
+X-Gm-Gg: ASbGncuV8Bp8Vh8BguwjFnAZCqkmaU3Bo0SNsGzhrbr2g1FCB1Gnp6yOrMQ254t/YKm
+	ABufRTgvPGb9O5TVQUH/1mLFBEHlugvpR5zRawJg5W5wj2i8p9gMqhtXrn/KpC4kB0jeS7Vztt9
+	sQHSTWMj3MDYwUAbx4QRWdmfM8jH53gA==
+X-Google-Smtp-Source: AGHT+IGpTWsqtVp2q//A5sLyXS8bwLVlNP6IBPMLCBJEz53NPVHJAQ1tdYy1aWvpfDW7G/ya6SKY1Xv1RNPWZ26CLrc=
+X-Received: by 2002:a05:6402:2793:b0:5dc:72e1:63f5 with SMTP id
+ 4fb4d7f45d1cf-5e08952269fmr7795238a12.12.1740064224219; Thu, 20 Feb 2025
+ 07:10:24 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRFeHLqugKDUi9eBoqeb_yh7Rb1fO6ULJqwh9cmr9v3HhQ@mail.gmail.com>
+ <5AF891CF-7DC6-431B-85CA-BA83A16BBCBB@icloud.com>
+In-Reply-To: <5AF891CF-7DC6-431B-85CA-BA83A16BBCBB@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 20 Feb 2025 10:10:12 -0500
+X-Gm-Features: AWEUYZmhgYCwQBZvgZutOqJQ80RHmLncbhcF-2YjsLJcI2IUjH2K81LSlzj5WLY
+Message-ID: <CAFnbyRHd3Uhgy4hxtmgAwdwbUGmU6mD0Udf1X18MNn7GhKisfQ@mail.gmail.com>
+Subject: Re: Update
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000f89edc062e94453a"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxscGxEKX00
+ XZEVETxEKWUkXGnEaEBp3BhseG3EYHxAadwYYGgYaEQpZXhdsbHkRCkNOF1lYGV1tGGYaTF9sa
+ 1ldTkNLHE5lTkRfb09kU3ttE0BCEQpYXBcZBBoEHxoFGxoaBBIYBB4YBBgcEBseGh8aEQpeWRd
+ PHWVbehEKTVwXGxobEQpMWhdNXWsRCk1OF2lrEQpMRhdiTWsRCkNaFxgaEwQSHwQYGhIEHhgRC
+ kJeFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBI
+ bfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLa
+ UkRCkJAF2dlZHpMYEAcHUtQEQpCWBdia05vb3psZ1pHSxEKWlgXHhEKcGgXYmN+ARJtSVtSb3I
+ QGhEKcGgXYV9OQlJbQBwbHWwQGhEKcGgXY29oTWlPbRNLeEcQGhEKcGgXYR1MRV9uUxloW2sQG
+ hEKcGgXemdlQFJfAXIYX2MQGhEKcGgXaFN+GGVIek5maXoQGhEKcGgXaFMZb3JCYXBcY0gQGhE
+ KcGgXbh5kfHhfclxmWXkQGhEKcH8XYHh9aH0TGwFhGEUQBxsYGhEKcF8XYXJoXmsdQnoBT30QB
+ xsaGREKcH0Xa1x/UxgBYGcfeUQQGhEKcH0Xa1x/UxgBYGcfeUQQGhEKcGwXZkZrHxhbbV9Gb28
+ QGhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-GUID: sr3wG2L0fuFAswdia6dOdnuEeNyQG9jh
+X-Authority-Info: v=2.4 cv=N7XTF39B c=1 sm=1 tr=0 ts=67b745f4 cx=c_apl:c_pps a=JFLq0Zg074/TNoPlXaVJig==:117 a=T2h4t0Lz3GQA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=knh3hgXZsgPknSP7kYEA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=2rwOE2RALJAFL7-IMVMA:9 a=tD5yF5kjk7tRxCRz:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=xo5jKAKm-U-Zyk2_beg_:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-ORIG-GUID: sr3wG2L0fuFAswdia6dOdnuEeNyQG9jh
+
+--000000000000f89edc062e94453a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+
+As for testing I agree in a local professional but those are separate from
+a professional counsellor she can trust. If you can look into testing that
+would be helpful and please look for one who is on the less expensive side
+as I have a yearly limit for me benefits.
+
+
+As for general counselling cost and time are and issue.
+
+The price doubles for Ottawa therapists. I do not have the funds to pay the
+difference at this time as the testing will take up a large portion of my
+benefits.
+
+Parents can meet virtually with therapist to discuss any issues. I
+currently meet virtually with my own therapist and now with the girls
+teachers.
+
+ As you are aware,  I work two jobs with one them mandated in the office
+for three days a week and girls are both in competitive soccer which I am
+solely responsible for so our time is incredibly limited.
+
+The Hamilton office has a great reputation and works with kids. How about I
+send the info with  the recommendations so you can take a look?
+
+
+
+
+
+On Thu, Feb 20, 2025 at 9:45=E2=80=AFAM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+> I think therapy would be beneficial. A local therapist in Ottawa would be
+> more practical so that in-person sessions are an option if needed. A loca=
+l
+> therapist would also be more accessible to both parents and could help
+> guide any decisions about testing and where that might be done if it is
+> necessary.
+>
+> I will look into therapists in Ottawa and send over some options. If you
+> have specific practices in Ottawa you=E2=80=99d like to suggest, feel fre=
+e to share
+> them.
+>
+> Darryl
+>
+> On Feb 19, 2025, at 09:36, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+>
+> Hi there,
+>
+> Charlotte is home sick today. She is running a fever and very stuffed up.
+>
+> The girls passport applications were denied and I am required to produced
+> birth certificates with parents l names . This request takes at least 15
+> business days and is only processed through Toronto office.
+>
+> There is a chance we will not have them in time and I may have to postpon=
+e
+> our trip. We are all feeling anxious about it.
+>
+> Alice has expressed that she would like to speak to a therapist, someone
+> she can trust. She wants a girl and to meet virtually.
+>
+> She is also struggling in her studies and having a hard time focusing. He=
+r
+> she has noticed this and so has her teacher Ashlee and myself.
+>
+> I am looking into getting her some help and possibly tested. A big factor
+> will be the cost as I am the only one with benefits and cannot cover much
+> of the difference.
+>
+> There is a great practice in Hamilton that has treated Kelly=E2=80=99s fa=
+mily and
+> Ben and Sam. Who are reasonably priced. This would be for individual
+> counselling. I=E2=80=99m going to send info to you.
+>
+> If you have some suggestions please send them over.
+>
+>
+>
+>
+
+--000000000000f89edc062e94453a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto"><div dir=3D"auto"><br><span style=3D"color:rgb(0,0,0);font-family:&#39=
+;-apple-system&#39;,&#39;helveticaneue&#39;;font-size:17px;font-style:norma=
+l;font-weight:400;letter-spacing:normal;text-indent:0px;text-transform:none=
+;white-space:normal;word-spacing:0px;text-decoration:none;display:inline!im=
+portant;float:none">As for testing I agree in a local professional but thos=
+e are separate from a professional counsellor she can trust. If you can loo=
+k into testing that would be helpful and please look for one who is on the =
+less expensive side as I have a yearly limit for me benefits.</span></div><=
+br></div><div dir=3D"auto"><br></div><div dir=3D"auto">As for general couns=
+elling cost and time are and issue.=C2=A0</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">The price doubles for Ottawa therapists. I do not have th=
+e funds to pay the difference at this time as the testing will take up a la=
+rge portion of my benefits.<br></div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Parents can meet virtually with therapist to discuss any issues. =
+I currently meet virtually with my own therapist and now with the girls tea=
+chers.=C2=A0<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">=C2=A0A=
+s you are aware, =C2=A0I work two jobs with one them mandated in the office=
+ for three days a week and girls are both in competitive soccer which I am =
+solely responsible for so our time is incredibly limited.=C2=A0<br></div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto"><div dir=3D"auto"><span style=
+=3D"color:rgb(0,0,0);font-family:&#39;-apple-system&#39;,&#39;helveticaneue=
+&#39;;font-size:17px;font-style:normal;font-weight:400;letter-spacing:norma=
+l;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;t=
+ext-decoration:none;display:inline!important;float:none">The Hamilton offic=
+e has a great reputation and works with kids. How about I send the info wit=
+h =C2=A0the recommendations so you can take a look?=C2=A0</span></div><br c=
+lear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"=
+gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img s=
+rc=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl=
+9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div=
+></div></div><div><br></div><div><br><div class=3D"gmail_quote gmail_quote_=
+container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 20, 2025 at 9:=
+45=E2=80=AFAM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darr=
+ylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><d=
+iv style=3D"line-break:after-white-space"><p>Hi Cynthia,</p><p>I think ther=
+apy would be beneficial. A local therapist in Ottawa would be more practica=
+l so that in-person sessions are an option if needed. A local therapist wou=
+ld also be more accessible to both parents and could help guide any decisio=
+ns about testing and where that might be done if it is necessary.</p><p>I w=
+ill look into therapists in Ottawa and send over some options. If you have =
+specific practices in Ottawa you=E2=80=99d like to suggest, feel free to sh=
+are them.</p></div><div style=3D"line-break:after-white-space"><p>Darryl</p=
+><div><br><blockquote type=3D"cite"><div>On Feb 19, 2025, at 09:36, Cynthia=
+ Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynth=
+mholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto"><br clear=3D=
+"all">Hi there,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Charlott=
+e is home sick today. She is running a fever and very stuffed up.</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto">The girls passport applications w=
+ere denied and I am required to produced birth certificates with parents l =
+names . This request takes at least 15 business days and is only processed =
+through Toronto office.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">There is a chance we will not have them in time and I may have to pos=
+tpone our trip. We are all feeling anxious about it.</div><div dir=3D"auto"=
+><br></div><div dir=3D"auto">Alice has expressed that she would like to spe=
+ak to a therapist, someone she can trust. She wants a girl and to meet virt=
+ually.</div><div dir=3D"auto"><br></div><div dir=3D"auto">She is also strug=
+gling in her studies and having a hard time focusing. Her she has noticed t=
+his and so has her teacher Ashlee and myself.</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">I am looking into getting her some help and possibly =
+tested. A big factor will be the cost as I am the only one with benefits an=
+d cannot cover much of the difference.=C2=A0</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">There is a great practice in Hamilton that has treated=
+ Kelly=E2=80=99s family and Ben and Sam. Who are reasonably priced. This wo=
+uld be for individual counselling. I=E2=80=99m going to send info to you.=
+=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">If you have some =
+suggestions please send them over.=C2=A0</div><div dir=3D"auto"><br></div><=
+div dir=3D"auto"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signatur=
+e" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://=
+ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usT=
+Svidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+</div></blockquote></div><br></div></blockquote></div></div>
+
+--000000000000f89edc062e94453a--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1320206</integer>
+	<key>date-last-viewed</key>
+	<integer>1744641129</integer>
+	<key>date-received</key>
+	<integer>1740064245</integer>
+	<key>flags</key>
+	<integer>2241973189781</integer>
+	<key>remote-id</key>
+	<string>12390</string>
+</dict>
+</plist>

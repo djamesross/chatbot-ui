@@ -1,0 +1,158 @@
+7210      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr28p00im-smtpin025.me.com by p72-mailgateway-smtp-749855b995-2t6pr (mailgateway 2225B382)
+	with SMTP id bc686fda-0de2-4ec0-9a8b-cf0b95bf06b3 
+	for <darrylross@icloud.com>; Sat, 1 Oct 2022 16:35:28 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: bc686fda-0de2-4ec0-9a8b-cf0b95bf06b3
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	by mr28p00im-smtpin025.me.com (Postfix) with ESMTPS id CDC73309AFA9
+	for <darrylross@icloud.com>; Sat,  1 Oct 2022 16:35:27 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQU9EVxBVWg1IWwsWEVwbDhNI
+ SxFMBhgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9SQVZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeEVRNispIBcHTFMSAzIPGXxwKCMpLTgJVR0KRzY1HEgHDjACAV8e
+ J3hbXyQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TOzEf+OZ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.46 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.46 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.46; helo=mail-lf1-f46.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id d42so11177780lfv.0
+        for <darrylross@icloud.com>; Sat, 01 Oct 2022 09:35:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date;
+        bh=UhLL5S3yAFRCRPvhcCmO1aPNqat0yKw1vLbF5F6wKfs=;
+        b=TOzEf+OZZviOyEHfOsBCsH7Q212wf+wTWXcIoCz7QaaDQG4zxD17bCYNsBX7j0/MrA
+         1/iMD7rM8yaeeEynxMIWnQiCVVkdeEjZeNUceiuIDRcRvexZGIKoJG0CdagIwHTsrxTR
+         XMq5F1jEqJUrcmyi0PY1cK4Mz+VD2CCMkZMx0UhfpE5B2SGhFSqp7+LFUqqDec9oM8fI
+         VYrqKsvW/w8y/8ySF4Cz6Rxp+ajk0WJvhLEr8wMSouzOfmUw5mYQi3qhdWTiQJki6sOV
+         Um+JrdFMWdFbtjfiRpWwr91QKVLnO/Pe8vI5YC0BVJDwcBDWgwXQol4caE8zdA97nB5G
+         Cptw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=UhLL5S3yAFRCRPvhcCmO1aPNqat0yKw1vLbF5F6wKfs=;
+        b=N8Ck5In9+23Qq2aWEo7JjqFhQ61FNQEmO0Q4IBfId5+gOVVR5SvY06miJe9h83NOrM
+         4BseSsvBbfw5KJNEN/c1+aKxtZQnV2V+fBNX8wBRMPNndyQX9Rp0fLgxE7KFsKtPKr8Q
+         gnt7eWED6NvSmTEKWeh+1nE3pGJQzQBYxxIiaJFoKX0tlFZT6Xz6GsxDM5fqLJCgjchf
+         +WyML2n259Jn+TIz1XwUbWsnMGj0qQ82A2DYV1Fg7jYzDglRA2JjMKEEgaziDbncZ72l
+         BXK+ePNdqwV49HiWqLKYFop4OlcuHgykjmdEhLzrPInSE4e9DOb0kRd839e46yztUSox
+         PS1A==
+X-Gm-Message-State: ACrzQf2B3aqTZsCW71CO6op71fzbppg94gLqhA/vmCDWdlMvQE70oI3K
+	GLNb1hj9TFMcrCEc40+k61K0MwrgbLC4v+AKCoZQvElXgcI=
+X-Google-Smtp-Source: AMsMyM4n5aHTnXQDw09MgL7f2N+bQQY1YGpWtqLJ3fTgjlKn4Q5/jnoxTZXrnKjbeNSpUtCSzzUae+WjkN1ADBJSZpw=
+X-Received: by 2002:a05:6512:281e:b0:4a2:d99:d5ea with SMTP id
+ cf30-20020a056512281e00b004a20d99d5eamr4051798lfb.9.1664642126870; Sat, 01
+ Oct 2022 09:35:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRFd4rGxqjP7q79khBh-OrpQ-Fp6x1Cnc4frFOM=pwmv8Q@mail.gmail.com>
+ <34B23DF5-BE55-4C36-96E0-13A8C776798A@icloud.com>
+In-Reply-To: <34B23DF5-BE55-4C36-96E0-13A8C776798A@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 1 Oct 2022 12:35:15 -0400
+Message-ID: <CAFnbyRHs3CROWo7z1gzTxaLFJVPKOqe+h2OSk078Rwx9i_Hm=Q@mail.gmail.com>
+Subject: Re: Today
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000a67df605e9fbb29e"
+X-MANTSH: 1TEIXR1geHVoaGkNHB1tfQEQaEhoTGBsaGBEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGxwbEQpfTRdkRURPE
+ QpZSRcacRoQGncGGx4bcRgfEBp3BhgaBhoRClleF2xseREKQ04XX0Z4E35kW0BuY0gYfkhOQh5
+ NbnkcHUFEf2NwZmJif0MRClhcFxkEGgQeEwcdGEkfHx1JGQUbGhoEHRsEGxwaBBMaEBseGh8aE
+ QpeWRdLSEJuWBEKTVwXGB4bEQpMWhdNXWsRCkxGF2JraxEKQ1oXGBoTBBIfBBscHQQeHBEKQl4
+ XGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8e
+ HJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSRE
+ KQkAXY0dNcFABbm0FW1gRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdnfU5aSExvB
+ WRZZhAZGhEKcGgXY0tZGW9tTn8cc3MQGRoRCnBoF2BdeXtDe0ZaQXNQEBkaEQpwaBdrcFgSSXB
+ neB17exAZGhEKcGgXYWhJf2wae1Bgbm8QGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbEQpYT
+ RdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: ulR9TNqjDIb2Tbdh4gDS67knUIZLHHUi
+X-Proofpoint-ORIG-GUID: ulR9TNqjDIb2Tbdh4gDS67knUIZLHHUi
+
+--000000000000a67df605e9fbb29e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Yes, I will let you know.
+
+False alarm on lice.
+
+Cynthia
+
+On Sat, Oct 1, 2022 at 11:04 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Please keep me up to date and let me know if/when it's gone, or if Alice
+> gets it.
+>
+> For Alice's UTI kindly let me know the test result when you find out.
+>
+> Darryl
+>
+> > On Oct 1, 2022, at 08:31, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> >
+> > =EF=BB=BFHello
+> >
+> > I found out last night that both Charlotte and I have lice. We are bein=
+g
+> treated at 10 am.
+> >
+> > Are you available for FT at 1 pm or 530 pm today?
+> >
+> > Cynthia
+>
+
+--000000000000a67df605e9fbb29e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Yes, I will let you know.</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">False alarm on lice.</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">Cynthia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Sat, Oct 1, 2022 at 11:04 AM Darryl Ross &lt;<a href=3D"=
+mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex">Please keep me up to date and let me know i=
+f/when it&#39;s gone, or if Alice gets it. <br>
+<br>
+For Alice&#39;s UTI kindly let me know the test result when you find out. <=
+br>
+<br>
+Darryl<br>
+<br>
+&gt; On Oct 1, 2022, at 08:31, Cynthia Holmes &lt;<a href=3D"mailto:cynthmh=
+olm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BFHello<br>
+&gt; <br>
+&gt; I found out last night that both Charlotte and I have lice. We are bei=
+ng treated at 10 am. <br>
+&gt; <br>
+&gt; Are you available for FT at 1 pm or 530 pm today?<br>
+&gt; <br>
+&gt; Cynthia <br>
+</blockquote></div></div>
+
+--000000000000a67df605e9fbb29e--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>992490</integer>
+	<key>date-received</key>
+	<integer>1664642128</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>

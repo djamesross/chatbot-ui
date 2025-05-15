@@ -1,0 +1,308 @@
+17816     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:674b:0:0:0:0:0 with SMTP id f11csp2192180ltj; Sun, 24
+ Nov 2019 12:05:03 -0800 (PST)
+X-Received: by 2002:ad4:57d4:: with SMTP id y20mr13689945qvx.63.1574625903233;
+ Sun, 24 Nov 2019 12:05:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1574625903; cv=none; d=google.com;
+ s=arc-20160816;
+ b=kAGWTh+PwHyjOrSqzhatyuZQtBlnnppaAiyApBkohGpVSBrzlQrcRFoRygXkQ3nI1d
+ fegO7Eoaf3a19hJUg3hG5FthCrwuReW6V556JT3rhXK2gd0CQQkdfA1RI164I6uDyVDg
+ S52hD6eYIDtcWpiyyqDuCj4cTylx/Mow1aT9Maxx2J9eGKVpoU5tlBGsa7X733Z1ekZ1
+ Cl5avGikmWjL3iIhPkikPDjkOpox6vKgygRfbuXhGycK1YEr3vb94QggwdwqBkAtYe4J
+ smWpuDcFrx8oVcIwh/eLLNz8l4iFp6h0v0jruJIuLC3HDUk1cOvaFRcIZPOr2ljmezva 6X1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=to:references:message-id:content-transfer-encoding:cc:date
+ :in-reply-to:from:subject:mime-version:dkim-signature;
+ bh=VMyhcJBqDHPQBsagFNXlAIr8mKIr3YJ9BU+sNzG0bPE=;
+ b=JElNMVS/Dn3VB+ZDoTHKckEwYg4zS6qiZvyUznJ+sLua/qmjjQ4ylZbLm/kOyB9Rsa
+ n9SbMi1gsDw5kprIN4kt0UZIraOOdc6KIuavt4N93rFfcaUTU22x/xbuiCOfTReiwJ+R
+ gnGqpdWyKgX/Wit+tnUmYoY4G5Oq3Y7y1BNlbP1dt+tBOH3EHnViWzZI+BchwaHsOX8r
+ U0Oudp/Fbl9FwEfI0dbXUcNU5oXQsGMmlqMuET0Z8gK9XLnEErx2/dFq92LHYalA9ard
+ Wg9wMTPv0VGmyQlf+1+gmg0Ge1qJNKijau9STCh8TJHszw1Z3nMMZYdb3L7k894OzkxI BFJg==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b="qZjn/2FD"; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ e16sor3197482qvo.72.2019.11.24.12.05.03 for <darrylondunlin@gmail.com>
+ (Google Transport Security); Sun, 24 Nov 2019 12:05:03 -0800 (PST)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b="qZjn/2FD"; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=VMyhcJBqDHPQBsagFNXlAIr8mKIr3YJ9BU+sNzG0bPE=;
+ b=qZjn/2FDdMz5lngdZ3CaUGyH6L+UXGTK+0JCppAz0bcxV7iCoWBwMWHytPZ//oAQ9+
+ qABEDWB57U0wXj1tNzihnMt3qurKWHGe52kWWIs6W9npQ4lHRc1Q47EzaQYJiUAKWCzX
+ 80ga/RbXG9qKGxCqJxlrxvRGvrc2ba8lZ1vHb1L+xhRoU1OEp6pLNYC6FC1oAexA/YWz
+ fgFBkV4qtT3gYWU4pIh4gb5KG9ouDBlKgn70GAYT6n+mXljcIXe/33QnRBRyVB9aP77t
+ BRx8foY9pdrolvwdBHMOwsbmsx5zUor/TziRl1iz+s9g2BE/58pGUZiBdEO1xfYPc2/K GOSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=VMyhcJBqDHPQBsagFNXlAIr8mKIr3YJ9BU+sNzG0bPE=;
+ b=XRUoPTAjVObyTaar1BlYOlCQQmC22gmF7H8FbpIV+AiIiEUHAKzzclO+6/ykbuPXHo
+ 79rjDv3OI3HVldbFqELsgMjDaYPIHpBMmxs6W6Icq7jeFZlURR706GHUUcY2dVS6qMoZ
+ N2whKYy5mFsg9ImMrO/pyB7eOjdWBy2CDTYCh3XoUKnUdpT+TwRRu+Ztls2ztT+tZPKC
+ A2zUIRo0DHjDCSTmVXIhQG3ljhDF4W0drmqwKzslKcHFBVOeeWNxpYrrRZY8SCMI5UWW
+ kp41j/VCxWuxXiEvsw7x74nykQu7E7lpzMsgyP8eqYf+/Js7hQvHAnrCzgDIg3SdIhmW 50ow==
+X-Gm-Message-State: APjAAAVxJqYVg4w2he9tYemRXjts4a+kq2om+dw5hA5iUuQQrNPFpqL3
+ /9Ot6rAgINFb5ddhWhUZmKqHUxi2
+X-Google-Smtp-Source: APXvYqzsC8+++abY44YVt+v1fhc05/qCqXcNzBnuqxP3ymV/Mi/LEz/uHa73LCk7Ry5YIykh6M5W+w==
+X-Received: by 2002:ad4:4e2c:: with SMTP id
+ dm12mr15512130qvb.195.1574625902277; Sun, 24 Nov 2019 12:05:02 -0800 (PST)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [192.168.2.117] ([142.122.15.8]) by smtp.gmail.com with ESMTPSA
+ id 201sm2249040qkf.10.2019.11.24.12.05.01 (version=TLS1_2
+ cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Sun, 24 Nov 2019 12:05:01
+ -0800 (PST)
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0 (1.0)
+Subject: Re: Visit
+From: Cynthia Holmes <cynthmholm@gmail.com>
+X-Mailer: iPhone Mail (16G130)
+In-Reply-To: <CABKo-oX6Qau5+kzAyad3DKvHBotTgp3O44Bpotmn7_fQptQ1xw@mail.gmail.com>
+Date: Sun, 24 Nov 2019 15:05:00 -0500
+Cc: Linda & Dennis holmes <holmesmorrison@hotmail.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <01B2F0C2-40C7-4BAC-944B-9FF83A705C2A@gmail.com>
+References: <CABKo-oX6Qau5+kzAyad3DKvHBotTgp3O44Bpotmn7_fQptQ1xw@mail.gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+
+Ok. Dennis will meet us there. 
+
+Sent from my iPhone
+
+> On Nov 24, 2019, at 2:12 PM, Darryl Ross <darrylondunlin@gmail.com> wrote:
+> 
+> W r i t t e n   w i t h o u t   p r e j u d i c e   i n   r e s p o n
+> s e   t o   a c t i o n   m a d e   w i t h   p r e j u d i c e ,
+> 
+> S o o   i t   s   t r u e :   y o u   e x p e c t   t o   s a y   j u
+> m p ,   a n d   y o u   a s s u m e   I   w i l l   j u m p ,   o n
+> c o m m a n d .   U n f o r t u n a t e l y   f o r   o u r   d a u g
+> h t e r ,   w h o   y o u   p u t   w e l l   a c k   i n   t e r m s
+> o f   w h o   i s   i m p o r t a n t ,   I   c a n   m a k e   n e i
+> t h e r   t i m e   n o r   p l a c e ,   a n d   I   t r u l y   c a
+> n n o t   b e l i e v e   t h a t   y o u   w e r e   d o i n g   t h
+> i s   a g a i n .   G o d   i f   I   c o u l d   I   j u s t   m a k
+> e   i t   s o   t h a t   o u r   d a u g h t e r s   w o u l d   n o
+> t   h a v e   t o   e x p e r i e n c e   w h a t   t h e y   e x p e
+> r i e n c e       t h e   f e e l i n g   o f   b e i n g   l e t   d
+> o w n ,   n o t   b e i n g   a   p r i o r i t y ,   t h e   l e a s
+> t   o f   y o u r   p r i o r i t i e s       I   w o l d   b e   t h
+> e r e ,   b u t   t h i s   i s   y o u r   c h o i c e   a n d   y o
+> u   a r e   d o i n g   a n d   y o u   w i l l   h a v e   t o   t a
+> k e   r e s p o n s i b i l i t y   f o r   i t   A g a i n   y o u '
+> r e   j u s t   d i c t a t i n g   t o   m e   w h e r e   a n d   w
+> h e n   I   h a v e   t o   b e   i n   o r d e r   t o   s e e   m y
+> d a u g h t e r s .   T h i s   i s   n o t   m y   r o l e ,   b u t
+>  I ' m   g o i n g   t o   q u o t e   t h e   f o l l o w i n g   a
+> n d   s u g g e s t   t h a t   y o u   g o   o v e r   i t   w i t h
+> y o u r   l a w y e r   p o s t e   h a s t e .   Y o u   d o   n o t
+>  g e t   t o   s c h e d u l e   m y   l i f e   o r   m y   r e l a
+> t i o n s h i p   w i t h   t h e   g i r l s   o r   d e n y   a n y
+> o f   o u r   r i g h t s ,   n o   m o r e   t h a n   I   g e t   t
+> o   d e c i d e   t h a t   s u d d e n l y   y o u   w i l l   b r i
+> n g   t h e   g i r l s   t o   m e   a t   1 0 : 4 5   a m   o n e
+> d a y   b e c a u s e   i t   c a m e   t o   m i n d .   y o u   w o
+> u l d   n e v e r   s t a n d   f o r   t h a t .   T h i s   i s   c
+> l e a r l y   a   d o u b l e   s t a n d a r d   b u t   i t ' s   o
+> n e   t h a t   a g a i n   i s   n o t   a b o u t   m e   i t ' s
+> a b o u t   o u r   d a u g h t e r s .
+> 
+> d e s p i t e   w h a t   y o u   w r o t e   i n   y o u r   a f f i
+> d a v i t   y o u   d i d   t h e   s a m e   t h i n g   w i t h   S
+> c o t t   a n d   I   h a v e   n u m e r o u s   e m a i l s   a n d
+> t e x t s   d e s c r i b i n g   w h y   y o u   d i d   t h a t   a
+> n d   w h y   y o u   c l a i m e d   i t   w a s   n e c e s s a r y
+> ,   a n d   t h e n   w h y   y o u   s u d d e n l y   c h a n g e d
+> l i t e r a l l y   w i t h i n   w e e k s   f r o m   d e c i d i n
+> g   t h a t   h e   w a s   e m o t i o n a l l y   a b u s i v e   t
+> o   B e n   a n d   h e   w o u l d   h a v e   t o   h a v e   l e s
+> s   c o n t a c t   w i t h   h i m     t o   d e s c r i b i n g   h
+> i m   a s   a   c o o p e r a t i v e   a n d   I   d o n ' t   k n o
+> w   w h a t   e l s e   y o i h   s a i d   y o u   c a n   l o o k
+> i t   u p   b u t   i t ' s   p e r j u r y   a n d   i s   n o t   s
+> u p p o r t e d   b y   a n y t h i n g   y o u ' v e   e v e r   w r
+> i t t e n   o r   s a i d .   W h e t h e r   t h e y   w i l l   a d
+> m i t   i t   o r   n o t   y o u r   p a r e n t s   a n d   y o u r
+> f a m i l y   k n o w   t h i s   a s   w e l l .   T h e y   k n o w
+>  w h o   r a i s e d   o u r   d a u g h t e r s ,   w h o   c a r e
+> d   f o r   t h e m   a n d   y o u   h e l p e d   t h e m   d e v e
+> l o p   e m o t i o n a l l y ,   y e t   y o u   m a d e   a   d r a
+> m a t i c   c h a n g e   t o   c u s t o d y   a r r a n g e m e n t
+> s   i n   w h i c h   I   b e c a m e   S c o t t   a n d   t h a t '
+> s   u n a c c e p t a b l e   a n d   q u e s t i o n a b l e   a s
+> t o   y o u r   t h o u g h t   p r o c e s s e s   a n d   t h e i r
+> c o n c e r n   f o r   o u r   d a u g h t e r s .   T o   s u d d e
+> n l y   i m p o s e   t h o s e   c o n s t r a i n t s   o n   m e
+> d e m o n s t r a t e s   a   p a t t e r n   a n d   i s   u n f a i
+> r   a n d   u n l a w f u l   a n d   w i l l   n o t   s t a n d .
+> 
+> A n d   y e s   I   a m   e x t r e m e l y   d i s a p p o i n t e d
+>  i n   y o u r   p a r e n t s   f o r   n o t   r e c o g n i z i n
+> g   t h i s   a n d   s p e a k i n g   u p   f o r   t h e i r   g r
+> a n d c h i l d r e n .
+> 
+> A n y h o w   h e r e ' s   t h e   p a r t   t h a t   I   s u g g e
+> s t   y o u   r e v i e w   w i t h   y o u r   l a w y e r :
+> 
+> I n   2 0 1 7   M a s t e r   F o r t i e r   o r d e r e d   t h a t
+>  " T h e   p a r t i e s   s h a l l   c o n t i n u e   t o   h a v
+> e   j o i n t   c u s t o d y . . . " ,   a n d   " o n   a n   i n t
+> e r i m   a n d   w i t h o u t   p r e j u d i c e   b a s i s ,   u
+> n t i l   f u r h e r   a g r e e m e n t   o f   t h e   p a r t i e
+> s   o r   O r d e r   o f   t h e   c o u r t ,   t h e   f a t h e r
+> . . . .   s h a l l   h a v e   i n t e r i m   s u p e r v i s e d
+> a c c e s s   t h r e e   t i m e s   p e r   w e e k   o n   a   s c
+> h e d u l e   t h a t   i s   m u t u a l l y   a g r e e d   u p o n
+> b y   t h e   p a r t i e s ,   s u b j e c t   t o   a   m u t u a l
+> l y   a g r e e a b l e   s u p e r v i s o r   b e i n g   a v a i l
+> a b l e . "
+> 
+> T h e   o r d e r   f r o m   M a s t e r   C h a m p a i n   f r o m
+>  J a m . 2 0 1 8   a g a i n   o r d e r s   t h a t   I   " s h a l
+> l   c o n t i n u e   t o   h a v e   i n t e r i m   s u p e r v i s
+> e d   a c c e s s   w i t h   t h e   c h i l d r e n ,   n a m e l y
+> . . . .   o n   a   s c h e d u l e   t h a t   i s   m u t u a l l y
+> a g r e e d   u p o n   b y   t h   p a r t i e s   a n d   s u b j e
+> c t   t o   a   m u t u a l l y   a g r e e a b l e   s u p e r v i s
+> o r   b e i n g   a v a i l a b l e ,   u n t i l   f u r t h e r   w
+> r i t t e n   a g r e e   b y   t h e   p a r t i e s   o r   f u r t
+> h e r   O r d e r   o f   t h e   C o u r t . "
+> 
+> T h e n   i n   J u n e   o f   2 0 1 8   T h e   H o n e r a b l e
+> K e a r s h m a n   a c c e p t e d   o u r   a g r e e m e n t   w h
+> i c h   d i d   n o t   m e n t i o n   o r   a m m e n d   t
+> 
+> h e l l o   e a r l i e r   o r d e r s   w h i c h   m a k e   s p e
+> c i f i c   O r d e r s   a b o u t   h o w   s u p e r v i s o r s
+> a r e   t o   b e   c h o s e n   a n d   t i m e s   d e c i d e d
+> o n   t h e   p r i n c i p l e   o f   a g r e e a b l e n e s s ,
+> w h i c h   w a s   a g r e e d   u p o n   b y   u s   ( e v e n   t
+> h o u g h   y o u   k n e w   I   w a s   e x p e r i e n c i n g   a
+> c t i v e   a d d i c t i o n ) ,   t h e   o r d e r   s t a t e s
+> n o t h i n g   m o r e   a b o u t   t h e   c h a n g e s   t o   a
+> c c e s s   t o   m y   d a u g h t e r s   s a v e   t h a t   t h e
+> y   s h a l l   c o n t i n u e   t o   h a v e   p r i m a r y   r e
+> s i d e n c e   w i t h   t h e   R e s p o n d e n t ,   M s .   H o
+> l m e s   u n t i l   f u r t h e r   w r i t t e n   a g r e e m e n
+> t   o r   C o u r t   O r d e r . "
+> S o   o b v i o u s l y   I   a m   s e e k i n g   a   C o u r t   O
+> r d e r   g i v e n   y o u   c o n t i n u e   t o   d e m o n e s t
+> r a t e   b a d   f a i t h   a n d   p e r j u r e d   y o u r s e l
+> f   i n   y o u r   a f f i d a v i t .
+> B u t   s i n c e   A u g u s t   y o u   d e c i d e d   t h a t   y
+> o u   h a v e   t h e   r i g h t   t o   d i c t a t e   t i m e ,
+> d a y ,   a n d   l o c a t i o n   w i t h o u t   r e a r d   f o r
+> a n y   c o n s i d e r a t i o n   t h a t   I   h a v e   a   j o b
+>  a n d   l i f e   a n d   o t h e r   r e s p o n s i b i l i t i e
+> s .   A n d   y o u   s e e k   t o   e e n s u r e   i t   d o e s
+> n o t   e x c e e d   4   h o u r s   a   w e e k .
+> B e   i t   k n o w n   t h a t   y o u   h a v e   d i c t a t e d
+>  w i t h o u t   c o n s i d e r a t i o n   f o r   m y   j o b ,
+> d i s c o m f o r t   w i t h   y o u r   p a r e n t s ,   a n d   d
+> e c i d e d   o n   l o c a t o i n s   t h a t   m a k e   g e n u i
+> n e   p a r e n t - c h i l d   r e l a t i o n s h i p s     d i f f
+> i c u l t   o r   i m p o s s i b l e .
+> Y o u   h a v e   i m p o s e d   r u l e s   t h a t   a p p e a r
+> t o   h a v e   t h e   i n t e n t   o f   a l i e n a t i n g   m e
+> f r o m   m y   d a u g h t e r s .
+> I t ' s   c l e a r   t h a t   a   m o t i o n   i s   r e q u i r e
+> d   t o   e s t a b l i s h e s   a n d   e n f o r c e   a n y   s u
+> d d e n   c h a n g e s   y o u   a r b i t r a r i l y   m a k e ,
+> t h e   f a c t   t h a t   y o u   d o   n o t   g e t   t o   d i c
+> t a t e   m y   s c h e d u l e   o r   t h e   g i r l s   r i g h t
+> s ,   a n d   t h a t   y o u   a r e   i n   b r e a c h   o f   s t
+> a n d i n g   c o u r t   o r d e r s .   I   w i l l   b e   i n   b
+> a r r h a v e n   a t   3   p m     w a i t i n g   f o r   t h e   g
+> i r l s   a n d   I   s i n c e r e l y   h o p e   t h a t   o n c e
+> a g a i n   y o u   d o   n o t   d e n y   t h e m   t h e   r i g h
+> t   t o   s e e   m e   f o r   I   m a y   b e   a b l e   t o   b r
+> i n g   t h e   e m e r g e n c y   m o t i o n .
+> a s   f o r   t h i s   a f t e r n o o n   y o u   k n o w   m y   a
+> v a i l a b i l i t y   a n d   w h e r e   I   c a n   b e   s o   i
+> t ' s   y o u r   c h o i c e   w h e t h e r   y o u ' r e   g o i n
+> g   t o   w i t h h o l d   o n c e   a g a i n   m y   d a u g h t e
+> r s   f r o m   m e   o r   n o t .
+> 
+> F o l l o w i n g   O c c a m ' s   r a z o r   t h e   s i m p l e s
+> t   a n s w e r   i s   m o s t   l i k e l y   t h e   r i g h t   a
+> n s w e r .   Y o u   w o r k e d   c o o p e r a t i v e l y   a n d
+> t r u s t i n g   w i t h   m e   o v e r   t h e   s u m m e r   b e
+> c a u s e   y o u   u s e d e d   m e   a s   c h i l d   c a r e   a
+> n d   t h a t ' s   c l e a r   b e c a u s e   i t   c h a n g e d
+> t h e   m i n u t e   y o u r   p a r e n t s   c a m e   b a c k .
+> F r o m   a   c h i l d ' s   p e r s p e c t i v e   a n d   t h e
+> f a c t   t h a t   c a n n o t   o f f e r   t h e m   a n   e x p l
+> a n a t i o n   i t   i s   d e s p i c a b l e .
+> 
+> I   d o n ' t   k n o w   w h e r e   y o u   l o s t   y o u r   f a
+> i t h   o r   b e l i e f   i n   C a r l   R o g e r s   o r   a n y
+> o f   t h e   o t h e r   h u m a n i s t i c   p s y c h o l o g i s
+> t s   D e n n i s   b u t   I ' m   e x t r e m e l y   d i s a p p o
+> i n t e d   i n   y o u   a n d   y o u   a r e   n o t   a n   a p p
+> r o p r i a t e   s u p e r v i s o r   o r   s o m e o n e   I   a m
+> c o m f p r t a l e   a g r e e i n g   t o   a t   t h i s   p o i n
+> t .   B a s i d e s   w h i c h ,   l i k e   L i n d a ,   f o r   w
+> e e k s   y o u   h a v e   s i m p l y   b r o g h t   t h e   g i r
+> l s   a n d   t o l d   m e   w h a t   t i m e   y o u   l l   s e e
+> u s   a g a i n   t o   m e e t   y o u r   o b l i g a t i o n s ,
+> d e e m o n s t r a t l e y   t h a t   y u u   c l e a r l y   h a v
+> e   n o   c o n c e r n s   a n d   f e e l   n o   n e e d   t o   s
+> u p e r v i s e ,   o n l y   t o   f o l l o w   C y n t h i a   s
+> d e m a n d s .
+> I f   s t o p   w h a t   I   a m   d o i n g   i m m e d i a t e l y
+>  a n d   p u t   w o r k   o f f   t h e   c l o s e s t   I   c a n
+> c o m e   t o   y o u r   n e w   r e g i m e   a n d   i t   s   s e
+> t   o f   a r b i t r a r y   r u l e s ,   w h i c h   I   a m   i n
+> u t t e r   o p p o s i t i o n   t o   a n d   m a k e   v e r y   c
+> l e a r   a r e   u n n e c e s s a r y ,   I   c a b   b e   a t   I
+> n d i g o   i n   B a r r h a v e n   a t   a b o u t   2 : 3 0   p m
+> o r   s h o r t l y   a f t e r .
+> I   a m   g o i n g   t o   t r y   b e c a u s e   t h a t   i s   t
+> h e   b e s t   I   c a n   d o ,   a n d   I   h o p e   y o u   s h
+> o w   a   w i l l i n g n e s s   t o   m e e t   m e   t h e r e .
+> D a r r y l
+> O n   S u n . ,   N o v .   2 4 ,   2 0 1 9 ,   9 : 4 0   a . m .   C
+> y n t h i a   H o l m e s ,   < c y n t h m h o l m @ g m a i l . c o
+> m >   w r o t e :
+> H i   D a r r y l ,
+> 
+> D e n n i s   w i l l   b e   s u p e r v i s i n g   t o d a y ,
+> h e   c a n   m e e t   a t   c e n t r e p o i n t   l i b r a r y
+> o r   P i n e c r e s t   i n d i g o   a t   1 4 5   p m   o r   B a
+> r r h a v e n   l i b r a r y   o r   B h a v e n   i n d i g o   a t
+> 2   p m .
+> 
+> P l e a s e   c o n f i r m .
+> 
+> S e n t   f r o m   m y   i P h o n e
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1120095</integer>
+	<key>date-last-viewed</key>
+	<integer>1746105242</integer>
+	<key>date-received</key>
+	<integer>1574625903</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>20085</string>
+</dict>
+</plist>

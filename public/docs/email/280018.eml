@@ -1,0 +1,199 @@
+10487     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09072701.me.com by p133-mailgateway-smtp-5dd8b85c5-58wkt (mailgateway 2315B206)
+	with SMTP id 774cda73-2f00-4abd-a670-90db66264823 
+	for <darrylross@icloud.com>; Fri, 5 May 2023 16:30:18 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 774cda73-2f00-4abd-a670-90db66264823
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by ci74p00im-qukt09072701.me.com (Postfix) with ESMTPS id 24593428024D
+	for <darrylross@icloud.com>; Fri,  5 May 2023 16:30:15 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTRFoQXgcZFltVFVFfDlgc
+ AkZVVgNRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0DGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnG1Q2GhxUZi4nUlQNCgALFQw6Vg9FdHsLJxhbREhaaTQyMywQ
+ E3FVFSADNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ko3mxTfY
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.53; helo=mail-ed1-f53.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-50bc3a2d333so3050746a12.0
+        for <darrylross@icloud.com>; Fri, 05 May 2023 09:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683304215; x=1685896215;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4MgpIwMUNm7L/dsputepQoRWabtcpbD4h0PHZhEn6QM=;
+        b=Ko3mxTfY/jcfobd9o1/3671E6JJLsCA2wRV0gGqPBGV6VFpyD7hLqKlnyE8BM0ib6p
+         Pgch28EpqaoOSKca+dllNGv4N3tyofdsK/LR22+ngYNdpRAu4QuF7lYZ6QojkCCjPS+D
+         0h+JY1Uv7fTOXViBcOiOdg4QPqp9bz8Gkgx91TY9fnjDHbDubTyuvB1w756KnDDFmq2I
+         +oyLiy7Xv1HcqyHqDJaWRbsGt3LvMU5HQvAeFKwOmHR1JzSL5jEk7gQ/rAhB4zk8zgLS
+         hDbQDXL3f9L4Uz4TGsbNpDIlRqyyNEZ8VcPecWSgt96Tgo5lLARqQ8mgeTXqWPuUWyKa
+         dVTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683304215; x=1685896215;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4MgpIwMUNm7L/dsputepQoRWabtcpbD4h0PHZhEn6QM=;
+        b=bmD14EE+ExXRKklqM0bEcnoSohXFFH7OUgVZangqW3a09Lwhx/4Oz8lqq42yvnTmDv
+         j7EwvyoVB7TO4PBPpFzmKCDYxSkbAt16F11RSEX4AlmYk6LGDJAoxmvzrH0sRbrPEZj2
+         XWxE3xqH5ITs9sxCAt7R9iG0N4r2Q6Mn6RPfP/23+RtbM61+UDC54rPO94psZgSERwQ2
+         hQe1Kv38n9uaO5TdgtL8YVRHerx/YIMEBvrH8fMCik8zdTYzZ0ZLNEReohpMnB0R8JDC
+         WrWoGYu3bZTflwIzJoRR1xa69XtWuUf+Btz8e0YbgPLEpPzd46nxSbYgT3QyrZ+7UNt9
+         s6YQ==
+X-Gm-Message-State: AC+VfDymKssX659olIFCLY+KxNb6q2fV4UjX+kePUiuKXnKdKbezQOOr
+	RlhqMoYkktUHGLx6G1nEoSxTZWOt2etacxl9qERWBJL+
+X-Google-Smtp-Source: ACHHUZ7iHqxaKOS0+v8vsYEb4sYWbhK/61OoSBAB631J6K7MM1B5SFGYGfvyrnqNPXtibjxLvjmFY+0JGqpmhlxf4Rg=
+X-Received: by 2002:a17:906:7304:b0:921:da99:f39c with SMTP id
+ di4-20020a170906730400b00921da99f39cmr2494930ejc.12.1683304215039; Fri, 05
+ May 2023 09:30:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <EE26EF8A-FA81-4879-9134-45BDB7D97305@icloud.com>
+In-Reply-To: <EE26EF8A-FA81-4879-9134-45BDB7D97305@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 5 May 2023 12:30:03 -0400
+Message-ID: <CAFnbyREn-PmddPLR+2zr0=wyC0x=DMiRa=30j_VGJJgkAcwUzQ@mail.gmail.com>
+Subject: Re: Regarding FaceTime Visits.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000c955dc05faf4cdf5"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoSGBkaGBEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdSbX5wfB0SU2hARGsHWV9
+ 6b15TdX9Qck9gHXx/YX8YEhEKWFwXGQQaBB8aBRsaGgQSGAQeGAQYHBAbHhofGhEKXlkXSENeZ
+ VARCk1cFxgaEQpMWhdoa01DaxEKTEYXYk1rEQpDWhcYGhMEEh8EGBoSBB8ZEQpCXhcbEQpCXBc
+ bEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm54GmJjE
+ QpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQBdpSR9
+ LfmF5G1xzHxEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2dYS3NHex1DZRhhEBkaE
+ QpwaBdrT1BuY39ec0dveBAZGhEKcGgXemdMR00fHUdHfGQQGRoRCnBoF20BTBtbZBJoeFkdEBk
+ aEQpwaBdgUG9rZhlASF4BGRAZGhEKcGwXZkZrHxhbbV9Gb28QBxsSEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: xGTZV78yBjnA-suPEty_UzXeJ7VUKU28
+X-Proofpoint-GUID: xGTZV78yBjnA-suPEty_UzXeJ7VUKU28
+
+--000000000000c955dc05faf4cdf5
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+
+The girls have never missed a FT and if they are busy they have always
+rescheduled. Their calendar is very busy now with soccer, babysitting and
+tutoring but they do make time to FT you twice a week normally for almost
+an hour. on Thursdays and Saturdays.
+
+The tutor was last minute as they only have limited availability. It's a
+free service offered by the board and will definitely help the girls with
+their French levels. We were on a waitlist for months.
+
+The girls can FT Thursday 4-5 pm until the end of June and when tutoring
+ends, pick up at 5 pm if that works.
+
+Cynthia
+
+
+On Thu, May 4, 2023 at 5:37 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hello Cynthia,
+>
+> I hope this message finds you well. I wanted to address an ongoing concern
+> regarding our daughters' FaceTime visits with me. As you know, the court
+> order stipulates that I have FaceTime with them twice a week, and it's
+> crucial that we're able to stick to these arrangements as much as possible
+> to ensure our daughters have ongoing and meaningful relationships with both
+> parents.
+>
+> However, there have been several instances where conflicts or events have
+> interfered with our scheduled FaceTime, and I'm concerned that it may not
+> be appropriate to place the burden of coordination on an 11-year-old. As we
+> both know, the court order is in place to protect our daughters' best
+> interests, and I kindly request that you make every effort to adhere to the
+> court-ordered parenting schedule for FaceTime visits. If there are any
+> conflicts or changes that may interfere with our scheduled FaceTime visits
+> that cannot be avoided, I kindly request that you provide me with advance
+> notice so that I can coordinate with Charlotte and take some of the
+> responsibility off of her.
+>
+> I'm committed to doing everything I can to ensure our daughters'
+> well-being and happiness. I hope we can work together to address this issue
+> and move forward in a positive way. As a temporary solution, I kindly
+> request that you allow Charlotte to give me a brief call after tutoring so
+> that we can plan an alternate time for our FaceTime visit tomorrow.
+>
+> Regards,
+>
+> Darryl
+
+--000000000000c955dc05faf4cdf5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>The girls have never mis=
+sed a FT and if they are busy they have always rescheduled. Their calendar =
+is very busy now with soccer, babysitting and tutoring but they do make tim=
+e to FT you twice a week normally for almost an hour. on Thursdays and Satu=
+rdays.</div><div><br></div><div>The tutor was last minute as they only have=
+ limited availability. It&#39;s=C2=A0a free service offered by the board an=
+d will definitely help the girls with their French levels. We were on a wai=
+tlist for months.</div><div><br></div><div>The girls can FT Thursday 4-5 pm=
+ until the end of June and when tutoring ends, pick up at 5 pm if that work=
+s.</div><div><br></div><div>Cynthia</div></div><div><br></div><div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 4,=
+ 2023 at 5:37 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" t=
+arget=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">Hello Cynthia,<br>
+<br>
+I hope this message finds you well. I wanted to address an ongoing concern =
+regarding our daughters&#39; FaceTime visits with me. As you know, the cour=
+t order stipulates that I have FaceTime with them twice a week, and it&#39;=
+s crucial that we&#39;re able to stick to these arrangements as much as pos=
+sible to ensure our daughters have ongoing and meaningful relationships wit=
+h both parents.<br>
+<br>
+However, there have been several instances where conflicts or events have i=
+nterfered with our scheduled FaceTime, and I&#39;m concerned that it may no=
+t be appropriate to place the burden of coordination on an 11-year-old. As =
+we both know, the court order is in place to protect our daughters&#39; bes=
+t interests, and I kindly request that you make every effort to adhere to t=
+he court-ordered parenting schedule for FaceTime visits. If there are any c=
+onflicts or changes that may interfere with our scheduled FaceTime visits t=
+hat cannot be avoided, I kindly request that you provide me with advance no=
+tice so that I can coordinate with Charlotte and take some of the responsib=
+ility off of her.<br>
+<br>
+I&#39;m committed to doing everything I can to ensure our daughters&#39; we=
+ll-being and happiness. I hope we can work together to address this issue a=
+nd move forward in a positive way. As a temporary solution, I kindly reques=
+t that you allow Charlotte to give me a brief call after tutoring so that w=
+e can plan an alternate time for our FaceTime visit tomorrow.<br>
+<br>
+Regards,<br>
+<br>
+Darryl</blockquote></div></div>
+
+--000000000000c955dc05faf4cdf5--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1092906</integer>
+	<key>date-last-viewed</key>
+	<integer>1743955686</integer>
+	<key>date-received</key>
+	<integer>1683304218</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12086</string>
+</dict>
+</plist>

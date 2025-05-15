@@ -1,0 +1,247 @@
+11410     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr28p00im-smtpin017.me.com by p72-mailgateway-smtp-7978bffc4-gk8n4 (mailgateway 2224B215)
+	with SMTP id c0634712-b4ee-4be3-846a-537c95200857 
+	for <darrylross@icloud.com>; Thu, 22 Sep 2022 19:57:00 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: c0634712-b4ee-4be3-846a-537c95200857
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	by mr28p00im-smtpin017.me.com (Postfix) with ESMTPS id E450A1A8D511
+	for <darrylross@icloud.com>; Thu, 22 Sep 2022 19:56:59 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQE1EVxBVWg1IWwsWEVwbDhNI
+ SxFNBBgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9TQ1ZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdncDF0kfWhdGBjsPEigSJwMADDs+PxIJQlI9RTFXERNXThEhTgVA
+ IEYBUxI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B99aulS9
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.54; helo=mail-lf1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id z25so16485519lfr.2
+        for <darrylross@icloud.com>; Thu, 22 Sep 2022 12:56:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=Hnct8EsD1CyuoOBajsbH1jTd29pM8s/1DL08yVM+q3s=;
+        b=B99aulS9uEu4Thuz7rosEYc9j1tjahibwVyeTZVxi1m3GuaBUmymzo9pWShI3Jzx4k
+         0Sq8TK46M/s0BgF7Aq+HsjPx7oCAoquRoamCJqmrNocXyU2zqx4aaQdD7Q8Ny8kEcPJA
+         dhRMrlIvFQRG0o88c7QVH8y6ZAiT8MUS7U272OABulEHcpDXCocXK0WmfB533sAwxczO
+         jkklyuBwRfG/0nTuU80+NBqNI/FlqmL2OIxDx7+nfIVN2sHIXUIQdCyyWQr/wlaQ2ud7
+         PgzVVNz6xF1kD2nSViIFnjQyV6FQiaxskwGJmGpCvZQDsgYLOY1UPG7nYm2rcerGffNV
+         0fRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=Hnct8EsD1CyuoOBajsbH1jTd29pM8s/1DL08yVM+q3s=;
+        b=fVFlAlst8jNbvS5GPEwcUREOhdhooz10FI3BuuQm25GlNQnArqmHkac8uWnKvLiH0r
+         1+cnGV5YFGCQOLEVLVpetS1hkrxTgapGY1Wla07Iq3yEGJ/fYv7QblhEChq8HhgdzNr9
+         30gZvyS3NTC1QMJLGw7bmnhfIsp1JsZ6OK27hsKRg1YigXnNj4mY7LCa6Ns/NwbrCgmr
+         JlRtjsPu+m9YjahBvQvMhuGf10ill110XVOBGDpl7lJ6yxic0VRlzrlKk60N3r+cDsxw
+         /wODsRP8cUQfEOyY3NO5k63JBoUA9O7JjnZ1bzRtJkbsXS8yP3pM0ACHVrjaNnwBgRCM
+         eNzQ==
+X-Gm-Message-State: ACrzQf23t/8YWGhtdngLpPPoLVKCArH8IaCxK07Y3IAcmxdbhLbpyaZD
+	JMnho9Dn7QBl7g1gXkIa10T8oiTDIED/2KGVY8b6VJ9vUqk=
+X-Google-Smtp-Source: AMsMyM5LIFv9yiaHg5SMY6disz/WJSGLBAgXJ+kcTaiAYihlI5xf8LFmJP+MhjxzUsj7aHCzEsoM4BcT5NALuyaqFuY=
+X-Received: by 2002:a05:6512:3ca1:b0:4a0:3436:5c3f with SMTP id
+ h33-20020a0565123ca100b004a034365c3fmr1144002lfv.124.1663876617777; Thu, 22
+ Sep 2022 12:56:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRFntxx2-BEpPvRf7kg_Hk-U-iNcwhwGxgDCHAArAWB=bA@mail.gmail.com>
+ <F1389C0B-E378-43DA-B460-625DD8401418@gmail.com> <CAFnbyRFMJD7cjWk2jE-0tzasCsj7omeyJ0D-0pwmu_bg=Ocx0A@mail.gmail.com>
+ <DF993AA7-CF29-4B15-A43C-34657883A0E3@icloud.com>
+In-Reply-To: <DF993AA7-CF29-4B15-A43C-34657883A0E3@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 22 Sep 2022 15:56:46 -0400
+Message-ID: <CAFnbyRFAab0y-ov0YzkNe_36nNGYeqrd_0H1fkgxsT7c7Xv71g@mail.gmail.com>
+Subject: Re: This weekend
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="000000000000c0b80805e9497648"
+X-MANTSH: 1TEIXR1geGFoaGkNHB1tfQEQaExsfGxsaGxEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF0NOcE1Mcl1cW0kdfx8YYV5
+ OZmtIUENBeWRJaU4STlN/EQpYXBcZBBoEHhMHHRhJHx8dSRkFGx0EGxsbBBsfHwQbHxwQGx4aH
+ xoRCl5ZF0tzR2FEEQpNXBcbHR0RCkxaF2hrTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQbHB0EHx4
+ RCkJeFxsRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfX
+ hEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0t
+ HUEFtGhJLaUkRCkJAF3pzH0YeSWZrYUlbEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKc
+ GcXaHJ4XEBbGU9/RRMQGRoRCnBoF2xIbB1PXB9CcmwfEBkaEQpwaBdvSXh5Q0RLeR5yRBAZGhE
+ KcGgXZQUBbhthGhh8cGEQGRoRCnBoF2lZbUhPfWlyYUVsEBkaEQpwaBdrTBJ7GmFhe0tefRAZG
+ hEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: idZgfXwvqc7U52KtdLAbzikSNcCd8dyU
+X-Proofpoint-ORIG-GUID: idZgfXwvqc7U52KtdLAbzikSNcCd8dyU
+
+--000000000000c0b80805e9497648
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+Alice has soccer Monday.
+
+A Thursday night make up would work with both yourself and mom? I would
+have Charlotte join as well.
+
+Let me know.
+
+Cynthia
+
+
+On Thu, Sep 22, 2022 at 3:51 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I have not agreed to change Sundays visit. What is Alice busy doing Monda=
+y
+> afternoon?
+>
+> We will have to agree to a make up time or alternative before letting
+> Alice knows about Kenzie=E2=80=99s party.
+>
+> Kindly let me know days and times in the next few days so we can make thi=
+s
+> work Alice.
+>
+> Darryl
+>
+> On Sep 22, 2022, at 3:31 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> I can agree to the vist for Sunday with Charlotte and Alice to go to
+> Kenzie's place.  However Alice is not available Monday, we will have to
+> find a day which suits.
+>
+> Cynthia
+>
+> On Thu, Sep 22, 2022 at 3:05 PM Darryl Ross <darrylondunlin@gmail.com>
+> wrote:
+>
+>> Hi Cynthia,
+>>
+>> Saturdays don=E2=80=99t work for my mom. I know that Kenzie=E2=80=99s bi=
+rthday is
+>> important to Alice so one option would be that Alice goes to Kenzie=E2=
+=80=99s
+>> birthday party and Char comes as usual, with a make-up visit on Monday w=
+ith
+>> Alice after school.
+>>
+>> Alternatively I am available Saturday for an unsupervised visit. Given
+>> how well parenting time has been going and how comfortable Alice and
+>> Charlotte are, and that my health and medical records were accepted by t=
+he
+>> judge I think this would be a reasonable and appropriate step to take.
+>>
+>> Darryl
+>>
+>> > On Sep 22, 2022, at 2:51 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>> wrote:
+>> >
+>> > Hi Darryl,
+>> >
+>> > Alice has just been invited to her bff Kenzie's birthday party this
+>> Sunday from 2-7 pm. Is there a chance you are able to visit with girls t=
+his
+>> Saturday instead? We are flexible on the time depending on your mom's an=
+d
+>> your schedule.
+>> >
+>> > Alternatively, the girls would be free to meet a bit earlier this
+>> Sunday if that would work. Say 11-3 pm?
+>> >
+>> > I will wait to hear back from you. I haven't mentioned it to Alice yet=
+.
+>>
+>>
+>
+
+--000000000000c0b80805e9497648
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Alice has soccer Monday.</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">A Thursday night make up would work with both yourself=
+ and mom? I would have Charlotte join as well.</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Let me know.</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">Cynthia</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br>=
+<div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Thu, Sep 22, 2022 at 3:51 PM Darryl Ross &lt;<a href=3D"mailto:darryl=
+ross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex"><div style=3D"line-break:after-white-space">Hi Cynthia,<=
+div><br></div><div>I have not agreed to change Sundays visit. What is Alice=
+ busy doing Monday afternoon?</div><div><br></div><div>We will have to agre=
+e to a make up time or alternative before letting Alice knows about Kenzie=
+=E2=80=99s party.</div><div><br></div><div>Kindly let me know days and time=
+s in the next few days so we can make this work Alice.</div></div><div styl=
+e=3D"line-break:after-white-space"><div><br></div><div>Darryl<br><div><br><=
+blockquote type=3D"cite"><div>On Sep 22, 2022, at 3:31 PM, Cynthia Holmes &=
+lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gma=
+il.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi Darryl,<br><div><br=
+></div><div>I can agree to the vist=C2=A0for Sunday with Charlotte and Alic=
+e to go to Kenzie&#39;s place.=C2=A0 However Alice is not available=C2=A0Mo=
+nday, we will have to find a day which suits.</div><div><br></div><div>Cynt=
+hia</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Thu, Sep 22, 2022 at 3:05 PM Darryl Ross &lt;<a href=3D"mailto:=
+darrylondunlin@gmail.com" target=3D"_blank">darrylondunlin@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:=
+rgb(204,204,204);padding-left:1ex">Hi Cynthia,<br>
+<br>
+Saturdays don=E2=80=99t work for my mom. I know that Kenzie=E2=80=99s birth=
+day is important to Alice so one option would be that Alice goes to Kenzie=
+=E2=80=99s birthday party and Char comes as usual, with a make-up visit on =
+Monday with Alice after school. <br>
+<br>
+Alternatively I am available Saturday for an unsupervised visit. Given how =
+well parenting time has been going and how comfortable Alice and Charlotte =
+are, and that my health and medical records were accepted by the judge I th=
+ink this would be a reasonable and appropriate step to take. <br>
+<br>
+Darryl<br>
+<br>
+&gt; On Sep 22, 2022, at 2:51 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl,<br>
+&gt; <br>
+&gt; Alice has just been invited to her bff Kenzie&#39;s birthday party thi=
+s Sunday from 2-7 pm. Is there a chance you are able to visit with girls th=
+is Saturday instead? We are flexible on the time depending on your mom&#39;=
+s and your schedule.<br>
+&gt; <br>
+&gt; Alternatively, the girls would be free to meet a bit earlier this Sund=
+ay if that would work. Say 11-3 pm?<br>
+&gt; <br>
+&gt; I will wait to hear back from you. I haven&#39;t mentioned it to Alice=
+ yet.<br>
+<br>
+</blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+
+--000000000000c0b80805e9497648--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>986711</integer>
+	<key>date-received</key>
+	<integer>1663876620</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>

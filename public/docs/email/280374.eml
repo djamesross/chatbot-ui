@@ -1,0 +1,312 @@
+15781     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-2a-100-percent-9 by p133-mailgateway-smtp-656d665f4-dxx88 (mailgateway 2423B51)
+	with SMTP id 0c1bf866-ea61-4cb5-9dad-4adc116c7cf6 
+	for <darrylross@icloud.com>; Tue, 20 Aug 2024 15:48:05 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 0c1bf866-ea61-4cb5-9dad-4adc116c7cf6
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	by p00-icloudmta-smtpin-us-west-2a-100-percent-9.icloud.com (Postfix) with ESMTPS id D1F82C00094
+	for <darrylross@icloud.com>; Tue, 20 Aug 2024 15:48:03 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEQgYMWxkXXlNCBhAWSkoAD0xNTEhFSAgYU01JRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxsSARsEREFWWR9fWQUZHEgUF10WEgELWxoZWVpPGRNXWh4BDlJbHgkYH1xTTBYWC1ccVAsFGBgPG1ZTWQ9VFA8TRQx1IzMXBA4qdlU9GhcARiADZAozF1VOLVcPMB4eP0IVelMzJBsjSgx8XDUNJlQ9Fnt3FAI5CxYRXBgFGBgPG1ZTWQ9L
+X-ICL-Score: 3.3330330342
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eiTAqv02
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.180 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.180 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.180; helo=mail-lj1-f180.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f3f07ac2dcso8384931fa.2
+        for <darrylross@icloud.com>; Tue, 20 Aug 2024 08:48:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724168882; x=1724773682; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j/uLEmB252tIgC8cCP6o4NxEN0AN4S84fM7WbcUewGg=;
+        b=eiTAqv02FHv4boqiH2oS7CR+2R1U47mzTfyb5s20je//J8xpAASMajRpuPDYgFU/Jd
+         RCEp9WHKAtnp4CGXtS0a9RofUXlt49dTN8lxFcY7Sb+PNr3uzxStalVZ6wjQbPQALsgh
+         b5yIYxdU2T7aX0kDApBQUvoAvjplBy1ECwAea/QVwQtXjpSvecpJmQBrob6RumBStue7
+         1/G84E001sPpuLlycO1AXLE/DF6GtLRu0a3OOs4qE+QM5NUqTjGBJE+Xvmy+ZnpFQZyH
+         +AEpmv8s7dWrjI0v4FUYia4Ntns3UCMRtxe8fudbFyraYXWLy9tHiZZRtY4Q2jCN7+qq
+         IeTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724168882; x=1724773682;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j/uLEmB252tIgC8cCP6o4NxEN0AN4S84fM7WbcUewGg=;
+        b=s2hwMfLdbJcRJFb7RYjJE+Ae1B6IgtI7SNwEtnZHQH5eZjpCmTA4kLWjOevnWO8uBf
+         p/Ylb2/8EZ2t5H4RCOqzIJWnWdFoqdJhkw5c/enBPhi5xg86QxyQShNDZXT0fguQ8eow
+         3bXHS5PLxJyZM3pPLi1e7rJTINU4A2Nl8HP+n6h107xCW/BpaWUVvKFDm4lNyhB1oNlo
+         ++QyPWQwWcxvJMrHYa6YhEtcgfQIz58BzswZbNqqjrl5OY2irN6x62w3YzaZl3iWdzy5
+         g4ZjnCsoLX4eqROKUnegWcrhF9ngDxuy+AvRs5GnK1+tfHnrV8GS9G3Z0TWLHoKweZuL
+         +iqA==
+X-Gm-Message-State: AOJu0YyFb9pm0/RcviSBR+CHsFLJaLcC3w/gE5WiaVMZMORMyGt8hJdy
+	uqBOGLK/pWvH0p8t9PiqrzQCKlgZsQsXjB+nsJi0EhFlyirBpN98/FSO1ThU4jz78Y/Cuvo4jd1
+	onmMexNDe80rdCWmzuWSDRVwYnBjJiQ==
+X-Google-Smtp-Source: AGHT+IHprlrXnrUU0eY1JFBsHi20jTE4T0LWNiYnEen63YMvBcQAkA5hDzMZKKD2jD+Y/VKDLbIohs+nQg1uO9d8GTY=
+X-Received: by 2002:a2e:a585:0:b0:2f1:5c89:c875 with SMTP id
+ 38308e7fff4ca-2f3be5bf018mr110773241fa.26.1724168881934; Tue, 20 Aug 2024
+ 08:48:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRHnYx=z9L8rmUkkreTum43dNGyOm94h4QaMs8T+2tR7dw@mail.gmail.com>
+ <575B3B5B-CB5E-4C5E-87B8-D27A5209382F@icloud.com> <CAFnbyRG=M+PhuLQT7hwZ8T3Dbm1D04YtKYAhXDq3_9i8VfQTPg@mail.gmail.com>
+ <2AFD3D5B-0598-4233-A815-CFC7E2B77033@icloud.com>
+In-Reply-To: <2AFD3D5B-0598-4233-A815-CFC7E2B77033@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 20 Aug 2024 11:47:50 -0400
+Message-ID: <CAFnbyRFc_onf1X3RhFn39Ug9RkgY5mJeQQbE=tLjWx_2JnKAvw@mail.gmail.com>
+Subject: Re: This week
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000bd9fc906201f59e2"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF3oTcllaTX1fREFuR
+ W9/YEYZQWdoaER4eBlDU0Bubm8aEQpYXBcZBBoEHxoFGxoaBB0bBBscGgQTGBAbHhofGhEKXlk
+ XTgFGE3oRCk1cFx4ZEhEKTFoXTV1rEQpMRhdiTWsRCkNaFxgaEwQSHwQYGhIEGxIaEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdtW30BHxtIGWxoTREKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF28aHmUZR0ddU2NSEBoRCnB
+ oF2QYfWdCYB9MRW1MEBoRCnBoF2doBWxMexN+XmVgEBoRCnBoF25aRRpST0RHQ0gFEBoRCnBoF
+ 2ZlHB8YUGNvXVhpEBoRCnBoF2EYHH9+YBxYZlJjEBoRCnBoF3pZG1BjbXpOHB9hEBoRCnBoF2J
+ GTlMeHm9tHUJMEBoRCnB/F2B4fWh9ExsBYRhFEAcbGhkRCnBfF2FyaF5rHUJ6AU99EAcbGx8RC
+ nB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnB
+ 9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEAcZGhEKb
+ X4XGhEKWE0XSxE=
+X-Proofpoint-GUID: P9XspgWunkDoEUJl3kMBBnRR3iyjDDE0
+X-Proofpoint-ORIG-GUID: P9XspgWunkDoEUJl3kMBBnRR3iyjDDE0
+
+--000000000000bd9fc906201f59e2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Can you confirm you have made your second child support payment on August
+17th? It is not showing in my case file.
+
+Thanks in advance.
+
+
+
+On Sun, Aug 11, 2024 at 7:03=E2=80=AFAM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+> No, that is not correct. I made a payment of $1200 on August 2nd. For the
+> rest of the year, through December 2024 I will continue to make a payment
+> of $1200 on the 2nd and 17th of each month.
+>
+> I am not sure what my income will be going forward after that. When I kno=
+w
+> I will provide the required information.
+>
+> Darryl
+>
+> On Aug 7, 2024, at 07:36, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+> I received only $74 as a payment=E2=80=A6. Is that correct?? Please expla=
+in what
+> you mean by once =E2=80=9Cit=E2=80=99s worked out=E2=80=9D.
+>
+> It would be really helpful to know how much I will be receiving, and if I
+> can rely on this consistently.
+>
+>
+>
+>
+>
+>
+> On Wed, Aug 7, 2024 at 7:23=E2=80=AFAM Darryl Ross <darrylross@icloud.com=
+> wrote:
+>
+>> Hi,
+>>
+>> That=E2=80=99s good. I made a payment to FRO earlier this month and will=
+ make
+>> another on the 14th, with a plan to catch up once it=E2=80=99s worked ou=
+t.
+>>
+>> Darryl
+>>
+>> On Aug 6, 2024, at 21:23, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> =EF=BB=BF
+>>
+>> Hi Darryl.
+>>
+>> Confirming for tmrw, it will be close to 845.
+>>
+>>
+>>
+>>
+>> On Sat, Aug 3, 2024 at 8:59=E2=80=AFPM Darryl Ross <darrylross@icloud.co=
+m> wrote:
+>>
+>>> Hi,
+>>>
+>>> Tuesday and Wednesday work this week, as well as tomorrow 11-7:30.
+>>>
+>>> Darryl
+>>>
+>>> On Aug 3, 2024, at 20:42, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>>
+>>> =EF=BB=BF
+>>>
+>>> Hi there.
+>>>
+>>> Charlotte is still trying to firm up plans with Aimee, so Wednesday is =
+a
+>>> go and the girls can either come Tuesday or Thursday. I will keep you
+>>> posted.
+>>>
+>>> Friday is not available as they are going up to a friends cottage.
+>>>
+>>>
+>>>
+>>>
+>>> On Fri, Aug 2, 2024 at 12:46=E2=80=AFPM Cynthia Holmes <cynthmholm@gmai=
+l.com>
+>>> wrote:
+>>>
+>>>> Hi Darryl,
+>>>>
+>>>> The girls get back today and I am sure they will be in touch.
+>>>>
+>>>> Sunday there is no practice thus I plan to drop off girls for 11 and
+>>>> pick them up at 730. Does that work for you?
+>>>>
+>>>> As for make up time, they are available this week for two days.  just
+>>>> want to connect with Charlotte to see if she has any plans before
+>>>> committing.
+>>>>
+>>>> But for sure  let=E2=80=99s commit to Wednesday that morning  I can br=
+ing them
+>>>> in and pick up after work.
+>>>>
+>>>> Are there any days that don=E2=80=99t work for you?
+>>>>
+>>>>
+>>>>
+>
+
+--000000000000bd9fc906201f59e2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div><br></div><div>Can you confirm you have mad=
+e your second child support payment on August 17th? It is not showing in my=
+ case file.</div><div><br></div><div>Thanks in advance.<br clear=3D"all"><d=
+iv><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-s=
+ig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXo=
+n9fAkdEhi_cA"><br></div></div></div><br></div></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Aug 11, 2024 at 7:03=
+=E2=80=AFAM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darryl=
+ross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div>Hi Cynthia,<div><br></div><div>No, that is not correct.=
+ I made a payment of $1200 on August 2nd. For the rest of the year, through=
+ December 2024 I will continue to make a payment of $1200 on the 2nd and 17=
+th of each month.=C2=A0</div><div><br></div><div>I am not sure what my inco=
+me will be going forward after that. When I know I will provide the require=
+d information.</div><div><br></div><div>Darryl=C2=A0<br id=3D"m_37321121818=
+62460059lineBreakAtBeginningOfMessage"><div><br><blockquote type=3D"cite"><=
+div>On Aug 7, 2024, at 07:36, Cynthia Holmes &lt;<a href=3D"mailto:cynthmho=
+lm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><b=
+r><div><div dir=3D"auto">Hi=C2=A0Darryl,</div><div dir=3D"auto">I received =
+only $74 as a payment=E2=80=A6. Is that correct?? Please explain what you m=
+ean by once =E2=80=9Cit=E2=80=99s worked out=E2=80=9D.</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">It would be really helpful to know how much =
+I will be receiving, and if I can rely on this consistently.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto"><br clear=3D"all"><br clear=3D"all"><=
+div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr=
+"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRA=
+uWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></d=
+iv></div></div></div><div><br></div><div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 7, 2024 at 7:23=E2=80=AFAM D=
+arryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">d=
+arrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"lt=
+r">Hi,</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">That=E2=80=99s good=
+. I made a payment to FRO earlier this month and will make another on the 1=
+4th, with a plan to catch up once it=E2=80=99s worked out.=C2=A0</div><div =
+dir=3D"ltr"><br></div><div dir=3D"ltr">Darryl</div><div dir=3D"ltr"><br><bl=
+ockquote type=3D"cite">On Aug 6, 2024, at 21:23, Cynthia Holmes &lt;<a href=
+=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>=
+&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D=
+"ltr">=EF=BB=BF</div></blockquote></div><div dir=3D"auto"><blockquote type=
+=3D"cite"><div dir=3D"ltr"><div dir=3D"auto">Hi Darryl.</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">Confirming for tmrw, it will be close to 84=
+5.<br clear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" cl=
+ass=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleuser=
+content.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAu=
+qY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div>=
+<div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Sat, Aug 3, 2024 at 8:59=E2=80=AFPM Darryl Ross &lt;<a href=3D"mailto:dar=
+rylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto=
+"><div dir=3D"ltr"></div><div dir=3D"ltr">Hi,</div><div dir=3D"ltr"><br></d=
+iv><div dir=3D"ltr">Tuesday and Wednesday work this week, as well as tomorr=
+ow 11-7:30.=C2=A0</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Darryl</=
+div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Aug 3, 2024, at 20:42=
+, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_bla=
+nk">cynthmholm@gmail.com</a>&gt; wrote:<br><br></blockquote></div><blockquo=
+te type=3D"cite"><div dir=3D"ltr">=EF=BB=BF</div></blockquote></div><div di=
+r=3D"auto"><blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"auto">Hi =
+there.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Charlotte is stil=
+l trying to firm up plans with Aimee, so Wednesday is a go and the girls ca=
+n either come Tuesday or Thursday. I will keep you posted.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Friday is not available as they are goin=
+g up to a friends cottage.<br clear=3D"all"><br clear=3D"all"><div dir=3D"a=
+uto"><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9L=
+HxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div><=
+/div></div><div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Fri, Aug 2, 2024 at 12:46=E2=80=AFPM Cynthia Ho=
+lmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmho=
+lm@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><=
+div dir=3D"auto">The girls get back today and I am sure they will be in tou=
+ch.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Sunday there is no p=
+ractice thus I plan to drop off girls for 11 and pick them up at 730. Does =
+that=C2=A0work for you?</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+As for make up time, they are available this week for two days. =C2=A0just =
+want to connect with Charlotte to see if she has any plans before committin=
+g.</div><div dir=3D"auto"><br></div><div dir=3D"auto">But for sure =C2=A0le=
+t=E2=80=99s commit to Wednesday that morning =C2=A0I can bring them in and =
+pick up after work.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Are =
+there any days that don=E2=80=99t work for you?<br clear=3D"all"><br clear=
+=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature"><div =
+dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb=
+5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_c=
+A"><br></div></div></div></div>
+</blockquote></div></div>
+</div></blockquote></div></blockquote></div></div>
+</div></blockquote></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--000000000000bd9fc906201f59e2--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1273208</integer>
+	<key>date-received</key>
+	<integer>1724168885</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>

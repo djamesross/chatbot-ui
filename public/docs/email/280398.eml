@@ -1,0 +1,174 @@
+9560      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-2a-60-percent-27 by p158-mailgateway-smtp-56475dcf7b-cfr2s (mailgateway 2426B71)
+	with SMTP id 3dc8929e-f6f9-4484-843c-6993a6814d9e 
+	for <darrylross@icloud.com>; Wed, 2 Oct 2024 19:16:05 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 3dc8929e-f6f9-4484-843c-6993a6814d9e
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by p00-icloudmta-smtpin-us-west-2a-60-percent-27.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-west-2a.k8s.cloud.apple.com (Postfix) with ESMTPS id 92C28C000F0
+	for <darrylross@icloud.com>; Wed,  2 Oct 2024 19:16:03 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVFSwQEQgYMWxkXXlNCBhAWSkoAD0xNTEhFSQgYVkZZAxNFU08MARELHxdcWyISFAceFB5VDRhZABNFV1sDHBVIFBddFhAWRAIWCkJPDgcWFQQ4WVUOGgwCWRtfW0IdHAoYRV1XCxlUAx1JHVBWRlcBGBdXWgdbGgkaWEBCEEgUBx4UHVMIRFQAQ0seUQ0aHgoSVlNZD1UdAkofXVcLGVcFGBUQWwsRRFo0OXZYAAwrIwYteAIxJRECQzRUaRBHPiUEIGoFID1IFSY/SmAzHxE2MA5aUFEvLCBDTWF2DxQQClkfXVcLGVcFGBUO
+X-ICL-Score: 3.3330332342
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q3y1dgak
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.43; helo=mail-ej1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a8d446adf6eso11317066b.2
+        for <darrylross@icloud.com>; Wed, 02 Oct 2024 12:16:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727896562; x=1728501362; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vZKAf7p279AO/+Zg7oqV/zDXsz4qwCUmu6g7+3KbOSU=;
+        b=Q3y1dgak3ePjETPG6JK96aqadCsIfaWglvH4y/zn0tja2wOfwc89x0yXErfVJcwOWt
+         KdotVCmi65WJEcICMALQoF+89uiNMvJX5LFuq9O9qq13mQfe5dFUuyAeiCKG6EmYw7Uk
+         aETWSmSB6242M9tq8W86PxxDWHuCJWGXfChJEMh9Ff7Dhho81fqEtkUUQq+oUJDpJ0gz
+         +u523M6omkYW/ZZU3Kz2V1xitIT9xfrdu44+Of6yPT+jyGj/9LSJCxRmAswFyJn9/RQI
+         gJN3ysDZsNE0aNtXRzp7qBlbycMZXYSmdLNECnJsEU2LslPAW/CKEOx5bP8HEpWiWzF7
+         WdjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727896562; x=1728501362;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vZKAf7p279AO/+Zg7oqV/zDXsz4qwCUmu6g7+3KbOSU=;
+        b=SWFQToM0nU8+hwCL3BK0mipCQomExAirU6XnZrcNYMtJ7MK0amyKg1T6qjHWaZWUCi
+         dkPAVkOp8bQVz1GgjDuDapQUSH/NmmqnIRJj8PAEedCzBQ0lSEYSHP/YV9SqU9L4yu68
+         comxjVRbFasj127XPcGDp6jc9KJ1zEJJQy/KFY3lq1WVphMmD+OfnkN40eNyPtbi9lvp
+         f1PZONeZilHTPUxM/KanT+ykML0VBhKIbFERyrIAtZ72mk91Icc2n63VOGkQSzwWQoUr
+         z357eYJvuZIso519KXNe9CtJwXO9SDj15BciLbEhtQaeJZnLQTwIk3qagQEzjkuUj7eo
+         GldQ==
+X-Gm-Message-State: AOJu0YxIUMfkIF3fS5Cdgdv48/Sk+fFywJyY8JFXL5u4afc1I673jrrI
+	rN80I51qSeoUZfVnH63el9646Oo0QsjZP0Qauf0MIPig2zR/IreafvZ27RbP92f4WzkqNA6EC3s
+	4yVKTa5x4K9Dv/J3/WW6Gf+zGv+aaqw==
+X-Google-Smtp-Source: AGHT+IHbfV/Ku0T5PbIHTBbabK4t93fG+KP6cokYAri1lSSAbZX8tMHMQnDzQcs+/JLBoZNvsifnB1LZDiyLrUQuu/o=
+X-Received: by 2002:a17:907:7da7:b0:a7d:a00a:a9fe with SMTP id
+ a640c23a62f3a-a98f8234288mr379836366b.17.1727896562101; Wed, 02 Oct 2024
+ 12:16:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRF3hh-HD95FJnt=ABHHW+Wj6kv=ncNhoE5bAxxOMM=6wg@mail.gmail.com>
+ <CAFnbyRHJ=JgXFHMDnXvM477w6rHWZhJ99wERMecC4mE5VRU71Q@mail.gmail.com>
+In-Reply-To: <CAFnbyRHJ=JgXFHMDnXvM477w6rHWZhJ99wERMecC4mE5VRU71Q@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 2 Oct 2024 15:15:51 -0400
+Message-ID: <CAFnbyREqUH4SPhd4Ld_r2GCsXZ3BH1sQGzVQjhPGvjf3ZUF45Q@mail.gmail.com>
+Subject: Re: This week
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="000000000000caf66806238344f2"
+X-MANTSH: 1TFkXGxMaEQpZRBdiRWJBeWNMYV17TxEKWU0XZEVETxEKWUkXGnEaEBp3BhsdGnE
+ eExAadwYYGgYaEQpZXhdsbHkRCkNOFxweGmRaekR7eQdSH11fX2l5HlJLenAcXxx/Zn8bc1l1E
+ QpYXBcZBBoEHxoFGxoEEwQYGRIEGBgQGx4aHxoRCl5ZF09nGmllEQpNXBcbGhEKTFoXaU1daxE
+ KTEYXbE1rEQpDWhcYGhMEEh8EGBsSBB4ZEQpCXhcbEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU
+ 2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhp
+ fXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQBdtW30BHxtIGWxoTREKQlgXY
+ mtOb296bGdaR0sRClpYFx4RCnBoF2tbEltDG09+QnxCEBoRCnBoF29fR2FHYlJJSGxJEBoRCnB
+ oF25tGBxoaENFQkBnEBoRCnBoF2ZZXkJTEk1bYRlzEBoRCnBoF29uR0ZSTRhhH2xiEBoRCnBoF
+ 2tfZWNyAWtrcxMfEBoRCnBoF2NzGGt+YF8fQWMFEBoRCnBoF2QcSXB7Y25MGEteEBoRCnB/F2B
+ 4fWh9ExsBYRhFEAcbGhMRCnBfF2FyaF5rHUJ6AU99EAcbGxsRCnB9F2tcf1MYAWBnH3lEEBoRC
+ nB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEBkaEQp
+ tfhcaEQpYTRdLEQ==
+X-Proofpoint-GUID: 640NpPnQS-x5wuuCS4xaPZ6u6ULU1Ys_
+X-Proofpoint-ORIG-GUID: 640NpPnQS-x5wuuCS4xaPZ6u6ULU1Ys_
+X-Authority-Info: v=2.4 cv=LZJu6Sfi c=1 sm=1 tr=0 ts=66fd9bf3 cx=c_pps a=lBEaSHRq0EQX3IuqbOyx9w==:117 a=DAUX931o1VcA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=pGLkceISAAAA:8 a=41PROwohRxsv0tDgI-kA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=5XMoRLVp0lWBDtqR0gMA:9 a=nV28MardF1hsZ4Nn:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=7YpECbvlQQReuXKdpsOb:22
+
+--000000000000caf66806238344f2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I didn=E2=80=99t hear back from you, but texted with Holly who confirmed sh=
+e
+is available to pick up girls here today and drive them back.
+
+
+
+
+On Tue, Oct 1, 2024 at 12:35=E2=80=AFPM Cynthia Holmes <cynthmholm@gmail.co=
+m> wrote:
+
+> Hi Darryl,
+>
+> Wednesday might be best this week. Does that work for you and your mom?
+>
+>
+>
+>
+> On Tue, Oct 1, 2024 at 7:18=E2=80=AFAM Cynthia Holmes <cynthmholm@gmail.c=
+om>
+> wrote:
+>
+>> Hi Darryl,
+>>
+>> Soccer is still up in the air for this week, Char possibly has a game
+>> Thursday night.
+>>
+>> Is there an evening your mom is free? Charlotte is either practicing
+>> cross country or soccer all week so will probably have to be picked up a=
+t
+>> school
+>>
+>>
+>>
+
+--000000000000caf66806238344f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">I didn=E2=80=99t hear back from you, but texted with Holl=
+y who confirmed she is=C2=A0available to pick up girls here today and drive=
+ them back.<br clear=3D"all"><br clear=3D"all"><div><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><i=
+mg src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3=
+JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div><=
+/div></div></div><div><br></div><div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Tue, Oct 1, 2024 at 12:35=E2=80=AFPM Cynt=
+hia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmail.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">H=
+i=C2=A0Darryl,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Wednesday=
+ might be best this week. Does that=C2=A0work for you and your mom?<br clea=
+r=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9L=
+HxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div><=
+/div></div><div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Tue, Oct 1, 2024 at 7:18=E2=80=AFAM Cynthia Hol=
+mes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmhol=
+m@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
+=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Soc=
+cer is still up in the air for this week, Char possibly has a game Thursday=
+=C2=A0night.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Is there an=
+ evening your mom is free? Charlotte is either practicing cross country or =
+soccer all week so will probably have to be picked up at school=C2=A0<br cl=
+ear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"g=
+mail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img sr=
+c=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9=
+LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div>=
+</div></div>
+</blockquote></div></div>
+</blockquote></div></div>
+
+--000000000000caf66806238344f2--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1283600</integer>
+	<key>date-received</key>
+	<integer>1727896565</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>

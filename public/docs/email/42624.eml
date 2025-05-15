@@ -1,0 +1,513 @@
+27590     
+Return-path: <craig.stead@osu.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-ztav06221801.me.com by p133-mailgateway-smtp-8588b56cd7-fv2ch (mailgateway 2316B325)
+	with SMTP id bb8bb857-7adb-406f-8032-9e10d9b92dee 
+	for <darrylross@icloud.com>; Fri, 26 May 2023 01:19:44 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: bb8bb857-7adb-406f-8032-9e10d9b92dee
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	by st11p00im-ztav06221801.me.com (Postfix) with ESMTPS id 3010688043C
+	for <darrylross@icloud.com>; Fri, 26 May 2023 01:19:42 +0000 (UTC)
+X-ICL-SCORE: 3.132033030041
+X-ICL-INFO: GAtbVUseB1FHSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU0QDHB5IBAxVVwY1
+ FhUCVlNXQFUfAkpaX0UXWxoHVVhDXxJIW1RHQR4OV1tLV09WBANAVREDGxcNFA8UEApaHVoHTxNN
+ U1kfX1kFGRxIFBddFEIFDRRKWl1XCxlUAx1JHVBWQFcBGBdXWgdbGgkaWhBSBkhbCQQNHVUDW0tW
+ RUoBBFJNVwEWCEBFERgNFlkbX1tAVRQPE0USCiE0NjZaPVZPUU02Njo9V11UNlIsR1VqfVoYPh89
+ AWhBWkBONTUiRFEIETMoXD52cjdCDiYaGVlaTBIUBx4UHlUNGEdEVwpTC0ARGBQFAVxEDQYKJh4b
+ XFkXEVcFGBUS
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=osu.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=osu.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=osu-ca.20221208.gappssmtp.com header.i=@osu-ca.20221208.gappssmtp.com header.b=jByn1WZG
+Authentication-Results: spf.icloud.com; spf=softfail (spf.icloud.com: domain of transitioning craig.stead@osu.ca does not designate 209.85.218.45 as permitted sender) smtp.mailfrom=craig.stead@osu.ca
+Received-SPF: softfail (spf.icloud.com: domain of transitioning craig.stead@osu.ca does not designate 209.85.218.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.45; helo=mail-ej1-f45.google.com; envelope-from=craig.stead@osu.ca
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-973bf581759so28609566b.0
+        for <darrylross@icloud.com>; Thu, 25 May 2023 18:19:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=osu-ca.20221208.gappssmtp.com; s=20221208; t=1685063982; x=1687655982;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=E0OM71mWUAJXI7sjcnWVmhq80gMEYdBxLIa3+pydhTI=;
+        b=jByn1WZGz+tSBtXA1wEFnCqc6bCjiQZA+OchhtXUhFyg0LOce5oENB3p79Qq9S1MyT
+         LcFhB3i6lzUf82MqzwKurPXHYGJxVd+7kl4SGIpID99SQXQl+ud06eBp9uw16xTOWR5b
+         1rGoIqMdjg/4NTEvTG8wR3iZzfBVquN9CmMax1ZoDNj+rYBnvvr+luDxkxLdNCMSGyqG
+         omFZniLWoihWeDGlEEsIyNpZ60+o4WBU1mfK9m7bOpshjSjOK0kJEQGRTMCB7sAJD2fr
+         aH6jzK4cbL2kI/2Xw0nPsvOGsx57Bhxl/c3uVpgwaGY9gE4ItBJ3QZvhw+/T+jXFWcLb
+         oT7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685063982; x=1687655982;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E0OM71mWUAJXI7sjcnWVmhq80gMEYdBxLIa3+pydhTI=;
+        b=D9Jz1+LP5+DGTOxdZrUeC8lVkJwlVjKAWFQ8zVkpA/FEcoo4hNg1Y6ZlclBXMebeCr
+         6pRDra0znfml93c4lRstNY0a/vg98kkQE55ddmnxvPjC4WrmpKqqUeUEnsDxAdIDl+eM
+         17cg6t/sAXuSbmOqaQJNPO69Yj+I6esKMqmPb96IY2i86LAQGs5wFN4FPQwxlnfEpvKE
+         NOYXoQZRVMvBc8z67yiMJxvJFxf2MCdR6qu8BaM79TqeurgUNDC7UHcLZSLXVp9In0Pq
+         GwGg2AI4JpCJy1SYSXgRGlkeZIGvRLs0m/sACcGPyq+XqjmEt34fnJ6CqP2Mx8l3zjmy
+         Y9Dg==
+X-Gm-Message-State: AC+VfDzxP6GUbrcZ0ART8R2mumzyUxHJDgrsvhgiKd9g7nEV9KtbruHZ
+	hIHp1xetZOaVhBtVb6lXa2KsfRKhHqpTmRU2HgA6Owqc75LqQ5sk
+X-Google-Smtp-Source: ACHHUZ7xj32RE7MzMKNo9wLgRZXIszVv7V/REQUawIiI4yusJwL+wmTh+XO4QMG6c3Xwkovxu/RFTr3CEka+x3wxlcw=
+X-Received: by 2002:a17:907:1b17:b0:96f:9a90:c924 with SMTP id
+ mp23-20020a1709071b1700b0096f9a90c924mr473901ejc.74.1685063981974; Thu, 25
+ May 2023 18:19:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOP-EfwupgU-AdNBgGnaw0NO1y9cwndkKN1MuOXo2357pWpRJQ@mail.gmail.com>
+ <CAFnbyRG_RNJuwb-KPZuirNXoZtqRF0bj0zk90PN2Baaq5D=qtA@mail.gmail.com>
+ <61E8C60F-A5D0-41B0-9A1F-CFB8575BB2A5@icloud.com> <CAFnbyRG2KPAieH3YZoa64HTTb9e7XEChwUCHOYUxOn4HQdfZVA@mail.gmail.com>
+In-Reply-To: <CAFnbyRG2KPAieH3YZoa64HTTb9e7XEChwUCHOYUxOn4HQdfZVA@mail.gmail.com>
+From: "Craig Stead, Director, Soccer Operations" <craig.stead@osu.ca>
+Date: Thu, 25 May 2023 21:19:30 -0400
+Message-ID: <CAOP-Efy38OPMEgk6C+J0-ZK8mGyJyXw857SBZtgjdJN+FFDU7w@mail.gmail.com>
+Subject: Re: How to subscribe to a team schedule - TeamSnap
+To: Cynthia Holmes <cynthmholm@gmail.com>
+Cc: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/related; boundary="00000000000012026c05fc8e88cf"
+X-MANTSH: 1TEIXWV4eGVoaGkNHB1tfQV4bGRgaGxkaGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGh8RCllEF29tZF5BaEVrYR5jEQpZTRduT0ZDXE9YEQpfWRccGBEKX00XZEVETxEKW
+ UkXGnEaEBp3Bh4YcRkZEBsYdwYYGgYaEQpZXhdoY3kRCkNOF15JbB54b1pLfXh+ZkR8enpOHnV
+ bHXp6GmJ4S0R+X0dmEQpYXBcZBBoEHxoFGxoEGxwYBBkaBB8QGx4aHxoRCl5ZF0haSxlhEQpNX
+ BcbEhIRCkxaF2hpTU1rEQpMRhdsTWsRCkNaFxgaEwQSHwQYGxIEHh8RCkJeFxsRCkRJFxsRCkJ
+ FF2BAfEN9BRIFXk1MEQpCThdjSXATU1hva1hlaxEKQkwXem9nZlBQT1IZa3oRCkJsF3p4R2UBT
+ GRSTGR6EQpCQBdmGkB4AQVGUHlLSxEKQlgXYmtOb296bGdaR0sRClpYFxsZEQpwaBdnUmBSH0J
+ mfGF+ZxAaEQpwaBdmG3JNQ0xebVBBZhAaEQpwaBd6Tn5hUwVCRhNeXxAaEQpwaBdvGV57EktMR
+ kt/cxAaEQpwaBdvGEYcEmZIHG9ZGBAaEQpwfRd6ZGtFfGtIXV1eGxAaEQpwfRdpWG5iUkBmQVI
+ FGBAaEQpwfRdneUtYHWRCBWJDWBAaEQpwfRdjT2thE1JcHnJDZBAaEQpwfRdtUBh6fmNscHNYZ
+ xAaEQpwfRdpZnNCXFxEQRhTfxAaEQpwfRdgcnloe2NJbU9uYBAHGRoRCnB9F2xcHR5paWZvZEB
+ ZEBoRCnB9F2JPe1IBTVNzZlBtEBoRCnB9F2JJQh1ae3NsAV9uEBoRCnB9F21sfUJeSU9OU0xrE
+ BoRCnB9F29cRGd4YElFTmlLEBoRCnB9F2t9H2lQZXpGeRNwEBoRCnB9F2UafUlrYkQZZk1tEBo
+ RCnB9F2VrTwEZY0cfWklCEBoRCnB9F2VeWkFTaxNpT0xCEBoRCnB9F2dnSUxTSW19aWkcEBoRC
+ nB/F2BPUGNHbltwfxtHEAcYHBEKcF8XaBtAYEVIcmISXnMQGhEKcF8XZ0dhUElYUBNOHQEQGhE
+ KcH8XYU8fGXlJaVx5GmYQBxITEQpwXxd6WUJMbn9CQExoYBAaEQpwfxdhXBlzQnlveUJAXhAHE
+ hwRCnBfF2N5EhJga10fYF9uEAceEhEKcH8XZV5bQ1JEf3JCRVkQBxsbHBEKcF8XZQV/bB1eQU4
+ fXHAQGhEKcH8XekJtH0d4YGcZAWUQEgQeEQpwXxdvZB5OXWJPbQVdYRAaEQpwfxdjWEFGYHwfZ
+ kNMZBAHGAQfEQpwXxdpSRlkEh1oTR1BehAHGRoRCnBfF2RiUGJ+Y2F6SW5sEBkaEQpwfxdgeH1
+ ofRMbAWEYRRAHEwQcEQpwXxdhcmheax1CegFPfRAbHBEKcH8XY3ATBU9mQnNbW2MQBx8TEQpwX
+ xdreBpSGG1YT1BgSxAaEQpwXxdoegF7XhhdBUVocxAaEQpwfxdmeUlLZGRZWBlhYxAaEQpwXxd
+ vXERneGBJRU5pSxAaEQpwXxdsGRx9cFtQAWVNYxAZGhEKcF8XbV58U0ETT2VyQRwQGhEKcF8Xa
+ XxeG01lQlhvfAEQBxkaEQpwXxdmRkxlYHJZQxJhGxAHHhkRCnBsF2ZHfQVzZlNhBRNbEBoRCm1
+ +FxoRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: tcF4REpaWRTLnVPPd4_q7PP0HRanTumL
+X-Proofpoint-ORIG-GUID: tcF4REpaWRTLnVPPd4_q7PP0HRanTumL
+
+
+--00000000000012026c05fc8e88cf
+Content-Type: multipart/alternative;
+	boundary=00000000000012026c05fc8e88ce
+
+
+--00000000000012026c05fc8e88ce
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=UTF-8
+
+Hi Darryl,
+
+Here are the subscription links to Ical or GoogleCalendar:
+
+   - 2014 Steel
+   <http://ical-cdn.teamsnap.com/team_schedule/ae354897-321b-48d6-b2fc-34b1=
+e8efd1d6.ics>
+   - 2011 Iron
+   <http://ical-cdn.teamsnap.com/team_schedule/4d4f4348-3511-4f39-87ad-802b=
+1b60e89a.ics>
+
+[image: Screen Shot 2023-05-25 at 9.18.49 PM.png]
+
+Thank you,
+
+
+Craig Stead
+Director, Soccer Operations & Community Engagement
+Ottawa South United
+
+  craig.stead@osu.ca
+  www.osu.ca
+<https://www.facebook.com/OSUSoccer>
+<https://www.instagram.com/ottawasouthunited/?hl=3Den>
+<http://twitter.com/OSUSoccer>
+
+
+
+
+
+Happy with our assistance? Please consider leaving us a Google Review:
+https://g.page/r/CXxgsWmIS44FEAg/review
+
+
+On Thu, May 25, 2023 at 5:46=E2=80=AFPM Cynthia Holmes <cynthmholm@gmail.co=
+m> wrote:
+
+> Hi Craig,
+>
+> Can you please assist Charlotte and Alice dad ( on this email )to be able
+> to view their schedule? The link you sent does not work for him.
+>
+>
+> On Thu, May 25, 2023 at 5:15 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hello Cynthia,
+>>
+>> It appears that the link was intended for you, as I have to be added as =
+a
+>> family member through the app or website. Instructions:
+>>
+>> Add Family or Contacts to a Profile
+>> <https://helpme.teamsnap.com/article/108-add-family-or-contacts-to-a-pro=
+file>
+>> helpme.teamsnap.com
+>> <https://helpme.teamsnap.com/article/108-add-family-or-contacts-to-a-pro=
+file>
+>> [image: Wm-KB-icon.png]
+>> <https://helpme.teamsnap.com/article/108-add-family-or-contacts-to-a-pro=
+file>
+>> <https://helpme.teamsnap.com/article/108-add-family-or-contacts-to-a-pro=
+file>
+>>
+>> [image: PastedGraphic-2.png]
+>>
+>> Best,
+>>
+>> Darryl Ross
+>> darrylross@icloud.com
+>> ___
+>>
+>> On May 24, 2023, at 12:26, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hi Darryl,
+>>
+>> Below you will find information on how to subscribe to the girls
+>> schedule. If you have any issues, I have cc'd Craig Stead, the Director =
+of
+>> Operations for OSU.
+>>
+>> Alice is 2014 Girls Force Academy Steel
+>> Charlotte is 2011 Girls Force Academy Iron
+>>
+>> Cynthia
+>>
+>> ---------- Forwarded message ---------
+>> From: Craig Stead, Director, Soccer Operations <craig.stead@osu.ca>
+>> Date: Tue, May 23, 2023 at 8:01=E2=80=AFPM
+>> Subject: How to subscribe to a team schedule - TeamSnap
+>> To: Cynthia Holmes <cynthmholm@gmail.com>
+>>
+>>
+>> Hi Cynthia,
+>>
+>> Please see this link:
+>> https://helpme.teamsnap.com/article/1245-subscribe-to-a-team-schedule
+>>
+>> Thank you,
+>>
+>>
+>> Craig Stead
+>> Director, Soccer Operations & Community Engagement
+>> Ottawa South United
+>>
+>>   craig.stead@osu.ca
+>>   www.osu.ca
+>> <https://www.facebook.com/OSUSoccer>
+>> <https://www.instagram.com/ottawasouthunited/?hl=3Den>
+>> <http://twitter.com/OSUSoccer>
+>>
+>>
+>>
+>>
+>>
+>> Happy with our assistance? Please consider leaving us a Google Review:
+>> https://g.page/r/CXxgsWmIS44FEAg/review
+>>
+>>
+>>
+
+--00000000000012026c05fc8e88ce
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=UTF-8
+
+<div dir=3D"ltr">Hi Darryl,<div><br>Here are the subscription links to Ical=
+ or GoogleCalendar:</div><div><ul><li><a href=3D"http://ical-cdn.teamsnap.c=
+om/team_schedule/ae354897-321b-48d6-b2fc-34b1e8efd1d6.ics">2014 Steel</a><b=
+r></li><li><a href=3D"http://ical-cdn.teamsnap.com/team_schedule/4d4f4348-3=
+511-4f39-87ad-802b1b60e89a.ics">2011 Iron</a><br></li></ul><div><img src=3D=
+"cid:ii_li3vkv052" alt=3D"Screen Shot 2023-05-25 at 9.18.49 PM.png" width=
+=3D"562" height=3D"550"><br></div></div><div><br clear=3D"all"><div><div di=
+r=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div=
+ dir=3D"ltr">Thank you,<br><br><table style=3D"direction:ltr;border-radius:=
+0">
+                    <tbody><tr> <td>  <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family:Arial;line-height:1.15;padding-bottom:10px;colo=
+r:#000"> <tbody><tr> <td valign=3D"top" style=3D"vertical-align:top;padding=
+-right:16px;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"line-height:1.2"> <tbody><tr> <td style=3D"width:65px;padding:0">  </=
+td> </tr> </tbody></table><img width=3D"78" height=3D"96" src=3D"https://ci=
+3.googleusercontent.com/mail-sig/AIorK4wEOSibqpFu9D6YnPk6Yng5Mp_eULkboQk8Gn=
+srFR0qtk3wm-6Oe5miIvRBPxAxBfB-THTBg78"> </td> <td valign=3D"top" style=3D"v=
+ertical-align:top;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"line-height:1.2"> <tbody><tr> <td valign=3D"top" style=3D"verti=
+cal-align:top;padding-right:45px;line-height:1.2"><span style=3D"font-famil=
+y:Arial;font-size:16px;color:#191c2b;text-transform:initial;font-weight:bol=
+d"><br>Craig Stead </span><br> <span style=3D"font-size:12px;letter-spacing=
+:0px;font-family:Arial;text-transform:initial;font-weight:normal;color:#333=
+"> Director, Soccer Operations &amp; Community Engagement </span><br> <span=
+ style=3D"font-size:12px;letter-spacing:0px;font-family:Arial;text-transfor=
+m:initial;font-weight:bold;color:#444"> Ottawa South United </span> </td> <=
+td valign=3D"top" style=3D"vertical-align:top;line-height:0%"> <table cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-size:12px;line-height:1.2"> <t=
+body><tr> <td style=3D"line-height:0"> <table cellpadding=3D"0" cellspacing=
+=3D"0"> <tbody><tr> <td style=3D"line-height:0%;padding-bottom:6px"><br> </=
+td> </tr> <tr> <td style=3D"line-height:0%;padding-bottom:6px"> <table cell=
+padding=3D"0" cellspacing=3D"0" style=3D"line-height:14px;font-size:12px;fo=
+nt-family:Arial"> <tbody><tr> <td style=3D"font-family:Arial;font-weight:bo=
+ld;font-size:12px;color:#191c2b"> <img src=3D"https://cdn.gifo.wisestamp.co=
+m/social/envelope/191C2B/13/trans.png" style=3D"vertical-align:-2px;line-he=
+ight:1.2"> </td> <td style=3D"width:5px;font-size:1pt;line-height:0" width=
+=3D"5">=C2=A0</td> <td style=3D"font-family:Arial;font-size:12px"> <a href=
+=3D"mailto:craig.stead@osu.ca" style=3D"text-decoration:none;font-size:12px=
+;font-family:Arial" target=3D"_blank"> <span style=3D"line-height:1.2;color=
+:#212121;font-family:Arial;white-space:nowrap;font-size:12px"> craig.stead@=
+osu.ca </span> </a> </td> </tr> </tbody></table> </td> </tr> <tr> <td style=
+=3D"line-height:0%;padding-bottom:6px"> <table cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"line-height:14px;font-size:12px;font-family:Arial"> <tbody=
+><tr> <td style=3D"font-family:Arial;font-weight:bold;font-size:12px;color:=
+#191c2b"> <img src=3D"https://cdn.gifo.wisestamp.com/social/browser/191C2B/=
+13/trans.png" style=3D"vertical-align:-2px;line-height:1.2"> </td> <td styl=
+e=3D"width:5px;font-size:1pt;line-height:0" width=3D"5">=C2=A0</td> <td sty=
+le=3D"font-family:Arial;font-size:12px"> <a href=3D"http://www.osu.ca" styl=
+e=3D"text-decoration:none;font-size:12px;font-family:Arial" target=3D"_blan=
+k"> <span style=3D"line-height:1.2;color:#212121;font-family:Arial;white-sp=
+ace:nowrap;font-size:12px"> www.osu.ca </span> </a> </td> </tr> </tbody></t=
+able> </td> </tr> </tbody></table> </td> </tr> <tr> <td style=3D"padding-to=
+p:8px;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"=
+width:100%;line-height:1.2"> <tbody><tr> <td> <table border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0"><tbody><tr><td align=3D"left" style=3D"padding-r=
+ight:6px;text-align:center;padding-top:0"> <a href=3D"https://www.facebook.=
+com/OSUSoccer" style=3D"font-size:11px;color:#444;text-decoration:none" tar=
+get=3D"_blank"> <img width=3D"24" height=3D"24" src=3D"https://cdn.gifo.wis=
+estamp.com/social/facebook/191C2B/48/circle/background.png" style=3D"float:=
+left;border:none" border=3D"0"> </a> </td><td align=3D"left" style=3D"paddi=
+ng-right:6px;text-align:center;padding-top:0"> <a href=3D"https://www.insta=
+gram.com/ottawasouthunited/?hl=3Den" style=3D"font-size:11px;color:#444;tex=
+t-decoration:none" target=3D"_blank"> <img width=3D"24" height=3D"24" src=
+=3D"https://cdn.gifo.wisestamp.com/social/instagram/191C2B/48/circle/backgr=
+ound.png" style=3D"float:left;border:none" border=3D"0"> </a> </td><td alig=
+n=3D"left" style=3D"padding-right:6px;text-align:center;padding-top:0"> <a =
+href=3D"http://twitter.com/OSUSoccer" style=3D"font-size:11px;color:#444;te=
+xt-decoration:none" target=3D"_blank"> <img width=3D"24" height=3D"24" src=
+=3D"https://cdn.gifo.wisestamp.com/social/twitter/191C2B/48/circle/backgrou=
+nd.png" style=3D"float:left;border:none" border=3D"0"> </a> </td></tr></tbo=
+dy></table> <div style=3D"height:1px!important"></div> </td> </tr> </tbody>=
+</table> </td> </tr> </tbody></table> </td> </tr> </tbody></table><br><br><=
+br><br><br> </td> </tr> </tbody></table><table cellpadding=3D"0" cellspacin=
+g=3D"0" border=3D"0"><tbody><tr><td></td></tr></tbody></table></td></tr></t=
+body></table> =20
+                  <img src=3D"https://tracy.srv.wisestamp.com/px/5985447519=
+059968.png" alt=3D"">Happy with our assistance? Please consider leaving us =
+a Google Review:=C2=A0<a href=3D"https://g.page/r/CXxgsWmIS44FEAg/review" t=
+arget=3D"_blank">https://g.page/r/CXxgsWmIS44FEAg/review</a><br></div></div=
+></div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Thu, May 25, 2023 at 5:46=E2=80=AFPM Cynthia Holmes &lt=
+;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"au=
+to">Hi Craig,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Can you pl=
+ease assist Charlotte and Alice dad ( on this email )to be able to view the=
+ir schedule? The link you sent does not work for him.=C2=A0</div><div dir=
+=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Thu, May 25, 2023 at 5:15 PM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv>Hello Cynthia,<div><br></div><div>It appears that the link was intended =
+for you, as I have to be added as a family member through the app or websit=
+e. Instructions:</div><div><br></div><div><div style=3D"display:block"><div=
+ style=3D"display:inline-block" role=3D"link"><a style=3D"border-radius:10p=
+x;font-family:-apple-system,Helvetica,Arial,sans-serif;display:block;width:=
+300px;overflow:hidden;text-decoration:none" rel=3D"nofollow" href=3D"https:=
+//helpme.teamsnap.com/article/108-add-family-or-contacts-to-a-profile" dir=
+=3D"ltr" role=3D"button" width=3D"300" target=3D"_blank"><table style=3D"ta=
+ble-layout:fixed;border-collapse:collapse;width:300px;background-color:rgb(=
+229,230,233);font-family:-apple-system,Helvetica,Arial,sans-serif" cellpadd=
+ing=3D"0" cellspacing=3D"0" border=3D"0" width=3D"300"><tbody><tr><td><tabl=
+e bgcolor=3D"#E5E6E9" cellpadding=3D"0" cellspacing=3D"0" width=3D"300" sty=
+le=3D"font-family:-apple-system,Helvetica,Arial,sans-serif;table-layout:fix=
+ed;background-color:rgb(229,230,233)"><tbody><tr><td style=3D"padding:8px 0=
+px"><div style=3D"max-width:100%;margin:0px 16px;overflow:hidden"><div styl=
+e=3D"font-weight:500;font-size:12px;overflow:hidden;text-overflow:ellipsis;=
+text-align:left"><a rel=3D"nofollow" href=3D"https://helpme.teamsnap.com/ar=
+ticle/108-add-family-or-contacts-to-a-profile" style=3D"text-decoration:non=
+e" target=3D"_blank"><font color=3D"#272727" style=3D"color:rgba(0,0,0,0.84=
+7)">Add Family or Contacts to a Profile</font></a></div><div style=3D"font-=
+weight:400;font-size:11px;overflow:hidden;text-overflow:ellipsis;text-align=
+:left"><a rel=3D"nofollow" href=3D"https://helpme.teamsnap.com/article/108-=
+add-family-or-contacts-to-a-profile" style=3D"text-decoration:none" target=
+=3D"_blank"><font color=3D"#808080" style=3D"color:rgba(0,0,0,0.498)">helpm=
+e.teamsnap.com</font></a></div></div></td><td style=3D"padding:6px 12px 6px=
+ 0px" width=3D"36"><a rel=3D"nofollow" href=3D"https://helpme.teamsnap.com/=
+article/108-add-family-or-contacts-to-a-profile" target=3D"_blank"><img alt=
+=3D"Wm-KB-icon.png" src=3D"cid:18854ded01a2dc512d51" style=3D"width: 152px;=
+ max-width: 100%;"></a></td></tr></tbody></table></td></tr></tbody></table>=
+</a></div><br></div></div><div><img alt=3D"PastedGraphic-2.png" src=3D"cid:=
+18854ded01a5190fd042" style=3D"width: 896px; max-width: 100%;"></div><div><=
+br></div><div><div>
+<div>Best,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"mailto=
+:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></div><d=
+iv>___</div>
+
+</div></div></div><div><div>
+<div><br><blockquote type=3D"cite"><div>On May 24, 2023, at 12:26, Cynthia =
+Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthm=
+holm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi Darryl,<div=
+><br></div><div>Below you will find information on how to subscribe=C2=A0to=
+ the girls schedule. If you have any issues, I have cc&#39;d Craig=C2=A0Ste=
+ad, the Director of Operations for OSU.</div><div><br></div><div>Alice is 2=
+014 Girls Force Academy Steel</div><div>Charlotte is 2011 Girls Force Acade=
+my Iron</div><div><br></div><div>Cynthia=C2=A0<br><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message --=
+-------<br>From: <strong class=3D"gmail_sendername" dir=3D"auto">Craig Stea=
+d, Director, Soccer Operations</strong> <span dir=3D"auto">&lt;<a href=3D"m=
+ailto:craig.stead@osu.ca" target=3D"_blank">craig.stead@osu.ca</a>&gt;</spa=
+n><br>Date: Tue, May 23, 2023 at 8:01=E2=80=AFPM<br>Subject: How to subscri=
+be to a team schedule - TeamSnap<br>To: Cynthia Holmes &lt;<a href=3D"mailt=
+o:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt;<br><=
+/div><br><br><div dir=3D"ltr">Hi=C2=A0Cynthia,<div><br></div><div>Please se=
+e this link:=C2=A0</div><div><a href=3D"https://helpme.teamsnap.com/article=
+/1245-subscribe-to-a-team-schedule" target=3D"_blank">https://helpme.teamsn=
+ap.com/article/1245-subscribe-to-a-team-schedule</a></div><div><br clear=3D=
+"all"><div><div dir=3D"ltr"><div dir=3D"ltr">Thank you,<br><br><table style=
+=3D"direction:ltr;border-radius:0px">
+                    <tbody><tr> <td>  <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family:Arial;line-height:1.15;padding-bottom:10px"> <t=
+body><tr> <td valign=3D"top" style=3D"vertical-align:top;padding-right:16px=
+;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"line-=
+height:1.2"> <tbody><tr> <td style=3D"width:65px;padding:0px">  </td> </tr>=
+ </tbody></table><img width=3D"78" height=3D"96" src=3D"https://ci3.googleu=
+sercontent.com/mail-sig/AIorK4wEOSibqpFu9D6YnPk6Yng5Mp_eULkboQk8GnsrFR0qtk3=
+wm-6Oe5miIvRBPxAxBfB-THTBg78"> </td> <td valign=3D"top" style=3D"vertical-a=
+lign:top;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"line-height:1.2"> <tbody><tr> <td valign=3D"top" style=3D"vertical-alig=
+n:top;padding-right:45px;line-height:1.2"><span style=3D"font-family:Arial;=
+font-size:16px;color:rgb(25,28,43);text-transform:initial;font-weight:bold"=
+><br>Craig Stead </span><br> <span style=3D"font-size:12px;letter-spacing:0=
+px;font-family:Arial;text-transform:initial;font-weight:normal;color:rgb(51=
+,51,51)"> Director, Soccer Operations &amp; Community Engagement </span><br=
+> <span style=3D"font-size:12px;letter-spacing:0px;font-family:Arial;text-t=
+ransform:initial;font-weight:bold;color:rgb(68,68,68)"> Ottawa South United=
+ </span> </td> <td valign=3D"top" style=3D"vertical-align:top;line-height:0=
+%"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:12px;line=
+-height:1.2"> <tbody><tr> <td style=3D"line-height:0"> <table cellpadding=
+=3D"0" cellspacing=3D"0"> <tbody><tr> <td style=3D"line-height:0%;padding-b=
+ottom:6px"><br> </td> </tr> <tr> <td style=3D"line-height:0%;padding-bottom=
+:6px"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"line-height:14px=
+;font-size:12px;font-family:Arial"> <tbody><tr> <td style=3D"font-family:Ar=
+ial;font-weight:bold;font-size:12px;color:rgb(25,28,43)"> <img src=3D"https=
+://cdn.gifo.wisestamp.com/social/envelope/191C2B/13/trans.png" style=3D"ver=
+tical-align: -2px; line-height: 1.2;"> </td> <td style=3D"width:5px;font-si=
+ze:1pt;line-height:0" width=3D"5">=C2=A0</td> <td style=3D"font-family:Aria=
+l;font-size:12px"> <a href=3D"mailto:craig.stead@osu.ca" style=3D"text-deco=
+ration:none;font-size:12px;font-family:Arial" target=3D"_blank"> <span styl=
+e=3D"line-height:1.2;color:rgb(33,33,33);font-family:Arial;white-space:nowr=
+ap;font-size:12px"> craig.stead@osu.ca </span> </a> </td> </tr> </tbody></t=
+able> </td> </tr> <tr> <td style=3D"line-height:0%;padding-bottom:6px"> <ta=
+ble cellpadding=3D"0" cellspacing=3D"0" style=3D"line-height:14px;font-size=
+:12px;font-family:Arial"> <tbody><tr> <td style=3D"font-family:Arial;font-w=
+eight:bold;font-size:12px;color:rgb(25,28,43)"> <img src=3D"https://cdn.gif=
+o.wisestamp.com/social/browser/191C2B/13/trans.png" style=3D"vertical-align=
+: -2px; line-height: 1.2;"> </td> <td style=3D"width:5px;font-size:1pt;line=
+-height:0" width=3D"5">=C2=A0</td> <td style=3D"font-family:Arial;font-size=
+:12px"> <a href=3D"http://www.osu.ca/" style=3D"text-decoration:none;font-s=
+ize:12px;font-family:Arial" target=3D"_blank"> <span style=3D"line-height:1=
+.2;color:rgb(33,33,33);font-family:Arial;white-space:nowrap;font-size:12px"=
+> www.osu.ca </span> </a> </td> </tr> </tbody></table> </td> </tr> </tbody>=
+</table> </td> </tr> <tr> <td style=3D"padding-top:8px;line-height:0%"> <ta=
+ble cellpadding=3D"0" cellspacing=3D"0" style=3D"width:100%;line-height:1.2=
+"> <tbody><tr> <td> <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+><tbody><tr><td align=3D"left" style=3D"padding-right:6px;text-align:center=
+;padding-top:0px"> <a href=3D"https://www.facebook.com/OSUSoccer" style=3D"=
+font-size:11px;color:rgb(68,68,68);text-decoration:none" target=3D"_blank">=
+ <img width=3D"24" height=3D"24" src=3D"https://cdn.gifo.wisestamp.com/soci=
+al/facebook/191C2B/48/circle/background.png" style=3D"float: left; border: =
+none;" border=3D"0"> </a> </td><td align=3D"left" style=3D"padding-right:6p=
+x;text-align:center;padding-top:0px"> <a href=3D"https://www.instagram.com/=
+ottawasouthunited/?hl=3Den" style=3D"font-size:11px;color:rgb(68,68,68);tex=
+t-decoration:none" target=3D"_blank"> <img width=3D"24" height=3D"24" src=
+=3D"https://cdn.gifo.wisestamp.com/social/instagram/191C2B/48/circle/backgr=
+ound.png" style=3D"float: left; border: none;" border=3D"0"> </a> </td><td =
+align=3D"left" style=3D"padding-right:6px;text-align:center;padding-top:0px=
+"> <a href=3D"http://twitter.com/OSUSoccer" style=3D"font-size:11px;color:r=
+gb(68,68,68);text-decoration:none" target=3D"_blank"> <img width=3D"24" hei=
+ght=3D"24" src=3D"https://cdn.gifo.wisestamp.com/social/twitter/191C2B/48/c=
+ircle/background.png" style=3D"float: left; border: none;" border=3D"0"> </=
+a> </td></tr></tbody></table> <div style=3D"height:1px"></div> </td> </tr> =
+</tbody></table> </td> </tr> </tbody></table> </td> </tr> </tbody></table><=
+br><br><br><br><br> </td> </tr> </tbody></table><table cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0"><tbody><tr><td></td></tr></tbody></table></td>=
+</tr></tbody></table> =20
+                  <img src=3D"https://tracy.srv.wisestamp.com/px/5985447519=
+059968.png" alt=3D"">Happy with our assistance? Please consider leaving us =
+a Google Review:=C2=A0<a href=3D"https://g.page/r/CXxgsWmIS44FEAg/review" t=
+arget=3D"_blank">https://g.page/r/CXxgsWmIS44FEAg/review</a><br></div></div=
+></div></div></div>
+</div></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</blockquote></div>
+
+--00000000000012026c05fc8e88ce--
+
+--00000000000012026c05fc8e88cf
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=Wm-KB-icon.png
+Content-Type: image/png;
+	name=Wm-KB-icon.png
+X-Apple-Content-Length: 7517
+Content-Id: <18854ded01a2dc512d51>
+
+
+--00000000000012026c05fc8e88cf
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=PastedGraphic-2.png
+Content-Type: image/png;
+	name=PastedGraphic-2.png
+X-Apple-Content-Length: 251076
+Content-Id: <18854ded01a5190fd042>
+
+
+--00000000000012026c05fc8e88cf
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename="Screen Shot 2023-05-25 at 9.18.49 PM.png"
+Content-Type: image/png;
+	name="Screen Shot 2023-05-25 at 9.18.49 PM.png"
+X-Apple-Content-Length: 311647
+Content-Id: <ii_li3vkv052>
+
+
+--00000000000012026c05fc8e88cf--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1115269</integer>
+	<key>date-last-viewed</key>
+	<integer>1744823158</integer>
+	<key>date-received</key>
+	<integer>1685063984</integer>
+	<key>flags</key>
+	<integer>8623688837</integer>
+	<key>remote-id</key>
+	<string>4167</string>
+</dict>
+</plist>

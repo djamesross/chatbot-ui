@@ -1,0 +1,194 @@
+10423     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-central-1n-20-percent-5 by p158-mailgateway-smtp-75dc68d6fd-ksjzd (mailgateway 2429B103)
+	with SMTP id fdd723e4-86ef-4f4f-afbf-379e960955fb 
+	for <darrylross@icloud.com>; Mon, 3 Mar 2025 18:58:51 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: fdd723e4-86ef-4f4f-afbf-379e960955fb
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	by p00-icloudmta-smtpin-us-central-1n-20-percent-5.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-central-1n.k8s.cloud.apple.com (Postfix) with ESMTPS id C8A48C0008C
+	for <darrylross@icloud.com>; Mon,  3 Mar 2025 18:58:48 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgAOTEFNRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxIcARsEQU1IEBdfUQ4QVwUYFRBGFgdECxYRXBsHEUhLEUwEGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcAND9IRgIsHBdQQghgd1cfGxcGKGdUVTBUDh8CenEwGx0CLQx1TBIcP1A/HmBRIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tm19Ppk6
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.44; helo=mail-ed1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e0813bd105so7670302a12.1
+        for <darrylross@icloud.com>; Mon, 03 Mar 2025 10:58:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741028327; x=1741633127; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JHX+/yutjzLVEopc69k+FhEf4auwGSFIRXbRJRSJlXM=;
+        b=Tm19Ppk6tJ+ppDWByRm5j0CvCs+hA4bHZhRGCH6qLdaX96/MdyF1/EmjiaKRSuyBLr
+         O3JtRZKjMZOC3ZeSiY9EHvR3P+AWGMhs9B4185KjYD5nGViUINTJM1iaaKYXtiO4Q0ag
+         Ix/YNkXP7GE6l7A/2i9M4fIRmal99gcqqCXFhLqQPKk/M4k7e0rzeTBP84zVLXUgrQIj
+         poT/HXfmzKh4C2Cxj77uqiq2C1u+vIwWB9dModK4JXWNemKhByryurZ97QeNAdBrrBxX
+         rxc0ZNFooxoNr31LzpqHIe3g7eCQcqUp4vL+4zV+XFLtGELyD3btJzlUl28Rhz1XH3zn
+         eK9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741028327; x=1741633127;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JHX+/yutjzLVEopc69k+FhEf4auwGSFIRXbRJRSJlXM=;
+        b=Eotbup/2uasZTXuxil9vKewQmKTag69hWN4iYlQfh8JKft5kZalkTtBWvmRUcp6Uzu
+         7tv2i5kIZewavChqfakX8ekhsJiTMwvjzWWfK10bkj8OufK2w478qiZFGvpS5kvnAkti
+         v5LSGSboQckH/SM2Tu5It7pQ1pY84t/F2Vlgr4XwlvGF7MWdc/P1MMVFUyTe34F4F5Rm
+         Xnsww6B73mC9lxsevSHVxoaXFXsArYnw6lHDWNeO9iLA+OFrKZtsBeA7DmBFrWp89M7V
+         2KnZlPMuIpwUL9ayUCKmqJ9aRVsMSeJ+KltW9eoivLllop1nYb3mXIackCiFQUmhpRA6
+         jyuQ==
+X-Gm-Message-State: AOJu0Yz8HpplwmZA4qXnoD34x0Ex4Z5eFvK+DUHJ2RAJWoOyOu7/1MUc
+	+FHWQ9imKA+fTtqJ/IH0T24/kGVV7Hrc3qPFeSdBYKjPdei8xEhmoo6fyDLcFkBofmpADX3SCRf
+	B872md9mg67MkExRew/v9G2TUAcPli1mP
+X-Gm-Gg: ASbGncubI1nGVz+1A6y1RDufapI+HqElT+8rJsyBqEbw5g+343ElvWli910qBaSsUt5
+	jv9TndxRhP0ICQ/inHnvQouG4Czqr9iB/s0ac+20dfOBJW0hzXrM5bxWwjpcLyDjMlu2EzL5upS
+	Lq6Dp8gOtY28gLFzqphHeJ/1GJ3YTJYTfyLiqf3SGxTpas/ID49wnNx50AOzs=
+X-Google-Smtp-Source: AGHT+IF+gKF5pKR2NbSFZDPnV1Dr5vN0zXtqsPuBeUOBiu9l6mXrbzl/IR54JzMfxS15otsWUB2u/4KzKvzNqWMW/fo=
+X-Received: by 2002:a17:907:3fa8:b0:ac1:da0c:f665 with SMTP id
+ a640c23a62f3a-ac1da0d0152mr368773666b.42.1741028326978; Mon, 03 Mar 2025
+ 10:58:46 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRG6mCoh4XRCLhr2yn5ZKMDpw558c9sPoxUAD_o1bt0suA@mail.gmail.com>
+ <A530AD57-2382-45BA-BA47-FA57C616BE28@icloud.com>
+In-Reply-To: <A530AD57-2382-45BA-BA47-FA57C616BE28@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 3 Mar 2025 13:58:35 -0500
+X-Gm-Features: AQ5f1JoYAx_maA-T0G_Vhbf-J7IE-OmJ-ZJQY9QjOILOHYv1SnRt9f_gc-VwHmE
+Message-ID: <CAFnbyRH0v4Nin65pPA5jbqqPWb7E-hhzJGRnddZtEzpiF6HfPg@mail.gmail.com>
+Subject: Re: Passport Office will call you
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <alison.boyce@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="000000000000f93bb0062f74be51"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxscGxEKX00
+ XZEVETxEKWUkXGnEaEBp3BhseG3EYHxAadwYYGgYaEQpZXhdsbHkRCkNOF0tlWnV7ZAcabk5AQ
+ h19bkkaUhN7TERma2UTTBNOblkbEQpYXBcZBBoEHxsFGxoaBB0bBBscGgQTGhAbHhofGhEKXlk
+ XTwEcaW8RCk1cFxgeEQpMWhdoa01NaxEKTEYXYk1rEQpDWhcYGhMEEh8EGBoSBB4eEQpCXhcbE
+ QpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2g
+ SG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS
+ 2lJEQpCQBdneUZ8f3lhQkl4UxEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF21/RUBCXm1Gfx5
+ eEBoRCnBoF2l+eXpsQ0ByUmYBEBoRCnBoF2VbWVBsT2lBGW9bEBoRCnBoF2VJa2VBclJrck1DE
+ BoRCnBoF2ZdBXN7Q21fRVJ7EBoRCnBoF2Ebb3wZawVBSXliEBoRCnBoF20ZWk1QeURAekZoEBo
+ RCnBoF24aWVxGAX1BUENzEBoRCnB/F2B4fWh9ExsBYRhFEAcbGxsRCnBfF2FyaF5rHUJ6AU99E
+ AcbGhMRCnB9F2tcf1MYAWBnH3lEEBoRCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9
+ vEAcZGhEKbX4XGhEKWE0XSxE=
+X-Authority-Info: v=2.4 cv=J5NQ7BnS c=1 sm=1 tr=0 ts=67c5fbe9 cx=c_apl:c_pps a=2f/BrsI30kxfi1RG7K8GXg==:117 a=Vs1iUdzkB0EA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=Uhidw_9kAxITpQ7c55kA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=IZ5_NMqgvzMAnLgsOTEA:9 a=ZareyRItOHRbtioT:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-ORIG-GUID: aOp_QN-0Ddjh7WDc0x9QfnLAO9f9dDs1
+X-Proofpoint-GUID: aOp_QN-0Ddjh7WDc0x9QfnLAO9f9dDs1
+
+--000000000000f93bb0062f74be51
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks so much for the update.
+
+
+
+
+On Mon, Mar 3, 2025 at 1:45=E2=80=AFPM Darryl Ross <darrylross@icloud.com> =
+wrote:
+
+> Hi Cynthia,
+>
+> I spoke with the passport office today, and everything was in order. I
+> provided my consent.
+>
+>
+> Darryl
+>
+> On Feb 28, 2025, at 11:49, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Plese acknowledge receipt.
+>
+> I just want to update you on the girls passports, I=E2=80=99m at passport=
+ office
+> and the officer has confirmed they will be calling you
+> within a few days to confirm information on the passport. This is standar=
+d
+> practice. They will try to call you two times and will leave a detailed
+> message on how to call back before 4 pm.
+>
+> I pick up the passports on March 4th thus please do your best to answer
+> them or call them back before 4 pm no later than Monday March 3rd.
+>
+> I will also prepare letters of permission to travel for your signature to
+> present at customs! Thanks so much! Girls are getting very excited!
+>
+> Cynthia
+>
+>
+>
+>
+
+--000000000000f93bb0062f74be51
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thanks so much for the update.=C2=A0<br clear=3D"all"><br=
+ clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartma=
+il=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleuserc=
+ontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuq=
+Y1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div><=
+div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Mon, Mar 3, 2025 at 1:45=E2=80=AFPM Darryl Ross &lt;=
+<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-break:after-w=
+hite-space"><span>Hi Cynthia,</span><span><br></span><span><br></span><div>=
+<span>I spoke with the passport office today, and everything was in order. =
+I provided my consent.</span></div></div><div style=3D"line-break:after-whi=
+te-space"><div><span><br></span><span><br></span></div><div><span>Darryl</s=
+pan><div><br><blockquote type=3D"cite"><div>On Feb 28, 2025, at 11:49, Cynt=
+hia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cy=
+nthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darryl=
+,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Plese acknowledge rece=
+ipt.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I just want to upda=
+te you on the girls passports, I=E2=80=99m at passport office and the offic=
+er has confirmed they will be calling you=C2=A0<br clear=3D"all">within a f=
+ew days to confirm information on the passport. This is standard practice. =
+They will try to call you two times and will leave a detailed message on ho=
+w to call back before 4 pm.</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">I pick up the passports on March 4th thus please do your best to answer=
+ them or call them back before 4 pm no later than Monday March 3rd.</div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto">I will also prepare letters of =
+permission to travel for your signature to present at customs! Thanks so mu=
+ch! Girls are getting very excited!</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">Cynthia=C2=A0</div><div dir=3D"auto"><br clear=3D"all"><div dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmai=
+l_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com=
+/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU6=
+4sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+</div></blockquote></div><br><div></div></div></div></blockquote></div></di=
+v>
+
+--000000000000f93bb0062f74be51--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1324482</integer>
+	<key>date-last-viewed</key>
+	<integer>1744641132</integer>
+	<key>date-received</key>
+	<integer>1741028331</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>14456</string>
+</dict>
+</plist>

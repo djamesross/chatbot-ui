@@ -1,0 +1,142 @@
+7198      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv47p00im-qukt16180102.me.com by p133-mailgateway-smtp-6cd59f5b77-t4fc2 (mailgateway 2312B181)
+	with SMTP id fd73a20a-0de7-4635-adb9-81004392bb3d 
+	for <darrylross@icloud.com>; Thu, 23 Mar 2023 11:34:20 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: fd73a20a-0de7-4635-adb9-81004392bb3d
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	by pv47p00im-qukt16180102.me.com (Postfix) with ESMTPS id C2A8A2740324
+	for <darrylross@icloud.com>; Thu, 23 Mar 2023 11:34:18 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQUBEVxBVWg1IWwsWEVwbBxFI
+ SxFMCRgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9STlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdkcgHC1TLitRUgZFKDEoRWRcB0IqB08+RHchIhYRIyhpclA5GCwB
+ LFddLgI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L78R8TxF
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.49 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.49; helo=mail-ed1-f49.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id x3so84970053edb.10
+        for <darrylross@icloud.com>; Thu, 23 Mar 2023 04:34:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679571258;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+4awLMdccbBdzZAPY7YuRIY1zHBptza3jfcGeR84tLw=;
+        b=L78R8TxFBN6DSy76faYF5FdyLDXCBDxXzPlG4nuedQZ4egPEQj1mXNgwa9Oox6JGdP
+         y5brIW0flqk7xVxAbqDGaZX5jAaYlUUVCPf2Z3yegZ5yu/yKIUSY882q2/84m+d/0MCb
+         z4piAGheFiBSR6xbhyimTIFbZjeGDZE/9DtEHGBz3xkuzicMzEoBrczHgk7uE+m0xKQg
+         DdxT+7WkiVyPo2nxLdUcdw+mNe9y1UIvyrXre37lbVho6TDqlJhLE0eOSytvq+HIOPJb
+         VqgyfjVCIk8hFsuMP0i20whca2rScX5iGmvf+IrnnjE9q8mkmqU5CqsLLKXDvqBS8b0p
+         QQDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679571258;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+4awLMdccbBdzZAPY7YuRIY1zHBptza3jfcGeR84tLw=;
+        b=Pg4HJaUoQKvBH2ItDZIZlve19j/LY9S/okosHxG0WJT8W/PlWm9HXmkIdkTjAYsvKw
+         mX1022hiMPVUBsfegCJgO7CEuiQQCl5MD+N4oGXZCrFYhRfaESWQZa7jpJBj6Uxsh4xy
+         VN0IFX5QnzXc4bc9v4ED8R8lvUDH2rdUDNXaYunr/pFYdKABSvdObGP6zO3HEKb0M5I9
+         EEUJ0QGiqfDXKuLnFZvqCWiRi5V5QaFnPWkMZF4szVmTj/YOsdTMNxVTbEj8kgTRH9/s
+         769m2OyrqCmAcz2cgmKLe/na9B6XZcDnNuC2HUiHq0fiA2DOJl7qDPSQRBtYj3UUAi3u
+         VLPA==
+X-Gm-Message-State: AO0yUKUD/lhwuxwJdfTbM5KCeRk3O7eHTn7pMLsBQgeeY7MEj2iWPoz6
+	OPiyuk3gRS9ug0DD6oVH5H17FuaUPDtbrhw76Cs4yF8tMNc=
+X-Google-Smtp-Source: AK7set832mwLXj8BX8XHL4qaU1y3P/O45N6AztPCVvuTlmNAycUs5yozsaI4PCdi5+Vwo/WNqecaj1sILxsH/aoPNe4=
+X-Received: by 2002:a17:906:bccd:b0:8b1:28f6:8ab3 with SMTP id
+ lw13-20020a170906bccd00b008b128f68ab3mr5140591ejb.15.1679571257738; Thu, 23
+ Mar 2023 04:34:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRFVLW3P5Y7UwNxYCsT-DJawVyOg9_gkjvR=a40+3hwCcw@mail.gmail.com>
+In-Reply-To: <CAFnbyRFVLW3P5Y7UwNxYCsT-DJawVyOg9_gkjvR=a40+3hwCcw@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 23 Mar 2023 07:34:07 -0400
+Message-ID: <CAFnbyRFqBiT5YSadd0QW_=Tje7Sa8FtACWowTPYD2LaJvTgkLw@mail.gmail.com>
+Subject: =?UTF-8?B?RndkOiBBdWpvdXJk4oCZaHVp?=
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000003148a205f78fa878"
+X-MANTSH: 1TEIXWlwfG1oaGkNHB1tfQV4bExgaGhkaGBEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExwQGncGGBoGGhEKWV4XbGx5EQpDThdmWEZYSE1Nb191eE9BZ2d
+ aYnNuGk5TTUFLRksfe0BMRREKWFwXGQQaBB8aBEhPXkseBRsdBBseGAQbEhoEHRAbHhofGhEKX
+ lkXSH9OGXwRCk1cFx0TEQpMWhdoaU1NaxEKTEYXbGtrEQpDWhcYGhMEEh8EGBoSBB4TEQpCXhc
+ bEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4c
+ m54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQp
+ CQBdtXltje01QTX5tQhEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBnF2F4UnxTAUZtY
+ nBcEBkaEQpwaBdhT15wbltAYXMSExAZGhEKcGgXZGdIbxxtYEFGe04QGRoRCnBoF2FEbhxLeW1
+ FWFxfEBkaEQpwaBdlH1IaR3oTa1NwTxAZGhEKcGgXbR0eeX0eQnpFbXkQGRoRCnBnF2dHc0VdT
+ 01eHR9MEBkaEQpwZxdpZml7a2lJa2lHSRAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClh
+ NF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: LrlrbggEu_RekMMpHYD0dygkala5Qjfo
+X-Proofpoint-GUID: LrlrbggEu_RekMMpHYD0dygkala5Qjfo
+
+--0000000000003148a205f78fa878
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+FYI
+
+---------- Forwarded message ---------
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, Mar 23, 2023 at 7:33 AM
+Subject: Aujourd=E2=80=99hui
+To: Assiduit=C3=A9-SKA CECCE <assiduite-ska@ecolecatholique.ca>, Nathalie
+Tremblay <trembna@ecolecatholique.ca>, Steffany Henry <
+henryst@ecolecatholique.ca>
+
+
+Hello,
+
+Charlotte et Alice sont encore malade. SVP si il y a des travaux,
+pourriez-vous m=E2=80=99envoyer ou indiquer ou c=E2=80=99est dans Google cl=
+ass room.
+
+Merci
+
+--0000000000003148a205f78fa878
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">FYI=C2=A0</div><div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message ---------<br>F=
+rom: <strong class=3D"gmail_sendername" dir=3D"auto">Cynthia Holmes</strong=
+> <span dir=3D"auto">&lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm=
+@gmail.com</a>&gt;</span><br>Date: Thu, Mar 23, 2023 at 7:33 AM<br>Subject:=
+ Aujourd=E2=80=99hui <br>To: Assiduit=C3=A9-SKA CECCE &lt;<a href=3D"mailto=
+:assiduite-ska@ecolecatholique.ca">assiduite-ska@ecolecatholique.ca</a>&gt;=
+, Nathalie Tremblay &lt;<a href=3D"mailto:trembna@ecolecatholique.ca">tremb=
+na@ecolecatholique.ca</a>&gt;, Steffany Henry &lt;<a href=3D"mailto:henryst=
+@ecolecatholique.ca">henryst@ecolecatholique.ca</a>&gt;<br></div><br><br>He=
+llo,<div dir=3D"auto"><br></div><div dir=3D"auto">Charlotte et Alice sont e=
+ncore malade. SVP si il y a des travaux, pourriez-vous m=E2=80=99envoyer ou=
+ indiquer ou c=E2=80=99est dans Google class room.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Merci=C2=A0</div>
+</div></div>
+
+--0000000000003148a205f78fa878--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1070372</integer>
+	<key>date-last-viewed</key>
+	<integer>1741104466</integer>
+	<key>date-received</key>
+	<integer>1679571260</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12316</string>
+</dict>
+</plist>

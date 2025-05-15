@@ -1,0 +1,324 @@
+17074     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 10.79.152.144 with SMTP id z16csp5926467ivg;
+        Mon, 3 Jul 2017 09:33:42 -0700 (PDT)
+X-Received: by 10.36.227.72 with SMTP id d69mr31676071ith.121.1499099622616;
+        Mon, 03 Jul 2017 09:33:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1499099622; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Df00Fc7Ei3udvCYvRBtogdUcCY3a6JZ7AniPBP2hynvEgS/85VEwyq4MH/MjEXrFe6
+         zhTsCJK+SWDnism7+gm5cZ04Ny5M21YsN1cQkCsvRV8LDntKLu6IIOFiAjahBpqIz0BH
+         Wlo3UOsQ31piiIJWxquJUt9nJr2ecWn96jbF8GVhV6wtKPIOhx7p/rcOt9x8nRw2dmZw
+         Qe4wnwDQipNp1vc1WDCSxzxWraX8PWqDHunwm+lEbWbNKzGgNAjQYk6CKZfbZHSCB3D9
+         4HOgrSWU8H7DYByxvRC+BeCXvwoTUjR+8SliJDInWpE+PxxtdYxcaTLAuwFTeI2UX6+p
+         TPcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:references:message-id:subject:date:mime-version
+         :content-transfer-encoding:from:dkim-signature
+         :arc-authentication-results;
+        bh=34v4c5ibM26jlUXy3CVJYBHNNdWfxYKURBqqbFY/9YE=;
+        b=gCuvl4pQa9rTpCT6b16MJrr62FXnmAGuEeylzECVgwISiYwkSZH/DK4dnCOlvbLYSd
+         WUikBGiaOPJTP3ZVSCO+o0NsRnD9/7gQaDyBp7RoLZP3tOIQlABSyA7VuP9KtcjEUcHE
+         7LNuJpljJUr3Ld54aLGU+ll/VqQ7zQOQHS6RMV1XC07f1DcDXEDQ+kUBTfkXd/9E96CR
+         tvo/xS4MhniK5Q6AJqfNZLi770i6vsY+jni9UnpkBUNSfJyAZp9TY5u7SZhnCZUpt9XJ
+         BZFRcmKRyRJf9C5ss1a5GLtVxdQGXKCQd75+XQl2wHoaCITvdAPKXqPFUJh7WTkpgueE
+         Flsg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.b=fgzCE8ch;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 2607:f8b0:4001:c06::229 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-io0-x229.google.com (mail-io0-x229.google.com. [2607:f8b0:4001:c06::229])
+        by mx.google.com with ESMTPS id r10si4720684itc.18.2017.07.03.09.33.41
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 03 Jul 2017 09:33:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates 2607:f8b0:4001:c06::229 as permitted sender) client-ip=2607:f8b0:4001:c06::229;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.b=fgzCE8ch;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 2607:f8b0:4001:c06::229 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=gmail.com
+Received: by mail-io0-x229.google.com with SMTP id r36so52556398ioi.1
+        for <darrylondunlin@gmail.com>; Mon, 03 Jul 2017 09:33:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:content-transfer-encoding:mime-version:date:subject:message-id
+         :references:in-reply-to:to;
+        bh=34v4c5ibM26jlUXy3CVJYBHNNdWfxYKURBqqbFY/9YE=;
+        b=fgzCE8chmrT/W8CJHkLda+kqQn24g2ZNtgQ+rjhjlK3QgN36xpOedIbiKqaSixBda8
+         FmLWnSi7pwAFE0YWfxrBDVY5i34FJRCvN7+3hYPIW3gVeCZ7tdEZkItXmsmFc/UDcG73
+         bgbm3MLvz44yASPgOOP8a4I96n6CKLjM5DinWhTTM0cyOEHpQd14YW0J9Q4q6XEmfWXc
+         fvZDCo6zc1gZhurHtjt5qF7w883gJxjHsnt+ARcyzQ0Cv+Tx4hGnCBIEQ8DRb/eMrCHe
+         +sFSSHbr/EX3wWQdL+uNo2eWa7vCw3wxm6HgQzrvmwfn8EeP4IxMgqbNesIETrnnVrnz
+         lw7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
+         :subject:message-id:references:in-reply-to:to;
+        bh=34v4c5ibM26jlUXy3CVJYBHNNdWfxYKURBqqbFY/9YE=;
+        b=Wyw2cEcyMSQnmUYvmgPynDSgLO/Vj0Nj/WUsLJy9PhpTCjopxeKrZr4ugzERZy1LXT
+         v9bP1ZO7wi2X1EVmhiHR1ntAjxCOE+JZOVbsdd0RykXRdewXg2qN8TjceTZW5yqEv2Hx
+         LtmR21rf9QXEi2eH+pf9mUOM4FBEmWspbcdETCvdbIP+FgxLB2C2+VTK/6IKKhujX1VV
+         htOFH1RuOyoOcxS1VhUyWcq2EpG5Sx3Tt1Md0z7KtnQqoMWGdbJlIHRF+LZjtTUlX8HL
+         2mcz/7QVT44UQhI/ntJW7/ZO0okFziIj8CeLDOE7ZJkWqkIo9sFEvJEDlrlP7nDdj1ND
+         XdDg==
+X-Gm-Message-State: AKS2vOyFwM7PxCtolBEH+tamd6EIgKtLSif5vHVOTXpdffmSmlycHOtq
+	09ktAzeXivY2/J3l/gk=
+X-Received: by 10.107.7.226 with SMTP id g95mr34312965ioi.33.1499099621478;
+        Mon, 03 Jul 2017 09:33:41 -0700 (PDT)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [192.168.0.15] (CPE84948c8888d1-CM84948c8888d0.cpe.net.cable.rogers.com. [174.113.131.130])
+        by smtp.gmail.com with ESMTPSA id c198sm8599537ioe.48.2017.07.03.09.33.40
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 03 Jul 2017 09:33:40 -0700 (PDT)
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-4040631E-4E0C-4BCE-AB67-57F09904B070
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (1.0)
+Date: Mon, 3 Jul 2017 12:33:39 -0400
+Subject: Re: Today
+Message-Id: <3F97F860-9598-4105-BFEE-38137458A76D@gmail.com>
+References: <648449DF-122A-4E89-B6B1-D4A41C8BDA17@gmail.com> <2FD665B2-AD3B-4431-9EBF-5F90B619385E@gmail.com> <94AD2259-F98D-4013-AD20-02F083BBCF0B@gmail.com> <40B68808-CC9B-4E47-A2AC-62C046BED703@gmail.com> <68745BBA-36AE-49A9-8813-0F7D695D2D60@gmail.com> <45E966F1-1D59-485C-91AF-91EB071479EC@gmail.com> <B1AF008E-FA20-4A75-A49D-977F9759BCF3@gmail.com> <5EAD053F-6E56-46BC-8A65-7D131A5F0DBD@gmail.com>
+In-Reply-To: <5EAD053F-6E56-46BC-8A65-7D131A5F0DBD@gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: iPhone Mail (14F89)
+
+
+--Apple-Mail-4040631E-4E0C-4BCE-AB67-57F09904B070
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Your message is not clear, today is Monday.=20
+
+How about we meet you at Regatta park and you bring a picnic. They could spe=
+nd some time with you there.=20
+
+We are free.
+
+Sent from my iPhone
+
+> On Jul 3, 2017, at 9:40 AM, Darryl Ross <darrylondunlin@gmail.com> wrote:
+>=20
+> We're going to provide all the documents you've requested, hopefully by mi=
+nd-week.=20
+>=20
+> Unfortunately Friday and Saturday didn't work. And today all family have p=
+lans. Although i would be happy make some agreement, knowing how much you wa=
+nt us to maintain contact.=20
+>=20
+> But after you receive the disclosure, I hope you're offer to work together=
+ is genuine.
+>=20
+> Darryl
+>=20
+>> On Jul 2, 2017, at 1:58 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>=20
+>> Yes I will and will make sure they are available.
+>>=20
+>> Sent from my iPhone
+>>=20
+>>> On Jul 2, 2017, at 1:35 PM, Darryl Ross <darrylondunlin@gmail.com> wrote=
+:
+>>>=20
+>>> Yes, there was clearly confusion, and  I obviously read that wrong, and r=
+egret that.=20
+>>>=20
+>>> Tomorrow is wide open - I'll talk to the family and get back to you.=20
+>>>=20
+>>> I hope they can chat tonight, and please give then my love.=20
+>>>=20
+>>> Darryl
+>>>=20
+>>>> On Jul 2, 2017, at 1:21 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>>>>=20
+>>>> Darryl i think you were confused by my email , I said the girls were av=
+ailable today until 2 pm. We have plans with relatives from out of town late=
+r this afternoon.=20
+>>>>=20
+>>>> Monday is wide open so please let me know If you can make plans with An=
+gie and Kevin.
+>>>>=20
+>>>> Sent from my iPhone
+>>>>=20
+>>>>> On Jul 2, 2017, at 12:59 PM, Darryl Ross <darrylondunlin@gmail.com> wr=
+ote:
+>>>>>=20
+>>>>> Todd and Cindy are out of town, and Kevin and Angie aren't available. A=
+unty Kathy is an hour and a half away, but mostly nursing Shawn. So it would=
+ be just me. So with the same conditions as always, can they come over from 2=
+:30 until diner time? (5 or 6?)
+>>>>>=20
+>>>>> Darryl
+>>>>>=20
+>>>>>> On Jul 2, 2017, at 10:32 AM, Cynthia Holmes <cynthmholm@gmail.com> wr=
+ote:
+>>>>>>=20
+>>>>>>=20
+>>>>>>=20
+>>>>>> Ok, please let me know what time today before 2 pm and the details or=
+ alternatively tomorrow.
+>>>>>> Sent from my iPhone
+>>>>>>=20
+>>>>>>> On Jul 2, 2017, at 10:09 AM, Darryl Ross <darrylondunlin@gmail.com> w=
+rote:
+>>>>>>>=20
+>>>>>>> 2 pm - thank-you.=20
+>>>>>>>=20
+>>>>>>> Agreed: that will be the route we go. I just wanted to try; had hope=
+d, and wanted to find a way we could work together. I still hope you conside=
+r it, but I will respect your request, and frankly see the impossibility of t=
+he alternative.=20
+>>>>>>>=20
+>>>>>>> But I had to try, for them.
+>>>>>>>=20
+>>>>>>> We can both forward all that correspondence to our lawyers.=20
+>>>>>>>=20
+>>>>>>> Disclosures - all the documents requested - are coming, by mid-week,=
+ I hope.=20
+>>>>>>>=20
+>>>>>>> And then motions will have to begin, unfortunately.=20
+>>>>>>>=20
+>>>>>>> Darryl
+>>>>>>>=20
+>>>>>>> On Jul 2, 2017, at 9:15 AM, Cynthia Holmes <cynthmholm@gmail.com> wr=
+ote:
+>>>>>>>=20
+>>>>>>>> The girls are free until 2pm. Please let me know what the details a=
+re of the supervised visit.
+>>>>>>>>=20
+>>>>>>>> On another note, please send any  communication about our case thro=
+ugh our lawyers.  Thanks Darryl.
+>>>>>>>>=20
+>>>>>>>> Sent from my iPhone
+>>>>>>>=20
+>>>>>>> Darryl
+>>>>>>>=20
+>>>>>>>> On Jul 2, 2017, at 9:15 AM, Cynthia Holmes <cynthmholm@gmail.com> w=
+rote:
+>>>>>>>>=20
+>>>>>>>> The girls are free until 2pm. Please let me know what the details a=
+re of the supervised visit.
+>>>>>>>>=20
+>>>>>>>> On another note, please send any  communication about our case thro=
+ugh our lawyers.  Thanks Darryl.
+>>>>>>>>=20
+>>>>>>>> Sent from my iPhone
+
+--Apple-Mail-4040631E-4E0C-4BCE-AB67-57F09904B070
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div>Your message is not clear, today is Mo=
+nday.&nbsp;</div><div id=3D"AppleMailSignature"><br></div><div id=3D"AppleMa=
+ilSignature">How about we meet you at Regatta park and you bring a picnic. T=
+hey could spend some time with you there.&nbsp;</div><div id=3D"AppleMailSig=
+nature"><br></div><div id=3D"AppleMailSignature">We are free.<br><br>Sent fr=
+om my iPhone</div><div><br>On Jul 3, 2017, at 9:40 AM, Darryl Ross &lt;<a hr=
+ef=3D"mailto:darrylondunlin@gmail.com">darrylondunlin@gmail.com</a>&gt; wrot=
+e:<br><br></div><blockquote type=3D"cite"><div><meta http-equiv=3D"content-t=
+ype" content=3D"text/html; charset=3Dutf-8"><div>We're going to provide all t=
+he documents you've requested, hopefully by mind-week.&nbsp;</div><div id=3D=
+"AppleMailSignature"><br></div><div id=3D"AppleMailSignature">Unfortunately =
+Friday and Saturday didn't work. And today all family have plans. Although i=
+ would be happy make some agreement, knowing how much you want us to maintai=
+n contact.&nbsp;</div><div id=3D"AppleMailSignature"><br></div><div id=3D"Ap=
+pleMailSignature">But after you receive the disclosure, I hope you're offer t=
+o work together is genuine.</div><div id=3D"AppleMailSignature"><br>Darryl</=
+div><div><br>On Jul 2, 2017, at 1:58 PM, Cynthia Holmes &lt;<a href=3D"mailt=
+o:cynthmholm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br><br></div><bl=
+ockquote type=3D"cite"><div><meta http-equiv=3D"content-type" content=3D"tex=
+t/html; charset=3Dutf-8"><div>Yes I will and will make sure they are availab=
+le.<br><br>Sent from my iPhone</div><div><br>On Jul 2, 2017, at 1:35 PM, Dar=
+ryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com">darrylondunlin@gmai=
+l.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div><meta http-=
+equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><div>Yes, ther=
+e was clearly confusion, and &nbsp;I obviously read that wrong, and regret t=
+hat.&nbsp;</div><div id=3D"AppleMailSignature"><br></div><div id=3D"AppleMai=
+lSignature">Tomorrow is wide open - I'll talk to the family and get back to y=
+ou.&nbsp;</div><div id=3D"AppleMailSignature"><br></div><div id=3D"AppleMail=
+Signature">I hope they can chat tonight, and please give then my love.&nbsp;=
+</div><div id=3D"AppleMailSignature"><br>Darryl</div><div><br>On Jul 2, 2017=
+, at 1:21 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com">cyn=
+thmholm@gmail.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div=
+><meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8"><d=
+iv>Darryl i think you were confused by my email , I said the girls were avai=
+lable today until 2 pm. We have plans with relatives from out of town later t=
+his afternoon.&nbsp;</div><div id=3D"AppleMailSignature"><br></div><div id=3D=
+"AppleMailSignature">Monday is wide open so please let me know If you can ma=
+ke plans with Angie and Kevin.<br><br>Sent from my iPhone</div><div><br>On J=
+ul 2, 2017, at 12:59 PM, Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gm=
+ail.com">darrylondunlin@gmail.com</a>&gt; wrote:<br><br></div><blockquote ty=
+pe=3D"cite"><div><meta http-equiv=3D"content-type" content=3D"text/html; cha=
+rset=3Dutf-8"><div>Todd and Cindy are out of town, and Kevin and Angie aren'=
+t available. Aunty Kathy is an hour and a half away, but mostly nursing Shaw=
+n. So it would be just me. So with the same conditions as always, can they c=
+ome over from 2:30 until diner time? (5 or 6?)<br><br>Darryl</div><div><br>O=
+n Jul 2, 2017, at 10:32 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@=
+gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br><br></div><blockquote type=
+=3D"cite"><div><meta http-equiv=3D"content-type" content=3D"text/html; chars=
+et=3Dutf-8"><div><br></div><div id=3D"AppleMailSignature"><br></div><div id=3D=
+"AppleMailSignature">Ok, please let me know what time today before 2 pm and t=
+he details or alternatively tomorrow.<br>Sent from my iPhone</div><div><br>O=
+n Jul 2, 2017, at 10:09 AM, Darryl Ross &lt;<a href=3D"mailto:darrylondunlin=
+@gmail.com">darrylondunlin@gmail.com</a>&gt; wrote:<br><br></div><blockquote=
+ type=3D"cite"><div><meta http-equiv=3D"content-type" content=3D"text/html; c=
+harset=3Dutf-8"><div><div id=3D"AppleMailSignature"><span style=3D"backgroun=
+d-color: rgba(255, 255, 255, 0);">2 pm - thank-you.&nbsp;</span></div><div i=
+d=3D"AppleMailSignature"><span style=3D"background-color: rgba(255, 255, 255=
+, 0);"><br></span></div><div id=3D"AppleMailSignature"><span style=3D"backgr=
+ound-color: rgba(255, 255, 255, 0);">Agreed: that will be the route we go. I=
+ just wanted to try; had hoped, and wanted to find a way we could work toget=
+her. I still hope you consider it, but I will respect your request, and fran=
+kly see the impossibility of the alternative.&nbsp;</span></div><div id=3D"A=
+ppleMailSignature"><span style=3D"background-color: rgba(255, 255, 255, 0);"=
+><br></span></div><div id=3D"AppleMailSignature"><span style=3D"background-c=
+olor: rgba(255, 255, 255, 0);">But I had to try, for them.</span></div><div i=
+d=3D"AppleMailSignature"><span style=3D"background-color: rgba(255, 255, 255=
+, 0);"><br></span></div><div id=3D"AppleMailSignature"><span style=3D"backgr=
+ound-color: rgba(255, 255, 255, 0);">We can both forward all that correspond=
+ence to our lawyers.&nbsp;</span></div><div id=3D"AppleMailSignature"><span s=
+tyle=3D"background-color: rgba(255, 255, 255, 0);"><br></span></div><div id=3D=
+"AppleMailSignature"><span style=3D"background-color: rgba(255, 255, 255, 0)=
+;">Disclosures - all the documents requested - are coming, by mid-week, I ho=
+pe.&nbsp;</span></div><div id=3D"AppleMailSignature"><span style=3D"backgrou=
+nd-color: rgba(255, 255, 255, 0);"><br></span></div><div id=3D"AppleMailSign=
+ature"><span style=3D"background-color: rgba(255, 255, 255, 0);">And then mo=
+tions will have to begin, unfortunately.&nbsp;<br><br>Darryl</span></div><di=
+v><span style=3D"background-color: rgba(255, 255, 255, 0);"><br></span><font=
+ color=3D"#000000"><span style=3D"background-color: rgba(255, 255, 255, 0);"=
+>On Jul 2, 2017, at 9:15 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm=
+@gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br><br></span></font></div><=
+blockquote type=3D"cite"><font color=3D"#000000"><span style=3D"background-c=
+olor: rgba(255, 255, 255, 0);">The girls are free until 2pm. Please let me k=
+now what the details are of the supervised visit.<br><br>On another note, pl=
+ease send any &nbsp;communication about our case through our lawyers. &nbsp;=
+Thanks Darryl.<br><br>Sent from my iPhone</span></font></blockquote><br>Darr=
+yl</div><div><br>On Jul 2, 2017, at 9:15 AM, Cynthia Holmes &lt;<a href=3D"m=
+ailto:cynthmholm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br><br></div=
+><blockquote type=3D"cite"><div><span>The girls are free until 2pm. Please l=
+et me know what the details are of the supervised visit.</span><br><span></s=
+pan><br><span>On another note, please send any &nbsp;communication about our=
+ case through our lawyers. &nbsp;Thanks Darryl.</span><br><span></span><br><=
+span>Sent from my iPhone</span></div></blockquote></div></blockquote></div><=
+/blockquote></div></blockquote></div></blockquote></div></blockquote></div><=
+/blockquote></div></blockquote></body></html>=
+
+--Apple-Mail-4040631E-4E0C-4BCE-AB67-57F09904B070--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>12526</integer>
+	<key>date-received</key>
+	<integer>1499099622</integer>
+	<key>flags</key>
+	<integer>25770065029</integer>
+</dict>
+</plist>

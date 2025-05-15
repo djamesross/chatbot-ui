@@ -1,0 +1,414 @@
+19529     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09072702.me.com by p72-mailgateway-smtp-5f84f77859-xkspm (mailgateway 2221B255)
+	with SMTP id 66daa0a6-0828-45be-83a2-924eee5bb914 
+	for <darrylross@icloud.com>; Sun, 14 Aug 2022 14:31:36 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 66daa0a6-0828-45be-83a2-924eee5bb914
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	by ci74p00im-qukt09072702.me.com (Postfix) with ESMTPS id 69D0B6C001BE
+	for <darrylross@icloud.com>; Sun, 14 Aug 2022 14:31:34 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MRE5fVVhYUw4aREQaGVlaTxkT
+ V1oeAQFbWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsOH0hLEUkHD0wSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wPToAHg0NQycgEyIOImkHJEw8BxwSYUUaATIjSg1oURs4AF8u
+ Gl8LDR4qERA4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h1uE8/dd
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.179 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.179 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.179; helo=mail-lj1-f179.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id by6so5368912ljb.11
+        for <darrylross@icloud.com>; Sun, 14 Aug 2022 07:31:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=K0jsImMj8ub2eqFll8dFoAc2vQFnW0UBpsbm0qTpemI=;
+        b=h1uE8/ddPgxnl2FzOhc7P1EMfuIWNSO8nddtyOeb24XyVbg8zdbJy8g1q9mN3R90p0
+         fE1eZzF7iSe/m1BWiWxs28V8ZVg4VNu3rew31lZuQx+UPZox2cnAWtBoBCS8gW5cAjzL
+         JEJJwgk3O8Iyr3/vplTHXd5D/p45usZPgLaJyljGaG/0ebvVUR3IKpwDRIBKvXD6ZiYR
+         +id0rGnPFchxZlwrG9+DmsKZEB4r/Rz+NMUBt+HnNbBNOmayI+cwOQY6pTxcvhgtV97X
+         UH5dloxPT0XwbYAVPoFu0O25SgWi8hujkaF6izCus14GFFfNHEcMZwNyPn3td41K4Yz5
+         vCsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=K0jsImMj8ub2eqFll8dFoAc2vQFnW0UBpsbm0qTpemI=;
+        b=CMJ+RxxUXiZJ1pqyqGgfPr4dwhqlugCkouaSFnXRToDow/25Lhu5wGkGT37sc5aRig
+         9xHxZEaW3souWHzhEwlHDmu1CyI+Gu2own8XbKioG6KjKEnc8ovUs9FCRqDHKe7kKJD6
+         1ZQTthZKvKuuCTn1UlQB3GmVNFzX8QY3X6++8NUcUHGcSBsiyO0loE85gotTwzd4nEGg
+         R1MNFMelv6kVGacGBbRmLXLHa0GdGeTLtvZhRNDzpg/Iq4qE8Zxc9vZa0511R3XXDqLl
+         CFmX+clnQPRjBQwizPS3RWSIrpEOJQkh5fGHypa62Zd3F+/J5A2S48hoSf+qB8uHHAcn
+         U6sA==
+X-Gm-Message-State: ACgBeo0SWZlV9Znj4bgT8kmC3kupxtw14TldbcYVHvCUY1f4RpktCSXv
+	fk0Awj8mYM1PZMP5KXW/oTFaD4V27utskZUNqZYUrh76
+X-Google-Smtp-Source: AA6agR4KKGaouyJmEv1mrzLgSSqxKq9Gs7wYCnV7DMonPp7SB8ABbMRvUfQXYu9k58yrGpUGly0cKuPGzHrSqFUHFdc=
+X-Received: by 2002:a2e:83ca:0:b0:25e:8c3a:a7ac with SMTP id
+ s10-20020a2e83ca000000b0025e8c3aa7acmr3886142ljh.379.1660487493280; Sun, 14
+ Aug 2022 07:31:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREPb0B2PbkFxMRN918pTV4ej3x-Wk=qS_x12o5gpvkRdg@mail.gmail.com>
+ <4FCCD710-D9EE-4E79-8BA6-E67EB2FDD720@icloud.com> <CAFnbyRHh0OW_snuuJyUeW89FAGbO2VmzMKcTnxUpNfN+9aX2Aw@mail.gmail.com>
+ <3B7B3A3B-5216-41EB-A195-55BC164BA774@icloud.com> <CAFnbyRG6UXgULPYDb+Kbf7hxaY3QdwVZiDTtR2BfSBCkJud=9Q@mail.gmail.com>
+ <D0A1180A-498F-4D81-9836-8CBFE4E3CAB1@icloud.com>
+In-Reply-To: <D0A1180A-498F-4D81-9836-8CBFE4E3CAB1@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 14 Aug 2022 10:31:22 -0400
+Message-ID: <CAFnbyRHCfiu=uEUjDyZY1F9EakjQsxtKE=uXgyMy9Ybo=okSwg@mail.gmail.com>
+Subject: Re: Today and Saturday
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <Alison.Boyce@mannlawyers.com>, Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="00000000000030e88c05e6345f39"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhsaGhkaGBEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdfTmNbc3l/eEhCaH5/fn9
+ +Qkxce2B4Uh5QXVp4Hk0cTxEKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQSGAQeGAQYHRAbHhofG
+ hEKXlkXS2ZbXEIRCk1cFx8cEQpMWhdoa01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGBoSBBsdExE
+ KQl4XGxEKREkXGBEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eE
+ QpCRRdoEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0d
+ QQW0aEktpSREKQkAXZBtFGF5FGGJHbWQRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwZ
+ xdocnhcQFsZT39FExAZGhEKcGgXYkd+E2BtRm54R2UQGRoRCnBoF259WWlLYn4TBVxCEBkaEQp
+ waBd6ARxpHmUdZlNsWBAZGhEKcGgXaUVmQ2ReS19QeUQQGRoRCnBoF3p+cxplSEUcHB1wEBkaE
+ QpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: udIqYSURbhBTUTUThfvQJRx4zwpR4g6e
+X-Proofpoint-GUID: udIqYSURbhBTUTUThfvQJRx4zwpR4g6e
+
+--00000000000030e88c05e6345f39
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+As I have stated before you will need to go through our lawyers in this
+issue.
+
+We are going away as planned today and you were notified in advance through
+my lawyer.
+
+Thank you.
+
+Cynthia
+
+On Thu, Aug 11, 2022 at 10:29 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Cynthia,
+>
+> By next week you will have already denied access and cancelled parenting
+> time again and the discussion will be about your refusal to follow court
+> orders and decisions, and what to do about it. I refuse to give up my
+> parenting time, and you will be unlawfully withholding our children again=
+.
+>
+> The girls=E2=80=99s preferences and needs are really important here. They=
+ have
+> been having a great time during visits, and look forward to them. I asked
+> them Tuesday when my mom and I were trying to find a time that works. I
+> asked if they=E2=80=99d like to spend Friday afternoon together because t=
+hey=E2=80=99re
+> going to the concern Sunday. They said yes, they want to, and they had no
+> plans.  In your affidavit for this motion you described harm that
+> unreliable and intermittent access has had on the girls, so why chose to =
+be
+> the source of that harm?
+>
+> I=E2=80=99ve offered a reasonable alternative to be flexible. Having a fr=
+iend over
+> is not more important than parenting time. A physio appointment and a
+> playdate are not grounds to deny access.
+>
+> If you reconsider you can let me know by 9 am tomorrow and my mom and wil=
+l
+> be available and able to make it. If not, I will be prepared for and
+> expecting my parenting time Sunday 2-6 pm as I have been every time.
+>
+> Darryl
+>
+>
+>
+> On Aug 10, 2022, at 12:07 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>
+> Hi Darryl.=C2=B4,
+>
+> Ms Lendor will have to discuss with Alison Boyce upon her return.
+>
+> All the information concerning our trip is in the email sent from Ms.
+> Boyce=E2=80=99s office to Ms. Lendors.
+>
+> I am aware the girls have been speaking to you about this trip in detail
+> and excitement.
+>
+> Thank you.
+>
+> Cynthia
+>
+>
+>
+> On Wed, Aug 10, 2022 at 10:20 AM Darryl Ross <darrylross@icloud.com>
+> wrote:
+>
+>> Cynthia,
+>>
+>> I have not agreed to change my parenting time on Sunday 2-6 pm. I am
+>> offering an alternative so that you can take the girls during my parenti=
+ng
+>> time.
+>>
+>> Presently I=E2=80=99m being told that without discussion my parenting ti=
+me Sunday
+>> is cancelled, and instead the children are being taken out of province.
+>> Where will they be? When are they leaving? =E2=80=A6when will they be ba=
+ck? =E2=80=A6is
+>> this going to be another denial of access? =E2=80=A6will this be another=
+ example of
+>> unlawfully withholding the children?
+>>
+>> (With regard to my right to know where they will be, refer to your
+>> lawyer=E2=80=99s letter dated July 22, 2022)
+>>
+>> These are very real concerns for me every time there is a sudden change,
+>> new plans, and especially while my repeated requests for information abo=
+ut
+>> where they are, who is taking care of them, health and medical informati=
+on,
+>> activities they are in or that you are going to book them in, remain
+>> ignored to this date.
+>>
+>> For these reasons and because of my and my mom=E2=80=99s availability I=
+=E2=80=99m only
+>> agreeable to the following:
+>>
+>> - Sunday, 2-6 pm, as scheduled, agreed on, and enforceable per the
+>> judge=E2=80=99s order, or
+>> - Friday, noon-4 pm, in order to be flexible, as long as the girls can
+>> FaceTime me when they are back home Monday so I know that they have
+>> returned and my parenting time Tuesday won=E2=80=99t be interfered with.
+>>
+>> Darryl
+>>
+>>
+>>
+>>
+>> On Aug 10, 2022, at 6:29 AM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>>
+>> Hi Darryl.
+>> Unfortunately that doesn=E2=80=99t work, the girls have a teammate comin=
+g over
+>> and Charlotte has physio.
+>>
+>> Can we try for Sunday 10-1 pm and we can add on another hour for next
+>> Tuesday visit to make 330-730?
+>>
+>> Thanks.
+>>
+>> On Tue, Aug 9, 2022 at 6:59 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>>
+>>> Hi Cynthia,
+>>>
+>>> Because of your recent plans that interfere with my parenting time I ca=
+n
+>>> switch Sunday 2-6 pm for Friday, noon-4 pm. My mom can pick them up whe=
+n
+>>> soccer camp ends.  Please send her the address.
+>>>
+>>> Darryl
+>>>
+>>>
+>>>
+>>> On Aug 9, 2022, at 13:47, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>>
+>>> =EF=BB=BF
+>>>
+>>> Ok, thank you.
+>>>
+>>> On Tue, Aug 9, 2022 at 1:45 PM Darryl Ross <darrylondunlin@gmail.com>
+>>> wrote:
+>>>
+>>>> Hello Cynthia,
+>>>>
+>>>> Please ensure your mother is aware of where to drop the girls off and
+>>>> that she is not welcome on the property. She can text, phone, or email=
+ me
+>>>> when she arrives.
+>>>>
+>>>> The recent change to my parenting time on Sunday has created schedulin=
+g
+>>>> issues. I will get back to you by tomorrow morning.
+>>>>
+>>>> Darryl
+>>>>
+>>>> > On Aug 9, 2022, at 12:01 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>> wrote:
+>>>> >
+>>>> > Hi Darryl,
+>>>> >
+>>>> > My mom will drop off girls for 4:30-7:30 pm.
+>>>> >
+>>>> > As for this weekend, Saturday from 2-6 pm still work in lieu of
+>>>> Sunday?
+>>>> >
+>>>> > Cynthia
+>>>>
+>>>>
+>>
+>
+
+--00000000000030e88c05e6345f39
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">As I have stated before you will need to go through our lawyers in thi=
+s issue.</div><div dir=3D"auto"><br></div><div dir=3D"auto">We are going aw=
+ay as planned today and you were notified in advance through my lawyer.</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">Thank you.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div><div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 11, 2022=
+ at 10:29 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darry=
+lross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><di=
+v style=3D"line-break:after-white-space">Cynthia,<div><br></div><div>By nex=
+t week you will have already denied access and cancelled parenting time aga=
+in and the discussion will be about your refusal to follow court orders and=
+ decisions, and what to do about it. I refuse to give up my parenting time,=
+ and you will be unlawfully withholding our children again.=C2=A0</div><div=
+><br></div><div>The girls=E2=80=99s preferences and needs are really import=
+ant here. They have been having a great time during visits, and look forwar=
+d to them. I asked them Tuesday when my mom and I were trying to find a tim=
+e that works. I asked if they=E2=80=99d like to spend Friday afternoon toge=
+ther because they=E2=80=99re going to the concern Sunday. They said yes, th=
+ey want to, and they had no plans.=C2=A0 In your affidavit for this motion =
+you described harm that unreliable and intermittent access has had on the g=
+irls, so why chose to be the source of that harm?</div><div><br></div><div>=
+I=E2=80=99ve offered a reasonable alternative to be flexible. Having a frie=
+nd over is not more important than parenting time. A physio appointment and=
+ a playdate are not grounds to deny access.</div><div><br></div><div>If you=
+ reconsider you can let me know by 9 am tomorrow and my mom and will be ava=
+ilable and able to make it. If not, I will be prepared for and expecting my=
+ parenting time Sunday 2-6 pm as I have been every time.</div></div><div st=
+yle=3D"line-break:after-white-space"><div><br></div><div>Darryl</div><div><=
+br></div><div><br><div><br><blockquote type=3D"cite"><div>On Aug 10, 2022, =
+at 12:07 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" tar=
+get=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=
+=3D"auto">Hi Darryl.=C2=B4,</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">Ms Lendor will have to discuss with Alison Boyce upon her return.</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">All the information concernin=
+g our trip is in the email sent from Ms. Boyce=E2=80=99s office to Ms. Lend=
+ors.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am aware the girl=
+s have been speaking to you about this trip in detail and excitement.</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Thank you.</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 10, 2022 at 10:20 AM Darryl Ros=
+s &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross=
+@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
+padding-left:1ex;border-left-color:rgb(204,204,204)"><div style=3D"line-bre=
+ak:after-white-space">Cynthia,<div><br></div><div>I have not agreed to chan=
+ge my parenting time on Sunday 2-6 pm. I am offering an alternative so that=
+ you can take the girls during my parenting time.</div><div><br></div><div>=
+Presently I=E2=80=99m being told that without discussion my parenting time =
+Sunday is cancelled, and instead the children are being taken out of provin=
+ce. Where will they be? When are they leaving? =E2=80=A6when will they be b=
+ack? =E2=80=A6is this going to be another denial of access? =E2=80=A6will t=
+his be another example of unlawfully withholding the children?=C2=A0</div><=
+div><br></div><div>(With regard to my right to know where they will be, ref=
+er to your lawyer=E2=80=99s letter dated July 22, 2022)</div><div><br></div=
+><div>These are very real concerns for me every time there is a sudden chan=
+ge, new plans, and especially while my repeated requests for information ab=
+out where they are, who is taking care of them, health and medical informat=
+ion, activities they are in <span style=3D"font-style:normal">or that you a=
+re going to book them in</span>, remain ignored to this date.</div><div><br=
+></div><div><div>For these reasons and because of my and my mom=E2=80=99s a=
+vailability I=E2=80=99m only agreeable to the following:</div><div><br></di=
+v><div>- Sunday, 2-6 pm, as scheduled, agreed on, and enforceable per the j=
+udge=E2=80=99s order, or</div><div>- Friday, noon-4 pm, in order to be flex=
+ible, as long as the girls can FaceTime me when they are back home Monday s=
+o I know that they have returned and my parenting time Tuesday won=E2=80=99=
+t be interfered with.</div></div></div><div style=3D"line-break:after-white=
+-space"><div><br></div><div>Darryl</div><div><br></div><div><br></div><div>=
+<br></div><div><div><br><blockquote type=3D"cite"><div>On Aug 10, 2022, at =
+6:29 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=
+=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"a=
+uto">Hi Darryl.</div><div dir=3D"auto">Unfortunately that doesn=E2=80=99t w=
+ork, the girls have a teammate coming over and Charlotte has physio.</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">Can we try for Sunday 10-1 pm =
+and we can add on another hour for next Tuesday visit to make 330-730?</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks.</div><div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 9, 2=
+022 at 6:59 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" tar=
+get=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px=
+;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204=
+)"><div dir=3D"auto">Hi Cynthia,<div><br></div><div>Because of your recent =
+plans that interfere with my parenting time I can switch Sunday 2-6 pm for =
+Friday, noon-4 pm. My mom can pick them up when soccer camp ends.=C2=A0 Ple=
+ase send her the address.=C2=A0</div><div><br></div><div>Darryl</div><div><=
+br></div><div><br></div><div><div dir=3D"ltr"><br><blockquote type=3D"cite"=
+>On Aug 9, 2022, at 13:47, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@=
+gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br><br></b=
+lockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF</div><=
+/blockquote></div></div><div dir=3D"auto"><div><blockquote type=3D"cite"><d=
+iv dir=3D"ltr"><div dir=3D"auto">Ok, thank you.=C2=A0</div><div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 9, 20=
+22 at 1:45 PM Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com" t=
+arget=3D"_blank">darrylondunlin@gmail.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-widt=
+h:1px;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,20=
+4,204)">Hello Cynthia,<br>
+<br>
+Please ensure your mother is aware of where to drop the girls off and that =
+she is not welcome on the property. She can text, phone, or email me when s=
+he arrives.<br>
+<br>
+The recent change to my parenting time on Sunday has created scheduling iss=
+ues. I will get back to you by tomorrow morning. <br>
+<br>
+Darryl<br>
+<br>
+&gt; On Aug 9, 2022, at 12:01 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl,<br>
+&gt; <br>
+&gt; My mom will drop off girls for 4:30-7:30 pm.<br>
+&gt; <br>
+&gt; As for this weekend, Saturday from 2-6 pm still work in lieu of Sunday=
+?<br>
+&gt; <br>
+&gt; Cynthia <br>
+<br>
+</blockquote></div></div>
+</div></blockquote></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+
+--00000000000030e88c05e6345f39--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>947406</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801360</integer>
+	<key>date-received</key>
+	<integer>1660487496</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>14875</string>
+</dict>
+</plist>

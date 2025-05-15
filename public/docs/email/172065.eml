@@ -1,0 +1,495 @@
+24474     
+Return-path: <hollygammie@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06031502.me.com by p133-mailgateway-smtp-846658f9f8-7mzpn (mailgateway 2412B109)
+	with SMTP id 7ed2827e-1f2a-448d-b894-c7c355d10c03 
+	for <darrylross@icloud.com>; Sat, 23 Mar 2024 20:03:43 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 7ed2827e-1f2a-448d-b894-c7c355d10c03
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	by st43p00im-qukt06031502.me.com (Postfix) with ESMTPS id 8EAE45140181
+	for <darrylross@icloud.com>; Sat, 23 Mar 2024 20:03:39 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaWFkOGQABFhVdXwc1
+ HgsWEVwYARoURFceVAtAEhQHHhQeVQ0YW0YEEUALQEdJX1lABRhQREBIQkkSFgoQFQlKWl1XCxlU
+ FwFJHVBXRFcBGBdXWgdbGgkaWhBGFgdERBoZWVpPBA9XWh4FB0wSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEKAwI0DSlSQwsBeSYkAxIdKkFTIUQLMlpFaV4aHC4COxVaflY9SCgA
+ CUJiTyEBIjY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=exiLRHqp
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of hollygammie@gmail.com designates 209.85.219.51 as permitted sender) smtp.mailfrom=hollygammie@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of hollygammie@gmail.com designates 209.85.219.51 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.51; helo=mail-qv1-f51.google.com; envelope-from=hollygammie@gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-690bd329df2so17893226d6.2
+        for <darrylross@icloud.com>; Sat, 23 Mar 2024 13:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1711224219; x=1711829019; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OMOXNXCzVM9FWbYn15H5+YR9RilKcyhlQJa32Zx/yM0=;
+        b=exiLRHqpeIdrLZgyqEG8jWv+L2AjkQzIV1ivqM8mGzyf06Q4nKddSBRbOwMuuBX+1q
+         U1/PIinr799y3EI4mCOPbJZ9yfpelEBJfd+kFSdQiOEPdNVjIUofEo4h/em3YLK6xTh8
+         CWlyz+f/wcLrAW1+z/0T9zXe5EBQeMtcHDPCqjtBgyf2QEidUcQtcXSwJwWcRM1O8npV
+         hRyMsvq2fXkPP0W2MyToEih4NEcbaNy0VCMpYEkFWLp8cTItRX5sbNKWQDHhV2DDa47V
+         l9nubtnqqnr3AEDTGzx8etdkzJunNEP2ckryR7xzRhD6c2XcAlouzsVck/Cib5idZdnT
+         fbsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1711224219; x=1711829019;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OMOXNXCzVM9FWbYn15H5+YR9RilKcyhlQJa32Zx/yM0=;
+        b=DF1JBxkzowRbeXR0+QBbi+N9adAj+ITRpOnBXTcQmayoNz80zAAfRprRlLpZpuD7U3
+         Wh7QQU5cmwUPyklq6DpDr1jkGLkrGBgURjYsfoVTvkUrPoxWqD5TIOHIA2CFnrNowsLK
+         hTHHFwu5tosqohKD7Om1pdKP7EUDaVK7UFEaPUxiCc72HBaE5sS27cJCQf2UKCX5kZA2
+         FuhOFTlgJclcwV7pbWztiJYoZ0yOcrTGFE94eXBLFVnevXoTuOhJbCyOHyGOu4JJAkiJ
+         y7+JWrSMr8Y1iwQTrIH8LthGKxLxDL2TQMqdmQojvp6twoULFNSitaVG+pZqkbcempQx
+         4VTg==
+X-Gm-Message-State: AOJu0YwaCmKT+24G8hanQM4WiOGhBps7aEIkwgl4uoqKcm6bcgo3J+fE
+	HaI9KLImoQ6RhPaa0zdu2gDSrd0Y6nWzOe91g80wZxc6Lda2FaJ90uYUgKDFdePO1znU05w3NAD
+	qglq+2AxIO2Ot0Nq/e6xyoaqGugsDDAcT
+X-Google-Smtp-Source: AGHT+IHFw2yBCVjh5Eq3f6GrGLweSLTp6TnLt5n/Nh9tlcKTtlOjBaVl7MNJSxUJrrPEEwPtMezI9BqhoRXLfyjNSu4=
+X-Received: by 2002:a05:6214:2123:b0:696:3a75:2964 with SMTP id
+ r3-20020a056214212300b006963a752964mr4374972qvc.18.1711224218628; Sat, 23 Mar
+ 2024 13:03:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFr34Vwtt9Qn+_Wwt7hkHA_3Rxf_0C+Lf_JyeXB_Xh8T3NThGQ@mail.gmail.com>
+ <CAFnbyRE_QL0L0AYZyDREQFmGvz1-BihBqHcdeCqUOeoqssDgJg@mail.gmail.com> <CAFr34VwG9rg8GXehr7mkGftvLfmZe_GqdLFk-OGeT8vc05ugHA@mail.gmail.com>
+In-Reply-To: <CAFr34VwG9rg8GXehr7mkGftvLfmZe_GqdLFk-OGeT8vc05ugHA@mail.gmail.com>
+From: Holly Ross <hollygammie@gmail.com>
+Date: Sat, 23 Mar 2024 16:03:25 -0400
+Message-ID: <CAFr34VxP44s1ODQztjRqeC1rT-=YhxiWdLmjH4H1NwqrT-TxDA@mail.gmail.com>
+Subject: Re: Driving arrangements
+To: Cynthia Holmes <cynthmholm@gmail.com>
+Cc: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000aeb8d80614596f32"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXen1Ob1hoZ1J+aXgRCllNF25PRkNcT1gRCl9ZFxgZHhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgbHnEYHR8QGncGGBoGGhEKWV4XbGx5EQpDThdgHUFgelx+e0xkR
+ llLel9GQVtPfElLQnJgYVhIa0hhehEKWFwXGQQaBB8aBRsaGgQdGwQbHBoEExgQGx4aHxoRCl5
+ ZF05kZEUZEQpNXBcYGRwRCkxaF2hpTU1rEQpMRhdsTWsRCkNaFxgaEwQSHwQYGxMEHxsRCkJeF
+ xsRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkU
+ XY2t/UGlGZn0eHBIRCkJOF2NTY2t7E1h+Gl9eEQpCTBdgRFlDeFwSWX9bQBEKQmwXZUViQGITQ
+ U5hY1IRCkJAF2xHYll8Tk94BU9dEQpCWBdia05vb3psZ1pHSxEKWlgXHhEKcGgXb11IUHsYH0B
+ GZ38QGhEKcGgXehxZcmcbBVxtX2MQGhEKcGgXaRp9Z1AYZFJrRGcQGhEKcGgXZltOZk5YWUJOX
+ mMQGhEKcGgXbBJLSF0FbUB9H3IQGhEKcGgXb2xBfhsFXgFGSFAQGhEKcGgXZAFnX0Aec39hYx8
+ QGhEKcGgXYUV4ZR8BQm9FYFoQGhEKcH8XYHh9aH0TGwFhGEUQBxsbGxEKcF8XYXJoXmsdQnoBT
+ 30QBxsYGBEKcH0XY0dZR0htSWNDfH0QGhEKcH0XY0dZR0htSWNDfH0QGhEKcH0XY0dZR0htSWN
+ DfH0QGhEKcH0XY0dZR0htSWNDfH0QGhEKcH0XY0dZR0htSWNDfH0QGhEKcGwXaGVJGh5nbmNSH
+ wUQGhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-ORIG-GUID: J7kJPvTQfNlsaPulkqeVcahXJKrbAbKP
+X-Proofpoint-GUID: J7kJPvTQfNlsaPulkqeVcahXJKrbAbKP
+
+--000000000000aeb8d80614596f32
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Please confirm time and location to pick up girls tomorrow morning.
+
+On Fri., Mar. 22, 2024, 9:32 p.m. Holly Ross, <hollygammie@gmail.com> wrote=
+:
+
+> Thank-you
+> I will be there this weekend.
+>
+> On Fri., Mar. 22, 2024, 8:52 p.m. Cynthia Holmes, <cynthmholm@gmail.com>
+> wrote:
+>
+>> Hi Holly,
+>>
+>> I am agreeable to this arrangement to begin next week if pick up can be
+>> at 7 pm.
+>>
+>> I understand it=E2=80=99s been a stretch for you and appreciate how reli=
+able you
+>> have been.
+>>
+>>
+>> This week both my mom and I are booked solid and cannot drive.
+>>
+>> Can we trial this for Easter Sunday with pick up a 7 pm?
+>>
+>> Their soccer schedule may change in late April this the week day may be
+>> switched up. Once I know more I can let you know.
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Fri, Mar 22, 2024 at 2:40=E2=80=AFPM Holly Ross <hollygammie@gmail.co=
+m> wrote:
+>>
+>>> Hi Cynthia
+>>>
+>>> Thank-you and your Mom for your flexibility in driving last week.  It
+>>> was a crisis and will be busy moving forward as he tries to regain his
+>>> health.
+>>>
+>>> Last week worked out perfectly as during the week is easier to manage.
+>>> Pick up and drop off on a weekday is not a problem as I can go to
+>>> Barrhaven on my way.
+>>>
+>>> The trips from Smiths Falls are a 2 hour round trip. And that accounts
+>>> for two drives which Im happy to do.  The one day I can manage.
+>>>
+>>> Going forward will be more difficult and it would be a huge relief if I
+>>> didnt have to come in on Sunday as well.
+>>>
+>>> Please consider my request and let me know if this can be arranged.
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> On Sun., Mar. 17, 2024, 9:24 a.m. Cynthia Holmes, <cynthmholm@gmail.com=
+>
+>>> wrote:
+>>>
+>>>> Ok, thanks for letting me know. Sorry to hear about Vic.
+>>>>
+>>>> I=E2=80=99m agreeable for  today=E2=80=99s arrangement however going f=
+orward, I ask
+>>>> that your mom be there Sunday and can drive girls home.
+>>>>
+>>>> My mom will be picking up girls at 7 pm tonight. She will park out
+>>>> front.
+>>>>
+>>>>
+>>>> On Sat, Mar 16, 2024 at 5:23=E2=80=AFPM Darryl Ross <darrylross@icloud=
+.com>
+>>>> wrote:
+>>>>
+>>>>> I just spoke to my mom and Vic had to be taken to the hospital by
+>>>>> ambulance. He's not conscjous and they have power of attorney for med=
+ical
+>>>>> decisions. He may or may not make it, and she can't leave to drive or=
+ come
+>>>>> in tomorrow. She's offered to drive both ways on Tuesday if the girls=
+ can
+>>>>> be dropped off and picked up tomorrow.
+>>>>>
+>>>>> Under the circumstances I think this is more than reasonable,
+>>>>> especially given that she's never once been unavailable in nearly two=
+ years
+>>>>> of driving from Smith Falls at leadt twice a week.
+>>>>>
+>>>>> On Mar 16, 2024, at 16:12, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>> =EF=BB=BF
+>>>>>
+>>>>> Hi Darryl,
+>>>>>
+>>>>> I will need Holly to drop off Sunday. She will be there correct?
+>>>>>
+>>>>>
+>>>>>
+>>>>> On Sat, Mar 16, 2024 at 3:10=E2=80=AFPM Darryl Ross <darrylross@iclou=
+d.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Hi Cynthia,
+>>>>>>
+>>>>>> My mom is asking if the girls can be dropped off and picked up
+>>>>>> tomorrow, and she will do pick up and drop off on Tuesday (she=E2=80=
+=99ll pick them
+>>>>>> up from you place after school, drop them off in the evening).
+>>>>>>
+>>>>>>
+>>>>>> On Mar 13, 2024, at 08:55, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>>> wrote:
+>>>>>>
+>>>>>> Hi Darryl.
+>>>>>>
+>>>>>> For March 14 & 15, 12-7 work?
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> On Thu, Mar 7, 2024 at 6:22=E2=80=AFAM Darryl Ross <darrylross@iclou=
+d.com>
+>>>>>> wrote:
+>>>>>>
+>>>>>>> In my message I wrote that we can move Sunday and Tuesday=E2=80=99s=
+ visits
+>>>>>>> to the 14th and 15th if they can be dropped off and picked up becau=
+se my
+>>>>>>> mom is not available. Five days notice to arrange both my week and =
+my mom=E2=80=99s
+>>>>>>> is unrealistic, and we=E2=80=99ve already agreed to unsupervised vi=
+sits. They can
+>>>>>>> be dropped off in the morning and picked up before or after dinner =
+time,
+>>>>>>> when it=E2=80=99s light out.
+>>>>>>>
+>>>>>>> I am willing to be flexible, but my mom isn=E2=80=99t available. It=
+=E2=80=99s your
+>>>>>>> choice.
+>>>>>>>
+>>>>>>> Darryl
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> On Mar 5, 2024, at 20:24, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>> Ok thanks for your flexibility. Let=E2=80=99s make it 14 and 15. Pl=
+ease
+>>>>>>> confirm your mom will be able to be there. I can coordinate driving=
+.
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> On Tue, Mar 5, 2024 at 5:19=E2=80=AFPM Darryl Ross <darrylross@iclo=
+ud.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Hi Cynthia,
+>>>>>>>>
+>>>>>>>> They are not available Sunday or Tuesday and we haven=E2=80=99t ag=
+reed to
+>>>>>>>> anything yet. And they are with me the 17th already because that=
+=E2=80=99s a
+>>>>>>>> Sunday.
+>>>>>>>>
+>>>>>>>> I am open to changing the scheduled visits on the 10th and 12th to
+>>>>>>>> the 13th and 14th or 14th and 15th, during the day if you or your =
+mom can
+>>>>>>>> drop them off and pick them up.
+>>>>>>>>
+>>>>>>>> Darryl
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On Mar 5, 2024, at 16:46, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>>>>> wrote:
+>>>>>>>>
+>>>>>>>> =EF=BB=BF
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> Hi Darryl
+>>>>>>>>
+>>>>>>>> My apologies for the late notice, I thought  I had  sent this
+>>>>>>>> awhile back but just noticed it was in my draft folder!
+>>>>>>>>
+>>>>>>>> I have rented a cottage for March Break from March 9-12 it=E2=80=
+=99s was
+>>>>>>>> the only availability as I got a discount from a friend. Will send=
+ you
+>>>>>>>> details.
+>>>>>>>>
+>>>>>>>> Girls are available March 13-17 as they don=E2=80=99t have soccer,=
+ let me
+>>>>>>>> know what days suit.
+>>>>>>>>
+>>>>>>>> Thanks!!
+>>>>>>>>
+>>>>>>>>
+>>>>>>>
+>>>>>>
+
+--000000000000aeb8d80614596f32
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Please confirm time and location to pick up girls tomorro=
+w morning.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Fri., Mar. 22, 2024, 9:32 p.m. Holly Ross, &lt;<a href=3D"mail=
+to:hollygammie@gmail.com">hollygammie@gmail.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex"><div dir=3D"auto">Thank-you<div dir=3D"auto">I =
+will be there this weekend.</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Fri., Mar. 22, 2024, 8:52 p.m. Cynthia =
+Holmes, &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank" rel=
+=3D"noreferrer">cynthmholm@gmail.com</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"auto">Hi Holly,</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">I am agreeable to this arrangement to begin next week =
+if pick up can be at 7 pm.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">I understand it=E2=80=99s been a stretch for you and appreciate how reli=
+able you have been.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">This week both my mom and I are booked solid =
+and cannot drive.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+Can we trial this for Easter Sunday with pick up a 7 pm?</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Their soccer schedule may change in late A=
+pril this the week day may be switched up. Once I know more I can let you k=
+now.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=
+=3D"auto"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yF--X4LF1CebXLxXLEVo31=
+Vdv1s3cWlVY_mwssNyMxKEq93yQTSEM95XPwzeNdHKtS69siY6Y"><br></div></div></div>=
+</div><div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Fri, Mar 22, 2024 at 2:40=E2=80=AFPM Holly Ross &lt;=
+<a href=3D"mailto:hollygammie@gmail.com" rel=3D"noreferrer noreferrer" targ=
+et=3D"_blank">hollygammie@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><div dir=3D"auto"><div dir=3D"auto">Hi Cynthia<div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Thank-you and your Mom for your flexibilit=
+y in driving last week.=C2=A0 It was a crisis and will be busy moving forwa=
+rd as he tries to regain his health.</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Last week worked out perfectly as during the week is easier to=
+ manage.</div><div dir=3D"auto">Pick up and drop off on a weekday is not a =
+problem as I can go to Barrhaven on my way.=C2=A0=C2=A0</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">The trips from Smiths Falls are a 2 hour ro=
+und trip. And that accounts for two drives which Im happy to do.=C2=A0 The =
+one day I can manage.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Go=
+ing forward will be more difficult and it would be a huge relief if I didnt=
+ have to come in on Sunday as well.</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">Please consider my request and let me know if this can be arran=
+ged.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=
+=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div=
+><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+<br></div><div dir=3D"auto"><br></div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Sun., Mar. 17, 2024, 9:24 a.m. Cyn=
+thia Holmes, &lt;<a href=3D"mailto:cynthmholm@gmail.com" rel=3D"noreferrer =
+noreferrer noreferrer" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
+der-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Ok, thanks for =
+letting me know. Sorry to hear about Vic.</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">I=E2=80=99m agreeable for =C2=A0today=E2=80=99s arrangeme=
+nt however going forward, I ask that your mom be there Sunday and can drive=
+ girls home.</div><div dir=3D"auto"><br></div><div dir=3D"auto">My mom will=
+ be picking up girls at 7 pm tonight. She will park out front.</div><div><b=
+r></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Sat, Mar 16, 2024 at 5:23=E2=80=AFPM Darryl Ross &lt;<a href=3D"m=
+ailto:darrylross@icloud.com" rel=3D"noreferrer noreferrer noreferrer norefe=
+rrer" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr"></div><div dir=
+=3D"ltr">I just spoke to my mom and Vic had to be taken to the hospital by =
+ambulance. He&#39;s not conscjous and they have power of attorney for medic=
+al decisions. He may or may not make it, and she can&#39;t leave to drive o=
+r come in tomorrow. She&#39;s offered to drive both ways on Tuesday if the =
+girls can be dropped off and picked up tomorrow.=C2=A0</div><div dir=3D"ltr=
+"><br></div><div dir=3D"ltr">Under the circumstances I think this is more t=
+han reasonable, especially given that she&#39;s never once been unavailable=
+ in nearly two years of driving from Smith Falls at leadt twice a week.=C2=
+=A0</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><blockquote type=3D"ci=
+te">On Mar 16, 2024, at 16:12, Cynthia Holmes &lt;<a href=3D"mailto:cynthmh=
+olm@gmail.com" rel=3D"noreferrer noreferrer noreferrer noreferrer" target=
+=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br><br></blockquote></div><=
+blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF</div></blockquote></div=
+><div dir=3D"auto"><blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"l=
+tr">Hi Darryl,<div><br></div><div>I will need Holly to drop off Sunday. She=
+ will be there correct?<br clear=3D"all"><div><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yF--X4LF1CebXLxXLEVo31=
+Vdv1s3cWlVY_mwssNyMxKEq93yQTSEM95XPwzeNdHKtS69siY6Y"><br></div></div></div>=
+<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Sat, Mar 16, 2024 at 3:10=E2=80=AFPM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com" rel=3D"noreferrer noreferrer noreferrer n=
+oreferrer" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Cynthia,<div><br>=
+</div><div>My mom is asking if the girls can be dropped off and picked up t=
+omorrow, and she will do pick up and drop off on Tuesday (she=E2=80=99ll pi=
+ck them up from you place after school, drop them off in the evening).=C2=
+=A0</div><div><br></div><div><div><br><blockquote type=3D"cite"><div>On Mar=
+ 13, 2024, at 08:55, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.=
+com" rel=3D"noreferrer noreferrer noreferrer noreferrer" target=3D"_blank">=
+cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darr=
+yl.</div><div dir=3D"auto"><br></div><div dir=3D"auto">For March 14 &amp; 1=
+5, 12-7 work?<br clear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=
+=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3=
+.googleusercontent.com/mail-sig/AIorK4yF--X4LF1CebXLxXLEVo31Vdv1s3cWlVY_mws=
+sNyMxKEq93yQTSEM95XPwzeNdHKtS69siY6Y"><br></div></div></div></div><div><br>=
+</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Thu, Mar 7, 2024 at 6:22=E2=80=AFAM Darryl Ross &lt;<a href=3D"mail=
+to:darrylross@icloud.com" rel=3D"noreferrer noreferrer noreferrer noreferre=
+r" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex"><div>In my message I wrote that w=
+e can move Sunday and Tuesday=E2=80=99s visits to the 14th and 15th if they=
+ can be dropped off and picked up because my mom is not available. Five day=
+s notice to arrange both my week and my mom=E2=80=99s is unrealistic, and w=
+e=E2=80=99ve already agreed to unsupervised visits. They can be dropped off=
+ in the morning and picked up before or after dinner time, when it=E2=80=99=
+s light out.<div><br></div><div>I am willing to be flexible, but my mom isn=
+=E2=80=99t available. It=E2=80=99s your choice.</div></div><div><div><br></=
+div><div>Darryl<br><div><br></div><div><br id=3D"m_5825348622981746373m_649=
+1226003795802928m_-377468985503912601m_1305971377759684976m_377229411528779=
+2779m_-8802722134971428596m_5671695121048132037m_-260518065183325302lineBre=
+akAtBeginningOfMessage"><div><br><blockquote type=3D"cite"><div>On Mar 5, 2=
+024, at 20:24, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" r=
+el=3D"noreferrer noreferrer noreferrer noreferrer" target=3D"_blank">cynthm=
+holm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto"><br clear=3D"=
+all">Ok thanks=C2=A0for your flexibility. Let=E2=80=99s make it 14 and 15. =
+Please confirm your mom will be able to be there. I can coordinate driving.=
+<br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=
+=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yF--X=
+4LF1CebXLxXLEVo31Vdv1s3cWlVY_mwssNyMxKEq93yQTSEM95XPwzeNdHKtS69siY6Y"><br><=
+/div></div></div></div><div><br></div><div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 5, 2024 at 5:19=E2=80=AFPM=
+ Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" rel=3D"noreferrer=
+ noreferrer noreferrer noreferrer" target=3D"_blank">darrylross@icloud.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">Hi Cynthia,</div><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr">They are not available Sunday or=
+ Tuesday and we haven=E2=80=99t agreed to anything yet. And they are with m=
+e the 17th already because that=E2=80=99s a Sunday.=C2=A0</div><div dir=3D"=
+ltr"><br></div><div dir=3D"ltr">I am open to changing the scheduled visits =
+on the 10th and 12th to the 13th and 14th or 14th and 15th, during the day =
+if you or your mom can drop them off and pick them up.=C2=A0</div><div dir=
+=3D"ltr"><br></div><div dir=3D"ltr">Darryl</div><div dir=3D"ltr"><br></div>=
+<div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br>=
+</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Mar 5, 2024, at 16:=
+46, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" rel=3D"noref=
+errer noreferrer noreferrer noreferrer" target=3D"_blank">cynthmholm@gmail.=
+com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div=
+ dir=3D"ltr">=EF=BB=BF</div></blockquote></div><div dir=3D"auto"><blockquot=
+e type=3D"cite"><div dir=3D"ltr"><div dir=3D"auto"><br clear=3D"all">Hi Dar=
+ryl=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">My apologies f=
+or the late notice, I thought =C2=A0I had =C2=A0sent this awhile back but j=
+ust noticed it was in my draft folder!</div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">I have rented a cottage for March Break from March 9-12 it=
+=E2=80=99s was the only availability as I got a discount from a friend. Wil=
+l send you details.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Girl=
+s are available March 13-17 as they don=E2=80=99t have soccer, let me know =
+what days suit.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks!!=
+=C2=A0<br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_s=
+ignature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/ma=
+il-sig/AIorK4yF--X4LF1CebXLxXLEVo31Vdv1s3cWlVY_mwssNyMxKEq93yQTSEM95XPwzeNd=
+HKtS69siY6Y"><br></div></div></div></div>
+</div></blockquote></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+</div></blockquote></div></blockquote></div></div>
+</blockquote></div></div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000aeb8d80614596f32--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1231929</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1711224223</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+</dict>
+</plist>

@@ -1,0 +1,797 @@
+42060     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin015.me.com by p72-mailgateway-smtp-55584f64c8-f6n6x (mailgateway 2308B178)
+	with SMTP id a62fbc58-0c7f-4244-8177-55914ed4863a 
+	for <darrylross@icloud.com>; Mon, 6 Feb 2023 16:09:39 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: a62fbc58-0c7f-4244-8177-55914ed4863a
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	by pv33p00im-smtpin015.me.com (Postfix) with ESMTPS id 99837982288
+	for <darrylross@icloud.com>; Mon,  6 Feb 2023 16:09:36 +0000 (UTC)
+X-ICL-SCORE: 3.3320330300
+X-ICL-INFO: GAtbVUseBVFHSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRk4AGFZMW0YfHVxZX1cU
+ Bx4UHVkDRFQAQ0EeUQ0aHgoSVlNZD1dZFgMKDRQPFBAKWhdRB08TTV9ZH19ZBRkcSBQXXRRCER1b
+ VRRVWAYaCwECHUNCTxYYSEVIAgdSREhUWR9RRhIGCgsDCB5VDRhbRhoRVAtASTonPBFdQSVAMx8E
+ VX8ADTsgVwEJWAUzF0o8RC1ncycSDgMTAXZHKkAmPjgRdVgQBAAnNjhdVwsZVwEaGVlaTBYWC0la
+ EEQBSFsCFgpCTw4HFhUEOFlVDhoMAlkbX1tA
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=Moi/fgvU
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.160.49 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.160.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.160.49; helo=mail-oa1-f49.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-142b72a728fso15621421fac.9
+        for <darrylross@icloud.com>; Mon, 06 Feb 2023 08:09:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vp9YT9wSgcJAqBUtXcc5Kad9DflDE6ae+H5XpM+1cUM=;
+        b=Moi/fgvU0e2BaluEoR1SVDsK5VDMuhym3CxlN72gN4b1ggqnXpfkmuC9a/G3xQax68
+         ltVPqI8N4DqTO1u9abZbnGw/zhd/sK27mhOmD+kJBlpe2YctTMZw2N8IrdZTUarDh7c2
+         i16fxXJ4dMhW2DMOVvClJzzqoY49oWNxWGBaCaMaFu2KwK038wQWgfL7MJAdPbDlDE6A
+         CmLqwTFxXl78YXadJTb+fY95+/dKe0c0F7xIb5jEXAhx+yFvHutdwLZoMG+H8ieRC/2D
+         UwGc/uPMXhuvr/GoEhzxS0IXGT/p1tBxX7c8WHiHLahjw9YqJDLGSJ/snKGvKCMrV8Pf
+         /9lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vp9YT9wSgcJAqBUtXcc5Kad9DflDE6ae+H5XpM+1cUM=;
+        b=T3CUhO7Yj8oXCs3jb29lvfDn8GwP6AihPGDYt4OCAhmGeQj5bZ9L6uIoXcmp8AtayK
+         lSQA2maG95NJ0RGpazyvb9psBiW3oY8wGgF+1HLGy7/+SRAC7EuOtL1CLGaCSLlb4vVS
+         vjMBp59rIWFFgS1eIcuD+MBn9XDVvGvo49vCYseSi1vZFZ4E45/FqEy/nmY/Z0Mth9GE
+         PJxVeVWyy7ZLFoIb73GUs5P4BSYAeYfyBDuMAYhlo7Me70BMtdDqVU2wQ/Kb+FDbENIQ
+         qrO67RpSOgwQJWISO95wezsvU7LeQgO9KIYBEEWlRooQ1UwbTZcMZj6JIS8vXlb8Bnah
+         niYw==
+X-Gm-Message-State: AO0yUKXnSBVovRaGvXVjFop+c2na3ZX3naiEWIPYgjbxmxfktuEWUl3m
+	eUocZNJVXpkCcHNUh7BnKRgTi4m4xv3ZsZA+wUaW5vWR+OqStQ==
+X-Google-Smtp-Source: AK7set+5O7BbRDccpfAqPOOCGYRjA/wVepk9zd2qpAtjUlS44ParcJDLE5h8m7cvESC7sIGI+m+W4ffwJhsXDUek/Fg=
+X-Received: by 2002:a05:6870:a78f:b0:163:c089:489f with SMTP id
+ x15-20020a056870a78f00b00163c089489fmr32135oao.60.1675699775623; Mon, 06 Feb
+ 2023 08:09:35 -0800 (PST)
+MIME-Version: 1.0
+References: <CAKimwG7XOH3CGkW=osdK=TZ3A9FHiwA+kqNq8XHBzO5RPOtg6A@mail.gmail.com>
+ <A93E3D4D-7230-418E-90FB-CFAFE342BEE0@icloud.com>
+In-Reply-To: <A93E3D4D-7230-418E-90FB-CFAFE342BEE0@icloud.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Mon, 6 Feb 2023 11:08:58 -0500
+Message-ID: <CAKimwG5Jys-O6oNY1vqh3Qb3Z3UWEEgwedyFqH5_XOiEnrqyAA@mail.gmail.com>
+Subject: Re: Ross v. Holmes - Christmas Break
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000e0584e05f40a415c"
+X-MANTSH: 1TEIXWlweHloaGkNHB0JTTFwaHRsaHh4aGxEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXGxoaHxEKWUQXZUBYXF9Zb0dBRU4RCllNF25PRkNcT1gRCl9ZFxgbHREKX00XZEVET
+ xEKWUkXGnEaEBp3BhsTHXEbEh8QGncGGBoGGhEKWV4XaGN5EQpDThdHQW1CXkNFWWN6BxpSTmB
+ sZhJpG39ha1NHXWt1QmBEYhEKWFwXGQQaBB8aBEhPXksbBRsaGgQdGgQbExIEGx4QGx4aHxoRC
+ l5ZF0hsWVhJEQpNXBcYHxMRCkxaF2hrTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQbHBoEHhMRCkJ
+ eFxsRCkJFF2wbQElsYl16TR9cEQpCThdifFtfRR9na0xccBEKQkwXaX0FYRhGRUNNY2wRCkJsF
+ 3pPARhtSRtTRW5FEQpCQBdkGHxdXV5bQ0N4ExEKQlgXYmtOb296bGdaR0sRClpYFx8RCnBnF3o
+ aGWQaTWBPS0l6EBoRCnBoF2hTXE8BSHMSTmZOEBoRCnBoF21uHB8ebklkHR1JEBoRCnBoF21DX
+ B1ufkJraGN8EBoRCnBoF2J6bmB7ex4YGxgfEBoRCnBoF2BjE04eZ20TGGduEBoRCnBnF2cfYUh
+ nUFh+QRJ6EBoRCnBnF217YhhSSB5hfnsZEBoRCnBnF2gYRG95H3JgBWdPEBoRCnBnF2FzXmJzZ
+ ENuH2UdEBoRCnB9F2hLGlthbXx4XHtjEBoRCnB9F2h8eBJZQk1LaGESEBoRCnB9F2UaG0JpaUl
+ ac1pPEBoRCnB9F2VHcFB/bm5pRQVJEBoRCnB9F216ekwTehkTUh1MEBoRCnB9F2tTc29lfXoSZ
+ lteEBoRCnB/F2tzG31uWRluTUJLEBoRCnBfF2cbX3BdE3hcY297EBoRCnB/F2cBRmZgHFB9eHp
+ NEBoRCnBfF2h7aGh8Sx5DSHxpEBoRCnB/F2FPHxl5SWlceRpmEAcSHBEKcF8Xb2RwREtHZnlbX
+ 2YQGhEKcH8XZUkcUBlnZk4aYUMQHBoRCnBfF2haQG8cWXNMZHMTEBoRCnB/F2FcGXNCeW95QkB
+ eEAcSHBEKcF8XYENsTG17R2hsU14QGhEKcH8XbxtBaHpjZh5IZhMQBxMdEQpwXxdtf29If3AbH
+ kNgYxAaEQpwbBdvT3J5c0BkRFB8WxAaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: mkGhtiosIP-0xdJFL8C1UKAymwA_hJnH
+X-Proofpoint-ORIG-GUID: mkGhtiosIP-0xdJFL8C1UKAymwA_hJnH
+
+--000000000000e0584e05f40a415c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Talk to you tomorrow.
+
+Allison
+
+On Mon, Feb 6, 2023 at 10:15 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Allison,
+>
+> 9:30 am tomorrow is great. I'll talk to you then.
+>
+> Thanks,
+>
+> Darryl
+>
+> On Feb 6, 2023, at 07:36, Allison Lendor <allison@lendorguest.ca> wrote:
+>
+> =EF=BB=BF
+> Good morning Darryl,
+>
+> Let's schedule a telephone call for Tuesday morning if you are available.
+> I am available at 9:30am. Let me know if that works for you.
+>
+> Allison
+>
+> On Wed, Feb 1, 2023 at 9:57 AM Darryl Ross <darrylross@icloud.com> wrote:
+>
+>> Hi Allison,
+>>
+>> Thank you for getting in touch about this. I=E2=80=99m available to talk=
+ today,
+>> tomorrow or Friday, at your convenience.
+>>
+>> Darryl
+>>
+>> On Feb 1, 2023, at 08:00, Allison Lendor <allison@lendorguest.ca> wrote:
+>>
+>> Good morning Darryl,
+>>
+>> I am touching base with you to get an update from you about your
+>> parenting time. I also want to follow-up on the letter which is supposed=
+ to
+>> go out to Ms. Boyce regarding Ms. Williams' email of December 21, 2022. =
+Let
+>> me know when you are available to discuss this issue.
+>>
+>> Regards,
+>>
+>> Allison
+>>
+>> On Sat, Dec 24, 2022 at 12:04 PM Darryl Ross <darrylross@icloud.com>
+>> wrote:
+>>
+>>> Hi Allison,
+>>>
+>>> Thanks for the response. I shouldn=E2=80=99t have been shocked by that =
+and I
+>>> agree it deserves proper and complete response after the holidays. She=
+=E2=80=99s
+>>> really doubling down on the same behaviour that already failed, but did
+>>> agree to some additional time. I guess on the bright side and given the
+>>> time of year, she=E2=80=99s the gift that keeps on giving.
+>>>
+>>> I hope you have a Merry Christmas and enjoy the holiday,
+>>>
+>>> Darryl
+>>>
+>>> On Dec 23, 2022, at 10:05 PM, Allison Lendor <allison@lendorguest.ca>
+>>> wrote:
+>>>
+>>> Hi Darryl,
+>>>
+>>> We will provide a proper and complete response after the holidays.
+>>>
+>>> Have a Merry Christmas.
+>>>
+>>> Allison
+>>>
+>>> On Fri., Dec. 23, 2022, 4:52 p.m. Darryl Ross, <darrylross@icloud.com>
+>>> wrote:
+>>>
+>>>> Hi Allison,
+>>>>
+>>>> That is simply not true. Is there a brief way to respond today that
+>>>> disclosure has been provided per Justice Smoji=E2=80=99s order, even i=
+f it=E2=80=99s just
+>>>> for the record?
+>>>>
+>>>> I=E2=80=99m just so frustrated at how clear it is she is not being hon=
+est and
+>>>> frankly acts with impunity.
+>>>>
+>>>> Thank you,
+>>>>
+>>>> Darryl
+>>>>
+>>>> On Dec 23, 2022, at 4:43 PM, Allison Lendor <allison@lendorguest.ca>
+>>>> wrote:
+>>>>
+>>>> Hi Darryl,  this email came in and I thought it was sent to you. Let m=
+e
+>>>> know if you have any questions.
+>>>>
+>>>> Allison
+>>>>
+>>>> ---------- Forwarded message ---------
+>>>> From: Michelle Williams <michelle.williams@mannlawyers.com>
+>>>> Date: Wed., Dec. 21, 2022, 5:14 p.m.
+>>>> Subject: Ross v. Holmes - Christmas Break
+>>>> To: allison@lendorguest.ca <allison@lendorguest.ca>,
+>>>> brandon@lendorguest.ca <brandon@lendorguest.ca>
+>>>> Cc: Larissa Kelley <Larissa.Kelley@mannlawyers.com>, Alison Boyce <
+>>>> Alison.Boyce@mannlawyers.com>, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>
+>>>>
+>>>> Dear Ms. Lendor,
+>>>>
+>>>> *Without Prejudice*
+>>>>
+>>>> Ms. Boyce is away from the office due to illness and I have accordingl=
+y
+>>>> stepped in to assist on this matter.
+>>>>
+>>>> I have spoken with Ms. Holmes and reviewed your email of December 6,
+>>>> 2022.
+>>>>
+>>>> Ms. Holmes agrees that there ought to be more time between Mr. Ross an=
+d
+>>>> the children over their winter break and is agreeable to herself dropp=
+ing
+>>>> off and Mr. Ross's mother, Holly Ross dropping off the children at Ms.
+>>>> Holmes's residence on the following dates (all from 12:00 pm =E2=80=93=
+ 7:30 pm):
+>>>>
+>>>>    - December 25, 2022
+>>>>    - December 27, 2022
+>>>>    - January 1, 2023
+>>>>    - January 3, 2023
+>>>>    - January 5, 2023
+>>>>
+>>>> Ms. Holmes advises that getting all the children up and out the door o=
+n
+>>>> Christmas morning by 10:00 am, which is when they open their gifts, wo=
+uld
+>>>> be extremely challenging and would negatively impact their holiday
+>>>> experience. I understand that the parties discussed this by email begi=
+nning
+>>>> on December 18, 2022.
+>>>>
+>>>> I acknowledge in your email correspondence that Mr. Ross would like to
+>>>> do away with the requirement of supervision. It is my understanding ba=
+sed
+>>>> on my knowledge of this file that limited medical disclosure has been
+>>>> received from Mr. Ross updating his status since the motion before Jus=
+tice
+>>>> Somji upon which Ms. Holmes can make an informed decision regarding
+>>>> supervision.
+>>>>
+>>>> Ms. Holmes will meet with Ms. Boyce in the New Year to discuss the
+>>>> changes to the general schedule being sought by Mr. Ross and determine=
+ the
+>>>> gaps in disclosure. For the winter break, Mr. Ross=E2=80=99 mother sho=
+uld remain
+>>>> present during his parenting time.
+>>>>
+>>>> I trust the foregoing is satisfactory.
+>>>>
+>>>>
+>>>>
+>>>> Please be advised that our office will be closed for the holidays
+>>>> between December 24, 2022 and January 2, 2023. We will reopen for regu=
+lar
+>>>> business on January 3, 2023. Happy Holidays!
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> Please note our office will be closed for the Holiday season from Dece=
+mber 24th, 2022 to 8:30 a.m. on Tuesday, January 3
+>>>> rd, 2023.
+>>>> Have a safe and happy Holiday season!
+>>>> [image: Mann Lawyers 25 years] <https://www.mannlawyers.com/>
+>>>> [image: Mann Website] <http://www.mannlawyers.com/>
+>>>> [image: Facebook]
+>>>> <https://www.facebook.com/pages/Mann-Lawyers-LLP/107448242674497?ref=
+=3Dhl>
+>>>> [image: LinkedIn] <http://linkd.in/1CTRRnn>
+>>>> [image: Instagram] <https://www.instagram.com/mannlawyers/?hl=3Den>
+>>>> [image: Twitter] <https://twitter.com/MannLawyers>
+>>>> Michelle Williams
+>>>> Lawyer
+>>>> 613=E2=80=91369=E2=80=910362
+>>>> 11 Holland Avenue | Suite 300 | Ottawa | Ontario | K1Y 4S1
+>>>> t: 613=E2=80=91722=E2=80=911500 | f: 613=E2=80=91722=E2=80=917677
+>>>>
+>>>> This e-mail message is intended for the indicated recipient only and
+>>>> may contain confidential information that is subject to solicitor-clie=
+nt
+>>>> privilege. If you have received this message in error, kindly advise t=
+he
+>>>> sender by reply e-mail or phone and destroy any copies in your possess=
+ion.
+>>>>
+>>>>
+>>>>
+>>>
+>>
+>> --
+>>
+>> *Allison Lendor*
+>> *Lendor Guest LLP*
+>> *Barristers & Solicitors*
+>> *209 - 460 West Hunt Club Road*
+>> *Ottawa, ON*
+>> *K2E 0B8*
+>>
+>> *Tel.: (613)247-7964 ext 3*
+>> *Fax: (613)233-9995*
+>>
+>>
+>> *This email and any files transmitted with it are confidential and
+>> intended solely for the use of the individual or entity to whom they are
+>> addressed and may be protected by solicitor-client privilege. If you hav=
+e
+>> received this email in error please notify us by e-mail reply and delete=
+ it
+>> from your system; you may not copy this message or disclose its contents=
+ to
+>> anyone.*
+>>
+>>
+>>
+>
+> --
+>
+> *Allison Lendor*
+> *Lendor Guest LLP*
+> *Barristers & Solicitors*
+> *209 - 460 West Hunt Club Road*
+> *Ottawa, ON*
+> *K2E 0B8*
+>
+> *Tel.: (613)247-7964 ext 3*
+> *Fax: (613)233-9995*
+>
+>
+> *This email and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed and may be protected by solicitor-client privilege. If you have
+> received this email in error please notify us by e-mail reply and delete =
+it
+> from your system; you may not copy this message or disclose its contents =
+to
+> anyone.*
+>
+>
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--000000000000e0584e05f40a415c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Talk to you tomorrow.<br><div><br></div><div>Allison</div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Mon, Feb 6, 2023 at 10:15 AM Darryl Ross &lt;<a href=3D"mailto:darrylros=
+s@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr"></div=
+><div dir=3D"ltr">Hi Allison,</div><div dir=3D"ltr"><br></div><div dir=3D"l=
+tr">9:30 am tomorrow is great. I&#39;ll talk to you then.=C2=A0</div><div d=
+ir=3D"ltr"><br></div><div dir=3D"ltr">Thanks,</div><div dir=3D"ltr"><br></d=
+iv><div dir=3D"ltr">Darryl</div><div dir=3D"ltr"><br><blockquote type=3D"ci=
+te">On Feb 6, 2023, at 07:36, Allison Lendor &lt;<a href=3D"mailto:allison@=
+lendorguest.ca" target=3D"_blank">allison@lendorguest.ca</a>&gt; wrote:<br>=
+<br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
+<div dir=3D"ltr">Good morning=C2=A0Darryl,<br><div><br></div><div>Let&#39;s=
+ schedule a telephone=C2=A0call for Tuesday morning if you are available. I=
+ am available at 9:30am. Let me=C2=A0know if that=C2=A0works for you.</div>=
+<div><br></div><div>Allison</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 1, 2023 at 9:57 AM Darryl Ross=
+ &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@=
+icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div>Hi Allison,<div><br></div><div>Thank you for getting in tou=
+ch about this. I=E2=80=99m available to talk today, tomorrow or Friday, at =
+your convenience.</div><div><br></div><div>Darryl<br><div><br><blockquote t=
+ype=3D"cite"><div>On Feb 1, 2023, at 08:00, Allison Lendor &lt;<a href=3D"m=
+ailto:allison@lendorguest.ca" target=3D"_blank">allison@lendorguest.ca</a>&=
+gt; wrote:</div><br><div><div dir=3D"ltr">Good morning Darryl,<br><div><br>=
+</div><div>I am touching base with you to get an update from you about your=
+ parenting time. I also want to follow-up on the letter which is supposed t=
+o go out to Ms. Boyce regarding Ms. Williams&#39; email of December 21, 202=
+2. Let me know when you=C2=A0are available to discuss this issue.</div><div=
+><br></div><div>Regards,</div><div><br></div><div>Allison</div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, Dec 24, 20=
+22 at 12:04 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" tar=
+get=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div>Hi Allison,<div><br></div><div>Tha=
+nks for the response. I shouldn=E2=80=99t have been shocked by that and I a=
+gree it deserves proper and complete response after the holidays. She=E2=80=
+=99s really doubling down on the same behaviour that already failed, but di=
+d agree to some additional time. I guess on the bright side and given the t=
+ime of year, she=E2=80=99s the gift that keeps on giving.</div><div><br></d=
+iv><div>I hope you have a Merry Christmas and enjoy the holiday,</div><div>=
+<br></div><div>Darryl<br><div><br><blockquote type=3D"cite"><div>On Dec 23,=
+ 2022, at 10:05 PM, Allison Lendor &lt;<a href=3D"mailto:allison@lendorgues=
+t.ca" target=3D"_blank">allison@lendorguest.ca</a>&gt; wrote:</div><br><div=
+><div dir=3D"auto">Hi Darryl,=C2=A0<div dir=3D"auto"><br></div><div dir=3D"=
+auto">We will provide a proper and complete response after=C2=A0the holiday=
+s.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Have a Merry Ch=
+ristmas.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Allison=C2=A0</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri., Dec. 23, 2022, 4:52 p.m. Darryl Ross, &lt;<a href=3D"mailto:da=
+rrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Allison=
+,<div><br></div><div>That is simply not true. Is there a brief way to respo=
+nd today that disclosure has been provided per Justice Smoji=E2=80=99s orde=
+r, even if it=E2=80=99s just for the record?</div><div><br></div><div>I=E2=
+=80=99m just so frustrated at how clear it is she is not being honest and f=
+rankly acts with impunity.</div><div><br></div><div>Thank you,</div><div><b=
+r></div><div>Darryl<br><div><br><blockquote type=3D"cite"><div>On Dec 23, 2=
+022, at 4:43 PM, Allison Lendor &lt;<a href=3D"mailto:allison@lendorguest.c=
+a" rel=3D"noreferrer" target=3D"_blank">allison@lendorguest.ca</a>&gt; wrot=
+e:</div><br><div><div dir=3D"auto">Hi Darryl,=C2=A0 this email came in and =
+I thought it was sent to you. Let me know if you have any questions.=C2=A0<=
+div dir=3D"auto"><br></div><div dir=3D"auto">Allison</div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwar=
+ded message ---------<br>From: <strong class=3D"gmail_sendername" dir=3D"au=
+to">Michelle Williams</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:mic=
+helle.williams@mannlawyers.com" rel=3D"noreferrer" target=3D"_blank">michel=
+le.williams@mannlawyers.com</a>&gt;</span><br>Date: Wed., Dec. 21, 2022, 5:=
+14 p.m.<br>Subject: Ross v. Holmes - Christmas Break<br>To: <a href=3D"mail=
+to:allison@lendorguest.ca" rel=3D"noreferrer" target=3D"_blank">allison@len=
+dorguest.ca</a> &lt;<a href=3D"mailto:allison@lendorguest.ca" rel=3D"norefe=
+rrer" target=3D"_blank">allison@lendorguest.ca</a>&gt;, <a href=3D"mailto:b=
+randon@lendorguest.ca" rel=3D"noreferrer" target=3D"_blank">brandon@lendorg=
+uest.ca</a> &lt;<a href=3D"mailto:brandon@lendorguest.ca" rel=3D"noreferrer=
+" target=3D"_blank">brandon@lendorguest.ca</a>&gt;<br>Cc: Larissa Kelley &l=
+t;<a href=3D"mailto:Larissa.Kelley@mannlawyers.com" rel=3D"noreferrer" targ=
+et=3D"_blank">Larissa.Kelley@mannlawyers.com</a>&gt;, Alison Boyce &lt;<a h=
+ref=3D"mailto:Alison.Boyce@mannlawyers.com" rel=3D"noreferrer" target=3D"_b=
+lank">Alison.Boyce@mannlawyers.com</a>&gt;, Cynthia Holmes &lt;<a href=3D"m=
+ailto:cynthmholm@gmail.com" rel=3D"noreferrer" target=3D"_blank">cynthmholm=
+@gmail.com</a>&gt;<br></div><br><br>
+
+
+
+
+
+<div lang=3D"EN-CA">
+<div><p class=3D"MsoNormal">Dear Ms. Lendor,
+<u></u><u></u></p><p class=3D"MsoNormal"><i>Without Prejudice<u></u><u></u>=
+</i></p><p class=3D"MsoNormal">Ms. Boyce is away from the office due to ill=
+ness and I have accordingly stepped in to assist on this matter.
+<u></u><u></u></p><p class=3D"MsoNormal">I have spoken with Ms. Holmes and =
+reviewed your email of December 6, 2022.
+<u></u><u></u></p><p class=3D"MsoNormal">Ms. Holmes agrees that there ought=
+ to be more time between Mr. Ross and the children over their winter break =
+and is agreeable to<span style=3D"color:red"> herself
+</span>dropping off and Mr. Ross&#39;s mother, Holly Ross dropping off<span=
+ style=3D"color:red">=C2=A0</span>the children at Ms. Holmes&#39;s residenc=
+e on the following dates (all from 12:00 pm =E2=80=93 7:30 pm):<u></u><u></=
+u></p>
+<ul type=3D"disc">
+<li>
+December 25, 2022 <u></u><u></u></li><li>
+December 27, 2022<u></u><u></u></li><li>
+January 1, 2023<u></u><u></u></li><li>
+January 3, 2023<u></u><u></u></li><li>
+January 5, 2023<u></u><u></u></li></ul><p class=3D"MsoNormal">Ms. Holmes ad=
+vises that getting all the children up and out the door on Christmas mornin=
+g by 10:00 am, which is when they open their gifts, would be extremely chal=
+lenging and would
+ negatively impact their holiday experience. I understand that the parties =
+discussed this by email beginning on December 18, 2022.
+<u></u><u></u></p><p class=3D"MsoNormal">I acknowledge in your email corres=
+pondence that Mr. Ross would like to do away with the requirement of superv=
+ision. It is my understanding based on my knowledge of this file that
+ limited medical disclosure has been received from Mr. Ross updating his st=
+atus since the motion before Justice Somji upon which Ms. Holmes can make a=
+n informed decision regarding supervision.<u></u><u></u></p><p class=3D"Mso=
+Normal">Ms. Holmes will meet with Ms. Boyce in the New Year to discuss the =
+changes to the general schedule being sought by Mr. Ross and determine the =
+gaps in disclosure. For the winter
+ break, Mr. Ross=E2=80=99 mother should remain present during his parenting=
+ time. <u></u><u></u></p><p class=3D"MsoNormal">I trust the foregoing is sa=
+tisfactory.
+<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=
+=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;c=
+olor:rgb(192,0,0)">Please be advised that our office will be closed for the=
+ holidays between December 24, 2022 and January 2, 2023. We will reopen for=
+ regular
+ business on January 3, 2023. Happy Holidays!<u></u><u></u></span></p><p cl=
+ass=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-seri=
+f;color:rgb(192,0,0)"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"=
+><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;color:rgb(192,0=
+,0)"><u></u>=C2=A0<u></u></span></p>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100%">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm"><p class=3D"MsoNormal"><i><span st=
+yle=3D"font-size:8.5pt;font-family:Arial,sans-serif;color:rgb(192,0,0)"><br=
+>
+<br>
+<u></u><u></u></span></i></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p clas=
+s=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%;font-size:1px;col=
+or:rgb(0,0,1);font-style:normal;font-weight:400;white-space:nowrap"><tbody>=
+<tr style=3D"font-size:14.67px"><td align=3D"left" style=3D"vertical-align:=
+top;font-family:Calibri,Arial,sans-serif"><br></td></tr><tr style=3D"font-s=
+ize:13px;color:rgb(44,52,68);font-style:italic"><td align=3D"left" style=3D=
+"vertical-align:top;font-family:Roboto,Arial,Helvetica,Tahoma,sans-serif"><=
+span style=3D"background-color:rgb(255,255,255)">Please=C2=A0note=C2=A0our=
+=C2=A0office=C2=A0will=C2=A0be=C2=A0closed=C2=A0for=C2=A0the=C2=A0Holiday=
+=C2=A0season=C2=A0from=C2=A0December=C2=A024th,=C2=A02022=C2=A0to=C2=A08:30=
+=C2=A0a.m.=C2=A0on=C2=A0Tuesday,=C2=A0January=C2=A03<span style=3D"font-fam=
+ily:remialcxesans;font-size:1px;color:rgb(255,255,255);line-height:1px"></s=
+pan>rd,=C2=A02023.</span><br><span style=3D"background-color:rgb(255,255,25=
+5)">Have=C2=A0a=C2=A0safe=C2=A0and=C2=A0happy=C2=A0Holiday=C2=A0season!</sp=
+an><br></td></tr><tr style=3D"font-size:0px"><td align=3D"left" style=3D"ve=
+rtical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" s=
+tyle=3D"font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"left=
+" style=3D"padding:15px 0px 0px;vertical-align:top"><table cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" style=3D"width:450px;font-size:0px"><tbody=
+><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:0px;vertic=
+al-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=
+=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr s=
+tyle=3D"font-size:0px"><td align=3D"left" style=3D"padding:5px;vertical-ali=
+gn:top"><a href=3D"https://www.mannlawyers.com/" id=3D"m_245688021608290461=
+9m_-8245935342474179640m_-2843747902318375989m_1394803794844659188m_-313197=
+1991662506262m_647004746365869587LPlnk689713" style=3D"text-decoration:none=
+" rel=3D"noreferrer noreferrer" target=3D"_blank"><img src=3D"https://www.m=
+annlawyers.com/wp-content/uploads/2021/10/MannLawyers_Logo_Burgundy_300.png=
+" width=3D"150" border=3D"0" title=3D"Mann Lawyers 25 years" alt=3D"Mann La=
+wyers 25 years" style=3D"width: 150px; min-width: 150px; max-width: 150px; =
+font-size: 12px;"></a></td></tr></tbody></table></td></tr><tr style=3D"font=
+-size:0px"><td align=3D"left" style=3D"vertical-align:middle"><table cellpa=
+dding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tbody><=
+tr style=3D"font-size:0px"><td align=3D"left" style=3D"vertical-align:top">=
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:=
+0px;line-height:normal"><tbody><tr style=3D"font-size:0px"><td align=3D"lef=
+t" style=3D"padding:3px;vertical-align:top"><a href=3D"http://www.mannlawye=
+rs.com/" id=3D"m_2456880216082904619m_-8245935342474179640m_-28437479023183=
+75989m_1394803794844659188m_-3131971991662506262m_647004746365869587LPlnk68=
+9713" style=3D"text-decoration:none" rel=3D"noreferrer noreferrer" target=
+=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/MannLawy=
+ers_Icon.png" border=3D"0" title=3D"Mann Website" alt=3D"Mann Website" styl=
+e=3D"font-size: 12px;"></a></td></tr></tbody></table></td><td align=3D"left=
+" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr style=3D"=
+font-size:0px"><td align=3D"left" style=3D"padding:3px;vertical-align:top">=
+<a href=3D"https://www.facebook.com/pages/Mann-Lawyers-LLP/107448242674497?=
+ref=3Dhl" id=3D"m_2456880216082904619m_-8245935342474179640m_-2843747902318=
+375989m_1394803794844659188m_-3131971991662506262m_647004746365869587LPlnk6=
+89713" style=3D"text-decoration:none" rel=3D"noreferrer noreferrer" target=
+=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/Facebook=
+_Icon.png" border=3D"0" title=3D"Facebook" alt=3D"Facebook" style=3D"font-s=
+ize: 12px;"></a></td></tr></tbody></table></td><td align=3D"left" style=3D"=
+vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ style=3D"font-size:0px;line-height:normal"><tbody><tr style=3D"font-size:0=
+px"><td align=3D"left" style=3D"padding:3px;vertical-align:top"><a href=3D"=
+http://linkd.in/1CTRRnn" id=3D"m_2456880216082904619m_-8245935342474179640m=
+_-2843747902318375989m_1394803794844659188m_-3131971991662506262m_647004746=
+365869587LPlnk689713" style=3D"text-decoration:none" rel=3D"noreferrer nore=
+ferrer" target=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/i=
+mages/LinkedIn_Icon.png" border=3D"0" title=3D"LinkedIn" alt=3D"LinkedIn" s=
+tyle=3D"font-size: 12px;"></a></td></tr></tbody></table></td><td align=3D"l=
+eft" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0=
+" border=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr style=
+=3D"font-size:0px"><td align=3D"left" style=3D"padding:3px;vertical-align:t=
+op"><a href=3D"https://www.instagram.com/mannlawyers/?hl=3Den" id=3D"m_2456=
+880216082904619m_-8245935342474179640m_-2843747902318375989m_13948037948446=
+59188m_-3131971991662506262m_647004746365869587LPlnk689713" style=3D"text-d=
+ecoration:none" rel=3D"noreferrer noreferrer" target=3D"_blank"><img src=3D=
+"https://www.webmail.mannlawyers.com/images/Instagram_Icon.png" border=3D"0=
+" title=3D"Instagram" alt=3D"Instagram" style=3D"font-size: 12px;"></a></td=
+></tr></tbody></table></td><td align=3D"left" style=3D"vertical-align:top">=
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:=
+0px;line-height:normal"><tbody><tr style=3D"font-size:0px"><td align=3D"lef=
+t" style=3D"padding:3px;vertical-align:top"><a href=3D"https://twitter.com/=
+MannLawyers" id=3D"m_2456880216082904619m_-8245935342474179640m_-2843747902=
+318375989m_1394803794844659188m_-3131971991662506262m_647004746365869587LPl=
+nk689713" style=3D"text-decoration:none" rel=3D"noreferrer noreferrer" targ=
+et=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/Twitte=
+r_Icon.png" border=3D"0" title=3D"Twitter" alt=3D"Twitter" style=3D"font-si=
+ze: 12px;"></a></td></tr></tbody></table></td></tr></tbody></table></td></t=
+r></tbody></table></td><td align=3D"center" style=3D"padding:0px;vertical-a=
+lign:middle"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" st=
+yle=3D"vertical-align:middle"><table cellpadding=3D"0" cellspacing=3D"0" bo=
+rder=3D"0" style=3D"font-size:0px"><tbody><tr style=3D"font-size:0px"><td a=
+lign=3D"left" style=3D"vertical-align:middle"><table cellpadding=3D"0" cell=
+spacing=3D"0" border=3D"0" style=3D"white-space:normal;color:rgb(3,3,3);fon=
+t-size:14.67px;font-family:Calibri;font-weight:700;font-style:normal;text-a=
+lign:center"><tbody><tr style=3D"font-size:16px"><td style=3D"font-family:C=
+alibri">Michelle Williams<br></td></tr></tbody></table></td></tr><tr style=
+=3D"font-size:0px"><td align=3D"left" style=3D"vertical-align:top"><table c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"white-space:normal=
+;color:rgb(3,3,3);font-size:14.67px;font-family:Calibri;font-weight:700;fon=
+t-style:normal;text-align:center"><tbody><tr style=3D"font-size:14.67px"><t=
+d style=3D"font-family:Calibri">Lawyer</td></tr></tbody></table></td></tr><=
+tr style=3D"font-size:0px"><td align=3D"left" style=3D"vertical-align:top">=
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"white-spac=
+e:nowrap;color:rgb(3,3,3);font-size:14.67px;font-family:Calibri;font-weight=
+:700;font-style:normal;text-align:center"><tbody><tr style=3D"font-size:14.=
+67px"><td style=3D"font-family:Calibri">613=E2=80=91369=E2=80=910362<br></t=
+d></tr></tbody></table></td></tr></tbody></table></td></tr><tr style=3D"fon=
+t-size:0px"><td align=3D"center" style=3D"vertical-align:middle"><table cel=
+lpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tbod=
+y><tr style=3D"font-size:0px"><td align=3D"center" style=3D"padding:10px 0p=
+x 0px;vertical-align:middle"><table cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" style=3D"white-space:nowrap;color:rgb(10,9,9);font-size:14.67px;f=
+ont-family:Calibri;font-weight:400;font-style:normal;text-align:left;width:=
+350px"><tbody><tr style=3D"font-size:14.67px"><td style=3D"font-family:Cali=
+bri"><span style=3D"font-size:13px">11=C2=A0Holland=C2=A0Avenue=C2=A0|=C2=
+=A0Suite=C2=A0300=C2=A0|=C2=A0Ottawa=C2=A0|=C2=A0Ontario=C2=A0|=C2=A0K1Y=C2=
+=A04S1<br>t<span style=3D"color:rgb(5,5,5)">:=C2=A0613=E2=80=91722=E2=80=91=
+1500=C2=A0|=C2=A0f:=C2=A0613=E2=80=91722=E2=80=917677</span></span><br></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr><tr style=3D"font-size:0px"><td colspan=3D"2" align=3D"left" style=
+=3D"padding:0px;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" style=3D"width:450px;font-size:0px"><tbody><tr style=3D"fo=
+nt-size:0px"><td style=3D"padding:10px 0px 0px;border-top:none;border-right=
+:none;border-bottom:3px solid rgb(103,0,0);border-left:none">=C2=A0</td></t=
+r><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:0px;verti=
+cal-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" styl=
+e=3D"font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" s=
+tyle=3D"padding:10px 0px 20px;vertical-align:top"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"white-space:normal;color:rgb(3,2,2)=
+;font-size:14.67px;font-family:Calibri,Arial,sans-serif;font-weight:400;fon=
+t-style:normal;text-align:justify;width:599px"><tbody><tr style=3D"font-siz=
+e:10.67px"><td style=3D"font-family:Arial">This e-mail message is intended =
+for the indicated recipient only and may contain confidential information t=
+hat is subject to solicitor-client privilege. If you have received this mes=
+sage in error, kindly advise the sender by reply e-mail or phone and destro=
+y any copies in your possession.<br></td></tr></tbody></table></td></tr></t=
+body></table></td></tr></tbody></table></td></tr></tbody></table></td></tr>=
+</tbody></table></td></tr></tbody></table></div></div>
+
+</div>
+</div></blockquote></div><br></div></div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div><br clear=3D"al=
+l"><div><br></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"=
+><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-s=
+ize:13px"><font face=3D"Calibri" size=3D"3">Allison Lendor</font></i><br></=
+div><div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font fa=
+ce=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span></i></div><div styl=
+e=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><fo=
+nt size=3D"3">Barristers &amp; Solicitors</font></font></span></i></div><di=
+v style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3"=
+>209 - 460 West Hunt Club Road</font></font></span></i></div><div style=3D"=
+font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Ottawa, ON=
+</font></font></span></i></div><div style=3D"font-size:13px"><i><span><font=
+ face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></span></i></div><d=
+iv style=3D"font-size:13px"><i><font face=3D"Calibri"><font size=3D"3"><br =
+clear=3D"none"></font></font></i></div><div style=3D"font-size:13px"><font =
+size=3D"3"></font></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i=
+><span><font face=3D"Calibri"><font size=3D"3">Tel.: (613)247-7964 ext 3</f=
+ont></font></span></i></div><div style=3D"font-size:13px"><i><span><font fa=
+ce=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font></font></span></i>=
+</div><div style=3D"font-size:13px"><span style=3D"font-family:tahoma,sans-=
+serif;color:rgb(204,0,0);font-size:small;font-style:italic;white-space:nowr=
+ap"><br></span></div><div style=3D"font-size:13px"><br></div><div style=3D"=
+font-size:13px"></div><div style=3D"font-size:13px"><var></var></div></div>=
+<div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><span lang=3D=
+"EN-US" style=3D"font-size:12pt">This email and any files transmitted with =
+it are confidential and intended solely for the use of the individual or en=
+tity to whom they are addressed and may be protected by solicitor-client pr=
+ivilege. If you have received this email in error please notify us by e-mai=
+l reply and delete it from your system; you may not copy this message or di=
+sclose its contents to anyone.</span></i></div><div><font size=3D"3"></font=
+></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri"><font size=
+=3D"3"><i></i></font></font></div><div></div></div><div></div></div></div><=
+/div></div>
+</div></blockquote></div><br></div></div></blockquote></div><br clear=3D"al=
+l"><div><br></div>-- <br><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"=
+><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-s=
+ize:13px"><font face=3D"Calibri" size=3D"3">Allison Lendor</font></i><br></=
+div><div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font fa=
+ce=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span></i></div><div styl=
+e=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><fo=
+nt size=3D"3">Barristers &amp; Solicitors</font></font></span></i></div><di=
+v style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3"=
+>209 - 460 West Hunt Club Road</font></font></span></i></div><div style=3D"=
+font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Ottawa, ON=
+</font></font></span></i></div><div style=3D"font-size:13px"><i><span><font=
+ face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></span></i></div><d=
+iv style=3D"font-size:13px"><i><font face=3D"Calibri"><font size=3D"3"><br =
+clear=3D"none"></font></font></i></div><div style=3D"font-size:13px"><font =
+size=3D"3"></font></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i=
+><span><font face=3D"Calibri"><font size=3D"3">Tel.: (613)247-7964 ext 3</f=
+ont></font></span></i></div><div style=3D"font-size:13px"><i><span><font fa=
+ce=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font></font></span></i>=
+</div><div style=3D"font-size:13px"><span style=3D"font-family:tahoma,sans-=
+serif;color:rgb(204,0,0);font-size:small;font-style:italic;white-space:nowr=
+ap"><br></span></div><div style=3D"font-size:13px"><br></div><div style=3D"=
+font-size:13px"></div><div style=3D"font-size:13px"><var></var></div></div>=
+<div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><span lang=3D=
+"EN-US" style=3D"font-size:12pt">This email and any files transmitted with =
+it are confidential and intended solely for the use of the individual or en=
+tity to whom they are addressed and may be protected by solicitor-client pr=
+ivilege. If you have received this email in error please notify us by e-mai=
+l reply and delete it from your system; you may not copy this message or di=
+sclose its contents to anyone.</span></i></div><div><font size=3D"3"></font=
+></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri"><font size=
+=3D"3"><i></i></font></font></div><div></div></div><div></div></div></div><=
+/div>
+</div></blockquote></div></blockquote></div><br clear=3D"all"><div><br></di=
+v>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i style=
+=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allison Lendor</font>=
+</i><br></div><div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><spa=
+n><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span></i></div=
+><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Ca=
+libri"><font size=3D"3">Barristers &amp; Solicitors</font></font></span></i=
+></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font =
+size=3D"3">209 - 460 West Hunt Club Road</font></font></span></i></div><div=
+ style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">=
+Ottawa, ON</font></font></span></i></div><div style=3D"font-size:13px"><i><=
+span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></span></=
+i></div><div style=3D"font-size:13px"><i><font face=3D"Calibri"><font size=
+=3D"3"><br clear=3D"none"></font></font></i></div><div style=3D"font-size:1=
+3px"><font size=3D"3"></font></div><div style=3D"font-size:13px;margin:0cm =
+0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Tel.: (613)247-79=
+64 ext 3</font></font></span></i></div><div style=3D"font-size:13px"><i><sp=
+an><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font></font>=
+</span></i></div><div style=3D"font-size:13px"><span style=3D"font-family:t=
+ahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-style:italic;white=
+-space:nowrap"><br></span></div><div style=3D"font-size:13px"><br></div><di=
+v style=3D"font-size:13px"></div><div style=3D"font-size:13px"><var></var><=
+/div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><s=
+pan lang=3D"EN-US" style=3D"font-size:12pt">This email and any files transm=
+itted with it are confidential and intended solely for the use of the indiv=
+idual or entity to whom they are addressed and may be protected by solicito=
+r-client privilege. If you have received this email in error please notify =
+us by e-mail reply and delete it from your system; you may not copy this me=
+ssage or disclose its contents to anyone.</span></i></div><div><font size=
+=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri=
+"><font size=3D"3"><i></i></font></font></div><div></div></div><div></div><=
+/div></div></div>
+
+--000000000000e0584e05f40a415c--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1036667</integer>
+	<key>date-last-viewed</key>
+	<integer>1741385570</integer>
+	<key>date-received</key>
+	<integer>1675699779</integer>
+	<key>flags</key>
+	<integer>8623750273</integer>
+	<key>remote-id</key>
+	<string>4178</string>
+</dict>
+</plist>

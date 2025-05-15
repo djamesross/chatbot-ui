@@ -1,0 +1,136 @@
+7435      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr44p00im-qukt02170302.me.com by p133-mailgateway-smtp-74cfb95549-tk8hk (mailgateway 2413B76)
+	with SMTP id ff58a6ea-f36f-4174-9a85-2e8df3066dc6 
+	for <darrylross@icloud.com>; Tue, 2 Apr 2024 19:34:10 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: ff58a6ea-f36f-4174-9a85-2e8df3066dc6
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mr44p00im-qukt02170302.me.com (Postfix) with ESMTPS id 23A2A3A00134
+	for <darrylross@icloud.com>; Tue,  2 Apr 2024 19:34:06 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRFoQXgcZFltVFVFfDlgc
+ DEZVVgJRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwDGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnHjtNERtRQAcyRDNBL2NOEgU4BQINdkAIPi4QSixjci8AES48
+ KVN7NDo8JzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J2BEgnBQ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.43; helo=mail-ej1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4e9195be52so113115266b.2
+        for <darrylross@icloud.com>; Tue, 02 Apr 2024 12:34:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712086446; x=1712691246; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WJsawcbU8//PkVxYTyIWLVBHUtg1IzIMBm28T3SpVac=;
+        b=J2BEgnBQE411Z4ntbrko1mEhq0AnT7b0U4pdXfkDHQ2SSph0PiA1q3tYqgnTT53TS9
+         08tQUZwQ9+MuDwpeyl4j/xp3YapMEmXojjnXTs74RltXqnethdVj76Z5yqxzTL6pNMwN
+         nDFc8RrD8Piz7mgLSDm58EXDQO1X5LZLsPKXXlGMzzT2FYjl8kbYId+NN32mBb2tapRu
+         OslFrlfCdm5e3m/5aHT+GEfQRrgWyFpBPOI12QnLA09Vv8r/lyPOX3BL3iAshqy/nGtT
+         h16lIP4TcUgn/4OCqsiljpk4BksVnJ/qUn8S3iohq4JN8pHCNXP6RL9wuSDh7otkYIFM
+         h5IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712086446; x=1712691246;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WJsawcbU8//PkVxYTyIWLVBHUtg1IzIMBm28T3SpVac=;
+        b=M27t/aaPs1egYynlvSN1I0vrP5alvzTdqBAcXUg3s0tEl2K8Wog0V6Xhg8gLPbCcfJ
+         xvJBpvyZNwohhyywtvkj4aljd9eDAQlW00h5UlyUMt9LI1GPjqmLP1lW6ISZoFmtGbR8
+         20hpIdgE8+EHeEKRHGuC3e/PTU5gWXcXDeJcimXPKq61jXvehIvvVPScDh3ixNnyt0zp
+         0qoHGj5Pz1F3ttnZ43YNsMgoZaYoH+aHCjQoH/DwXFN6qcR9xBv3s9nlRVXp851pF2fA
+         5CAGDYix3stlraRnCWxsVr2DcVyJGT9T5ZzbOjGg1kOBWc28HstavU6DOKbBPzwrG+SX
+         M+UQ==
+X-Gm-Message-State: AOJu0YyL6BFWhEcl3GQzjjpd9VcnxlVZF+V+cog5tcgpoODwpMX1X7KH
+	DzlkjuFqWLsSUj8AhVPC1AD+BLqvC4vH3V2LCbEVYMePKA9rdC5NGaikxcUiRjgwIX5c1tba3vD
+	puM/UoXprJzwrqE/maqowixjXJFUdRmGF
+X-Google-Smtp-Source: AGHT+IH2U+eTgvSy+NTQPQdHZZoz3VftAUnZknAxOeXzJLXk8GVFzRJAsdZpUnL1c8wVngLeD7a5lqxomC+kRCCztdY=
+X-Received: by 2002:a17:906:5052:b0:a4a:3403:343c with SMTP id
+ e18-20020a170906505200b00a4a3403343cmr8586208ejk.31.1712086446057; Tue, 02
+ Apr 2024 12:34:06 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 2 Apr 2024 15:33:55 -0400
+Message-ID: <CAFnbyREkB+fcaveG=U6WSxppAcuuFvjKWv=TSDMuhHKQcMVOEA@mail.gmail.com>
+Subject: Charlotte
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000007134c206152230d0"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdFehphSFlDa0NGE
+ 0BJSU9DYER6dW1kcmtgSVJAWHlTRREKWFwXGQQaBB8aBRsaGgQSGAQeGAQZGhAbHhofGhEKXlk
+ XTntNYGERCk1cFwcbHxEKTFoXaU1NaxEKTEYXTWsRCkNaFxgaEwQSHwQYGxIEHhkRCkJeFxsRC
+ kReFxgRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBI
+ bfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLa
+ UkRCkJAF25GelMcXn1tZnlGEQpCWBdia05vb3psZ1pHSxEKWlgXHhEKcGgXYllGel56EmUBZ28
+ QGhEKcGgXZ1hmf2FJch9lGUYQGhEKcGgXZmhATgVhbE8FARsQGhEKcGgXa3IBW3hfY2FCY1MQG
+ hEKcGgXemRYfFx4aGYdbnsQGhEKcGgXYEljSXtNG2tNWWMQGhEKcGgXemgbY0xpHkEccEkQGhE
+ KcGgXZm1LeHlbTFxAe18QGhEKcH8XYHh9aH0TGwFhGEUQBxsbHhEKcF8XYXJoXmsdQnoBT30QB
+ xsbGBEKcH0XbXhYfHpuXHJ/BR8QGhEKcGwXZkZrHxhbbV9Gb28QBxkaEQptfhcaEQpYTRdLEQ=
+ =
+X-Proofpoint-GUID: oP0KbsiAil9jcceiJnP_GNXAJcxjrSyo
+X-Proofpoint-ORIG-GUID: oP0KbsiAil9jcceiJnP_GNXAJcxjrSyo
+
+--0000000000007134c206152230d0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Charlotte is choosing to go gluten free as she is experiencing a lot of
+stomach issues and tiredness when she eats gluten. She is afraid to tell
+ppl as she doesn=E2=80=99t want others to cater to her needs. She said it w=
+as ok
+that I reach out to you and let you know. I think she just feels bad about
+asking ppl to change their meal plan  for her. Mostly asking her friends.
+
+I have some gluten free pasta to bring with her today and hoping you two
+can make some adjustments with the meals as well.
+
+I=E2=80=99m limiting gluten in the house as well to show support and planni=
+ng on
+cooking so gluten free meals she can take to school.
+
+--0000000000007134c206152230d0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Ch=
+arlotte is choosing to go gluten free as she is experiencing a lot of stoma=
+ch issues and tiredness when she eats gluten. She is afraid to tell ppl as =
+she doesn=E2=80=99t want others to cater to her needs. She said it was ok t=
+hat I reach out to you and let=C2=A0you know. I think she just feels bad ab=
+out asking ppl to change their meal plan =C2=A0for her. Mostly asking her f=
+riends.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I have some glut=
+en free pasta to bring with her today and hoping you two can make some adju=
+stments with the meals as well.=C2=A0</div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">I=E2=80=99m limiting gluten in the house as well to show supp=
+ort and planning on cooking so gluten free meals she can take to school.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto=
+"><br></div><div dir=3D"auto"><br clear=3D"all"><img src=3D"https://ci3.goo=
+gleusercontent.com/mail-sig/AIorK4xj3UTYjwpDghYmsmSQSeUv_1euwPEy6BGZwQ6xVOb=
+i5CSti1eEr_SjIbpb37QU1um__y4YnGKO3XvK"><br></div>
+
+--0000000000007134c206152230d0--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1233827</integer>
+	<key>date-received</key>
+	<integer>1712086450</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

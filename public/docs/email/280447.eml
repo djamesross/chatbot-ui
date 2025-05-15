@@ -1,0 +1,341 @@
+19117     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-3a-100-percent-4 by p158-mailgateway-smtp-658c7db7b7-rd667 (mailgateway 2429B41)
+	with SMTP id aa4055f2-0ad7-4d2d-b61d-b539abfd9628 
+	for <darrylross@icloud.com>; Thu, 9 Jan 2025 19:47:42 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: aa4055f2-0ad7-4d2d-b61d-b539abfd9628
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by p00-icloudmta-smtpin-us-west-3a-100-percent-4.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-west-3a.k8s.cloud.apple.com (Postfix) with ESMTPS id 96F94C00094
+	for <darrylross@icloud.com>; Thu,  9 Jan 2025 19:47:41 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgEOTEFKRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxISARsEQUpIEBdfUQ4QVwUYFRBGFgdECxYRXBsHH0hLEUwDGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDIgdGY2SBYrAUlKHVEREzEiRUVwMzk9Uk4OegJJQDceLjJDTBBDFDIxTEhBIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KFIhx9bx
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.43; helo=mail-ej1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ab2b72fb3c9so231207266b.0
+        for <darrylross@icloud.com>; Thu, 09 Jan 2025 11:47:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736452060; x=1737056860; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lPY66B54VVfvT0V8XFRm6yG9oDco1Yj3Tnr6eOt1fTA=;
+        b=KFIhx9bxxvaISfEjZ3JGxIcrN3MzjGjuIPFeaPFH52Kgj6ySSNXrqU3uJdUyA83pVl
+         Xhbd3NbLbjVvCbIo26BTeXCf6J/dVvNeydbnqB5pdANecLP/sMh2ql080o85Rgf6lwGY
+         4tiUR8qDScRtZPoKAbaoRPMCdysSU6DzEOCwsnbxskSviSAWdXfXGlAZItRzK25CdiCI
+         kw/VfPqrmKrgaWqgQIGnMACjyHpgRC7PsmkLaAlZpp3tEHCykTX29H8ZoaY2v/kQlpM9
+         kqp6qdA1KPEzSa4qx1dSKOOic2Tw6aSUyQ/rrdVRLSKcK5U2trN9huWqWXdBVKeGOZBr
+         pX8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736452060; x=1737056860;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lPY66B54VVfvT0V8XFRm6yG9oDco1Yj3Tnr6eOt1fTA=;
+        b=SvGuip+06mjsk+o72YKNe6a5z2lQcsm3f6tEN73e0JeNQO8yO3l6FbrP/lJT/8H8Fh
+         i2kl2V8kXHLxrSlB6OKRK1JxTtqxRMDOabpmGHo0XM77KbH4V7xOaSaxXSj2++yDx4rD
+         0BjPRtBJI4IDZ10NqdMz4B0LhRvP/uAgD/C3uN2e5eByX7fQwUvs3gYYYaHSVBcPrmn5
+         E5IaPL0gxC9fqe3gc4rRIL7AJsnfVJG/qkHXM0G+YMD2eDbAvLAltkrkcpn84ZRM5pYZ
+         YZ9OyXEhvn1h4LvGwNcDjF8p/R+3aHVoJHDktXjrmFRhALYk6R8vwAuXyyvLHcHjEfqI
+         jXwg==
+X-Gm-Message-State: AOJu0YzrHG6JtjqM/Y8cbGwatr4hQ1sZdf8kPINBb/x2ds6FUM+qSCaU
+	Iqwit4AbAC2LJD7ivREscQslmmU5u/aaa6dncSFN/H9RzZcUmoNV9yGWgklXXRQSZug4d9i2oNb
+	SsXytPVEK3AssQUkTRN+l7Jzn1VTJsc2c
+X-Gm-Gg: ASbGncveMROqzdyJFcYyJ6aonndlCy8G2JpZo6i7og+wETivz6rkX2S8vJNAQQlNp7P
+	bl8qzgDGx9ObCYnyTQJOXjrmuRhgvg2tZVq/334w=
+X-Google-Smtp-Source: AGHT+IGZQrU3kRi5BNtSN7EKyaGuqimF2MNiH7WD2S0WmKUNv7lAxpuq38aEcS6CIa/MACOIS+8EkY+PhmtXEH37AUw=
+X-Received: by 2002:a17:906:dc92:b0:aa6:7c8e:808c with SMTP id
+ a640c23a62f3a-ab2c3cb6e09mr380038566b.17.1736452060316; Thu, 09 Jan 2025
+ 11:47:40 -0800 (PST)
+MIME-Version: 1.0
+References: <cd423e7196d74925b8bb89a3d45f0a42@forces.gc.ca>
+ <CAFnbyRFeYLHTW6pwa1HucNWOC4pyWhg149TuQ0-EqHF64kEhag@mail.gmail.com> <9C36DD18-0B49-42E5-9DCD-C14EE1352DEB@icloud.com>
+In-Reply-To: <9C36DD18-0B49-42E5-9DCD-C14EE1352DEB@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 9 Jan 2025 14:47:28 -0500
+X-Gm-Features: AbW1kvbOGXmMJlRr3WYRKhnFmQwus76qRHtf2h-s-Qgd9mv-_p2QAQvbfyZOX6s
+Message-ID: <CAFnbyREXDPT=oMv1z+3djWU=uFQLD49vJ4+5NxYJszr6mTF4xw@mail.gmail.com>
+Subject: Re: Passport applications
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000398eed062b4b404b"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF3VmEhNOT2NeeG0Zf
+ lNLcmlocmMfbkFyRmNvT2FZGFJjEQpYXBcZBBoEHxoFGxoaBBIYBB4YBBgSEBseGh8aEQpeWRd
+ PXklSHhEKTVwXGx8eEQpMWhdoa01NaxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4ZEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdlRn4dXUBkRFp8fhEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2lgXU9lE01+a2ldEBoRCnB
+ oF2hDYRJcH1JrYxofEBoRCnBoF2N/eGVhbH5ibhJJEBoRCnBoF29och4abWV4c0RCEBoRCnBoF
+ 2N8bUNsfkJgX29CEBoRCnBoF2tkW3NlQFhzZVAFEBoRCnBoF2BrQlJZeFxHZmMdEBoRCnBoF2h
+ 7WGgTZWxPfhsTEBoRCnB/F2B4fWh9ExsBYRhFEAcbGhsRCnBfF2FyaF5rHUJ6AU99EAcSHBEKc
+ H0Xa1x/UxgBYGcfeUQQGhEKcGwXZkZrHxhbbV9Gb28QGhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-ORIG-GUID: _L89deItRG3TyaXCBXI5DkXlIEeKs2xI
+X-Proofpoint-GUID: _L89deItRG3TyaXCBXI5DkXlIEeKs2xI
+X-Authority-Info: v=2.4 cv=U4bADvru c=1 sm=1 tr=0 ts=678027de cx=c_pps a=lBEaSHRq0EQX3IuqbOyx9w==:117 a=VdSt8ZQiCzkA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=RB2Rf43WNXmL5_dvm-kA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=XuvFDjrNQUBdukWmDRcA:9 a=T3fqWtPeHS2ckBOF:21 a=lqcHg5cX4UMA:10 a=wwAePvBONnjDQaqHVNx2:22 a=7YpECbvlQQReuXKdpsOb:22 a=uVHlOELH1UxZmhdsZ4z3:22
+
+--000000000000398eed062b4b404b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+I checked into the legalities  around acquiring your passport signature
+and providing  copies of the ticket before signing is not a requirement. As
+I have said, I won't have the tickets booked for another month before we
+depart to save on costs and the exact dates need to be confirmed because we
+are staying at a friend's new condo and we don't know the exact day it will
+be ready. We should know this at the end of January early February.  Once I
+book the actual tickets, I will send you the information requested as it is
+legally required and I do believe I will need a letter from you stating you
+give permission for the girls to be travelling overseas  with me. I have
+shared below the details that I know to date. The March Break is two months
+away and processing time can take 20 business days, so we are cutting it
+close and I want to avoid being stressed about the documentation and
+waiting until the last minute and paying a larger processing fee.
+
+
+   - Confirmed destination and exact dates of departure/return -*Pacifico
+   Resort, Playa Del Coco, Guanascaste, Costa Rica, The window of travel da=
+tes
+   are between March 7-14th *
+   - Copies of the flight tickets and booking confirmation for the girls -*
+   I will send when we book. We most likely will fly into Toronto and fly o=
+ut
+   directly to Liberia, Costa Rica. The resort is 30 min drive from the
+   Liberia airport.*
+   - The address where you and the girls will be staying:* Condominios
+   Pacifico, Playas del Coco, Carillo, Guanacaste, Costa Rica, subcondomini=
+o
+   5B*
+   - Emergency contact information while you=E2=80=99re away: *You can reac=
+h me
+   directly via text/whatsapp or email. My friend who we are staying with
+   Liza Wilson 613- 867-5492. The condo has wifi and some part of the groun=
+ds
+   so you will have access to contact the girls when we are at the room and=
+ by
+   the pool.*
+   - Details of any other planned or anticipated travel for the girls
+   within the next 12 months - * As usual, girls are off from soccer last
+   week in July , first week in August and if I can afford it, I will take
+   them to Saskatchewan for a family reunion being held on July 25th at Tur=
+tle
+   Lake that Dennis's family is hosting and then stay with my sister Heathe=
+r
+   for a week in Saskatoon. They will most likely each do 5 days at the Rid=
+eau
+   Hill sleepaway camp this year (no dates yet). Other than that I have no
+   travel plans. Alot depends on my finances at the time.I will update you
+   when I know more.*
+
+
+The girls are very excited to be travelling to a warm destination for the
+first time! I will send along the paperwork for you to sign on the first
+page and be in touch with the exact travel dates, flight information,
+letter requirements as soon as possible.
+
+
+
+
+On Thu, Jan 9, 2025 at 9:12=E2=80=AFAM Darryl Ross <darrylross@icloud.com> =
+wrote:
+
+> Hi Cynthia,
+>
+> Thanks for letting me know about the passport application and your plans
+> to travel with the girls this March. I assume this trip is planned for
+> March Break so there won=E2=80=99t be any impact on school attendance. Si=
+nce we
+> have shared decision-making responsibilities, I am required to review the
+> details before signing any documents.
+>
+> Please provide the following information:
+>
+>
+>    - Confirmed destination and exact dates of departure/return
+>    - Copies of the flight tickets and booking confirmation for the girls
+>    - The address where you and the girls will be staying
+>    - Emergency contact information while you=E2=80=99re away
+>    - Details of any other planned or anticipated travel for the girls
+>    within the next 12 months (including summer break, long weekends, and
+>    school holidays), even if not yet finalized.
+>
+>
+> I have no issue signing the passport application and will do so as soon a=
+s
+> I receive this standard travel information. Given current processing time=
+s,
+> there is still ample time to complete this before March Break.
+>
+> Additionally, as part of our shared decision-making responsibilities,
+> please provide advanced written notice before finalizing any personal
+> travel where the girls will be staying with someone else. This should
+> include the dates of travel, where they will be staying and with whom.
+>
+> Financial Disclosure
+>
+> Also, please confirm that you have received my Notice of Assessments for
+> 2020 to 2023. As part of our mutual obligation under the Ontario Child
+> Support Guidelines, please provide your updated financial disclosure,
+> including at minimum:
+>
+>    - Your Notice of Assessments for the past three years (2021, 2022, and
+>    2023)
+>    - Your most recent pay stubs or proof of income
+>    - Any additional sources of income, including rental income, business
+>    income, or other earnings
+>
+>
+> Best,
+> Darryl
+>
+> On Jan 8, 2025, at 07:52, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Attached are the girls passport applications. I will provide the physical
+> copies for your signature  on Thursday.
+>
+> If you have any questions please let me know.
+>
+> <alicepassport.pdf><charlottepassport.pdf>
+>
+>
+>
+
+--000000000000398eed062b4b404b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Darryl,</div><div><br></div><div>I checked into th=
+e legalities=C2=A0 around acquiring your passport signature and=C2=A0provid=
+ing=C2=A0 copies of the ticket before signing is not a requirement. As I ha=
+ve said, I won&#39;t have=C2=A0the tickets booked for another month before =
+we depart to=C2=A0save on costs and the exact dates need to be confirmed be=
+cause we are staying at a friend&#39;s new condo and we don&#39;t know the =
+exact day it will be ready. We should know this at the end of January=C2=A0=
+early February.=C2=A0 Once I book the actual tickets, I will send you the i=
+nformation requested as it is legally required and I do believe=C2=A0I will=
+ need a letter from you stating you give permission for the girls to be tra=
+velling overseas=C2=A0 with me. I have shared below the details that I know=
+=C2=A0to date. The March Break is two months away and processing time can t=
+ake 20 business days, so we are cutting it close and=C2=A0I want to avoid b=
+eing stressed about the documentation and waiting until the last minute and=
+ paying a larger processing fee.=C2=A0</div><div><br></div><div><ul><li sty=
+le=3D"margin-left:15px">Confirmed destination and exact dates of departure/=
+return -<i>Pacifico Resort, Playa Del Coco, Guanascaste, Costa Rica, The wi=
+ndow of travel dates are between March 7-14th=C2=A0</i></li><li style=3D"ma=
+rgin-left:15px">Copies of the flight tickets and booking confirmation for t=
+he girls -<i> I will send when we book. We most likely will fly into Toront=
+o and fly out directly to Liberia, Costa Rica. The resort is 30 min drive f=
+rom the Liberia airport.</i></li><li style=3D"margin-left:15px">The address=
+ where you and the girls will be staying:<i>=C2=A0Condominios Pacifico, Pla=
+yas del Coco, Carillo, Guanacaste, Costa Rica, subcondominio 5B</i></li><li=
+ style=3D"margin-left:15px">Emergency contact information while you=E2=80=
+=99re away: <i>You can reach me directly via text/whatsapp or email. My fri=
+end who we are staying with=C2=A0 Liza Wilson 613- 867-5492. The condo has =
+wifi and some part of the grounds so you will have access to contact the gi=
+rls when we are at the room and by the pool.</i></li><li style=3D"margin-le=
+ft:15px">Details of any other planned or anticipated travel for the girls w=
+ithin the next 12 months -=C2=A0<i> As usual, girls are off from soccer las=
+t week in July , first week in August and if I can afford it, I will take t=
+hem to Saskatchewan=C2=A0for a family reunion being held on July 25th at Tu=
+rtle Lake that Dennis&#39;s family is hosting and then stay with my sister =
+Heather for a week in Saskatoon. They will most likely each do 5 days at th=
+e Rideau Hill sleepaway camp this year (no dates yet). Other than that I ha=
+ve no travel plans. Alot depends on my finances at the time.I will update y=
+ou when I know more.</i></li></ul><div><br></div></div><div><div>The girls =
+are very excited to be travelling to a warm=C2=A0destination for the first =
+time! I will send along the paperwork for you to sign on the first page and=
+ be in touch with the exact travel dates, flight information, letter requir=
+ements as soon as possible.</div><div><br></div><div></div></div><div><div =
+dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><d=
+iv dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK=
+4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEh=
+i_cA"><br></div></div></div><br></div><br><div class=3D"gmail_quote gmail_q=
+uote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 9, 2025 a=
+t 9:12=E2=80=AFAM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">=
+darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div><span>Hi Cynthia,</span><div><span><br></span></d=
+iv><div>Thanks for letting me know about the passport application and your =
+plans to travel with the girls this March.=C2=A0<span style=3D"color:rgb(14=
+,14,14)">I assume this trip is planned for March Break so there won=E2=80=
+=99t be any impact on school attendance</span>. Since we have shared decisi=
+on-making responsibilities, I am required to review the details before sign=
+ing any documents.</div><div><div><span><br></span><span>
+</span><span>Please provide the following information:</span></div><div><sp=
+an><br></span></div><div><ul><li>Confirmed destination and exact dates of d=
+eparture/return=C2=A0</li><li>Copies of the flight tickets and booking conf=
+irmation for the girls=C2=A0</li><li>The address where you and the girls wi=
+ll be staying=C2=A0</li><li>Emergency contact information while you=E2=80=
+=99re away=C2=A0</li><li>Details of any other planned or anticipated travel=
+ for the girls within the next 12 months (including summer break, long week=
+ends, and school holidays), even if not yet finalized.</li></ul></div><div>=
+<span>
+</span><span><br></span></div><div><span>I have no issue signing the passpo=
+rt application and will do so as soon as I receive this standard travel inf=
+ormation. Given current processing times, there is still ample time to comp=
+lete this before March Break.</span><span>
+</span><span><br></span><span>
+</span><span><br></span></div><div><span>Additionally, as part of our share=
+d decision-making responsibilities, please provide advanced written notice =
+before finalizing any personal travel where the girls will be staying with =
+someone else. This should include the dates of travel, where they will be s=
+taying and with whom.</span><span>
+</span><span><br></span><span>
+</span><span><br></span></div><div><span>Financial Disclosure</span><span>
+</span><span><br></span><span>
+</span><span><br></span></div><div><span>Also, please confirm that you have=
+ received my Notice of Assessments for 2020 to 2023. As part of our mutual =
+obligation under the Ontario Child Support Guidelines, please provide your =
+updated financial disclosure, including at minimum:</span></div><div><ul><l=
+i>Your Notice of Assessments for the past three years (2021, 2022, and 2023=
+)</li><li>Your most recent pay stubs or proof of income</li><li>Any additio=
+nal sources of income, including rental income, business income, or other e=
+arnings</li></ul></div><div><span><br></span><span>
+</span><span>Best,</span><span>=C2=A0</span></div><div><span>Darryl</span><=
+br id=3D"m_-1460635101214744125lineBreakAtBeginningOfMessage"><div><br><blo=
+ckquote type=3D"cite"><div>On Jan 8, 2025, at 07:52, Cynthia Holmes &lt;<a =
+href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com=
+</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hi Darryl,</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Attached are the girls passport applicat=
+ions. I will provide the physical copies for your signature =C2=A0on Thursd=
+ay.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">If you have any =
+questions=C2=A0please let me know.</div><div><div class=3D"gmail_quote"><di=
+v lang=3D"EN-CA"><div><p class=3D"MsoNormal"><u></u></p>
+</div>
+</div>
+
+</div></div>
+<span id=3D"m_-1460635101214744125cid:19445f6d9fdae25cbf31">&lt;alicepasspo=
+rt.pdf&gt;</span><span id=3D"m_-1460635101214744125cid:19445f6d9fde86791bf2=
+">&lt;charlottepassport.pdf&gt;</span></div></blockquote></div><br><div></d=
+iv></div></div></div></blockquote></div>
+
+--000000000000398eed062b4b404b--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1307825</integer>
+	<key>date-last-viewed</key>
+	<integer>1744643457</integer>
+	<key>date-received</key>
+	<integer>1736452062</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12005</string>
+</dict>
+</plist>

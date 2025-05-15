@@ -1,0 +1,145 @@
+7892      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-1a-60-percent-13 by p133-mailgateway-smtp-656d665f4-gwknh (mailgateway 2423B51)
+	with SMTP id 4a8ceab8-5676-4c65-ae89-d3898a20a23e 
+	for <darrylross@icloud.com>; Thu, 15 Aug 2024 00:52:29 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 4a8ceab8-5676-4c65-ae89-d3898a20a23e
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by p00-icloudmta-smtpin-us-west-1a-60-percent-13.icloud.com (Postfix) with ESMTPS id 4EA86C00DFC
+	for <darrylross@icloud.com>; Thu, 15 Aug 2024 00:52:27 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEQgYMWxkXXlNCBhAWSkoAD0xNTEhFSAgYV0FZAxNFU08MARELHxdcWyISFAceFB5VDRhZABNFV1sDHBVIFBddFhAWRAIWCkJPDgcWFQQ4WVUOGgwCWRtfW0IdHAoYRV1XCxlUAxNJHVBXQVcBGBdXWgdbGgkaWEBCEEgUBx4UHVMGRFQAQkweUQ0aHgoSVlNZD1UdAkofXVcLGVcFGBUQWwsRRFo0OXZYAAwrLhUJeGETDw9eRABXdAVETzUeSVEPXx4eIkULYnAmEzI1IiJqXykkShcOMkd2DxQQClkfXVcLGVcFGBUO
+X-ICL-Score: 3.3330330342
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hanUT3Ym
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.54; helo=mail-ed1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5bec23bf29eso3568a12.1
+        for <darrylross@icloud.com>; Wed, 14 Aug 2024 17:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723683146; x=1724287946; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/WU2UW/75DNMuTb0LytgcLGL+Kcgb+EZjTMGH0TXG5s=;
+        b=hanUT3YmZz/r/M2iRWgD0f79qs6SUPxfMej10Wq9ubibXqhg5RAxZGu5yShwFyh4WA
+         Slc1EmsePdPmLzL4PjA6TeA3GFdTAslEiNakE8TBNw4UAZ9+8Yj2ugod+sXgYvDJaBwM
+         sDIEur+idZSBhnuw9pFwpG93PfKBJ/tI9CNppj17fexydu4fQtYCu4ugqw6EjWRcwI+z
+         eflU9EgDGrJDPN2p6kV9Tg+10Oeoag9A2b9RfKVtr28NeaJHs+oEVedvihPMdl7WbE2I
+         NTfXPosBdw3TaLxJlSEknW9Dh4CmboNAMCI18CPaW2r6K3oHgaQhW2ma2k7tgrfwKjid
+         EB+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723683146; x=1724287946;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/WU2UW/75DNMuTb0LytgcLGL+Kcgb+EZjTMGH0TXG5s=;
+        b=LMyehE9OGIM4sw3Jkr5m9B5mqx7LcIDaehUShDstwA1v3av7V+d77yrMRwSfztSdKr
+         PG9wo57bwFisjjCPH9nBQrblYt9umzsTapF0f8FGCxxwa9rBh9dm6wrD2sYPG6TAFxTe
+         678c1VjVPFFhrV0cdB9+ZKK7sIRwgDD+fO3eq2/pIoITYnJ72XMS+qqMm5W6WpdbZY+p
+         vpdr6HHq2ZMVdHENl0zbywdetygfiZ8mwiRy8lh4qgv8mkiUTq6RSblQK+BCc4uF1MKO
+         SrMCbdZie5/r4wNhD/fnO294gQtD8BBR0wKxlozL6TzX3s9VFteFzUVr9Kwvt3eBuAnK
+         cRBA==
+X-Gm-Message-State: AOJu0YyAbX8ZtAXMLw7hWVs+lke74uZLMAFTRggM8gFO7D2fJlZniZZc
+	r405Qwt7wrnAzic43NfW0WUz+Cf36JN4YQk4yXHUwBPexCjR9rlcgiSrY7PTXYUW0dLi+93fw5M
+	nA9gbXgl28Fye63eLlc/pZpZG+bGolg==
+X-Google-Smtp-Source: AGHT+IF4Yss4uGxtuRqU21Qq/YTO7VT9mKvfwNPEEnIzWuQaXrgQ1xIBb5kap9j2mXd0pwvZoucOQkEQkQ0/dlmoItc=
+X-Received: by 2002:a17:907:3f07:b0:a7a:b561:3564 with SMTP id
+ a640c23a62f3a-a836704a180mr342309566b.61.1723683145595; Wed, 14 Aug 2024
+ 17:52:25 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 14 Aug 2024 20:52:14 -0400
+Message-ID: <CAFnbyRHbqHWqzv83xgBg16Si1a9=kgD2sRFDfKSUZZiKQ3qyJw@mail.gmail.com>
+Subject: This week and next
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="000000000000994221061fae4146"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF0xLZmZQc35TS3oTQ
+ n98Wx5CGBgaG2BIQ0NMQXlJTGBzEQpYXBcZBBoEHxoFGxoEGxwfBBgYBBgeEhAbHhofGhEKXlk
+ XThJcckcRCk1cFwcSEhEKTFoXaGlNTWsRCkxGF01rEQpDWhcYGhMEEh8EGBoSBB8eEQpCXhcbE
+ QpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2g
+ SG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS
+ 2lJEQpCQBdjQh5AZhxJGEBpWREKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF3ptU1xYaXltQFw
+ SEBoRCnBoF2kYX2dPf1JZSFxZEBoRCnBoF2FBG2JDHmVCS35dEBoRCnBoF2dHG0xccG9TZn5JE
+ BoRCnBoF2BBRWITfFpMf1JmEBoRCnBoF2FNE2d6a2B6ZV1/EBoRCnBoF2RfbHMfXX4aUk1zEBo
+ RCnBoF2VFXF5lTmB+XhhdEBoRCnB/F2B4fWh9ExsBYRhFEAcTHxEKcF8XYXJoXmsdQnoBT30QB
+ xsbGhEKcH0Xa1x/UxgBYGcfeUQQGhEKcGwXZkZrHxhbbV9Gb28QGhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-ORIG-GUID: faLLzYTyaP9hUVq4h2201JbiifkScfJY
+X-Proofpoint-GUID: faLLzYTyaP9hUVq4h2201JbiifkScfJY
+
+--000000000000994221061fae4146
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Girls are available tmrw as discussed, please let me know when your mom can
+pick up and drop off. They are free Friday as well. I just have to
+coordinate with mom on driving.
+
+Next week girls are free Monday and Wednesday. Is your mom available to
+drive either day?
+
+That weekend I know we had agreed to switch Sunday to Saturday visit
+ because we have family plans. Now Charlotte and Aimee are planning a joint
+bday that Saturday Aug 24 th at Aimee=E2=80=99s as it=E2=80=99s the only da=
+y they are all
+free for the next month. It=E2=80=99s a pool party.
+
+Are you ok to switch to the following Monday  August 26th? It would be
+their last day before school starts.
+
+We can settle back into Thursday and Sunday visits this Fall and then
+readjust when the Winter soccer schedule comes out
+
+--000000000000994221061fae4146
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br clear=3D"all">Hi Darryl,</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Girls are available tmrw as discussed, please let me=
+ know when your mom can pick up and drop off. They are free Friday as well.=
+ I just have to coordinate with mom on driving.</div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">Next week girls are free Monday and Wednesday. Is y=
+our mom available to drive either day?</div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">That weekend I know we had agreed to switch Sunday to Saturd=
+ay visit =C2=A0because we have family plans. Now Charlotte and Aimee are pl=
+anning a joint bday that Saturday Aug 24 th at Aimee=E2=80=99s as it=E2=80=
+=99s the only day they are all free for the next month. It=E2=80=99s a pool=
+ party.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Are you ok to sw=
+itch to the following Monday =C2=A0August 26th? It would be their last day =
+before school starts.</div><div dir=3D"auto"><br></div><div dir=3D"auto">We=
+ can settle back into Thursday and Sunday visits this Fall and then readjus=
+t when the Winter soccer schedule comes out</div><div dir=3D"auto"><div dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmai=
+l_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com=
+/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU6=
+4sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+
+--000000000000994221061fae4146--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1275558</integer>
+	<key>date-last-viewed</key>
+	<integer>1741271521</integer>
+	<key>date-received</key>
+	<integer>1723683149</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12063</string>
+</dict>
+</plist>

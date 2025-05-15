@@ -1,0 +1,123 @@
+6345      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33112101.me.com by p133-mailgateway-smtp-d96586b5c-2wljg (mailgateway 2319B150)
+	with SMTP id c8a7d277-b00f-4742-bac5-caa90c1f5150 
+	for <darrylross@icloud.com>; Wed, 5 Jul 2023 14:43:51 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: c8a7d277-b00f-4742-bac5-caa90c1f5150
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	by ms13p00im-qukt33112101.me.com (Postfix) with ESMTPS id 0F5C558A0212
+	for <darrylross@icloud.com>; Wed,  5 Jul 2023 14:43:50 +0000 (UTC)
+X-ICL-SCORE: 3.333033330041
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdXQEsSFgoQFQlKWl1XCxlU
+ Ch1JHVBTQkpIEBdfUQ4QVwUYFRIWEgELW1UVUV8OWBUMRlVWB1VGVwEYF1daB1saCRpaEFIGSFsB
+ GhlZWkwWFgtVWF1fBkhbWjQ5dlgADCshIA5acE8fTiszP3p+VDo9PzIcRwZTMwkgQxVRUSYQECpa
+ TVF3Wh0yAwY3V3YPFBAKWR9dVwsZVwUYFQ4UQgcaW1UcUUQQDBUUGAtDdgsWFQkCHB5VDRhb
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G9dUvqEN
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.173 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.173 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.173; helo=mail-lj1-f173.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b700e85950so9529111fa.3
+        for <darrylross@icloud.com>; Wed, 05 Jul 2023 07:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688568230; x=1691160230;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HgwpU95BMXPy5G5oet5fc8GRE+k/1MmuCe2bl6nrTj8=;
+        b=G9dUvqENvAAvWuQpeoJBsKMcmyRRtj6c494IQqFbLY/3pEC5jFegLaDyYu0KOhExsX
+         WTP8AthsTRfbbFC55ExCsbV2rr5LiF5okqN5mAdb4MrTN/czRXIavNcxGuhD0I2vF0Sp
+         0qd+naY4U+kPUfwHrAjivnkkqigJbp9Ric9D9ddxuPrLfnW8aBNNKG523n8c7I3aDcob
+         Cj6BPvRuIsfiBwtFUp/gaHkfWTonq6hSwZIlydJy8auo4FaRj7Gspsz3PMbFdAFcYF9L
+         tXmoODVbisX7CjGIbDKDDRLKT1LHuRDfUWdVVWMxlyjw/AxRlp0Gtuo6GsFf6+P2n2pf
+         prdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688568230; x=1691160230;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HgwpU95BMXPy5G5oet5fc8GRE+k/1MmuCe2bl6nrTj8=;
+        b=G0ymct/bBph/Bl482XqsLjGq9UGsXWBmLwTNPWfCJ4leuDS8vUoAfkn7kUqng1kUYt
+         uw0DOVtGLWg46G/ANOdHY59S/XToolE5GDbLqgn/zDfcxNtLnqwsMtbKmzsmpJ3evteI
+         SXWHpWXPOqSp3mppLcuf+dYFjQiBGKo3fDMCk6n0gyvIxu063v2+C6JNKjJqm2mTx9Ui
+         N6gRLRQVu95HMWsznMmvTQVa1tl0K7vUyUZPmefnRdj5AUvCgks76RbsCuUcw+VT9+hj
+         HYhcTw6sxveqqtFgLoa/rxKfalgVxip/2reRocplXH4iQBZcfUdYJJaszzvWmuN8zQi3
+         xTyA==
+X-Gm-Message-State: ABy/qLY39Z40LfRjxZrrOLP0+z/1JvnXIQx4esr7i6XBaVItbvXhxeBZ
+	tFxlTSf81zHyCtx8G9R/wTSbbluR4KXWZZz932hbil2td5c=
+X-Google-Smtp-Source: APBJJlFdVijZCwJuUQw86CgMIQt348IOJ0IEVkxzVXoL/3NogknKE9SSTIjqXpQHE5BCSrwX8nh+FaH98FdeQW5OrXI=
+X-Received: by 2002:a2e:7d13:0:b0:2b6:982f:df6 with SMTP id
+ y19-20020a2e7d13000000b002b6982f0df6mr11289661ljc.11.1688568229855; Wed, 05
+ Jul 2023 07:43:49 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 5 Jul 2023 10:43:38 -0400
+Message-ID: <CAFnbyRGWvjF-j7MDGJH6ODYEdw01FpF4magDeiL-5aA8hKeqOg@mail.gmail.com>
+Subject: Make up time and tournament
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000085090405ffbe6d3a"
+X-MANTSH: 1TEIXR1kbG1oaGkNHB1tfTFwbGhoSGxgaGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhoaEQpZRBdiRWJBeWNMYV17TxEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGxMaEQpfT
+ RdkRURPEQpZSRcacRoQGncGGx0acRMTEBp3BhgaBhoRClleF2xseREKQ04XdVt8G1hdHW9kTnl
+ EGBtCckh+Un1tf2dOfXJ1RG4ee0cRClhcFxkEGgQfGgUbGgQTBBgZEgQYGBAbHhofGhEKXlkXS
+ BhTcGkRCk1cFxwcEQpMWhdoaU1NaxEKTEYXTWsRCkNaFxgaEwQSHwQYGhIEGx0ZEQpCXhcbEQp
+ EXhcYEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG
+ 3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2l
+ JEQpCQBdgQX5gZGlGQWF8QhEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2UfARNbb
+ gFIfWZ5EBkaEQpwaBdjZ0xzTlkTf2JaeRAZGhEKcGgXaHBQWVxfZERTZ1gQGRoRCnBoF2Z9aGJ
+ mE1JkbWtQEBkaEQpwaBdjWFhCQ3gfYBthEhAZGhEKcGwXZkZrHxhbbV9Gb28QHhIRCm1+FxsRC
+ lhNF0sR
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-ORIG-GUID: _qV1rw7ENdSn21hXbTxWGUMdWX_nD4Qm
+X-Proofpoint-GUID: _qV1rw7ENdSn21hXbTxWGUMdWX_nD4Qm
+
+--00000000000085090405ffbe6d3a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+
+Are you both free Friday afternoon? 1-5 pm? I can drop off if your mom can
+bring home. Thursday wont work as Alice has a soccer game and they have
+camp.
+
+Also Charlotte has an all day tournament next Sunday July 16, it was just
+confirmed. We will have to change the visit day for the girls. Would you
+both be available that Saturday July 15 or Monday July 17?
+
+--00000000000085090405ffbe6d3a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>Are you both free Friday=
+ afternoon? 1-5 pm? I can drop off if your mom can bring home. Thursday won=
+t work as Alice has a soccer game and they have camp.</div><div><br></div><=
+div>Also Charlotte has an all day tournament next Sunday July 16, it was ju=
+st confirmed. We will have=C2=A0to change the visit day for the girls. Woul=
+d you both be available=C2=A0that Saturday July 15 or Monday July 17?</div>=
+</div>
+
+--00000000000085090405ffbe6d3a--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1144025</integer>
+	<key>date-last-viewed</key>
+	<integer>1744822740</integer>
+	<key>date-received</key>
+	<integer>1688568231</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12371</string>
+</dict>
+</plist>

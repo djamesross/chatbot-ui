@@ -7,6 +7,7 @@ import { TabsContent } from "../ui/tabs"
 import { WorkspaceSwitcher } from "../utility/workspace-switcher"
 import { WorkspaceSettings } from "../workspace/workspace-settings"
 import { SidebarContent } from "./sidebar-content"
+import { useState } from "react"
 
 interface SidebarProps {
   contentType: ContentType
@@ -39,6 +40,8 @@ export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
   const toolFolders = folders.filter(folder => folder.type === "tools")
   const modelFolders = folders.filter(folder => folder.type === "models")
 
+  const [corpusEnabled, setCorpusEnabled] = useState(false) // Default: OFF
+
   const renderSidebarContent = (
     contentType: ContentType,
     data: any[],
@@ -65,6 +68,21 @@ export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
           <WorkspaceSwitcher />
 
           <WorkspaceSettings />
+        </div>
+
+        <div className="my-2 flex items-center justify-center">
+          <button
+            className={`w-full rounded-lg border px-4 py-2 font-semibold shadow transition ${
+              corpusEnabled
+                ? "border-green-600 bg-green-500 text-white"
+                : "border-gray-400 bg-gray-200 text-gray-600"
+            }`}
+            onClick={() => setCorpusEnabled(prev => !prev)}
+            title="Toggle corpus/embeddings search globally"
+            style={{ outline: corpusEnabled ? "2px solid #22c55e" : "none" }}
+          >
+            {corpusEnabled ? "Corpus: ON" : "Corpus: OFF"}
+          </button>
         </div>
 
         {(() => {

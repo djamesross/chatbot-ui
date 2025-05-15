@@ -1,0 +1,130 @@
+6492      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin035.me.com by p72-mailgateway-smtp-7b6c57bcd9-8b8sw (mailgateway 2302B215)
+	with SMTP id 27d0c56c-f65f-4d26-b978-d243594c5803 
+	for <darrylross@icloud.com>; Mon, 31 Oct 2022 01:06:46 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 27d0c56c-f65f-4d26-b978-d243594c5803
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	by st11p00im-smtpin035.me.com (Postfix) with ESMTPS id ADC167C00D1
+	for <darrylross@icloud.com>; Mon, 31 Oct 2022 01:06:45 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQUFEVxBVWg1IWwsWEVwbBxFI
+ SxFMCBgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9ST1ZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdm8LIxZLGh9zfFVEMQFBMFR+MhMMLgBKYQ4SABAtFDxxYxYHMiAT
+ TQVPIwI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QODJx5T6
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.48 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.48 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.48; helo=mail-ed1-f48.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id a13so15503377edj.0
+        for <darrylross@icloud.com>; Sun, 30 Oct 2022 18:06:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IGkqyTRRQaVVrVXZoOP6ZbqvlGFZ3LHwE/E0k0v83a8=;
+        b=QODJx5T6OZtEyqvj7SR1QBd+nEgV4sle48Utf1FM12/5V6laUfn78xGpxdPUDDZ3gK
+         sdfhtBYnbG12rQlPNtZ+TPQp8dcxrKRapsdcXg5adVu9w+fDWvhGolEXhXlOAWVa8hJE
+         yiZmYGdg00Md4G3TgfPma6T40v393dLBCwMzg7J2ewylvoHIr861zOHmEvDLXMWxhtjY
+         tok3Fl5TcvCGUQS1PygJr4RkzceT91diboYVJyE5oNYw8z4ChYbxDJDjY9bySB76qpCo
+         K6wzIiA88p7xGGlQZlns9j3/yFLTI02J1cYxpmX6rNPruxGyWlenABLtrHj9PQya1kaY
+         om7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IGkqyTRRQaVVrVXZoOP6ZbqvlGFZ3LHwE/E0k0v83a8=;
+        b=ws11IjhUDTq8pqdjctp1aRBClpRlFpXCjKdl0XU8VGjVR/bp8rpLnzNLWOmzEouyKl
+         FMfgvFgJM5IvWtu8/hsu3+KdXFByjmPtYOgDmrc5i8l04QEYVch4pqZ5a1hTrzh+U33N
+         ET2zhqnSzFxxNylpgXzGhDcU1cIeWhS95H4y+zAc09PchTAq34F5MF1jKRz9Je4B4RhN
+         t32TgJX+dtcmj/m0UJ/6R21aSDh+1XEM12AnB12EcyXwi6OfuRPu636RIiKUBJJ6v6y+
+         vkv1LBIAvJyWiJGQ2vAp5yjj6+HvfnYzAGeO9aXzV+Y6KQzAlYsBoHmNRSle1eIsg5Me
+         dJgw==
+X-Gm-Message-State: ACrzQf1quEFPm4DQ1YXYY4Kdy/3RyP+rE6OYPlZythCOG6yJ3GFWP/C5
+	Y29IXssy6vDkGXfMRqMbmNfcJExezyG5KhGqdxnRTUVl7HY=
+X-Google-Smtp-Source: AMsMyM4m9UmNZIKT7nNEw5jatco28KD54+jw2RTNPgyq52sF1cjj1Rzwcdsv0R1Fp6WUSeXR6els2L6fen6i+4nzDow=
+X-Received: by 2002:a05:6402:3988:b0:44e:6f08:ddfb with SMTP id
+ fk8-20020a056402398800b0044e6f08ddfbmr10823342edb.89.1667178404861; Sun, 30
+ Oct 2022 18:06:44 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 30 Oct 2022 21:06:34 -0400
+Message-ID: <CAFnbyRFYiVo-mgCJ71Hg6HdHPfuHw2Q8puiKcDAUtrKFd55yAw@mail.gmail.com>
+Subject: Charlotte
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000995add05ec4a38b3"
+X-MANTSH: 1TEIXWV4bG1oaGkNHB15TTk0aHBgaGRgaGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGhoRCllEF2JFYkF5Y0xhXXtPEQpZTRd6T1hZRURLRmtGRkVdEQpfWRcYGBoRCl9NF
+ 2RFRE8RCllJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XXGx6fkd8UHVETHN
+ PfkZZS3N8X0NFcmhDSUdPWnBBRhwRClhcFxkEGgQeEwcdGEkfHx1JGQUbGgQbHBgEGRoEGBIQG
+ x4aHxoRCl5ZF0tGZ3hrEQpNXBcfGhEKTFoXaGlNTWsRCkNaFxgaEwQSHwQYGhIEHhIRCkJeFxs
+ RCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhyb
+ ngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJ
+ AF25GelMcXn1tZnlGEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXYnN+aXkZXX1Ce
+ h8QGRoRCnBoF28SHh1/SwVeRV9ZEBkaEQpwaBdnYxhJbFpvTkN9exAZGhEKcGgXbXIZfnJhHWV
+ 4RWEQGRoRCnBoF2cFAWFPHWZrAVNDEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XS
+ xE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: vFPTmVz_nfYeTlsaYVuioXBicmepZkl6
+X-Proofpoint-ORIG-GUID: vFPTmVz_nfYeTlsaYVuioXBicmepZkl6
+
+--000000000000995add05ec4a38b3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl
+
+Thanks for picking up the brace for Charlotte=E2=80=99s thumb, that really =
+helps
+out Charlotte. We met DrMills Saturday and she had no concerns to wait
+until Monday to X-ray and I agreed.
+
+We are taking her to X-ray tmrw at 11 and I will keep you posted.
+
+It is most likely damage to soft tissue but it could be another buckle
+fracture. We will know more when we get results. If you need more details
+please reach out to Arbour Family medicine.
+
+thanks Cynthia
+
+--000000000000995add05ec4a38b3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl=C2=A0<div dir=3D"auto"><br></div><div dir=3D"auto">Thanks for pic=
+king up the brace for Charlotte=E2=80=99s thumb, that really helps out Char=
+lotte. We met DrMills Saturday and she had no concerns to wait until Monday=
+ to X-ray and I agreed.</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+We are taking her to X-ray tmrw at 11 and I will keep you posted.</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto">It is most likely damage to soft =
+tissue but it could be another buckle fracture. We will know more when we g=
+et results. If you need more details please reach out to Arbour Family medi=
+cine.</div><div dir=3D"auto"><br></div><div dir=3D"auto">thanks Cynthia=C2=
+=A0</div>
+
+--000000000000995add05ec4a38b3--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1003925</integer>
+	<key>date-last-viewed</key>
+	<integer>1741104074</integer>
+	<key>date-received</key>
+	<integer>1667178406</integer>
+	<key>flags</key>
+	<integer>8590196097</integer>
+	<key>remote-id</key>
+	<string>12372</string>
+</dict>
+</plist>

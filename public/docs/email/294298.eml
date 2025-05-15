@@ -1,0 +1,107 @@
+4783      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:7808:0:0:0:0:0 with SMTP id m8csp14300710ltj; Wed, 13
+ Mar 2019 11:19:24 -0700 (PDT)
+X-Received: by 2002:a0c:adfa:: with SMTP id x55mr6770793qvc.231.1552501164363;
+ Wed, 13 Mar 2019 11:19:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1552501164; cv=none; d=google.com;
+ s=arc-20160816;
+ b=GJsnhnqhc/LL/KQYboFOaLqcIH6M/wNaCmQep0Q1By08MMJZUXqx/p6z/vQFp5LYp3
+ YlgjajvvDZ/nZLHuXLq+LrWOYqrqWKdqqt9hjaR9emwrIL6OJiTGBcZwLUSCtX4UgSU5
+ /OiAumiqDRYB694soiIR+OVzn9E110RNCk+eBmKQp1+Eh9CL/4ACK/xf/Y4tC/hQ+Ei4
+ kfklBUx8kxnRYN8QP4CkDg79Fc2LfUxpbH0SYAdVlsPFdMqMZw877XV0G5ddF7D+kAnS
+ m+8/+CELaXnd0jxmwtZAJfnls5NLbveahkFQ87H6UrNTlBBrAp2omlIC49kEMALE8mGU FG0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=to:message-id:subject:date:mime-version:from
+ :content-transfer-encoding:dkim-signature;
+ bh=P2BBtfef+Zc6WlVxD93q3j+pBB/l/Au+W1dUoeZUO+Q=;
+ b=CJI62A8pL1+sr5mtpwsmJUXmjpZyCFueArAee9Vx6Re4o+mv3Rt1cWK5v+W5XXurVn
+ FQ4nRZhT/ilkd/M25uzDIl0o1vG4n0YjwodjOxiRqKl0bnrS1IQszJQDqtlyz7V9cIiI
+ HeCBFrXzAApMssVJdqVsEwrW623jLm7phirFdaoKPG5G0wwRZrfVWgaSw8Z1y7sxLRuR
+ Z5ebRyokYi1hEtV5EXUVzi47hJ1g6nzMyeN86iQ6u6gW+85esyCzPBhF8r5qGDICABQR
+ oN/BzjufYgbhEytRTH17ea/aTQWocwWQLLrlI+3V09tP657TkSdZxz8MJZhUKxT/EqxF VSOw==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=KfB3nYCr; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ 16sor15333413qtr.23.2019.03.13.11.19.23 for <darrylondunlin@gmail.com>
+ (Google Transport Security); Wed, 13 Mar 2019 11:19:24 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=KfB3nYCr; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=content-transfer-encoding:from:mime-version:date:subject:message-id :to;
+ bh=P2BBtfef+Zc6WlVxD93q3j+pBB/l/Au+W1dUoeZUO+Q=;
+ b=KfB3nYCrORw3AtUpZwAd8eBkdsKeYo73guWyHbXnqFzxwDCCCuo2GPTH+OYBkydd3z
+ FdthcTala/Fg4zvUE2X+4DzVLzCyWCbM2VHMntUsZpVAwfpYlBWpVQNrLOnUYl0Y4O4x
+ Ihmb5qwBtrVSQ30jiVx6mua6RG7pg2ipXJUxh2Z/AzJT9RdHeLNOyO2ihCWOCjRhvlUP
+ k3nz5S7Om3kuZjh/eIP7RP8iHyI3w3/Zpv+ffJ5OSjx3IbWKbDojL9Y+0z02Qlp5Ibm8
+ sDh6TjuHxfKczp6ymBWVyNhvVSlQnKJZT6X/g+HhhRAjq0i8PRh/otNGsoCUu3A/GEVU d4kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:content-transfer-encoding:from:mime-version:date
+ :subject:message-id:to; bh=P2BBtfef+Zc6WlVxD93q3j+pBB/l/Au+W1dUoeZUO+Q=;
+ b=lDn9zuG7PLEQ4M51YL62uy5jUGt9y2lMeX6qeKsDh0KkP3HZUBcP3lYlty6Zl+1L7H
+ 2/bisvY6MVlyjpZgPhXcb7dKMB/Vtb9/h9RJSrAz7tmu5fkI+RerHLDlwfDfnP6VX59r
+ JmxtlS9QdbgIVYuEtK3AZpx2twAxpsoijOjtV+XheK8jA0ca2+GDNQD7XWW7mcHbg0fQ
+ kzduJO33mzt/xOrb7ms5ltSqocZ6oZa0AAcuFEeu5PWTBdj9GoRyuQZQGkxZb+ZgFTbU
+ kT73iiKGdx9RJQeO8ZFH6vJWRz0rPR3FbTP6vI7fTncNhyHeNDzu0WOeImc1B/Z93E5D O85w==
+X-Gm-Message-State: APjAAAUxAEzGRXL5J9MvZJQqQXmUydXWfjbhcg/+x+faAS+k6Ouf0Y0/
+ cDgGjKwe1whDxHiqCPIsMyK4kIxt
+X-Google-Smtp-Source: APXvYqzOdAPtR/qU4sOL2F+cznbte+Y5vk9kp268pnd+Vom085WeOh1EYZWa6hauh7OyVWvsrR1YNA==
+X-Received: by 2002:ac8:2b4b:: with SMTP id 11mr34639138qtv.252.1552501163154;
+ Wed, 13 Mar 2019 11:19:23 -0700 (PDT)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [10.41.33.163] ([184.151.246.8]) by smtp.gmail.com with ESMTPSA
+ id c73sm11394843qka.37.2019.03.13.11.19.20 for <darrylondunlin@gmail.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Wed, 13 Mar
+ 2019 11:19:22 -0700 (PDT)
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Wed, 13 Mar 2019 13:35:25 -0400
+Subject: Payments owing
+Message-Id: <F0DE53A0-F8D3-4FD0-9C8C-3A5625B7B72D@gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: iPhone Mail (16D57)
+
+
+Attached are the payments owing from Winter 2018 which is  $1,336.00.
+
+Also there is the outstanding payment of child support from June 2016 to Jun=
+e 2017 which totals $10,800.00.=20
+
+Are you able to pay any of this now or should I be sending this info to FRO?=
+
+
+
+Thanks,
+
+Cynthia
+Sent from my iPhone=
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>10610</integer>
+	<key>date-last-viewed</key>
+	<integer>1746724441</integer>
+	<key>date-received</key>
+	<integer>1552501164</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>15075</string>
+</dict>
+</plist>

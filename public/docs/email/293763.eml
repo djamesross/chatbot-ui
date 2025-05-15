@@ -1,0 +1,606 @@
+36236     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17081301.me.com by p72-mailgateway-smtp-6d68554779-596jj (mailgateway 2204B190)
+	with SMTP id 2250414d-d7c0-47f6-a3d1-c3544671eef4 
+	for <darrylross@icloud.com>; Thu, 23 Dec 2021 14:45:14 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 2250414d-d7c0-47f6-a3d1-c3544671eef4
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	by ms11p00im-qufv17081301.me.com (Postfix) with ESMTPS id 73343BC0875
+	for <darrylross@icloud.com>; Thu, 23 Dec 2021 14:45:13 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ9MREFXVVhYUw4aREQaGVlaTwwb
+ V1oeAQ5TWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsbF0hLEUkIB0wSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wPQAIJhMJQj1FJgQDKHxsGDcQMi0iDWxQKgwhWlViQjAqNRYj
+ THt6PUFADjY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+x-dmarc-info: pass=pass; dmarc-policy=none; s=r1; d=r1
+x-dmarc-policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=boo5QiRx
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.181 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.181 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.181; helo=mail-yb1-f181.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-yb1-f181.google.com with SMTP id f186so17091641ybg.2
+        for <darrylross@icloud.com>; Thu, 23 Dec 2021 06:45:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oZvIfnTXOzWkHqIlYmREOu++Bm5+ra/BKdcnVurZhsM=;
+        b=boo5QiRxjIhZpe+lCfIp77SB2ghkZpI+9cgpC20fi2Z4KBomzEFcLFOogZBO7fapFp
+         6J1rjLCsmYkxn3F5LAdMLXb37f6z4W+VLZP069jRsqLW/Vcz07hKLn+AefrZV+q5KJ9E
+         XJ1BRuyToALzREdn5kJfkEkXFNcsnxqV3hSvN0TmN/VPlBCR+FR3V/XhChy48Snggr0Q
+         UMhkbmeu4Dgnlq+HvkJX0Xol2pTo1i/b/Lf6e3P8O/LHS63PTm1DgmPqyjCDMU6UXoAj
+         SRV2OCNNYt4sNBnSimj8hokMK4Hp1z0HXNBKGqEJs6aBFuuoqJtOE0dP0aK+Ljv4wCH/
+         yT1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oZvIfnTXOzWkHqIlYmREOu++Bm5+ra/BKdcnVurZhsM=;
+        b=bU32nV5esD/i5uxEaRc1aju+gLH35dTauMfM42i0yygqB7kUmEgZ12C8xvjFNH9YLr
+         3VcY6CNlXEanm/iwvf5GQHjrOg0G61tOCU4orJazNDdZmKcQD3p88zVXWNlu9tFz4J1v
+         6wuQ/AkSkKHXij+quvjta+vZXtM/3Ghbp7knSGwtjgJxAU2MMxcaMXxY+kbtjE+4kG/g
+         wOy2yRdriUSvaUvrO/oP9/Dqci9jNXM/9Bfb2UXFbLq9LrQyMwuA+tAYFp6P9HdT93bq
+         wTkKe+PujWkZFSfBu7Zs7RA2ckmOaNzgdDJdCq9tDw3MBtpTN59hnZW00dhaku40bBj2
+         IQeg==
+X-Gm-Message-State: AOAM5326hiA0S2j9IZoFBdW4d1FVqkhsVDHs7xDG4RTbQsb7V3ag8iiI
+	/sPUe+f3dSrXdtfahq9M2mlCgRNLnqBg2Oz9pRwWNgM/
+X-Google-Smtp-Source: ABdhPJwoh6IBZpY9h9SKqJ30LbUS7e06f3L1YQEneGQaV7hFt7x9ssDNCJs21o4YWvVK/vV54++rsXbvCjeSni9WtJ4=
+X-Received: by 2002:a25:7e87:: with SMTP id z129mr4010874ybc.719.1640270712968;
+ Thu, 23 Dec 2021 06:45:12 -0800 (PST)
+MIME-Version: 1.0
+References: <8A6F3EFF-8CD6-433C-9F0F-F6AE90C86592@gmail.com>
+ <42741CCE-31E8-49F9-8012-881ACAD04386@icloud.com> <CAFnbyRHQuZFJsbg9gpgLgaAcGpCFEipB72RxLvg0e4aMqgDt9A@mail.gmail.com>
+ <7A3D52F4-448C-47AF-891E-FD33461231FA@icloud.com>
+In-Reply-To: <7A3D52F4-448C-47AF-891E-FD33461231FA@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 23 Dec 2021 09:45:02 -0500
+Message-ID: <CAFnbyRHynQk9t_0_btPLZzBiTZZ=Z2_uG--RtR_LpT4KL_49hA@mail.gmail.com>
+Subject: Re: Motion returnable on December 20, 2021 at 10:00 a.m.
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <Alison.Boyce@mannlawyers.com>, Allison Lendor <allison@lendorguest.ca>, 
+	Michael Dam <Michael.Dam@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="0000000000002e9d2e05d3d149b8"
+X-MANTSH: 1TEIXR1kbG1oaGkNHB1tfTFwbGhoSGxIaGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGxMaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGx0acRMTEBp3BhgaBhoRClleF2xseREKQ04XQnNDEklNB05LSBluT29FZn5
+ 1fnhsSEtsTUxHHmJeGEARClhcFxkEGgQeHwdLGxsbHBpPHAUbGgQTBBsdBBgbGRAbHhofGhEKX
+ lkXcwFAa38RCk1cFx4fEQpMWhdoY0FBaxEKTEYXYmtrEQpDWhcYGhMEEh8EGBsTBBsSGxEKQl4
+ XGxEKREkXGREKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCR
+ RdoEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0
+ aEktpSREKQkAXZmVGYRlyZmEfHnMRCkJYF2JrTm9vemxnWkdLEQpaWBcdEQpwZxdocnhcQFsZT
+ 39FExAaEQpwaBd6ThNeT1NAX1BGWhAaEQpwaBdjSQVTZkcbX0gfZxAaEQpwaBdkU2V9a0F+ZE9
+ gbhAaEQpwaBdgHGIFRmd8cktiTRAaEQpwaBdpXhpwW215WBJSexAaEQpwfRdjXmRmbV5OBWlec
+ xAaEQpwfRdoSxpbYW18eFx7YxAaEQpwfRdmaGttU2F6QB9vZBAaEQpwfRdofHgSWUJNS2hhEhA
+ aEQpwfRdlGhtCaWlJWnNaTxAaEQpwfRdlR3BQf25uaUUFSRAaEQpwfRdtenpME3oZE1IdTBAaE
+ QpwfRdrU3NvZX16EmZbXhAaEQpwfxdrcxt9blkZbk1CSxAaEQpwXxdrGH4deXJ5SxlZWBAaEQp
+ wXxdnG19wXRN4XGNvexAaEQpwfxdvRGFQEhN/GxwSfhAHGBoZEQpwXxdoYhxlU1NzG2ZTZRAHG
+ RoRCnB/F2cBRmZgHFB9eHpNEBoRCnBfF2h7aGh8Sx5DSHxpEBoRCnB/F2FPHxl5SWlceRpmEAc
+ bGRMRCnBfF29kcERLR2Z5W19mEBoRCnB/F2VJHFAZZ2ZOGmFDEAceEhEKcF8XaFpAbxxZc0xkc
+ xMQGhEKcH8XYVwZc0J5b3lCQF4QBxsbExEKcF8XYENsTG17R2hsU14QGhEKcH8XbxtBaHpjZh5
+ IZhMQBxsTHxEKcF8XbX9vSH9wGx5DYGMQGhEKcGwXZkZrHxhbbV9Gb28QBx4SEQptfhcaEQpYT
+ RdLEQ==
+X-CLX-Shades: Deliver
+
+--0000000000002e9d2e05d3d149b8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks pease remind me what they are. Thanks.
+
+On Thu, Dec 23, 2021 at 9:44 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> Neither has changed.
+>
+> Thank you,
+>
+> Darryl
+>
+>
+> On Dec 23, 2021, at 9:37 AM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Thanks Darryl.
+>
+> What phone number or email can the girls contact you at for the FaceTime
+> call at 10 am?
+>
+> We are using an Apple device.
+>
+> Cynthia
+>
+>
+>
+> On Wed, Dec 22, 2021 at 6:27 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hi Cynthia,
+>>
+>> It=E2=80=99s unfortunate that Ms. Boyce did not share the email and atta=
+chment
+>> included below prior to the motion. Ms. Boyce did not confirm receipt of
+>> this and several other emails. I will ask Allison to ensure that Ms. Boy=
+ce
+>> is aware of this when she returns from holiday.
+>>
+>> If you have any questions or concerns this note please let me know so
+>> that further misunderstanding can be avoided.
+>>
+>> Regards,
+>>
+>> Darryl
+>>
+>>
+>>
+>> On Dec 6, 2021, at 4:39 PM, Darryl Ross <darrylondunlin@gmail.com> wrote=
+:
+>>
+>> Dear Ms. Boyce,
+>>
+>> I have attached a note from my doctor dated Dec. 1st. I have also made
+>> plans to have him provide an updated note prior to the motion of Dec. 20=
+.
+>>
+>> I have appointments coming up with other medical professionals prior to
+>> the motion and will provide them as available.
+>>
+>> I will be forwarding documents required by our current court order befor=
+e
+>> the upcoming motion.
+>>
+>> I kindly request that Ms. Holmes provide all documents regarding the
+>> orders being sought, as well as documents providing information about ou=
+r
+>> daughters that I have repeatedly requested. I currently have unreasonabl=
+y
+>> limited information about matters concerning their well-being, care, etc=
+.
+>>
+>> Kindly provide this information by Dec. 9.
+>>
+>> As well, can you please inform me how much time you have scheduled for
+>> this motion at your earliest convenience, but no later than Dec. 9.
+>>
+>> Thank-you,
+>>
+>> Darryl
+>> <D.R Letter.docx>
+>>
+>> On Oct 20, 2021, at 5:20 PM, Alison Boyce <Alison.Boyce@mannlawyers.com>
+>> wrote:
+>>
+>> Dear Mr. Ross,
+>>
+>> Enclosed, please find the following documents for the motion returnable =
+on
+>>  *December 20, 2021 at 10:00 a.m.*
+>>
+>>
+>>    1. Notice of Motion (Form 14)
+>>    2. Affidavit in support of the motion (Form 14A)
+>>
+>>
+>> These documents are being served upon you pursuant to the Family Law
+>> Rules. Kindly confirm receipt.
+>>
+>> I will respond to your correspondence of October 18th under separate
+>> cover.
+>>
+>> Sincerely,
+>> Alison
+>>
+>> As an essential service, we are still operating and are here to assist y=
+ou, while respecting Provincial guidelines to ensure the health and safety =
+of our staff and community.
+>> =E2=80=8B
+>> Please visit our *COVID-19 Resource page*
+>> <https://www.mannlawyers.com/news-events-2-2/covid-19>
+>>  for answers to frequently asked questions, other useful information and=
+ important links.
+>> Alison Boyce
+>> =E2=80=A2 Lawyer
+>> =E2=80=A2 613=E2=80=91566=E2=80=912081
+>> Celebrating over 25 years serving the Ottawa community!
+>> [image: Mann Lawyers 25 years] <https://www.mannlawyers.com/>
+>> 11
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>  Holland
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>  Avenue,
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>  Suite
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>  300
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>> Ottawa,
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>  ON
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>   K1Y
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>>  4S1
+>> <https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,=
++ON+K1Y+4S1?entry=3Dgmail&source=3Dg>
+>> T: 613=E2=80=91722=E2=80=911500   F: 613=E2=80=91722=E2=80=917677
+>> *mannlawyers.com* <http://www.mannlawyers.com/>
+>> Offices in Ottawa and Perth
+>> [image: Mann Website] <http://www.mannlawyers.com/>
+>> [image: Facebook]
+>> <https://www.facebook.com/pages/Mann-Lawyers-LLP/107448242674497?ref=3Dh=
+l>
+>> [image: LinkedIn] <http://linkd.in/1CTRRnn>
+>> [image: Instagram] <https://www.instagram.com/mannlawyers/?hl=3Den>
+>> [image: Twitter] <https://twitter.com/MannLawyers>
+>> Please consider the environment before printing this e=E2=80=91mail.
+>>
+>> This e-mail message is intended for the indicated recipient only and may
+>> contain confidential information
+>> that is subject to solicitor-client privilege. If you have received this
+>> message in error, kindly advise the
+>> sender by reply e-mail or phone and destroy any copies in your possessio=
+n.
+>> <2021-10-20 Notice of Motion C. Holmes.pdf><2021-10-01 Affidavit of C.
+>> Holmes Final.pdf>
+>>
+>>
+>
+
+--0000000000002e9d2e05d3d149b8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thanks pease remind me what they are. Thanks.</div><div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu,=
+ Dec 23, 2021 at 9:44 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@iclou=
+d.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex"><div style=3D"word-wrap:break-word;line-break:after-white-space">H=
+i Cynthia,<div><br></div><div>Neither has changed.</div><div><br></div><div=
+>Thank you,</div><div><br></div><div>Darryl</div></div><div style=3D"word-w=
+rap:break-word;line-break:after-white-space"><div><br><div><br><blockquote =
+type=3D"cite"><div>On Dec 23, 2021, at 9:37 AM, Cynthia Holmes &lt;<a href=
+=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>=
+&gt; wrote:</div><br><div><div dir=3D"auto" style=3D"font-family:Helvetica;=
+font-size:12px;font-style:normal;font-variant-caps:normal;font-weight:norma=
+l;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:non=
+e;white-space:normal;word-spacing:0px;text-decoration:none">Thanks Darryl.<=
+/div><div dir=3D"auto" style=3D"font-family:Helvetica;font-size:12px;font-s=
+tyle:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:norm=
+al;text-align:start;text-indent:0px;text-transform:none;white-space:normal;=
+word-spacing:0px;text-decoration:none"><br></div><div dir=3D"auto" style=3D=
+"font-family:Helvetica;font-size:12px;font-style:normal;font-variant-caps:n=
+ormal;font-weight:normal;letter-spacing:normal;text-align:start;text-indent=
+:0px;text-transform:none;white-space:normal;word-spacing:0px;text-decoratio=
+n:none">What phone number or email can the girls contact you at for the Fac=
+eTime call at 10 am?</div><div dir=3D"auto" style=3D"font-family:Helvetica;=
+font-size:12px;font-style:normal;font-variant-caps:normal;font-weight:norma=
+l;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:non=
+e;white-space:normal;word-spacing:0px;text-decoration:none"><br></div><div =
+dir=3D"auto" style=3D"font-family:Helvetica;font-size:12px;font-style:norma=
+l;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;text-al=
+ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
+ng:0px;text-decoration:none">We are using an Apple device.</div><div dir=3D=
+"auto" style=3D"font-family:Helvetica;font-size:12px;font-style:normal;font=
+-variant-caps:normal;font-weight:normal;letter-spacing:normal;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;text-decoration:none"><br></div><div dir=3D"auto" style=3D"font-family:Hel=
+vetica;font-size:12px;font-style:normal;font-variant-caps:normal;font-weigh=
+t:normal;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;text-decoration:none">Cynthia=
+=C2=A0</div><div dir=3D"auto" style=3D"font-family:Helvetica;font-size:12px=
+;font-style:normal;font-variant-caps:normal;font-weight:normal;letter-spaci=
+ng:normal;text-align:start;text-indent:0px;text-transform:none;white-space:=
+normal;word-spacing:0px;text-decoration:none"><br></div><div dir=3D"auto" s=
+tyle=3D"font-family:Helvetica;font-size:12px;font-style:normal;font-variant=
+-caps:normal;font-weight:normal;letter-spacing:normal;text-align:start;text=
+-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-de=
+coration:none"><br></div><div style=3D"font-family:Helvetica;font-size:12px=
+;font-style:normal;font-variant-caps:normal;font-weight:normal;letter-spaci=
+ng:normal;text-align:start;text-indent:0px;text-transform:none;white-space:=
+normal;word-spacing:0px;text-decoration:none"><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 22, 2021 at 6:27 PM Dar=
+ryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">dar=
+rylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style=
+:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div style=3D"w=
+ord-wrap:break-word;line-break:after-white-space"><div><div style=3D"margin=
+:0px;font-stretch:normal;font-size:13px;line-height:normal;font-family:&quo=
+t;Helvetica Neue&quot;">Hi Cynthia,</div><div style=3D"margin:0px;font-stre=
+tch:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Ne=
+ue&quot;;min-height:15px"><br></div><div style=3D"margin:0px;font-stretch:n=
+ormal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&qu=
+ot;">It=E2=80=99s unfortunate that Ms. Boyce did not share the email and at=
+tachment included below prior to the motion. Ms. Boyce did not confirm rece=
+ipt of this and several other emails. I will ask Allison to ensure that Ms.=
+ Boyce is aware of this when she returns from holiday.</div><div style=3D"m=
+argin:0px;font-stretch:normal;font-size:13px;line-height:normal;font-family=
+:&quot;Helvetica Neue&quot;;min-height:15px"><br></div><div style=3D"margin=
+:0px;font-stretch:normal;font-size:13px;line-height:normal;font-family:&quo=
+t;Helvetica Neue&quot;">If you have any questions or concerns this note ple=
+ase let me know so that further misunderstanding can be avoided.</div><div =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;f=
+ont-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></div><div style=
+=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;font-f=
+amily:&quot;Helvetica Neue&quot;">Regards,</div><div style=3D"margin:0px;fo=
+nt-stretch:normal;font-size:13px;line-height:normal;font-family:&quot;Helve=
+tica Neue&quot;;min-height:15px"><br></div><div style=3D"margin:0px;font-st=
+retch:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica =
+Neue&quot;">Darryl</div></div><div><br><blockquote type=3D"cite"><div style=
+=3D"word-wrap:break-word;line-break:after-white-space"><div><br></div><div>=
+</div></div></blockquote></div></div><div style=3D"word-wrap:break-word;lin=
+e-break:after-white-space"><div><blockquote type=3D"cite"><div style=3D"wor=
+d-wrap:break-word;line-break:after-white-space"><div></div><div><br><blockq=
+uote type=3D"cite"><div>On Dec 6, 2021, at 4:39 PM, Darryl Ross &lt;<a href=
+=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank">darrylondunlin@gmail=
+.com</a>&gt; wrote:</div><br><div><div style=3D"word-wrap:break-word;line-b=
+reak:after-white-space">Dear Ms. Boyce,<div><br></div><div>I have attached =
+a note from my doctor dated Dec. 1st. I have also made plans to have him pr=
+ovide an updated note prior to the motion of Dec. 20.</div><div><br></div><=
+div>I have appointments coming up with other medical professionals prior to=
+ the motion and will provide them as available.=C2=A0</div><div><br></div><=
+div>I will be forwarding documents required by our current court order befo=
+re the upcoming motion.</div><div><br></div><div>I kindly request that Ms. =
+Holmes provide all documents regarding the orders being sought, as well as =
+documents providing information about our daughters that I have repeatedly =
+requested. I currently have unreasonably limited information about matters =
+concerning their well-being, care, etc.</div><div><br></div><div>Kindly pro=
+vide this information by Dec. 9.</div><div><br></div><div>As well, can you =
+please inform me how much time you have scheduled for this motion at your e=
+arliest convenience, but no later than Dec. 9.</div><div><br></div><div>Tha=
+nk-you,</div><div><br></div><div>Darryl<br><div></div></div></div><span id=
+=3D"m_1323725297225175089m_-6690672539435706678cid:82B3DB68-BDA5-4A72-A7A6-=
+0212DDF31947">&lt;D.R Letter.docx&gt;</span><div style=3D"word-wrap:break-w=
+ord;line-break:after-white-space"><div><div><br><blockquote type=3D"cite"><=
+div>On Oct 20, 2021, at 5:20 PM, Alison Boyce &lt;<a href=3D"mailto:Alison.=
+Boyce@mannlawyers.com" target=3D"_blank">Alison.Boyce@mannlawyers.com</a>&g=
+t; wrote:</div><br><div><div style=3D"font-family:Helvetica;font-size:12px;=
+font-style:normal;font-variant-caps:normal;font-weight:normal;letter-spacin=
+g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
+ormal;word-spacing:0px;text-decoration:none"><div style=3D"margin:0cm;font-=
+size:11pt;font-family:Calibri,sans-serif">Dear Mr. Ross,<u></u><u></u></div=
+><div style=3D"margin:0cm;font-size:11pt;font-family:Calibri,sans-serif"><u=
+></u>=C2=A0<u></u></div><div style=3D"margin:0cm;font-size:11pt;font-family=
+:Calibri,sans-serif">Enclosed, please find the following documents for the =
+motion returnable on<span>=C2=A0</span><b>December 20, 2021 at 10:00 a.m.<u=
+></u><u></u></b></div><div style=3D"margin:0cm;font-size:11pt;font-family:C=
+alibri,sans-serif"><b><u></u>=C2=A0<u></u></b></div><ol start=3D"1" type=3D=
+"1" style=3D"margin-bottom:0cm;margin-top:0cm"><li style=3D"margin:0cm;font=
+-size:11pt;font-family:Calibri,sans-serif">Notice of Motion (Form 14)<u></u=
+><u></u></li><li style=3D"margin:0cm;font-size:11pt;font-family:Calibri,san=
+s-serif">Affidavit in support of the motion (Form 14A)<u></u><u></u></li></=
+ol><div style=3D"margin:0cm;font-size:11pt;font-family:Calibri,sans-serif">=
+<u></u>=C2=A0<u></u></div><div style=3D"margin:0cm;font-size:11pt;font-fami=
+ly:Calibri,sans-serif">These documents are being served upon you pursuant t=
+o the Family Law Rules. Kindly confirm receipt.<u></u><u></u></div><div sty=
+le=3D"margin:0cm;font-size:11pt;font-family:Calibri,sans-serif"><u></u>=C2=
+=A0<u></u></div><div style=3D"margin:0cm;font-size:11pt;font-family:Calibri=
+,sans-serif">I will respond to your correspondence of October 18<sup>th</su=
+p><span>=C2=A0</span>under separate cover.<u></u><u></u></div><div style=3D=
+"margin:0cm;font-size:11pt;font-family:Calibri,sans-serif"><u></u>=C2=A0<u>=
+</u></div><div style=3D"margin:0cm;font-size:11pt;font-family:Calibri,sans-=
+serif">Sincerely,<u></u><u></u></div><div style=3D"margin:0cm;font-size:11p=
+t;font-family:Calibri,sans-serif">Alison<span>=C2=A0</span><u></u><u></u></=
+div></div><div dir=3D"ltr" style=3D"font-family:Helvetica;font-size:12px;fo=
+nt-style:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:=
+normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
+mal;word-spacing:0px;text-decoration:none;direction:ltr"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:881px"><tbody><tr styl=
+e=3D"color:rgb(0,0,1);font-size:11px;font-style:normal;font-weight:400;whit=
+e-space:nowrap"><td align=3D"left" style=3D"vertical-align:top;font-family:=
+Arial">As=C2=A0an=C2=A0essential=C2=A0service,=C2=A0we=C2=A0are=C2=A0still=
+=C2=A0operating=C2=A0and=C2=A0are=C2=A0here=C2=A0to=C2=A0assist=C2=A0you,=
+=C2=A0while=C2=A0respecting=C2=A0Provincial=C2=A0guidelines=C2=A0to=C2=A0en=
+sure=C2=A0the=C2=A0health=C2=A0and=C2=A0safety=C2=A0of=C2=A0our=C2=A0staff=
+=C2=A0and=C2=A0community.<span style=3D"font-family:remialcxesans;font-size=
+:1px;color:rgb(255,255,255);line-height:1px">=E2=80=8B</span><br>Please=C2=
+=A0visit=C2=A0our=C2=A0<span style=3D"color:rgb(5,84,248);font-weight:700">=
+<a href=3D"https://www.mannlawyers.com/news-events-2-2/covid-19" id=3D"m_13=
+23725297225175089m_-6690672539435706678LPlnk689713" style=3D"text-decoratio=
+n:none;color:rgb(5,84,248)" target=3D"_blank"><strong style=3D"font-weight:=
+700">COVID-19=C2=A0Resource=C2=A0page</strong></a></span>=C2=A0for=C2=A0ans=
+wers=C2=A0to=C2=A0frequently=C2=A0asked=C2=A0questions,=C2=A0other=C2=A0use=
+ful=C2=A0information=C2=A0and=C2=A0important=C2=A0links.</td></tr><tr style=
+=3D"font-size:0px"><td align=3D"left" style=3D"vertical-align:top"><table c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tb=
+ody><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:20px 0p=
+x 0px;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=
+=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"font-size:0px;color:rgb(103,0,0);font-style:no=
+rmal;font-weight:700;white-space:nowrap"><tbody><tr style=3D"font-size:14.6=
+7px"><td align=3D"left" style=3D"vertical-align:top;font-family:Arial">Alis=
+on=C2=A0Boyce</td><td align=3D"left" style=3D"vertical-align:top;font-size:=
+0px"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-=
+size:0px;color:rgb(103,0,0);font-style:normal;font-weight:400;white-space:n=
+owrap"><tbody><tr style=3D"font-size:14.67px"><td align=3D"left" style=3D"p=
+adding:0px 5px;vertical-align:top;font-family:Arial">=E2=80=A2</td></tr></t=
+body></table></td><td align=3D"left" style=3D"vertical-align:top;font-famil=
+y:Arial">Lawyer</td><td align=3D"left" style=3D"vertical-align:top;font-siz=
+e:0px"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"fon=
+t-size:0px;color:rgb(103,0,0);font-style:normal;font-weight:400;white-space=
+:nowrap"><tbody><tr style=3D"font-size:14.67px"><td align=3D"left" style=3D=
+"padding:0px 5px;vertical-align:top;font-family:Arial">=E2=80=A2</td></tr><=
+/tbody></table></td><td align=3D"left" style=3D"vertical-align:top;font-fam=
+ily:Arial">613=E2=80=91566=E2=80=912081</td></tr></tbody></table></td></tr>=
+</tbody></table></td></tr></tbody></table></td></tr><tr style=3D"font-size:=
+0px"><td align=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"=
+0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tbody><tr style=
+=3D"font-size:0px"><td align=3D"left" style=3D"padding:15px 0px;vertical-al=
+ign:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"w=
+hite-space:normal;color:rgb(127,127,127);font-size:14.67px;font-family:Cali=
+bri,Arial,sans-serif;font-weight:700;font-style:italic;text-align:left;widt=
+h:500px"><tbody><tr style=3D"font-size:14.67px"><td style=3D"font-family:Ar=
+ial,sans-serif"><span style=3D"background-color:rgb(255,255,255)">Celebrati=
+ng over 25=C2=A0years=C2=A0serving=C2=A0the=C2=A0Ottawa=C2=A0community!</sp=
+an><br></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr st=
+yle=3D"font-size:0px"><td align=3D"left" style=3D"vertical-align:top"><tabl=
+e cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0px;l=
+ine-height:normal"><tbody><tr style=3D"font-size:0px"><td align=3D"left" st=
+yle=3D"padding:5px;vertical-align:top"><a href=3D"https://www.mannlawyers.c=
+om/" id=3D"m_1323725297225175089m_-6690672539435706678LPlnk689713" style=3D=
+"text-decoration:none" target=3D"_blank"><img src=3D"https://www.mannlawyer=
+s.com/wp-content/uploads/2018/02/mann-lawyers-logo.png" border=3D"0" title=
+=3D"Mann Lawyers 25 years" alt=3D"Mann Lawyers 25 years" style=3D"font-size=
+:12px"></a></td></tr></tbody></table></td></tr><tr style=3D"font-size:0px">=
+<td align=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tbody><tr style=3D"fo=
+nt-size:0px"><td align=3D"center" style=3D"background-color:rgb(103,0,0);pa=
+dding:2px;vertical-align:middle"><table cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0" style=3D"white-space:nowrap;color:rgb(255,255,255);font-size:=
+14.67px;font-family:Arial;font-weight:400;font-style:normal;text-align:cent=
+er;width:295px"><tbody><tr style=3D"font-size:14.67px"><td style=3D"font-fa=
+mily:Arial"><a href=3D"https://www.google.com/maps/search/11+Holland+Avenue=
+,+Suite+300+Ottawa,+ON+K1Y+4S1?entry=3Dgmail&amp;source=3Dg">11</a>=C2=A0<a=
+ href=3D"https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ot=
+tawa,+ON+K1Y+4S1?entry=3Dgmail&amp;source=3Dg">Holland</a>=C2=A0<a href=3D"=
+https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,+ON+=
+K1Y+4S1?entry=3Dgmail&amp;source=3Dg">Avenue,</a>=C2=A0<a href=3D"https://w=
+ww.google.com/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,+ON+K1Y+4S1?e=
+ntry=3Dgmail&amp;source=3Dg">Suite</a>=C2=A0<a href=3D"https://www.google.c=
+om/maps/search/11+Holland+Avenue,+Suite+300+Ottawa,+ON+K1Y+4S1?entry=3Dgmai=
+l&amp;source=3Dg">300</a><br><a href=3D"https://www.google.com/maps/search/=
+11+Holland+Avenue,+Suite+300+Ottawa,+ON+K1Y+4S1?entry=3Dgmail&amp;source=3D=
+g">Ottawa,</a>=C2=A0<a href=3D"https://www.google.com/maps/search/11+Hollan=
+d+Avenue,+Suite+300+Ottawa,+ON+K1Y+4S1?entry=3Dgmail&amp;source=3Dg">ON</a>=
+=C2=A0=C2=A0<a href=3D"https://www.google.com/maps/search/11+Holland+Avenue=
+,+Suite+300+Ottawa,+ON+K1Y+4S1?entry=3Dgmail&amp;source=3Dg">K1Y</a>=C2=A0<=
+a href=3D"https://www.google.com/maps/search/11+Holland+Avenue,+Suite+300+O=
+ttawa,+ON+K1Y+4S1?entry=3Dgmail&amp;source=3Dg">4S1</a><br></td></tr></tbod=
+y></table></td><td align=3D"center" style=3D"background-color:rgb(191,191,1=
+91);padding:0px;vertical-align:middle"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"font-size:0px"><tbody><tr style=3D"font-size:0=
+px"><td align=3D"center" style=3D"padding:2px;vertical-align:middle"><table=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:295px;font=
+-size:0px;color:rgb(255,255,255);font-style:normal;font-weight:400;white-sp=
+ace:nowrap"><tbody><tr style=3D"font-size:14.67px"><td align=3D"center" sty=
+le=3D"vertical-align:top;font-family:Arial">T:=C2=A0613=E2=80=91722=E2=80=
+=911500=C2=A0=C2=A0=C2=A0F:=C2=A0613=E2=80=91722=E2=80=917677<br></td></tr>=
+<tr style=3D"font-size:14.67px;color:rgb(36,19,202)"><td align=3D"center" s=
+tyle=3D"vertical-align:middle;font-family:Arial"><span style=3D"text-decora=
+tion:underline"><a href=3D"http://www.mannlawyers.com/" id=3D"m_13237252972=
+25175089m_-6690672539435706678LPlnk689713" style=3D"text-decoration:underli=
+ne;color:rgb(36,19,202)" target=3D"_blank"><strong style=3D"font-weight:400=
+">mannlawyers.com</strong></a></span></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr><tr style=3D"font-size:0px"><td colspan=3D"2" align=
+=3D"center" style=3D"padding:0px;vertical-align:top"><table cellpadding=3D"=
+0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tbody><tr style=
+=3D"font-size:0px"><td align=3D"center" style=3D"padding:5px 0px 0px;vertic=
+al-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"white-space:nowrap;color:rgb(0,0,1);font-size:14.67px;font-family:Arial=
+;font-weight:400;font-style:italic;text-align:center;width:0px"><tbody><tr =
+style=3D"font-size:14.67px"><td style=3D"font-family:Arial">Offices=C2=A0in=
+=C2=A0Ottawa=C2=A0and=C2=A0Perth<br></td></tr></tbody></table></td></tr></t=
+body></table></td></tr></tbody></table></td></tr><tr style=3D"font-size:0px=
+"><td align=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"font-size:0px"><tbody><tr style=3D"=
+font-size:0px"><td align=3D"left" style=3D"padding:10px 0px 0px;vertical-al=
+ign:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"f=
+ont-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" style=
+=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"font-size:0px"><tbody><tr style=3D"font-size:0px"><td align=
+=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr s=
+tyle=3D"font-size:0px"><td align=3D"left" style=3D"padding:3px;vertical-ali=
+gn:top"><a href=3D"http://www.mannlawyers.com/" id=3D"m_1323725297225175089=
+m_-6690672539435706678LPlnk689713" style=3D"text-decoration:none" target=3D=
+"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/MannLawyers=
+_Icon.png" border=3D"0" title=3D"Mann Website" alt=3D"Mann Website" style=
+=3D"font-size:12px"></a></td></tr></tbody></table></td><td align=3D"left" s=
+tyle=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr style=3D"fon=
+t-size:0px"><td align=3D"left" style=3D"padding:3px;vertical-align:top"><a =
+href=3D"https://www.facebook.com/pages/Mann-Lawyers-LLP/107448242674497?ref=
+=3Dhl" id=3D"m_1323725297225175089m_-6690672539435706678LPlnk689713" style=
+=3D"text-decoration:none" target=3D"_blank"><img src=3D"https://www.webmail=
+.mannlawyers.com/images/Facebook_Icon.png" border=3D"0" title=3D"Facebook" =
+alt=3D"Facebook" style=3D"font-size:12px"></a></td></tr></tbody></table></t=
+d><td align=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"font-size:0px;line-height:normal"><=
+tbody><tr style=3D"font-size:0px"><td align=3D"left" style=3D"padding:3px;v=
+ertical-align:top"><a href=3D"http://linkd.in/1CTRRnn" id=3D"m_132372529722=
+5175089m_-6690672539435706678LPlnk689713" style=3D"text-decoration:none" ta=
+rget=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/Link=
+edIn_Icon.png" border=3D"0" title=3D"LinkedIn" alt=3D"LinkedIn" style=3D"fo=
+nt-size:12px"></a></td></tr></tbody></table></td><td align=3D"left" style=
+=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr style=3D"font-=
+size:0px"><td align=3D"left" style=3D"padding:3px;vertical-align:top"><a hr=
+ef=3D"https://www.instagram.com/mannlawyers/?hl=3Den" id=3D"m_1323725297225=
+175089m_-6690672539435706678LPlnk689713" style=3D"text-decoration:none" tar=
+get=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/Insta=
+gram_Icon.png" border=3D"0" title=3D"Instagram" alt=3D"Instagram" style=3D"=
+font-size:12px"></a></td></tr></tbody></table></td><td align=3D"left" style=
+=3D"vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"font-size:0px;line-height:normal"><tbody><tr style=3D"font-=
+size:0px"><td align=3D"left" style=3D"padding:3px;vertical-align:top"><a hr=
+ef=3D"https://twitter.com/MannLawyers" id=3D"m_1323725297225175089m_-669067=
+2539435706678LPlnk689713" style=3D"text-decoration:none" target=3D"_blank">=
+<img src=3D"https://www.webmail.mannlawyers.com/images/Twitter_Icon.png" bo=
+rder=3D"0" title=3D"Twitter" alt=3D"Twitter" style=3D"font-size:12px"></a><=
+/td></tr></tbody></table></td><td align=3D"right" style=3D"vertical-align:m=
+iddle"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"fon=
+t-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"right" style=3D=
+"padding:0px 0px 0px 3px;vertical-align:middle"><table cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0" style=3D"white-space:nowrap;color:rgb(20,138,2=
+6);font-size:14.67px;font-family:Calibri,Arial,sans-serif;font-weight:400;f=
+ont-style:normal;text-align:left"><tbody><tr style=3D"font-size:12px"><td s=
+tyle=3D"font-family:Calibri,Arial,sans-serif">Please=C2=A0consider=C2=A0the=
+=C2=A0environment=C2=A0before=C2=A0printing=C2=A0this=C2=A0e=E2=80=91mail.<=
+br></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></=
+table></td></tr><tr style=3D"font-size:0px"><td align=3D"left" style=3D"ver=
+tical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" st=
+yle=3D"width:600px;font-size:0px"><tbody><tr style=3D"font-size:0px"><td st=
+yle=3D"padding:10px 0px 0px;border-style:none none solid;border-bottom-widt=
+h:3px;border-bottom-color:rgb(103,0,0)">=C2=A0</td></tr><tr style=3D"font-s=
+ize:0px"><td align=3D"left" style=3D"padding:0px;vertical-align:top"><table=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:600px;font=
+-size:0px"><tbody><tr style=3D"font-size:0px"><td align=3D"left" style=3D"p=
+adding:10px 0px 20px;vertical-align:top"><table cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" style=3D"white-space:normal;color:rgb(146,145,145);fo=
+nt-size:14.67px;font-family:Calibri,Arial,sans-serif;font-weight:400;font-s=
+tyle:normal;text-align:justify;width:600px"><tbody><tr style=3D"font-size:1=
+0.67px"><td style=3D"font-family:Arial">This e-mail message is intended for=
+ the indicated recipient only and may contain confidential information<br>t=
+hat is subject to solicitor-client privilege. If you have received this mes=
+sage in error, kindly advise the<br>sender by reply e-mail or phone and des=
+troy any copies in your possession.<br></td></tr></tbody></table></td></tr>=
+</tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></=
+tr></tbody></table></td></tr></tbody></table></div><span id=3D"m_1323725297=
+225175089m_-6690672539435706678cid:95AC7C76-0733-4AE9-9A49-DE2F7DA38BE4">&l=
+t;2021-10-20 Notice of Motion C. Holmes.pdf&gt;</span><span id=3D"m_1323725=
+297225175089m_-6690672539435706678cid:BFE431F3-E6E5-4065-A63E-B430C213351D"=
+>&lt;2021-10-01 Affidavit of C. Holmes Final.pdf&gt;</span></div></blockquo=
+te></div></div></div></div></blockquote></div></div></blockquote></div></di=
+v></blockquote></div></div></div></blockquote></div><br></div></div></block=
+quote></div></div>
+
+--0000000000002e9d2e05d3d149b8--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>961550</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1640270714</integer>
+	<key>flags</key>
+	<integer>25770064901</integer>
+	<key>remote-id</key>
+	<string>14999</string>
+</dict>
+</plist>

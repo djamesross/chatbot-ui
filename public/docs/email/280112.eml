@@ -1,0 +1,411 @@
+17454     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01061101.me.com by p72-mailgateway-smtp-7b6c57bcd9-mdvpp (mailgateway 2302B215)
+	with SMTP id 6ac513e4-a82a-4007-a372-8e23f350eb04 
+	for <darrylross@icloud.com>; Thu, 27 Oct 2022 14:59:55 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 6ac513e4-a82a-4007-a372-8e23f350eb04
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	by qs51p00im-qukt01061101.me.com (Postfix) with ESMTPS id D0D062500201
+	for <darrylross@icloud.com>; Thu, 27 Oct 2022 14:59:52 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQUhEVxBVWg1IWwsWEVwbBxFI
+ SxFMARgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9SRlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdWY6H0gOJT0IBxsYOlckIUVxKiAmEU4+ZGAHGEoBNE14Yi06PTkV
+ PFMBNDQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kCxi9wJj
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.41; helo=mail-ed1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id r14so3224220edc.7
+        for <darrylross@icloud.com>; Thu, 27 Oct 2022 07:59:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eRlw8Kl+LR7Abd5IQqxMZ3fYfCcXVA/OWEueWBrxx/I=;
+        b=kCxi9wJjnb2iIOJbMnJ8ogJi3gTZaHWSJHVaoiB/qdad1yHUMY3nmt6HLylR19kwQa
+         vaIz6003PgfDQePbo/PdAAiq33umRD0brDldHDq2X0p2VNkO7jbtJmzt/7ERZFkhyt/F
+         NcJdfM62O3j6+X50zF5GljC4QIudPFC6R5/Oj84vZ0avPzSP7mYG2N6XZv/cxWiLY6p9
+         P9Vf8w4RVmrp7Jnv/DvHNrvAeiXbVPCvDoNvGUpKFHjhZn2hndbRVh8eCBcVVJtJ9TwN
+         7LhRcjpwZzRu/t2Y3HQEsAVMOnxR+Y4Iev7lcDGmWXxYALiYqa/O/zjIckrKH3u6B7dr
+         BDRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eRlw8Kl+LR7Abd5IQqxMZ3fYfCcXVA/OWEueWBrxx/I=;
+        b=5e5U30IaXRg2a3pRehFfmm3yZLvNVNiynWB7xzQ2WV2MEd+9TWJHBtrwbmu5ew49RH
+         iP66Vn7WrkuEdoutesGA5h1yDrqW9d1bYvYaZi17I+45pC6i6EEU5WkfvbY5IveYeEgl
+         84t6jKB90kcWfy5frgfR9TETuUV0hB4lO4UCFmWO5GaZIyYi8xbQQmAlUMQK/YM1FE/t
+         YKmEOLmSAXz+//yzdOrL0ZuaHPl+V+C7fMFYsoTLJSMOjnnVBOANkr+bWWrSljgCO4V0
+         1aJ7xHcWetb8hvGna/UpZX5bdluh6s23hA+xql5UQ01NM9UWQMFC36AjFWXsZRFHXLG0
+         17wg==
+X-Gm-Message-State: ACrzQf1hLj4Kjdi4Kume4Rrd4QUp0dRSxe7j1uIdtO3W0rBzlbo6AaQR
+	rCK69zwUcjOlrU3mP7mPiPPT5Wrsny5yjrgv11Yuf5MS
+X-Google-Smtp-Source: AMsMyM7mh7ZcRB0IQcHLGYr7qml83XAEG43Ov1UPtTRScvFpL2npuCKHjjoJXF4l0em4FXanUAzWX3E+RqFXMnkkrDs=
+X-Received: by 2002:a05:6402:d05:b0:462:9b84:3299 with SMTP id
+ eb5-20020a0564020d0500b004629b843299mr2650849edb.270.1666882791626; Thu, 27
+ Oct 2022 07:59:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <9F0C880C-A30C-43B7-85CE-6C07F3086C19@icloud.com>
+In-Reply-To: <9F0C880C-A30C-43B7-85CE-6C07F3086C19@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 27 Oct 2022 10:59:40 -0400
+Message-ID: <CAFnbyREPXj1hRE81ymC1SYuGHU_w9FTVem3gC5HTOOD_bDc7VA@mail.gmail.com>
+Subject: Re: Sunday, Parenting Time
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_673E8212-433D-4C26-9EA4-534C85BDB501"
+X-MANTSH: 1TEIXW1kfGFoaGkNHB1tfQV4aGBoTGxkaGxEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcbU0wYeRoHaxJYTBx1fR9
+ GTnIdX1B4TWV4WB16XRlISREKWFwXGQQaBB4TBx0YSR8fHUkZBRsaGgQSGAQbHxIEGBIQGx4aH
+ xoRCl5ZF0tBb21vEQpNXBcdGxEKTFoXaGtNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBgaEgQeGxE
+ KQl4XGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoE
+ ht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEkt
+ pSREKQkAXaHJAYkwBSxlCBQERCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdvbHxGY
+ X5mHkxOWhAZGhEKcGgXbWtoaFlsHGBrbhoQGRoRCnBoF2JCZRp6GFxaUmFsEBkaEQpwaBdgXEA
+ YUGllTWBYHRAZGhEKcGgXbm5YR3NkQEYYBWIQGRoRCnBjF2VAYnJZcm54S0RgEBkaEQpwbBdmR
+ msfGFttX0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: 1yf2S0-A8rf6_W5ldX7uzRgORr7Pw3bc
+X-Proofpoint-GUID: 1yf2S0-A8rf6_W5ldX7uzRgORr7Pw3bc
+
+
+--Apple-Mail=_673E8212-433D-4C26-9EA4-534C85BDB501
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Hi Darryl,
+
+Thanks for your email, going forward I am comfortable with extending the
+supervised visit on Sunday from noon to 6 pm. This may have to slightly
+change depending on soccer times on Sunday morning for the girls. I =
+should
+have a better idea early next month.
+
+I know the girls are enjoying their time with you both, which gives them
+and myself a lot of joy. At this time I am only comfortable with =
+supervised
+visits.
+
+Thank you.
+
+Cynthia
+
+On Wed, Oct 26, 2022 at 11:34 AM Darryl Ross <darrylross@icloud.com> =
+wrote:
+
+> Hi Cynthia,
+>
+>
+> I wanted to give you an update on how parenting time is going and =
+discuss
+> extending Sunday visits as first step forward. We=E2=80=99ve had =
+successful visits
+> for 3 and a half months, as of this week.
+>
+>
+> Right from the beginning both Char and Ali have been comfortable and =
+enjoy
+> their time with me. I have attached a few pictures of them from July,
+> August and September. They have been asking for longer visits so that =
+we
+> can do more - Char really enjoys cooking with me, Ali has been =
+teaching me
+> all about Minecraft, and there are things that they=E2=80=99ve asked =
+to do like
+> walk to a park and watch a movie together. And they=E2=80=99re always =
+coming up
+> with games or challenges (like bobbing for apples!) There a few places =
+to
+> explore around here as well. Charlotte wants to go to the fabric store =
+as
+> an example.
+>
+>
+> My mom has told me on several occasions how comfortable and happy they
+> are, whether it=E2=80=99s cooking, playing games, or just relaxing and =
+talking. In
+> her words, it=E2=80=99s been a joy to see how happy they are, and how =
+much they
+> love and trust me. You are welcome to contact her if you have =
+questions or
+> want more details.
+>
+>
+> For this Sunday they want to carve pumpkins, as well as cook lasagna =
+and
+> do a few fun halloween science experiments. For this Sunday a few more
+> hours would be enough time. They both want the extra time and have =
+asked
+> for it. I=E2=80=99m suggesting noon to 6 pm. Please let me know if =
+that would work.
+>
+>
+> Separately from next Sunday I would also like to extend Sunday visits
+> going forward and move to one unsupervised visit as a step forward. =
+All of
+> the visits for the last 3 months have gone perfectly well. The two
+> conditions that the judge set were the girls comfort and my continued
+> health. The girls are extremely comfortable, and I have been =
+successfully
+> in recovery for more than 18 months. Before we make a decision I will =
+ask
+> Dr. Bowling to provide an updated note when I see him later this week =
+and
+> send a copy to you to verify this, and for your records.
+>
+>
+> Please let me know about this Sunday as soon as you can so I can =
+confirm
+> with my mom. Discussing extending a visit and having one unsupervised =
+visit
+> a week can wait until I send you an updated Dr.s=E2=80=99 note and =
+you=E2=80=99ve had a
+> change to talk to the girls.
+>
+>
+> Darryl
+>
+> [image: IMG_2671.jpeg][image: IMG_2624.jpeg][image: =
+IMG_2556.jpeg][image:
+> IMG_2555.jpeg][image: IMG_3166.jpeg]
+> [image: IMG_3171.jpeg]
+> [image: IMG_3057.jpeg]
+> [image: IMG_2694.jpeg][image: IMG_3280.jpeg]
+>
+
+--Apple-Mail=_673E8212-433D-4C26-9EA4-534C85BDB501
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56"
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Thanks for your email, going forward I am comfortable with =
+extending the supervised visit on Sunday from noon to 6 pm. This may =
+have to slightly change depending on soccer times on Sunday morning for =
+the girls. I should have a better idea early next month.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">I know the girls are enjoying =
+their time with you both, which gives them and myself a lot of joy. At =
+this time I am only comfortable with supervised visits.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Thank you.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div><div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct =
+26, 2022 at 11:34 AM Darryl Ross &lt;<a =
+href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex"><div =
+style=3D"line-break:after-white-space"><div><p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">Hi Cynthia,</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">I wanted to give you an update =
+on how parenting time is going and discuss extending Sunday visits as =
+first step forward.=C2=A0We=E2=80=99ve had successful visits for 3 and a =
+half months, as of this week.</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">Right from the beginning both =
+Char and Ali have been comfortable and enjoy their time with me. I have =
+attached a few pictures of them from July, August and September. They =
+have been asking for longer visits so that we can do more - Char really =
+enjoys cooking with me, Ali has been teaching me all about Minecraft, =
+and there are things that they=E2=80=99ve asked to do like walk to a =
+park and watch a movie together. And they=E2=80=99re always coming up =
+with games or challenges (like bobbing for apples!) There a few places =
+to explore around here as well. Charlotte wants to go to the fabric =
+store as an example.</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">My mom has told me on several =
+occasions how comfortable and happy they are, whether it=E2=80=99s =
+cooking, playing games, or just relaxing and talking. In her words, =
+it=E2=80=99s been a joy to see how happy they are, and how much they =
+love and trust me. You are welcome to contact her if you have questions =
+or want more details.</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">For this Sunday they want to =
+carve pumpkins, as well as cook lasagna and do a few fun halloween =
+science experiments. For this Sunday a few more hours would be enough =
+time. They both want the extra time and have asked for it. I=E2=80=99m =
+suggesting noon to 6 pm. Please let me know if that would work.</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">Separately from next Sunday I =
+would also like to extend Sunday visits going forward and move to one =
+unsupervised visit as a step forward. All of the visits for the last 3 =
+months have gone perfectly well. The two conditions that the judge set =
+were the girls comfort and my continued health. The girls are extremely =
+comfortable, and I have been successfully in recovery for more than 18 =
+months. Before we make a decision I will ask Dr. Bowling to provide an =
+updated note when I see him later this week and send a copy to you to =
+verify this, and for your records.</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;">Please let me know about this =
+Sunday as soon as you can so I can confirm with my mom. Discussing =
+extending a visit and having one unsupervised visit a week can wait =
+until I send you an updated Dr.s=E2=80=99 note and you=E2=80=99ve had a =
+change to talk to the girls.</p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></p>
+<p =
+style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;=
+font-family:&quot;Helvetica =
+Neue&quot;">Darryl</p></div><div><br></div><div><img =
+src=3D"cid:18419f108bab528a8ed1" alt=3D"IMG_2671.jpeg" =
+style=3D"width:640px;max-width:100%"><img src=3D"cid:18419f108bacd1b59eb2"=
+ alt=3D"IMG_2624.jpeg" style=3D"width:640px;max-width:100%"><img =
+src=3D"cid:18419f108ba7ce7eeef3" alt=3D"IMG_2556.jpeg" =
+style=3D"width:480px;max-width:100%"><img src=3D"cid:18419f108ba323dc9ee4"=
+ alt=3D"IMG_2555.jpeg" style=3D"width:480px;max-width:100%"><img =
+src=3D"cid:18419f108ba1afea0ed5" alt=3D"IMG_3166.jpeg" =
+style=3D"width:640px;max-width:100%"></div><div><img =
+src=3D"cid:18419f108ba9a7b0de96" alt=3D"IMG_3171.jpeg" =
+style=3D"width:640px;max-width:100%"></div><div><img =
+src=3D"cid:18419f108baace478ec7" alt=3D"IMG_3057.jpeg" =
+style=3D"width:480px;max-width:100%"></div><div><img =
+src=3D"cid:18419f108ba7ec563f28" alt=3D"IMG_2694.jpeg" =
+style=3D"width:480px;max-width:100%"><img src=3D"cid:18419f108ba89535ea9" =
+alt=3D"IMG_3280.jpeg" =
+style=3D"width:480px;max-width:100%"></div></div></blockquote></div></div>=
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_2694.jpeg
+Content-Type: image/jpeg;
+	name="IMG_2694.jpeg"
+Content-Id: <18419f108ba7ec563f28>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_3166.jpeg
+Content-Type: image/jpeg;
+	name="IMG_3166.jpeg"
+Content-Id: <18419f108ba1afea0ed5>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_2624.jpeg
+Content-Type: image/jpeg;
+	name="IMG_2624.jpeg"
+Content-Id: <18419f108bacd1b59eb2>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_3280.jpeg
+Content-Type: image/jpeg;
+	name="IMG_3280.jpeg"
+Content-Id: <18419f108ba89535ea9>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_2671.jpeg
+Content-Type: image/jpeg;
+	name="IMG_2671.jpeg"
+Content-Id: <18419f108bab528a8ed1>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_2556.jpeg
+Content-Type: image/jpeg;
+	name="IMG_2556.jpeg"
+Content-Id: <18419f108ba7ce7eeef3>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_3171.jpeg
+Content-Type: image/jpeg;
+	name="IMG_3171.jpeg"
+Content-Id: <18419f108ba9a7b0de96>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_3057.jpeg
+Content-Type: image/jpeg;
+	name="IMG_3057.jpeg"
+Content-Id: <18419f108baace478ec7>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+	filename=IMG_2555.jpeg
+Content-Type: image/jpeg;
+	name="IMG_2555.jpeg"
+Content-Id: <18419f108ba323dc9ee4>
+
+
+--Apple-Mail=_1771AF8A-D3B1-44A2-BFA9-32E7EE631E56--
+
+--Apple-Mail=_673E8212-433D-4C26-9EA4-534C85BDB501--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1002132</integer>
+	<key>date-last-viewed</key>
+	<integer>1741423561</integer>
+	<key>date-received</key>
+	<integer>1666882795</integer>
+	<key>flags</key>
+	<integer>25770009985</integer>
+	<key>remote-id</key>
+	<string>12242</string>
+</dict>
+</plist>

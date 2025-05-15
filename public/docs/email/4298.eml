@@ -1,0 +1,732 @@
+35597     
+Return-path: <INeufeld@cbihealth.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin035.me.com by p72-mailgateway-smtp-584cf58857-68bt6 (mailgateway 2301B253)
+	with SMTP id f71ddf64-f433-46f6-ad47-cdb9f2525601 
+	for <darrylross@icloud.com>; Mon, 17 Oct 2022 17:07:19 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: f71ddf64-f433-46f6-ad47-cdb9f2525601
+Received: from MX.CBI.CA (mx.cbi.ca [184.150.238.238])
+	by pv33p00im-smtpin035.me.com (Postfix) with ESMTPS id 687A74A68B9
+	for <darrylross@icloud.com>; Mon, 17 Oct 2022 17:07:15 +0000 (UTC)
+X-ICL-SCORE: 3.3220330300
+X-ICL-INFO: GAtbVUseBVBHSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERD42VUMEEBUCNxtSXwoQ
+ GAoDEB5VA1dZABNFElUAHBEDFhREXkwWGERXC1lGX1dIXkNWAQNSW0tVT1YCBVpXWQ4SFF8LQDgh
+ SDQ6eRghNFtGBwxCC0AYAUgUGlkYARRbRhMcDRQXGxIIGA9eFEIYEAJKWgxnIEQpNEdJfXRQTUlX
+ QUpzcCNNTVBDO3Z3V0BMVzNIBgYgMEtfTjhhdFMlK1ZGNXIEWkVISDQ5fmYwMUlXWShieSZbNjMj
+ NH95KVs6KTpGEhYQFkREExlCRBsZCwkEC3BfARkWExNWU1kPVw==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=cbihealth.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=cbihealth.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com; dkim=none
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of INeufeld@cbihealth.ca designates 184.150.238.238 as permitted sender) smtp.mailfrom=INeufeld@cbihealth.ca
+Received-SPF: pass (spf.icloud.com: domain of INeufeld@cbihealth.ca designates 184.150.238.238 as permitted sender) receiver=spf.icloud.com; client-ip=184.150.238.238; helo=MX.CBI.CA; envelope-from=INeufeld@cbihealth.ca
+Authentication-Results: SPAMMKM01.CBI.COM;
+        x-trusted-ip=pass
+Received: from EXCHMKM04.CBI.com (exchmkm04.cbi.com [10.10.84.36])
+	by SPAMMKM01.CBI.COM (Postfix) with ESMTPS id 756F4A50F29
+	for <darrylross@icloud.com>; Mon, 17 Oct 2022 13:07:13 -0400 (EDT)
+Received: from EXCHMKM06.CBI.COM (10.10.88.133) by EXCHMKM04.CBI.com
+ (10.10.84.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2375.24; Mon, 17 Oct
+ 2022 13:07:12 -0400
+Received: from CAN01-YQB-obe.outbound.protection.outlook.com (10.10.82.10) by
+ EXCHMKM06.CBI.COM (10.10.88.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24 via Frontend
+ Transport; Mon, 17 Oct 2022 13:07:12 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ln05/TRaPep0Qdg/P8UgawA+rrRSfoWRuDFfiHQMxq7m+Qlef84vdD2Z9dCFh86t/Tg3ernBKzmFyit8XI0fOzwTAN6p23Go0GVSLgqkef6WdWg4rTaRoxXFCspbvT68+Wr5ONY+2C1qy/QhKR/KZj/3II8Jbr7sKoFgd+cQQd1RB/u7nMbjMY7lH+LhLwQ3WJfTU7ooghtFOQUxX1lRQSC33gMoxwoBEGH1ha1gh+vOO/Z1drwk96sHdrzQFUnQfI9Elyaxc2Ehs/fu9QDkRWj1QdD9kV2c3WU2rrr3p1W2sAaMovTLdb5ZoPHBl3F3I0kLKdHiPtVNalADseM6jA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A+9e0J/um3dJWPgFH9gpqEG6URpersNwpq58WPjm3Pw=;
+ b=Sn47gVO5jUEzP1nZwLvMxi94LYtLPbG+1Nd4t7CizBQRp76JM2ZGe6FwkggLT20/23IAmzZukX/s8C3YitEg3DwTUjmwMYnh2gpmcKW4bMCzJCJC7Gl8dKay/SQNMI1UVOfbK8zvQR1tfUulkhdIwFORfuzgt8Gu+qUYvbLhz1x0hAAO6Sj4KT/RxaF/yCfRgF/mzW8oPIldZLKl5Uha7aHrjfRrrcC1Wbv+rvDx/IBBLl313Xn/GwV53K8OrAJDJ7dec+Fb3Oweq4D7X7Q3eCJcYnq/i4rP0DR9bfXO2NhYeRrJtbutGj3QErfHEoGc2AVPmO4BXXyNArSPxlVzaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cbihealth.ca; dmarc=pass action=none header.from=cbihealth.ca;
+ dkim=pass header.d=cbihealth.ca; arc=none
+Received: from QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:2f::26)
+ by YQXPR01MB6185.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:3f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Mon, 17 Oct
+ 2022 17:07:11 +0000
+Received: from QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::759f:611d:d876:3d6c]) by QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::759f:611d:d876:3d6c%5]) with mapi id 15.20.5723.033; Mon, 17 Oct 2022
+ 17:07:11 +0000
+From: Ingrid Neufeld <INeufeld@cbihealth.ca>
+To: Darryl Ross <darrylross@icloud.com>, Prateek Gharti Chhetri
+	<pghartichhetri@cbihealth.ca>
+Subject: Re: Link missing
+Thread-Topic: Link missing
+Thread-Index: AQHYrbI8BZmAHcEo1k2IzqyoDivRSq2qCSb+gGkuC4CAAAEyhIAAAX4AgAAATO0=
+Date: Mon, 17 Oct 2022 17:07:11 +0000
+Message-ID: <QB1PR01MB280162CFA8464CFA5551D060BE299@QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM>
+References: <FBCC0A1D-E021-4C7E-8C4C-AA0EFB957D80@icloud.com>
+ <QB1PR01MB28012AFF4EE282AB2CB6B9D8BE649@QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM>
+ <4A9469F7-8D9C-419F-AE78-18DD0F2FEF36@icloud.com>
+ <QB1PR01MB2801393452E4B63AA07AD101BE299@QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM>
+ <31435D4C-EBB4-4431-837B-8FB90029C572@icloud.com>
+In-Reply-To: <31435D4C-EBB4-4431-837B-8FB90029C572@icloud.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: QB1PR01MB2801:EE_|YQXPR01MB6185:EE_
+x-ms-office365-filtering-correlation-id: 2640a3c3-9494-4019-0738-08dab06207e6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gxUvCFC/fGsm0AM+ia6KDP/G02Cy0+9V4XTlIN6XGSTCNXwvHZ9t18WIHrHjZA5TFj7Fp18B56izZ5B7dNqqgwzYc+gpBTf2IzN10El5frOXeBP051J11GTbCI4Frf5oMXX1EqwwaTibNwmv7NMyYkm1y3k43nzqmjs2Jp69Ed7mukCPyJxbnaZXgb1k9CYTcpzSlhdQB7YGc0wKEhhCM+uJvtVJTT8qvRy434q3JdTMt85FhBsoHjuN/WgnKFPsxOmSAoNqWj+TOzF1KVQG7cJACl5dk1otzExDivYDuGnW46U45cUQqDZuJV+jQEbbGqhAQ7PlPPMuyfVZ1WxD/dH169zEwzn5M6tQLjWMurQZPqiSjE5KcQrfs3jppUeMyI6mkgTeya08o2FSQvu7dO1c+ebx5Mi3bovxXa0PazSHv7JJI66qqkuaNRxXBkdRzqcB6xMJNKiAFzAKyyw0m6xeuBgaj1st1pXXproAfZEkbsYMwXI2r9y/jFM6g8E4Ixc+X3UAwEEopFs5OCsJmKqJ3ExlzmUyDYtYsqLGPu4JHD8oc3CscXeRdV92diPVViI0mQKgg4hEEneSfc3eI2TdgXKk/fc+XSrgZ886Cjf7weGKceNYVnXOSqcNwvbtQtzd1gVJYkIUrpDOr3LVhfLu2cw/9omq/7XdBoKEH8OKBWPfe5nLN8yUqvUhxI5dMLjMJobPl48yoSyhCuOGxIU3UXCVhEpKjDhAC3w0Ua+2RWM00r44d4E3U8ycKRUkm2rIrMztsuBdOHxPPFhnmA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(396003)(39860400002)(376002)(346002)(451199015)(52536014)(41300700001)(3480700007)(38100700002)(122000001)(7116003)(8936002)(5660300002)(6636002)(316002)(19627405001)(66574015)(66446008)(478600001)(66946007)(66476007)(66556008)(76116006)(64756008)(186003)(7696005)(6506007)(53546011)(9686003)(33656002)(40140700001)(66899015)(86362001)(8676002)(2906002)(83380400001)(110136005)(38070700005)(55016003)(71200400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?uHW/y8mgbCOQRF9eEzYUulUFNa/vbDt8pheMs0yPJXk+LhtxU07re3ei?=
+ =?Windows-1252?Q?dIiNIRp/d15oUorQHjxwsXopKUPAf2l2NlLnv5Mo8cetMZUyIw4W42zH?=
+ =?Windows-1252?Q?7qOG2Of6c9bZA9kTmApbWYhFWSos758InW4tss1pVphZmTmxt7BOMkD1?=
+ =?Windows-1252?Q?qjZ7n/KgzIFgOk7IMoWg0trPYX+KwrOBPDwQDY5KavpYATItaOCdJCik?=
+ =?Windows-1252?Q?Xl9e3cXUABZiVpd3BFJMSMKlhHpQaYY6LyxGcI82XO5doeyxOK7ok4zY?=
+ =?Windows-1252?Q?qxMreDktDbqTCcuD6zRru38GEieOnTksdl/UpPoZbHvK3N5AehlAjzac?=
+ =?Windows-1252?Q?ksY2W1OPJ3RJ9bMha4M6QkNtxV2AM37FTP8YEMyDmceplZoNtykDhFti?=
+ =?Windows-1252?Q?BdjDcuGUlpHx6xSai0dAWYvPzeIhS6KUNOmYFJYaIMVfD66zydKENjyD?=
+ =?Windows-1252?Q?plSsB2M6qtka1g6lQeLSutq/gW9kckV7ukfZBH6kjuNV3zAOuQdkZrCh?=
+ =?Windows-1252?Q?vFHDIyf49c4YNg5AL4Xe32BZs5QUASzU7o1E/a5Tu93xYak8QBUWzbex?=
+ =?Windows-1252?Q?NFSr49N8XBtEfjNNNihCp6GXoA6nrtDnnp5gf9c16o7cdMYU2j0cIxyA?=
+ =?Windows-1252?Q?pAU5LmnEtIMFkhHhEoIbXY4tAyNWrCoIIopoITrA+X5N7I+EkPBHyJ0u?=
+ =?Windows-1252?Q?GOVqgpmFN/Gqftt+vbsx4krnV4qeYf3KVRu0BLmHME6+iCu3o3a0U1qc?=
+ =?Windows-1252?Q?K5CuylZRGXUaCTwpY890WocQb+BSbMZSNbT7vN7z4W0KYJRTTAj1AplV?=
+ =?Windows-1252?Q?oDEDaaBeq3ANA5FSJQiojOcy/s+3fQVcYoRAxiLmvBlzgaoUxzTH2J9U?=
+ =?Windows-1252?Q?hm8RtwYGbQJPa5J9doNKiXu63yDXPJhzJH6i4fOXZ4B2MT6eemxKW+Et?=
+ =?Windows-1252?Q?8g4vqwagM2mivyZ6+isLAId+II6ijQpe+iDBt0fOPIm/kU8YoH7RzNCi?=
+ =?Windows-1252?Q?PPP2AiiBg6XwmWMKb5dAry22khaAUP3z1hNKAnBGSejBObFvnV86OmFG?=
+ =?Windows-1252?Q?/eGW4E6RmZVl9WWfa1ozA38C+idtLKQzMDxj4Z1DDYTcBpjeooKxue/3?=
+ =?Windows-1252?Q?zBLHm3hD/DSVsDckmVvN6wSv9cQiHBpX5YxwQ1S4EL5BNZLPBAFTQfU3?=
+ =?Windows-1252?Q?Yas5X1zeYi8cobox6D61TGwUD3gnQ0MarLguFu/8Bn9C+x91LXSmNQWk?=
+ =?Windows-1252?Q?fJBPGskgFJoVWGAVCBIGLnVaeSVR5yhzw8cZiOP99E2jpdv4s5obtelZ?=
+ =?Windows-1252?Q?EqpLcpqNRSiB3GNwHIHa52+7VpmzsGGWHLKkXvCWcBCHC6uVPfCokpEQ?=
+ =?Windows-1252?Q?KQ58d/nw+lre7yOoYn/3NbYgdh9nLrm6N9YnN7d7Vx5cdrkwipllWahv?=
+ =?Windows-1252?Q?GCNVqVevwtmY37bvBMFu/rXkwuJ17TV0Ho+y5vKd9kwWR9OYYR8Nw1rn?=
+ =?Windows-1252?Q?9jkSxsYI+Kt3XUWOT7DYzJ0LG0m/MthkBXkH70D/Ne3effl20bk1A9s6?=
+ =?Windows-1252?Q?N8fbzrAqLjTIJINAuo/+kTL5e4gwSPIf2qvCHaKPhgsZQwItVbLk12A4?=
+ =?Windows-1252?Q?qdFaVw3gIaNbFYlHhDhFuMR7YZe5Fy/JHQdjgMusZ+IttAOnVwM9KVlh?=
+ =?Windows-1252?Q?o77Bb1u3V/eemrNYHLzPghZTcoL0I709foTrF6/VJZuBPpQszUKzXvSE?=
+ =?Windows-1252?Q?V/ohjuc3pTS8komuNMji0cGYdSh3r7+zLRSZA844?=
+Content-Type: multipart/alternative;
+	boundary="_000_QB1PR01MB280162CFA8464CFA5551D060BE299QB1PR01MB2801CANP_"
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: QB1PR01MB2801.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2640a3c3-9494-4019-0738-08dab06207e6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Oct 2022 17:07:11.1520
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a92f6af3-9d03-4713-9242-57d24a50709f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Mb2PRPI5PDwZPjG3GrF1N/cBSGzbh1OxoHJS8aOh6kBO4Sjca8EyT2pMRKF2BgmkXLkc7DIAyRqH2UYHUZ63uA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YQXPR01MB6185
+X-OriginatorOrg: cbihealth.ca
+X-MANTSH: 1TEIXWlwZGVoaGkNHB0tNT0ReQ0QeHhsfEQpMQxcbGgQbGxgEHBMEGBgfEBseGh8
+ aEQpMWRcbGhofEQpZRBdrWmgYZxhsbU56QBEKWU0Xbk9GQ1xPWBEKX1kXGxwbEQpfTRdkRURPE
+ QpZSRcacRoQGncGGx4bcR8aEBp3BhgaBhoRClleF2NueREKQ04Xe2VvUgd7E3VeaGRlGhNHGkl
+ 6TXloaRp7HmNtX2VPfhwRClhcFxkEGgQeEwcdGEkfHx1JGQUbGhoEHRoEGxMSBBseEBseGh8aE
+ QpeWRdLTVBoTBEKTVwXGxgcEQpMWhdoa01NaxEKTEYXb2tra2JNaxEKQ1oXGxIeBBsfGgQYGRI
+ EGBkSEQpCXhcbEQpEXhcYEQpCRRdoHUVbe2ZCGGZ/WBEKQk4XYn97WmNBTWJsSUMRCkJMF29/Z
+ VNOG2cFQ1hFEQpCbBdhZGVIH2VsH3hPUBEKQkAXYm9oS0JpaX9CUn4RCkJYF2JrTm9vemxnWkd
+ LEQpNXhcbEQpwaBdjYGFIbG9kaW8BYBAZGhEKcGgXaE4SZGdrU20FZGgQGRoRCnBoF2JoXEFQT
+ UlwUhNrEBkaEQpwaBdjfhl9bm54HB0FTBAZGhEKcGgXaV0fTUZtclh/a3MQGRoRCnBsF2RcG2x
+ pE0BJRW9vEBkaEQptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: QOEx-Q9_tBNO09m0cPgSBC0Q4IGuOeT6
+X-Proofpoint-ORIG-GUID: QOEx-Q9_tBNO09m0cPgSBC0Q4IGuOeT6
+
+--_000_QB1PR01MB280162CFA8464CFA5551D060BE299QB1PR01MB2801CANP_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+
+OK. Wednesday from 9:20 - 10:20 will work for me.
+
+PK could you move Darryl from tomorrow to Wednesday please.
+Thanks
+Ingrid
+
+
+Ingrid Neufeld, OT(Reg) Ont
+OT Provincial Lead, Ontario
+CBI Health
+Cell #: 613-859-6715
+Clinic #: 613-820-5545
+ineufeld@cbihealth.ca
+
+
+________________________________
+From: Darryl Ross <darrylross@icloud.com>
+Sent: Monday, October 17, 2022 1:05 PM
+To: Ingrid Neufeld <INeufeld@cbihealth.ca>
+Subject: Re: Link missing
+
+CAUTION: This email originated from outside of the organization. Do not cli=
+ck links or open attachments unless you recognize the sender and know the c=
+ontent is safe.
+
+The latest you=92re available Wednesday morning would be great.
+
+Thanks!
+
+Darryl
+
+On Oct 17, 2022, at 1:01 PM, Ingrid Neufeld <INeufeld@cbihealth.ca> wrote:
+
+Hi Darryl
+
+Yup I have some time Wednesday morning or Thursday afternoon. Any preferenc=
+e?
+Ingrid
+
+Ingrid Neufeld, OT(Reg) Ont
+OT Provincial Lead, Ontario
+CBI Health
+Cell #: 613-859-6715
+Clinic #: 613-820-5545
+ineufeld@cbihealth.ca<mailto:ineufeld@cbihealth.ca>
+
+
+________________________________
+From: Darryl Ross <darrylross@icloud.com<mailto:darrylross@icloud.com>>
+Sent: Monday, October 17, 2022 12:55 PM
+To: Ingrid Neufeld <INeufeld@cbihealth.ca<mailto:INeufeld@cbihealth.ca>>
+Subject: Re: Link missing
+
+CAUTION: This email originated from outside of the organization. Do not cli=
+ck links or open attachments unless you recognize the sender and know the c=
+ontent is safe.
+
+Hi Ingrid,
+
+I have a conflicting appointment tomorrow and wonder if we can reschedule t=
+o another day this week?
+
+Darryl
+
+On Aug 11, 2022, at 2:43 PM, Ingrid Neufeld <INeufeld@cbihealth.ca<mailto:I=
+Neufeld@cbihealth.ca>> wrote:
+
+Hi
+
+I just was on the phone with the clinic and they are sending us both a link=
+.
+
+See you shortly
+
+
+Ingrid Neufeld, OT(Reg) Ont
+OT Provincial Lead, Ontario
+CBI Health
+Cell #: 613-859-6715
+Clinic #: 613-820-5545
+ineufeld@cbihealth.ca<mailto:ineufeld@cbihealth.ca>
+
+
+________________________________
+From: Darryl Ross <darrylross@icloud.com<mailto:darrylross@icloud.com>>
+Sent: Thursday, August 11, 2022 2:43 PM
+To: Ingrid Neufeld <INeufeld@cbihealth.ca<mailto:INeufeld@cbihealth.ca>>
+Subject: Link missing
+
+CAUTION: This email originated from outside of the organization. Do not cli=
+ck links or open attachments unless you recognize the sender and know the c=
+ontent is safe.
+
+
+Hi Ingrid,
+
+The email and text messages for our appointment are missing links to connec=
+t.
+
+Can you send me a Teams invite?
+
+Darryl
+________________________________
+The information in this e-mail is intended solely for the addressee(s) name=
+d, and is confidential. Any other distribution, disclosure or copying is st=
+rictly prohibited. If you have received this communication in error, please=
+ reply by e-mail to the sender and delete or destroy all copies of this mes=
+sage.
+
+Les renseignements contenus dans le pr=E9sent message =E9lectronique sont c=
+onfidentiels et concernent exclusivement le(s) destinataire(s) d=E9sign=E9(=
+s). Il est strictement interdit de distribuer ou de copier ce message. Si v=
+ous avez re=E7u ce message par erreur, veuillez r=E9pondre par courriel =E0=
+ l'exp=E9diteur et effacer ou d=E9truire toutes les copies du pr=E9sent mes=
+sage.
+
+________________________________
+The information in this e-mail is intended solely for the addressee(s) name=
+d, and is confidential. Any other distribution, disclosure or copying is st=
+rictly prohibited. If you have received this communication in error, please=
+ reply by e-mail to the sender and delete or destroy all copies of this mes=
+sage.
+
+Les renseignements contenus dans le pr=E9sent message =E9lectronique sont c=
+onfidentiels et concernent exclusivement le(s) destinataire(s) d=E9sign=E9(=
+s). Il est strictement interdit de distribuer ou de copier ce message. Si v=
+ous avez re=E7u ce message par erreur, veuillez r=E9pondre par courriel =E0=
+ l'exp=E9diteur et effacer ou d=E9truire toutes les copies du pr=E9sent mes=
+sage.
+
+________________________________
+
+The information in this e-mail is intended solely for the addressee(s) name=
+d, and is confidential. Any other distribution, disclosure or copying is st=
+rictly prohibited. If you have received this communication in error, please=
+ reply by e-mail to the sender and delete or destroy all copies of this mes=
+sage.
+
+Les renseignements contenus dans le pr=E9sent message =E9lectronique sont c=
+onfidentiels et concernent exclusivement le(s) destinataire(s) d=E9sign=E9(=
+s). Il est strictement interdit de distribuer ou de copier ce message. Si v=
+ous avez re=E7u ce message par erreur, veuillez r=E9pondre par courriel =E0=
+ l'exp=E9diteur et effacer ou d=E9truire toutes les copies du pr=E9sent mes=
+sage.
+
+--_000_QB1PR01MB280162CFA8464CFA5551D060BE299QB1PR01MB2801CANP_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+OK. Wednesday from 9:20 - 10:20 will work for me.&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+PK could you move Darryl from tomorrow to Wednesday please.&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Thanks</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Ingrid</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div id=3D"Signature">
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"font-family:Tahoma;font-size:13px;text-align:start;backgroun=
+d-color:rgb(255, 255, 255);display:inline !important">Ingrid Neufeld, OT(Re=
+g) Ont</span>
+<div style=3D"margin:0px;font-size:13px;font-family:Tahoma;text-align:start=
+;background-color:rgb(255, 255, 255)">
+OT Provincial Lead, Ontario</div>
+<div style=3D"margin:0px;font-size:13px;font-family:Tahoma;text-align:start=
+;background-color:rgb(255, 255, 255)">
+CBI Health</div>
+<div style=3D"margin:0px;font-size:13px;font-family:Tahoma;text-align:start=
+;background-color:rgb(255, 255, 255)">
+Cell #: 613-859-6715</div>
+<div style=3D"margin:0px;font-size:13px;font-family:Tahoma;text-align:start=
+;background-color:rgb(255, 255, 255)">
+Clinic #: 613-820-5545</div>
+<div style=3D"margin:0px;font-size:13px;font-family:Tahoma;text-align:start=
+;background-color:rgb(255, 255, 255)">
+ineufeld@cbihealth.ca</div>
+<br>
+<br>
+</div>
+</div>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Darryl Ross &lt;darry=
+lross@icloud.com&gt;<br>
+<b>Sent:</b> Monday, October 17, 2022 1:05 PM<br>
+<b>To:</b> Ingrid Neufeld &lt;INeufeld@cbihealth.ca&gt;<br>
+<b>Subject:</b> Re: Link missing</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"line-break:after-white-space">
+<div style=3D"border:1px solid black; padding:0px; background:#FFFFCC; font=
+:11pt Calibri">
+<strong>CAUTION:</strong> This email originated from outside of the organiz=
+ation. Do not click links or open attachments unless you recognize the send=
+er and know the content is safe.</div>
+<br>
+<div>The latest you=92re available Wednesday morning would be great.
+<div><br>
+</div>
+<div>Thanks!</div>
+<div><br>
+</div>
+<div>Darryl<br>
+<div><br>
+<blockquote type=3D"cite">
+<div>On Oct 17, 2022, at 1:01 PM, Ingrid Neufeld &lt;INeufeld@cbihealth.ca&=
+gt; wrote:</div>
+<br class=3D"x_Apple-interchange-newline">
+<div>
+<div class=3D"x_elementToProof" style=3D"font-style:normal; font-variant-ca=
+ps:normal; font-weight:400; letter-spacing:normal; text-align:start; text-i=
+ndent:0px; text-transform:none; white-space:normal; word-spacing:0px; text-=
+decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:=
+12pt">
+Hi Darryl</div>
+<div class=3D"x_elementToProof" style=3D"font-style:normal; font-variant-ca=
+ps:normal; font-weight:400; letter-spacing:normal; text-align:start; text-i=
+ndent:0px; text-transform:none; white-space:normal; word-spacing:0px; text-=
+decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:=
+12pt">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-style:normal; font-variant-ca=
+ps:normal; font-weight:400; letter-spacing:normal; text-align:start; text-i=
+ndent:0px; text-transform:none; white-space:normal; word-spacing:0px; text-=
+decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:=
+12pt">
+Yup I have some time Wednesday morning or Thursday afternoon. Any preferenc=
+e?</div>
+<div class=3D"x_elementToProof" style=3D"font-style:normal; font-variant-ca=
+ps:normal; font-weight:400; letter-spacing:normal; text-align:start; text-i=
+ndent:0px; text-transform:none; white-space:normal; word-spacing:0px; text-=
+decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:=
+12pt">
+Ingrid</div>
+<div style=3D"font-family:Helvetica; font-size:12px; font-style:normal; fon=
+t-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:s=
+tart; text-indent:0px; text-transform:none; white-space:normal; word-spacin=
+g:0px; text-decoration:none">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t"><br>
+</div>
+<div id=3D"x_Signature">
+<div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t"><span style=3D"font-family:Tahoma; font-size:13px; text-align:start; bac=
+kground-color:rgb(255,255,255); display:inline!important">Ingrid Neufeld, O=
+T(Reg) Ont</span>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+OT Provincial Lead, Ontario</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+CBI Health</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+Cell #: 613-859-6715</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+Clinic #: 613-820-5545</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+<a href=3D"mailto:ineufeld@cbihealth.ca">ineufeld@cbihealth.ca</a></div>
+<br>
+<br>
+</div>
+</div>
+</div>
+</div>
+<div id=3D"x_appendonsend" style=3D"font-family:Helvetica; font-size:12px; =
+font-style:normal; font-variant-caps:normal; font-weight:400; letter-spacin=
+g:normal; text-align:start; text-indent:0px; text-transform:none; white-spa=
+ce:normal; word-spacing:0px; text-decoration:none">
+</div>
+<hr tabindex=3D"-1" style=3D"font-family:Helvetica; font-size:12px; font-st=
+yle:normal; font-variant-caps:normal; font-weight:400; letter-spacing:norma=
+l; text-align:start; text-indent:0px; text-transform:none; white-space:norm=
+al; word-spacing:0px; text-decoration:none; display:inline-block; width:503=
+.71875px">
+<span style=3D"font-family:Helvetica; font-size:12px; font-style:normal; fo=
+nt-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:=
+start; text-indent:0px; text-transform:none; white-space:normal; word-spaci=
+ng:0px; text-decoration:none; float:none; display:inline!important"></span>
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr" style=3D"font-family:Helvetica; fon=
+t-size:12px; font-style:normal; font-variant-caps:normal; font-weight:400; =
+letter-spacing:normal; text-align:start; text-indent:0px; text-transform:no=
+ne; white-space:normal; word-spacing:0px; text-decoration:none">
+<font face=3D"Calibri, sans-serif" style=3D"font-size:11pt"><b>From:</b><sp=
+an class=3D"x_Apple-converted-space">&nbsp;</span>Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt;<br>
+<b>Sent:</b><span class=3D"x_Apple-converted-space">&nbsp;</span>Monday, Oc=
+tober 17, 2022 12:55 PM<br>
+<b>To:</b><span class=3D"x_Apple-converted-space">&nbsp;</span>Ingrid Neufe=
+ld &lt;<a href=3D"mailto:INeufeld@cbihealth.ca">INeufeld@cbihealth.ca</a>&g=
+t;<br>
+<b>Subject:</b><span class=3D"x_Apple-converted-space">&nbsp;</span>Re: Lin=
+k missing</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"font-family:Helvetica; font-size:12px; font-style:normal; fon=
+t-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:s=
+tart; text-indent:0px; text-transform:none; white-space:normal; word-spacin=
+g:0px; text-decoration:none; line-break:after-white-space">
+<div style=3D"border:1px solid black; padding:0px; background-color:rgb(255=
+,255,204); font-style:normal; font-variant-caps:normal; font-weight:normal;=
+ font-stretch:normal; font-size:11pt; line-height:normal; font-family:Calib=
+ri">
+<strong>CAUTION:</strong><span class=3D"x_Apple-converted-space">&nbsp;</sp=
+an>This email originated from outside of the organization. Do not click lin=
+ks or open attachments unless you recognize the sender and know the content=
+ is safe.</div>
+<br>
+<div>Hi Ingrid,
+<div><br>
+</div>
+<div>I have a conflicting appointment tomorrow and wonder if we can resched=
+ule to another day this week?</div>
+<div><br>
+</div>
+<div>Darryl<br>
+<div><br>
+<blockquote type=3D"cite">
+<div>On Aug 11, 2022, at 2:43 PM, Ingrid Neufeld &lt;<a href=3D"mailto:INeu=
+feld@cbihealth.ca">INeufeld@cbihealth.ca</a>&gt; wrote:</div>
+<br class=3D"x_x_Apple-interchange-newline">
+<div>
+<div class=3D"x_x_elementToProof" style=3D"font-style:normal; font-variant-=
+caps:normal; font-weight:400; letter-spacing:normal; text-align:start; text=
+-indent:0px; text-transform:none; white-space:normal; word-spacing:0px; tex=
+t-decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-siz=
+e:12pt">
+Hi</div>
+<div class=3D"x_x_elementToProof" style=3D"font-style:normal; font-variant-=
+caps:normal; font-weight:400; letter-spacing:normal; text-align:start; text=
+-indent:0px; text-transform:none; white-space:normal; word-spacing:0px; tex=
+t-decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-siz=
+e:12pt">
+<br>
+</div>
+<div class=3D"x_x_elementToProof" style=3D"font-style:normal; font-variant-=
+caps:normal; font-weight:400; letter-spacing:normal; text-align:start; text=
+-indent:0px; text-transform:none; white-space:normal; word-spacing:0px; tex=
+t-decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-siz=
+e:12pt">
+I just was on the phone with the clinic and they are sending us both a link=
+.</div>
+<div class=3D"x_x_elementToProof" style=3D"font-style:normal; font-variant-=
+caps:normal; font-weight:400; letter-spacing:normal; text-align:start; text=
+-indent:0px; text-transform:none; white-space:normal; word-spacing:0px; tex=
+t-decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-siz=
+e:12pt">
+<br>
+</div>
+<div class=3D"x_x_elementToProof" style=3D"font-style:normal; font-variant-=
+caps:normal; font-weight:400; letter-spacing:normal; text-align:start; text=
+-indent:0px; text-transform:none; white-space:normal; word-spacing:0px; tex=
+t-decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-siz=
+e:12pt">
+See you shortly</div>
+<div class=3D"x_x_elementToProof" style=3D"font-style:normal; font-variant-=
+caps:normal; font-weight:400; letter-spacing:normal; text-align:start; text=
+-indent:0px; text-transform:none; white-space:normal; word-spacing:0px; tex=
+t-decoration:none; font-family:Calibri,Arial,Helvetica,sans-serif; font-siz=
+e:12pt">
+<br>
+</div>
+<div style=3D"font-family:Helvetica; font-size:12px; font-style:normal; fon=
+t-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:s=
+tart; text-indent:0px; text-transform:none; white-space:normal; word-spacin=
+g:0px; text-decoration:none">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t"><br>
+</div>
+<div id=3D"x_x_Signature">
+<div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t"><span style=3D"font-family:Tahoma; font-size:13px; text-align:start; bac=
+kground-color:rgb(255,255,255); display:inline!important">Ingrid Neufeld, O=
+T(Reg) Ont</span>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+OT Provincial Lead, Ontario</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+CBI Health</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+Cell #: 613-859-6715</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+Clinic #: 613-820-5545</div>
+<div style=3D"margin:0px; font-size:13px; font-family:Tahoma; text-align:st=
+art; background-color:rgb(255,255,255)">
+<a href=3D"mailto:ineufeld@cbihealth.ca" data-auth=3D"NotApplicable">ineufe=
+ld@cbihealth.ca</a></div>
+<br>
+<br>
+</div>
+</div>
+</div>
+</div>
+<div id=3D"x_x_appendonsend" style=3D"font-family:Helvetica; font-size:12px=
+; font-style:normal; font-variant-caps:normal; font-weight:400; letter-spac=
+ing:normal; text-align:start; text-indent:0px; text-transform:none; white-s=
+pace:normal; word-spacing:0px; text-decoration:none">
+</div>
+<hr tabindex=3D"-1" style=3D"font-family:Helvetica; font-size:12px; font-st=
+yle:normal; font-variant-caps:normal; font-weight:400; letter-spacing:norma=
+l; text-align:start; text-indent:0px; text-transform:none; white-space:norm=
+al; word-spacing:0px; text-decoration:none; display:inline-block; width:503=
+.71875px">
+<span style=3D"font-family:Helvetica; font-size:12px; font-style:normal; fo=
+nt-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:=
+start; text-indent:0px; text-transform:none; white-space:normal; word-spaci=
+ng:0px; text-decoration:none; float:none; display:inline!important"></span>
+<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr" style=3D"font-family:Helvetica; f=
+ont-size:12px; font-style:normal; font-variant-caps:normal; font-weight:400=
+; letter-spacing:normal; text-align:start; text-indent:0px; text-transform:=
+none; white-space:normal; word-spacing:0px; text-decoration:none">
+<font face=3D"Calibri, sans-serif" style=3D"font-size:11pt"><b>From:</b><sp=
+an class=3D"x_x_Apple-converted-space">&nbsp;</span>Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com" data-auth=3D"NotApplicable">darrylross@ic=
+loud.com</a>&gt;<br>
+<b>Sent:</b><span class=3D"x_x_Apple-converted-space">&nbsp;</span>Thursday=
+, August 11, 2022 2:43 PM<br>
+<b>To:</b><span class=3D"x_x_Apple-converted-space">&nbsp;</span>Ingrid Neu=
+feld &lt;<a href=3D"mailto:INeufeld@cbihealth.ca" data-auth=3D"NotApplicabl=
+e">INeufeld@cbihealth.ca</a>&gt;<br>
+<b>Subject:</b><span class=3D"x_x_Apple-converted-space">&nbsp;</span>Link =
+missing</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"x_x_BodyFragment" style=3D"font-family:Helvetica; font-size:1=
+2px; font-style:normal; font-variant-caps:normal; font-weight:400; letter-s=
+pacing:normal; text-align:start; text-indent:0px; text-transform:none; whit=
+e-space:normal; word-spacing:0px; text-decoration:none">
+<font size=3D"2"><span style=3D"font-size:11pt">
+<div class=3D"x_x_PlainText">CAUTION: This email originated from outside of=
+ the organization. Do not click links or open attachments unless you recogn=
+ize the sender and know the content is safe.<br>
+<br>
+<br>
+Hi Ingrid,<br>
+<br>
+The email and text messages for our appointment are missing links to connec=
+t.<br>
+<br>
+Can you send me a Teams invite?<br>
+<br>
+Darryl<br>
+</div>
+</span></font></div>
+<hr style=3D"font-family:Helvetica; font-size:12px; font-style:normal; font=
+-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:st=
+art; text-indent:0px; text-transform:none; white-space:normal; word-spacing=
+:0px; text-decoration:none; border-style:solid none none; border-top-width:=
+1pt; border-top-color:rgb(79,79,79); width:514px">
+<div style=3D"margin-top:0px; margin-bottom:0px; font-style:normal; font-va=
+riant-caps:normal; font-weight:400; letter-spacing:normal; text-align:start=
+; text-indent:0px; text-transform:none; white-space:normal; word-spacing:0p=
+x; text-decoration:none; font-size:8pt; font-family:Arial,Helvetica,sans-se=
+rif; color:rgb(79,79,79)">
+The information in this e-mail is intended solely for the addressee(s) name=
+d, and is confidential. Any other distribution, disclosure or copying is st=
+rictly prohibited. If you have received this communication in error, please=
+ reply by e-mail to the sender and
+ delete or destroy all copies of this message.<span class=3D"x_x_Apple-conv=
+erted-space">&nbsp;</span><br>
+<br>
+Les renseignements contenus dans le pr=E9sent message =E9lectronique sont c=
+onfidentiels et concernent exclusivement le(s) destinataire(s) d=E9sign=E9(=
+s). Il est strictement interdit de distribuer ou de copier ce message. Si v=
+ous avez re=E7u ce message par erreur, veuillez
+ r=E9pondre par courriel =E0 l'exp=E9diteur et effacer ou d=E9truire toutes=
+ les copies du pr=E9sent message.</div>
+</div>
+</blockquote>
+</div>
+<br>
+</div>
+</div>
+</div>
+<hr style=3D"font-family:Helvetica; font-size:12px; font-style:normal; font=
+-variant-caps:normal; font-weight:400; letter-spacing:normal; text-align:st=
+art; text-indent:0px; text-transform:none; white-space:normal; word-spacing=
+:0px; text-decoration:none; border-style:solid none none; border-top-width:=
+1pt; border-top-color:rgb(79,79,79); width:514px">
+<div style=3D"margin-top:0px; margin-bottom:0px; font-style:normal; font-va=
+riant-caps:normal; font-weight:400; letter-spacing:normal; text-align:start=
+; text-indent:0px; text-transform:none; white-space:normal; word-spacing:0p=
+x; text-decoration:none; font-size:8pt; font-family:Arial,Helvetica,sans-se=
+rif; color:rgb(79,79,79)">
+The information in this e-mail is intended solely for the addressee(s) name=
+d, and is confidential. Any other distribution, disclosure or copying is st=
+rictly prohibited. If you have received this communication in error, please=
+ reply by e-mail to the sender and
+ delete or destroy all copies of this message.<span class=3D"x_Apple-conver=
+ted-space">&nbsp;</span><br>
+<br>
+Les renseignements contenus dans le pr=E9sent message =E9lectronique sont c=
+onfidentiels et concernent exclusivement le(s) destinataire(s) d=E9sign=E9(=
+s). Il est strictement interdit de distribuer ou de copier ce message. Si v=
+ous avez re=E7u ce message par erreur, veuillez
+ r=E9pondre par courriel =E0 l'exp=E9diteur et effacer ou d=E9truire toutes=
+ les copies du pr=E9sent message.</div>
+</div>
+</blockquote>
+</div>
+<br>
+</div>
+</div>
+</div>
+<hr style=3D"border:none; border-top:1pt solid #4f4f4f; width:100%;">
+<p style=3D"font-size:8pt; font-family: Arial, Helvetica, sans-serif; color=
+:#4f4f4f;">
+The information in this e-mail is intended solely for the addressee(s) name=
+d, and is confidential. Any other distribution, disclosure or copying is st=
+rictly prohibited. If you have received this communication in error, please=
+ reply by e-mail to the sender and
+ delete or destroy all copies of this message. <br>
+<br>
+Les renseignements contenus dans le pr=E9sent message =E9lectronique sont c=
+onfidentiels et concernent exclusivement le(s) destinataire(s) d=E9sign=E9(=
+s). Il est strictement interdit de distribuer ou de copier ce message. Si v=
+ous avez re=E7u ce message par erreur, veuillez
+ r=E9pondre par courriel =E0 l'exp=E9diteur et effacer ou d=E9truire toutes=
+ les copies du pr=E9sent message.
+</p>
+</body>
+</html>
+
+--_000_QB1PR01MB280162CFA8464CFA5551D060BE299QB1PR01MB2801CANP_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>951080</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1666026439</integer>
+	<key>flags</key>
+	<integer>8590195717</integer>
+	<key>remote-id</key>
+	<string>4001</string>
+</dict>
+</plist>

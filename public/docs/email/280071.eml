@@ -1,0 +1,307 @@
+16032     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01062502.me.com by p72-mailgateway-smtp-5f84f77859-k6qcl (mailgateway 2221B255)
+	with SMTP id ead9c0c4-177f-4aa8-a6bf-89b1315f417d 
+	for <darrylross@icloud.com>; Fri, 12 Aug 2022 18:56:04 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: ead9c0c4-177f-4aa8-a6bf-89b1315f417d
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	by qs51p00im-qukt01062502.me.com (Postfix) with ESMTPS id 15AE54940100
+	for <darrylross@icloud.com>; Fri, 12 Aug 2022 18:56:02 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQEtEVxBVWg1IWwsWEVwbDhNI
+ SxFNAhgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9TRVZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qd1g3Mw85OklgfDAyNBFCN2deSSJJFEQ+ewEURSw+HipGAjU0OyM2
+ MwNBLTQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LsYmwN50
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.52 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.52 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.52; helo=mail-lf1-f52.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id z25so2494954lfr.2
+        for <darrylross@icloud.com>; Fri, 12 Aug 2022 11:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=wRAZ6NrmWs/LMYHd+3Up61fSf+koLEB5auDvIjPWRks=;
+        b=LsYmwN50cDwZlKFzEz3c+N4Y8Aabz7K72oL4usX33iuEiO00Ss3nu7sN2uSTuRtji5
+         2lduBvChNEH6s0w8uDUOVLtr4gvRLdNNVBD47JzfNb4e16dDEcnkbQ3dLxiagZRDXexQ
+         JisfyQgtx/5Vv4NEQ/laPm2U6hEbN0fla3WnlOCLsvn8gJ7Q9rulbD3cKphE1A/aId6H
+         L9xVWQtYadl7cAUIHf75cjaLFXO9WpgsJbsx+jJ+TjSrnnJzdbNl9KJPsa8tfThMnCHy
+         DWDOteduv7oBmS8FRV4vBLoMheCegLNOR0KI5RS4wHMFXj0PI36oyhEpzHAAac2Fs19K
+         ofGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=wRAZ6NrmWs/LMYHd+3Up61fSf+koLEB5auDvIjPWRks=;
+        b=3nhirQh1YzqNTYoHKTIXza6EausUqeVPDW+TO9PMVisQcTVNZROgNQeogc+oU1JV/k
+         q9vTLPkOE8pngijQX2ncvSUcH1rFuxBwPt4S2aT3IFym5ZlBwt3GAp912RtELgKEQxxE
+         N6azCLJ8cMMlt1Gys9t967xI7jfDa3kmGkj/O4kn9SUnqYCBcmuzM6gSW7NMqQkbQrWp
+         8d8OtLHwdFiAgU9IiZ2RKoAkG3coleNCejlguB4M4CmD3eB2CBLSJdJeHRcTCDIMOssX
+         yoq3e1a3MkwzjEX5h2vyYTn6ZOCCzvRX9nOCQNnTmbGWGn3SYBU8dfQSAupGXUG3tZ1S
+         t6og==
+X-Gm-Message-State: ACgBeo0YRIJ85aExIC59d8sReoZ3ZFAX0xtuWXkynubddvCzM5+/E2Eu
+	6eJK4G7uUzTPONZaUyidbAp0YvSX6M+w02nlG3kN2eg9dTs=
+X-Google-Smtp-Source: AA6agR6ox8r0mv4ajXCw/O53CK7PpNgn1vkxTeDcVggDafOi7kCh78IcDx6ctwThnWYWVfqXqpndw74UhnNWlXNb/i0=
+X-Received: by 2002:a05:6512:4027:b0:48a:e519:6592 with SMTP id
+ br39-20020a056512402700b0048ae5196592mr1621045lfb.444.1660330562180; Fri, 12
+ Aug 2022 11:56:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRHAfftrvqDDozeFkGi=myN-GKo8aa29jCHkgy7BYwRdsg@mail.gmail.com>
+ <102EC2B1-C6F7-4F1A-8DBD-235E712B16BF@icloud.com>
+In-Reply-To: <102EC2B1-C6F7-4F1A-8DBD-235E712B16BF@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 12 Aug 2022 14:55:51 -0400
+Message-ID: <CAFnbyRGnUFv_M1PJRGMw5OWh+W0r3FK7v0UXiRv4WABEAK3wOA@mail.gmail.com>
+Subject: Re: Charlotte
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="0000000000005e5c1805e60fd5db"
+X-MANTSH: 1TEIXW1kfGFoaGkNHB1tfQV4aGBoTGB8aGxEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaGhEKWUQXYkViQXljTGFde08RCllNF3pPWFlFREtGa0ZGRV0RCl9ZFxgbExEKX
+ 00XZEVETxEKWUkXGnEaEBp3BhsTE3EbExkQGncGGBoGGhEKWV4XbGx5EQpDThdLZHhJZnsYXx5
+ iQnwHQ1Bgf1sbW2VhUh1mHhxBeGIeRREKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQSGAQbHxIEG
+ BwQGx4aHxoRCl5ZF0tmb0hPEQpNXBcHHxoRCkxaF2hrTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQ
+ bHB0EHxgRCkJeFxsRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2Nre
+ xNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQRE
+ KQmwXb0tHUEFtGhJLaUkRCkJAF3puYHMfSWsdc05MEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKW
+ lgXGBEKcGgXaWJLSENgYUhjfR8QGRoRCnBoF2l9fXJgHFp6S0YeEBkaEQpwaBdjExkaW1xZYUh
+ jbBAZGhEKcGgXZl5yQWFEXBNEXn0QGRoRCnBoF2daXGlNQ3kfbhlwEBkaEQpwbBdmRmsfGFttX
+ 0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: aNRcLQ2u4HhV-izJUq1qOKx7L46kRH4o
+X-Proofpoint-ORIG-GUID: aNRcLQ2u4HhV-izJUq1qOKx7L46kRH4o
+
+--0000000000005e5c1805e60fd5db
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Approximately what time did she hit head at soccer this morning? 11 am
+Who was responsible for picking her up? My mother who came at noon however,
+a family friend, Matt Streter,  called me as he was there earlier. Matt and
+his wife Michelle know the girls well, his daughters are BFFs with
+girls (Gabby and Kenzie)
+What time did they notify you? Matt notified me. I sent an email to the OSU
+director and indicated that the staff should have called me. THe Staff did
+follow procedure although they know for future to contact parent
+What time did you bring her to CHEO? We got there at 130
+
+This is the first time you have told me about soccer camp: what soccer camp
+is it, and where?
+ You were aware of soccer camp from girls and also you were trying to make
+arrangements to pick them up after at my place. It's OSU soccer camp,
+mornings in Manotick. They play for this organization.
+
+Charlotte is feeling much better today and I am following the doctor's
+advice. Just to be safe,  she is on a rest day, no camp, no swimming, just
+her physio appointment.
+
+THey plan to FT you tomorrow at 10 am.
+
+I will update you if she feels unwell. Right now, we are taking it day to
+day but it;s looking like it's a minor head injury as opposed to a
+concusison, which is good news.. As ordered, I am following the medical
+pamphlet they provided.
+
+
+
+On Fri, Aug 12, 2022 at 8:50 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> Please provide an update on how Char is doing, as well as the information
+> I requested and details you were going to send me last night.
+>
+> Thank you,
+>
+> Darryl
+>
+> On Aug 11, 2022, at 18:32, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> =EF=BB=BF
+> Hi,
+>
+> We are out. Doctor  says to monitor for th=C3=A9 Time being and then take
+> action depending on symptoms. I will  send more details later tonight.
+>
+> She will give you a quick call when we get home.
+>
+> Cynthia
+>
+> On Thu, Aug 11, 2022 at 4:04 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hi Cynthia,
+>>
+>> Thank you for letting me know and keeping me up to date but your email i=
+s
+>> vague and unclear about what happened and when.
+>>
+>> Approximately what time did she hit head at soccer this morning?
+>> Who was responsible for picking her up?
+>> What time did they notify you?
+>> What time did you bring her to CHEO?
+>>
+>> This is the first time you have told me about soccer camp: what soccer
+>> camp is it, and where?
+>>
+>> Please provide answers as soon as possible so I can understand what
+>> happened to Charlotte and how serious her accident was.
+>>
+>> Darryl
+>>
+>> On Aug 11, 2022, at 3:40 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>>
+>> Hi Darryl,
+>>
+>> Charlotte hit her head on a soccer post this morning at soccer. At noon
+>> they told the parents picking her up and I  left office and brought her
+>> into CHEO.
+>>
+>> She can s doing ok, head is sore, hearing is altered, no vison problems
+>> and she did not  vomit or faint.
+>>
+>> We are waiting to see the doctor, they don=E2=80=99t seem overly concern=
+ed. She
+>> is eating and drinking well.
+>>
+>> Once we speak to the doctor I will let you know.
+>>
+>> She will call you  later when we get home.
+>>
+>> Alice is with my mom.
+>>
+>> Thanks.
+>>
+>> Cynthia
+>>
+>>
+>>
+
+--0000000000005e5c1805e60fd5db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br class=3D"gmail-Apple-interchange-newline">Approxi=
+mately what time did she hit head at soccer this morning? 11 am</div><div>W=
+ho was responsible for picking her up? My mother who=C2=A0came at noon howe=
+ver, a family friend, Matt Streter, =C2=A0called me as=C2=A0he was there ea=
+rlier. Matt and his wife Michelle know the girls well, his daughters are=C2=
+=A0BFFs with girls=C2=A0(Gabby and=C2=A0Kenzie)</div><div>What time did the=
+y notify you? Matt notified me. I sent an email to the OSU director and ind=
+icated that the=C2=A0staff should=C2=A0have called me. THe Staff did follow=
+ procedure although they know for future to contact parent</div><div>What t=
+ime did you bring her to CHEO? We got there at 130</div><div><br></div><div=
+>This is the first time you have told me about soccer camp: what soccer cam=
+p is it, and where?</div><div>=C2=A0You were aware of soccer camp from girl=
+s and also you were trying to make arrangements=C2=A0to pick them up after =
+at my place. It&#39;s OSU soccer camp, mornings in Manotick. They play for =
+this organization.</div><div><br></div><div>Charlotte=C2=A0is feeling much =
+better today and I am following the=C2=A0doctor&#39;s advice. Just to be sa=
+fe, =C2=A0she is on a rest day, no camp, no swimming, just her physio appoi=
+ntment.=C2=A0</div><div><br></div><div>THey plan to FT you tomorrow=C2=A0at=
+ 10 am.</div><div><br></div><div>I will update you if she feels unwell. Rig=
+ht now, we are taking=C2=A0it day to day but it;s looking like it&#39;s a m=
+inor head injury as opposed to a concusison, which is good news.. As ordere=
+d, I am following=C2=A0the medical pamphlet they provided.</div><div><br></=
+div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Fri, Aug 12, 2022 at 8:50 AM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"=
+ltr">Hi Cynthia,</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Please pr=
+ovide an update on how Char is doing, as well as the information I requeste=
+d and details you were going to send me last night.</div><div dir=3D"ltr"><=
+br></div><div dir=3D"ltr">Thank you,=C2=A0</div><div dir=3D"ltr"><br></div>=
+<div dir=3D"ltr">Darryl</div><div dir=3D"ltr"><br><blockquote type=3D"cite"=
+>On Aug 11, 2022, at 18:32, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm=
+@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br><br></=
+blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div d=
+ir=3D"auto">Hi,</div><div dir=3D"auto"><br></div><div dir=3D"auto">We are o=
+ut. Doctor =C2=A0says to monitor for th=C3=A9 Time being and then take acti=
+on depending on symptoms. I will =C2=A0send more details later tonight.<br>=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">She will give you a qui=
+ck call when we get home.</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Cynthia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Aug 11, 2022 at 4:04 PM Darryl Ross &lt;<a href=3D"=
+mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color=
+:rgb(204,204,204);padding-left:1ex"><div style=3D"line-break:after-white-sp=
+ace">Hi Cynthia,<div><br></div><div>Thank you for letting me know and keepi=
+ng me up to date but your email is vague and unclear about what happened an=
+d when.=C2=A0</div><div><br></div><div>Approximately what time did she hit =
+head at soccer this morning?</div><div>Who was responsible for picking her =
+up?=C2=A0</div><div>What time did they notify you?</div><div>What time did =
+you bring her to CHEO?</div><div><br></div><div>This is the first time you =
+have told me about soccer camp: what soccer camp is it, and where?</div><di=
+v><br></div><div>Please provide answers as soon as possible so I can unders=
+tand what happened to Charlotte and how serious her accident was.</div></di=
+v><div style=3D"line-break:after-white-space"><div><br></div><div>Darryl</d=
+iv><div><div><br><blockquote type=3D"cite"><div>On Aug 11, 2022, at 3:40 PM=
+, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_bla=
+nk">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div style=3D"margin:=
+0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Hi Darryl,=
+</span></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;li=
+ne-height:normal;min-height:20.3px"><span></span><br></div><div style=3D"ma=
+rgin:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Charl=
+otte hit her head on a soccer post this morning at soccer. At noon they tol=
+d the parents picking her up and I=C2=A0<span>=C2=A0</span>left office and =
+brought her into CHEO.</span></div><div style=3D"margin:0px;font-stretch:no=
+rmal;font-size:17px;line-height:normal;min-height:20.3px"><span></span><br>=
+</div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-heig=
+ht:normal"><span>She can s doing ok, head is sore, hearing is altered, no v=
+ison problems and she did not=C2=A0<span>=C2=A0</span>vomit or faint.</span=
+></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-hei=
+ght:normal;min-height:20.3px"><span></span><br></div><div style=3D"margin:0=
+px;font-stretch:normal;font-size:17px;line-height:normal"><span>We are wait=
+ing to see the doctor, they don=E2=80=99t seem overly concerned. She is eat=
+ing and drinking well.</span></div><div style=3D"margin:0px;font-stretch:no=
+rmal;font-size:17px;line-height:normal;min-height:20.3px"><span></span><br>=
+</div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-heig=
+ht:normal"><span>Once we speak to the doctor I will let you know.</span></d=
+iv><div style=3D"margin:0px;font-stretch:normal;font-size:17px;line-height:=
+normal;min-height:20.3px"><span></span><br></div><div style=3D"margin:0px;f=
+ont-stretch:normal;font-size:17px;line-height:normal"><span>She will call y=
+ou=C2=A0<span>=C2=A0</span>later when we get home.</span></div><div style=
+=3D"margin:0px;font-stretch:normal;font-size:17px;line-height:normal;min-he=
+ight:20.3px"><span></span><br></div><div style=3D"margin:0px;font-stretch:n=
+ormal;font-size:17px;line-height:normal"><span>Alice is with my mom.=C2=A0<=
+/span></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;lin=
+e-height:normal;min-height:20.3px"><span></span><br></div><div style=3D"mar=
+gin:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Thanks=
+.</span></div><div style=3D"margin:0px;font-stretch:normal;font-size:17px;l=
+ine-height:normal;min-height:20.3px"><span></span><br></div><div style=3D"m=
+argin:0px;font-stretch:normal;font-size:17px;line-height:normal"><span>Cynt=
+hia=C2=A0</span></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div></blockquote></div>
+
+--0000000000005e5c1805e60fd5db--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>951140</integer>
+	<key>date-last-viewed</key>
+	<integer>1743019036</integer>
+	<key>date-received</key>
+	<integer>1660330564</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12341</string>
+</dict>
+</plist>

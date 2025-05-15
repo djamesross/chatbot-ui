@@ -1,0 +1,320 @@
+16185     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01061501.me.com by p72-mailgateway-smtp-5c759c8658-xlsnp (mailgateway 2225B374)
+	with SMTP id 954ca37e-2055-4490-8331-c218e4261a39 
+	for <darrylross@icloud.com>; Wed, 28 Sep 2022 16:31:42 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 954ca37e-2055-4490-8331-c218e4261a39
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	by qs51p00im-qukt01061501.me.com (Postfix) with ESMTPS id 5C4534C0231
+	for <darrylross@icloud.com>; Wed, 28 Sep 2022 16:31:40 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MREFUVVhYUw4aREQaGVlaTxkT
+ V1oeAQ5QWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsOH0hLEUkIBEwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wPQ1VRRkGZzcmGhQjGWYCKh4fHy0rZ1NJGlIoBUxnQQMBEzwi
+ O1kGOhAuDiY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pVTe/j8u
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.182 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.182 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.182; helo=mail-lj1-f182.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id j24so14944013lja.4
+        for <darrylross@icloud.com>; Wed, 28 Sep 2022 09:31:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=3bpMOkNPNdcDBvo58M+bDBFPLK2ao91jDQj1tcLz1LI=;
+        b=pVTe/j8uUXic5Kk8crZkkAFyvuYcjzCBEbD1XF9HvbmDL26fEcYo3dkWq1sbHo93RJ
+         gkVHAqQJ7k/HWy+KvaqafzAqdeX+RjQlSbm5vLgPzLhdrplbjxmMWw6OU7asio8p1Q7I
+         /9ZmKX+LmBcg24FZ3tkUwWiN34KyUPmKpUOPCzlp2r/XqJrRLAGoPAca35Z494PXd2zi
+         JitI1zi0N55nnMyCSY0QXrVuuOmd02bvMQUpOW+7GJ1lg/ChC/ahdbityAzHVhDQLMPQ
+         1WquYP+nx8+/cI2EH9YUENV8QdfBEHF9YBJmcwFq0vEDIOAhGb6129rnmCCviPUz/C9O
+         wB6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=3bpMOkNPNdcDBvo58M+bDBFPLK2ao91jDQj1tcLz1LI=;
+        b=7v7EciAsoadIZke4imDVVQJgm3za3YpqtowCJgB0lVKEufIPvKloDLO4otCeN0wTJs
+         /Sa8zykTpMOpF9XPvji/evMqqf0gbBpy+draYBYhx2Y/oq4UTfHzxwptz6F1ApjnD8lM
+         KdxTxiYkusYGialWIHrae9+9W1NmQkc0knsVDRuv2e9yrgMHLXw3Sk3BsG1ZzTO4naR7
+         1G8D0dl3DnUrWa/1qASu1D4sNk5OnVqRIXrp6EETj+7/te7RCM5renP/9qTRjw+9xVkk
+         5rARxRFBkq0zXd8x6sVFdC9vn2iJ2GlCwq67Ne8uB9ZuKAfknKBHdX4X0rDFeBJL6U6I
+         hT1A==
+X-Gm-Message-State: ACrzQf0wYRV2DESmsBqyjQypfMEfBpxbqO2Wfxys6wRcmGu2frfcEVMe
+	+74PRp9z3BKG63V78aqPCPd0u8saIdHs9KT6t+PR2pzGyWY=
+X-Google-Smtp-Source: AMsMyM7vYEMGWKj6xiuOdlyKdzGCxKcuZ0qSCkyvEijWAmnjf10YENO1aw0Uw4DKQs6Y7pY1EH9oh0zQjBF1yOF3o6g=
+X-Received: by 2002:a05:651c:101:b0:250:896d:f870 with SMTP id
+ a1-20020a05651c010100b00250896df870mr12685165ljb.235.1664382699393; Wed, 28
+ Sep 2022 09:31:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREjyULAvvDHjFHH26DLUAXu2iRNU001u3L3Xkda8oBSPw@mail.gmail.com>
+ <67D6CBEB-2D98-40A5-9D83-8041DB6C78A3@icloud.com> <CAFnbyRHkHzY5DugSb+0U_xGN-hOd9vJibWaDGqHc_QcgdfA4Ew@mail.gmail.com>
+ <D645EBDB-A11E-4872-B579-1662C7148C12@icloud.com>
+In-Reply-To: <D645EBDB-A11E-4872-B579-1662C7148C12@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 28 Sep 2022 12:31:28 -0400
+Message-ID: <CAFnbyRHt32a6QUScrTaV4HkfyZSWe+o+Nr4WwatjZUCi0XeWhQ@mail.gmail.com>
+Subject: Re: today
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>, Alison Boyce <Alison.Boyce@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="0000000000009155db05e9bf4b3f"
+X-MANTSH: 1TEIXW1kfG1oaGkNHB1tfQV4aGBoTGxMaGxEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExwQGncGGBoGGhEKWV4XbGx5EQpDThd7E31PUFBwRh1TZBNkbmE
+ YfWdiB01pRkYaYUBgWmxoUhEKWFwXGQQaBB4TBx0YSR8fHUkZBRsaGgQSGAQbHxIEGBwQGx4aH
+ xoRCl5ZF0tLQl9iEQpNXBcbHhgRCkxaF01daxEKTU4XaWsRCkxGF2JraxEKQ1oXGBoTBBIfBBg
+ aEgQbEhgRCkJeFxsRCkRJFxgRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2Nre
+ xNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQRE
+ KQmwXb0tHUEFtGhJLaUkRCkJAF2NHTXBQAW5tBVtYEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKW
+ lgXGBEKcGgXYEFDfGt4TxJ5WEUQGRoRCnBoF2xEQV5Eexp7ZVBbEBkaEQpwaBdoQU98SWtce0B
+ +GhAZGhEKcGgXbG9oBRh9eGV4QUUQGRoRCnBoF2ReTB4ZbEdyYEJTEBkaEQpwbBdmRmsfGFttX
+ 0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: Q9WezzZl7yN9NDK2WMH-gCll0KjJpFBx
+X-Proofpoint-ORIG-GUID: Q9WezzZl7yN9NDK2WMH-gCll0KjJpFBx
+
+--0000000000009155db05e9bf4b3f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Darryl,
+
+Unfortunately, no appointments were available Monday as I called the office
+and the nurse said I had to call first thing Tuesday to secure an urgent
+care appointment as our family doctor was not available. This was the only
+option with the clinic, you can call to conform. Unfortunately this was
+during your time. Please call the doc office for the notes. Alice
+returned home with me because she needed to pass a hard stool. All of this
+is in the notes from Dr. Folkerson. UTIs with constipation are common at
+this age, Dr. Folkerson explained this as well.
+
+As for missed time due to her being seen by a doctor, I can offer extended
+time this Sunday from* noon-7pm*. Let me know if your mom and you are
+available.
+
+ If you recall we did agree on extending the time on Thanksgiving Sunday.
+
+To date, if a time is missed, we have managed to make up the time on
+alternative dates.
+
+Cynthia
+
+On Tue, Sep 27, 2022 at 9:34 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Today was another example of interference and obstruction of my parenting
+> time. I was not informed that Alice had UTI symptoms, again. Or that she=
+=E2=80=99d
+> had symptoms for at least several days.  I was not informed of it or that
+> she may need a doctors appointment. You booked an appointment during the =
+3
+> hours of court order parenting time before communicating with me, and the=
+n
+> made the decision not to return her.
+>
+> Going forward I will take them to any appointments that are necessary if
+> they are scheduled during my parenting time, and appointments will only b=
+e
+> made during my parenting time in discussion with me.
+>
+> With regard to the issue of wrongly withholding Alice, it is important to
+> note that Alice did not miss Kenzie=E2=80=99s birthday party Sunday despi=
+te having
+> symptoms, or miss school Monday, Tuesday, or last, despite having symptom=
+s
+> of something that you know is a recurring and ongoing issue. This is at
+> least her third time going to the doctors for a UTI. Yet somehow a doctor=
+=E2=80=99s
+> appointment had to be made during the 3 hours of court ordered parenting
+> time with me for the week, and then you texted me that you were not
+> returning her to me because she had to poop. Then you texted me at 7:34 p=
+m,
+> 4 minutes after my parenting time, that she is feeling much better and
+> doing much better. As soon as Charlotte left I texted you and asked you t=
+o
+> let Alice FaceTime me. That was at 7:54 pm. For future reference it is no=
+w
+> 9:27 pm and you have ignored a reasonable and right request. I just wante=
+d
+> to talk to Alice after her doctors appointment, to see how she=E2=80=99s =
+doing, and
+> to say goodnight to her. You denied me that opportunity today. That is on=
+e
+> level of wrong. The higher level of wrong, the one that everyone cares
+> about, the only one the court will care about, is that you denied Alice
+> that opportunity.
+>
+> The judge found that you you interfered with and harmed my relationship
+> with our daughters. This is direct harm done to them. And despite another
+> court order it is openly continuing, and happened today. The judge left m=
+e
+> the option make an application to the Office of The Children=E2=80=99s La=
+wyer and I
+> will make that application on their behalf if this continues.
+>
+> In terms of today and unlawfully withholding Alice during my parenting
+> time despite a court order, make up time is the reasonable and the only w=
+ay
+> to address today and move forward in a positive way that takes Alice=E2=
+=80=99s
+> needs and rights into account. Kindly let me know a time that will work
+> this weekend in addition to extra time Sunday with both of them for
+> Thanksgiving and the long weekend.
+>
+> Darryl
+>
+>
+>
+>
+> On Sep 27, 2022, at 12:09 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>
+> Will do. It=E2=80=99s not Dr. Brenhouse she was not available.
+>
+> On Tue, Sep 27, 2022 at 10:43 AM Darryl Ross <darrylross@icloud.com>
+> wrote:
+>
+>> I will be sure to remind her. Please keep me up to date after you see Dr=
+.
+>> Brenhouse.
+>>
+>> Darryl
+>>
+>> > On Sep 27, 2022, at 9:40 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>> wrote:
+>> >
+>> > Hi,
+>> >
+>> > Alice has a possible UTI so she has an appointment at the Arbour clini=
+c
+>> for 530 pm tonight. I will pick her up close to 5 pm at your place and d=
+rop
+>> her off when we are back. Can you remind Alice to drink water and not pe=
+e
+>> while she is at your house?
+>> >
+>> > You mom can bring the girls home as per usual.
+>> >
+>> > Thanks.
+>>
+>>
+>
+
+--0000000000009155db05e9bf4b3f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Darryl,<div><br></div><div>Unfortunately, no appointments =
+were available=C2=A0Monday as I called the office and the nurse said I had =
+to call first thing Tuesday to secure an urgent care appointment as our=C2=
+=A0family doctor was=C2=A0not available. This was the only option with the =
+clinic,=C2=A0you can call to=C2=A0conform. Unfortunately this was during yo=
+ur time. Please call the doc office for the notes. Alice returned=C2=A0home=
+ with me because she needed to pass a=C2=A0hard=C2=A0stool. All of this is =
+in the=C2=A0notes from Dr. Folkerson. UTIs with constipation are common at =
+this age, Dr. Folkerson explained this as well.</div><div><br></div><div>As=
+ for missed time due to her being seen by a doctor, I can offer extended ti=
+me this Sunday from<b> noon-7pm</b>. Let me know if your mom and you are av=
+ailable.</div><div><br></div><div>=C2=A0If you recall we did agree on exten=
+ding the time on Thanksgiving Sunday.=C2=A0</div><div><br></div><div>To dat=
+e, if a time is missed, we have managed to make up the time on alternative =
+dates.</div><div><br></div><div>Cynthia</div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 27, 2022 at 9:34 P=
+M Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@iclou=
+d.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border=
+-left-color:rgb(204,204,204);padding-left:1ex"><div style=3D"line-break:aft=
+er-white-space">Today was another example of interference and obstruction o=
+f my parenting time. I was not informed that Alice had UTI symptoms, again.=
+ Or that she=E2=80=99d had symptoms for at least several days.=C2=A0 I was =
+not informed of it or that she may need a doctors appointment. You booked a=
+n appointment during the 3 hours of court order parenting time before commu=
+nicating with me, and then made the decision not to return her.<div><br></d=
+iv><div>Going forward I will take them to any appointments that are necessa=
+ry if they are scheduled during my parenting time, and appointments will on=
+ly be made during my parenting time in discussion with me.</div><div><div><=
+br></div><div>With regard to the issue of wrongly withholding Alice, it is =
+important to note that Alice did not miss Kenzie=E2=80=99s birthday party S=
+unday despite having symptoms, or miss school Monday, Tuesday, or last, des=
+pite having symptoms of something that you know is a recurring and ongoing =
+issue. This is at least her third time going to the doctors for a UTI. Yet =
+somehow a doctor=E2=80=99s appointment had to be made during the 3 hours of=
+ court ordered parenting time with me for the week, and then you texted me =
+that you were not returning her to me because she had to poop. Then you tex=
+ted me at 7:34 pm, 4 minutes after my parenting time, that she is feeling m=
+uch better and doing much better. As soon as Charlotte left I texted you an=
+d asked you to let Alice FaceTime me. That was at 7:54 pm. For future refer=
+ence it is now 9:27 pm and you have ignored a reasonable and right request.=
+ I just wanted to talk to Alice after her doctors appointment, to see how s=
+he=E2=80=99s doing, and to say goodnight to her. You denied me that opportu=
+nity today. That is one level of wrong. The higher level of wrong, the one =
+that everyone cares about, the only one the court will care about, is that =
+you denied Alice that opportunity.=C2=A0</div><div><br></div><div>The judge=
+ found that you you interfered with and harmed my relationship with our dau=
+ghters. This is direct harm done to them. And despite another court order i=
+t is openly continuing, and happened today. The judge left me the option ma=
+ke an application to the Office of The Children=E2=80=99s Lawyer and I will=
+ make that application on their behalf if this continues.</div><div><br></d=
+iv><div>In terms of today and unlawfully withholding Alice during my parent=
+ing time despite a court order, make up time is the reasonable and the only=
+ way to address today and move forward in a positive way that takes Alice=
+=E2=80=99s needs and rights into account. Kindly let me know a time that wi=
+ll work this weekend in addition to extra time Sunday with both of them for=
+ Thanksgiving and the long weekend.</div><div><br></div><div>Darryl</div><d=
+iv><br></div><div><br><div><div><br></div><div><br><div><div><blockquote ty=
+pe=3D"cite"><div>On Sep 27, 2022, at 12:09 PM, Cynthia Holmes &lt;<a href=
+=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>=
+&gt; wrote:</div><br><div><div dir=3D"auto">Will do. It=E2=80=99s not Dr. B=
+renhouse she was not available.</div><div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 27, 2022 at 10:43 AM Darryl=
+ Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darryl=
+ross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:so=
+lid;border-left-color:rgb(204,204,204);padding-left:1ex">I will be sure to =
+remind her. Please keep me up to date after you see Dr. Brenhouse.<br>
+<br>
+Darryl<br>
+<br>
+&gt; On Sep 27, 2022, at 9:40 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; Alice has a possible UTI so she has an appointment at the Arbour clini=
+c for 530 pm tonight. I will pick her up close to 5 pm at your place and dr=
+op her off when we are back. Can you remind Alice to drink water and not pe=
+e while she is at your house?<br>
+&gt; <br>
+&gt; You mom can bring the girls home as per usual.<br>
+&gt; <br>
+&gt; Thanks.<br>
+<br>
+</blockquote></div></div>
+</div></blockquote></div><br></div></div></div></div></div></div></blockquo=
+te></div>
+
+--0000000000009155db05e9bf4b3f--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>988585</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801409</integer>
+	<key>date-received</key>
+	<integer>1664382702</integer>
+	<key>flags</key>
+	<integer>8623750277</integer>
+	<key>remote-id</key>
+	<string>14558</string>
+</dict>
+</plist>

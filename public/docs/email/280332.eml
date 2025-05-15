@@ -1,0 +1,201 @@
+10230     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33072101.me.com by p133-mailgateway-smtp-6cfb4dd485-pnq2z (mailgateway 2417B106)
+	with SMTP id a8ee8911-0ffd-4e09-a307-a20cae5c27b4 
+	for <darrylross@icloud.com>; Wed, 29 May 2024 19:46:19 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: a8ee8911-0ffd-4e09-a307-a20cae5c27b4
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	by ms13p00im-qukt33072101.me.com (Postfix) with ESMTPS id 9AE6759000F1
+	for <darrylross@icloud.com>; Wed, 29 May 2024 19:46:17 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRQRFdTRFoQXgcZFltVFVFfDlgO
+ FEZVVgNRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsVB0hLEU0DGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlEhwILzwFAxU9Mi40Ekd9ASY1Sz8eUw4bI0orFRNlUCoCUjQo
+ LHRMBEcsNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NC29Cf8N
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.221.53 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.221.53 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.221.53; helo=mail-wr1-f53.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-35bf77ba951so67161f8f.3
+        for <darrylross@icloud.com>; Wed, 29 May 2024 12:46:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717011976; x=1717616776; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4cmb5s1sDVbYMGBnBiR45p5PqiV+hFBhVkFT6fdNY4E=;
+        b=NC29Cf8NBoJcqUmFKOzGecU1iySgfH+5nlJ3IthJH6ju7bXGBwWrPPWP8ze144ByGh
+         nykaB8TakDHbH7sdnjxf5pBtP7Gx7ySMZBbu+VQiQW0knQNNoU3F/PfMP6iGVZKj0S+w
+         J+OLU69SIOeDBsUtOCL/sXhMJEPP+D2795An5vsuy19IK3FIfeBg05ZkqhNWdRAIbPZ5
+         +JwHDmWi9sUhd9FzthKOwIVW3aTUgZBhey4pOnGVx9dk1fiVp42e/wvUyWTLgy4SuK/j
+         VMWTntrrwMn441qwm/kNW2+TcjGW7h4ZxLyVDgdQfb0l0vK4pzakbTFqYfJF3+ePNiFS
+         5mIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717011976; x=1717616776;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4cmb5s1sDVbYMGBnBiR45p5PqiV+hFBhVkFT6fdNY4E=;
+        b=VM/n+/Uc9IbompyquiJT/UtlLlbYz5jLJcsvgcJ70SDL4Xd4wQ/+MSHHmJuLhfH+kc
+         dSi+CrbZlVTxI637rME7FHUahglziLFO4NQc14HqauUEZAycRJcSJfELG8+MW5A2AfMf
+         THYaeDIQpHqh2J0bpt1TB06Z2kO65PrihzbsHRNYIq7Mp4hXcO8t1J/Fupb8dT27UANt
+         HFNPisKjcFLz0quKEIoNOC6tSDxmOhnNxS2LEYSQKnvtsMigTI5J/EVcnB+c0kFMlnSt
+         2rwVSyl15mBvTf/Mi+gnJMrTerx67ncwYrYgqOkPTCdd8t5384gUOp47NkIJ/Agrrbv3
+         22LQ==
+X-Gm-Message-State: AOJu0Yy7vNdSnQ04jIzODzDeS1cCyEHlGQLWtCYxtHo8RZ4RcNVhTR6w
+	JSiI3VJ5LX10NvP25ofszDUI29FVXDCa9DP2aadJa/Xz/RjW3QJbxyznQiMs9O6v10SxFuOMZXr
+	9VDDfdgHgKgpwqYlR9rKKXpqWZ+7aUg==
+X-Google-Smtp-Source: AGHT+IFwlo8nnGs7Qwi71zdWZa96TQEUYFNI+8TvK5eGSrqE6CGAKVe7qoy4Q0zzF4TrVvnhuxCU+oHNLfti/b508Jg=
+X-Received: by 2002:a05:600c:a03:b0:416:2471:e102 with SMTP id
+ 5b1f17b1804b1-4212792c381mr1466975e9.37.1717011976262; Wed, 29 May 2024
+ 12:46:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <75B798B9-57EA-44B4-A8E0-4B08EB89D150@icloud.com>
+In-Reply-To: <75B798B9-57EA-44B4-A8E0-4B08EB89D150@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 29 May 2024 15:46:05 -0400
+Message-ID: <CAFnbyRGgenXD55wHKHCjwKcSL-Hfc8yV3MbkUfHw+R_TDzf2UQ@mail.gmail.com>
+Subject: Re: Absence.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000eba07006199d0083"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdDB31PG3oSHG1SW
+ k9BW01yTUxmfWRTeBpJbFljeRtvfBEKWFwXGQQaBB8aBRsaGgQdGwQbHBoEExgQGx4aHxoRCl5
+ ZF05AeVtGEQpNXBcZHRMRCkxaF2hrTU1rEQpMRhdiTWsRCkNaFxgaEwQSHwQYGBsEHxkRCkJeF
+ xsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHh
+ ybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRC
+ kJAF25bbUZDQkNLZ2tSEQpCWBdia05vb3psZ1pHSxEKWlgXHhEKcGgXYkV8YmZJAURhTXoQGhE
+ KcGgXYkJOEmFCeH94RGIQGhEKcGgXYGcfQxkeZWl5XwUQGhEKcGgXbWZ5UwVAZ2RSS2UQGhEKc
+ GgXZFtFTEcTYV8cZWMQGhEKcGgXYn1nYB5fR11eTUgQGhEKcGgXbFJLXm8eaBhcRWwQGhEKcGg
+ XYXJ8TmFHQl59EwUQGhEKcH8XYHh9aH0TGwFhGEUQBxMTEQpwXxdhcmheax1CegFPfRAHGxseE
+ QpwfRdrXH9TGAFgZx95RBAaEQpwbBdmRmsfGFttX0ZvbxAaEQptfhcaEQpYTRdLEQ==
+X-Proofpoint-ORIG-GUID: i-We1P86GxpekqgXgfLWNyR0cFsIS1EV
+X-Proofpoint-GUID: i-We1P86GxpekqgXgfLWNyR0cFsIS1EV
+
+--000000000000eba07006199d0083
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+I brought Charlotte to CHEO today because her shoulder was still bothering
+her from the weekend when she injured it at soccer. The Xray showed no
+broken bones, after examination they concluded she has a suspected
+supraspinatus injury with decreased mobility and have recommended sports
+medicine physio. She will take tonight practice off, and depending on how
+she feels on Sunday. Monday afternoon she sees her physiotherapist for his
+recommendations.
+
+As for absences I agree they are high, she has had a rough year in terms of
+health and has missed days from being sick and injured. She also misses
+quite a few days for soccer tournaments etc.. bc  she is in the special
+program. Her marks are great and I have received excellent feedback from
+her teachers so I am not that concerned.  Cutting out gluten has really
+helped her overall health as she was experiencing extreme fatigue,
+headaches and stomach aches.
+
+She has a chrome book so does catch up on work.
+
+
+
+
+On Wed, May 29, 2024 at 1:24=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+> I received a call from the school this morning informing me that Charlott=
+e
+> was absent and asking for the reason. I wasn=E2=80=99t aware of this abse=
+nce and
+> couldn't provide an answer. Additionally, her attendance record shows tha=
+t
+> she has had 37 absences this year, with 15 being unexcused, as well as 7
+> unexcused lates. This means she has officially passed the threshold for
+> chronic absenteeism in Ontario, which is concerning regarding her
+> educational progress and well-being.
+>
+> Could you provide any information or context about these absences and let
+> me know about her current condition?
+>
+> Staying informed and involved in her schooling and health is important fo=
+r
+> both of us. Your insights would be appreciated.
+>
+> Best,
+>
+> Darryl
+
+--000000000000eba07006199d0083
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div>I brought Charlotte to CHEO today because h=
+er shoulder was still bothering her from the weekend when she injured it at=
+ soccer. The Xray showed no broken bones, after examination they concluded =
+she has a suspected supraspinatus=C2=A0injury with decreased=C2=A0mobility =
+and have recommended sports medicine physio. She will take tonight practice=
+=C2=A0off, and depending on how she feels on Sunday. Monday afternoon she s=
+ees her physiotherapist for his recommendations.</div><div><br></div><div>A=
+s for absences I agree they are high, she has had a rough year in terms of =
+health and has missed days from being sick and injured. She also misses qui=
+te a few days for soccer tournaments etc.. bc=C2=A0 she is in the special p=
+rogram. Her marks are great and I have received excellent feedback from her=
+ teachers so I am not that concerned.=C2=A0 Cutting out gluten has really h=
+elped her overall health as she was experiencing=C2=A0extreme=C2=A0fatigue,=
+ headaches=C2=A0and stomach aches.=C2=A0</div><div><br></div><div>She has a=
+ chrome book so does catch up on work.</div><div><br clear=3D"all"><div><di=
+v dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">=
+<div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIo=
+rK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkd=
+Ehi_cA"><br></div></div></div><br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 29, 2024 at 1:24=E2=80=
+=AFPM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@i=
+cloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">Hi Cynthia,<br>
+<br>
+I received a call from the school this morning informing me that Charlotte =
+was absent and asking for the reason. I wasn=E2=80=99t aware of this absenc=
+e and couldn&#39;t provide an answer. Additionally, her attendance record s=
+hows that she has had 37 absences this year, with 15 being unexcused, as we=
+ll as 7 unexcused lates. This means she has officially passed the threshold=
+ for chronic absenteeism in Ontario, which is concerning regarding her educ=
+ational progress and well-being.<br>
+<br>
+Could you provide any information or context about these absences and let m=
+e know about her current condition?<br>
+<br>
+Staying informed and involved in her schooling and health is important for =
+both of us. Your insights would be appreciated.<br>
+<br>
+Best,<br>
+<br>
+Darryl</blockquote></div>
+
+--000000000000eba07006199d0083--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1265878</integer>
+	<key>date-last-viewed</key>
+	<integer>1741383491</integer>
+	<key>date-received</key>
+	<integer>1717011979</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12024</string>
+</dict>
+</plist>

@@ -1,0 +1,1025 @@
+51872     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:7415:0:0:0:0:0 with SMTP id o21csp703559lte;
+        Wed, 3 Apr 2019 12:55:33 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqyFjMQBKHg1nHQg8B6gPKT1QT0yNH1cPvUjs3FvjuKZYyzzZR7vPRxIzKyiG/N27dSD3ML7
+X-Received: by 2002:aca:c7d3:: with SMTP id x202mr830417oif.48.1554321333352;
+        Wed, 03 Apr 2019 12:55:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1554321333; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Bq6ZwqDofIDj1MDeFtNfd8Aw7GyBJCvaM1opap7WBxpo5UXPeIn8ckk3pvMTqhZrZK
+         3N2zwnGNX0JGc3qszLyrW3Pf84FymXMFPsRgOx6KM24M244zpJ/f3044qjHTrVXOwzgF
+         ZH9hFxzygZYTGkgdPQINXsnt/gzlC6GmFo1EwBq7JoO387C6COw05ZpopgxxubPWEHvd
+         oyActk4yDrpVoFe5579D7ch5NPtLRA0ZQWRu7Uvq2bH8hih4qYQe9NGCEM1dS4/SKiH1
+         JKtlhTJtoR1WpR54Xjh3yfD6Rc3rBTZ8F2FDbMtzmXr34oMnyyjbSH5wZwpdWkf2tJut
+         k8TQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:dkim-signature;
+        bh=3pJKtZoYVpAD8a1BCtLxFYq0wNw5bBPEmjKxOpE2r2Q=;
+        b=Hh3ZD3nPz42XiDYYwZegjeFhu/Zrbbt22s3w4iygF6Tun/VbjRz6417crjzkdz8KsJ
+         Zb+uc0roG1NKA19hkzTBGTDu0ZUAdZDoxBSdIfzNQAJG9SJusi21VrixsbH77fbceTwg
+         2lukc+43/GhH6Hl0q82lSdRkTnuTYv2xTWFAbcHhH0e8boM/OFcfGZ9VdPwEaa6AMzmJ
+         gxZJE9zPvQdemqNyBdtLQCJoFwxZbz2C7KHNEdtgOJYJriCNkXT95QkSJA5vyJqrmXQS
+         bHD6JdITUnjj3orWyLo1S89y6fvcFEp6aWpU8vvwtF6DS9H5/SluQkjLnY4y3WtUPxP7
+         LvXw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-on-ca header.b=Emd5al1J;
+       spf=pass (google.com: domain of krystle.latouche@casott.on.ca designates 40.107.78.117 as permitted sender) smtp.mailfrom=Krystle.Latouche@casott.on.ca
+Return-Path: <Krystle.Latouche@casott.on.ca>
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com (mail-eopbgr780117.outbound.protection.outlook.com. [40.107.78.117])
+        by mx.google.com with ESMTPS id s205si7360224oie.63.2019.04.03.12.55.32
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Apr 2019 12:55:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of krystle.latouche@casott.on.ca designates 40.107.78.117 as permitted sender) client-ip=40.107.78.117;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-on-ca header.b=Emd5al1J;
+       spf=pass (google.com: domain of krystle.latouche@casott.on.ca designates 40.107.78.117 as permitted sender) smtp.mailfrom=Krystle.Latouche@casott.on.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=casott.onmicrosoft.com; s=selector1-casott-on-ca;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3pJKtZoYVpAD8a1BCtLxFYq0wNw5bBPEmjKxOpE2r2Q=;
+ b=Emd5al1Je6QJp5QNtXsQSCWGNwEIvLHZLbvxt++eICxCOgcqtSu81eJ2h/lITVjtZQp7S2jWKTpcbaodh6cux/c1Hg9xHGGP285eHLhjrj9O0tH5XbJbCXrbSnuC7+vIUhhaPKa8NYq0DI2cKHgqfL7++qRWNbH95LykPJCjaV4=
+Received: from BN7PR04MB5233.namprd04.prod.outlook.com (20.176.28.224) by
+ BN7PR04MB3809.namprd04.prod.outlook.com (20.176.16.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1750.20; Wed, 3 Apr 2019 19:55:31 +0000
+Received: from BN7PR04MB5233.namprd04.prod.outlook.com
+ ([fe80::5106:dac6:9ccb:b0de]) by BN7PR04MB5233.namprd04.prod.outlook.com
+ ([fe80::5106:dac6:9ccb:b0de%3]) with mapi id 15.20.1750.017; Wed, 3 Apr 2019
+ 19:55:31 +0000
+From: "Latouche, Krystle" <Krystle.Latouche@casott.on.ca>
+To: Darryl Ross <darrylondunlin@gmail.com>
+Subject: Re: Home Visit
+Thread-Topic: Home Visit
+Thread-Index:
+ AQHU40eEKg7Wlmcykkqm8N4dtvBTM6Yf2LeAgAF46EeAADYlAIAHcg+FgAAWY4CAABFuQYAAnTgAgAEolkw=
+Date: Wed, 3 Apr 2019 19:55:31 +0000
+Message-ID:
+ <BN7PR04MB5233F4C49C6528C0674A0EC3AA570@BN7PR04MB5233.namprd04.prod.outlook.com>
+References:
+ <BN7PR04MB5233D6EE5E848FE72CA4AC26AA5E0@BN7PR04MB5233.namprd04.prod.outlook.com>
+ <0065D2EB-2942-40FB-BB41-B743AC683E02@gmail.com>
+ <BN7PR04MB52336FBCB5D6AA06562AF301AA590@BN7PR04MB5233.namprd04.prod.outlook.com>
+ <8613F82E-3672-4EE7-9E52-941B1500FE53@gmail.com>
+ <BN7PR04MB5233DC8B6E4714098EC0D6A0AA560@BN7PR04MB5233.namprd04.prod.outlook.com>
+ <3ECD37A2-7041-407A-A33A-9FE61BB9E360@gmail.com>
+ <BN7PR04MB523349517A2B6FBD1BB49DAEAA560@BN7PR04MB5233.namprd04.prod.outlook.com>,<079A90A5-9315-4942-89E9-95E8E7E9CE44@gmail.com>
+In-Reply-To: <079A90A5-9315-4942-89E9-95E8E7E9CE44@gmail.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Krystle.Latouche@casott.on.ca; 
+x-originating-ip: [108.63.19.18]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c0f0c043-ff3b-4dc2-8092-08d6b86e53dd
+x-microsoft-antispam:
+ BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600139)(711020)(4605104)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:BN7PR04MB3809;
+x-ms-traffictypediagnostic: BN7PR04MB3809:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs:
+ <BN7PR04MB3809D017F8A240292B8C14E7AA570@BN7PR04MB3809.namprd04.prod.outlook.com>
+x-forefront-prvs: 0996D1900D
+x-forefront-antispam-report:
+ SFV:NSPM;SFS:(10019020)(979002)(39850400004)(136003)(396003)(376002)(346002)(366004)(54504004)(199004)(189003)(25786009)(53936002)(221733001)(5660300002)(6116002)(72206003)(3846002)(14454004)(30864003)(86362001)(478600001)(76176011)(606006)(8936002)(8676002)(66066001)(26005)(11346002)(446003)(52536014)(7696005)(93886005)(316002)(99286004)(2906002)(81166006)(476003)(81156014)(102836004)(186003)(55016002)(97736004)(7736002)(6506007)(6436002)(54896002)(486006)(236005)(229853002)(33656002)(53546011)(105004)(9686003)(66574012)(6916009)(6306002)(68736007)(74482002)(74316002)(106356001)(7116003)(105586002)(19627405001)(71190400001)(5024004)(1411001)(6246003)(256004)(14444005)(3480700005)(53946003)(71200400001)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:BN7PR04MB3809;H:BN7PR04MB5233.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: casott.on.ca does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info:
+ kTHBkg2zJ6MaXcqB/aHwO6HvChiiXR3BLH9J5y1jlHbMgOBRCumoNWq5ln8R8SSI7bmJ/tqeJZmK0axdYlrw8Ll8JmcW73SvVCtkLUuQ1DBNMIE6YLNKB9pJVMmWk0aN8IDwBTEqo1XcmgNlo5VFbJ9SqYWAf638DcshgjRuHRp0labXKCxNGWhNEbggunyk8/VMdeuSy547HKJTe3jMb2JFsF3mwWi1VF6hQjb4OftBRCpae/qIU/c/iW5QOpOtEw6WhCBsTbOUAZ6R3z2DhUFk/m3XOBwYgErQ5QrgcailAjSX3NV+AoTo1Z0SKtL9F8IcIdbOZoJSoJ6/Q9P8/8B0yOCyq5aRxV2+94QA1qhrNuBrmrIzcuGRi9biCgDvwnfSU6Zl7AzNzvHzW7rhR1ickUocJyOLcM68pYq0yGE=
+Content-Type: multipart/alternative;
+	boundary="_000_BN7PR04MB5233F4C49C6528C0674A0EC3AA570BN7PR04MB5233namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: casott.on.ca
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0f0c043-ff3b-4dc2-8092-08d6b86e53dd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2019 19:55:31.1271
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e6da767b-f287-4dbf-ae9f-9fe542f5efe5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR04MB3809
+
+--_000_BN7PR04MB5233F4C49C6528C0674A0EC3AA570BN7PR04MB5233namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Okay I will call you next wednesday between 9:30-10am?
+
+
+Kind regards,
+
+Krystle Latouche, B.S.W
+Child Protection Worker                                                    =
+  Ongoing Services
+The Children's Aid Society of Ottawa<http://www.casott.on.ca/en/>
+150 Katimavik Rd
+Kanata, ON K2L 2N2
+Telephone: (613) 747-7800 ext. 3133
+Email: krystle.latouche@casott.on.ca
+
+
+________________________________
+From: Darryl Ross <darrylondunlin@gmail.com>
+Sent: April 2, 2019 10:12 PM
+To: Latouche, Krystle
+Subject: Re: Home Visit
+
+Sure, that works. I=92m in class from 11:30-1:30, but can talk before or af=
+ter that time.
+
+Let me know what works,
+
+Darryl
+
+On Apr 2, 2019, at 12:51 PM, Latouche, Krystle <Krystle.Latouche@casott.on.=
+ca<mailto:Krystle.Latouche@casott.on.ca>> wrote:
+
+Okay we can do next Wednesday for a home visit at 5p.m. Did you want to sch=
+edule a phone call that morning as well so we can connect before hand?
+
+
+Kind regards,
+
+Krystle Latouche, B.S.W
+Child Protection Worker                                                    =
+  Ongoing Services
+The Children's Aid Society of Ottawa<http://www.casott.on.ca/en/>
+150 Katimavik Rd
+Kanata, ON K2L 2N2
+Telephone: (613) 747-7800 ext. 3133
+Email: krystle.latouche@casott.on.ca<mailto:krystle.latouche@casott.on.ca>
+
+
+________________________________
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: April 2, 2019 11:47 AM
+To: Latouche, Krystle
+Subject: Re: Home Visit
+
+Hi Krystle,
+
+I=92ve taken over a couple of courses for a colleague who is on sick leave,=
+ so I=92m just getting my schedule figured out, and trying to make a broken=
+ course work for the students, so the next few days are hectic. It looks li=
+ke we=92re going to switch to Wednesday evenings. Would Wednesday next work=
+ work?
+
+I would like to talk to you separately, however. We can talk by phone, or y=
+ou can stop by Thursday or Friday if you=92re in the area.
+
+Let me know if that works,
+
+Darryl
+
+On Apr 2, 2019, at 10:29, Latouche, Krystle <Krystle.Latouche@casott.on.ca<=
+mailto:Krystle.Latouche@casott.on.ca>> wrote:
+
+Hi Darryl,
+
+Sorry I was not able to make that call to you some stuff came up. Could we =
+schedule a home visit for this thursday April 4th at 5?
+
+
+
+Kind regards,
+
+Krystle Latouche, B.S.W
+Child Protection Worker                                                    =
+  Ongoing Services
+The Children's Aid Society of Ottawa<http://www.casott.on.ca/en/>
+150 Katimavik Rd
+Kanata, ON K2L 2N2
+Telephone: (613) 747-7800 ext. 3133
+Email: krystle.latouche@casott.on.ca<mailto:krystle.latouche@casott.on.ca>
+
+
+________________________________
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: March 28, 2019 4:45 PM
+To: Latouche, Krystle
+Subject: Re: Home Visit
+
+Yes, tomorrow works. I=92ll be in my office most of the day. If you can=92t=
+ reach my cell - I sometimes lose service in here - you can reach me at 617=
+-727-4723 x6402.
+
+Best,
+Darryl
+
+On Mar 28, 2019, at 1:32 PM, Latouche, Krystle <Krystle.Latouche@casott.on.=
+ca<mailto:Krystle.Latouche@casott.on.ca>> wrote:
+
+Hi Darryl, I was in training yesterday. Are you available for a call tomorr=
+ow?
+
+
+Kind regards,
+
+Krystle Latouche, B.S.W
+Child Protection Worker                                                    =
+  Ongoing Services
+The Children's Aid Society of Ottawa<http://www.casott.on.ca/en/>
+150 Katimavik Rd
+Kanata, ON K2L 2N2
+Telephone: (613) 747-7800 ext. 3133
+Email: krystle.latouche@casott.on.ca<mailto:krystle.latouche@casott.on.ca>
+
+
+________________________________
+From: Darryl Ross <darrylondunlin@gmail.com<mailto:darrylondunlin@gmail.com=
+>>
+Sent: March 27, 2019 3:02 PM
+To: Latouche, Krystle
+Subject: Re: Home Visit
+
+Hi Krystle,
+
+Just checking to see if you=92re coming by today. If so we=92ll be here aft=
+er 4:30.
+
+If not, can we connect this week?
+
+Darryl
+
+On Mar 25, 2019, at 4:16 PM, Latouche, Krystle <Krystle.Latouche@casott.on.=
+ca<mailto:Krystle.Latouche@casott.on.ca>> wrote:
+
+Hi Darryl,
+
+Could we schedule a home visit for this Thursday?
+
+
+Kind regards,
+
+Krystle Latouche, B.S.W
+Child Protection Worker                                                    =
+  Ongoing Services
+The Children's Aid Society of Ottawa<http://www.casott.on.ca/en/>
+150 Katimavik Rd
+Kanata, ON K2L 2N2
+Telephone: (613) 747-7800 ext. 3133
+Email: krystle.latouche@casott.on.ca<mailto:krystle.latouche@casott.on.ca>
+
+
+CONFIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended recipient, you are hereby notified that y=
+ou must not read this transmission and that any disclosure, copying, printi=
+ng, distribution or use of any of the information contained in or attached =
+to this transmission is STRICTLY PROHIBITED. If you have received this tran=
+smission in error, please immediately notify the sender by return e-mail an=
+d delete the original transmission and its attachments without reading, pri=
+nting, or saving in any manner. Thank you.
+
+AVIS DE CONFIDENTIALIT=C9
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons que vous ne devez pas le =
+lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de copier, d=92impri=
+mer, de diffuser ou d=92utiliser l=92information qui y figure ou qui y est =
+jointe. Si cette communication vous a =E9t=E9 transmise par erreur, veuille=
+z en aviser l=92exp=E9diteur imm=E9diatement par courriel et supprimer la c=
+ommunication originale ainsi que les pi=E8ces jointes sans les lire, les im=
+primer ou les sauvegarder de quelque mani=E8re que ce soit. Merci.
+
+CONFIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended recipient, you are hereby notified that y=
+ou must not read this transmission and that any disclosure, copying, printi=
+ng, distribution or use of any of the information contained in or attached =
+to this transmission is STRICTLY PROHIBITED. If you have received this tran=
+smission in error, please immediately notify the sender by return e-mail an=
+d delete the original transmission and its attachments without reading, pri=
+nting, or saving in any manner. Thank you.
+
+AVIS DE CONFIDENTIALIT=C9
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons que vous ne devez pas le =
+lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de copier, d=92impri=
+mer, de diffuser ou d=92utiliser l=92information qui y figure ou qui y est =
+jointe. Si cette communication vous a =E9t=E9 transmise par erreur, veuille=
+z en aviser l=92exp=E9diteur imm=E9diatement par courriel et supprimer la c=
+ommunication originale ainsi que les pi=E8ces jointes sans les lire, les im=
+primer ou les sauvegarder de quelque mani=E8re que ce soit. Merci.
+
+
+CONFIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended recipient, you are hereby notified that y=
+ou must not read this transmission and that any disclosure, copying, printi=
+ng, distribution or use of any of the information contained in or attached =
+to this transmission is STRICTLY PROHIBITED. If you have received this tran=
+smission in error, please immediately notify the sender by return e-mail an=
+d delete the original transmission and its attachments without reading, pri=
+nting, or saving in any manner. Thank you.
+
+AVIS DE CONFIDENTIALIT=C9
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons que vous ne devez pas le =
+lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de copier, d=92impri=
+mer, de diffuser ou d=92utiliser l=92information qui y figure ou qui y est =
+jointe. Si cette communication vous a =E9t=E9 transmise par erreur, veuille=
+z en aviser l=92exp=E9diteur imm=E9diatement par courriel et supprimer la c=
+ommunication originale ainsi que les pi=E8ces jointes sans les lire, les im=
+primer ou les sauvegarder de quelque mani=E8re que ce soit. Merci.
+
+CONFIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended recipient, you are hereby notified that y=
+ou must not read this transmission and that any disclosure, copying, printi=
+ng, distribution or use of any of the information contained in or attached =
+to this transmission is STRICTLY PROHIBITED. If you have received this tran=
+smission in error, please immediately notify the sender by return e-mail an=
+d delete the original transmission and its attachments without reading, pri=
+nting, or saving in any manner. Thank you.
+
+AVIS DE CONFIDENTIALIT=C9
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons que vous ne devez pas le =
+lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de copier, d=92impri=
+mer, de diffuser ou d=92utiliser l=92information qui y figure ou qui y est =
+jointe. Si cette communication vous a =E9t=E9 transmise par erreur, veuille=
+z en aviser l=92exp=E9diteur imm=E9diatement par courriel et supprimer la c=
+ommunication originale ainsi que les pi=E8ces jointes sans les lire, les im=
+primer ou les sauvegarder de quelque mani=E8re que ce soit. Merci.
+
+
+
+CONFIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended recipient, you are hereby notified that y=
+ou must not read this transmission and that any disclosure, copying, printi=
+ng, distribution or use of any of the information contained in or attached =
+to this transmission is STRICTLY PROHIBITED. If you have received this tran=
+smission in error, please immediately notify the sender by return e-mail an=
+d delete the original transmission and its attachments without reading, pri=
+nting, or saving in any manner. Thank you.
+
+
+AVIS DE CONFIDENTIALIT=C9
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons que vous ne devez pas le =
+lire et qu=92il est STRICTEMENT INTERDIT de divulguer, de copier, d=92impri=
+mer, de diffuser ou d=92utiliser l=92information qui y figure ou qui y est =
+jointe. Si cette communication vous a =E9t=E9 transmise par erreur, veuille=
+z en aviser l=92exp=E9diteur imm=E9diatement par courriel et supprimer la c=
+ommunication originale ainsi que les pi=E8ces jointes sans les lire, les im=
+primer ou les sauvegarder de quelque mani=E8re que ce soit. Merci.
+
+--_000_BN7PR04MB5233F4C49C6528C0674A0EC3AA570BN7PR04MB5233namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Okay I will call you next wednesday between 9:30-10am?&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"signature">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
+:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0; margin-bottom=
+:0"></p>
+<div>Kind regards,</div>
+<div><br>
+</div>
+<div><b>Krystle Latouche, B.S.W</b></div>
+<div><i style=3D"">Child Protection Worker&nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp;
+</i><span style=3D"font-size:12pt">Ongoing Services</span></div>
+<div></div>
+<div><u><span id=3D"ms-rterangepaste-start"></span><a href=3D"http://www.ca=
+sott.on.ca/en/" target=3D"_blank" rel=3D"noopener noreferrer" title=3D"http=
+://www.casott.on.ca/en/=0A=
+Ctrl&#43;Click or tap to follow the link" style=3D"outline:none; font-famil=
+y:Calibri,sans-serif; font-size:14.6667px"><font face=3D"Arial,sans-serif" =
+size=3D"2"><span style=3D"font-size:10pt"><font color=3D"blue">The
+ Children's Aid Society of Ottawa</font></span></font></a><span id=3D"ms-rt=
+erangepaste-end"></span><br>
+</u></div>
+<div>150 Katimavik Rd</div>
+<div>Kanata, ON K2L 2N2</div>
+<div></div>
+<div>Telephone: (613) 747-7800 ext. 3133</div>
+<div>Email: krystle.latouche@casott.on.ca</div>
+<br>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"></p>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Darryl Ross &lt;darry=
+londunlin@gmail.com&gt;<br>
+<b>Sent:</b> April 2, 2019 10:12 PM<br>
+<b>To:</b> Latouche, Krystle<br>
+<b>Subject:</b> Re: Home Visit</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"" style=3D"word-wrap:break-word; line-break:after-white-space=
+">Sure, that works. I=92m in class from 11:30-1:30, but can talk before or =
+after that time.
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Let me know what works,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Darryl<br class=3D"">
+<div><br class=3D"">
+<blockquote type=3D"cite" class=3D"">
+<div class=3D"">On Apr 2, 2019, at 12:51 PM, Latouche, Krystle &lt;<a href=
+=3D"mailto:Krystle.Latouche@casott.on.ca" class=3D"">Krystle.Latouche@casot=
+t.on.ca</a>&gt; wrote:</div>
+<br class=3D"x_Apple-interchange-newline">
+<div class=3D"">
+<div class=3D"" style=3D"font-style:normal; font-variant-caps:normal; font-=
+weight:normal; letter-spacing:normal; text-align:start; text-indent:0px; te=
+xt-transform:none; white-space:normal; word-spacing:0px; text-decoration:no=
+ne; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt">
+Okay we can do next Wednesday for a home visit at 5p.m. Did you want to sch=
+edule a phone call that morning as well so we can connect before hand?</div=
+>
+<div class=3D"" style=3D"font-style:normal; font-variant-caps:normal; font-=
+weight:normal; letter-spacing:normal; text-align:start; text-indent:0px; te=
+xt-transform:none; white-space:normal; word-spacing:0px; text-decoration:no=
+ne; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt">
+<br class=3D"">
+</div>
+<div id=3D"x_signature" class=3D"" style=3D"font-family:Corbel; font-size:1=
+2px; font-style:normal; font-variant-caps:normal; font-weight:normal; lette=
+r-spacing:normal; text-align:start; text-indent:0px; text-transform:none; w=
+hite-space:normal; word-spacing:0px; text-decoration:none">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" class=3D"" style=3D"font-siz=
+e:12pt; font-family:Calibri,Helvetica,sans-serif">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+<div class=3D"">Kind regards,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><b class=3D"">Krystle Latouche, B.S.W</b></div>
+<div class=3D""><i class=3D"">Child Protection Worker&nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp;<span class=3D"x_Apple-converted-space">&nbsp;</span></i><s=
+pan class=3D"" style=3D"font-size:12pt">Ongoing Services</span></div>
+<div class=3D""></div>
+<div class=3D""><u class=3D""><span id=3D"x_ms-rterangepaste-start" class=
+=3D""></span><a href=3D"http://www.casott.on.ca/en/" target=3D"_blank" rel=
+=3D"noopener noreferrer" title=3D"http://www.casott.on.ca/en/
+Ctrl&#43;Click or tap to follow the link" class=3D"" style=3D"outline:none;=
+ font-family:Calibri,sans-serif; font-size:14.6667px"><font face=3D"Arial,s=
+ans-serif" size=3D"2" class=3D""><span class=3D"" style=3D"font-size:10pt">=
+<font color=3D"blue" class=3D"">The
+ Children's Aid Society of Ottawa</font></span></font></a><span id=3D"x_ms-=
+rterangepaste-end" class=3D""></span><br class=3D"">
+</u></div>
+<div class=3D"">150 Katimavik Rd</div>
+<div class=3D"">Kanata, ON K2L 2N2</div>
+<div class=3D""></div>
+<div class=3D"">Telephone: (613) 747-7800 ext. 3133</div>
+<div class=3D"">Email:<span class=3D"x_Apple-converted-space">&nbsp;</span>=
+<a href=3D"mailto:krystle.latouche@casott.on.ca" class=3D"">krystle.latouch=
+e@casott.on.ca</a></div>
+<br class=3D"">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+</div>
+</div>
+<div id=3D"x_appendonsend" class=3D"" style=3D"font-family:Corbel; font-siz=
+e:12px; font-style:normal; font-variant-caps:normal; font-weight:normal; le=
+tter-spacing:normal; text-align:start; text-indent:0px; text-transform:none=
+; white-space:normal; word-spacing:0px; text-decoration:none">
+</div>
+<hr tabindex=3D"-1" class=3D"" style=3D"font-family:Corbel; font-size:12px;=
+ font-style:normal; font-variant-caps:normal; font-weight:normal; letter-sp=
+acing:normal; text-align:start; text-indent:0px; text-transform:none; white=
+-space:normal; word-spacing:0px; text-decoration:none; display:inline-block=
+; width:726.171875px">
+<span class=3D"" style=3D"font-family:Corbel; font-size:12px; font-style:no=
+rmal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; =
+text-align:start; text-indent:0px; text-transform:none; white-space:normal;=
+ word-spacing:0px; text-decoration:none; float:none; display:inline!importa=
+nt"></span>
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr" class=3D"" style=3D"font-family:Cor=
+bel; font-size:12px; font-style:normal; font-variant-caps:normal; font-weig=
+ht:normal; letter-spacing:normal; text-align:start; text-indent:0px; text-t=
+ransform:none; white-space:normal; word-spacing:0px; text-decoration:none">
+<font face=3D"Calibri, sans-serif" class=3D"" style=3D"font-size:11pt"><b c=
+lass=3D"">From:</b><span class=3D"x_Apple-converted-space">&nbsp;</span>Dar=
+ryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com" class=3D"">darrylo=
+ndunlin@gmail.com</a>&gt;<br class=3D"">
+<b class=3D"">Sent:</b><span class=3D"x_Apple-converted-space">&nbsp;</span=
+>April 2, 2019 11:47 AM<br class=3D"">
+<b class=3D"">To:</b><span class=3D"x_Apple-converted-space">&nbsp;</span>L=
+atouche, Krystle<br class=3D"">
+<b class=3D"">Subject:</b><span class=3D"x_Apple-converted-space">&nbsp;</s=
+pan>Re: Home Visit</font>
+<div class=3D"">&nbsp;</div>
+</div>
+<div dir=3D"auto" class=3D"" style=3D"font-family:Corbel; font-size:12px; f=
+ont-style:normal; font-variant-caps:normal; font-weight:normal; letter-spac=
+ing:normal; text-align:start; text-indent:0px; text-transform:none; white-s=
+pace:normal; word-spacing:0px; text-decoration:none">
+Hi Krystle,
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">I=92ve taken over a couple of courses for a colleague who i=
+s on sick leave, so I=92m just getting my schedule figured out, and trying =
+to make a broken course work for the students, so the next few days are hec=
+tic. It looks like we=92re going to switch
+ to Wednesday evenings. Would Wednesday next work work?</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">I would like to talk to you separately, however. We can tal=
+k by phone, or you can stop by Thursday or Friday if you=92re in the area.&=
+nbsp;</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Let me know if that works,</div>
+<div class=3D""><br class=3D"">
+<div id=3D"x_x_AppleMailSignature" dir=3D"ltr" class=3D"">Darryl&nbsp;</div=
+>
+<div dir=3D"ltr" class=3D""><br class=3D"">
+On Apr 2, 2019, at 10:29, Latouche, Krystle &lt;<a href=3D"mailto:Krystle.L=
+atouche@casott.on.ca" class=3D"">Krystle.Latouche@casott.on.ca</a>&gt; wrot=
+e:<br class=3D"">
+<br class=3D"">
+</div>
+<blockquote type=3D"cite" class=3D"">
+<div dir=3D"ltr" class=3D"">
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+Hi Darryl,</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+<br class=3D"">
+</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+Sorry I was not able to make that call to you some stuff came up. Could we =
+schedule a home visit for this thursday April 4th at 5?</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+<br class=3D"">
+</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+<br class=3D"">
+</div>
+<div id=3D"x_x_signature" class=3D"">
+<div id=3D"x_x_divtagdefaultwrapper" dir=3D"ltr" class=3D"" style=3D"font-s=
+ize:12pt; font-family:Calibri,Helvetica,sans-serif">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+<div class=3D"">Kind regards,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><b class=3D"">Krystle Latouche, B.S.W</b></div>
+<div class=3D""><i class=3D"">Child Protection Worker&nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp;<span class=3D"x_Apple-converted-space">&nbsp;</span></i><s=
+pan class=3D"" style=3D"font-size:12pt">Ongoing Services</span></div>
+<div class=3D""></div>
+<div class=3D""><u class=3D""><span id=3D"x_x_ms-rterangepaste-start" class=
+=3D""></span><a href=3D"http://www.casott.on.ca/en/" target=3D"_blank" rel=
+=3D"noopener noreferrer" title=3D"http://www.casott.on.ca/en/
+Ctrl&#43;Click or tap to follow the link" class=3D"" style=3D"outline:none;=
+ font-family:Calibri,sans-serif; font-size:14.6667px"><font face=3D"Arial,s=
+ans-serif" size=3D"2" class=3D""><span class=3D"" style=3D"font-size:10pt">=
+<font color=3D"blue" class=3D"">The
+ Children's Aid Society of Ottawa</font></span></font></a><span id=3D"x_x_m=
+s-rterangepaste-end" class=3D""></span><br class=3D"">
+</u></div>
+<div class=3D"">150 Katimavik Rd</div>
+<div class=3D"">Kanata, ON K2L 2N2</div>
+<div class=3D""></div>
+<div class=3D"">Telephone: (613) 747-7800 ext. 3133</div>
+<div class=3D"">Email:<span class=3D"x_Apple-converted-space">&nbsp;</span>=
+<a href=3D"mailto:krystle.latouche@casott.on.ca" class=3D"">krystle.latouch=
+e@casott.on.ca</a></div>
+<br class=3D"">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+</div>
+</div>
+<div id=3D"x_x_appendonsend" class=3D""></div>
+<hr tabindex=3D"-1" class=3D"" style=3D"display:inline-block; width:716.375=
+px">
+<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr" class=3D""><font face=3D"Calibri,=
+ sans-serif" class=3D"" style=3D"font-size:11pt"><b class=3D"">From:</b><sp=
+an class=3D"x_Apple-converted-space">&nbsp;</span>Darryl Ross &lt;<a href=
+=3D"mailto:darrylondunlin@gmail.com" class=3D"">darrylondunlin@gmail.com</a=
+>&gt;<br class=3D"">
+<b class=3D"">Sent:</b><span class=3D"x_Apple-converted-space">&nbsp;</span=
+>March 28, 2019 4:45 PM<br class=3D"">
+<b class=3D"">To:</b><span class=3D"x_Apple-converted-space">&nbsp;</span>L=
+atouche, Krystle<br class=3D"">
+<b class=3D"">Subject:</b><span class=3D"x_Apple-converted-space">&nbsp;</s=
+pan>Re: Home Visit</font>
+<div class=3D"">&nbsp;</div>
+</div>
+<div class=3D"" style=3D"word-wrap:break-word; line-break:after-white-space=
+">Yes, tomorrow works. I=92ll be in my office most of the day. If you can=
+=92t reach my cell - I sometimes lose service in here - you can reach me at=
+ 617-727-4723 x6402.
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Best,</div>
+<div class=3D"">Darryl<br class=3D"">
+<div class=3D""><br class=3D"">
+<blockquote type=3D"cite" class=3D"">
+<div class=3D"">On Mar 28, 2019, at 1:32 PM, Latouche, Krystle &lt;<a href=
+=3D"mailto:Krystle.Latouche@casott.on.ca" class=3D"">Krystle.Latouche@casot=
+t.on.ca</a>&gt; wrote:</div>
+<br class=3D"x_x_x_Apple-interchange-newline">
+<div class=3D"">
+<div class=3D"" style=3D"font-style:normal; font-variant-caps:normal; font-=
+weight:normal; letter-spacing:normal; text-align:start; text-indent:0px; te=
+xt-transform:none; white-space:normal; word-spacing:0px; text-decoration:no=
+ne; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt">
+Hi Darryl, I was in training yesterday. Are you available for a call tomorr=
+ow?</div>
+<div class=3D"" style=3D"font-style:normal; font-variant-caps:normal; font-=
+weight:normal; letter-spacing:normal; text-align:start; text-indent:0px; te=
+xt-transform:none; white-space:normal; word-spacing:0px; text-decoration:no=
+ne; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt">
+<br class=3D"">
+</div>
+<div id=3D"x_x_x_signature" class=3D"" style=3D"font-family:Corbel; font-si=
+ze:12px; font-style:normal; font-variant-caps:normal; font-weight:normal; l=
+etter-spacing:normal; text-align:start; text-indent:0px; text-transform:non=
+e; white-space:normal; word-spacing:0px; text-decoration:none">
+<div id=3D"x_x_x_divtagdefaultwrapper" dir=3D"ltr" class=3D"" style=3D"font=
+-size:12pt; font-family:Calibri,Helvetica,sans-serif">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+<div class=3D"">Kind regards,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><b class=3D"">Krystle Latouche, B.S.W</b></div>
+<div class=3D""><i class=3D"">Child Protection Worker&nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp;<span class=3D"x_x_x_Apple-converted-space">&nbsp;</span></=
+i><span class=3D"" style=3D"font-size:12pt">Ongoing Services</span></div>
+<div class=3D""></div>
+<div class=3D""><u class=3D""><span id=3D"x_x_x_ms-rterangepaste-start" cla=
+ss=3D""></span><a href=3D"http://www.casott.on.ca/en/" target=3D"_blank" re=
+l=3D"noopener noreferrer" title=3D"http://www.casott.on.ca/en/
+Ctrl&#43;Click or tap to follow the link" class=3D"" style=3D"outline:none;=
+ font-family:Calibri,sans-serif; font-size:14.6667px"><font face=3D"Arial,s=
+ans-serif" size=3D"2" class=3D""><span class=3D"" style=3D"font-size:10pt">=
+<font color=3D"blue" class=3D"">The
+ Children's Aid Society of Ottawa</font></span></font></a><span id=3D"x_x_x=
+_ms-rterangepaste-end" class=3D""></span><br class=3D"">
+</u></div>
+<div class=3D"">150 Katimavik Rd</div>
+<div class=3D"">Kanata, ON K2L 2N2</div>
+<div class=3D""></div>
+<div class=3D"">Telephone: (613) 747-7800 ext. 3133</div>
+<div class=3D"">Email:<span class=3D"x_x_x_Apple-converted-space">&nbsp;</s=
+pan><a href=3D"mailto:krystle.latouche@casott.on.ca" class=3D"">krystle.lat=
+ouche@casott.on.ca</a></div>
+<br class=3D"">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+</div>
+</div>
+<div id=3D"x_x_x_appendonsend" class=3D"" style=3D"font-family:Corbel; font=
+-size:12px; font-style:normal; font-variant-caps:normal; font-weight:normal=
+; letter-spacing:normal; text-align:start; text-indent:0px; text-transform:=
+none; white-space:normal; word-spacing:0px; text-decoration:none">
+</div>
+<hr tabindex=3D"-1" class=3D"" style=3D"font-family:Corbel; font-size:12px;=
+ font-style:normal; font-variant-caps:normal; font-weight:normal; letter-sp=
+acing:normal; text-align:start; text-indent:0px; text-transform:none; white=
+-space:normal; word-spacing:0px; text-decoration:none; display:inline-block=
+; width:534.09375px">
+<span class=3D"" style=3D"font-family:Corbel; font-size:12px; font-style:no=
+rmal; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; =
+text-align:start; text-indent:0px; text-transform:none; white-space:normal;=
+ word-spacing:0px; text-decoration:none; float:none; display:inline!importa=
+nt"></span>
+<div id=3D"x_x_x_divRplyFwdMsg" dir=3D"ltr" class=3D"" style=3D"font-family=
+:Corbel; font-size:12px; font-style:normal; font-variant-caps:normal; font-=
+weight:normal; letter-spacing:normal; text-align:start; text-indent:0px; te=
+xt-transform:none; white-space:normal; word-spacing:0px; text-decoration:no=
+ne">
+<font face=3D"Calibri, sans-serif" class=3D"" style=3D"font-size:11pt"><b c=
+lass=3D"">From:</b><span class=3D"x_x_x_Apple-converted-space">&nbsp;</span=
+>Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com" class=3D"">dar=
+rylondunlin@gmail.com</a>&gt;<br class=3D"">
+<b class=3D"">Sent:</b><span class=3D"x_x_x_Apple-converted-space">&nbsp;</=
+span>March 27, 2019 3:02 PM<br class=3D"">
+<b class=3D"">To:</b><span class=3D"x_x_x_Apple-converted-space">&nbsp;</sp=
+an>Latouche, Krystle<br class=3D"">
+<b class=3D"">Subject:</b><span class=3D"x_x_x_Apple-converted-space">&nbsp=
+;</span>Re: Home Visit</font>
+<div class=3D"">&nbsp;</div>
+</div>
+<div dir=3D"auto" class=3D"" style=3D"font-family:Corbel; font-size:12px; f=
+ont-style:normal; font-variant-caps:normal; font-weight:normal; letter-spac=
+ing:normal; text-align:start; text-indent:0px; text-transform:none; white-s=
+pace:normal; word-spacing:0px; text-decoration:none">
+Hi Krystle,
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Just checking to see if you=92re coming by today. If so we=
+=92ll be here after 4:30.&nbsp;</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">If not, can we connect this week?<br class=3D"">
+<br class=3D"">
+<div id=3D"x_x_x_x_AppleMailSignature" dir=3D"ltr" class=3D"">Darryl&nbsp;<=
+/div>
+<div dir=3D"ltr" class=3D""><br class=3D"">
+On Mar 25, 2019, at 4:16 PM, Latouche, Krystle &lt;<a href=3D"mailto:Krystl=
+e.Latouche@casott.on.ca" class=3D"">Krystle.Latouche@casott.on.ca</a>&gt; w=
+rote:<br class=3D"">
+<br class=3D"">
+</div>
+<blockquote type=3D"cite" class=3D"">
+<div dir=3D"ltr" class=3D"">
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+Hi Darryl,&nbsp;</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+<br class=3D"">
+</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+Could we schedule a home visit for this Thursday?</div>
+<div class=3D"" style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; fo=
+nt-size:12pt">
+<br class=3D"">
+</div>
+<div id=3D"x_x_x_x_signature" class=3D"">
+<div id=3D"x_x_x_x_divtagdefaultwrapper" dir=3D"ltr" class=3D"" style=3D"fo=
+nt-size:12pt; font-family:Calibri,Helvetica,sans-serif">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+<div class=3D"">Kind regards,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><b class=3D"">Krystle Latouche, B.S.W</b></div>
+<div class=3D""><i class=3D"">Child Protection Worker&nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp;<span class=3D"x_x_x_Apple-converted-space">&nbsp;</span></=
+i><span class=3D"" style=3D"font-size:12pt">Ongoing Services</span></div>
+<div class=3D""></div>
+<div class=3D""><u class=3D""><span id=3D"x_x_x_x_ms-rterangepaste-start" c=
+lass=3D""></span><a href=3D"http://www.casott.on.ca/en/" target=3D"_blank" =
+rel=3D"noopener noreferrer" title=3D"http://www.casott.on.ca/en/
+Ctrl&#43;Click or tap to follow the link" class=3D"" style=3D"outline:none;=
+ font-family:Calibri,sans-serif; font-size:14.6667px"><font face=3D"Arial,s=
+ans-serif" size=3D"2" class=3D""><span class=3D"" style=3D"font-size:10pt">=
+<font color=3D"blue" class=3D"">The
+ Children's Aid Society of Ottawa</font></span></font></a><span id=3D"x_x_x=
+_x_ms-rterangepaste-end" class=3D""></span><br class=3D"">
+</u></div>
+<div class=3D"">150 Katimavik Rd</div>
+<div class=3D"">Kanata, ON K2L 2N2</div>
+<div class=3D""></div>
+<div class=3D"">Telephone: (613) 747-7800 ext. 3133</div>
+<div class=3D"">Email:<span class=3D"x_x_x_Apple-converted-space">&nbsp;</s=
+pan><a href=3D"mailto:krystle.latouche@casott.on.ca" class=3D"">krystle.lat=
+ouche@casott.on.ca</a></div>
+<br class=3D"">
+<p class=3D"" style=3D"margin-top:0px; margin-bottom:0px"></p>
+</div>
+</div>
+<br class=3D"">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">CONFIDENTIALITY=
+ NOTICE<br class=3D"">
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmissio=
+n and that any disclosure, copying, printing, distribution or use of any of=
+ the information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return=
+ e-mail and delete the original transmission and its attachments without re=
+ading, printing, or saving in any manner. Thank you.</div>
+<br class=3D"">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">AVIS DE CONFIDE=
+NTIALIT=C9<br class=3D"">
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=92il est STRICTEMENT INTERDIT de divul=
+guer, de copier, d=92imprimer, de diffuser ou d=92utiliser l=92information =
+qui y figure ou qui y est jointe. Si cette communication vous a =E9t=E9 tra=
+nsmise par erreur, veuillez en aviser l=92exp=E9diteur
+ imm=E9diatement par courriel et supprimer la communication originale ainsi=
+ que les pi=E8ces jointes sans les lire, les imprimer ou les sauvegarder de=
+ quelque mani=E8re que ce soit. Merci.</div>
+</div>
+</blockquote>
+</div>
+</div>
+<br class=3D"" style=3D"font-family:Corbel; font-size:12px; font-style:norm=
+al; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; te=
+xt-align:start; text-indent:0px; text-transform:none; white-space:normal; w=
+ord-spacing:0px; text-decoration:none">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px; font-family:Cor=
+bel; font-size:12px; font-style:normal; font-variant-caps:normal; font-weig=
+ht:normal; letter-spacing:normal; text-align:start; text-indent:0px; text-t=
+ransform:none; white-space:normal; word-spacing:0px; text-decoration:none">
+CONFIDENTIALITY NOTICE<br class=3D"">
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmissio=
+n and that any disclosure, copying, printing, distribution or use of any of=
+ the information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return=
+ e-mail and delete the original transmission and its attachments without re=
+ading, printing, or saving in any manner. Thank you.</div>
+<br class=3D"" style=3D"font-family:Corbel; font-size:12px; font-style:norm=
+al; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; te=
+xt-align:start; text-indent:0px; text-transform:none; white-space:normal; w=
+ord-spacing:0px; text-decoration:none">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px; font-family:Cor=
+bel; font-size:12px; font-style:normal; font-variant-caps:normal; font-weig=
+ht:normal; letter-spacing:normal; text-align:start; text-indent:0px; text-t=
+ransform:none; white-space:normal; word-spacing:0px; text-decoration:none">
+AVIS DE CONFIDENTIALIT=C9<br class=3D"">
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=92il est STRICTEMENT INTERDIT de divul=
+guer, de copier, d=92imprimer, de diffuser ou d=92utiliser l=92information =
+qui y figure ou qui y est jointe. Si cette communication vous a =E9t=E9 tra=
+nsmise par erreur, veuillez en aviser l=92exp=E9diteur
+ imm=E9diatement par courriel et supprimer la communication originale ainsi=
+ que les pi=E8ces jointes sans les lire, les imprimer ou les sauvegarder de=
+ quelque mani=E8re que ce soit. Merci.</div>
+</div>
+</blockquote>
+</div>
+<br class=3D"">
+</div>
+</div>
+<br class=3D"">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">CONFIDENTIALITY=
+ NOTICE<br class=3D"">
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmissio=
+n and that any disclosure, copying, printing, distribution or use of any of=
+ the information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return=
+ e-mail and delete the original transmission and its attachments without re=
+ading, printing, or saving in any manner. Thank you.</div>
+<br class=3D"">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px">AVIS DE CONFIDE=
+NTIALIT=C9<br class=3D"">
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=92il est STRICTEMENT INTERDIT de divul=
+guer, de copier, d=92imprimer, de diffuser ou d=92utiliser l=92information =
+qui y figure ou qui y est jointe. Si cette communication vous a =E9t=E9 tra=
+nsmise par erreur, veuillez en aviser l=92exp=E9diteur
+ imm=E9diatement par courriel et supprimer la communication originale ainsi=
+ que les pi=E8ces jointes sans les lire, les imprimer ou les sauvegarder de=
+ quelque mani=E8re que ce soit. Merci.</div>
+</div>
+</blockquote>
+</div>
+</div>
+<br class=3D"" style=3D"font-family:Corbel; font-size:12px; font-style:norm=
+al; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; te=
+xt-align:start; text-indent:0px; text-transform:none; white-space:normal; w=
+ord-spacing:0px; text-decoration:none">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px; font-family:Cor=
+bel; font-size:12px; font-style:normal; font-variant-caps:normal; font-weig=
+ht:normal; letter-spacing:normal; text-align:start; text-indent:0px; text-t=
+ransform:none; white-space:normal; word-spacing:0px; text-decoration:none">
+CONFIDENTIALITY NOTICE<br class=3D"">
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmissio=
+n and that any disclosure, copying, printing, distribution or use of any of=
+ the information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return=
+ e-mail and delete the original transmission and its attachments without re=
+ading, printing, or saving in any manner. Thank you.</div>
+<br class=3D"" style=3D"font-family:Corbel; font-size:12px; font-style:norm=
+al; font-variant-caps:normal; font-weight:normal; letter-spacing:normal; te=
+xt-align:start; text-indent:0px; text-transform:none; white-space:normal; w=
+ord-spacing:0px; text-decoration:none">
+<div class=3D"" style=3D"margin-top:0px; margin-bottom:0px; font-family:Cor=
+bel; font-size:12px; font-style:normal; font-variant-caps:normal; font-weig=
+ht:normal; letter-spacing:normal; text-align:start; text-indent:0px; text-t=
+ransform:none; white-space:normal; word-spacing:0px; text-decoration:none">
+AVIS DE CONFIDENTIALIT=C9<br class=3D"">
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=92il est STRICTEMENT INTERDIT de divul=
+guer, de copier, d=92imprimer, de diffuser ou d=92utiliser l=92information =
+qui y figure ou qui y est jointe. Si cette communication vous a =E9t=E9 tra=
+nsmise par erreur, veuillez en aviser l=92exp=E9diteur
+ imm=E9diatement par courriel et supprimer la communication originale ainsi=
+ que les pi=E8ces jointes sans les lire, les imprimer ou les sauvegarder de=
+ quelque mani=E8re que ce soit. Merci.</div>
+</div>
+</blockquote>
+</div>
+<br class=3D"">
+</div>
+</div>
+<br>
+<p>CONFIDENTIALITY NOTICE<br>
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmissio=
+n and that any disclosure, copying, printing, distribution or use of any of=
+ the information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return=
+ e-mail and delete the original transmission and its attachments without re=
+ading, printing, or saving in any manner. Thank you.</p>
+<br>
+<p>AVIS DE CONFIDENTIALIT=C9<br>
+Le pr=E9sent courriel, ainsi que tout document, fichier ou courriel ant=E9r=
+ieur qui y est joint, peut contenir des renseignements confidentiels ou pro=
+t=E9g=E9s par le secret professionnel. Si vous n=92=EAtes pas le destinatai=
+re vis=E9, ni son mandataire, nous vous signalons
+ que vous ne devez pas le lire et qu=92il est STRICTEMENT INTERDIT de divul=
+guer, de copier, d=92imprimer, de diffuser ou d=92utiliser l=92information =
+qui y figure ou qui y est jointe. Si cette communication vous a =E9t=E9 tra=
+nsmise par erreur, veuillez en aviser l=92exp=E9diteur
+ imm=E9diatement par courriel et supprimer la communication originale ainsi=
+ que les pi=E8ces jointes sans les lire, les imprimer ou les sauvegarder de=
+ quelque mani=E8re que ce soit. Merci.</p>
+</body>
+</html>
+
+--_000_BN7PR04MB5233F4C49C6528C0674A0EC3AA570BN7PR04MB5233namp_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1119798</integer>
+	<key>date-last-viewed</key>
+	<integer>1746457154</integer>
+	<key>date-received</key>
+	<integer>1554321333</integer>
+	<key>flags</key>
+	<integer>25770064901</integer>
+	<key>remote-id</key>
+	<string>18790</string>
+</dict>
+</plist>

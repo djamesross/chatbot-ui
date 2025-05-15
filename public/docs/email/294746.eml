@@ -1,0 +1,474 @@
+22517     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:674b:0:0:0:0:0 with SMTP id f11csp958293ltj;
+        Tue, 19 Nov 2019 10:17:43 -0800 (PST)
+X-Received: by 2002:ac8:41cb:: with SMTP id o11mr34019319qtm.150.1574187463409;
+        Tue, 19 Nov 2019 10:17:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1574187463; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MnJdSNRb1u+Vegw+VLFQ2Yo5ttSzxlKIlAwesyA3RbBI1g6mK4xbJ+fXuDlCpJJgZT
+         sKO/Hz8D3WKzPy26u6n9Yc8NMypRczkggFjtwmc7cTrWrrjZ9N81rVWTPrRSp9ucr8Ld
+         +6VcS8XDZaNo2Qw4ZDu2MSoN+MiKPvWBQHahP21B6RhvRS9QfT52Jg8OYxhRhGNw25S/
+         uJ9Ae3dhERMzFv0ASCneJgC6+sVYbMeGLceBdxygS4efjqBE0ArLu3R7YGIs1H4rQwY7
+         e/dyMCgG7p4Q8PN9pCTl1cu63HoonNVVhVB747SYMZx9q94AaPlfQSRpc/Bzv/owqRFe
+         c90A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:references:message-id:subject:date:mime-version
+         :content-transfer-encoding:from:dkim-signature;
+        bh=t+K7EOEwkHuPQs1pe0MZGNZ7NHOMrgcmJgEvu/1n1ZE=;
+        b=zw2rWYnAtDnRDI83ImUYg5fS+phCBjc45tZ9Y7NCSB+FFH57h/FP75ipz0UXmOpIqb
+         fWJw3YKixL8/Ns7uqPL0xQYBptFBham/lGuovDKaelTvUscrmFR/JhnWh8hMoOp98euh
+         j5dInCmDsQjUgax71A0rvojzNDLy0Kg97W+3d0uq5BrpadwAfDvcS3n/cJg2CkSaSlgm
+         lAPP58RQxJHt+gYr4lj1XR+stKUofBUwAwPqnfRQIJ/HnDHgrAbasKu/85S1/Oatl7I+
+         e8zIMCh5ABLE6UhtLsO6hvk6OZxYLi3Kje4lcl9kJU0kn9wl+52KvRT6IlkRm7GEGJST
+         d0rA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=iwsZGYCs;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d11sor31299328qtp.43.2019.11.19.10.17.42
+        for <darrylondunlin@gmail.com>
+        (Google Transport Security);
+        Tue, 19 Nov 2019 10:17:43 -0800 (PST)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20161025 header.b=iwsZGYCs;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:content-transfer-encoding:mime-version:date:subject:message-id
+         :references:in-reply-to:to;
+        bh=t+K7EOEwkHuPQs1pe0MZGNZ7NHOMrgcmJgEvu/1n1ZE=;
+        b=iwsZGYCsg1epcTLKfk8ijAj5rw6WcJZuTAQDP0U0f4O5D6EqzyM4Ri/RWrJpZDIjpX
+         vSk4bjidiNBiQqMnCWMlidOqRGoZ0ZNpp9xyTqVjYzIVQW2WTOvxn0kd1cOyukO9WxEd
+         Y+WgFCJYr5Z7LGS4Zn2vVJ9Lxuj9sTfDl/oRIDC7qvP6SEGsvWSQy8mLqa7hUKQ67w5N
+         feISuH37aQUsLeeqlVgeM4BaiFhQ4B7ukM8QfSTFeCAcR7PiRy9EC7IIKrMIdAy7FT6/
+         Idxt4jd+dsZ6fqP5NCy0jpSAK6VtmvPd7YGRcjM2bbGGKCfGxXqV8VzROqarRObKHtWu
+         eYCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
+         :subject:message-id:references:in-reply-to:to;
+        bh=t+K7EOEwkHuPQs1pe0MZGNZ7NHOMrgcmJgEvu/1n1ZE=;
+        b=Xqq4uL/KCRlVow3btmrtn/WUEQBd0cegcGHLwzHpmPjMVk3A/MClGkU56q30eaDueP
+         pXk639l0LLQRR38TEPPbRli720Jtjts6UK9OO97N59lursIe69bjyslBha59/RJdM72Y
+         5ELnZ5YxxQJon972kBG4FA8u8cebbhisbRcfJB0eTAfXAk4trmEIgiNa8q/nWXv3Tg3y
+         gVSV1Mvb/QHYTrBKfTfRvj/5pmw69cy8iyugKj5RacVu3lDrEzuwcq04dRHvCVD54ZJY
+         TgxExXOatU1L1/14YVKo9u00onkq1Bk+xcJP5JFiZXqSAs0Qq6gbHdTfXgIpyg/7KI95
+         PoDg==
+X-Gm-Message-State: APjAAAWdWL0k4ue9n0DUeiLf0ypAKqV3YgU+1iMf/jPEYr056gNTpUpJ
+	Y6RAlR1HDy7TTigzh2imm6bdPeeL
+X-Google-Smtp-Source: APXvYqwIzPafwun5jHfVTArCb62PNao5Iwi8ByI3CBg40C6inBIuRM5kIwLVf8v1VItU+9FisusmiQ==
+X-Received: by 2002:ac8:f8d:: with SMTP id b13mr34223042qtk.129.1574187462104;
+        Tue, 19 Nov 2019 10:17:42 -0800 (PST)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [100.126.16.222] ([161.216.164.164])
+        by smtp.gmail.com with ESMTPSA id z70sm10665271qkb.60.2019.11.19.10.17.40
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 19 Nov 2019 10:17:40 -0800 (PST)
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-6E7B0437-8863-4DEF-91F7-160173434723
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (1.0)
+Date: Tue, 19 Nov 2019 13:17:38 -0500
+Subject: Re: Visit
+Message-Id: <25250852-C7BB-4D3F-947A-76B4B92243BE@gmail.com>
+References: <5dd419c7.1c69fb81.97dfc.c765@mx.google.com> <6F353EF4-12D4-4F38-8694-A484A970A740@gmail.com> <CABKo-oWL2UnuMB3ddX8RxkyhiT92jr3EJd+hWGqG3Ch+LvYHkQ@mail.gmail.com>
+In-Reply-To: <CABKo-oWL2UnuMB3ddX8RxkyhiT92jr3EJd+hWGqG3Ch+LvYHkQ@mail.gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: iPhone Mail (16G114)
+
+
+--Apple-Mail-6E7B0437-8863-4DEF-91F7-160173434723
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Darryl, is there a time you are available today? If not, we can make it up Fri=
+day.
+
+Sent from my iPhone
+
+> On Nov 19, 2019, at 12:04 PM, Darryl Ross <darrylondunlin@gmail.com> wrote=
+:
+>=20
+> The girls have everything before me, following your sole planning. That ha=
+s been demonstrated clearly again by not starting by rescheduling piano.=20
+>=20
+> Their relationship with me is treated as the least important part of their=
+ life, and their is no justification. I'm glad you started piano again, but t=
+here has been no consistency with that either.=20
+>=20
+> It's your choice to refuse to make up time with me, and explain at some po=
+int why you take every opportunity to limit and control their relationship w=
+ith me.=20
+>=20
+> I would kindly ask you consider what is in their best interest and their r=
+ights before making your final decision.=20
+>=20
+>=20
+>=20
+>=20
+>> On Tue., Nov. 19, 2019, 11:38 a.m. Cynthia Holmes, <cynthmholm@gmail.com>=
+ wrote:
+>>=20
+>> Darryl,
+>>=20
+>> Unfortunately, the girls have piano Wednesday so we will plan for Thursda=
+y at 430 pm at the college.
+>>=20
+>> Sent from my iPhone
+>>=20
+>>> On Nov 19, 2019, at 11:35 AM, Darryl <darrylondunlin@gmail.com> wrote:
+>>>=20
+>>> I can=E2=80=99t jump at your schedule. I have a job, and you have refuse=
+d to discuss any actual schedule since the summer. I desperately want to see=
+ the girls, and tomorrow is the soonest I can. I hope you will not refuse to=
+ let them have access to their father, which is their right.
+>>>=20
+>>> =20
+>>>=20
+>>> In the meantime I have responded to Alison. Leaving this for weeks and n=
+ow months is unacceptable.
+>>>=20
+>>> =20
+>>>=20
+>>> Darryl
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> Sent from Mail for Windows 10
+>>>=20
+>>> =20
+>>>=20
+>>> From: Cynthia Holmes
+>>> Sent: November 19, 2019 10:30 AM
+>>> To: Darryl
+>>> Subject: Re: Visit
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> Darryl,
+>>>=20
+>>> =20
+>>>=20
+>>> I can meet you with the girls at the college today if that works and we c=
+an use that as the location of choice until the access is changed.
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> The earliest I can get there is 430 pm. Should I plan to meet you at the=
+ main entrance?
+>>>=20
+>>> =20
+>>>=20
+>>> Just so you are aware, I have spoken to Alison a few weeks back about ch=
+anging the access schedule and she should be sending something your way in t=
+he next while.
+>>>=20
+>>> =20
+>>>=20
+>>> Sent from my iPhone
+>>>=20
+>>>=20
+>>> On Nov 18, 2019, at 4:46 PM, Darryl <darrylondunlin@gmail.com> wrote:
+>>>=20
+>>> No, to be clear it=E2=80=99s not nice or comfortable to go tobogganing r=
+ight now, and it=E2=80=99s not quality time for half of the roughly four hou=
+rs a week you let me see them, if your parents don=E2=80=99t have somewhere e=
+lse to be. I=E2=80=99m seeing them supervised because it=E2=80=99s the only w=
+ay you=E2=80=99ll let me, and I won=E2=80=99t do anything that would cause t=
+hem to be upset or create drama in front of them.
+>>>=20
+>>> =20
+>>>=20
+>>> This entire situation is so unfair to them, and has to end. I=E2=80=99m n=
+ot just some guy that gets fit in when time permits. There are no grounds fo=
+r severely limiting and controlling Charlotte and Alice=E2=80=99s relationsh=
+ip with their father, and preventing me from parenting my children.
+>>>=20
+>>> =20
+>>>=20
+>>> What I would like is for you to consider the needs of the girls, and my r=
+ole in their life, and work out a reasonable schedule with me. Nothing you h=
+ave raised warrants this extreme restriction. Consider mediation, for exampl=
+e. But completely refusing to talk to me is the least productive way to deal=
+ with this.
+>>>=20
+>>> =20
+>>>=20
+>>> If you=E2=80=99re unwilling to talk, mediate or find a way to work this o=
+ut for them, then until this is changed at least allow me some input, think a=
+bout their comfort, needs, and ages, and what they=E2=80=99d like to do with=
+ me.
+>>>=20
+>>> =20
+>>>=20
+>>> They had a great time here at the college. It=E2=80=99s big, I have an o=
+ffice and there are things to do. That would be my suggestion.
+>>>=20
+>>> =20
+>>>=20
+>>> An icy, cold hill with no washroom or places to warm up is punitive.
+>>>=20
+>>> =20
+>>>=20
+>>> Darryl
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> Sent from Mail for Windows 10
+>>>=20
+>>> =20
+>>>=20
+>>> From: Cynthia Holmes
+>>> Sent: November 18, 2019 4:24 PM
+>>> To: Darryl Ross
+>>> Subject: Re: Visit
+>>>=20
+>>> =20
+>>>=20
+>>> Hi Darryl,
+>>>=20
+>>> =20
+>>>=20
+>>> So to be clear you are refusing to seem them  supervised tmrw in replace=
+ to make up for Sunday or this Thursday after school?
+>>>=20
+>>> Sent from my iPhone
+>>>=20
+>>>=20
+>>> On Nov 18, 2019, at 1:09 PM, Darryl Ross <darrylondunlin@gmail.com> wrot=
+e:
+>>>=20
+>>> Without prejudice,=20
+>>>=20
+>>> =20
+>>>=20
+>>> That is not a reasonable suggestion. Your restriction of the girls right=
+s to spend time with their father who is healthy and in your words a great f=
+ather is utterly untenable.=20
+>>>=20
+>>> =20
+>>>=20
+>>> I will be responding to Alison shortly.=20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> =20
+>>>=20
+>>> On Mon., Nov. 18, 2019, 11:54 a.m. Cynthia Holmes, <cynthmholm@gmail.com=
+> wrote:
+>>>=20
+>>> Hi,
+>>>=20
+>>> Today won=E2=80=99t work as it=E2=80=99s too difficult time wise bc they=
+ have to get ready and leave for 530.=20
+>>>=20
+>>> Are you free Tuesday after school? Did you want to take the girls tobogg=
+aning in Bhaven?
+>>>=20
+>>> Sent from my iPhone
+>>> =20
+>>> =20
+
+--Apple-Mail-6E7B0437-8863-4DEF-91F7-160173434723
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Darryl, is there a time you are available t=
+oday? If not, we can make it up Friday.<br><br><div id=3D"AppleMailSignature=
+" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On Nov 19, 2019,=
+ at 12:04 PM, Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com">da=
+rrylondunlin@gmail.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"=
+><div dir=3D"ltr"><div dir=3D"auto">The girls have everything before me, fol=
+lowing your sole planning. That has been demonstrated clearly again by not s=
+tarting by rescheduling piano.&nbsp;<div dir=3D"auto"><br></div><div dir=3D"=
+auto">Their relationship with me is treated as the least important part of t=
+heir life, and their is no justification. I'm glad you started piano again, b=
+ut there has been no consistency with that either.&nbsp;</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">It's your choice to refuse to make up time w=
+ith me, and explain at some point why you take every opportunity to limit an=
+d control their relationship with me.&nbsp;</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">I would kindly ask you consider what is in their best&nbs=
+p;interest and their rights before making your final decision.&nbsp;</div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Tue., Nov. 19, 2019, 11:38 a.m. Cynthia Holmes, &lt;<a href=3D"mailt=
+o:cynthmholm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
+olid;padding-left:1ex"><div dir=3D"auto"><div><br></div>Darryl,<div><br></di=
+v><div>Unfortunately, the girls have piano Wednesday so we will plan for Thu=
+rsday at 430 pm at the college.<br><br><div id=3D"m_9034609310538929451Apple=
+MailSignature" dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>On N=
+ov 19, 2019, at 11:35 AM, Darryl &lt;<a href=3D"mailto:darrylondunlin@gmail.=
+com" target=3D"_blank" rel=3D"noreferrer">darrylondunlin@gmail.com</a>&gt; w=
+rote:<br><br></div><blockquote type=3D"cite"><div dir=3D"ltr"><div><p class=3D=
+"MsoNormal"><span lang=3D"EN-US">I can=E2=80=99t jump at your schedule. I ha=
+ve a job, and you have refused to discuss any actual schedule since the summ=
+er. I desperately want to see the girls, and tomorrow is the soonest I can. I=
+ hope you will not refuse to let them have access to their father, which is t=
+heir right.<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-=
+US"><u></u>&nbsp;<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-U=
+S">In the meantime I have responded to Alison. Leaving this for weeks and no=
+w months is unacceptable. <u></u><u></u></span></p><p class=3D"MsoNormal"><s=
+pan lang=3D"EN-US"><u></u>&nbsp;<u></u></span></p><p class=3D"MsoNormal"><sp=
+an lang=3D"EN-US">Darryl<u></u><u></u></span></p><p class=3D"MsoNormal"><u><=
+/u>&nbsp;<u></u></p><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p><p class=3D=
+"MsoNormal">Sent from <a href=3D"https://go.microsoft.com/fwlink/?LinkId=3D5=
+50986" target=3D"_blank" rel=3D"noreferrer">Mail</a> for Windows 10</p><p cl=
+ass=3D"MsoNormal"><u></u>&nbsp;<u></u></p><div style=3D"border:none;border-t=
+op:solid #e1e1e1 1.0pt;padding:3.0pt 0cm 0cm 0cm"><p class=3D"MsoNormal" sty=
+le=3D"border:none;padding:0cm"><b>From: </b><a href=3D"mailto:cynthmholm@gma=
+il.com" target=3D"_blank" rel=3D"noreferrer">Cynthia Holmes</a><br><b>Sent: <=
+/b>November 19, 2019 10:30 AM<br><b>To: </b><a href=3D"mailto:darrylondunlin=
+@gmail.com" target=3D"_blank" rel=3D"noreferrer">Darryl</a><br><b>Subject: <=
+/b>Re: Visit</p></div><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p><p clas=
+s=3D"MsoNormal"><u></u>&nbsp;<u></u></p><p class=3D"MsoNormal">Darryl,<u></u=
+><u></u></p><div><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p></div><div><=
+p class=3D"MsoNormal">I can meet you with the girls at the college today if t=
+hat works and we can use that as the location of choice until the access is c=
+hanged.<u></u><u></u></p></div><div><p class=3D"MsoNormal"><u></u>&nbsp;<u><=
+/u></p></div><div><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p></div><div>=
+<p class=3D"MsoNormal">The earliest I can get there is 430 pm. Should I plan=
+ to meet you at the main entrance?<u></u><u></u></p></div><div><p class=3D"M=
+soNormal"><u></u>&nbsp;<u></u></p></div><div><p class=3D"MsoNormal">Just so y=
+ou are aware, I have spoken to Alison a few weeks back about changing the ac=
+cess schedule and she should be sending something your way in the next while=
+.<u></u><u></u></p><div><p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p><div i=
+d=3D"m_9034609310538929451AppleMailSignature"><p class=3D"MsoNormal">Sent fr=
+om my iPhone<u></u><u></u></p></div><div><p class=3D"MsoNormal" style=3D"mar=
+gin-bottom:12.0pt"><br>On Nov 18, 2019, at 4:46 PM, Darryl &lt;<a href=3D"ma=
+ilto:darrylondunlin@gmail.com" target=3D"_blank" rel=3D"noreferrer">darrylon=
+dunlin@gmail.com</a>&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"=
+margin-top:5.0pt;margin-bottom:5.0pt"><div><p class=3D"MsoNormal"><span lang=
+=3D"EN-US">No, to be clear it=E2=80=99s not nice or comfortable to go tobogg=
+aning right now, and it=E2=80=99s not quality time for half of the roughly f=
+our hours a week you let me see them, if your parents don=E2=80=99t have som=
+ewhere else to be. I=E2=80=99m seeing them supervised because it=E2=80=99s t=
+he only way you=E2=80=99ll let me, and I won=E2=80=99t do anything that woul=
+d cause them to be upset or create drama in front of them. </span><u></u><u>=
+</u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><u></u><u><=
+/u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">This entire situation is s=
+o unfair to them, and has to end. I=E2=80=99m not just some guy that gets fi=
+t in when time permits. There are no grounds for severely limiting and contr=
+olling Charlotte and Alice=E2=80=99s relationship with their father, and pre=
+venting me from parenting my children.</span><u></u><u></u></p><p class=3D"M=
+soNormal"><span lang=3D"EN-US">&nbsp;</span><u></u><u></u></p><p class=3D"Ms=
+oNormal"><span lang=3D"EN-US">What I would like is for you to consider the n=
+eeds of the girls, and my role in their life, and work out a reasonable sche=
+dule with me. Nothing you have raised warrants this extreme restriction. Con=
+sider mediation, for example. But completely refusing to talk to me is the l=
+east productive way to deal with this.</span><u></u><u></u></p><p class=3D"M=
+soNormal"><span lang=3D"EN-US">&nbsp;</span><u></u><u></u></p><p class=3D"Ms=
+oNormal"><span lang=3D"EN-US">If you=E2=80=99re unwilling to talk, mediate o=
+r find a way to work this out for them, then until this is changed at least a=
+llow me some input, think about their comfort, needs, and ages, and what the=
+y=E2=80=99d like to do with me. </span><u></u><u></u></p><p class=3D"MsoNorm=
+al"><span lang=3D"EN-US">&nbsp;</span><u></u><u></u></p><p class=3D"MsoNorma=
+l"><span lang=3D"EN-US">They had a great time here at the college. It=E2=80=99=
+s big, I have an office and there are things to do. That would be my suggest=
+ion. </span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">&n=
+bsp;</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">An i=
+cy, cold hill with no washroom or places to warm up is punitive.</span><u></=
+u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><u></u=
+><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Darryl</span><u></u>=
+<u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;</span><u></u><=
+u></u></p><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p><p class=3D"MsoNorm=
+al">Sent from <a href=3D"https://go.microsoft.com/fwlink/?LinkId=3D550986" t=
+arget=3D"_blank" rel=3D"noreferrer">Mail</a> for Windows 10<u></u><u></u></p=
+><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p><div style=3D"border:none;bo=
+rder-top:solid #e1e1e1 1.0pt;padding:3.0pt 0cm 0cm 0cm"><p class=3D"MsoNorma=
+l"><b>From: </b><a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank" re=
+l=3D"noreferrer">Cynthia Holmes</a><br><b>Sent: </b>November 18, 2019 4:24 P=
+M<br><b>To: </b><a href=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank=
+" rel=3D"noreferrer">Darryl Ross</a><br><b>Subject: </b>Re: Visit<u></u><u><=
+/u></p></div><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p><p class=3D"MsoN=
+ormal">Hi Darryl,<u></u><u></u></p><div><p class=3D"MsoNormal">&nbsp;<u></u>=
+<u></u></p></div><div><p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">=
+So to be clear you are refusing to seem them &nbsp;supervised tmrw in replac=
+e to make up for Sunday or this Thursday after school?<u></u><u></u></p><div=
+ id=3D"m_9034609310538929451AppleMailSignature"><p class=3D"MsoNormal">Sent f=
+rom my iPhone<u></u><u></u></p></div><div><p class=3D"MsoNormal" style=3D"ma=
+rgin-bottom:12.0pt"><br>On Nov 18, 2019, at 1:09 PM, Darryl Ross &lt;<a href=
+=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank" rel=3D"noreferrer">da=
+rrylondunlin@gmail.com</a>&gt; wrote:<u></u><u></u></p></div><blockquote sty=
+le=3D"margin-top:5.0pt;margin-bottom:5.0pt"><div><div><p class=3D"MsoNormal"=
+>Without prejudice,&nbsp;<u></u><u></u></p><div><p class=3D"MsoNormal">&nbsp=
+;<u></u><u></u></p></div><div><p class=3D"MsoNormal">That is not a reasonabl=
+e suggestion. Your restriction of the girls rights to spend time with their f=
+ather who is healthy and in your words a great father is utterly untenable.&=
+nbsp;<u></u><u></u></p></div><div><div><p class=3D"MsoNormal">&nbsp;<u></u><=
+u></u></p><div><div><p class=3D"MsoNormal">I will be responding to Alison sh=
+ortly.&nbsp;<u></u><u></u></p></div><div><p class=3D"MsoNormal">&nbsp;<u></u=
+><u></u></p></div><div><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p></div>=
+<div><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p></div><div><p class=3D"M=
+soNormal">&nbsp;<u></u><u></u></p></div><div><p class=3D"MsoNormal">&nbsp;<u=
+></u><u></u></p></div><div><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p></=
+div><div><p class=3D"MsoNormal">&nbsp;<u></u><u></u></p></div><div><p class=3D=
+"MsoNormal">&nbsp;<u></u><u></u></p></div><div><p class=3D"MsoNormal">&nbsp;=
+<u></u><u></u></p></div></div></div></div><p class=3D"MsoNormal" style=3D"ma=
+rgin-bottom:12.0pt">&nbsp;<u></u><u></u></p><div><div><p class=3D"MsoNormal"=
+>On Mon., Nov. 18, 2019, 11:54 a.m. Cynthia Holmes, &lt;<a href=3D"mailto:cy=
+nthmholm@gmail.com" target=3D"_blank" rel=3D"noreferrer">cynthmholm@gmail.co=
+m</a>&gt; wrote:<u></u><u></u></p></div></div></div></div></blockquote></div=
+><p class=3D"MsoNormal" style=3D"margin-right:72.0pt;margin-bottom:0cm;margi=
+n-left:76.8pt;margin-bottom:.0001pt">Hi,<br><br>Today won=E2=80=99t work as i=
+t=E2=80=99s too difficult time wise bc they have to get ready and leave for 5=
+30. <br><br>Are you free Tuesday after school? Did you want to take the girl=
+s tobogganing in Bhaven?<br><br>Sent from my iPhone<u></u><u></u></p></div><=
+/blockquote></div></div><p class=3D"MsoNormal" style=3D"margin-right:36.0pt;=
+margin-bottom:5.0pt;margin-left:36.0pt">&nbsp;<u></u><u></u></p><p class=3D"=
+MsoNormal"><u></u>&nbsp;<u></u></p></div>
+</div></blockquote></div></div></blockquote></div>
+</div></blockquote></body></html>=
+
+--Apple-Mail-6E7B0437-8863-4DEF-91F7-160173434723--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>8397</integer>
+	<key>date-last-viewed</key>
+	<integer>1746474108</integer>
+	<key>date-received</key>
+	<integer>1574187463</integer>
+	<key>flags</key>
+	<integer>8590195717</integer>
+	<key>remote-id</key>
+	<string>15398</string>
+</dict>
+</plist>

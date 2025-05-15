@@ -1,0 +1,131 @@
+6901      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01060101.me.com by p133-mailgateway-smtp-74cfb95549-vp7rg (mailgateway 2413B76)
+	with SMTP id 7c9a0988-f0b2-4e37-8849-23545c50054b 
+	for <darrylross@icloud.com>; Sun, 7 Apr 2024 13:56:48 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 7c9a0988-f0b2-4e37-8849-23545c50054b
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	by qs51p00im-qukt01060101.me.com (Postfix) with ESMTPS id E1F31C00C2
+	for <darrylross@icloud.com>; Sun,  7 Apr 2024 13:56:45 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgdUQldTRloQXgcZFltVFVFfDlgV
+ AEZVVgNTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsOE0hLEU0BGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlFyAIKCsbbxE7VBYEGQAFMU04IVpLX3o1FjgpQBxdRFMxEhFB
+ LH0DBCMJNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iY40tFsO
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.51 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.51 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.51; helo=mail-lf1-f51.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-516d2b9cd69so2547859e87.2
+        for <darrylross@icloud.com>; Sun, 07 Apr 2024 06:56:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1712498205; x=1713103005; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HBhdoNft+yxeIs6QkWFj0vLrCnxuq9Tc7DrFgRc/AWg=;
+        b=iY40tFsOA7bSbj3Uur2UR9AXlXiu4UR245YF6V2i9DDTIRW9FzznIkg2HY5rAJhvUm
+         RkG1bMu8CJH+Lx5wgD2afrVqoP2UoiMl+A+SAcODDcG/8LccaotBQfsvYAAF3ieaOYbm
+         he7ixuq8DOsWyjQflFj1kDg71UN0ejcgbiKunhgjMKDm8PddOS1zjXjKIWlGcoVbg2cs
+         mNh5TIr+bQtZFSK3ZbQtRobRgXfMGzVgIJQT64wBuzgRLTv4H+v8+rXoFkwz/yFNNtRg
+         EFCKRLktuYuEgGqQKTYW2IDQjTiDuGNJj6aQ2ajZGHcPyc8pqTI1TqDEyJJulm+32IpM
+         Zseg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712498205; x=1713103005;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HBhdoNft+yxeIs6QkWFj0vLrCnxuq9Tc7DrFgRc/AWg=;
+        b=t4MQMGDDX0krq/7zvjS565/uRJZs1NUoqdSnCquZ1IKWhOIuRbDe32a0UxE+xdreIn
+         0aP0nCi6XgdJ+lYA2m7Ha6EBFJz6ftebF/H2XBLGMb0wZm3seNLHpJKl4sjCpx9oah4z
+         nLU8cG0FvyamE9nlBkOD9QqK1GLmiFDfLi/pknMMYyPdMxkVDkyUcvx9CYDvqBOz5PCa
+         SM3cqPMKV74dC8feMZH97oVFp/sSKsyW6BCFEcmrQeK4f4ZK6bccTS7SowxZOlawGZti
+         GDtDLhe2IwZPHk4z4x1YI7eDXEzTFvGDAQW9/L92FZ53OJ1RarpMlL9i3TBcJWFn2m50
+         82YA==
+X-Gm-Message-State: AOJu0Yw0psMpL13XgqSba6qfi1kUOZg0dl+6qyLW1034T9OyNBjggNbY
+	E2NTA4Oixs0Cq8kAcXGQdr/Y9CJDjmrngHDlEMKl4Tse0z0GGO5Ec5744GN+SdLqhjQwebBt9BU
+	4qBpFo7iI6JIU+thY634rim1OoWN0MCld
+X-Google-Smtp-Source: AGHT+IF4g6YZX2I1KcO0KALd3POTyOnDxJYZ4zAuHsl7oQZNkURm3+kij67ikz8tBgr73PeUxQukU2ZObtk0e5xcHoI=
+X-Received: by 2002:a19:6b05:0:b0:513:5af1:9d7b with SMTP id
+ d5-20020a196b05000000b005135af19d7bmr4095250lfa.47.1712498204850; Sun, 07 Apr
+ 2024 06:56:44 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 7 Apr 2024 09:56:34 -0400
+Message-ID: <CAFnbyRGbYn_S+YsN-psa03S8AG-3oLWcAO7dmr1Dkw6TM5fVpQ@mail.gmail.com>
+Subject: Child Support
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000002dc4b30615820fd5"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnETExAadwYYGgYaEQpZXhdsbHkRCkNOF0FgHRJfckVFdWZSY
+ m8eZB9BHERJTGRIQxNOTxNZWlxMEQpYXBcZBBoEHxoFGxoaBBIYBBsfEgQYHRAbHhofGhEKXlk
+ XTnlvWx8RCk1cFwcZHhwRCkxaF2hpTU1vEQpMRhdNaxEKQ1oXGBoTBBIfBBscHQQfGxEKQl4XG
+ xEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJ
+ ueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQ
+ kAXYmUfBUFsWHgea1sRCkJYF2JrTm9vemxnWkdLEQpaWBceEQpwaBdjZ2sfYgFTQWdoZhAaEQp
+ waBdnTmN9S0gYQEdBGRAaEQpwaBdhWVNHZ25SR19pYxAaEQpwaBdkb054XXtPQWhuGRAaEQpwa
+ BdlcmlPSGdyQUcBZRAaEQpwaBdsUhlvcH9vZ1xsaxAaEQpwaBdtZRJGSE5eTWZTARAaEQpwfxd
+ geH1ofRMbAWEYRRAHEhMRCnBfF2FyaF5rHUJ6AU99EAcbGhwRCnB9F214WHx6blxyfwUfEBoRC
+ nBsF2ZGax8YW21fRm9vEAcZGhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-GUID: kJ78uXoo_LxHE4N5k6ncfNbi9de9spvf
+X-Proofpoint-ORIG-GUID: kJ78uXoo_LxHE4N5k6ncfNbi9de9spvf
+
+--0000000000002dc4b30615820fd5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+It=E2=80=99s been several years since you have contributed financially to r=
+aising
+the girls and have left this responsibility for me to carry.
+
+I am requesting you begin contributing $500 monthly in child support
+beginning May 1st.
+
+Please let acknowledge receipt of this email and send me a response by
+April 10th so I can determine next steps.
+
+Cynthia
+
+--0000000000002dc4b30615820fd5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br clear=3D"all">Hi Darryl,</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">It=E2=80=99s been several years since you have contr=
+ibuted financially to raising the girls and have left this responsibility f=
+or me to carry.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am req=
+uesting you begin contributing $500 monthly in child support beginning May =
+1st.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Please let acknowle=
+dge receipt of this email and send me a response by April 10th so I can det=
+ermine next steps.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynth=
+ia=C2=A0</div><div dir=3D"auto"><div dir=3D"auto"><div dir=3D"ltr" class=3D=
+"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img =
+src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4xj3UTYjwpDghYmsmSQS=
+eUv_1euwPEy6BGZwQ6xVObi5CSti1eEr_SjIbpb37QU1um__y4YnGKO3XvK"><br></div></di=
+v></div></div>
+
+--0000000000002dc4b30615820fd5--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1234544</integer>
+	<key>date-received</key>
+	<integer>1712498208</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

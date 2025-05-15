@@ -1,0 +1,119 @@
+5926      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin006.me.com by p133-mailgateway-smtp-6897ffc74b-bpj7q (mailgateway 2320B100)
+	with SMTP id d05e5582-9c50-46ea-ae7c-06b67fd5aadb 
+	for <darrylross@icloud.com>; Sun, 16 Jul 2023 16:47:57 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: d05e5582-9c50-46ea-ae7c-06b67fd5aadb
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by pv33p00im-smtpin006.me.com (Postfix) with ESMTPS id 1DDA7CC09F1
+	for <darrylross@icloud.com>; Sun, 16 Jul 2023 16:47:55 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRFoQXgcZFltVFVFfDlgc
+ DEZVVgJRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwDGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQkH08rKCFdQ1IvQDA9HHRHJi9NKRRNVHVUMC9fNT5fRCNINRAd
+ PAFzKRctETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AFr4XUNC
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.43; helo=mail-ej1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-991ef0b464cso1038789466b.0
+        for <darrylross@icloud.com>; Sun, 16 Jul 2023 09:47:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689526075; x=1692118075;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=qW6opYYnezVzPniZaLrFJXRH75jR9rSON18a3kiVmSA=;
+        b=AFr4XUNCcLQpUrPv+YCsLLY2obdiL51g74vIfM3FKNLOQpR98tmYhIEakJatostKxq
+         DW8F18ofCycc7PrtuFivuPk5Be15DtQrwIVky5h/7IuKdkDqCHWxLe9G1wKZZflhedEu
+         tA/iO9E2w8BIJjPP0ZKCj+NxvmOlkVE+IrFItQbiQiu+voIObJHMRAXeMqTx5P6tpFaz
+         3y1J6O3ODjYf9QpNfudGU2g7v5zcohIbcbz6qhcGlZfGWxeHInesMLgcS+aGRzyj3Ycj
+         b/1cEBQfmeAzFFfJhDTt4ptUr9U64p7WN2Zj7Qo0TjBFlVxHvrUZJ08bNLwkjS60zawM
+         BvkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689526075; x=1692118075;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qW6opYYnezVzPniZaLrFJXRH75jR9rSON18a3kiVmSA=;
+        b=Wd5ydk5718NHe9+d2VULD7gIV+Op9AOpkOnJxw4wTyHmz83vD1nNQ0yBUCgGxXYxJe
+         KXZLuKD9sknqXBiUFOzMg3xfaOnPFCFV4qI5RFngpEiOvlvQDvUoel+C2KsyV7KEzoLD
+         Y3VHxuNlVs6I4kfbNFYLXDegw9WHJS+VjPKmdCnCVJvQQqaU/QkJ/8+eYufxUBrpD4sH
+         3SGZpYqKUz5oXH106hed0m1fAjVRjcylRbT+cu3OcA/NkQ1W98zLQv3/qVKIvU6RaAAn
+         7KXVui5iAeJMZbF8V8OF1YXj303Fc3D+uztonqpKFym0DKiv6+9YyrFq/NwzuTLVCBil
+         OmaQ==
+X-Gm-Message-State: ABy/qLYNGUH9efWgDiiDD6hhsQLrEMvP5wjhSmg0yjr8W2jCUglwGcPv
+	muei7PY2DOCNd1EKqvIq4SPMtt2ZeuTo91M4FgGXdR0n
+X-Google-Smtp-Source: APBJJlFn7kPr+QBqBQl4iKlcFsTKsj2GCivDFhCmmSlrE4tVqa4yUlg+Esa3BFxSv0XAv2kWDi67+a9l88Q+boms1w0=
+X-Received: by 2002:a17:906:9746:b0:98e:3dac:6260 with SMTP id
+ o6-20020a170906974600b0098e3dac6260mr9105643ejy.13.1689526074991; Sun, 16 Jul
+ 2023 09:47:54 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 16 Jul 2023 12:47:44 -0400
+Message-ID: <CAFnbyRFj6M_Ymu0Z9VJdDqDZ4Oc5dC6EV9BForA=LvjD1EKbTw@mail.gmail.com>
+Subject: FaceTime
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000089e73f06009d7116"
+X-MANTSH: 1TEIXWlwfG1oaGkNHB1tfQV4bExgaGh0aGxEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThd9WV0ZZ15iQ2V7fWlAYhl
+ nQkFAGFpfH29aYBhQTlJTbhEKWFwXGQQaBB8aBRsaGgQdGgQbExIEGx4QGx4aHxoRCl5ZF0gcS
+ XpyEQpNXBcbGxgRCkxaF2FNQWsRCkxGF01rEQpDWhcYGhMEEh8EGBsSBB4ZEQpCXhcbEQpCXBc
+ bEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm54GmJjE
+ QpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQBdhTlh
+ 7bnlEbUFEXREKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2hiGAVrXXxTRHIBEBkaE
+ QpwaBdick9CWnhpW3B8XBAZGhEKcGgXbAFdEnheZH4BTQUQGRoRCnBoF2hGTElJeGwfGWQFEBk
+ aEQpwaBdvHll9c11SH3lpaxAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: Wsw3MtHiOQWCjH3Mhkj2pu5EpJ2zdxyD
+X-Proofpoint-GUID: Wsw3MtHiOQWCjH3Mhkj2pu5EpJ2zdxyD
+
+--00000000000089e73f06009d7116
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Charlotte said you guys didn=E2=80=99t connect yesterday.
+
+The girls are available tonight after the tournament at 6:30 pm.
+
+Are you available?
+
+Cynthia
+
+--00000000000089e73f06009d7116
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Charlotte said you guys didn=E2=80=99t connect yesterday.<div dir=3D"auto">=
+<br></div><div dir=3D"auto">The girls are available tonight after the tourn=
+ament at 6:30 pm.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Are yo=
+u available?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=
+=A0</div>
+
+--00000000000089e73f06009d7116--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1151129</integer>
+	<key>date-last-viewed</key>
+	<integer>1741105863</integer>
+	<key>date-received</key>
+	<integer>1689526077</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12455</string>
+</dict>
+</plist>

@@ -1,0 +1,203 @@
+9190      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17083801.me.com by p72-mailgateway-smtp-597d7776b5-ttcng (mailgateway 2302B297)
+	with SMTP id be6d8e66-b70a-4f63-8e1a-f141f5f8e4a2 
+	for <darrylross@icloud.com>; Sun, 4 Dec 2022 16:10:54 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: be6d8e66-b70a-4f63-8e1a-f141f5f8e4a2
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	by ms11p00im-qufv17083801.me.com (Postfix) with ESMTPS id 7C519787DDD
+	for <darrylross@icloud.com>; Sun,  4 Dec 2022 16:10:53 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQUpEVxBVWg1IWwsWEVwbBxFI
+ SxFMAxgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9SRFZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeF0FSD8IQEgDRD0TFjcdE3dkUgBPWzQABl09ORMwIAtAfVUHFwwY
+ EEFdBgI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I7OHZYOU
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.43; helo=mail-ed1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id a16so12674372edb.9
+        for <darrylross@icloud.com>; Sun, 04 Dec 2022 08:10:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6f/99Kpk1bs8GJpk4gP13EA0bDtK2gldgNmohQbUQpI=;
+        b=I7OHZYOUAkbxv415t1UgHB1X4fvMxMQtBvfEOXqHsPohGz8RT7AIcaFOxaY8Rz/Rzj
+         a5Jlz030m3YX8qf4pt1KdqyH0EglslbKhjBZFXNLN5uwxmHpRlpHCiBAa41uV9Urpspb
+         g5M+jKwAvKnvTY1lCQcIhpfy5vlzJchV1dtof6WtzF8GtAEOIduSWMLBBmP/PpLWrD9A
+         Iwp1VrTgTo+zYv/MUrxWJ0rEllqMCUJajrJYF6xUF5XfVqw+nov9n3PLCeomQbjnrflM
+         eIyDZoqFHVO4ic3+T95PgP7pw+9AfoJY8+UawSorb/RVySv9hRgxPstCqgc+a5vxYiqG
+         Lnag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6f/99Kpk1bs8GJpk4gP13EA0bDtK2gldgNmohQbUQpI=;
+        b=mN+S06mR4nSXuIY2RL0HoAE4W11zCPHjANxZssFdObkiiVIoIp9ZY7TOOkDAatQ3I2
+         c7LdLV9f+EOp4kUC1HK1X+GnMc5SSI2qaGAnZg4+vGZ1UlfmgVWv9gslXGYKate7Bngr
+         fvNfnGRYupZmm2xHnE5eKesYq53g7MaQc7TqgN36o2e3l81euSGYJRc/lrLIzllMpYkK
+         6aHqN9Wk777o7FNrtZwXObh7yVruW2dQZkDJ2gWhy+4J2xnSdldoGLY0V84NRe4g6gnF
+         LmdFVuyqcI2WrZdDviBTzy8cNO0ylVAwoY63p9xWH6QUESHWYNL4pz5nFC9Q5r1f/ZiQ
+         93cQ==
+X-Gm-Message-State: ANoB5plP3qXULEwdVVBv/8JWRdI5ZHH8UY8mqvtp4qwsMPBJ7Fy2vjeD
+	ayJdhCrjdC3ugBjSGUqjl+lnwsEYCuarBVvOKrFjMMrP
+X-Google-Smtp-Source: AA0mqf4/hM2IiTmyxkMAHVR3cy87tgq9pBb24nJmNQjyCDDw1tR35qISxBMUQBMUabP1Y2NaexzQRf/SDBu0tGUquhs=
+X-Received: by 2002:a05:6402:4d6:b0:458:789b:c1b0 with SMTP id
+ n22-20020a05640204d600b00458789bc1b0mr59080189edw.89.1670170252594; Sun, 04
+ Dec 2022 08:10:52 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRGcbat6ZUY2BFYWXYVQEri-jU_i7QwsA7rXu1W+KeL==Q@mail.gmail.com>
+ <A5C4055A-E101-433C-8D26-1BD81600D7E9@icloud.com>
+In-Reply-To: <A5C4055A-E101-433C-8D26-1BD81600D7E9@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 4 Dec 2022 11:10:41 -0500
+Message-ID: <CAFnbyRHkg=Fn703r_foQjkGR0u6=Cx6k_LjVWspK7rnjohqkdw@mail.gmail.com>
+Subject: Re: Alice
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000009ed24205ef02d08c"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQYGxsZGh8aGBEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhoaEQpZRBdiRWJBeWNMYV17TxEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGBgaEQpfT
+ RdkRURPEQpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF2FyWn1ecm0YQW9
+ veHpGHBhnHx4bRU5MeWlvE0AHTXlQEQpYXBcZBBoEHhMHHRhJHx8dSRkFGxoEEwQYGRIEGBgQG
+ x4aHxoRCl5ZF0tdR1lFEQpNXBcTHBEKTFoXTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQYGhIEHhk
+ RCkJeFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXa
+ BIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJ
+ LaUkRCkJAF2VbWEFjXHxJXkATEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXYwVYb
+ 0ZiHx1oREgQGRoRCnBoF2VYcmdrGXBMSxlmEBkaEQpwaBdgBXJTR2dNWX5SHRAZGhEKcGgXYW5
+ cWh5AYW9nXkQQGRoRCnBoF2dtTkdEb2dCRmBfEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XG
+ xEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: KXpWtXG2kEERPl62M541odfSCE9j-gSz
+X-Proofpoint-ORIG-GUID: KXpWtXG2kEERPl62M541odfSCE9j-gSz
+
+--0000000000009ed24205ef02d08c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Unfortunately, Alice is not well enough to visit. This is a health issue
+and intent not to spread her illness.
+
+I am sorry about the change of plans it affects my schedule too.
+
+If you want to FT you lease text.
+
+
+On Sun, Dec 4, 2022 at 9:48 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> This issue has been made as clear as it can be: Caring for sick children
+> is part of parenting time, and she will be well taken care of today when
+> she is with me.
+>
+> Today is an important day. As I planned with both of them we are putting
+> up a tree and decorating. Ali can lay comfortably while we do, or nap in =
+my
+> room if she wants.
+>
+> Either way I expect Ali to be dropped of by 12:30.
+>
+> Please confirm by 11 am.
+>
+> Darryl
+>
+> > On Dec 4, 2022, at 09:34, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> >
+> > =EF=BB=BFHi,
+> >
+> > Ali e didn=E2=80=99t get her shot yesterday she was booked for a adult =
+clinic by
+> accident. I rebooked her on a few weeks.
+> >
+> > She got sick on the afternoon with body aches, high fever and sore
+> throat so I kept her home. She is still sleeping and I won=E2=80=99t take=
+ her to
+> soccer. Charlotte is going with a friend and my mom will bring her to you=
+r
+> house.
+> >
+> > If she is doing better I will bring her to your house but I expect to
+> keep her home to rest and not spread to yourself and mom.
+> >
+> > I will keep you posted about today and school tomorrow.
+>
+
+--0000000000009ed24205ef02d08c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Unfortunately, Alice is not well enough to visit. This =
+is a health issue and intent not to spread her illness.</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">I am sorry about the change of plans it aff=
+ects my schedule too.</div><div dir=3D"auto"><br></div><div dir=3D"auto">If=
+ you want to FT you lease text.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto"><br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Sun, Dec 4, 2022 at 9:48 AM Darryl Ross &lt;<a href=3D"=
+mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left-width:1px;border-left-style:solid;padding-left:1ex;border-left-color:=
+rgb(204,204,204)">Hi Cynthia,<br>
+<br>
+This issue has been made as clear as it can be: Caring for sick children is=
+ part of parenting time, and she will be well taken care of today when she =
+is with me. <br>
+<br>
+Today is an important day. As I planned with both of them we are putting up=
+ a tree and decorating. Ali can lay comfortably while we do, or nap in my r=
+oom if she wants. <br>
+<br>
+Either way I expect Ali to be dropped of by 12:30. <br>
+<br>
+Please confirm by 11 am. <br>
+<br>
+Darryl<br>
+<br>
+&gt; On Dec 4, 2022, at 09:34, Cynthia Holmes &lt;<a href=3D"mailto:cynthmh=
+olm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BFHi,<br>
+&gt; <br>
+&gt; Ali e didn=E2=80=99t get her shot yesterday she was booked for a adult=
+ clinic by accident. I rebooked her on a few weeks.<br>
+&gt; <br>
+&gt; She got sick on the afternoon with body aches, high fever and sore thr=
+oat so I kept her home. She is still sleeping and I won=E2=80=99t take her =
+to soccer. Charlotte is going with a friend and my mom will bring her to yo=
+ur house.<br>
+&gt; <br>
+&gt; If she is doing better I will bring her to your house but I expect to =
+keep her home to rest and not spread to yourself and mom.<br>
+&gt; <br>
+&gt; I will keep you posted about today and school tomorrow.<br>
+</blockquote></div></div>
+
+--0000000000009ed24205ef02d08c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1024813</integer>
+	<key>date-last-viewed</key>
+	<integer>1741388505</integer>
+	<key>date-received</key>
+	<integer>1670170254</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12159</string>
+</dict>
+</plist>

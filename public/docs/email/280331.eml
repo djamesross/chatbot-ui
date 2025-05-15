@@ -1,0 +1,188 @@
+10151     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06030902.me.com by p133-mailgateway-smtp-6cfb4dd485-pnq2z (mailgateway 2417B106)
+	with SMTP id fabb67c7-98c9-4ba4-8d15-c1ba1faf46e5 
+	for <darrylross@icloud.com>; Wed, 29 May 2024 19:48:38 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: fabb67c7-98c9-4ba4-8d15-c1ba1faf46e5
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	by st43p00im-qukt06030902.me.com (Postfix) with ESMTPS id F131558011B
+	for <darrylross@icloud.com>; Wed, 29 May 2024 19:48:34 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRVoQXgcZFltVFVFfDlgc
+ DEZVVgJQWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwCGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlAR8wLh0JAwBFATZOSl9EVBgfF0c1QGxUOTMARCkFUyEeMzNH
+ ImgFJR8YETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bqnoahGc
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.42 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.42 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.42; helo=mail-ej1-f42.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a632ba6c9dbso2140866b.2
+        for <darrylross@icloud.com>; Wed, 29 May 2024 12:48:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717012111; x=1717616911; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pCo9Dk0HdEOZBEiszXHhBkE+PGxdJ4InECpoV3+Z/KI=;
+        b=bqnoahGco6ChTH3WGvmvempo54syTef+1FdaRB7zpigTZW6lOSlx2IWose3VEh/2bK
+         3X56q57LGx5n07Kj7Y4ibXl6axNE475+IPV3TlTwNcFbrEmPYijkAPz9x0MxAsvcH/ev
+         fjVYpX77oSfinGni8bq5AobZ3MWA3gjZ+BQMorppkeFB6/zuO/3T/lhbwGCx2otEkWC1
+         GafIOqwisZ9OnDj9+qzRPrxGBDW+Vnsr7te/m3GyrY00n6rofd1ymSWvwKD91JShL77h
+         9k0Clanm1BCWr7yROXZMYGJQgkvxebU5GZdvXa/Fcow6oBErv7nTcN+/NIrUjv6+5CbE
+         8XGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717012111; x=1717616911;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pCo9Dk0HdEOZBEiszXHhBkE+PGxdJ4InECpoV3+Z/KI=;
+        b=hNE0E9UULq0D9vgYJCb8KLHwp7UH1/ba9aNSdIUdY/u4rMCy2hRukAnPdNkXFoCQsY
+         R33+VUdc1OibdqRnhlFzMdZqtLbgwhPMrzeKDdrtL0hpGc8UEbZddzMEJGd6WARoa6PZ
+         QSATrhz3WJEfA6+CT+GtLCC0dYTXQbJKWnJ2NhrlWsVwz67VF6kKJlpfLhfb89/tzmFN
+         rFgZJYLrwNc82RAdWqI2KeW7bH5634enKmSgpEw4uNreVyhku6eZDTx/Hcf+Yp4y18Rv
+         vpTiyRRsnM4voswMiymi6s6DBwY2G4SncYEMmgw0acmHZtso2m54s1NwYeC8FrJWl79u
+         b1UQ==
+X-Gm-Message-State: AOJu0Yz5Ke93klkbG0KKS/q0qqirPABdkW+xCMCILlq2Hh9I8c0cqreQ
+	BAFioSYKCgsIdGAUB3I2FdhTzKKclVS/t3G//T9yAUV6UekDIP5BYKXsecZb0DLb8JdSd1wntpj
+	zQr3tKaOtkKDV0SScSYpTPh4TaCxkPA==
+X-Google-Smtp-Source: AGHT+IGEZ3BJTZr3bVM/hAmKqbAI1hpCJWvGCruFyvo/VxomgkHODXrUr09jr+b4IOPA0WJlneDLxA/8Oxg/h5vpszk=
+X-Received: by 2002:a17:906:2b87:b0:a59:a112:add2 with SMTP id
+ a640c23a62f3a-a65e9215cb9mr10966966b.69.1717012111078; Wed, 29 May 2024
+ 12:48:31 -0700 (PDT)
+MIME-Version: 1.0
+References: <F2D7601D-E054-4E79-810C-11F7AA34BE0E@icloud.com>
+In-Reply-To: <F2D7601D-E054-4E79-810C-11F7AA34BE0E@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 29 May 2024 15:48:20 -0400
+Message-ID: <CAFnbyRGtfVYe95b0xP92or6mfq0MpZ6LJf3Q5eCkJU0ZX3Gjaw@mail.gmail.com>
+Subject: Re:
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000f4bdcf06199d0870"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsdEhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsfEnEZHRAadwYYGgYaEQpZXhdsbHkRCkNOFxhtWmNtGXJiHUxTB
+ 0ZYemtfQmcHW0BmW1NAYGNgXEVeEQpYXBcZBBoEHxoFGxoaBB0aBBsTEgQbGRAbHhofGhEKXlk
+ XTkB5WV8RCk1cFxsaHxEKTFoXaGtNXWsRCk1OF2lrEQpMRhdiTWsRCkNaFxgaEwQSHwQYGxIEH
+ hgRCkJeFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkU
+ XaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtG
+ hJLaUkRCkJAF2lkRk1Mc1kdc25pEQpCWBdia05vb3psZ1pHSxEKWlgXHhEKcGgXY3hMfWwYbUJ
+ vSUgQGhEKcGgXYEdfXXNwQmhFfBIQGhEKcGgXbRtgXFsYRFttXHMQGhEKcGgXaGNHWnh6XH0FZ
+ V4QGhEKcGgXemBEXGdAAX5HT28QGhEKcGgXZH9zRGZZeF8fAU8QGhEKcGgXaUtwHmhYHRtBfEA
+ QGRoRCnBoF2JrSWMZRUseZ0leEBsSEQpwfxdgeH1ofRMbAWEYRRAHEhIRCnBfF2FyaF5rHUJ6A
+ U99EAcTGREKcH0Xa1x/UxgBYGcfeUQQGhEKcGwXZkZrHxhbbV9Gb28QGhEKbX4XGhEKWE0XSxE
+ =
+X-Proofpoint-GUID: 2GpIG3XH7fy-lrPAuhM-qjLqyjJIJvot
+X-Proofpoint-ORIG-GUID: 2GpIG3XH7fy-lrPAuhM-qjLqyjJIJvot
+
+--000000000000f4bdcf06199d0870
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Please update me on the status of child support payments and income tax
+returns.
+
+REgards
+
+
+
+On Wed, Apr 10, 2024 at 12:25=E2=80=AFPM Darryl Ross <darrylross@icloud.com=
+> wrote:
+
+> Hi Cynthia,
+>
+>
+> With regard to child support I have not been able to pay the amount in th=
+e
+> order or catch up outstanding amounts because I have not been receiving
+> income from insurance (since Jan. 1st of 2023). I have a meeting with
+> Sunlife on May 25th to resolve the issue and will begin making child
+> support payments as soon as possible after that date.
+>
+>
+> In the meantime I am working on my taxes and will forward my income tax
+> returns with updated financial information.
+>
+>
+> Darryl
+>
+
+--000000000000f4bdcf06199d0870
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div><br></div><div>Please update me on the stat=
+us of child support payments and income tax returns.</div><div><br></div><d=
+iv>REgards<br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_signature"=
+ data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci=
+3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSv=
+idi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div><br></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Wed, Apr 10, 2024 at 12:25=E2=80=AFPM Darryl Ross &lt;<a href=3D"mailto=
+:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div><p style=3D"margin:0px;fo=
+nt-style:normal;font-variant-caps:normal;font-stretch:normal;line-height:no=
+rmal;font-family:&quot;Helvetica Neue&quot;;font-kerning:auto;font-variant-=
+alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal=
+;font-variant-east-asian:normal;font-feature-settings:normal">Hi Cynthia,</=
+p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-k=
+erning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-feature-setti=
+ngs:normal;min-height:15px"><br></p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-k=
+erning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-feature-setti=
+ngs:normal">With regard to child support I have not been able to pay the am=
+ount in the order or catch up outstanding amounts because I have not been r=
+eceiving income from insurance (since Jan. 1st of 2023). I have a meeting w=
+ith Sunlife on May 25th to resolve the issue and will begin making child su=
+pport payments as soon as possible after that date.=C2=A0</p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-k=
+erning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-feature-setti=
+ngs:normal;min-height:15px"><br></p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-k=
+erning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-feature-setti=
+ngs:normal">In the meantime I am working on my taxes and will forward my in=
+come tax returns with updated financial information.</p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-k=
+erning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-feature-setti=
+ngs:normal;min-height:15px"><br></p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-k=
+erning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;font-feature-setti=
+ngs:normal">Darryl</p></div></blockquote></div>
+
+--000000000000f4bdcf06199d0870--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1070200</integer>
+	<key>date-received</key>
+	<integer>1717012118</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

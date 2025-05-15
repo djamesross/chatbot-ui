@@ -1,0 +1,226 @@
+12670     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-1a-100-percent-3 by p133-mailgateway-smtp-8c9c79b9f-4msmt (mailgateway 2424B107)
+	with SMTP id ccbd15ee-eeda-4d15-8aff-fd458b18453d 
+	for <darrylross@icloud.com>; Tue, 10 Sep 2024 20:49:19 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: ccbd15ee-eeda-4d15-8aff-fd458b18453d
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	by p00-icloudmta-smtpin-us-west-1a-100-percent-3.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-west-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id BA3BCC001DF
+	for <darrylross@icloud.com>; Tue, 10 Sep 2024 20:49:14 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEQgYMWxkXXlNCBhAWSkoAD0xNTEhFSAgYVkFZAxNFU08MARELHxdcWyISFAceFB5VDRhZABNFV1sDHBVIFBddFhAWRAIWCkJPDgcWFQQ4WVUOGgwCWRtfW0IdHAoYRV1XCxlUAxNJHVBWQVcBGBdXWgdbGgkaWEBCEEgUBx4UHVMGRFQAQ0weUQ0aHgoSVlNZD1UdAkofXVcLGVcFGBUQWwsRRFo0OXZYAAwrLkQPd1c9LA0VJT8DdDEzQC0wKn1eKAYUCD0rfmknODEILTt6dwEmATMCP1d2DxQQClkfXVcLGVcFGBUO
+X-ICL-Score: 3.3330330342
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CVa9FvXD
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.44; helo=mail-ed1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c275491c61so7387613a12.0
+        for <darrylross@icloud.com>; Tue, 10 Sep 2024 13:49:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726001353; x=1726606153; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZYEjJwm+eJTUOe1Aa5s4glHNpcVoxDKfJmLkaP7bK4k=;
+        b=CVa9FvXDwu1CzpqxTAv/9qUIDFQseid5hZ+utaPZDdYASONbfkr036AhCb+60sf+AG
+         15aPT8tR5D1J6V+MVMCmDASuxcXg2Ve6DL30MAZlwGmcLTF+fWqqJxrl1rU3XzTVl43i
+         4mrUz7AnTWU7OUwvhXMPJPrBZCceztab7gNKDVs4YqSHkKGFnsDOIccdlgDLHOAtab2f
+         VN6IlPdZ5n92IPORGyUwQgieyT86QPcQWTD05qnhmoGKGVrmRwXkvDg/OF7tCvdAQsD7
+         yIyQU3NfHwby8c7wuYk6ln2qnvaOedrTmsTnfBH+fmz2SIpYteblJO4iwrA0GpVitKI5
+         iHTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726001353; x=1726606153;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZYEjJwm+eJTUOe1Aa5s4glHNpcVoxDKfJmLkaP7bK4k=;
+        b=OWfA7HDWAvuvTzZlELeg/mLpi136miXmW9jN+C1peQD07qB+O1+JHz/BLI2Zx2A2V3
+         OH3YQ/sCX4cF7zuFsHOjJ7ELUdVUZnRT07svW6W6XqkUBM0QjtvifK64k78P7umkHn0k
+         uV34TPSf3fxuMrslYIgpoAudFss5GvTkc5HBwUCv/mDj/SvK89POoY+iZyg6B8jconyj
+         c/MvVoOejHexyKz7AyHF4NwbCFaQs5uXID3zb+5q+9ledP5cjLfDOewlqrOKaXlrJSBC
+         SUyXR+BXKX30bVButqcrbtgg6PRaDa+5L2oVZ9KV710Rgodj0GgR+2tcblqHN+n3EQ2G
+         uMhg==
+X-Gm-Message-State: AOJu0YwNRk8f2YmPTjkRgmX2CZuqm06V7CJIAY7/tbrGYnVfo5VXlg+n
+	4QX8WEnLBEjTXCwBFd9vAD8Rhn9ORduYmYJqbkDg6pOPmpqEOcU93d0bvXuOxcdtucAINlxGBfp
+	sLj1XfptfXLCFTP6T7je6dMan7F8KEomN
+X-Google-Smtp-Source: AGHT+IGDYxELqr6WxiSzrnVdag65KxHhGSmwotQUNj7A09gZ0BVpX2NtwbTay5MzJIayZhhDCyUf7+U2Bpxfzx+xpJk=
+X-Received: by 2002:a05:6402:5193:b0:5c2:5438:6ea with SMTP id
+ 4fb4d7f45d1cf-5c3e96365d6mr11183980a12.19.1726001352668; Tue, 10 Sep 2024
+ 13:49:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <CANZN9LziYa6pDc-APthu+Ph2VvnfEQAgZ2a3mcpn3YAxRM2NyQ@mail.gmail.com>
+In-Reply-To: <CANZN9LziYa6pDc-APthu+Ph2VvnfEQAgZ2a3mcpn3YAxRM2NyQ@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 10 Sep 2024 16:49:01 -0400
+Message-ID: <CAFnbyRH3wGa_YtsRG3BSF9KGRMhJsmnJSN_EMHnZCJAcSxUuGg@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_Cahier_de_fran=C3=A7ais?=
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000081fd130621ca01ef"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF3IZWVpPX0sfGF9+f
+ RJlTGEcXXhlcBlFSHMSRkZYTlpAEQpYXBcZBBoEHxoFGxoaBB0bBBscGgQTGBAbHhofGhEKXlk
+ XT2xGfEcRCk1cFxsYEhEKTFoXaGlNTWsRCkxGF2xNaxEKQ1oXGBoTBBIfBBgaEgQeHhEKQl4XG
+ xEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJ
+ ueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQ
+ kAXaURvUwVEH0dhR34RCkJYF2JrTm9vemxnWkdLEQpaWBceEQpwZxdgQXJOHnJoEkBBfhAaEQp
+ waBdgUEkYRHhDRF1dUxAaEQpwaBdtYWRHE08fHWxJGhAaEQpwaBdlaQFvT3NCeAFJRRAaEQpwa
+ BdlaVt/XRIZBXtAexAaEQpwaBdiHxtbY2NPH00efBAaEQpwaBdofExFXGkcXntwcBAaEQpwaBd
+ jQ3x4Xm9BcEBoXBAcGhEKcGgXY0FnZRJbQkhkRWUQGhEKcGcXYXprY0xiSHJAaW0QGR0RCnB/F
+ 2B4fWh9ExsBYRhFEAcbGxwRCnBfF2FyaF5rHUJ6AU99EAcbGxwRCnB9F2tcf1MYAWBnH3lEEBo
+ RCnB9F2JvfEBCeVlOSGhGEBoRCnBsF2ZGax8YW21fRm9vEBoRCm1+FxoRClhNF0sR
+X-Proofpoint-ORIG-GUID: X3speua52uTW8OfK6wROZ3obY8llrdpj
+X-Authority-Info: v=2.4 cv=a9Zi9lSF c=1 sm=1 tr=0 ts=66e0b0cb cx=c_pps a=2f/BrsI30kxfi1RG7K8GXg==:117 a=EaEq8P2WXUwA:10 a=5KLPUuaC_9wA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=Bed_Vq3aAAAA:8 a=ZnFSb4Ioa_iEwiOtBhcA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=ozNw2ILzo-3Uc-pN4PwA:9 a=j-LM_60zQD4uKOa5:21 a=lqcHg5cX4UMA:10 a=vexicnJHVZC5-rvN4z9Y:22 a=Swub-GRiNxvb1T5bOqvH:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-GUID: X3speua52uTW8OfK6wROZ3obY8llrdpj
+
+--00000000000081fd130621ca01ef
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Not sure if Alice brought this to your place or not .
+
+She will have homework to complete.
+
+
+
+
+---------- Forwarded message ---------
+From: Ashley Hand <handas@ecolecatholique.ca>
+Date: Tue, Sep 10, 2024 at 3:52=E2=80=AFPM
+Subject: Cahier de fran=C3=A7ais
+To:
+
+
+Bonjour =C3=A0 tous,
+
+Ce message est pour vous aviser que les =C3=A9l=C3=A8ves devront compl=C3=
+=A9ter leur
+cahier de fran=C3=A7ais en devoir, ce soir, s'il n'est pas d=C3=A9j=C3=A0 c=
+ompl=C3=A9t=C3=A9. Ils
+travaillent depuis plus d'une semaine dans ce cahier.
+
+Bonne soir=C3=A9e!
+Ashley
+--=20
+
+*Ashley Hand, EAO*
+
+Enseignante de 5e ann=C3=A9e
+
+=C3=89cole =C3=A9l=C3=A9mentaire catholique Sainte-Kateri
+
+handas@ecolecatholique.ca
+
+
+
+
+------------------------------
+Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent contenir=
+ de
+l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou conf=
+identielle, sujette au
+droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99indi=
+vidu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie ou
+distribution non autoris=C3=A9e du contenu de ce courriel est interdite. Si=
+ vous
+croyez que ce message est un pourriel au sens de la Loi canadienne
+anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivante :
+pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par erreur=
+,
+veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel et su=
+pprimer de
+votre syst=C3=A8me ce message et tout document joint. Merci de votre
+collaboration.
+------------------------------
+
+--00000000000081fd130621ca01ef
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Not sure if Alice brought this to your place or not .</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">She will have homework to c=
+omplete.<br clear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"l=
+tr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
+=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fO=
+bfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA">=
+<br></div></div></div></div><div><br></div><div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded message ----=
+-----<br>From: <strong class=3D"gmail_sendername" dir=3D"auto">Ashley Hand<=
+/strong> <span dir=3D"auto">&lt;<a href=3D"mailto:handas@ecolecatholique.ca=
+">handas@ecolecatholique.ca</a>&gt;</span><br>Date: Tue, Sep 10, 2024 at 3:=
+52=E2=80=AFPM<br>Subject: Cahier de fran=C3=A7ais<br>To: <br></div><br><br>=
+<div dir=3D"ltr">Bonjour =C3=A0 tous,=C2=A0<div><br></div><div>Ce message e=
+st pour vous aviser que les =C3=A9l=C3=A8ves devront compl=C3=A9ter leur ca=
+hier de fran=C3=A7ais en devoir, ce soir, s&#39;il n&#39;est pas d=C3=A9j=
+=C3=A0 compl=C3=A9t=C3=A9. Ils travaillent depuis plus d&#39;une semaine da=
+ns ce cahier.=C2=A0</div><div><br></div><div>Bonne soir=C3=A9e!=C2=A0</div>=
+<div>Ashley</div><div><span class=3D"gmail_signature_prefix">-- </span><br>=
+<div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signatur=
+e"><div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"background-image:initia=
+l;background-position:initial;background-repeat:initial"><font color=3D"#00=
+0000" face=3D"verdana, sans-serif"><b><span style=3D"background-image:initi=
+al;background-position:initial;background-repeat:initial">Ashley Hand, EAO<=
+/span></b></font></p><p class=3D"MsoNormal" style=3D"background-image:initi=
+al;background-position:initial;background-repeat:initial"><font color=3D"#0=
+00000" face=3D"verdana, sans-serif"><span style=3D"background-image:initial=
+;background-position:initial;background-repeat:initial">Enseignante de 5e a=
+nn=C3=A9e</span></font></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><font color=3D"#000000" face=3D"verdan=
+a, sans-serif"><span style=3D"background-image:initial;background-position:=
+initial;background-repeat:initial">=C3=89cole =C3=A9</span>l=C3=A9mentaire =
+catholique Sainte-Kateri</font></p><p class=3D"MsoNormal" style=3D"backgrou=
+nd-image:initial;background-position:initial;background-repeat:initial"><fo=
+nt color=3D"#000000" face=3D"verdana, sans-serif"><a href=3D"mailto:handas@=
+ecolecatholique.ca" target=3D"_blank">handas@ecolecatholique.ca</a>=C2=A0</=
+font></p><p class=3D"MsoNormal" style=3D"background-image:initial;backgroun=
+d-position:initial;background-repeat:initial"><font color=3D"#000000" face=
+=3D"verdana, sans-serif"></font><img src=3D"https://ci3.googleusercontent.c=
+om/mail-sig/AIorK4w4WbRjQDXqa0kVoc9he22kxCtIzwQzyyzM-fiAMiWSL9Fgvo0CUGBkbW1=
+uQHh4q-UIQuJRZm8" width=3D"96" height=3D"30"><font color=3D"#000000" face=
+=3D"verdana, sans-serif"><br></font><span style=3D"color:rgb(0,0,0);font-fa=
+mily:verdana,sans-serif"><br></span></p><p class=3D"MsoNormal" style=3D"bac=
+kground-image:initial;background-position:initial;background-repeat:initial=
+"><span style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;=
+color:#888888"></span></p></div></div></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></div></div>
+
+--00000000000081fd130621ca01ef--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1279037</integer>
+	<key>date-received</key>
+	<integer>1726001359</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

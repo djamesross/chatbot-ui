@@ -1,0 +1,124 @@
+6530      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33110901.me.com by p133-mailgateway-smtp-5fdcc87f54-dkqs8 (mailgateway 2403B92)
+	with SMTP id 9f602b60-3304-4386-96a5-017cc029f079 
+	for <darrylross@icloud.com>; Wed, 6 Dec 2023 18:34:15 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 9f602b60-3304-4386-96a5-017cc029f079
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	by ms13p00im-qukt33110901.me.com (Postfix) with ESMTPS id 5BD6F51C008C
+	for <darrylross@icloud.com>; Wed,  6 Dec 2023 18:34:12 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgdQTVdSQVoQXgcZFltVFVFfDlgO
+ C0ZVVgJUWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsVGEhLEUwGGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlBys/IhJ0ZFAHOicNCw1sOgMzIEE2WkdaKgteDjVeDxA5AV5K
+ CwRsOz0+ETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mCKe0Smi
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.128.46 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.128.46 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.128.46; helo=mail-wm1-f46.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40b2ddab817so973005e9.3
+        for <darrylross@icloud.com>; Wed, 06 Dec 2023 10:34:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701887652; x=1702492452; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ZHObMLJnQDeGHSubiK17og3A1yu8aqPcAuWWJnLOI3o=;
+        b=mCKe0Smiwhhnc7Pzt4YOaLmLFix+SRu5qsj+My5IFidPzc8QK6325oWTQNeL3SYpZr
+         cxXqGFVJ2mDr4L+ZAVau0A9NEnmuGPTufC29EYCp3EC/shYddC8n2iAq/ccjAEYaBeM0
+         P9ONQw18Qupnl932CcrZZlg1ux/7FpsBFXpHcadSoTEjGAhiFwjxubiq9NJoOnXLtakq
+         k5zK1C4Uef50MlhPfzQDwjKKLypOlh/OwcfXbXyQjYb97nTZFGfFHayO5QJwkpQobFDD
+         7KLvVjud7HW8AEI3n40Sng/S+yECjLwu1fB90d334CZmScviZ9vYMLb680DKrsNz70FV
+         ltxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701887652; x=1702492452;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZHObMLJnQDeGHSubiK17og3A1yu8aqPcAuWWJnLOI3o=;
+        b=XLCUL3Y/qM9C3duCrx/QZl/gdy2xLv2nBQ8BjfUv5fyX+I5bVIEDe94xICqu9UvwID
+         ohoV2V8rYkjFpkMPaU6v+TvOtA5SL80Gv7wZNx4vwbkAsg820Kqwaf/G4pVBdLT7YVlv
+         h9NAboRyVQJdVJo7lgQlGKKyfn0AyjXW643J82S7F3pmuKiHBiPEonldWw2CQwSj6zcr
+         Gw5z9mRy8O61G2aO+i9DmS+1jojjmxtduFAwmaXWCRdy8Hl0Qeijn009Pkoip2ELuS/X
+         Qp/+8IHewVAZFvNnKKwPavMdz942R2IILWXvNPiHHocK52GO8IYSNuQ3eNWMNGgX2aOP
+         4s7Q==
+X-Gm-Message-State: AOJu0YyE3pk2tSnvGNGTOGI6EeT8QgR57ivCsQUBqmJgShlX4NsUF2XV
+	wC9B3/yaIsILfLj6dXAXF1a6YB7A5x/k1MMioEIVk74EN/U=
+X-Google-Smtp-Source: AGHT+IEpkxyqKAML7cOjK5xU+qRsuHUlOI3aGffxCGn0XKPeYSQMeV8u4r9T8umScugXiRGhB1qNIaiKBfDskmYYxDA=
+X-Received: by 2002:a05:600c:3d16:b0:40b:5e21:e289 with SMTP id
+ bh22-20020a05600c3d1600b0040b5e21e289mr806546wmb.118.1701887651890; Wed, 06
+ Dec 2023 10:34:11 -0800 (PST)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 6 Dec 2023 13:34:00 -0500
+Message-ID: <CAFnbyRGrRYUjDR2rCAzs=ZXvJF6Njq8_r8yMn9rLx8=s4ZYHGw@mail.gmail.com>
+Subject: Sunday December 24th
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000f049e6060bdb9800"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcaTWlIcGdgRR1Se
+ X0ZHk14bGBsTGYee1NrTmh7T09wExEKWFwXGQQaBB8aBRsaGgQSGAQbHxIEGRoQGx4aHxoRCl5
+ ZF0laR2RrEQpNXBcHEhEKTFoXaGlNTWsRCkxGF01rEQpDWhcYGhMEEh8EGxgSBB4cEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdgcF8BBU8ee2ldexEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2lrQWFkfkcbARl
+ YEBkaEQpwaBd6TkdeX0FhWmAYQRAZGhEKcGgXZ2FkHG15c0YSU3sQGRoRCnBoF25hWRgeQ2RaX
+ 3NeEBkaEQpwaBdmAUtJGU0fUEwZHhAZGhEKcGgXaWNgUBJBb11He38QGRoRCnBoF3pzUEQecH1
+ tU2B7EBkaEQpwaBdtfEB9fRxPaEBJUBAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF
+ 0sR
+X-Proofpoint-GUID: 0gCbZMJo7xSW34gRFJFfL4QyAdBQeeZ9
+X-Proofpoint-ORIG-GUID: 0gCbZMJo7xSW34gRFJFfL4QyAdBQeeZ9
+
+--000000000000f049e6060bdb9800
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+
+Can we switch Sunday 24th to Monday the 25th? Xmas Eve is busy one for our
+family, Dad and Jul we visit that day, and the girls take part in the Xmas
+Eve service at their grandmother;s chruch, also we have guest from out of
+town tht evening and morning for breakfast.
+
+I can deliver the girls for noon on Monday.
+
+Aslo we can add a few extra days during the holidays depending on all
+availability, perhaps Thursday and extend Tuesday from noon-8?
+
+I
+
+--000000000000f049e6060bdb9800
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>Can we switch Sunday 24t=
+h to Monday the 25th? Xmas Eve is busy one for our family, Dad and Jul we v=
+isit that day, and the girls take part in the Xmas Eve service at their gra=
+ndmother;s chruch, also we have guest from out of town=C2=A0tht evening and=
+ morning for breakfast.</div><div><br></div><div>I can=C2=A0deliver the gir=
+ls for noon on Monday.</div><div><br></div><div>Aslo we can add a few extra=
+ days during the holidays depending on all availability, perhaps Thursday a=
+nd extend Tuesday from noon-8?</div><div><br></div><div>I</div></div>
+
+--000000000000f049e6060bdb9800--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1198185</integer>
+	<key>date-received</key>
+	<integer>1701887655</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>

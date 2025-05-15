@@ -1,0 +1,120 @@
+6140      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33072302.me.com by p133-mailgateway-smtp-d96586b5c-2wljg (mailgateway 2319B150)
+	with SMTP id fdca580a-ad12-4ef4-b070-975863978ebb 
+	for <darrylross@icloud.com>; Sun, 2 Jul 2023 20:02:15 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: fdca580a-ad12-4ef4-b070-975863978ebb
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by ms13p00im-qukt33072302.me.com (Postfix) with ESMTPS id A86165C4019F
+	for <darrylross@icloud.com>; Sun,  2 Jul 2023 20:02:13 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRFoQXgcZFltVFVFfDlgc
+ DEZVVgJRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwDGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlARFQPzl7BhYyIQcgAXNPFCUdAgYgaQEVJDMJKDQBZyAMDCwC
+ GkJVJiMLETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GL/qqwjM
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.43; helo=mail-ej1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-9926623e367so434318466b.0
+        for <darrylross@icloud.com>; Sun, 02 Jul 2023 13:02:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688328133; x=1690920133;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vPkyhdwU2DJT+kxRkl8mvc+VuJz/QjZFyzIA5liXX8k=;
+        b=GL/qqwjMOCnQklaHu6AmulX/YWAk1RSbnPTprFrAd/cj732KDn+eZ2WPDMBi1Gudf4
+         YKsgfisZ6VaKcEdb03Hun4cJfq27QbpRRrmglMrtN3p9UWmllq/5nR0bYhIaTfxjPt+5
+         c9oD4fknY3uOJGXSytF8qz88Mh3fGrhtIQd35YA4QvnfT5UHz9bFDEQJFtW1TZeLJt6t
+         lptUmCRpBbpCPJvHCiqHLhOQQHN1s9P+v0U2A7whNR5+s7daxjVX41FiAuqVrZMPQ8oH
+         LEV77nukFe+LJmbBtnk1/2lXzlg98BTNzT29ZvjO/pI4nXmIpuvgY0z6vWVpeCSnQNgp
+         Y5TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688328133; x=1690920133;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vPkyhdwU2DJT+kxRkl8mvc+VuJz/QjZFyzIA5liXX8k=;
+        b=RExKcMDY4Pi5XS9U2z5EZ/PzhlyHIE6L39H+Lb1aekTfZWN62LiTw3H+yE0RxP4lwZ
+         sVMXgM4af+thDnlkh02xdSQhterzzeenRjp2vd2Wxwr48OYiOgOPIhqD3Umq/WH9kiXb
+         9JNCuHPyg5bGQFHztnLESejpYETXJ7XVFxkJ08pY6gqOJ4GDxzcdN7EBE1D/NmUeyUTz
+         QkelE1M/+/wEXXPGVKKyEN0sM4fdFr95p+pyvEnwCR1rdiPsvzqZDo5RQTdcaZ6ScP8g
+         MbUaqYPrkJaiW6FValAclZdIkmxUajio3X3Cq/Ecr5V66Sf9QtDb1ghqgYsPxHQuKCA5
+         NAhg==
+X-Gm-Message-State: ABy/qLa/qlKV4zs+0PObJqTYnxm7ea2rTBlAv+4YrQl7lMnAUG2MuHhF
+	LtmwyuaeQku+n65M1vU7OebB4AHksoWBji2mzhNkyBQtmIY=
+X-Google-Smtp-Source: APBJJlG0eZhxsUMT84vyEML6p5LQyBcdjbJYeukMbB1AUjjGhsRBPJfq5QQ9LoUpS775oFqaSoTpAX/UHXQd1mkGT6A=
+X-Received: by 2002:a17:906:3b03:b0:988:aeb7:2a37 with SMTP id
+ g3-20020a1709063b0300b00988aeb72a37mr5604049ejf.33.1688328132597; Sun, 02 Jul
+ 2023 13:02:12 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 2 Jul 2023 16:02:01 -0400
+Message-ID: <CAFnbyRGth6HAK0tGXaWyCyvPddqXY7wQJo_L1QByuJubrcDVrw@mail.gmail.com>
+Subject: Charlotte
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000009b9cfe05ff868624"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQYGxsZGh0aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOFxMTbW1MQWJrQ11JHFNffGh
+ tf1xMY0tQZR9mWV9mWXpTEQpYXBcZBBoEHxoFGxoEEwQbEgQYGhoQGx4aHxoRCl5ZF0gbGVJNE
+ QpNXBcbGBEKTFoXaU1NaxEKTEYXTWsRCkNaFxgaEwQSHwQYGxIEHhkRCkJeFxsRCkJcFxsRCl5
+ OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF
+ 2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF25GelMcXn1
+ tZnlGEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXekZJXQVfYV1gQm4QGRoRCnBoF
+ 21MW2YZSVNnfWQBEBkaEQpwaBdnf2NJHEBsXEduUhAZGhEKcGgXYEUTa2FSeRNSU1AQGRoRCnB
+ oF3oYGGZBU2h8RmxDEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: 99GGfkHAiwc6yuVBGUvfIazO5LsuLsPy
+X-Proofpoint-GUID: 99GGfkHAiwc6yuVBGUvfIazO5LsuLsPy
+
+--0000000000009b9cfe05ff868624
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+She is giving you a call, she has been resting at home the past hour. She
+said can=E2=80=99t talk for long as it hard on her eyes and head.
+
+She received an IV, pain meds and anti nausea. Her blood word came back
+showing she is dehydrated but no concerns for appendicitis.
+
+Cynthia
+
+--0000000000009b9cfe05ff868624
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+She is giving you a call, she has been resting at home the past hour. She s=
+aid can=E2=80=99t talk for long as it hard on her eyes and head.<div dir=3D=
+"auto"><br></div><div dir=3D"auto">She received an IV, pain meds and anti n=
+ausea. Her blood word came back showing she is dehydrated but no concerns f=
+or appendicitis.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=
+=C2=A0</div>
+
+--0000000000009b9cfe05ff868624--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1142764</integer>
+	<key>date-last-viewed</key>
+	<integer>1744822737</integer>
+	<key>date-received</key>
+	<integer>1688328135</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12029</string>
+</dict>
+</plist>

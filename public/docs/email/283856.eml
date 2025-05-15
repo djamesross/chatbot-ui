@@ -1,0 +1,228 @@
+14156     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-1a-20-percent-9 by p158-mailgateway-smtp-75dc68d6fd-qbnpd (mailgateway 2429B103)
+	with SMTP id 586e5ee9-e9cc-4497-b8af-76546fa42e8d 
+	for <darrylross@icloud.com>; Sat, 22 Feb 2025 00:00:25 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 586e5ee9-e9cc-4497-b8af-76546fa42e8d
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	by p00-icloudmta-smtpin-us-east-1a-20-percent-9.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id 6A8D2C0012B
+	for <darrylross@icloud.com>; Sat, 22 Feb 2025 00:00:20 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgAOTEFNRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxIcARsEQU1IEBdfUQ4QVwUYFRBGFgdECxYRXBsHEUhLEUwEGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDAPckEVFBACMTd6BToMPidBPmFiVQIjKkAMWBsSDQ4IGjl9GzEaDCwcOQB3IhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dqYyVBFH
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.44; helo=mail-ed1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5dec817f453so4360400a12.2
+        for <darrylross@icloud.com>; Fri, 21 Feb 2025 16:00:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740182419; x=1740787219; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=d1ZAEYEPbW7zg45AbLAaWIHqBJEFPYdOM/0ifRtTGww=;
+        b=dqYyVBFHH4u4KLK41sSJEimQA4zpLEpLnFrJEjAdeDsdREEhLs5f6moDFT7AsLn+72
+         oFpCX3rwyb72vqZHwEY+SR6SD/Mc/ygoE97I3t3X2kbPA95Z/RXXWg+CpyjffcKdw05W
+         BwhsEm3cxXjifE0k54Ma/Bwc+/Lwj7hIU/nUUCSuAU0VFm7hoVFe/EKynxCGuk8+Y2DU
+         nTGazbCxef5bMrVXQVPYrh9Pp9hgzA0x3mMteHd7OFv3IBkPbx5LXcic4udieNLJIx/u
+         336SIaCryCo5+HykSMmGD3xKbS0ac/MUKPtnNSvp9EftT0Hh1vHlm4vHIWwlp2QC7eiF
+         IPBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740182419; x=1740787219;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d1ZAEYEPbW7zg45AbLAaWIHqBJEFPYdOM/0ifRtTGww=;
+        b=tHWEMJJDF3bmHBvfzWyCEAWF96A9sJMG0feunwMUC3qDxKMYx2kGP3f6fjCExAz2yB
+         wzMpWQKfusJ4VGgLI8KkMGpaaZNq9ywdWhab6Ahu7n1aCOewFCUddVIRv6qJQJlLuB8Y
+         DGn1GJV4C4oin0nV+j+scMYc3TdQB2zGdQXkcNzxos/OEIdwhCM+9it59MOFa0f6IeKM
+         MjXe94IqUgvpZ4uGxqpkjRCoutbyUDBK3WA5Mfn5MxAR5vkcFaXLkutCts9sHryuYiaM
+         2Kw2iZ7FuHe7lJGQhUn57XwCu3uIp+9bGi/q03ldGDcCynfaytXNeTFP8Ln5OP8vuAdW
+         M9GQ==
+X-Gm-Message-State: AOJu0YxNgxX2UzGdkxRUMsddJjZhVQjfISzuTVnd/FF7rccZ/DSyoyjo
+	C0xGUrXPn4OIVZ6DafeBCGg6Vm+8QmAM/K598KB/p30Ot7xopdRYrUZ70ZJz0rXvEYqpJlgnXa1
+	nTO5tSUsL99lLDDSdPZhQr47i4hvYZC0Z
+X-Gm-Gg: ASbGncsYkbFUYrmHoKjEJXbGE/0B067hTSLK9hOo0Vs2/Ox3E2NQpoahgEOIWTV2PFN
+	vAH3hLGUTDfUpVgT2hrFxA61jezld7/ya47Vj/yv9UJ7FsfFSl44rlbQetCwdwZNHB8t/vLMXbX
+	Rt18VWvcr4dcHRgptk/ry287E3TJh5JsGDOMDGVBZceQ==
+X-Google-Smtp-Source: AGHT+IFiG/firE9tI4+LMhXZBu8FVfPsWAoenJ9IvGF10sYlyHqWZdo9Pthq/iIxACGS4GXKKL4vVw6a0sI0msbnZB0=
+X-Received: by 2002:a17:907:c0f:b0:aab:9430:40e9 with SMTP id
+ a640c23a62f3a-abc09ab56bfmr473518666b.32.1740182419282; Fri, 21 Feb 2025
+ 16:00:19 -0800 (PST)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 21 Feb 2025 19:00:05 -0500
+X-Gm-Features: AWEUYZmeOVNyFVZCCQ3y8HeYrEtMSkev-XIEnAxbdrh3dSGnn-wP_SK3vyqGOnU
+Message-ID: <CAFnbyRGwBwwaidFOJ3XyGA6FQT7wZL7th-pxwnmAM-SouJkA0A@mail.gmail.com>
+Subject: Recommendation
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000f223ee062eafca82"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF0FFeVt7QmVvfF1Pe
+ HVrT1JCRntvRkJ8fRxjSGdkTUFsEQpYXBcZBBoEHxsFGxoEGxwYBBgTBBgeEhAbHhofGhEKXlk
+ XTx1YTVIRCk1cFxgaEQpMWhdoaU1daxEKTEYXTWsRCkNaFxgaEwQSHwQYGhIEHh4RCkJeFxsRC
+ kJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybng
+ aYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF
+ 2dCRmZbGAVbWh9BEQpCWBdia05vb3psZ1pHSxEKWlgXHxEKcGgXYVxibRtGRUl8bh8QGhEKcGg
+ XYhkbeGtlHVhnfEsQGhEKcGgXZnwBWE4YT2tPHGkQGhEKcGgXaWFQWFJOZ15GcEkQGxgRCnBoF
+ 2R8HlwaZFhfQWFJEBoRCnBoF2FzYH0cTWZtaHtwEBoRCnBoF25naWxgQVpDekhSEBoRCnBoF2B
+ 9THxDeh1yUm4BEBoRCnB/F2xvbGhreFpMfWUTEBoRCnBfF2lZQnNdZVMSHGUBEBoRCnB9F20eR
+ GVZX0BYRAFSEBoRCnB9F29iWHlBWRllXWhvEBoRCnB/F29DH2kYaFhkW3hoEBoRCnBfF2BfE2Z
+ MTH4ZWxhBEBoRCnB9F29LZ0NkeXBDWHlTEBoRCnB9F20eRGVZX0BYRAFSEBoRCnB9F29iWHlBW
+ RllXWhvEBoRCnB9F29LZ0NkeXBDWHlTEBoRCnB/F3pkGXlJaW9ecEMfEAcbGxsRCnBfF29rbG5
+ bQUt4H3NnEBoRCnB9F2FPTUZDHEJkTVNJEBoRCnB/F2B4fWh9ExsBYRhFEAcbGBwRCnBfF2Fya
+ F5rHUJ6AU99EAcbHhsRCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEBoRCm1+Fxo
+ RClhNF0sR
+X-Authority-Info: v=2.4 cv=SPa4VPvH c=1 sm=1 tr=0 ts=67b91396 cx=c_apl:c_pps a=2f/BrsI30kxfi1RG7K8GXg==:117 a=T2h4t0Lz3GQA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=zXHxWH6JAAAA:8 a=scRrJNWpAAAA:20 a=440vuJDyOqvdKp7Q4RIA:9 a=QEXdDO2ut3YA:10 a=UzISIztuOb4A:10 a=fys2sDa9AAAA:8 a=2ZCMkigQW2fCdZHZixwA:9 a=1L-0yfPZROWGZWiA:21 a=fd8BezSa2ySTVFnoALwy:22 a=1mbxm5dBA3_c2315BVBs:22 a=7YpECbvlQQReuXKdpsOb:22 a=bn7x_FpfJtc3yKQXRW3z:22 a=ZT_8zCgGubuJgGonBfBE:22
+X-Proofpoint-ORIG-GUID: koSqQhOEVweR_AexhlQElhVW6IbMNgkF
+X-Proofpoint-GUID: koSqQhOEVweR_AexhlQElhVW6IbMNgkF
+
+--000000000000f223ee062eafca82
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Alice likes  Jessica.What do you think?
+
+Please  let me know and I can reach out and include you in the email.
+
+
+=E2=80=94////////
+
+Hi Cynthia, thanks for reaching out and trusting me with how to move
+forward for Alice.
+
+Jessica https://www.thezensocialworker.ca/work-with-jess
+
+And Amanda https://www.thezensocialworker.ca/work-with-amanda
+
+Both work with children and are compassionate, warm clinicians.
+
+If there=E2=80=99s any further guidance I can give, please let me know. I=
+=E2=80=99m happy
+to chat!
+
+*Timothy Gordon*, MSW, RSW
+www.TheZenSocialWorker.ca <http://www.thezensocialworker.ca/>
+Make an Appointment:
+tinyurl.com/TimAppointments
+
+--000000000000f223ee062eafca82
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Alice likes =C2=A0Jessica.What do you think?</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">Please =C2=A0let me know and I can r=
+each out and include you in the email.=C2=A0</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">=E2=80=94////////</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto"><div><span style=3D"font-family:=
+-apple-system,&quot;helvetica neue&quot;;font-size:17px;font-style:normal;f=
+ont-weight:400;letter-spacing:normal;text-indent:0px;text-transform:none;wh=
+ite-space:normal;word-spacing:1px;text-decoration:none;float:none;display:i=
+nline!important;background-color:rgba(0,0,0,0);border-color:rgb(49,49,49);c=
+olor:rgb(49,49,49)">Hi Cynthia, thanks for reaching out and trusting me wit=
+h how to move forward for Alice.</span><div style=3D"font-family:-apple-sys=
+tem,&quot;helvetica neue&quot;;font-size:17px;font-style:normal;font-weight=
+:400;letter-spacing:normal;text-indent:0px;text-transform:none;white-space:=
+normal;word-spacing:1px;text-decoration:none;background-color:rgba(0,0,0,0)=
+;border-color:rgb(49,49,49);color:rgb(49,49,49)"><br></div><div style=3D"fo=
+nt-family:-apple-system,&quot;helvetica neue&quot;;font-size:1rem;font-styl=
+e:normal;font-weight:400;letter-spacing:normal;text-indent:0px;text-transfo=
+rm:none;white-space:normal;word-spacing:1px;text-decoration:none;background=
+-color:rgba(0,0,0,0);border-color:rgb(49,49,49);color:rgb(49,49,49)">Jessic=
+a=C2=A0<a href=3D"https://www.thezensocialworker.ca/work-with-jess" style=
+=3D"font-family:-apple-system,&quot;helvetica neue&quot;;font-size:1rem;bac=
+kground-color:rgba(0,0,0,0);border-color:rgb(66,133,244);color:rgb(66,133,2=
+44)">https://www.thezensocialworker.ca/work-with-jess</a></div><div style=
+=3D"font-family:-apple-system,&quot;helvetica neue&quot;;font-size:17px;fon=
+t-style:normal;font-weight:400;letter-spacing:normal;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:1px;text-decoration:none;back=
+ground-color:rgba(0,0,0,0);border-color:rgb(49,49,49);color:rgb(49,49,49)">=
+<br></div><div style=3D"font-family:-apple-system,&quot;helvetica neue&quot=
+;;font-size:1rem;font-style:normal;font-weight:400;letter-spacing:normal;te=
+xt-indent:0px;text-transform:none;white-space:normal;word-spacing:1px;text-=
+decoration:none;background-color:rgba(0,0,0,0);border-color:rgb(49,49,49);c=
+olor:rgb(49,49,49)">And Amanda=C2=A0<a href=3D"https://www.thezensocialwork=
+er.ca/work-with-amanda" style=3D"font-family:-apple-system,&quot;helvetica =
+neue&quot;;font-size:1rem;background-color:rgba(0,0,0,0);border-color:rgb(6=
+6,133,244);color:rgb(66,133,244)">https://www.thezensocialworker.ca/work-wi=
+th-amanda</a></div><div style=3D"font-family:-apple-system,&quot;helvetica =
+neue&quot;;font-size:17px;font-style:normal;font-weight:400;letter-spacing:=
+normal;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
+1px;text-decoration:none;background-color:rgba(0,0,0,0);border-color:rgb(49=
+,49,49);color:rgb(49,49,49)"><br></div><div style=3D"font-family:-apple-sys=
+tem,&quot;helvetica neue&quot;;font-size:1rem;font-style:normal;font-weight=
+:400;letter-spacing:normal;text-indent:0px;text-transform:none;white-space:=
+normal;word-spacing:1px;text-decoration:none;background-color:rgba(0,0,0,0)=
+;border-color:rgb(49,49,49);color:rgb(49,49,49)">Both work with children an=
+d are compassionate, warm clinicians.</div><div style=3D"font-family:-apple=
+-system,&quot;helvetica neue&quot;;font-size:17px;font-style:normal;font-we=
+ight:400;letter-spacing:normal;text-indent:0px;text-transform:none;white-sp=
+ace:normal;word-spacing:1px;text-decoration:none;background-color:rgba(0,0,=
+0,0);border-color:rgb(49,49,49);color:rgb(49,49,49)"><br></div><div style=
+=3D"font-family:-apple-system,&quot;helvetica neue&quot;;font-size:1rem;fon=
+t-style:normal;font-weight:400;letter-spacing:normal;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:1px;text-decoration:none;back=
+ground-color:rgba(0,0,0,0);border-color:rgb(49,49,49);color:rgb(49,49,49)">=
+If there=E2=80=99s any further guidance I can give, please let me know. I=
+=E2=80=99m happy to chat!</div><div style=3D"font-family:-apple-system,&quo=
+t;helvetica neue&quot;;font-size:17px;font-style:normal;font-weight:400;let=
+ter-spacing:normal;text-indent:0px;text-transform:none;white-space:normal;w=
+ord-spacing:1px;text-decoration:none;background-color:rgba(0,0,0,0);border-=
+color:rgb(49,49,49);color:rgb(49,49,49)"><br><div dir=3D"ltr" style=3D"font=
+-family:-apple-system,&quot;helvetica neue&quot;;background-color:rgba(0,0,=
+0,0);border-color:rgb(49,49,49);color:rgb(49,49,49)"><span style=3D"font-fa=
+mily:-apple-system,&quot;helvetica neue&quot;;font-size:1rem;background-col=
+or:rgba(255,255,255,0);border-color:rgb(49,49,49);color:rgb(49,49,49)"><b s=
+tyle=3D"font-family:-apple-system,&quot;helvetica neue&quot;;font-size:1rem=
+;background-color:rgba(0,0,0,0);border-color:rgb(49,49,49);color:rgb(49,49,=
+49)">Timothy Gordon</b>, MSW, RSW</span><div style=3D"font-family:-apple-sy=
+stem,&quot;helvetica neue&quot;;background-color:rgba(0,0,0,0);border-color=
+:rgb(49,49,49);color:rgb(49,49,49)"><a href=3D"http://www.thezensocialworke=
+r.ca/" style=3D"font-family:-apple-system,&quot;helvetica neue&quot;;backgr=
+ound-color:rgba(255,255,255,0);border-color:rgb(66,133,244);color:rgb(66,13=
+3,244)"><font style=3D"font-family:-apple-system,&quot;helvetica neue&quot;=
+;font-size:1rem;background-color:rgba(0,0,0,0);border-color:rgb(0,0,0);colo=
+r:rgb(0,0,0)">www.TheZenSocialWorker.ca</font></a></div><div style=3D"font-=
+family:-apple-system,&quot;helvetica neue&quot;;background-color:rgba(0,0,0=
+,0);border-color:rgb(49,49,49);color:rgb(49,49,49)"><span style=3D"font-fam=
+ily:-apple-system,&quot;helvetica neue&quot;;font-size:1rem;background-colo=
+r:rgba(255,255,255,0);border-color:rgb(49,49,49);color:rgb(49,49,49)">Make =
+an Appointment:=C2=A0</span></div><div style=3D"font-family:-apple-system,&=
+quot;helvetica neue&quot;;background-color:rgba(0,0,0,0);border-color:rgb(4=
+9,49,49);color:rgb(49,49,49)"><a href=3D"http://tinyurl.com/TimAppointments=
+" style=3D"font-family:-apple-system,&quot;helvetica neue&quot;;font-size:1=
+rem;background-color:rgba(0,0,0,0);border-color:rgb(66,133,244);color:rgb(6=
+6,133,244)">tinyurl.com/TimAppointments</a></div></div></div></div><br></di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto"><br clear=3D"all"><br clear=
+=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-=
+smartmail=3D"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.goog=
+leusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lP=
+wWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+
+--000000000000f223ee062eafca82--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1322395</integer>
+	<key>date-last-viewed</key>
+	<integer>1744641130</integer>
+	<key>date-received</key>
+	<integer>1740182425</integer>
+	<key>flags</key>
+	<integer>2207613451409</integer>
+	<key>remote-id</key>
+	<string>14449</string>
+</dict>
+</plist>

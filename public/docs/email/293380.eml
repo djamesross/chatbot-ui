@@ -1,0 +1,182 @@
+9592      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin041.me.com by p72-mailgateway-smtp-6d68554779-f7ml6 (mailgateway 2204B190)
+	with SMTP id ab245f5f-9b04-432c-b4e0-b798409a2a66 
+	for <darrylross@icloud.com>; Sun, 26 Dec 2021 13:05:11 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: ab245f5f-9b04-432c-b4e0-b798409a2a66
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	by pv33p00im-smtpin041.me.com (Postfix) with ESMTPS id 0F72C341715
+	for <darrylross@icloud.com>; Sun, 26 Dec 2021 13:05:08 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ9MRE5QVVhYUw4aREQaGVlaTwwb
+ V1oeAQFUWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsbF0hLEUkHAEwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wMCo8TwgNBwQDHhA5CUlVBj5ILBANYmdTFwtVBDoCTDYkLBEG
+ CEZXOkxNADY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+x-dmarc-info: pass=pass; dmarc-policy=none; s=r1; d=r1
+x-dmarc-policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hmDKOhsK
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.176 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.176 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.176; helo=mail-yb1-f176.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id w184so17227319ybg.5
+        for <darrylross@icloud.com>; Sun, 26 Dec 2021 05:05:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DBHDndD9fKmQBvMY45U7x5S04XP/12NdpmSWe8uynmw=;
+        b=hmDKOhsK1D8uVfhLxvGayRUyIiHem3Tr0BgHVIMwkEDCmW+j1jijrD9oqQ5cLctKiw
+         O4VKsbc6eoXD0dc/5ePwGe2IhoDdmAtzMw6JBI8y81VYgZO6eXmuMogZt4/MWmAQpCKi
+         rtVgBZNaTAV41bx0VElWZMDfeYrOizN8sCaW1Zfa3ijLayqpnsws+eRYkY67/JULSW6D
+         4dtb5lskhPLwK4djLjoEIBoi+8g780sK951tLQAsVRU6CA2HYH0o2pfjVCiXsHcrj8mY
+         jWCZ989mbltJ4xk/V9Cgjw08dzivEm1c/+zaWP93kM+HoE9LvCG4je/fp/vSAlF3QmWF
+         qiXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DBHDndD9fKmQBvMY45U7x5S04XP/12NdpmSWe8uynmw=;
+        b=37NA8KRxLWh1PqhaWy3xQrJl+7SVUVI1fZ1EPSokChtseoqTekuLKBSV+xNJRaQBVJ
+         a0puD3kbLBr6xX4LdHoyIGEtXnnVt5BOmr0IpWDbzAaqNJrxHFrva/Tds9YJlaCC9pNw
+         tEnSGUwhuIYyx93JH7N0y7gb/B8ene3/cUObapm9gN/FAn19ygK0shq7AGDka/zXsy8X
+         homQPkZXVUHW5ibURxT5sRxkcAg0eNeaTHsPxsCSLkuchkFS4Rv2ZIX63e2KQbqxyh6B
+         T8WEmUJ8h/FoujP2Arak/7kpJ7jq2w8Xue1eXW5DGoac8YooryHNSVk9OXGkSZ9tgv3D
+         A9fw==
+X-Gm-Message-State: AOAM530jv1uIQMQ8kNuYMNb/KnuJxOFOXti4NUGSnc64gcvHK+uqAem+
+	f+3EGkG7hs3j0/RzZ5dvb0VmyyRjw8FS01mrCZvlN2rt
+X-Google-Smtp-Source: ABdhPJyeW2keQusd1zMKMPqQmWBvp+e3qpaN4i0rWUOjMHMUq3YsUVZ43Uj/BI2izV2D+uEnRZ9YI3sFdo7KCzQkjdg=
+X-Received: by 2002:a25:1182:: with SMTP id 124mr16492968ybr.762.1640523908303;
+ Sun, 26 Dec 2021 05:05:08 -0800 (PST)
+MIME-Version: 1.0
+References: <3C3B0A17-B795-498E-A03C-427C76568D3F@icloud.com>
+In-Reply-To: <3C3B0A17-B795-498E-A03C-427C76568D3F@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 26 Dec 2021 08:04:57 -0500
+Message-ID: <CAFnbyRESZ8p=1fvgvNqycdK1JguRQ1br3sB2zTQUwqpvaX94fA@mail.gmail.com>
+Subject: Re: Motion returnable on December 20, 2021 at 10:00 a.m.
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <Alison.Boyce@mannlawyers.com>, Allison Lendor <allison@lendorguest.ca>, 
+	Michael Dam <Michael.Dam@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="000000000000ccd2fd05d40c3c31"
+X-MANTSH: 1TEIXWlwZGVoaGkNHB0tNT0ReQ0QeHhsfEQpMQxcbGgQbGxgEHBMEGBgfEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF1J6Y19iZl4Hen5pR0JEY2I
+ ea31pQENjQmtGXUJmZ2dOEQpYXBcZBBoEHh8HSxsbGxwaTxwFGx0EGx4YBBsTEgQZEhAbHhofG
+ hEKXlkXcwVNGkIRCk1cFxkZEQpMWhdoa01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGBsTBBsdHBE
+ KQl4XGxEKREkXGREKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eE
+ QpCRRdoEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0d
+ QQW0aEktpSREKQkAXZmVGYRlyZmEfHnMRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwa
+ BdjRxtwW1l4bx5LQRAZGhEKcGgXbWdHAUxAW3JLRUkQGRoRCnBoF2BrEmxcQU1EH058EBkaEQp
+ waBdoG00Be1hcTWIeTxAZGhEKcGgXYVttehwabkdGE1sQGRoRCnBsF2ZGax8YW21fRm9vEBkaE
+ QptfhcbEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+
+--000000000000ccd2fd05d40c3c31
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+Thanks for your message. The girls are very excited to see you at 10 am and
+open the mountain of gifts your mom dropped off!
+
+Please don=E2=80=99t speak to the girls about the possible in person visit =
+at this
+time. This is a very emotional and confusing time for them to see you
+again. They both love you very much Darryl.
+
+You can continue coordinate access directly through me and I will follow up=
+.
+
+Thanks
+Cynthia
+
+On Sat, Dec 25, 2021 at 3:04 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I hope everyone is healthy and having a Merry Christmas. I=E2=80=99m exci=
+ted to
+> FaceTime with the girls tomorrow, and will call at 10 am.
+>
+> I appreciate that you are reconsidering supervised outdoor visits as
+> Justice Summers directed. For now I=E2=80=99d like to at least know when =
+I can see
+> them next on FaceTime. Please let me know a day and time that they=E2=80=
+=99re
+> available. I think it would be good to arrange before we FaceTime tomorro=
+w
+> morning so that they know when we=E2=80=99ll have contact again too.
+>
+> Kind Regards,
+>
+> Darryl
+>
+>
+>
+
+--000000000000ccd2fd05d40c3c31
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Thanks for your message. The girls are very excited to see you at 10 a=
+m and open the mountain of gifts your mom dropped off!</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">Please don=E2=80=99t speak to the girls abou=
+t the possible in person visit at this time. This is a very emotional and c=
+onfusing time for them to see you again. They both love you very much Darry=
+l.</div><div dir=3D"auto"><br></div><div dir=3D"auto">You can continue coor=
+dinate access directly through me and I will follow up.</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">Thanks</div><div dir=3D"auto">Cynthia=C2=A0=
+</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Sat, Dec 25, 2021 at 3:04 PM Darryl Ross &lt;<a href=3D"mailto:darr=
+ylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex"><div style=3D"word-wrap:break-word;line-break:after-wh=
+ite-space"><div style=3D"margin:0px;font-stretch:normal;font-size:13px;line=
+-height:normal;font-family:&quot;Helvetica Neue&quot;">Hi Cynthia,</div><di=
+v style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal=
+;font-family:&quot;Helvetica Neue&quot;;min-height:15px"><br></div><div sty=
+le=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;font=
+-family:&quot;Helvetica Neue&quot;">I hope everyone is healthy and having a=
+ Merry Christmas. I=E2=80=99m excited to FaceTime with the girls tomorrow, =
+and will call at 10 am.</div><div style=3D"margin:0px;font-stretch:normal;f=
+ont-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;;min=
+-height:15px"><br></div><div style=3D"margin:0px;font-stretch:normal;font-s=
+ize:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;">I appre=
+ciate that you are reconsidering supervised outdoor visits as Justice Summe=
+rs directed. For now I=E2=80=99d like to at least know when I can see them =
+next on FaceTime. Please let me know a day and time that they=E2=80=99re av=
+ailable. I think it would be good to arrange before we FaceTime tomorrow mo=
+rning so that they know when we=E2=80=99ll have contact again too.</div><di=
+v style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal=
+;font-family:&quot;Helvetica Neue&quot;"><br></div><div style=3D"margin:0px=
+;font-stretch:normal;font-size:13px;line-height:normal;font-family:&quot;He=
+lvetica Neue&quot;">Kind Regards,</div><div style=3D"margin:0px;font-stretc=
+h:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Neue=
+&quot;;min-height:15px"><br></div><div style=3D"margin:0px;font-stretch:nor=
+mal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot=
+;">Darryl</div><div style=3D"margin:0px;font-stretch:normal;font-size:13px;=
+line-height:normal;font-family:&quot;Helvetica Neue&quot;"><br></div><div s=
+tyle=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:normal;fo=
+nt-family:&quot;Helvetica Neue&quot;"><br></div></div></blockquote></div></=
+div>
+
+--000000000000ccd2fd05d40c3c31--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>961550</integer>
+	<key>date-received</key>
+	<integer>1640523911</integer>
+	<key>flags</key>
+	<integer>9160621061</integer>
+</dict>
+</plist>

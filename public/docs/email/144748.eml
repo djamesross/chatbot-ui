@@ -1,0 +1,429 @@
+21403     
+Return-path: <holmesmorrison@hotmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv47p00im-qukt16180101.me.com by p133-mailgateway-smtp-76d5569f95-rx68n (mailgateway 2408B54)
+	with SMTP id 677fc868-5752-465f-9c62-8b3cf706112e 
+	for <darrylross@icloud.com>; Sun, 21 Jan 2024 00:18:47 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 677fc868-5752-465f-9c62-8b3cf706112e
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2031.outbound.protection.outlook.com [40.92.41.31])
+	by pv47p00im-qukt16180101.me.com (Postfix) with ESMTPS id 4CEB61A0009F
+	for <darrylross@icloud.com>; Sun, 21 Jan 2024 00:18:39 +0000 (UTC)
+X-ICL-SCORE: 3.333033230043
+X-ICL-INFO: GAtbVUseBVFGSVVESgMGUkFKRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaWFkOGBwVGhdCRAsG
+ Fgg3EF9CDxQQClkbX1tAVR8CSlpYWRYYGA8bVlNZD1dZFR4IDRRWRVdfRVYEB0xGSERXEFVaDUhb
+ KDY1AQZPMTRQWhdSU0waDBIVF0VYBlsJFBgMVVUWHBYIWRdFQg4aFg1ZG19bQFUJEgVFElsDHBVL
+ ExUGWAMYSFYYFFtYUEVKV1kXRUIAGgwIE1ZARA0BHAUDEV9YTBoMEhsXX11MFhYLVVhUUl9XEQkD
+ FVFfDlsaCRpaEFsLEUREfVgMZShHKTRGSX10VUFLUUQ+cw8nTUlQNEwEdyQxSFZCOwhzIUNOUEU4
+ Y3xQJStXRjVyAVZHTkgZGV1GEBFIV1kIQlkGWxYTAxRfWQlbGgkaRhIWEBZERBMZQkQbGQsJBAtw
+ XwEZFhMTVlNZD1c=
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=pass; id=mx.microsoft.com 1
+Authentication-Results: arc.icloud.com; arc=pass
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=hotmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=hotmail.com
+X-DMARC-Policy: v=DMARC1; p=none; rua=mailto:rua@dmarc.microsoft;ruf=mailto:ruf@dmarc.microsoft;fo=1:s:d
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=UeULUwQz
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of holmesmorrison@hotmail.com designates 40.92.41.31 as permitted sender) smtp.mailfrom=holmesmorrison@hotmail.com
+Received-SPF: pass (spf.icloud.com: domain of holmesmorrison@hotmail.com designates 40.92.41.31 as permitted sender) receiver=spf.icloud.com; client-ip=40.92.41.31; helo=NAM10-DM6-obe.outbound.protection.outlook.com; envelope-from=holmesmorrison@hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TdeYNZsZ6VH8wn6AtFVT4VhCKbcgtNO500/f07gqzcDbxImFkxpfkyZyQbgR1bBceq3xg60/44Jj/Jgnq+xMFWu5tx4sGuAEf4lf8/06T6WhRvkOLlnn6YzbAfRWEY+UR9iIma4GJoU2T/THdVBmKq8NiFs0+Q6N9FfRjURRJ+UoO7icm+xpSq8P02zsEh9oG7Mk99dtNIi5pcS/SVQlTswYxq3hcCP34T8jW/ofAIGyPtiZ7IguTW542Dln2f5HsE9AKVSqQQ0iFFa8a6fhXbY1IZHGv0yiaDiyeDdiswa8q2MZ4i3ldYFx8gJpokSDHhskEt4N37lzZQMUYwrIcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AgQIDmCGvEbD5tvSqOHh27IF2qBjdv5yJMM+I+AMhx4=;
+ b=XfXw/IMGmZBpVeGL7n5f6/Wl/1cQICuLCRBIEry4qN892jfh2oHwTRSNT7oJm2bH/FzZi6awM0Fs9UkSQunen/wG6JyFqb/tzRXcd0AAVmOoglPLYxxbHlOLwIXCRn6KzVfT7u94uUjFGmFTD6gzOd1HZmWOzQTnwDu9AJqePzm9qcYBr3ZWfWEC+ygP2WNPesV+bzEZJpec4gEQmEvP09pW6G4KwKO59u+fXJkDSKuIZmlAPT9DqGkRnBnD/WW8qPN4gmzpEbqeHFdI12ZWPbaB55TOEvixCrRHMomGup8IQFLtiID9tlOEKSoDHNzfPdFruR4N4mRbT/E4ME46uQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AgQIDmCGvEbD5tvSqOHh27IF2qBjdv5yJMM+I+AMhx4=;
+ b=UeULUwQz5R/LVTeEUrOFoqU8Uzblqj8r+3hRNPXsuSX1/fNalbq1+PI1ea1QOqfO+FXEUzKlrlhGn3Dm2PIeRKDHOEoQZ6hq84abZngCKYbgArJeWAhA/84wmbDeKoFlIj+8pnEKb/aZy1Gn/2Fsbj0ZFXvoh7zHZWu1kc/PVF0xtFpMpi2TwC3zpNGVsc4vxsh1bI5EIyVINQsEvbhXjmBE5QoJ40QC+i2Vs2GWHumzlU9bdezxn0VyQwY44VNGm0bNbi4e+O4ybfga/NlUQ/q+PDSmKPPzfAtm3TNVFNFuCW+tmK/YuXNkTPhwigVNkukE5VPtscu76i8P3D+O9A==
+Received: from SJ2PR11MB7427.namprd11.prod.outlook.com (2603:10b6:a03:4c1::15)
+ by CO6PR11MB5634.namprd11.prod.outlook.com (2603:10b6:5:35d::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.30; Sun, 21 Jan
+ 2024 00:18:36 +0000
+Received: from SJ2PR11MB7427.namprd11.prod.outlook.com
+ ([fe80::32ad:8bbd:14aa:9879]) by SJ2PR11MB7427.namprd11.prod.outlook.com
+ ([fe80::32ad:8bbd:14aa:9879%4]) with mapi id 15.20.7202.028; Sun, 21 Jan 2024
+ 00:18:36 +0000
+From: Linda holmes <holmesmorrison@hotmail.com>
+To: Holly Ross <hollygammie@gmail.com>
+CC: Darryl Ross <darrylross@icloud.com>, Cynthia Holmes <cynthmholm@gmail.com>
+Subject: Re: sunday
+Thread-Topic: sunday
+Thread-Index: AQHaS/6keMBCDhioC0CYu2AMNh08crDjZqi8
+Date: Sun, 21 Jan 2024 00:18:36 +0000
+Message-ID:
+ <SJ2PR11MB74273FC9E806C44AFD105C8EC6762@SJ2PR11MB7427.namprd11.prod.outlook.com>
+References:
+ <CAFnbyRHp29Ly0Yu_FU26PLUOdALMnKQZnPBn1G12Au-ZO9oxMg@mail.gmail.com>
+ <SJ2PR11MB7427EF3E9AF73E89CA303CE3C66C2@SJ2PR11MB7427.namprd11.prod.outlook.com>
+ <CAFr34Vz+FztVFXtW6Ai90F975fSUSN064B4JWqEi1LU+jcO3og@mail.gmail.com>
+ <SJ2PR11MB74272B4AC7F85DD9C0BC5886C66C2@SJ2PR11MB7427.namprd11.prod.outlook.com>
+ <SJ2PR11MB7427C42CA8BF12EACD95C847C6772@SJ2PR11MB7427.namprd11.prod.outlook.com>
+ <CAFr34Vwm7nWq7i6uv+TbCepqFK0qLmUHNhoDuy0duz099HddiA@mail.gmail.com>
+In-Reply-To:
+ <CAFr34Vwm7nWq7i6uv+TbCepqFK0qLmUHNhoDuy0duz099HddiA@mail.gmail.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn:
+ [vVr5pcKpVgstx/p3ZE9W4ondBYi8ZW5rTmUPvw4VJK6VZ2KJQaQh4SR6WZhjROYU8fOdTYThk7c=]
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ2PR11MB7427:EE_|CO6PR11MB5634:EE_
+x-ms-office365-filtering-correlation-id: 5b23b8c3-cbc4-4132-eb2f-08dc1a1682dd
+x-ms-exchange-slblob-mailprops:
+ SoURN12IA8v3Vgrp+2NsHLJsnudcj+JZ6ECxBLEV00WevN8d5ukefwbckrbdR8V6lelB99wMdSfiuLVOHDMnDbFbNP6ONnrSeBWe6nXk5ExppaLPOs9wT6kCoY7Ss3NuM0i2TxOcaksiN20Dsx/WXz2OopgI+KD6wVTENkyEvF7tbozGk5a7eVxWSy0EC0Fw+0pi/22Hgvfi51dXlV6HEwffanvFdvLdcmxo7gLUyFj2rDgm4slIV2SoWt8vSZ8syOw9Y8PbCeZhVYpa01CUWl2S6Xi5kIjdrnEBfGGO0QY8jhXJUGAxQalWEMEQ0MifTjqwRsR283Up6HlJTC5QeLpMT1WtYIRjz+wTTH5hOAG0WV5nhJNcdDTK0+g9M8ZPLYUD9/O/0RvCtZ7D4bkbWGGirqgdwzf2JAR1MT66hPgXq9a3GZJ8rwdz9O4hX0FxwqWT4fyIF+VSGffVT5M0PH4CIYnZJrkfoJqecej9QmpWLYQ3UGMRGT2A7aFgYQePnj1yB7Si0NuwEvpRs4XgBMNalZksFl+hmtQd89abpKBK+Br0pi1TapIQpDJd0x+mkPdW7CeMcOBjVTjjdyeNq86dcXENuCKKbBLWFQODMy5CVKYbksGj/y1tu5lJsykIS3bR3mmNoJwMtz2VgBW83k8zAKkSIu8d
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ kdjmWe2OESSbg92NzCsFjyM4gkdZLIIDheqjh2tAapBzbC65G4naQnS6oBvXTnvDRrx0Bgl8SgQL59qfAeFcNiqgOOWlsKLdQDgmVrqEeiz2gcMxwzCPjj/akZ3D2vQbAb2Ei1qh2qp52qpVRGBpI1teDmq6WkNS9KbKmnwtAO1EwJhzOalcmRscHMPO7gK/7EP+9j9tG+t83cT/jEPE+jc40bFgdugnAKVQQBH3N7h7Y9XRWvjTw/5K9OgchNQw3pDh1sSo+In5m8hp6csLKElIoqLDEihxxntE3+moWypEwIq3uY7XtmQQK1N+DI5UtQBLvp+DC/q0gSmMaycd3cwG1cFOtwlc+p+kwtbT4/rkXKBu1FIwLN3jf6vbpXioEqEjuynPlnzAC7QwSALGpBI9DCdJlltvU8iwuKD/hqAO6xyhwSrNzJv2yFmrlSO5ZswtY43fv1yeZtl0yldS0FPKUM/f/k2UdpzY2PDbnxrMT2iffXNTjqJ5n2fJkQkQrGoJTyeHYaIb2AtfUnRVwb7PK0O7nSLthQt5BJPfIm4Bvq8gCKFIXGfGkYd6CrMmfOgI3XW4M/PLdRlwrKW24aVJCXxGrc1WISOHuAogI5E=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?R2pcbMs9B0TQVOgSY1kKb6853NX8ZzV0J6yL/aRpHHypljoD7CqT20AC?=
+ =?Windows-1252?Q?LyQAfZQ2KQNp7nnMkgzazAjNLi80B/EHARo2F8p3aFcqKafbdI5Z0ukK?=
+ =?Windows-1252?Q?MpbWI0yPT5IBRVNtckRf1rnZr+1Mk/3hrIp/Gk+Oa13OGtH/crRVW1PK?=
+ =?Windows-1252?Q?PaVwZhm8JFDRWdmEuydcWJkeJzqV2CgmlWXwrNYut+M46msO4WZjDYJT?=
+ =?Windows-1252?Q?Yfsfz/LGzLgqEpGXzcm0x/QgpL27cigt75zQQuFRrNKBea7LeebIw4RH?=
+ =?Windows-1252?Q?rFcWN1H2I5XSlAcwAaDbaCH0Kli+amVvTzGSN+p2AFPxsqifN0fPLVbH?=
+ =?Windows-1252?Q?1qjxpBDDVt9XQtJKWBudNnCIv+S6EEjVmiHLnp+RDEnFIKS85X5LH9D6?=
+ =?Windows-1252?Q?bJtm2WZL2RzVTp4oxi0xdX52Ta9NgXoMDcUB0HGQALweoHmbQ5rEVmgN?=
+ =?Windows-1252?Q?m63n0Y7bYq8H3bSBaB8lUVswN5mSRPc2DZ3c31AcS51ngd3PsEwNEhmO?=
+ =?Windows-1252?Q?JTg+NY0IltUvX4qx2+FTA3Djj84t6dkVxxum49O/ZUiG2cg/swUhfWr0?=
+ =?Windows-1252?Q?pzyRPAdFSYQ6POnR1ZBJHtlE2V1hcOhQygfxWxxhOYIX/DXN7qBcRykL?=
+ =?Windows-1252?Q?N1BJXcMam9sWZwZl8FbfJ7DcOCo/dfYk3h2Pxia9yN2jD/xZd7RnliT1?=
+ =?Windows-1252?Q?09vm6r4FpnjR5fTExDhVijXGUpqvenQfGQIqQ431rDyUjOn2EG/mA/2H?=
+ =?Windows-1252?Q?WWFVCU0+EDPfdJSTCM48hJsWLOl2F7lRjg1Jly8G1DACqELproC1pBBJ?=
+ =?Windows-1252?Q?c1MGSMZFBXq1Yw44myjsGGUZcGelLlyn15waW6eR3B1koRQwTqRPP4Ua?=
+ =?Windows-1252?Q?qheiYWpRNJdscFbwNMPKMeQHju9J6uLWq2tSYHu0Vup39unMEouGhJ/S?=
+ =?Windows-1252?Q?sQk255SDsCpwUtdJ4POxK0nuzMTIn2ViaLOkGEzZ9joIH41btW50e8B4?=
+ =?Windows-1252?Q?Geje2Fdo0g5l33ezCMaOAlaccKuqYAWaki2vqOLO9f3ZPN4NpYlP0+nS?=
+ =?Windows-1252?Q?eBWbTkOpqGTxPLO0SaBrm2z+GILNENwJ2NJ2Wfoky/rSpZ94eFFpjJJ8?=
+ =?Windows-1252?Q?1sUF8PWfmjEwDmsj5SFAQ1IUUcceVOwG8L06CwO8iefPHc8jks7U6em6?=
+ =?Windows-1252?Q?drHXpR1vUEpEaUO6Edosxv/FBRfY8Oc3L7+L9pasFjY4vEB+5XfToa7y?=
+ =?Windows-1252?Q?diQusylGjfLkk94oLEP5fxUYF6C7F6KUDqGln1P1y7Yk5R3YhqfqPNc+?=
+ =?Windows-1252?Q?plATA79YbqVY79Uv9tguvB/NNIafJXM+HZZn3T/9Iczm/CBtmhT8MwcQ?=
+ =?Windows-1252?Q?x0QeyPshzwN6SQ0DbMlVDIMrF9GzlYVt3dvJ2pVuxG5oLscVRJvoDxKx?=
+Content-Type: multipart/alternative;
+	boundary="_000_SJ2PR11MB74273FC9E806C44AFD105C8EC6762SJ2PR11MB7427namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-e8f36.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7427.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b23b8c3-cbc4-4132-eb2f-08dc1a1682dd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2024 00:18:36.6733
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5634
+X-CLX-Shades: None
+X-MANTSH: 1TFkXGBsTEQpZRBdoSXliY2tJfHoTExEKWU0XZEVETxEKWUkXGnEaEBp3BhsTE3E
+ bExgQGncGGBoGGhEKWV4XbGx5EQpDThcYH3VJYkx5R1h6HnBsQ0t8cmVpclx1YWh8b3lSZ15ed
+ REKWFwXGQQaBB8aBRsaGgQdGgQbExIEGx4QGx4aHxoRCl5ZF0keTU4cEQpNXBcbGx4RCkxaF2l
+ NXWsRCkxGF29ra2tsTWsRCkNaFx4aBBMYBB4bBBkbEQpCXhcbEQpESRcYEQpCXBcbEQpeThcbE
+ QpCSxdtW3teZ0lwE3MBSxEKQkkXbVt7XmdJcBNzAUsRCkJFF2VERGh+HXJpeFJAEQpCThdtW3t
+ eZ0lwE3MBSxEKQkwXaG9eYxliY3xSUnMRCkJsF29zZkkFSUVLQU54EQpCQBduRxITGEh/HGhgG
+ xEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxsYEQpwaBdmSxJBeVxFT0tDRhAZGhEKcGgXbmN
+ gZmxSH0BdHnIQGRoRCnBoF2FTGUd+XGlgf35cEBkaEQpwaBdmGF1Le05wT35kWRAZGhEKcGgXZ
+ RJbGWxzTkh5H34QGRoRCnBoF2ZtG25cQnJZQFkFEBkaEQpwaBdsYmFGEmhHWRtmfxAZGhEKcGg
+ XYkRsBVBAeBhOSwEQGRoRCnB/F28bQhJFTG8YRlkfEAcbGxEKcF8XbGlIYn99bxMYchwQBxMEE
+ hEKcH0XYhxjUxNMXGhkZmwQBxMEEhEKcH0XYhxjUxNMXGhkZmwQBxMEEhEKcH0XYhxjUxNMXGh
+ kZmwQBxMEEhEKcH0XYhxjUxNMXGhkZmwQBxMEEhEKcH0XYhxjUxNMXGhkZmwQBxMEEhEKcH0XY
+ hxjUxNMXGhkZmwQBxMEEhEKcH0XYhxjUxNMXGhkZmwQBxMEEhEKcH0XYhxjUxNMXGhkZmwQBxM
+ EEhEKcGwXbENkW0dGbAEabHAQGRoRCm1+FxsRClhNF0sR
+X-Proofpoint-GUID: 25_cHfSmrP4ZFiaVXOCXv_KBVESxMtt_
+X-Proofpoint-ORIG-GUID: 25_cHfSmrP4ZFiaVXOCXv_KBVESxMtt_
+
+--_000_SJ2PR11MB74273FC9E806C44AFD105C8EC6762SJ2PR11MB7427namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Holly :
+Thank you so much!
+Linda
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Holly Ross <hollygammie@gmail.com>
+Sent: Saturday, January 20, 2024 7:13:05 PM
+To: Linda holmes <holmesmorrison@hotmail.com>
+Cc: Darryl Ross <darrylross@icloud.com>; Cynthia Holmes <cynthmholm@gmail.c=
+om>
+Subject: Re: sunday
+
+Hi Linda
+Yes I will pick up the girls tomorrow am
+
+
+
+On Sat., Jan. 20, 2024, 3:48 p.m. Linda holmes, <holmesmorrison@hotmail.com=
+<mailto:holmesmorrison@hotmail.com>> wrote:
+Dear Holly :
+I am hoping that you can pick up the girls at our house tomorrow around 11:=
+45. That will give Dennis time to get Alice back from her soccer practice w=
+hich runs from 10-11 am in Riverside south. I will be tied up at church at =
+a funeral which starts at 11:30.
+And if you could bring the girls back to Cynthia=92s tomorrow evening, that=
+ would be appreciated.
+Her plane is due in early tomorrow evening.
+Thanks in advance.
+Linda
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Linda holmes <holmesmorrison@hotmail.com<mailto:holmesmorrison@hotmai=
+l.com>>
+Sent: Monday, January 15, 2024 3:58:37 PM
+To: Holly Ross <hollygammie@gmail.com<mailto:hollygammie@gmail.com>>
+Cc: Darryl Ross <darrylross@icloud.com<mailto:darrylross@icloud.com>>; Cynt=
+hia Holmes <cynthmholm@gmail.com<mailto:cynthmholm@gmail.com>>
+Subject: Re: Tuesday
+
+Thanks Holly!
+Linda
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Holly Ross <hollygammie@gmail.com<mailto:hollygammie@gmail.com>>
+Sent: Monday, January 15, 2024 3:31:52 PM
+To: Linda holmes <holmesmorrison@hotmail.com<mailto:holmesmorrison@hotmail.=
+com>>
+Cc: Darryl Ross <darrylross@icloud.com<mailto:darrylross@icloud.com>>; Cynt=
+hia Holmes <cynthmholm@gmail.com<mailto:cynthmholm@gmail.com>>
+Subject: Re: Tuesday
+
+No problem
+I will drop them off tomorrow at your place.
+
+On Mon., Jan. 15, 2024, 3:28 p.m. Linda holmes, <holmesmorrison@hotmail.com=
+<mailto:holmesmorrison@hotmail.com>> wrote:
+Hi Holly and Darryl:
+I can get them to Darryl=92s tomorrow at the usual time actually.
+But I can=92t pick them up as I have an evening meeting.
+If Holly can bring them to our house, Dennis will be here.
+Linda
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Cynthia Holmes <cynthmholm@gmail.com<mailto:cynthmholm@gmail.com>>
+Sent: Monday, January 15, 2024 3:19:41 PM
+To: Darryl Ross <darrylross@icloud.com<mailto:darrylross@icloud.com>>; Holl=
+y Ross <hollygammie@gmail.com<mailto:hollygammie@gmail.com>>
+Cc: Linda holmes <holmesmorrison@hotmail.com<mailto:holmesmorrison@hotmail.=
+com>>
+Subject: Tuesday
+
+Hello,
+
+The girls are with my mom all this week, Tuesday she is unable to drive the=
+m but they can be picked up at her house.
+
+I am still waiting to hear back from you on solutions for driving girls on =
+unsupervised time  as we do not want to have to drive more at this point as=
+ it timely and costly.
+
+--_000_SJ2PR11MB74273FC9E806C44AFD105C8EC6762SJ2PR11MB7427namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Holly<span>&nbsp;:</span></div>
+<div dir=3D"ltr"><span>Thank you so much!</span></div>
+<div dir=3D"ltr"><span>Linda</span></div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Holly Ross &lt;hollyg=
+ammie@gmail.com&gt;<br>
+<b>Sent:</b> Saturday, January 20, 2024 7:13:05 PM<br>
+<b>To:</b> Linda holmes &lt;holmesmorrison@hotmail.com&gt;<br>
+<b>Cc:</b> Darryl Ross &lt;darrylross@icloud.com&gt;; Cynthia Holmes &lt;cy=
+nthmholm@gmail.com&gt;<br>
+<b>Subject:</b> Re: sunday</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"auto">Hi Linda
+<div dir=3D"auto">Yes I will pick up the girls tomorrow am</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+</div>
+<br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Sat., Jan. 20, 2024, 3:48 p.m. L=
+inda holmes, &lt;<a href=3D"mailto:holmesmorrison@hotmail.com">holmesmorris=
+on@hotmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0 0 0 .8ex; border-left=
+:1px #ccc solid; padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Dear Holly<span>&nbsp;:</span></div>
+<div dir=3D"ltr"><span>I am hoping that you can pick up the girls at our ho=
+use tomorrow around 11:45. That will give Dennis time to get Alice back fro=
+m her soccer practice which runs from 10-11 am in Riverside south. I will b=
+e tied up at church at a funeral which
+ starts at 11:30.</span></div>
+<div dir=3D"ltr">And if you could bring the girls back to Cynthia=92s tomor=
+row evening, that would be appreciated.</div>
+<div dir=3D"ltr">Her plane is due in early tomorrow evening.</div>
+<div dir=3D"ltr">Thanks in advance.</div>
+<div dir=3D"ltr">Linda</div>
+<div id=3D"x_m_2582883043358480664ms-outlook-mobile-signature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef" target=3D"_blank" rel=3D"noreferrer">=
+Outlook for iOS</a></div>
+</div>
+<hr style=3D"display:inline-block; width:98%">
+<div id=3D"x_m_2582883043358480664divRplyFwdMsg" dir=3D"ltr"><font face=3D"=
+Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From:</b=
+> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com" target=3D"=
+_blank" rel=3D"noreferrer">holmesmorrison@hotmail.com</a>&gt;<br>
+<b>Sent:</b> Monday, January 15, 2024 3:58:37 PM<br>
+<b>To:</b> Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" target=
+=3D"_blank" rel=3D"noreferrer">hollygammie@gmail.com</a>&gt;<br>
+<b>Cc:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=
+=3D"_blank" rel=3D"noreferrer">darrylross@icloud.com</a>&gt;; Cynthia Holme=
+s &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank" rel=3D"nore=
+ferrer">cynthmholm@gmail.com</a>&gt;<br>
+<b>Subject:</b> Re: Tuesday</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div dir=3D"ltr">Thanks Holly!</div>
+<div dir=3D"ltr">Linda</div>
+<div><br>
+</div>
+<div id=3D"x_m_2582883043358480664x_ms-outlook-mobile-signature">Get <a hre=
+f=3D"https://aka.ms/o0ukef" target=3D"_blank" rel=3D"noreferrer">
+Outlook for iOS</a></div>
+</div>
+</div>
+<hr style=3D"display:inline-block; width:98%">
+<div id=3D"x_m_2582883043358480664x_divRplyFwdMsg" dir=3D"ltr"><font face=
+=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From=
+:</b> Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" target=3D"_bl=
+ank" rel=3D"noreferrer">hollygammie@gmail.com</a>&gt;<br>
+<b>Sent:</b> Monday, January 15, 2024 3:31:52 PM<br>
+<b>To:</b> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com" t=
+arget=3D"_blank" rel=3D"noreferrer">holmesmorrison@hotmail.com</a>&gt;<br>
+<b>Cc:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=
+=3D"_blank" rel=3D"noreferrer">darrylross@icloud.com</a>&gt;; Cynthia Holme=
+s &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank" rel=3D"nore=
+ferrer">cynthmholm@gmail.com</a>&gt;<br>
+<b>Subject:</b> Re: Tuesday</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"auto">No problem
+<div dir=3D"auto">I will drop&nbsp;them off tomorrow at your place.</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Mon., Jan. 15, 2024, 3:28 p.m. Linda holmes, &lt;<a hre=
+f=3D"mailto:holmesmorrison@hotmail.com" target=3D"_blank" rel=3D"noreferrer=
+">holmesmorrison@hotmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0 0 0 .8ex; border-left:1px #ccc solid; padding=
+-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Holly and Darryl:<span></span><span></span></div>
+<div dir=3D"ltr">I can get them to Darryl=92s tomorrow at the usual time ac=
+tually.</div>
+<div dir=3D"ltr">But I can=92t pick them up as I have an evening meeting.<s=
+pan></span><span></span></div>
+<div dir=3D"ltr">If Holly can bring them to our house, Dennis will be here.=
+</div>
+<div dir=3D"ltr">Linda&nbsp;</div>
+<div id=3D"x_m_2582883043358480664x_x_m_1130836166007374934ms-outlook-mobil=
+e-signature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef" rel=3D"noreferrer noreferrer" target=
+=3D"_blank">Outlook for iOS</a></div>
+</div>
+<hr style=3D"display:inline-block; width:98%">
+<div id=3D"x_m_2582883043358480664x_x_m_1130836166007374934divRplyFwdMsg" d=
+ir=3D"ltr">
+<font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11p=
+t"><b>From:</b> Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" =
+rel=3D"noreferrer noreferrer" target=3D"_blank">cynthmholm@gmail.com</a>&gt=
+;<br>
+<b>Sent:</b> Monday, January 15, 2024 3:19:41 PM<br>
+<b>To:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" rel=3D"=
+noreferrer noreferrer" target=3D"_blank">darrylross@icloud.com</a>&gt;; Hol=
+ly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" rel=3D"noreferrer nore=
+ferrer" target=3D"_blank">hollygammie@gmail.com</a>&gt;<br>
+<b>Cc:</b> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com" r=
+el=3D"noreferrer noreferrer" target=3D"_blank">holmesmorrison@hotmail.com</=
+a>&gt;<br>
+<b>Subject:</b> Tuesday</font>
+<div>&nbsp;</div>
+</div>
+<div>Hello,
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">The girls are with my mom all this week, Tuesday she is u=
+nable to drive them but they can be picked up at her house.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I am still waiting to hear back from you on solutions for=
+ driving girls on unsupervised time &nbsp;as we do not want to have to driv=
+e more at this point as it timely and costly.</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SJ2PR11MB74273FC9E806C44AFD105C8EC6762SJ2PR11MB7427namp_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1205977</integer>
+	<key>date-last-viewed</key>
+	<integer>1706035523</integer>
+	<key>date-received</key>
+	<integer>1705796327</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>4384</string>
+</dict>
+</plist>

@@ -1,0 +1,500 @@
+28398     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr55p00im-qukt02072102.me.com by p72-mailgateway-smtp-85d98cbc9b-np5bx (mailgateway 2305B160)
+	with SMTP id 54142966-d073-49ba-a578-4b61a750c043 
+	for <darrylross@icloud.com>; Wed, 14 Dec 2022 21:30:37 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 54142966-d073-49ba-a578-4b61a750c043
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	by mr55p00im-qukt02072102.me.com (Postfix) with ESMTPS id C87DD4EC2305
+	for <darrylross@icloud.com>; Wed, 14 Dec 2022 21:30:36 +0000 (UTC)
+X-ICL-SCORE: 3.3320330300
+X-ICL-INFO: GAtbVUseBVFHSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRk4HGFNCTURXEFVaDUhb
+ CxYRXBsNHEhLEUkHAkwSFgkQFFUYARoURFcIRERfVxQHHhQdWQtEVABGTwQYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFD
+ SVtnJz0WFBgcaFhWMhYcMS5oBBMQKyIfEFRDFl4hHDRAalkgJT0PPyd7QSIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=tzMNvspE
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.167.174 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.167.174 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.174; helo=mail-oi1-f174.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-oi1-f174.google.com with SMTP id k189so3737697oif.7
+        for <darrylross@icloud.com>; Wed, 14 Dec 2022 13:30:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tssAs/IJcOq5uXRQgUnxDwGXraWpdfElAMPDPI5Dy+c=;
+        b=tzMNvspETPEEg/v5jYVifm2QtyDXqf2TNQxsXuyKtNTZS28Qsido/MbNdyuXPDyiYc
+         Qn1AH5jPDFu4Fxk6aF6t9burC3UUfOv5TEZ0xXey8XLWikaNPF2eV+XNxjal9vMvf8c9
+         KBKchmB1ikSm1Z4sdwhzE7xjadJN4wL/CfxgvQ1iFjD/JSKdzq54QZcu0Uemm/412mpj
+         yt5Hs/5rE6TRQhanQYJ0l+J3xzUn3m/FS/ROtY1up3wL6ER8TRDzzUPPpAcI1l05yTYr
+         qFEvwkPZOQuvQLeROVS30lORp3YC3Tk9OGEQWRf2oa72nhlmuZmMXYCelnv3Rx7io27t
+         s1pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tssAs/IJcOq5uXRQgUnxDwGXraWpdfElAMPDPI5Dy+c=;
+        b=0hVZTom6+9iLa6mSIUVWRcy1jmToX9U2eiNmYZIfFZvzZrRpODNia//YXrWp2tj+JU
+         o/CPW5JcPnLy3KhzJvoc3PTv8H2+ZtrczytNkpzfxfFqYxdU7/uue5+j5Tun6XKgeUdm
+         f+jhGf16pqfIl3YiHQ1l4F07PZU23itnM+vAak8N0rH1dhw9jTfgqi4pfKfCPYKrASp6
+         z5+LlOgVatHjRczdAig/nG0g/PaLcZ1tw6ggCq+WR2OWcvePvxrqvhfL/Dg8UERyEnfO
+         nFrRprqXRV8Xqciu5ZTQVNBER/NcyWYcHStYFWQ8uZFUboPDhhwb6+qoAOZgOY7nF/2B
+         AZAA==
+X-Gm-Message-State: ANoB5plOnz41HTAWDt6za7fKIlGy36qZS7zc5L7J6dPGZLbIq85I8/nd
+	BXbZ8pGXCg/XOcE3Y8ap21O1b4i8aVlIOmys9eGBfsc8MOVO2Q==
+X-Google-Smtp-Source: AA0mqf7aZdvqQyeGlL3Gw1HggmZnEEpeYqE0r5m88x7Bc1T4Qvnf6ArIijX8jTSn1CJchC13Wk+dsFilQp0llQuDVZE=
+X-Received: by 2002:a54:4184:0:b0:35c:90f:bb31 with SMTP id
+ 4-20020a544184000000b0035c090fbb31mr223880oiy.60.1671053435911; Wed, 14 Dec
+ 2022 13:30:35 -0800 (PST)
+MIME-Version: 1.0
+References: <CAKimwG7svW2HPBNqn3Lcf87LMJmTJPr+0ThnA-jf34NOiqzo3g@mail.gmail.com>
+ <CAKimwG7TVJ9A=w5yHBHYS+rgtn5HEOHg4=YZGNKsUCED0crDgA@mail.gmail.com>
+In-Reply-To: <CAKimwG7TVJ9A=w5yHBHYS+rgtn5HEOHg4=YZGNKsUCED0crDgA@mail.gmail.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Wed, 14 Dec 2022 16:29:58 -0500
+Message-ID: <CAKimwG41kQEHorodXn4GozFVX2qeRDhhdut+XzC8ZoBPDiH_Kw@mail.gmail.com>
+Subject: Fwd: Ross v. Holmes - increased parenting time/Christmas parenting
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000072d5ed05efd07215"
+X-MANTSH: 1TEIXR1gYEloaGkNHB0tNT0ReQ0QZHxsZEQpMQxcbGgQbGxgEEhwEHx8QGx4aHxo
+ RCkxZFxsaGh8RCllEF29ZfQVrbFhsf3tOEQpZTRduT0ZDXE9YEQpfWRcYGB8RCl9NF2RFRE8RC
+ llJFx0fcRsGGx8adwYbGgYaBhoGGxoaBhpxGhAadwYaBhsaBhkaBhoGGgYacRoQGncGGhEKWV4
+ XY2N5EQpDThdBX2IeH1BaXFtkSG5vbRNLb2BAZ3tia1IddR5dbmAHHhEKWFwXGQQaBB4TBx0YS
+ R8fHUkZBRsaGgQdGwQbHBoEExsQGx4aHxoRCl5ZF0tQAX9zEQpNXBcYGRIRCkxaF2hpTWtrEQp
+ MRhdsa2sRCkNaFxgaEwQSHwQbHB0EGx0eEQpCXhcbEQpCRRdsG0BJbGJdek0fXBEKQk4XYnxbX
+ 0UfZ2tMXHARCkJMF2l9BWEYRkVDTWNsEQpCbBd6TwEYbUkbU0VuRREKQkAXbWVzEkt5WGUSb0M
+ RCkJYF2JrTm9vemxnWkdLEQpNXhcHGxEKWlgXGxEKcGcXaBhEb3kfcmAFZ08QBxkaEQpwaBdhT
+ AFtXH98eGVQbxAHGRoRCnBoF2NZRhlHfHhEZlttEAcZGhEKcGgXZE1eUGxMUkMdHnMQBxkaEQp
+ waBdgaB9eTV9yUl5OSRAHGRoRCnBoF21PeX5vWmgaSGsYEAcZGhEKcGcXZx9hSGdQWH5BEnoQB
+ xkaEQpwZxdnUk1/YxplZhlAExAHGRoRCnBsF29PcnlzQGREUHxbEAcZGhEKbX4XBxsRClhNF0s
+ R
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: kuH45zpvqNbDEG9aEJjMQHAx7_4wDJ-4
+X-Proofpoint-GUID: kuH45zpvqNbDEG9aEJjMQHAx7_4wDJ-4
+
+--00000000000072d5ed05efd07215
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+FYI - email sent to Alison Boyce today re Christmas parenting schedule.
+
+---------- Forwarded message ---------
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Wed, Dec 14, 2022 at 4:29 PM
+Subject: Re: Ross v. Holmes - increased parenting time/Christmas parenting
+To: Alison Boyce <alison.boyce@mannlawyers.com>
+Cc: Brandon Carew <Brandon@lendorguest.ca>, Rebecca Chippure <
+rebecca.chippure@mannlawyers.com>
+
+
+Good afternoon Alison,
+
+Would you kindly provide a response at your earliest convenience? The
+Christmas holidays are fast approaching and the Christmas schedule between
+Mr. Ross and the children needs to be finalized. Mr. Ross has been
+unsuccessful in getting an agreement directly with Ms. Holmes.
+
+Regards,
+
+Allison
+
+
+
+On Tue, Dec 6, 2022 at 4:18 PM Allison Lendor <allison@lendorguest.ca>
+wrote:
+
+> Good afternoon Alison,
+>
+> It has been just over five months since the decision of Justice Somji
+> (June 24, 2022) regarding parenting time for Mr. Ross, among other
+> matters. Mr. Ross=E2=80=99 parenting time with the children has been goin=
+g very
+> well, and I understand that after Mr. Ross provided an update on how visi=
+ts
+> are going Ms. Holmes agreed his parenting time on Sundays by an
+> additional two hours.
+>
+> As contemplated in Justice Somji=E2=80=99s decision, Mr. Ross would like =
+to have
+> more parenting time with the children. We do not believe that there is a
+> need for Mr. Ross=E2=80=99 parenting time to continue with supervision. T=
+here has
+> been no need for reunification counselling/therapy because the parenting
+> time and video calls have gone well and without incident in terms of the
+> parenting and interactions between the children and Mr. Ross. Both Mr.
+> Ross and Ms. Holmes agree that the children are very comfortable and
+> enjoy their time with Mr. Ross. I  understand that Mr. Ross has provided
+> your client with correspondence from his treating physician indicating th=
+at
+> he is doing well medically.
+>
+> I further understand that Mr. Ross tried to resolve matters directly with
+> your client for additional unsupervised time with the children. His
+> efforts, however, have not been successful.
+>
+> *Increasing Parenting Time while the children are in school*
+>
+> Please advise whether your client will agree to increase Mr. Ross=E2=80=
+=99
+> parenting time to twice per week after school and all day on the weekend.
+> The exact days and times can be finalized shortly, but Mr. Ross is
+> proposing the following starting Dec. 13:
+>
+> =C2=B7      Continuing Tuesday's from 4:30 pm - 7:30 pm
+>
+> =C2=B7      Thursday from 4:30 =E2=80=93 7:30 pm
+>
+> =C2=B7      Sunday from 10 am =E2=80=93 7:00 pm
+>
+> *Christmas parenting time*
+>
+> Christmas is fast approaching, and Mr. Ross has also tried to have an
+> agreement on Christmas parenting time directly with your client which has
+> also been unsuccessful. Mr. Ross is proposing to have the children as
+> follows:
+>
+> =C2=B7      Sunday, December 25 from 10am to 7:30 p.m. *or* Saturday, Dec=
+ember
+> 24 from 10am to 7:30 p.m. in lieu of the scheduled Sunday visit.
+>
+> *Winter Break parenting time*
+>
+> During the break while the children are off school, Mr. Ross is proposing
+> to have the children as follows:
+>
+> =C2=B7      Extending Tuesday visits on December 27 and January 3rd to 12=
+:00pm
+> to 7:30pm.
+>
+> =C2=B7      As well as an additional visit on Dec 29 and January 5th for =
+the
+> day, from 10 am to 6 pm.
+>
+>  May we please have a response by December 12, 2022.
+>
+> Regards,
+>
+> Allison Lendor
+>
+> *Allison Lendor*
+> *Lendor Guest LLP*
+> *Barristers & Solicitors*
+> *209 - 460 West Hunt Club Road*
+> *Ottawa, ON*
+> *K2E 0B8*
+>
+> *Tel.: (613)247-7964 ext 3*
+> *Fax: (613)233-9995*
+>
+>
+> *This email and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed and may be protected by solicitor-client privilege. If you have
+> received this email in error please notify us by e-mail reply and delete =
+it
+> from your system; you may not copy this message or disclose its contents =
+to
+> anyone.*
+>
+
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--00000000000072d5ed05efd07215
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">FYI - email sent to Alison Boyce today re Christmas parent=
+ing schedule.<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">---------- Forwarded message ---------<br>From: <strong class=3D=
+"gmail_sendername" dir=3D"auto">Allison Lendor</strong> <span dir=3D"auto">=
+&lt;<a href=3D"mailto:allison@lendorguest.ca">allison@lendorguest.ca</a>&gt=
+;</span><br>Date: Wed, Dec 14, 2022 at 4:29 PM<br>Subject: Re: Ross v. Holm=
+es - increased parenting time/Christmas parenting<br>To: Alison Boyce &lt;<=
+a href=3D"mailto:alison.boyce@mannlawyers.com">alison.boyce@mannlawyers.com=
+</a>&gt;<br>Cc: Brandon Carew &lt;<a href=3D"mailto:Brandon@lendorguest.ca"=
+>Brandon@lendorguest.ca</a>&gt;, Rebecca Chippure &lt;<a href=3D"mailto:reb=
+ecca.chippure@mannlawyers.com">rebecca.chippure@mannlawyers.com</a>&gt;<br>=
+</div><br><br><div dir=3D"ltr">Good afternoon Alison,<br><div><br></div><di=
+v>Would you kindly provide a response at your earliest convenience? The Chr=
+istmas holidays are fast approaching and the Christmas schedule between Mr.=
+ Ross and the children needs to be finalized. Mr. Ross has been unsuccessfu=
+l in getting an agreement directly with Ms. Holmes.</div><div><br></div><di=
+v>Regards,</div><div><br></div><div>Allison</div><div><br></div><div><br></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, Dec 6, 2022 at 4:18 PM Allison Lendor &lt;<a href=3D"mailto:all=
+ison@lendorguest.ca" target=3D"_blank">allison@lendorguest.ca</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
+r"><p class=3D"MsoNormal" style=3D"margin-bottom:8pt;line-height:12.85pt"><=
+span style=3D"font-family:&quot;Times New Roman&quot;,serif">Good afternoon=
+ Alison,</span><span style=3D"font-family:&quot;Times New Roman&quot;,serif=
+"><u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"margin-bottom:8p=
+t;line-height:12.85pt"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,serif">It has been just over five months since the decision of Justice S=
+omji (June 24, 2022) regarding parenting time for Mr.=C2=A0<span>Ross</span=
+>, among other matters. Mr.=C2=A0<span>Ross</span>=E2=80=99 parenting time =
+with the children has been going very well, and I understand that after Mr.=
+ Ross provided an update on how visits are going Ms. Holmes agreed<font col=
+or=3D"#ff0000">=C2=A0</font></span><span style=3D"font-family:&quot;Times N=
+ew Roman&quot;,serif">his parenting time on Sundays by an additional two ho=
+urs.</span><span style=3D"font-family:&quot;Times New Roman&quot;,serif"><u=
+></u><u></u></span></p><p class=3D"MsoNormal" style=3D"margin-bottom:8pt;li=
+ne-height:12.85pt"><span style=3D"font-family:&quot;Times New Roman&quot;,s=
+erif">As contemplated in Justice Somji=E2=80=99s decision, Mr.=C2=A0<span>R=
+oss</span>=C2=A0would like to have more parenting time with the children. W=
+e do not believe that there is a need for Mr.=C2=A0<span>Ross</span>=E2=80=
+=99 parenting time to continue with supervision. There has been no need for=
+ reunification counselling/therapy because the parenting time and video cal=
+ls have gone well and without incident in terms of the parenting and intera=
+ctions between the children and Mr.=C2=A0<span>Ross. B</span></span><span s=
+tyle=3D"font-family:&quot;Times New Roman&quot;,serif"><font color=3D"#0000=
+00">oth Mr.=C2=A0<span>Ross</span>=C2=A0and Ms. Holmes agree that the child=
+ren are very comfortable and enjoy their time with Mr.=C2=A0<span>Ross</spa=
+n>.</font></span><span style=3D"font-family:&quot;Times New Roman&quot;,ser=
+if;color:red">=C2=A0</span><span style=3D"font-family:&quot;Times New Roman=
+&quot;,serif">I=C2=A0 understand that Mr.=C2=A0<span>Ross</span>=C2=A0has p=
+rovided your client with correspondence from his treating physician indicat=
+ing that he is doing well medically.</span><span style=3D"font-family:&quot=
+;Times New Roman&quot;,serif"><u></u><u></u></span></p><span><p class=3D"Ms=
+oNormal" style=3D"margin-bottom:8pt;line-height:12.85pt"><span style=3D"fon=
+t-family:&quot;Times New Roman&quot;,serif"><font color=3D"#000000">I furth=
+er understand that Mr.=C2=A0<span>Ross</span>=C2=A0tried to resolve matters=
+ directly with your client for additional unsupervised time with the childr=
+en. His efforts, however, have not been successful.</font><font color=3D"#5=
+00050"><u></u><u></u></font></span></p></span><p class=3D"MsoNormal" style=
+=3D"margin-bottom:8pt;line-height:12.85pt"><u><span style=3D"font-family:&q=
+uot;Times New Roman&quot;,serif"><b>Increasing Parenting Time while the chi=
+ldren are in school</b></span></u><u><span style=3D"font-family:&quot;Times=
+ New Roman&quot;,serif"><u></u><u></u></span></u></p><p class=3D"MsoNormal"=
+ style=3D"margin-bottom:8pt;line-height:12.85pt"><font face=3D"Times New Ro=
+man, serif">Please advise whether your client will agree to increase Mr.=C2=
+=A0<span>Ross</span>=E2=80=99 parenting time to twice per week after school=
+ and all day on the weekend. The exact days and times can be finalized shor=
+tly, but Mr.=C2=A0<span>Ross</span>=C2=A0is proposing the=C2=A0</font><font=
+ face=3D"Times New Roman, serif">following</font><font face=3D"Times New Ro=
+man, serif">=C2=A0starting Dec. 13:=C2=A0<u></u><u></u></font></p><p style=
+=3D"margin-bottom:8pt;line-height:12.85pt"><span style=3D"font-family:Symbo=
+l">=C2=B7<span style=3D"font-stretch:normal;line-height:normal;font-family:=
+&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></s=
+pan><span style=3D"font-family:&quot;Times New Roman&quot;,serif">Continuin=
+g Tuesday&#39;s from 4:30 pm - 7:30 pm<u></u><u></u></span></p><p style=3D"=
+margin-bottom:8pt;line-height:12.85pt"><span style=3D"font-family:Symbol">=
+=C2=B7<span style=3D"font-stretch:normal;line-height:normal;font-family:&qu=
+ot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span=
+><span style=3D"font-family:&quot;Times New Roman&quot;,serif">Thursday fro=
+m 4:30 =E2=80=93 7:30 pm<u></u><u></u></span></p><p style=3D"margin-bottom:=
+8pt;line-height:12.85pt"><span style=3D"font-family:Symbol">=C2=B7<span sty=
+le=3D"font-stretch:normal;line-height:normal;font-family:&quot;Times New Ro=
+man&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span style=3D=
+"font-family:&quot;Times New Roman&quot;,serif">Sunday from 10 am =E2=80=93=
+ 7:00 pm<u></u><u></u></span></p><span><p class=3D"MsoNormal" style=3D"marg=
+in-bottom:8pt;line-height:12.85pt"><font color=3D"#000000"><u><span style=
+=3D"font-family:&quot;Times New Roman&quot;,serif">Christmas parenting time=
+</span></u><span style=3D"font-family:&quot;Times New Roman&quot;,serif"><u=
+></u><u></u></span></font></p><p class=3D"MsoNormal" style=3D"margin-bottom=
+:8pt;line-height:12.85pt"><span style=3D"font-family:&quot;Times New Roman&=
+quot;,serif"><font color=3D"#000000">Christmas is fast approaching, and Mr.=
+=C2=A0<span>Ross</span>=C2=A0has also tried to have an agreement on Christm=
+as parenting time directly with your client which has also been unsuccessfu=
+l. Mr.=C2=A0<span>Ross</span>=C2=A0is proposing to have the children as fol=
+lows:</font></span><span style=3D"color:rgb(80,0,80);font-family:&quot;Time=
+s New Roman&quot;,serif"><u></u><u></u></span></p></span><p style=3D"margin=
+-bottom:8pt;line-height:12.85pt"><span style=3D"font-family:Symbol">=C2=B7<=
+span style=3D"font-stretch:normal;line-height:normal;font-family:&quot;Time=
+s New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span =
+style=3D"font-family:&quot;Times New Roman&quot;,serif">Sunday, December 25=
+ from 10am to 7:30 p.m.=C2=A0<u>or</u>=C2=A0Saturday, December 24 from 10am=
+ to 7:30 p.m. in lieu of the scheduled Sunday visit.<u></u><u></u></span></=
+p><p class=3D"MsoNormal" style=3D"margin-bottom:8pt;line-height:12.85pt"><u=
+><span style=3D"font-family:&quot;Times New Roman&quot;,serif">Winter Break=
+ parenting time</span></u><u><span style=3D"font-family:&quot;Times New Rom=
+an&quot;,serif"><u></u><u></u></span></u></p><p class=3D"MsoNormal" style=
+=3D"margin-bottom:8pt;line-height:12.85pt"><span style=3D"font-family:&quot=
+;Times New Roman&quot;,serif">During the break while the children are off s=
+chool, Mr.=C2=A0<span>Ross</span>=C2=A0is proposing to have the children as=
+ follows:=C2=A0<u></u><u></u></span></p><p style=3D"margin-bottom:8pt;line-=
+height:12.85pt"><span style=3D"font-family:Symbol">=C2=B7<span style=3D"fon=
+t-stretch:normal;line-height:normal;font-family:&quot;Times New Roman&quot;=
+">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span></span><span style=3D"font-fam=
+ily:&quot;Times New Roman&quot;,serif">Extending Tuesday visits on December=
+ 27 and January 3<sup>rd</sup>=C2=A0to 12:00pm to 7:30pm.</span><span style=
+=3D"font-family:&quot;Times New Roman&quot;,serif"><u></u><u></u></span></p=
+><p style=3D"margin-bottom:8pt;line-height:12.85pt"><span style=3D"font-fam=
+ily:Symbol">=C2=B7<span style=3D"font-stretch:normal;line-height:normal;fon=
+t-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<=
+/span></span><span style=3D"font-family:&quot;Times New Roman&quot;,serif">=
+As well as an additional visit on Dec 29 and January 5<sup>th</sup>=C2=A0fo=
+r the day, from 10 am to 6 pm.</span><span style=3D"font-family:&quot;Times=
+ New Roman&quot;,serif"><u></u><u></u></span></p><span><p class=3D"MsoNorma=
+l" style=3D"color:rgb(80,0,80);margin-bottom:8pt;line-height:12.85pt"><span=
+ style=3D"font-family:&quot;Times New Roman&quot;,serif">=C2=A0</span><span=
+ style=3D"color:rgb(0,0,0);font-family:&quot;Times New Roman&quot;,serif">M=
+ay we please have a response by December 12, 2022.</span></p><p class=3D"Ms=
+oNormal" style=3D"margin-bottom:8pt;line-height:12.85pt"><span style=3D"fon=
+t-family:&quot;Times New Roman&quot;,serif">Regards,</span></p><p class=3D"=
+MsoNormal" style=3D"margin-bottom:8pt;line-height:12.85pt"><span style=3D"f=
+ont-family:&quot;Times New Roman&quot;,serif">Allison Lendor</span><br></p>=
+</span><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div>=
+<div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><font fa=
+ce=3D"Calibri" size=3D"3">Allison Lendor</font></i><br></div><div><div styl=
+e=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri" siz=
+e=3D"3">Lendor Guest LLP</font></span></i></div><div style=3D"font-size:13p=
+x;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Barr=
+isters &amp; Solicitors</font></font></span></i></div><div style=3D"font-si=
+ze:13px"><i><span><font face=3D"Calibri"><font size=3D"3">209 - 460 West Hu=
+nt Club Road</font></font></span></i></div><div style=3D"font-size:13px"><i=
+><span><font face=3D"Calibri"><font size=3D"3">Ottawa, ON</font></font></sp=
+an></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri">=
+<font size=3D"3">K2E 0B8</font></font></span></i></div><div style=3D"font-s=
+ize:13px"><i><font face=3D"Calibri"><font size=3D"3"><br clear=3D"none"></f=
+ont></font></i></div><div style=3D"font-size:13px"><font size=3D"3"></font>=
+</div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=
+=3D"Calibri"><font size=3D"3">Tel.: (613)247-7964 ext 3</font></font></span=
+></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><f=
+ont size=3D"3">Fax: (613)233-9995</font></font></span></i></div><div style=
+=3D"font-size:13px"><span style=3D"font-family:tahoma,sans-serif;color:rgb(=
+204,0,0);font-size:small;font-style:italic;white-space:nowrap"><br></span><=
+/div><div style=3D"font-size:13px"><br></div><div style=3D"font-size:13px">=
+</div><div style=3D"font-size:13px"><var></var></div></div><div style=3D"ma=
+rgin:0cm 0cm 0pt"><i style=3D"font-size:13px"><span lang=3D"EN-US" style=3D=
+"font-size:12pt">This email and any files transmitted with it are confident=
+ial and intended solely for the use of the individual or entity to whom the=
+y are addressed and may be protected by solicitor-client privilege. If you =
+have received this email in error please notify us by e-mail reply and dele=
+te it from your system; you may not copy this message or disclose its conte=
+nts to anyone.</span></i></div><div><font size=3D"3"></font></div><div styl=
+e=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri"><font size=3D"3"><i></i></f=
+ont></font></div><div></div></div><div></div></div></div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"marg=
+in:0cm 0cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" size=3D"=
+3">Allison Lendor</font></i><br></div><div><div style=3D"font-size:13px;mar=
+gin:0cm 0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor Guest LL=
+P</font></span></i></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><=
+i><span><font face=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors=
+</font></font></span></i></div><div style=3D"font-size:13px"><i><span><font=
+ face=3D"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</font></fo=
+nt></span></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Ca=
+libri"><font size=3D"3">Ottawa, ON</font></font></span></i></div><div style=
+=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B=
+8</font></font></span></i></div><div style=3D"font-size:13px"><i><font face=
+=3D"Calibri"><font size=3D"3"><br clear=3D"none"></font></font></i></div><d=
+iv style=3D"font-size:13px"><font size=3D"3"></font></div><div style=3D"fon=
+t-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=
+=3D"3">Tel.: (613)247-7964 ext 3</font></font></span></i></div><div style=
+=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Fax: (=
+613)233-9995</font></font></span></i></div><div style=3D"font-size:13px"><s=
+pan style=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-size:sma=
+ll;font-style:italic;white-space:nowrap"><br></span></div><div style=3D"fon=
+t-size:13px"><br></div><div style=3D"font-size:13px"></div><div style=3D"fo=
+nt-size:13px"><var></var></div></div><div style=3D"margin:0cm 0cm 0pt"><i s=
+tyle=3D"font-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt">This =
+email and any files transmitted with it are confidential and intended solel=
+y for the use of the individual or entity to whom they are addressed and ma=
+y be protected by solicitor-client privilege. If you have received this ema=
+il in error please notify us by e-mail reply and delete it from your system=
+; you may not copy this message or disclose its contents to anyone.</span><=
+/i></div><div><font size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0p=
+t"><font face=3D"Calibri"><font size=3D"3"><i></i></font></font></div><div>=
+</div></div><div></div></div></div></div>
+</div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i style=
+=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allison Lendor</font>=
+</i><br></div><div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><spa=
+n><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span></i></div=
+><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Ca=
+libri"><font size=3D"3">Barristers &amp; Solicitors</font></font></span></i=
+></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font =
+size=3D"3">209 - 460 West Hunt Club Road</font></font></span></i></div><div=
+ style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">=
+Ottawa, ON</font></font></span></i></div><div style=3D"font-size:13px"><i><=
+span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></span></=
+i></div><div style=3D"font-size:13px"><i><font face=3D"Calibri"><font size=
+=3D"3"><br clear=3D"none"></font></font></i></div><div style=3D"font-size:1=
+3px"><font size=3D"3"></font></div><div style=3D"font-size:13px;margin:0cm =
+0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Tel.: (613)247-79=
+64 ext 3</font></font></span></i></div><div style=3D"font-size:13px"><i><sp=
+an><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font></font>=
+</span></i></div><div style=3D"font-size:13px"><span style=3D"font-family:t=
+ahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-style:italic;white=
+-space:nowrap"><br></span></div><div style=3D"font-size:13px"><br></div><di=
+v style=3D"font-size:13px"></div><div style=3D"font-size:13px"><var></var><=
+/div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><s=
+pan lang=3D"EN-US" style=3D"font-size:12pt">This email and any files transm=
+itted with it are confidential and intended solely for the use of the indiv=
+idual or entity to whom they are addressed and may be protected by solicito=
+r-client privilege. If you have received this email in error please notify =
+us by e-mail reply and delete it from your system; you may not copy this me=
+ssage or disclose its contents to anyone.</span></i></div><div><font size=
+=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri=
+"><font size=3D"3"><i></i></font></font></div><div></div></div><div></div><=
+/div></div></div></div>
+
+--00000000000072d5ed05efd07215--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1032732</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1671053437</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>15012</string>
+</dict>
+</plist>

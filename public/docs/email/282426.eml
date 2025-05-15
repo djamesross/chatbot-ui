@@ -1,0 +1,131 @@
+6103      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:a4f:6702:0:0:0:0:0 with SMTP id b2-v6csp3846178ivc; Fri, 24
+ Aug 2018 17:49:47 -0700 (PDT)
+X-Received: by 2002:a02:93a2:: with SMTP id
+ z31-v6mr3146117jah.93.1535158187357; Fri, 24 Aug 2018 17:49:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1535158187; cv=none; d=google.com;
+ s=arc-20160816;
+ b=yxCGlYjqgRMBcLeCrmFCHnZah4DPB41RexLr+u0YixY3+KvO5i9j48XWVVqxJ8QMox
+ fjzoVTzi76oRsiBJWaLiiIF4p9YUpj8Aq2mqFTTRv2BvZkDRzCJdSu8/IXegWI41q+7v
+ j/sR9Ih5TJxswm9atPXOII1T5lBYRndnj6dvaamN1bFV7tjzoo/Mb7O3lFSMzdCKcv3y
+ l7pHVx00ez0LyC1NsAExy0ZllKbEIfg9CwJdqvJWsNlJ2X20mowJ9X2IgXvj21z4ix2J
+ igGpsWQJyYfEBV9rBkQ3GZOXGvkomsP93B7xtUoBV+bR7pz0fb4pUjvbn1X6dR15i4Tx 1OeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816;
+ h=to:in-reply-to:references:message-id:subject:date:mime-version
+ :content-transfer-encoding:from:dkim-signature :arc-authentication-results;
+ bh=kO+4AY+CTlh3PmKVi0lMatq0uAkpkc6KGsm1N/B0K7g=;
+ b=LN7pLwuE4rScLRnW0c6Eh3dBiv7i0tWkUE04KKK2UYXDFPF4Gn/E7yvjH/GXi6Lomj
+ xEeiLiqDkNZFgtQZ1IS+yiPC3CTEu5W9Ta7QMdZuGsvCYuQLnYmarZ0+8PKnTIpvv6SE
+ j+7/q0mykM4oEHsYHXq8NB8+qkXNc8FzssmWyYQE0yavp7aXl6nslt9u0fszJNVVrvrq
+ uz1UbzWjSVtly6LkBTGzbRBCKpMUGWrPzM0OUQoe0SkmuKX8TO2onuBD/VEwH2RcKEHa
+ bqUl0B0wOPtR6mh3htKBMYkc0VuGJRVXjHu1REWLnjxe9oSeHIImgYIvNUs3C1TJ0YFS vsrA==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=PNfBshu9; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ b71-v6sor3199910iof.137.2018.08.24.17.49.47 for <darrylondunlin@gmail.com>
+ (Google Transport Security); Fri, 24 Aug 2018 17:49:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=PNfBshu9; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:content-transfer-encoding:mime-version:date:subject:message-id
+ :references:in-reply-to:to; bh=kO+4AY+CTlh3PmKVi0lMatq0uAkpkc6KGsm1N/B0K7g=;
+ b=PNfBshu9TDi+pcrhM4h9/hADChrdtTScUFKXuodk4QLg+dEufJXbpqzh6KCLs6OXxj
+ LRVawWhpUIRN8bkw6zYx7uhV8hRqj7NPIpMgWq1PeXdcQ7GKmKHTNANwcz+1J9Q8Ipa9
+ C5quOr17NiW/epSHIQ9JM4Wl7yQB8+U6wzJds8aOM95mnrWs4AcEf4s1161K5RAqkuqt
+ KCDuaHnP1+uvFdZ4G+4bZZOXwgQ6lYeE6IFP/XhWKQT9tIUoZzgalQEo50EqhcRRqXhw
+ ckFLD0YwcgJVWQhahOrB2EhOIV5HuHWeG2XNO8U7/8gkBaERHYa4AF2jOeRWbcSdHz6t hg3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
+ :subject:message-id:references:in-reply-to:to;
+ bh=kO+4AY+CTlh3PmKVi0lMatq0uAkpkc6KGsm1N/B0K7g=;
+ b=Dp5UDE/DPafyFbQH/IaavuXMIrkJV+AGfBoBg4UB6mIwPhaJJIwyupCdBiYxvtEoQ9
+ q7zs1kMNcbxl9PuogvNOd+n3yQlewo6MBNycYwuke+m3LT+zd9u3BCx4lJF4p76rnxZ4
+ DRzQ+pieOtFpTCNJJ57/Dqv2eb/DgCFvq3Jx9ogh9ZXEuQHZ9l1WYozAhqQ57LLQoFo6
+ Elen75SORMmtidzYjWvYQvXry+6sD1mLp1qaFJYIIh5Ha7kdd3Fo4Erdy1WB2giriIZY
+ VHX24Rxfj8BC461jtvcl93biaoRTMD7w3YGjBVWirQRxVqnFVGx+QRaK7JVSjyi4z8xl tCjg==
+X-Gm-Message-State: APzg51AwQ47IScSqTPLmI2t/dgQZ1HupvWpPTp+PvAyEclUY6T4KNfnP
+ 3zsBrkXlAwBFeLU/OcjWvDBrgA2S
+X-Google-Smtp-Source: ANB0VdYD990wASyNKjeokkQl0RjctrlHsS8tqAufcRlkIzANcS3TWnnYSZRqL7Shncql+/qV4boy0Q==
+X-Received: by 2002:a6b:e716:: with SMTP id
+ b22-v6mr3176129ioh.239.1535158186997; Fri, 24 Aug 2018 17:49:46 -0700 (PDT)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [192.168.2.18] (mankon0402w-lp130-02-76-70-80-210.dsl.bell.ca.
+ [76.70.80.210]) by smtp.gmail.com with ESMTPSA id
+ x7-v6sm2881225ioh.3.2018.08.24.17.49.46 for <darrylondunlin@gmail.com>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Fri, 24 Aug
+ 2018 17:49:46 -0700 (PDT)
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (1.0)
+Date: Fri, 24 Aug 2018 20:49:45 -0400
+Subject: Re: re:
+Message-Id: <08309AEE-AC57-403B-A53A-5F826F46030B@gmail.com>
+References: <2188259E-5DEE-4777-88B2-28D5118FFB19@gmail.com>
+In-Reply-To: <2188259E-5DEE-4777-88B2-28D5118FFB19@gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: iPhone Mail (15G77)
+
+Hi Darryl,=20
+Thanks for letting me know about your dates. I will ask my mom and get back t=
+o you about the best day for your mom and you to have the girls.
+
+Thanks for the option, I would prefer to go through FRO. I will send you the=
+ daycare invoice soon. It will be about $215 a month for the both of us to p=
+ay.
+
+
+Sunday morning works this weekend. Say 930 to 1130?
+
+Sent from my iPhone
+
+> On Aug 24, 2018, at 12:46 PM, Darryl Ross <darrylondunlin@gmail.com> wrote=
+:
+>=20
+> Hi,
+>=20
+> I wanted to up date you on my schedule, and on support payments.=20
+>=20
+> For the fall I teach Monday & Tuesday morning 8 am - 11 am, and Friday 11 a=
+m - 2 pm, leaving afternoons open. Let me know what works best for you, I=E2=
+=80=99ll confirm with my mom, and then book my office hours around that.
+>=20
+> As for support, I have to apologize for not getting to this sooner. I just=
+ spoke to FRO and in order for them to be involved we=E2=80=99ll have to wai=
+t 6-8 weeks after submitting documents. Their role is basically as a middle-=
+person to mediate payments. The person I spoke to said that since we have ag=
+reed to payments an alternative would be for me to set up regular bank payme=
+nts to you, through my bank: each payday my bank would automatically withdra=
+wal the money and deposit it into your account. Which would you prefer?
+>=20
+> Darryl
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>4893</integer>
+	<key>date-last-viewed</key>
+	<integer>1746453802</integer>
+	<key>date-received</key>
+	<integer>1535158187</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>14063</string>
+</dict>
+</plist>

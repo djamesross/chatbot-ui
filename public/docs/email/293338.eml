@@ -1,0 +1,187 @@
+9303      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin030.me.com by p72-mailgateway-smtp-6d68554779-rxj6q (mailgateway 2204B190)
+	with SMTP id fa1d81fe-e746-4c34-bb80-aface3c31fa9 
+	for <darrylross@icloud.com>; Wed, 22 Dec 2021 18:04:54 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: fa1d81fe-e746-4c34-bb80-aface3c31fa9
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	by pv33p00im-smtpin030.me.com (Postfix) with ESMTPS id F2159500684
+	for <darrylross@icloud.com>; Wed, 22 Dec 2021 18:04:50 +0000 (UTC)
+X-ICL-SCORE: 3.3330332300
+X-ICL-INFO: GAtbVUseBVFGSVVESgMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ9MREFWVVhYUw4aREQaGVlaTwwb
+ V1oeAQ5SWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsbF0hLEUkIBkwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wMjc3JysGbz1IKA4eFVFuUgYIDg0ABE4RQ0EBJU9vBwQdUlNA
+ AHpbI0AfICY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+x-dmarc-info: pass=pass; dmarc-policy=none; s=r1; d=r1
+x-dmarc-policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=niqaoCxm
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.180 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.180 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.180; helo=mail-yb1-f180.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-yb1-f180.google.com with SMTP id f9so8536075ybq.10
+        for <darrylross@icloud.com>; Wed, 22 Dec 2021 10:04:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sxNxkKsyATzAMcn7pd9GnL/D/Ou94m/D1IDsv87ye2c=;
+        b=niqaoCxmaxMFhL+iA+WP6WFlNqVT1RteDRAdd+UMmQ6L/YQvBJbAlekFHjbmEesoBM
+         D19ZZoVaP4i+fZ1i0Zbv3R9oqTpuMVqL6bAIkYIxDeE9zHJYJjBzOfEThCAu99RDNBwp
+         6QcHlcFsWf2BsTjttRGRCnZNZkfVydDVYPbfuIpFQAHK+fRl3jWtR7N3jSjzqG1/7z6R
+         KMr/dw2ESx9ku+nF13/LDp5OeqVLUN24CRAtByR3n/NyYnmm9oasYdFmF7LHq/HBHkSo
+         qMLLiwfKDX48wGsA/AlFhfspsP4syZmb2r8mVtaeVPrG3hkcLpERbtGr/0IT2hbGPl3P
+         F6jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sxNxkKsyATzAMcn7pd9GnL/D/Ou94m/D1IDsv87ye2c=;
+        b=DV2G+Z2Ml8iD9/S3vheQw9NhDXblfu56kF7TJIxPyo40tmuv+BPVBHXyT9sg3wnXHl
+         7pcy9DmB0KC1S7e/rWTwmOnkK22Z61uUXfI9JjGRfSi/XBtsbo+mLj49AtorMtixDRY1
+         NuFa/iy3zB2gSg57Ipn5K+5tRyA4WvHQmww3WVrRSGYjDhh8vtj7CaIT25tSgvpgvrXb
+         a8q5yj6Y6EN9+yX6b1YtssJvmjDDflCNnd7Eh/oW8ZA/MK5jkjsuH0fm3BgDzoJjWvhu
+         l35E28z3g8E6D+6sLjG4lYtJVzxrdO+xWF6nEx7ZLfBNl+0mOLbFYX0PBaFbwaqmtSnb
+         FMXw==
+X-Gm-Message-State: AOAM531k9p4m554RgwQ8GqwpBuWFLJLz8//JfH9PvrdBJuFRF7MsOaQJ
+	2xgiZUqLVETymJH9NkSI8lXJ50BRHywJkhBQGdgqswS2
+X-Google-Smtp-Source: ABdhPJxnT32YoAUmVO1Z+l8kVlE6jeik7d8yUcucOzgzPtMDavUYGBIA4InqIrYLGyoFLzbVctT+y28h/OjUnV3dSMM=
+X-Received: by 2002:a25:7e87:: with SMTP id z129mr6357101ybc.719.1640196290237;
+ Wed, 22 Dec 2021 10:04:50 -0800 (PST)
+MIME-Version: 1.0
+References: <E6178FDA-21D4-4B4A-9AA6-10DA3FF42F81@icloud.com>
+In-Reply-To: <E6178FDA-21D4-4B4A-9AA6-10DA3FF42F81@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 22 Dec 2021 13:04:39 -0500
+Message-ID: <CAFnbyRGNQPS6Y_=QhimaX0sqhzx4xs68gR7_1fh+57xJmA5fFQ@mail.gmail.com>
+Subject: Re: FaceTime, Christmas, Visits
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <Alison.Boyce@mannlawyers.com>, Allison Lendor <allison@lendorguest.ca>, 
+	Michael Dam <Michael.Dam@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="0000000000003dd80f05d3bff571"
+X-MANTSH: 1TEIXWlwfHloaGkNHB1tfQEQbHxseGx8aGBEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXGBgaEQpZRBdiRWJBeWNMYV17TxEKWU0XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQG
+ ncGGBoGGhEKWV4XbGx5EQpDThcSWX9mYB5kHFhoSRpfH0FcaRt6aGwdHltgb01nYUJBXREKWFw
+ XGQQaBB4fB0sbGxscGk8cBRsdBBseGAQbEhoEHxAbHhofGhEKXlkXcwF7G08RCk1cFxkYHREKT
+ FoXaGtNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBgbEwQbEhoRCkJeFxsRCkRJFxkRCkJcFxsRCl5
+ OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF
+ 2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF2NQQVB4Qht
+ wbG0SEQpCWBdia05vb3psZ1pHSxEKWlgXGBEKcGgXbB0efxNIem9bfh0QGRoRCnBoF2EScnJIW
+ HtlYBofEBkaEQpwaBdkb0V/eU96bBJrThAZGhEKcGgXa3pZXEZybR1cHXkQGRoRCnBoF2t6fXt
+ cGENbZ2tQEBkaEQpwbBdmRmsfGFttX0ZvbxAaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: None
+
+--0000000000003dd80f05d3bff571
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl.
+
+The girls are available tmrw for a half hour in the morning. Anytime
+between 930-1130 works. Please email me a time and I will set it up on our
+end.
+
+As for present pick up, I will contact Holly directly. My other parents are
+visiting outside that day so I just need to coordinate timing.
+
+The girls are free at 1O am on Boxing Day and they are excited to see you!
+
+Yes, I am open arranging supervised visits with Maureen and the girls ,
+this is contingent on you providing records of your current treatment plan.
+As always the girls safety is my priority and I am open to in person
+visitation once I can ensure the girls are safe.
+
+Cynthia
+
+On Tue, Dec 21, 2021 at 6:28 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I would like to arrange a time to FaceTime with Charlotte and Alice before
+> Christmas. I am available tomorrow after the spectacle de Noel, and
+> Thursday. Kindly let me know what time works best.
+>
+> For opening gifts for Christmas I understand that they are not available
+> until Boxing Day. Please let me know what time they are available to open
+> gifts on FaceTime and I will plan accordingly.
+>
+> I am waiting for a delivery that will arrive the 24th, and then I am away
+> for Christmas. My mom will leave the presents at your door when they are
+> wrapped and ready.
+>
+> I understand that you have asked your neighbour Maureen to supervise
+> visits during the holiday. In order to make visits more successful for the
+> girls, in particular the first visit, I think it would be a good idea for
+> Maureen and I to meet prior to the first visit. Would you ask her if she is
+> agreeable to meeting briefly, and ask her to contact me to make
+> arrangements?
+>
+> Thank you,
+>
+> Darryl
+
+--0000000000003dd80f05d3bff571
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">The girls are available tmrw for a half hour in the morning. Anytime b=
+etween 930-1130 works. Please email me a time and I will set it up on our e=
+nd.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">As for present=
+ pick up, I will contact Holly directly. My other parents are visiting outs=
+ide that day so I just need to coordinate timing.=C2=A0</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">The girls are free at 1O am on Boxing Day a=
+nd they are excited to see you!</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Yes, I am open arranging supervised visits with Maureen and the g=
+irls , this is contingent on you providing records of your current treatmen=
+t plan. As always the girls safety is my priority and I am open to in perso=
+n visitation once I can ensure the girls are safe.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Cynthia=C2=A0</div><div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Dec 21, 2021 at 6:28 P=
+M Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@iclou=
+d.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Cynthia,<br=
+>
+<br>
+I would like to arrange a time to FaceTime with Charlotte and Alice before =
+Christmas. I am available tomorrow after the spectacle de Noel, and Thursda=
+y. Kindly let me know what time works best.<br>
+<br>
+For opening gifts for Christmas I understand that they are not available un=
+til Boxing Day. Please let me know what time they are available to open gif=
+ts on FaceTime and I will plan accordingly.<br>
+<br>
+I am waiting for a delivery that will arrive the 24th, and then I am away f=
+or Christmas. My mom will leave the presents at your door when they are wra=
+pped and ready.<br>
+<br>
+I understand that you have asked your neighbour Maureen to supervise visits=
+ during the holiday. In order to make visits more successful for the girls,=
+ in particular the first visit, I think it would be a good idea for Maureen=
+ and I to meet prior to the first visit. Would you ask her if she is agreea=
+ble to meeting briefly, and ask her to contact me to make arrangements?<br>
+<br>
+Thank you,<br>
+<br>
+Darryl</blockquote></div></div>
+
+--0000000000003dd80f05d3bff571--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>474734</integer>
+	<key>date-last-viewed</key>
+	<integer>1743867346</integer>
+	<key>date-received</key>
+	<integer>1640196294</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>14541</string>
+</dict>
+</plist>

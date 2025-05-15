@@ -9,7 +9,7 @@ import { buildFinalMessages } from "@/lib/build-prompt"
 import { Tables } from "@/supabase/types"
 import { ChatMessage, ChatPayload, LLMID, ModelProvider } from "@/types"
 import { useRouter } from "next/navigation"
-import { useContext, useEffect, useRef } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { LLM_LIST } from "../../../lib/models/llm/llm-list"
 import {
   createTempMessages,
@@ -24,6 +24,7 @@ import {
 
 export const useChatHandler = () => {
   const router = useRouter()
+  const [corpusOn, setCorpusOn] = useState<boolean>(true) // toggle corpus retrieval
 
   const {
     userInput,
@@ -194,6 +195,31 @@ export const useChatHandler = () => {
     isRegeneration: boolean
   ) => {
     const startingInput = messageContent
+    const cmd = messageContent.trim().toLowerCase()
+    if (cmd === "/corpus on") {
+      setCorpusOn(true)
+      return
+    }
+    if (cmd === "/corpus off") {
+      setCorpusOn(false)
+      return
+    }
+
+    /* ---- legal-corpus snippets ---- */
+    if (corpusOn) {
+      try {
+        const snipRes = await fetch("/api/corpus-search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: messageContent.trim(), k: 15 })
+        })
+        const { snippets } = await snipRes.json()
+        messageContent = `${snippets}\n\nUser: ${messageContent.trim()}`
+      } catch (e) {
+        console.error("corpus-search failed", e)
+      }
+    }
+    /* -------------------------------- */
 
     try {
       setUserInput("")

@@ -1,0 +1,244 @@
+13944     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st11p00im-smtpin033.me.com by p133-mailgateway-smtp-8588b56cd7-67ndw (mailgateway 2316B325)
+	with SMTP id 363703df-acaf-4a8a-857c-d131d45f5a27 
+	for <darrylross@icloud.com>; Tue, 30 May 2023 19:19:39 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 363703df-acaf-4a8a-857c-d131d45f5a27
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	by st11p00im-smtpin033.me.com (Postfix) with ESMTPS id 29B094E0B20
+	for <darrylross@icloud.com>; Tue, 30 May 2023 19:19:34 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTRloQXgcZFltVFVFfDlgc
+ AkZVVgNTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0BGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlJ0A0Rj5jThMPDg8yEAZzFR8mUyBFXV0TOjpTHA0HbjIdTyEj
+ PFJdX0wUNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QLQD6WIo
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.51 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.51 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.51; helo=mail-ed1-f51.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5149c51fd5bso4781312a12.0
+        for <darrylross@icloud.com>; Tue, 30 May 2023 12:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685474374; x=1688066374;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BoTYLPSQ61GYdsJoc9b75dbXeqFBGotiintTLjWoEhA=;
+        b=QLQD6WIo3m0jmvkOu4/GdyT0YzvmUrX6/D7iXEtBScKz2rt7DfuDhAJYx1fPdsSdA/
+         hq89T1h6i1o+v+B5xt30t5FDD4+9Ss1FPHW291BVDC9aeAw6ZhXKwwlTocgVnBjxuPsl
+         kRg9mPM0juhKiDPKpj+sxQOAwJUAAVZFrpTgM8fnaqDNvLVj8TcSl+Uu9bq/7Z+YFkpJ
+         9GeMAfCXlK10YuWW8nBIWjZochaSV9yYP/kTSOwd6flgYQT0LF09nwPQcY9F7AMrd7/H
+         sRVw6LoinU/3kB+fRw9cw23T4f01f7L0tSaKoSngKyShWzSD9zgMsqvjxcmUEIL/Gopl
+         bKnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685474374; x=1688066374;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BoTYLPSQ61GYdsJoc9b75dbXeqFBGotiintTLjWoEhA=;
+        b=PYmGHbyqZgrIQHVz/ovqYb5GCdGggCU4PxXAnDCXfXId+4aJ5SX0fFErxvgb02CjiU
+         i5FNQibyPe71jAk4ebw97ucrHEQYHDq8tQCcbfcvZctu7lKCi19NkbcpxbqRdZRqXZqP
+         zc0XySevZT5H8CbMhaWI4B8dtQ149xd5T8zc2GfGrlLW6fD6du+aasonMF1N1sdfehpw
+         UpL9wcwrAe70FrYLtoNmxspA9w013ZkKy0cEQwv8x4kKwyXX7SaHz3PwUplQ5ZqTlhKy
+         JcgKuxG7Toavq9AxQuIVlDj7KvhR1ieITjXYdKNbYvy821byyhx2f15z4uIvaKZh72ZT
+         O+6g==
+X-Gm-Message-State: AC+VfDwMq3wkuCrUxk8Wt1scbp2hzk7Rsl+iy7B5RxhHtOmgKilxEgtq
+	HWSTx5eZofWAC61TdAnlHtmQgZWwedZTIyl9JCIMz73MhY8=
+X-Google-Smtp-Source: ACHHUZ7Fny3SbmWSJZ3bJ6CL/mzeP7DXT0g/QafWzf2s6onljKwDnN4ji/fXuHqf9FZTvXnmdGvUcxhCtWOOlYKTbp0=
+X-Received: by 2002:a17:907:7e87:b0:965:fa80:bf1 with SMTP id
+ qb7-20020a1709077e8700b00965fa800bf1mr3406948ejc.32.1685474373789; Tue, 30
+ May 2023 12:19:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOP-EfwupgU-AdNBgGnaw0NO1y9cwndkKN1MuOXo2357pWpRJQ@mail.gmail.com>
+In-Reply-To: <CAOP-EfwupgU-AdNBgGnaw0NO1y9cwndkKN1MuOXo2357pWpRJQ@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 30 May 2023 15:19:22 -0400
+Message-ID: <CAFnbyRGR9R1FSxqzwiEh6Ewj_5W=mkqOC5ku7XPh6GTDbk=9mQ@mail.gmail.com>
+Subject: Re: How to subscribe to a team schedule - TeamSnap
+To: "Craig Stead, Director, Soccer Operations" <craig.stead@osu.ca>, Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000053ebaf05fcee153f"
+X-MANTSH: 1TEIXWV4bG1oaGkNHB0JTTFwYGxsfGh0aGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGh8RCllEF2JFYkF5Y0xhXXtPEQpZTRduT0ZDXE9YEQpfWRcYGBoRCl9NF2RFRE8RC
+ llJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XcHN7YwdCQG1/cFhjGngSeBx
+ HYlNoHH4TRkEfTE8HeUgRClhcFxkEGgQfGgUbGgQbHBgEGBMEGB4TEBseGh8aEQpeWRdIWwVuQ
+ xEKTVwXBxIYEQpMWhdoaU1NaxEKTEYXbE1rEQpDWhcYGhMEEh8EGBoSBB8bEQpCXhcbEQpEXhc
+ YEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4c
+ m54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQp
+ CQBdmGkB4AQVGUHlLSxEKQlgXYmtOb296bGdaR0sRClpYFxsZEQpwaBdlYBxgRwVmQXlTUBAaE
+ QpwaBdpUEFuf1Mca0hTHBAaEQpwaBdmHEtaQENBcHh8fxAaEQpwaBd6G3NvfFpnGxpAZBAaEQp
+ waBdoRG0dSV5CHUxfTxAaEQpwfRdsXB0eaWlmb2RAWRAaEQpwfRdneUtYHWRCBWJDWBAaEQpwf
+ RdjT2thE1JcHnJDZBAaEQpwfRdtUBh6fmNscHNYZxAaEQpwfRdpZnNCXFxEQRhTfxAaEQpwfRd
+ iT3tSAU1Tc2ZQbRAaEQpwfRdiSUIdWntzbAFfbhAaEQpwfRdtbH1CXklPTlNMaxAaEQpwfRdvX
+ ERneGBJRU5pSxAaEQpwfRdrfR9pUGV6RnkTcBAaEQpwfRdlGn1Ja2JEGWZNbRAaEQpwfRdla08
+ BGWNHH1pJQhAaEQpwfRdlXlpBU2sTaU9MQhAaEQpwfxdjWEFGYHwfZkNMZBAHGRoRCnBfF2RiU
+ GJ+Y2F6SW5sEBoRCnB/F2FPHxl5SWlceRpmEAcbGRMRCnBfF3pZQkxuf0JATGhgEBoRCnB/F2F
+ cGXNCeW95QkBeEAcSGBEKcF8XY3kSEmBrXR9gX24QGRoRCnB/F2VeW0NSRH9yQkVZEAcbGhgRC
+ nBfF2UFf2wdXkFOH1xwEBoRCnB/F3pCbR9HeGBnGQFlEAcYGBEKcF8Xb2QeTl1iT20FXWEQGhE
+ KcH8XYHh9aH0TGwFhGEUQBxgdEQpwXxdhcmheax1CegFPfRAHGAQfEQpwfxdjcBMFT2ZCc1tbY
+ xAHHBsRCnBfF2t4GlIYbVhPUGBLEBoRCnBfF2h6AXteGF0FRWhzEBoRCnB/F2Z5SUtkZFlYGWF
+ jEBoRCnBfF29cRGd4YElFTmlLEBoRCnBfF2wZHH1wW1ABZU1jEAceEhEKcF8XbV58U0ETT2VyQ
+ RwQBx4SEQpwXxdpfF4bTWVCWG98ARAHGRoRCnBfF2ZGTGVgcllDEmEbEAcfGxEKcGwXZkZrHxh
+ bbV9Gb28QGhEKbX4XGhEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: ZYQI-hjGUZrI0R8R6mHyB6T9lk5fe-Sb
+X-Proofpoint-GUID: ZYQI-hjGUZrI0R8R6mHyB6T9lk5fe-Sb
+
+--00000000000053ebaf05fcee153f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Craig,
+
+Darryl says he has still not been able to be added to receive the schedule.
+Can you please resolve this?
+
+Darryl, please go directly to Craig.
+
+On Tue, May 23, 2023 at 8:01=E2=80=AFPM Craig Stead, Director, Soccer Opera=
+tions <
+craig.stead@osu.ca> wrote:
+
+> Hi Cynthia,
+>
+> Please see this link:
+> https://helpme.teamsnap.com/article/1245-subscribe-to-a-team-schedule
+>
+> Thank you,
+>
+>
+> Craig Stead
+> Director, Soccer Operations & Community Engagement
+> Ottawa South United
+>
+>   craig.stead@osu.ca
+>   www.osu.ca
+> <https://www.facebook.com/OSUSoccer>
+> <https://www.instagram.com/ottawasouthunited/?hl=3Den>
+> <http://twitter.com/OSUSoccer>
+>
+>
+>
+>
+>
+> Happy with our assistance? Please consider leaving us a Google Review:
+> https://g.page/r/CXxgsWmIS44FEAg/review
+>
+
+--00000000000053ebaf05fcee153f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Craig,<div><br></div><div>Darryl says he has still not =
+been able to be added to receive the schedule. Can you please resolve this?=
+</div><div><br></div><div>Darryl, please go directly=C2=A0to Craig.=C2=A0</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, May 23, 2023 at 8:01=E2=80=AFPM Craig Stead, Director, Soccer O=
+perations &lt;<a href=3D"mailto:craig.stead@osu.ca">craig.stead@osu.ca</a>&=
+gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr">Hi=C2=A0Cynthia,<div><br></div><div>Please see this link:=C2=A0=
+</div><div><a href=3D"https://helpme.teamsnap.com/article/1245-subscribe-to=
+-a-team-schedule" target=3D"_blank">https://helpme.teamsnap.com/article/124=
+5-subscribe-to-a-team-schedule</a></div><div><br clear=3D"all"><div><div di=
+r=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr">Thank you,<br><br><tab=
+le style=3D"direction:ltr;border-radius:0px">
+                    <tbody><tr> <td>  <table cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-family:Arial;line-height:1.15;padding-bottom:10px;colo=
+r:rgb(0,0,0)"> <tbody><tr> <td valign=3D"top" style=3D"vertical-align:top;p=
+adding-right:16px;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"line-height:1.2"> <tbody><tr> <td style=3D"width:65px;padding:0=
+px">  </td> </tr> </tbody></table><img width=3D"78" height=3D"96" src=3D"ht=
+tps://ci3.googleusercontent.com/mail-sig/AIorK4wEOSibqpFu9D6YnPk6Yng5Mp_eUL=
+kboQk8GnsrFR0qtk3wm-6Oe5miIvRBPxAxBfB-THTBg78"> </td> <td valign=3D"top" st=
+yle=3D"vertical-align:top;line-height:0%"> <table cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"line-height:1.2"> <tbody><tr> <td valign=3D"top" style=
+=3D"vertical-align:top;padding-right:45px;line-height:1.2"><span style=3D"f=
+ont-family:Arial;font-size:16px;color:rgb(25,28,43);text-transform:initial;=
+font-weight:bold"><br>Craig Stead </span><br> <span style=3D"font-size:12px=
+;letter-spacing:0px;font-family:Arial;text-transform:initial;font-weight:no=
+rmal;color:rgb(51,51,51)"> Director, Soccer Operations &amp; Community Enga=
+gement </span><br> <span style=3D"font-size:12px;letter-spacing:0px;font-fa=
+mily:Arial;text-transform:initial;font-weight:bold;color:rgb(68,68,68)"> Ot=
+tawa South United </span> </td> <td valign=3D"top" style=3D"vertical-align:=
+top;line-height:0%"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"fo=
+nt-size:12px;line-height:1.2"> <tbody><tr> <td style=3D"line-height:0"> <ta=
+ble cellpadding=3D"0" cellspacing=3D"0"> <tbody><tr> <td style=3D"line-heig=
+ht:0%;padding-bottom:6px"><br> </td> </tr> <tr> <td style=3D"line-height:0%=
+;padding-bottom:6px"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"l=
+ine-height:14px;font-size:12px;font-family:Arial"> <tbody><tr> <td style=3D=
+"font-family:Arial;font-weight:bold;font-size:12px;color:rgb(25,28,43)"> <i=
+mg src=3D"https://cdn.gifo.wisestamp.com/social/envelope/191C2B/13/trans.pn=
+g" style=3D"vertical-align: -2px; line-height: 1.2;"> </td> <td style=3D"wi=
+dth:5px;font-size:1pt;line-height:0" width=3D"5">=C2=A0</td> <td style=3D"f=
+ont-family:Arial;font-size:12px"> <a href=3D"mailto:craig.stead@osu.ca" sty=
+le=3D"text-decoration:none;font-size:12px;font-family:Arial" target=3D"_bla=
+nk"> <span style=3D"line-height:1.2;color:rgb(33,33,33);font-family:Arial;w=
+hite-space:nowrap;font-size:12px"> craig.stead@osu.ca </span> </a> </td> </=
+tr> </tbody></table> </td> </tr> <tr> <td style=3D"line-height:0%;padding-b=
+ottom:6px"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"line-height=
+:14px;font-size:12px;font-family:Arial"> <tbody><tr> <td style=3D"font-fami=
+ly:Arial;font-weight:bold;font-size:12px;color:rgb(25,28,43)"> <img src=3D"=
+https://cdn.gifo.wisestamp.com/social/browser/191C2B/13/trans.png" style=3D=
+"vertical-align: -2px; line-height: 1.2;"> </td> <td style=3D"width:5px;fon=
+t-size:1pt;line-height:0" width=3D"5">=C2=A0</td> <td style=3D"font-family:=
+Arial;font-size:12px"> <a href=3D"http://www.osu.ca" style=3D"text-decorati=
+on:none;font-size:12px;font-family:Arial" target=3D"_blank"> <span style=3D=
+"line-height:1.2;color:rgb(33,33,33);font-family:Arial;white-space:nowrap;f=
+ont-size:12px"> www.osu.ca </span> </a> </td> </tr> </tbody></table> </td> =
+</tr> </tbody></table> </td> </tr> <tr> <td style=3D"padding-top:8px;line-h=
+eight:0%"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"width:100%;l=
+ine-height:1.2"> <tbody><tr> <td> <table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0"><tbody><tr><td align=3D"left" style=3D"padding-right:6px;tex=
+t-align:center;padding-top:0px"> <a href=3D"https://www.facebook.com/OSUSoc=
+cer" style=3D"font-size:11px;color:rgb(68,68,68);text-decoration:none" targ=
+et=3D"_blank"> <img width=3D"24" height=3D"24" src=3D"https://cdn.gifo.wise=
+stamp.com/social/facebook/191C2B/48/circle/background.png" style=3D"float: =
+left; border: none;" border=3D"0"> </a> </td><td align=3D"left" style=3D"pa=
+dding-right:6px;text-align:center;padding-top:0px"> <a href=3D"https://www.=
+instagram.com/ottawasouthunited/?hl=3Den" style=3D"font-size:11px;color:rgb=
+(68,68,68);text-decoration:none" target=3D"_blank"> <img width=3D"24" heigh=
+t=3D"24" src=3D"https://cdn.gifo.wisestamp.com/social/instagram/191C2B/48/c=
+ircle/background.png" style=3D"float: left; border: none;" border=3D"0"> </=
+a> </td><td align=3D"left" style=3D"padding-right:6px;text-align:center;pad=
+ding-top:0px"> <a href=3D"http://twitter.com/OSUSoccer" style=3D"font-size:=
+11px;color:rgb(68,68,68);text-decoration:none" target=3D"_blank"> <img widt=
+h=3D"24" height=3D"24" src=3D"https://cdn.gifo.wisestamp.com/social/twitter=
+/191C2B/48/circle/background.png" style=3D"float: left; border: none;" bord=
+er=3D"0"> </a> </td></tr></tbody></table> <div style=3D"height:1px"></div> =
+</td> </tr> </tbody></table> </td> </tr> </tbody></table> </td> </tr> </tbo=
+dy></table><br><br><br><br><br> </td> </tr> </tbody></table><table cellpadd=
+ing=3D"0" cellspacing=3D"0" border=3D"0"><tbody><tr><td></td></tr></tbody><=
+/table></td></tr></tbody></table> =20
+                  <img src=3D"https://tracy.srv.wisestamp.com/px/5985447519=
+059968.png" alt=3D"">Happy with our assistance? Please consider leaving us =
+a Google Review:=C2=A0<a href=3D"https://g.page/r/CXxgsWmIS44FEAg/review" t=
+arget=3D"_blank">https://g.page/r/CXxgsWmIS44FEAg/review</a><br></div></div=
+></div></div></div>
+</blockquote></div>
+
+--00000000000053ebaf05fcee153f--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1115269</integer>
+	<key>date-last-viewed</key>
+	<integer>1744822958</integer>
+	<key>date-received</key>
+	<integer>1685474379</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12281</string>
+</dict>
+</plist>

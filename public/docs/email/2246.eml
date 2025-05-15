@@ -1,0 +1,916 @@
+28432     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 10.79.206.154 with SMTP id i26csp1645846ivm;
+        Sun, 8 Oct 2017 09:25:11 -0700 (PDT)
+X-Google-Smtp-Source: AOwi7QDW3OMZzdovkKiJXuPqYlnNIjj10/17HfiJOfvE7pifPeRnUXk9dN61UL2FZyvOHHusPXmw
+X-Received: by 10.107.166.206 with SMTP id p197mr10145447ioe.63.1507479911592;
+        Sun, 08 Oct 2017 09:25:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1507479911; cv=none;
+        d=google.com; s=arc-20160816;
+        b=t3GpIjBjmcF3LT1qzZsUU4kpuKa1nQR1H7H8yazx6PNwXZU5bYDoEa1CzyZp9V2u4f
+         6yemokqe8cpsnRRQariNwnqP44ITDQ1VQO2LWxgPqQdDo9Qe/aQw6RJMhwoKFfFsOQFE
+         NLdfzVRqLu3w6kPAp1ku/C4kjKZ9BrqvKvdfXFyEWka8TpjTXop3rj+silkBtps/Fpe7
+         qKjiph3LNA7eN6PqwaCn2O83icFmoWHAQYLV+KP0YQeAw3KfUJmZAll4xlbguurCN5ND
+         KJFq8O/VZtdoWs4DbhWMUkyTwjf7NuuEDL+j2roJXGCaNfgHiVgtmdT2oX6CWWqHHN8K
+         /goQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:date:from:subject:content-transfer-encoding
+         :mime-version:user-agent:thread-topic:references:in-reply-to
+         :arc-authentication-results;
+        bh=xEwUPiuro7NDgf0oq5eK1OsK+e5qiAM3r9BTI9Yt84g=;
+        b=SXWgx2WQkwUI4WSsEgwQYTCWqvLL/Dk1+YJR+9Ifn/Ph7UrGtgKbMiYTtGAKzHzn9l
+         zDS+gfPa+Jq2SGexf0VBl3CCMoOTEADY7r0s65fBRq0pMkA6yCrcqpj5GP9tB2djnGus
+         EdE13wUS4a8It27A9mUo5mggtqlmWg1dZkZav8fRjLf+Vu4lDQw3b2y2eOT6gx2LeAO8
+         m2DnSg+ufcMUjamfkJ1CQm8L2lSfKoJTrgpHNF3Jh30e4DZwUXKVxmFHmvSGQWD4Ld2/
+         3zxjIPcRg2SsIXK2pQk6mUQrGUOWhoLlryNrbtITSBNS59v7cLD2iVsWMR5p8y/3L5yX
+         hn6Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=neutral (google.com: 54.208.1.230 is neither permitted nor denied by best guess record for domain of tross@seraband.com) smtp.mailfrom=tross@seraband.com
+Return-Path: <tross@seraband.com>
+Received: from mxout.hosting.domainsatcost.ca (mxout.hosting.domainsatcost.ca. [54.208.1.230])
+        by mx.google.com with ESMTPS id c5si5165203itg.114.2017.10.08.09.25.10
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=AES128-GCM-SHA256 bits=128/128);
+        Sun, 08 Oct 2017 09:25:11 -0700 (PDT)
+Received-SPF: neutral (google.com: 54.208.1.230 is neither permitted nor denied by best guess record for domain of tross@seraband.com) client-ip=54.208.1.230;
+Authentication-Results: mx.google.com;
+       spf=neutral (google.com: 54.208.1.230 is neither permitted nor denied by best guess record for domain of tross@seraband.com) smtp.mailfrom=tross@seraband.com
+Received: from ip-10-240-149-251.ec2.internal ([10.240.149.251] helo=mxout.hosting.domainsatcost.ca)
+	by mxout.hosting.domainsatcost.ca with esmtp (Exim 4.72)
+	(envelope-from <tross@seraband.com>)
+	id 1e1EO6-0008DM-Lv
+	for darrylondunlin@gmail.com; Sun, 08 Oct 2017 16:25:10 +0000
+Received: from Debian-exim by cloud.hosting.domainsatcost.ca with spam-scanned (Exim 4.76)
+	(envelope-from <tross@seraband.com>)
+	id 1e1EO5-0005gx-Ra
+	for darrylondunlin@gmail.com; Sun, 08 Oct 2017 16:25:10 +0000
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on HostingSmtp7
+X-Spam-Level: 
+X-Spam-ASN:  
+X-Spam-Status: No, score=-102.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+	SHORTCIRCUIT,URIBL_BLOCKED shortcircuit=ham autolearn=disabled version=3.3.2
+Received: from [199.119.233.167] (helo=[10.156.194.184])
+	by cloud.hosting.domainsatcost.ca with esmtpa (Exim 4.76)
+	(envelope-from <tross@seraband.com>)
+	id 1e1EO5-0005go-ID
+	for darrylondunlin@gmail.com; Sun, 08 Oct 2017 16:25:09 +0000
+In-Reply-To: <77764A15-1843-4317-B810-12B14674C197@gmail.com>
+References: <DE63BB28-EE05-4081-9556-B0049D80ADF1@gmail.com> <E1dxY7Y-0003pX-GX@cloud.hosting.domainsatcost.ca> <45464C5A-3007-452B-A585-25510D8D19AE@gmail.com> <E1dz9wm-0006rh-A1@cloud.hosting.domainsatcost.ca> <E5DB7B78-5BB7-4BED-9D6B-D1EC94382F12@gmail.com> <56f01bdd-acf4-4607-8563-1c8317e41d9c@seraband.com> <77764A15-1843-4317-B810-12B14674C197@gmail.com>
+X-Referenced-Uid: 9665
+Thread-Topic: Re: Weekend
+User-Agent: Android
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----7SFMD6N3CBZD6DBXUZQJZY1HSODZI4"
+Content-Transfer-Encoding: 7bit
+Subject: Re: Weekend
+From: Todd Ross <tross@seraband.com>
+Date: Thu, 05 Oct 2017 10:36:11 -0400
+To: Darryl Ross <darrylondunlin@gmail.com>
+Message-ID: <bd4f2f9e-f47f-465b-af87-97658e025efb@seraband.com>
+X-Auth: 
+
+------7SFMD6N3CBZD6DBXUZQJZY1HSODZI4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+ charset=UTF-8
+
+Why don't i pick you up at your place or wherever is convenient=2E=C2=A0=C2=
+=A0 I'd like to get some Vietnamese food=2E Say, 12:30 ?
+
+=E2=81=A3Sent fro=
+m my handheld device=2E =E2=80=8B
+
+On Oct 5, 2017, 07:44, at 07:44, Darryl =
+Ross <darrylondunlin@gmail=2Ecom> wrote:
+>Great! I=E2=80=99ll leave it to y=
+ou to pick a place, and I=E2=80=99m happy to head over
+>your way=2E 
+>
+>Dar=
+ryl 
+>
+>> On Oct 4, 2017, at 2:14 PM, Todd Ross <tross@seraband=2Ecom> wrot=
+e:
+>> 
+>> Friday works =2E Where shall we meet?
+>> 
+>> Sent from BlueMail
+>=
+>> On Oct 4, 2017, at 11:24, Darryl Ross <darrylondunlin@gmail=2Ecom>
+>wrot=
+e:
+>>> I=E2=80=99m so glad to hear that, and I=E2=80=99m happy you=E2=80=99=
+re willing to work at it
+>with me=2E 
+>>> 
+>>>  I just left court with Cynt=
+hia=2E It went fairly well, and I did
+>well, I think, now that I=E2=80=99m =
+representing myself=2E I have meetings
+>tomorrow=2E Lunch Friday?
+>>> 
+>>> =
+Darryl 
+>>> 
+>>>> On Oct 2, 2017, at 7:16 PM, Todd Ross <tross@seraband=2Ec=
+om> wrote:
+>>>> 
+>>>> I=E2=80=99m willing to work at this, too=2E
+>>>>  
+>>=
+>> 
+>>>> Let=E2=80=99s pick a day and go for coffee or dinner  - my treat=
+=2E  We can
+>even order in & talk, if you prefer=2E
+>>>>  
+>>>> 
+>>>> Wedne=
+sday evening is out, unless we do it early=2E   I=E2=80=99m picking up
+>Chr=
+is at the airport at 8, so will need to be home by 7=2E
+>>>>  
+>>>> 
+>>>> L=
+et me know=2E=2E=2E
+>>>>  
+>>>> 
+>>>> /Todd  
+>>>>  
+>>>> 
+>>>> Todd Ross, =
+Seraband Corp=2E 613-863-8014
+>>>>  
+>>>> 
+>>>> From: Darryl Ross
+>>>> Sent=
+: September 30, 2017 4:15 PM
+>>>> To: Todd Ross
+>>>> Subject: Re: Weekend
+>=
+>>>  
+>>>> 
+>>>> I=E2=80=99m so sorry you feel I used you=2E I=E2=80=99ve n=
+ever been a social person=2E
+>I=E2=80=99m an introvert=2E With friends and =
+family I=E2=80=99ve always just gone with
+>what other people plan=2E 
+>>>> =
+ 
+>>>> 
+>>>> It=E2=80=99s never been my intention to take advantage of you,=
+ or anyone,
+>and I=E2=80=99m sorry you=E2=80=99ve had to go through this wi=
+th me=2E I know you know
+>how it feels like you=E2=80=99ve lost everything=
+=2E I just couldn=E2=80=99t cope, I
+>couldn=E2=80=99t escape the feelings, =
+and I self-medicated=2E And I know that=E2=80=99s
+>hurt you, and the rest o=
+f the family=2E I can=E2=80=99t take any of that back,
+>but i=E2=80=99m wor=
+king hard to make it better=2E
+>>>>  
+>>>> 
+>>>> I=E2=80=99m working throug=
+h what is essentially a complete break-down=2E I
+>was in a depression befor=
+e our marriage broke down, and then I lost my
+>family, and then I totally s=
+crewed up by turning to alcohol=2E I just
+>haven=E2=80=99t had the capacity=
+ to reach out in a way people seem to want me
+>to=2E 
+>>>>  
+>>>> 
+>>>> Aft=
+er the incident with the girls I pulled back because I was
+>embarrassed and=
+ ashamed=2E Really, really ashamed=2E I literally did
+>nothing from that in=
+cident to now, other than try to work through my
+>issues, and try to get be=
+tter=2E I=E2=80=99ve been completely alone, which has
+>helped in some ways,=
+ and hurt in others=2E
+>>>>  
+>>>> 
+>>>> But I do need help from my family=
+=2E I hoped that we could spend time
+>together before or after seeing the g=
+irls=2E I got a lot out of our
+>conversations, and hearing about your exper=
+iences=2E I=E2=80=99ve gotten so much
+>support and advice from you and Cind=
+y=2E
+>>>>  
+>>>> 
+>>>> As for the girls, it=E2=80=99s so important for me t=
+o have more contact
+>with them=2E I need to keep our relationship and stay =
+close to them,
+>especially given their ages=2E Already I can feel a distanc=
+e growing with
+>Charlotte=2E I talked to my therapist about it, and she sai=
+d it=E2=80=99s vital
+>to keep close to them, and also it will help us becau=
+se you=E2=80=99ll spend
+>time with me and see and know that I=E2=80=99m sob=
+er, and getting better=2E And
+>the girls will know you better too=2E
+>>>>  =
+
+>>>> 
+>>>> I will always be there for you, as much as I can be=2E I have j=
+ust
+>had the worst 2 years of my life, so I haven=E2=80=99t been the person=
+ I want
+>and need to be, or the person everyone else wants me to be=2E But =
+I=E2=80=99m
+>getting better, and as I get better, I=E2=80=99ll be able to b=
+e there more and
+>more for you=2E
+>>>>  
+>>>> 
+>>>> But in the end, what I =
+really want to say is that I=E2=80=99m glad you
+>shared your feelings with =
+me, and I=E2=80=99m sorry that I=E2=80=99ve made you feel
+>that way=2E
+>>>>=
+  
+>>>> 
+>>>> I know I=E2=80=99ve made mistakes, but I was sincere when I s=
+aid you and
+>Cindy could stay in our house (when we had it), and I wasn=E2=
+=80=99t
+>comfortable with you paying for me to go to Angie=E2=80=99s weddin=
+g - you=E2=80=99d
+>already given me so much, and I know I didn=E2=80=99t de=
+serve it, and it was
+>clear I couldn=E2=80=99t pay for it myself=2E I can=
+=E2=80=99t and won=E2=80=99t ask for more than
+>your time and company, and =
+a stronger relationship=2E
+>>>>  
+>>>> 
+>>>> I don=E2=80=99t know where to =
+go from here, but you have been such an
+>important part of my life, and I h=
+ope to hear from you, and find out
+>what you need from me=2E I will do what=
+ I can, and I will be able to do
+>more as I get better=2E 
+>>>>  
+>>>> 
+>>>=
+> I want to make this right=2E And I want to be there for you when you
+>nee=
+d it=2E And I will be, because I=E2=80=99m getting better, and will be bett=
+er,
+>so I can ask less and give more=2E
+>>>>  
+>>>> 
+>>>>  
+>>>> 
+>>>> On S=
+ep 28, 2017, at 8:40 AM, Todd Ross <tross@seraband=2Ecom> wrote:
+>>>>  
+>>>=
+> 
+>>>> Hi=2E 
+>>>>  
+>>>> I was going to come up with a plausible excuse f=
+or not doing this =E2=80=93
+>but I think it=E2=80=99s time I said what I re=
+ally mean=2E
+>>>>  
+>>>> You don=E2=80=99t get in touch unless you want som=
+ething from me=2E=2E=2E and
+>when that=E2=80=99s done, so are you=2E
+>>>> I=
+=E2=80=99ve tried to suppress my feelings about this, and yes I=E2=80=99m a=
+ware of
+>the circumstances =E2=80=93 but try as I might,  I=E2=80=99m still=
+ angry and
+>disappointed=2E 
+>>>>  
+>>>> Sorry, but you=E2=80=99re going to=
+ have to work at rebuilding our
+>relationship before you start asking for m=
+ore favours=2E  I=E2=80=99m open to
+>that=2E=2E=2E if you=E2=80=99re really=
+ looking for a relationship, and not just a
+>means to an end=2E
+>>>>  
+>>>>=
+ /Todd
+>>>>  
+>>>> Todd Ross, Seraband Corp=2E 613-863-8014
+>>>>  
+>>>> Fro=
+m: Darryl Ross
+>>>> Sent: September 27, 2017 4:36 PM
+>>>> To: Todd Ross
+>>>=
+> Subject: Weekend
+>>>>  
+>>>> Hey,
+>>>>  
+>>>> I never heard back from you=
+ - did you get my email?
+>>>>  
+>>>> I was wondering if you could supervise=
+ this weekend, and maybe
+>catch up before or after?
+>>>>  
+>>>> Darryl 
+>>>=
+>  
+>>>> 
+>>>>  
+
+------7SFMD6N3CBZD6DBXUZQJZY1HSODZI4
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3Dutf-8"><meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered m=
+edium)"><style><!--
+/* Font Definitions */
+@font-face
+ {font-family:"Cambri=
+a Math";
+ panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+ {font-family:Calibri;
+=
+ panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+ {font-family:"Helvetica Neue";=
+}
+/* Style Definitions */
+p=2EMsoNormal, li=2EMsoNormal, div=2EMsoNormal
+ {=
+margin:0cm;
+ margin-bottom:=2E0001pt;
+ font-size:11=2E0pt;
+ font-family:"Ca=
+libri",sans-serif;}
+a:link, span=2EMsoHyperlink
+ {mso-style-priority:99;
+ c=
+olor:blue;
+ text-decoration:underline;}
+a:visited, span=2EMsoHyperlinkFollo=
+wed
+ {mso-style-priority:99;
+ color:#954F72;
+ text-decoration:underline;}
+s=
+pan=2Eapple-converted-space
+ {mso-style-name:apple-converted-space;}
+=2EMso=
+ChpDefault
+ {mso-style-type:export-only;}
+@page WordSection1
+ {size:612=2E0=
+pt 792=2E0pt;
+ margin:72=2E0pt 72=2E0pt 72=2E0pt 72=2E0pt;}
+div=2EWordSecti=
+on1
+ {page:WordSection1;}
+--></style></head><body><div dir=3D"auto">Why don=
+'t i pick you up at your place or wherever is convenient=2E=C2=A0=C2=A0 I'd=
+ like to get some Vietnamese food=2E Say, 12:30 ?<br><br></div>
+<div dir=3D=
+"auto"><!-- tmjah_g_1299s -->Sent from my handheld device=2E <!-- tmjah_g_1=
+299e --></div>
+<div class=3D"gmail_quote" >On Oct 5, 2017, at 07:44, Darryl=
+ Ross &lt;<a href=3D"mailto:darrylondunlin@gmail=2Ecom" target=3D"_blank">d=
+arrylondunlin@gmail=2Ecom</a>&gt; wrote:<blockquote class=3D"gmail_quote" s=
+tyle=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px solid rgb(204, 204, 2=
+04); padding-left: 1ex;">
+Great! I=E2=80=99ll leave it to you to pick a pla=
+ce, and I=E2=80=99m happy to head over your way=2E&nbsp;
+<br>
+<br>
+<div id=
+=3D"AppleMailSignature">
+ Darryl&nbsp;
+</div>
+<div>
+ <br>On Oct 4, 2017, at=
+ 2:14 PM, Todd Ross &lt;
+ <a href=3D"mailto:tross@seraband=2Ecom">tross@ser=
+aband=2Ecom</a>&gt; wrote:
+ <br>
+ <br>
+</div>
+<blockquote type=3D"cite">
+ <=
+div>
+  
+  
+  
+  
+  <div dir=3D"auto">
+   Friday works =2E Where shall we me=
+et?
+   <br>
+   <br>
+  </div> 
+  <div dir=3D"auto">
+   <!-- tmjah_g_1299s --=
+>Sent from 
+   <!-- tmjah_g_1299e -->
+   <a href=3D"http://www=2Ebluemail=
+=2Eme/r?b=3D10777">
+    <!-- tmjah_g_1299s -->BlueMail
+    <!-- tmjah_g_129=
+9e --></a>
+   <!-- tmjah_g_1299s --> 
+   <!-- tmjah_g_1299e -->
+  </div> 
+ =
+ <div class=3D"gmail_quote">
+   On Oct 4, 2017, at 11:24, Darryl Ross &lt;
+=
+   <a href=3D"mailto:darrylondunlin@gmail=2Ecom" target=3D"_blank">darrylon=
+dunlin@gmail=2Ecom</a>&gt; wrote:
+   <blockquote class=3D"gmail_quote" styl=
+e=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px solid rgb(204, 204, 204)=
+; padding-left: 1ex;">
+     I=E2=80=99m so glad to hear that, and I=E2=80=
+=99m happy you=E2=80=99re willing to work at it with me=2E&nbsp;
+    <div>
+=
+     <br>
+    </div>
+    <div>
+     &nbsp;I just left court with Cynthia=2E=
+ It went fairly well, and I did well, I think, now that I=E2=80=99m represe=
+nting myself=2E I have meetings tomorrow=2E Lunch Friday?
+    </div>
+    <d=
+iv>
+     <br>
+     <div id=3D"AppleMailSignature">
+      Darryl&nbsp;
+     =
+</div>
+     <div>
+      <br>On Oct 2, 2017, at 7:16 PM, Todd Ross &lt;
+    =
+  <a href=3D"mailto:tross@seraband=2Ecom">tross@seraband=2Ecom</a>&gt; wrot=
+e:
+      <br>
+      <br>
+     </div>
+     <blockquote type=3D"cite">
+      =
+<div>
+       <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">I=
+=E2=80=99m willing to work at this, too=2E </p>
+        <p class=3D"MsoNorm=
+al"></p>
+        <p>&nbsp;</p>
+        <p class=3D"MsoNormal">Let=E2=80=99s=
+ pick a day and go for coffee or dinner&nbsp; - my treat=2E&nbsp; We can ev=
+en order in &amp; talk, if you prefer=2E </p>
+        <p class=3D"MsoNormal=
+"></p>
+        <p>&nbsp;</p>
+        <p class=3D"MsoNormal">Wednesday eveni=
+ng is out, unless we do it early=2E &nbsp;&nbsp;I=E2=80=99m picking up Chri=
+s at the airport at 8, so will need to be home by 7=2E </p>
+        <p clas=
+s=3D"MsoNormal"></p>
+        <p>&nbsp;</p>
+        <p class=3D"MsoNormal">L=
+et me know=2E=2E=2E</p>
+        <p class=3D"MsoNormal"></p>
+        <p>&nbs=
+p;</p>
+        <p class=3D"MsoNormal">/Todd &nbsp;</p>
+        <p class=3D"=
+MsoNormal"></p>
+        <p>&nbsp;</p>
+        <p class=3D"MsoNormal">Todd R=
+oss, Seraband Corp=2E 613-863-8014</p>
+        <p class=3D"MsoNormal"></p>
+=
+        <p>&nbsp;</p>
+        <div style=3D"mso-element:para-border-div;bor=
+der:none;border-top:solid #E1E1E1 1=2E0pt;padding:3=2E0pt 0cm 0cm 0cm">
+   =
+      <p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><b>From: </b=
+><a href=3D"mailto:darrylondunlin@gmail=2Ecom">Darryl Ross</a><br><b>Sent: =
+</b>September 30, 2017 4:15 PM<br><b>To: </b><a href=3D"mailto:tross@seraba=
+nd=2Ecom">Todd Ross</a><br><b>Subject: </b>Re: Weekend</p>
+        </div>
+ =
+       <p class=3D"MsoNormal"></p>
+        <p>&nbsp;</p>
+        <p class=
+=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,serif;=
+color:#454545">I=E2=80=99m so sorry you feel I used you=2E I=E2=80=99ve nev=
+er been a social person=2E I=E2=80=99m an introvert=2E With friends and fam=
+ily I=E2=80=99ve always just gone with what other people plan=2E&nbsp;</spa=
+n></p>
+        <p></p>
+        <p></p>
+        <div>
+         <p class=3D"M=
+soNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,serif;color=
+:#454545"></span></p>
+         <p>&nbsp;</p>
+         <p></p>
+        </div=
+>
+        <div>
+         <p class=3D"MsoNormal"><span style=3D"font-family:=
+&quot;Helvetica Neue&quot;,serif;color:#454545">It=E2=80=99s never been my =
+intention to take advantage of you, or anyone, and I=E2=80=99m sorry you=E2=
+=80=99ve had to go through this with me=2E I know you know how it feels lik=
+e you=E2=80=99ve lost everything=2E I just couldn=E2=80=99t cope, I couldn=
+=E2=80=99t escape the feelings, and I self-medicated=2E And I know that=E2=
+=80=99s hurt you, and the rest of the family=2E I can=E2=80=99t take any of=
+ that back, but i=E2=80=99m working hard to make it better=2E</span></p>
+  =
+       <p></p>
+         <p></p>
+        </div>
+        <div>
+         <p cl=
+ass=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,ser=
+if;color:#454545"></span></p>
+         <p>&nbsp;</p>
+         <p></p>
+     =
+   </div>
+        <div>
+         <p class=3D"MsoNormal"><span style=3D"font=
+-family:&quot;Helvetica Neue&quot;,serif;color:#454545">I=E2=80=99m working=
+ through what is essentially a complete break-down=2E I was in a depression=
+ before our marriage broke down, and then I lost my family, and then I tota=
+lly screwed up by turning to alcohol=2E I just haven=E2=80=99t had the capa=
+city to reach out in a way people seem to want me to=2E&nbsp;</span></p>
+  =
+       <p></p>
+         <p></p>
+        </div>
+        <div>
+         <p cl=
+ass=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,ser=
+if;color:#454545"></span></p>
+         <p>&nbsp;</p>
+         <p></p>
+     =
+   </div>
+        <div>
+         <p class=3D"MsoNormal"><span style=3D"font=
+-family:&quot;Helvetica Neue&quot;,serif;color:#454545">After the incident =
+with the girls I pulled back because I was embarrassed and ashamed=2E Reall=
+y, really ashamed=2E I literally did nothing from that incident to now, oth=
+er than try to work through my issues, and try to get better=2E I=E2=80=99v=
+e been completely alone, which has helped in some ways, and hurt in others=
+=2E</span></p>
+         <p></p>
+         <p></p>
+        </div>
+        <di=
+v>
+         <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helveti=
+ca Neue&quot;,serif;color:#454545"></span></p>
+         <p>&nbsp;</p>
+     =
+    <p></p>
+        </div>
+        <div>
+         <p class=3D"MsoNormal"><s=
+pan style=3D"font-family:&quot;Helvetica Neue&quot;,serif;color:#454545">Bu=
+t I do need help from my family=2E I hoped that we could spend time togethe=
+r before or after seeing the girls=2E I got a lot out of our conversations,=
+ and hearing about your experiences=2E I=E2=80=99ve gotten so much support =
+and advice from you and Cindy=2E</span></p>
+         <p></p>
+         <p></=
+p>
+        </div>
+        <div>
+         <p class=3D"MsoNormal"><span style=
+=3D"font-family:&quot;Helvetica Neue&quot;,serif;color:#454545"></span></p>=
+
+         <p>&nbsp;</p>
+         <p></p>
+        </div>
+        <div>
+     =
+    <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica Neue&=
+quot;,serif;color:#454545">As for the girls, it=E2=80=99s so important for =
+me to have more contact with them=2E I need to keep our relationship and st=
+ay close to them, especially given their ages=2E Already I can feel a dista=
+nce growing with Charlotte=2E I talked to my therapist about it, and she sa=
+id it=E2=80=99s vital to keep close to them, and also it will help us becau=
+se you=E2=80=99ll spend time with me and see and know that I=E2=80=99m sobe=
+r, and getting better=2E And the girls will know you better too=2E</span></=
+p>
+         <p></p>
+         <p></p>
+        </div>
+        <div>
+         =
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot=
+;,serif;color:#454545"></span></p>
+         <p>&nbsp;</p>
+         <p></p>
+=
+        </div>
+        <div>
+         <p class=3D"MsoNormal"><span style=3D=
+"font-family:&quot;Helvetica Neue&quot;,serif;color:#454545">I will always =
+be there for you, as much as I can be=2E I have just had the worst 2 years =
+of my life, so I haven=E2=80=99t been the person I want and need to be, or =
+the person everyone else wants me to be=2E But I=E2=80=99m getting better, =
+and as I get better, I=E2=80=99ll be able to be there more and more for you=
+=2E</span></p>
+         <p></p>
+         <p></p>
+        </div>
+        <di=
+v>
+         <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helveti=
+ca Neue&quot;,serif;color:#454545"></span></p>
+         <p>&nbsp;</p>
+     =
+    <p></p>
+        </div>
+        <div>
+         <p class=3D"MsoNormal"><s=
+pan style=3D"font-family:&quot;Helvetica Neue&quot;,serif;color:#454545">Bu=
+t in the end, what I really want to say is that I=E2=80=99m glad you shared=
+ your feelings with me, and I=E2=80=99m sorry that I=E2=80=99ve made you fe=
+el that way=2E</span></p>
+         <p></p>
+         <p></p>
+        </div>
+=
+        <div>
+         <p class=3D"MsoNormal"><span style=3D"font-family:&q=
+uot;Helvetica Neue&quot;,serif;color:#454545"></span></p>
+         <p>&nbsp=
+;</p>
+         <p></p>
+        </div>
+        <div>
+         <p class=3D"Ms=
+oNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,serif;color:=
+#454545">I know I=E2=80=99ve made mistakes, but I was sincere when I said y=
+ou and Cindy could stay in our house (when we had it), and I wasn=E2=80=99t=
+ comfortable with you paying for me to go to Angie=E2=80=99s wedding - you=
+=E2=80=99d already given me so much, and I know I didn=E2=80=99t deserve it=
+, and it was clear I couldn=E2=80=99t pay for it myself=2E I can=E2=80=99t =
+and won=E2=80=99t ask for more than your time and company, and a stronger r=
+elationship=2E</span></p>
+         <p></p>
+         <p></p>
+        </div>
+=
+        <div>
+         <p class=3D"MsoNormal"><span style=3D"font-family:&q=
+uot;Helvetica Neue&quot;,serif;color:#454545"></span></p>
+         <p>&nbsp=
+;</p>
+         <p></p>
+        </div>
+        <div>
+         <p class=3D"Ms=
+oNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,serif;color:=
+#454545">I don=E2=80=99t know where to go from here, but you have been such=
+ an important part of my life, and I hope to hear from you, and find out wh=
+at you need from me=2E I will do what I can, and I will be able to do more =
+as I get better=2E&nbsp;</span></p>
+         <p></p>
+         <p></p>
+     =
+   </div>
+        <div>
+         <p class=3D"MsoNormal"><span style=3D"font=
+-family:&quot;Helvetica Neue&quot;,serif;color:#454545"></span></p>
+       =
+  <p>&nbsp;</p>
+         <p></p>
+        </div>
+        <div>
+         <p c=
+lass=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica Neue&quot;,se=
+rif;color:#454545">I want to make this right=2E And I want to be there for =
+you when you need it=2E And I will be, because I=E2=80=99m getting better, =
+and will be better, so I can ask less and give more=2E</span></p>
+         =
+<p></p>
+         <p></p>
+        </div>
+        <div>
+         <p class=3D"=
+MsoNormal"></p>
+         <p>&nbsp;</p>
+        </div>
+        <p class=3D"M=
+soNormal"></p>
+        <p>&nbsp;</p>
+        <div>
+         <blockquote sty=
+le=3D"margin-top:5=2E0pt;margin-bottom:5=2E0pt">
+          <div>
+          =
+ <p class=3D"MsoNormal">On Sep 28, 2017, at 8:40 AM, Todd Ross &lt;<a href=
+=3D"mailto:tross@seraband=2Ecom">tross@seraband=2Ecom</a>&gt; wrote:</p>
+  =
+         <p></p>
+          </div>
+          <p class=3D"MsoNormal"></p>
+   =
+       <p>&nbsp;</p>
+          <div>
+           <div>
+            <p class=
+=3D"MsoNormal">Hi=2E<span class=3D"apple-converted-space">&nbsp;</span></p>=
+
+            <p></p>
+           </div>
+           <div>
+            <p clas=
+s=3D"MsoNormal">&nbsp;</p>
+            <p></p>
+           </div>
+          =
+ <div>
+            <p class=3D"MsoNormal">I was going to come up with a pla=
+usible excuse for not doing this =E2=80=93 but I think it=E2=80=99s time I =
+said what I really mean=2E</p>
+            <p></p>
+           </div>
+      =
+     <div>
+            <p class=3D"MsoNormal">&nbsp;</p>
+            <p></p=
+>
+           </div>
+           <div>
+            <p class=3D"MsoNormal">You=
+ don=E2=80=99t get in touch unless you want something from me=2E=2E=2E and =
+when that=E2=80=99s done, so are you=2E</p>
+            <p></p>
+           =
+</div>
+           <div>
+            <p class=3D"MsoNormal">I=E2=80=99ve tri=
+ed to suppress my feelings about this, and yes I=E2=80=99m aware of the cir=
+cumstances =E2=80=93 but try as I might, &nbsp;I=E2=80=99m still angry and =
+disappointed=2E<span class=3D"apple-converted-space">&nbsp;</span></p>
+    =
+        <p></p>
+           </div>
+           <div>
+            <p class=3D"=
+MsoNormal">&nbsp;</p>
+            <p></p>
+           </div>
+           <div=
+>
+            <p class=3D"MsoNormal">Sorry, but you=E2=80=99re going to hav=
+e to work at rebuilding our relationship before you start asking for more f=
+avours=2E&nbsp; I=E2=80=99m open to that=2E=2E=2E if you=E2=80=99re really =
+looking for a relationship, and not just a means to an end=2E</p>
+         =
+   <p></p>
+           </div>
+           <div>
+            <p class=3D"MsoNo=
+rmal">&nbsp;</p>
+            <p></p>
+           </div>
+           <div>
+   =
+         <p class=3D"MsoNormal">/Todd</p>
+            <p></p>
+           </=
+div>
+           <div>
+            <p class=3D"MsoNormal">&nbsp;</p>
+       =
+     <p></p>
+           </div>
+           <div>
+            <p class=3D"Mso=
+Normal">Todd Ross, Seraband Corp=2E 613-863-8014</p>
+            <p></p>
+  =
+         </div>
+           <div>
+            <p class=3D"MsoNormal">&nbsp;<=
+/p>
+            <p></p>
+           </div>
+           <div style=3D"border:n=
+one;border-top:solid #E1E1E1 1=2E0pt;padding:3=2E0pt 0cm 0cm 0cm">
+        =
+    <div>
+             <p class=3D"MsoNormal"><b>From:<span class=3D"apple-=
+converted-space">&nbsp;</span></b><a href=3D"mailto:darrylondunlin@gmail=2E=
+com"><span style=3D"color:#954F72">Darryl Ross</span></a><br><b>Sent:<span =
+class=3D"apple-converted-space">&nbsp;</span></b>September 27, 2017 4:36 PM=
+<br><b>To:<span class=3D"apple-converted-space">&nbsp;</span></b><a href=3D=
+"mailto:tross@seraband=2Ecom"><span style=3D"color:#954F72">Todd Ross</span=
+></a><br><b>Subject:<span class=3D"apple-converted-space">&nbsp;</span></b>=
+Weekend</p>
+             <p></p>
+            </div>
+           </div>
+     =
+      <div>
+            <p class=3D"MsoNormal">&nbsp;</p>
+            <p></=
+p>
+           </div>
+           <div>
+            <p class=3D"MsoNormal">He=
+y,</p>
+            <p></p>
+           </div>
+           <div>
+            <=
+p class=3D"MsoNormal">&nbsp;</p>
+            <p></p>
+           </div>
+    =
+       <div>
+            <p class=3D"MsoNormal">I never heard back from you=
+ - did you get my email?</p>
+            <p></p>
+           </div>
+        =
+   <div>
+            <p class=3D"MsoNormal">&nbsp;</p>
+            <p></p>
+=
+           </div>
+           <div>
+            <p class=3D"MsoNormal">I was=
+ wondering if you could supervise this weekend, and maybe catch up before o=
+r after?</p>
+            <p></p>
+           </div>
+           <div>
+       =
+     <p class=3D"MsoNormal">&nbsp;</p>
+            <p></p>
+           </div=
+>
+           <div>
+            <p class=3D"MsoNormal">Darryl<span class=3D"=
+apple-converted-space">&nbsp;</span></p>
+            <p></p>
+           </d=
+iv>
+          </div>
+         </blockquote>
+        </div>
+        <p class=
+=3D"MsoNormal"></p>
+        <p>&nbsp;</p>
+        <p class=3D"MsoNormal"></=
+p>
+        <p>&nbsp;</p>
+       </div>
+      </div>
+     </blockquote>
+    =
+</div>
+   </blockquote>
+  </div>
+ </div>
+</blockquote></blockquote></div></=
+body></html>
+------7SFMD6N3CBZD6DBXUZQJZY1HSODZI4--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>6342</integer>
+	<key>date-last-viewed</key>
+	<integer>1643404917</integer>
+	<key>date-received</key>
+	<integer>1507479911</integer>
+	<key>flags</key>
+	<integer>25770064901</integer>
+	<key>remote-id</key>
+	<string>606</string>
+</dict>
+</plist>

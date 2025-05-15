@@ -1,0 +1,555 @@
+32688     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:6559:0:0:0:0:0 with SMTP id k25csp991916lti;
+        Fri, 31 May 2019 10:58:46 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqy1N6XCrqv9OyJhW4KCtpapnxuy1ejDHsAOXgLiPizUY3EJ7hrTsoYvYxnKzDux7xsR1vH1
+X-Received: by 2002:a6b:8b0d:: with SMTP id n13mr1831473iod.222.1559325526447;
+        Fri, 31 May 2019 10:58:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1559325526; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kThBTMjAAD2UOohrj551yQ3vfoBScNfT2vkT1R9nntMRONbpxx1Aymu9Zkxymr/P6r
+         3WT8wDdNcA/voqLrkGcW4RV7ML5jiRkdTySpLwkFAdWBjQcHSkurfMiCL9dxO30KQAb8
+         iehkf9t+1qD1HnXsfexLjYVDVhloOqBQjDBk+ekh1ViL/ed9sYcSrMxV3/vfLF152n48
+         efrQNCyY9vYjt6sh7GIqkrorfDg+V6S/Lpzdf05xfhPDWaHQlcr3FDvbhv4cu5Kq2ZoK
+         CmS4dlL/NDvo3Y6YbgGDgCjoMrPAAWEXGbT3CNTGhKhOFJMNSkJrv8dPYoTskW6k6JJS
+         YZrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:message-id:date
+         :thread-index:thread-topic:subject:to:from:dkim-signature;
+        bh=sTl0xyIfbrPNZn0C3otztQCR3CniLHX7pAFojB/uwwM=;
+        b=MRhcS1rqlx7wXAps8I79hBfHjT8irO/x+qJl15TI7PwsVEggxd5BCBbxLdTJtBGcxt
+         cKloHjGejkkmAyYWexGucyPJvc9pAL68ovrSOWIV8oQcrO//qGilGooP9QFwcrobahEi
+         ORsO1ePy1/ITfLDtuw41T2OVJ9R/i7Xt0SBLMNuoisr/10L/Y7gQw1/jtvY6rQeRWRx9
+         j+qkTReO74XtCyravQXjM5T+tGXorJOQexsUh6QSTA0nXYIM6oDk1zTL0YIhEXajK+mu
+         NitzOP39Gte1uBFo1X2Y8Cndv25QdD4+dtDl90F+UvXY672JZFVTsWYqUYXFCFX3kB4x
+         wfnQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-onmicrosoft-com header.b=eqXhZAUX;
+       spf=pass (google.com: domain of krystle.latouche@casott.on.ca designates 40.107.69.132 as permitted sender) smtp.mailfrom=Krystle.Latouche@casott.on.ca
+Return-Path: <Krystle.Latouche@casott.on.ca>
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com (mail-eopbgr690132.outbound.protection.outlook.com. [40.107.69.132])
+        by mx.google.com with ESMTPS id o15si4772664jam.15.2019.05.31.10.58.45
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 31 May 2019 10:58:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of krystle.latouche@casott.on.ca designates 40.107.69.132 as permitted sender) client-ip=40.107.69.132;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-onmicrosoft-com header.b=eqXhZAUX;
+       spf=pass (google.com: domain of krystle.latouche@casott.on.ca designates 40.107.69.132 as permitted sender) smtp.mailfrom=Krystle.Latouche@casott.on.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=casott.onmicrosoft.com; s=selector1-casott-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sTl0xyIfbrPNZn0C3otztQCR3CniLHX7pAFojB/uwwM=;
+ b=eqXhZAUXnKOfYcBGcv3mq/UBqgszWXBnwu5cUTHW16HG/l7NsnuQT881RIwgEWwVBxjMm5xXCEKqaqX86xZ9K0CvnC/0VLf1/7AqYvYi76nMSdxqwoaujN3plcIewKj9AeC7m2XxNNKiDm7YUmmWIgEfZBLNKV6qXzDsuizspSo=
+Received: from BN7PR04MB5233.namprd04.prod.outlook.com (20.176.28.224) by
+ BN7PR04MB5234.namprd04.prod.outlook.com (20.176.28.225) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.21; Fri, 31 May 2019 17:58:43 +0000
+Received: from BN7PR04MB5233.namprd04.prod.outlook.com
+ ([fe80::6807:895f:d49:bcfd]) by BN7PR04MB5233.namprd04.prod.outlook.com
+ ([fe80::6807:895f:d49:bcfd%3]) with mapi id 15.20.1922.021; Fri, 31 May 2019
+ 17:58:42 +0000
+From: "Latouche, Krystle" <Krystle.Latouche@casott.on.ca>
+To: Cynthia Holmes <cynthmholm@gmail.com>, Darryl Ross
+	<darrylondunlin@gmail.com>
+Subject: Recap from Meeting 
+Thread-Topic: Recap from Meeting 
+Thread-Index: AdUX2VGwuFSuVznnRwuk/DH/WpZg2g==
+Date: Fri, 31 May 2019 17:58:42 +0000
+Message-ID:
+ <BN7PR04MB52336106E25587F41FC363A6AA190@BN7PR04MB5233.namprd04.prod.outlook.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Krystle.Latouche@casott.on.ca; 
+x-originating-ip: [108.63.19.18]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e8b805a3-45f5-4218-943f-08d6e5f19e94
+x-microsoft-antispam:
+ BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BN7PR04MB5234;
+x-ms-traffictypediagnostic: BN7PR04MB5234:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs:
+ <BN7PR04MB5234FCEC89FA0A7074A0FB38AA190@BN7PR04MB5234.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 00540983E2
+x-forefront-antispam-report:
+ SFV:NSPM;SFS:(10019020)(39840400004)(346002)(136003)(396003)(366004)(376002)(199004)(189003)(52536014)(81156014)(74316002)(53936002)(72206003)(64756008)(33656002)(66476007)(66946007)(66556008)(25786009)(5660300002)(8676002)(256004)(7736002)(81166006)(7116003)(3480700005)(66066001)(66574012)(76116006)(73956011)(66446008)(71190400001)(476003)(6116002)(478600001)(71200400001)(8936002)(5024004)(486006)(450100002)(26005)(7696005)(790700001)(186003)(3846002)(14444005)(236005)(68736007)(14454004)(6506007)(4743002)(6436002)(55016002)(6306002)(54896002)(110136005)(102836004)(2906002)(86362001)(316002)(99286004)(74482002)(606006)(9686003);DIR:OUT;SFP:1102;SCL:1;SRVR:BN7PR04MB5234;H:BN7PR04MB5233.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: casott.on.ca does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info:
+ 8owanWX4+dRxWN3yrfg9Tr5ncqZCBQH9xf4Lbwq0eVXw7ihOr5PFVZXL8OT6kolrewCtqtJnIZuKw4d+OzZj+b4FQB/y/XgiUkWV1TmAUsE4FY1Jf1rUaNcs2ChN4+BfZc7EKUkDAVKsweOfYGheWEkavkiQtqQjbG04qgBJrwgJuLHEE/uYRkYVwbhJrOQ90FPrFYNkxg10EG3H6P1pnl7ZKjBm4hGwt5N1b4gR6+/WM//V/ETTu89IFqLaQFa0eYGUpyoC0yr6okzlFJRrNmAHEF8rhv49t1uFJ1NPtB50SPyJ1/+XP0WQyWTfndJnokENuQJ/0zf7C2PgQ7FLId28v+SPJY9Kyt1tqLWsFTWL5QvcMuhyxx76WFvsQJLgv8ruURZmWOrFI0ssnm+XC9WcVZgjNDYjC1Mt68e6y5U=
+Content-Type: multipart/alternative;
+	boundary="_000_BN7PR04MB52336106E25587F41FC363A6AA190BN7PR04MB5233namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: casott.on.ca
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8b805a3-45f5-4218-943f-08d6e5f19e94
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2019 17:58:42.9440
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e6da767b-f287-4dbf-ae9f-9fe542f5efe5
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Krystle.Latouche@casott.on.ca
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR04MB5234
+
+--_000_BN7PR04MB52336106E25587F41FC363A6AA190BN7PR04MB5233namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Meeting with Darryl and Cynthia.
+Charlotte and Alice absent as they have head lice.
+Purpose:
+To discuss updates on visits, worries/concerns, safety plan, recommendation=
+s, and status of file.
+Visits:
+Visits have been going well. The girls have reported that they are happy an=
+d have been asking when they can have more visits with their dad.
+It has been observed by all parties that the girls appear more comfortable =
+and Cynthia informed that she sees that Darryl has been doing well since Ja=
+n being reliable and consistent.
+Darryl would like to  increase visits to have more times with the girls and=
+ wants to have sleepovers.
+Cynthia informs that she never has an issue of how the girls are doing whil=
+e with Darryl and praised him as being a great father of the girls but is w=
+orried about how he is dealing with other aspects of his life that would be=
+nefit in the care of the girls i.e. treatment, social life/family support, =
+finances and consistency with routines.
+Worries/Treatment/Recommendation:
+Darryl informs he has been doing really good, he has not drank or had the u=
+rge to drink.
+Cynthia would like to see Darryl healthy. She expressed she is concerned ab=
+out treatment and Darryl not seeing an addictions counsellor.
+Darryl informed that he has not seeing Julie as she is a crisis counsellor =
+and deals with people who are in crisis. But they have come up together a p=
+lan on different strategies to help with keepin him on track.  Darryl state=
+s that he were to have an urge to drink or relapse he would notify Dr. Will=
+ows and Julie right away and would check himself into a hospital.
+Darryl informed that he has been getting regular blood work with Dr. Fraser=
+ to ensure his blood levels are where they are suppose be and free of alcoh=
+ol. Darryl also informed he is not taking medication some of the medication=
+s he was taking before such as Gebapentin.
+We discussed the concern of how serious WKS was when he was hospitalized an=
+d Cynthia expressed how scary that was to not know what was going on and wh=
+at to tell the girls. We also discussed a more structured treatment program=
+ a highly recommending this avenue. However, Darryl believes these types of=
+ programs do not work for him and does not believe it is well suited for wh=
+ere he is at in his addictions. Darryl spoke about his addictions coming la=
+ter in life for him and was not a result of past historical issues or traum=
+a. We discussed the correlation to his alcohol use to life and environmenta=
+l stressors  (finances, depression, anxiety), but Darryl does believe it is=
+ not one things over another.
+Darryl states that Dr. Fraser has referred him to a CBT program. He beleive=
+s this program fits with what he believes and will address everything in ge=
+neral in order to help change his thought process as well as help with deve=
+loping skills and strategies to enhance his over well-being.
+Cynthia expressed she would like to Darryl to contact Dr. Willows and infor=
+m her of this CBT program to get her perspective on it and to see if there =
+would be somethings she feels would be more beneficial for him. Darryl agre=
+ed to call Dr. Willows to see if he can get an appointment with her to get =
+her perspective and will update Cynthia about this as well as how he is doi=
+ng and what he has been working on, on a regular basis.
+Darryl expressed that in order for Cynthia to see improvements and gain her=
+ trusts is for both of them to communicate more with one another, have more=
+ conversations, pop in when the girls are there with him.
+Social:
+Cynthia expressed she needs to see Darryl be more social, to have positive =
+people in his life that can offer support as well as hold him accountable f=
+or his actions.
+Darryl informs that he is an introvert by nature but is working on being mo=
+re social. Darryl states he has joined a cycling club, going for walks, oth=
+er hobbies, and spending more time with his mom Holly, Kelly (who is met at=
+ the RO), work colleagues, Aunt Buddy, Jennifer. He is also working on reso=
+lving relationships with family members.
+ Darryl expressed wanting to be more involved with everything with the girl=
+s and their school. It was discussed and agreed by both parents that this c=
+ould start to resume as of September.
+Safety Plan:
+Darryl indicated that although this would not happen but if he had a drink =
+while the girls were with him,  he would  notify Cynthia or her mother righ=
+t away and use the phrase "He is sick and cannot have the girls right now" =
+which would be the code to he is not doing well or he has had a relapse.
+Darryl offered using a child care person who live across the street who cou=
+ld also assistance if the girls needed to go to a safe place in case someon=
+e in the safety network was not available to come right away. Darry and Cyn=
+thia agreed they would work out something together to have an additional pl=
+an.
+We discussed that the Society no longer has any protection concerns because=
+ it has been a period of almost 6 months and things have been going well. W=
+e discussed using the safety network of support when needed (Cynthia, her m=
+other, his mom). We discussed that the visits no longer had to be supervise=
+d and sleepovers can start to be implemented. Cynthia and Darryl were direc=
+ted to work these schedules out on there own.
+We also discussed doing a check in  before the girls get dropped off to ens=
+ure Darryl is in a good state and sober. Informed that it was their respons=
+ibility as parents to act protectively of their children if they feel that =
+the children at any given time would be at risks by either parent.
+Status of file:
+Informed parents as there are currently no protection concerns the file wil=
+l close. Both parents agreed with this plan. We will close the file the end=
+ of July 2019.
+
+Let me know if I have missed or need clarification on anything.
+
+Kind regards,
+
+Krystle Latouche, B.S.W
+Child Protection Worker
+Ongoing Services
+The Children's Aid Society of Ottawa<http://www.casott.on.ca/en/>
+150 Katimavik Rd
+Kanata, ON K2L 2N2
+Telephone: (613) 747-7800 ext. 3133
+Email: krystle.latouche@casott.on.ca<mailto:krystle.latouche@casott.on.ca>
+
+
+
+CONFIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended recipient, you are hereby notified that y=
+ou must not read this transmission and that any disclosure, copying, printi=
+ng, distribution or use of any of the information contained in or attached =
+to this transmission is STRICTLY PROHIBITED. If you have received this tran=
+smission in error, please immediately notify the sender by return e-mail an=
+d delete the original transmission and its attachments without reading, pri=
+nting, or saving in any manner. Thank you.
+
+
+AVIS DE CONFIDENTIALIT?
+Le pr?sent courriel, ainsi que tout document, fichier ou courriel ant?rieur=
+ qui y est joint, peut contenir des renseignements confidentiels ou prot?g?=
+s par le secret professionnel. Si vous n'?tes pas le destinataire vis?, ni =
+son mandataire, nous vous signalons que vous ne devez pas le lire et qu'il =
+est STRICTEMENT INTERDIT de divulguer, de copier, d'imprimer, de diffuser o=
+u d'utiliser l'information qui y figure ou qui y est jointe. Si cette commu=
+nication vous a ?t? transmise par erreur, veuillez en aviser l'exp?diteur i=
+mm?diatement par courriel et supprimer la communication originale ainsi que=
+ les pi?ces jointes sans les lire, les imprimer ou les sauvegarder de quelq=
+ue mani?re que ce soit. Merci.
+
+--_000_BN7PR04MB52336106E25587F41FC363A6AA190BN7PR04MB5233namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
+ans-serif;mso-fareast-language:EN-CA">Meeting with Darryl and Cynthia.<o:p>=
+</o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Charlotte and Alice absent as they have =
+head lice.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
+ans-serif;mso-fareast-language:EN-CA">Purpose:<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">To discuss updates on visits, worries/co=
+ncerns, safety plan, recommendations, and status
+ of file.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Visits:<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Visits have been going well. The girls h=
+ave reported that they are happy and have been asking
+ when they can have more visits with their dad.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">It has been observed by all parties that=
+ the girls appear more comfortable and Cynthia informed
+ that she sees that Darryl has been doing well since Jan being reliable and=
+ consistent.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl would like to &nbsp;increase visi=
+ts to have more times with the girls and wants to have
+ sleepovers.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Cynthia informs that she never has an is=
+sue of how the girls are doing while with Darryl
+ and praised him as being a great father of the girls but is worried about =
+how he is dealing with other aspects of his life that would benefit in the =
+care of the girls i.e. treatment, social life/family support, finances and =
+consistency with routines.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
+ans-serif;mso-fareast-language:EN-CA">Worries/Treatment/Recommendation:<o:p=
+></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl&nbsp;informs he has been doing re=
+ally&nbsp;good, he has not drank or had the urge to drink.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Cynthia would like to see Darryl healthy=
+. She expressed she is concerned about treatment
+ and Darryl not seeing an addictions counsellor.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl informed that he has not seeing J=
+ulie as she is a crisis counsellor and deals with
+ people who are in crisis. But they have come up together a plan on differe=
+nt strategies to help with keepin him on track.&nbsp; Darryl states that he=
+ were to have an urge to drink or relapse he would notify Dr. Willows and J=
+ulie right away and would check himself
+ into a hospital.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl informed that he has been getting=
+ regular blood work with Dr. Fraser to ensure his
+ blood levels are where they are suppose be and free of alcohol. Darryl als=
+o informed he is not taking medication some of the medications he was takin=
+g before such as Gebapentin.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">We discussed the concern of how serious =
+WKS was when he was hospitalized and Cynthia expressed
+ how scary that was to not know what was going on and what to tell the girl=
+s. We also discussed a more structured treatment program a highly recommend=
+ing this&nbsp;avenue. However, Darryl believes these types of programs do n=
+ot work for him and does not believe
+ it is well suited for where he is at in his addictions. Darryl spoke about=
+ his addictions coming later in life for him and was not a result of past h=
+istorical issues or trauma. We discussed the correlation to his alcohol use=
+ to life and environmental stressors&nbsp;
+ (finances, depression, anxiety), but Darryl does believe it is not one thi=
+ngs over another.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl states that&nbsp;Dr. Fraser has r=
+eferred him&nbsp;to a CBT program. He beleives this program
+ fits with what he believes and will address everything in general in order=
+ to help change his thought process as well as help with developing skills =
+and strategies to enhance his over well-being.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Cynthia expressed she would like to Darr=
+yl to contact Dr. Willows and inform her of this
+ CBT program to get her perspective on it and to see if there would be some=
+things she feels would be more beneficial for him. Darryl agreed to call Dr=
+. Willows to see if he can get an appointment with her to get her perspecti=
+ve and will update Cynthia about
+ this as well as how he is doing and what he has been working on, on a regu=
+lar basis.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl expressed that in order for Cynth=
+ia to see improvements and gain her trusts is&nbsp;for
+ both of them to&nbsp;communicate more with one another, have more conversa=
+tions, pop in when the girls are there with him.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
+ans-serif;mso-fareast-language:EN-CA">Social:<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Cynthia expressed she needs to see Darry=
+l be more social, to have positive people in his
+ life that can offer support as well as hold him accountable for his action=
+s.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl informs that he is an introvert b=
+y nature but is working on being more social. Darryl
+ states he has joined a cycling club, going for walks, other hobbies, and s=
+pending more time with&nbsp;his mom Holly, Kelly&nbsp;(who is met at the RO=
+), work colleagues, Aunt Buddy, Jennifer. He is also working on resolving r=
+elationships with family members.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">&nbsp;Darryl expressed wanting to be mor=
+e involved with everything with the girls and their school.
+ It was discussed and agreed by both parents that this could start to resum=
+e as of September.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
+ans-serif;mso-fareast-language:EN-CA">Safety Plan:<o:p></o:p></span></b></p=
+>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl indicated that although this woul=
+d not happen but if he had a drink while the girls
+ were with him, &nbsp;he would&nbsp; notify Cynthia or her mother right awa=
+y and use&nbsp;the phrase &quot;He is sick and cannot have the girls right =
+now&quot; which would be the code to he is not doing well or he has had a r=
+elapse.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">Darryl offered using a child care person=
+ who live across the street who could also assistance
+ if the girls needed to go to a safe place in case someone in the safety ne=
+twork was not available to come right away. Darry and Cynthia agreed they w=
+ould work out something together to have an additional plan.<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">We discussed that the Society no longer =
+has any protection concerns because it has been
+ a period of almost 6 months and things have been going well. We discussed =
+using the safety network of support when needed (Cynthia, her mother, his m=
+om). We discussed that the visits no longer had to be supervised and sleepo=
+vers can start to be implemented.
+ Cynthia and Darryl were directed to work these schedules out on there own.=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:EN-CA">We also discussed doing a check in&nbsp;=
+ before the girls get dropped off to ensure Darryl is
+ in a good state and sober. Informed that it was their responsibility as pa=
+rents to act protectively of their children if they feel that the children =
+at any given time would be at risks by either parent.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,s=
+ans-serif;mso-fareast-language:EN-CA">Status of file:<o:p></o:p></span></b>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:EN-CA">Informed parents as there =
+are currently no protection concerns the file will close. Both parents agre=
+ed with this plan. We will close the file the
+ end of July 2019.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Let me know if I have missed or need clarification o=
+n anything.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA">Kind regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;color:black;mso-f=
+areast-language:EN-CA">Krystle Latouche, B.S.W</span></b><span style=3D"fon=
+t-size:12.0pt;color:black;mso-fareast-language:EN-CA"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><i><span style=3D"font-size:12.0pt;color:black;mso-f=
+areast-language:EN-CA">Child Protection Worker&nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp;<o:p></o:p></span></i></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA">Ongoing Services<i><o:p></o:p></i></span></p>
+<p class=3D"MsoNormal"><u><span style=3D"font-size:12.0pt;color:black;mso-f=
+areast-language:EN-CA"><a href=3D"http://www.casott.on.ca/en/" target=3D"_b=
+lank" title=3D"http://www.casott.on.ca/en/=0A=
+Ctrl&#43;Click or tap to follow the link"><span style=3D"font-size:10.0pt;f=
+ont-family:&quot;Arial&quot;,sans-serif;color:blue">The
+ Children's Aid Society of Ottawa</span></a></span></u><span style=3D"font-=
+size:12.0pt;color:black;mso-fareast-language:EN-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA">150 Katimavik Rd<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA">Kanata, ON K2L 2N2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA">Telephone: (613) 747-7800 ext. 3133<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black;mso-fare=
+ast-language:EN-CA">Email:
+<a href=3D"mailto:krystle.latouche@casott.on.ca"><span style=3D"color:blue"=
+>krystle.latouche@casott.on.ca</span></a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br>
+<p>CONFIDENTIALITY NOTICE<br>
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person responsible =
+for delivering it to the intended
+ recipient, you are hereby notified that you must not read this transmissio=
+n and that any disclosure, copying, printing, distribution or use of any of=
+ the information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received
+ this transmission in error, please immediately notify the sender by return=
+ e-mail and delete the original transmission and its attachments without re=
+ading, printing, or saving in any manner. Thank you.</p>
+<br>
+<p>AVIS DE CONFIDENTIALIT&Eacute;<br>
+Le pr&eacute;sent courriel, ainsi que tout document, fichier ou courriel an=
+t&eacute;rieur qui y est joint, peut contenir des renseignements confidenti=
+els ou prot&eacute;g&eacute;s par le secret professionnel. Si vous n&#8217;=
+&ecirc;tes pas le destinataire vis&eacute;, ni son mandataire, nous vous si=
+gnalons
+ que vous ne devez pas le lire et qu&#8217;il est STRICTEMENT INTERDIT de d=
+ivulguer, de copier, d&#8217;imprimer, de diffuser ou d&#8217;utiliser l&#8=
+217;information qui y figure ou qui y est jointe. Si cette communication vo=
+us a &eacute;t&eacute; transmise par erreur, veuillez en aviser l&#8217;exp=
+&eacute;diteur
+ imm&eacute;diatement par courriel et supprimer la communication originale =
+ainsi que les pi&egrave;ces jointes sans les lire, les imprimer ou les sauv=
+egarder de quelque mani&egrave;re que ce soit. Merci.</p>
+</body>
+</html>
+
+--_000_BN7PR04MB52336106E25587F41FC363A6AA190BN7PR04MB5233namp_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>9159</integer>
+	<key>date-last-viewed</key>
+	<integer>1746561187</integer>
+	<key>date-received</key>
+	<integer>1559325526</integer>
+	<key>flags</key>
+	<integer>25770065285</integer>
+	<key>remote-id</key>
+	<string>2925</string>
+</dict>
+</plist>

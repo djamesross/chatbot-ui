@@ -1,0 +1,160 @@
+7394      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin012.me.com by p72-mailgateway-smtp-76dcc5cf5c-q6ljd (mailgateway 2208B240)
+	with SMTP id 09fbded4-4a50-4388-b58d-daf38f7f5fb7 
+	for <darrylross@icloud.com>; Tue, 15 Feb 2022 00:32:02 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 09fbded4-4a50-4388-b58d-daf38f7f5fb7
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	by pv33p00im-smtpin012.me.com (Postfix) with ESMTPS id 635EBCA036F
+	for <darrylross@icloud.com>; Tue, 15 Feb 2022 00:32:00 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ9MRE5fVVhYUw4aREQaGVlaTwwb
+ V1oeAQFbWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsbF0hLEUkHD0wSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wMxMHEQENBCQBNjYNKw1VSTk+TThNdAs1OSEeRjdaQiwdC1Qn
+ EgNMVQQvECY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+x-dmarc-info: pass=pass; dmarc-policy=none; s=r1; d=r1
+x-dmarc-policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Eat0/Y4v
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.179 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.179 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.179; helo=mail-yb1-f179.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-yb1-f179.google.com with SMTP id v63so23907734ybv.10
+        for <darrylross@icloud.com>; Mon, 14 Feb 2022 16:32:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KqIBGazqEo1ZmeXDou3tsSKgZVHGfvOBhcKZQTFi48Y=;
+        b=Eat0/Y4vs1EPqfFFHOmGMvPKznOoBJpbJ74fnGGgpTjCG5+aUteRzqqIKufkhajeIm
+         0RoZIxGCy4qpblN9dRzZVPZmhy5ZmaIgdDCCnF5naefeW79VDrqJ13+bbUvzXfVfoeef
+         AGH8j3kv+8XB2PwvqqIxkOrJhVX5gnTz7hi7yhRlq25daSy33y9ry7Z+Xl/o8oEAZlGc
+         ov0hJo1xaPl2AKGo5kSJhMEEwOdOFf1sK8LSMJ7RX47CqikpuBtQGVbYA69i5wesnpPr
+         3Aeq5nkc02uG5qh1FYwMpl8+qCMJJI8COYhONvItrcR8RIJPH5xN1c0JHV7WjHGsNp6C
+         1MPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KqIBGazqEo1ZmeXDou3tsSKgZVHGfvOBhcKZQTFi48Y=;
+        b=J2NgynLA37RxRZOvhIk9yN9TZF3NYDHWMVkG0TrbTwrr7KZYTrkQi/7oJP2D9n/ky/
+         5p3tLBkzAs08UKgzOKmOl7zC6pnZr0mzw8oTfRacSO3G86ldP/ZH/7IN4357pALTRb3m
+         u+L3oDt1PQ83AFUEFIu6oHZJ0fhtrTaLX/yt2ELKT8O0NW90PuEbBPZ9Ht17yQP8gaGO
+         4WwJ5FmC+GtH0m/mSX9ILTt5/8xpOLIlqogXizHooPXHXLxq7Z98HIDHPi2YgiCHg8Ly
+         olVfw0jlUJRcvDvarT8LGwNVQ5HAjA85tcHdr/2mlK/XlrVJUwrwof1RQtk+h8S69mWp
+         mUPA==
+X-Gm-Message-State: AOAM532/ul97G+KJ5zBii0GqDHfw/s+epweqKtr/Hg9Hz2+HKYXFBCHV
+	oHTP2I494Vc5x1TdhU2Se/HGci2GgIa54JYkZOA=
+X-Google-Smtp-Source: ABdhPJyx6pCZxmdVJunGfcY/Qumdx1i/PPDa2LAv2ERkOJpGJuFg4K/MIt8wo3SPs6Ep/NIodzf8m9ykIPweAO/RYyo=
+X-Received: by 2002:a25:820d:: with SMTP id q13mr1730315ybk.762.1644885119808;
+ Mon, 14 Feb 2022 16:31:59 -0800 (PST)
+MIME-Version: 1.0
+References: <567CF53E-ADE7-461B-8329-4FF2633A98AC@icloud.com> <CAFnbyRGVC1536D=Hho=A1ko_5roiscPsQJyDRCAPjnZXDzf7Bw@mail.gmail.com>
+In-Reply-To: <CAFnbyRGVC1536D=Hho=A1ko_5roiscPsQJyDRCAPjnZXDzf7Bw@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 14 Feb 2022 19:31:49 -0500
+Message-ID: <CAFnbyRFjafy=2FtOPzS=c+LG+O5D=WLXx1OjtNhr2Pj3z7qVvQ@mail.gmail.com>
+Subject: Re: Valentines.
+To: Alison Boyce <alison.boyce@mannlawyers.com>, Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="0000000000004337cb05d803a916"
+X-MANTSH: 1TEIXWlwfHloaGkNHB1tfQEQbHxseGx8aGxEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGxEKX00XZEVET
+ xEKWUkXGnEaEBp3BhsdG3EbGhoQGncGGBoGGhEKWV4XbGx5EQpDThd+GBlASFx8RkgaR0wfck9
+ teRNHS0FaSH9fenN6bWRtYxEKWFwXGQQaBB4fB0sbGxscGk8cBRsdBBseGAQbEhoEHxAbHhofG
+ hEKXlkXcHtgQUgRCk1cFxgaExEKTFoXaGlNTWsRCkxGF2xraxEKQ1oXGBoTBBIfBBgbEwQbHRM
+ RCkJeFxsRCkReFxgRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2Nre
+ xNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQRE
+ KQmwXb0tHUEFtGhJLaUkRCkJAF2ISfxIFHF5lemF9EQpCWBdia05vb3psZ1pHSxEKTV4XGxEKW
+ lgXGBEKcGgXbWsdYUlwSV8YchIQGRoRCnBoF2daUGRdeR8ZH2JIEBkaEQpwaBdsG00eHnpsfV5
+ QExAZGhEKcGgXZXBGbHIcHlxJRn8QGRoRCnBoF2lHY2dnAV5zTRlaEBkaEQpwbBdmRmsfGFttX
+ 0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+
+--0000000000004337cb05d803a916
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+The girls just opened your gifts and I sent you a video of them. =E2=99=A5=
+=EF=B8=8F=E2=99=A5=EF=B8=8F
+
+On Mon, Feb 14, 2022 at 2:57 PM Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+
+> Hi Darryl.
+>
+> Thanks for letting me know, that=E2=80=99s really kind of you both. I wil=
+l give
+> them tonight and will let you know.
+>
+> Cynthia
+>
+> On Mon, Feb 14, 2022 at 2:46 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hello Cynthia,
+>>
+>> My mom left valentines treats for the girls on your doorstep a few
+>> minutes ago. Kindly let me know that Charlotte and Alice received them w=
+hen
+>> they get home from school this afternoon.
+>>
+>> Thank you,
+>>
+>> Darryl
+>>
+>>
+
+--0000000000004337cb05d803a916
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">The girls just opened your gifts and I sent you a video o=
+f them. =E2=99=A5=EF=B8=8F=E2=99=A5=EF=B8=8F</div><div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 14, 2022 at 2:=
+57 PM Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm=
+@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
+=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Tha=
+nks=C2=A0for letting me know, that=E2=80=99s really kind of you both. I wil=
+l give them tonight and will let you know.</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">Cynthia</div><div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Mon, Feb 14, 2022 at 2:46 PM Darryl Ross =
+&lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@i=
+cloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello Cy=
+nthia,<br>
+<br>
+My mom left valentines treats for the girls on your doorstep a few minutes =
+ago. Kindly let me know that Charlotte and Alice received them when they ge=
+t home from school this afternoon.<br>
+<br>
+Thank you,<br>
+<br>
+Darryl<br>
+<br>
+</blockquote></div></div>
+</blockquote></div></div>
+
+--0000000000004337cb05d803a916--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>586473</integer>
+	<key>date-last-viewed</key>
+	<integer>1744141504</integer>
+	<key>date-received</key>
+	<integer>1644885122</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>14598</string>
+</dict>
+</plist>

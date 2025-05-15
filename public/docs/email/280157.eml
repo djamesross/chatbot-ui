@@ -1,0 +1,116 @@
+5599      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:a05:6400:5aa1:0:0:0:0 with SMTP id b33csp513134ecy;
+        Tue, 27 Sep 2022 06:40:23 -0700 (PDT)
+X-Received: by 2002:a2e:9602:0:b0:26a:9ca8:d6f9 with SMTP id v2-20020a2e9602000000b0026a9ca8d6f9mr10388453ljh.88.1664286023398;
+        Tue, 27 Sep 2022 06:40:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1664286023; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ZRR4sGIHlKG4JI9kEhbJmzEdiQRLXADJqbj17Mowi8ppqYfZ8YOTy3kFua9ywOhbSR
+         bMRDpycM/cCXY4Y2uPDemtu9W/ZxBLVS8+UgfNjRStPeoqBe3zX+AouCROJN29OA7AAd
+         hpc8m6IeZC3rBhevdoJEUsNeKuZy+2A96sL8E/SQsFTuo2ojKwTvX9sbTrS1juMElZHz
+         xkUPmKPgrwnTaQG4u43jAgz9nPKWaS7xYjpNiLUIxYnMVcplp52zJv3+9xI2FegKX0Wx
+         eDSgVO/GVqrfvMKdVnPliuxCegwDS8suckGTXZf3Ws5UK4/cnSfrWcXidd+dcBmIrhiQ
+         ezOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Ox8Q7YhjIJogEO3qrGX99LvZyfhPThDvGksX2kyMOnM=;
+        b=1JxYlWqy25BVlKQuPY+LWb0f9CmoXX9OVsvNahzVC+EywmVWrYU+s+fN1+7THK3lgm
+         O2T0KsRqq/X2sx+XNdgEXbYyqeBV5fJGQt1zdZ2K/0590V/KYknYGGMxiWVjr76WfmmX
+         ef5nWoDsYxEsLk9HLkWW93UMNNY+e2WZ+SCA2OtTv4a3TClus2gBS4M8rg4ZmYiRfwJQ
+         wMQI62D80WprQS+xmVUf1Yf77Y+8usVdxMhdqL/1pdqAoJrI/fZTOVkxYdBwXv46qOUt
+         AS23b2oE9v601OaldV8BPWwHVVuGShnUT5fXEVrqC35xgIxA9yIfcdd5YKekLKvjzqeV
+         SvHQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=bRaVr7t8;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id v15-20020ac2592f000000b0049f4ecb176fsor354257lfi.126.2022.09.27.06.40.23
+        for <darrylondunlin@gmail.com>
+        (Google Transport Security);
+        Tue, 27 Sep 2022 06:40:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=bRaVr7t8;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date;
+        bh=Ox8Q7YhjIJogEO3qrGX99LvZyfhPThDvGksX2kyMOnM=;
+        b=bRaVr7t8FiiIQAoBe6XsHjXKRj0SaKd+LWJ9pcxRkdEfsYnJACswYdfJT1DJtn8UEt
+         OkL+6EkWAgmfVzYaD+IODalaGPir7qKeBaWk7ftLsLz4jJmo9O2/DEnbBV3cmQJJEzIL
+         uOROxcDMjq2sEfYU2MEo/Uol62iPbHeqZo4Uo0eTnTsfeuCAbFZ9gC6J9bYbfJ5JFCgg
+         pOTGJVc4degkgud31Nimicum0zN4GC189H6TFQSW3nn8XcWSMU29psBD/wXW2r9eqZv2
+         rsTqdmxSMUMsnnnjidL6YGAPhNQLYAxkQaqyFoY3bcMzw90AsDU2Tc9quiC3AWA0Z0S4
+         iI1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=Ox8Q7YhjIJogEO3qrGX99LvZyfhPThDvGksX2kyMOnM=;
+        b=FWti+rCO1i9x96Mo68H63K5a0lrUnGLMpxZ5L7P7rkSL3fUzA/NC+p1eD2igsz3s9l
+         5d+rX4itKBxldEbSQ1e7pq1a+J7VnaLXUMidVDS2j9oZv48xcZGNm+s99DaJUE3mFsxY
+         rtsqquwMIS5Q9LQZiHePw2MGd7EGp5+7q6aYLkZxX5nN0bIdmcLG8B4rKh68DgpQbizn
+         RA8XI87hcwF3SOoWvu8vLXuPageV9zMBC9juPaumcYrSh9JTQKVU20aT5vSlIULPKfFW
+         a7khXIG9eVIOQEvXfk2lIv7fsKK+3qRa5EfRi83zdoYY6yjQe2RLNpQN1Jkbpa2SU0Ye
+         d42w==
+X-Gm-Message-State: ACrzQf0x2Fljuo8O7f76yt5bHfoMFeRqA8Fm0B/yILEPR8EhzGkHasDU
+	uudSJ3019knmPmPPk6smMNrjhOsfk1ruJTYJ2RtPj7dSFuc=
+X-Google-Smtp-Source: AMsMyM5QOcUkinfQThkIzCL7LNLx5fBeRQI80DMsWvNd3f7IRJl1se+mEqtjGiVIN/zFAT68xeyG9EG1fUjscv1yZAM=
+X-Received: by 2002:a05:6512:3b8d:b0:499:b113:865f with SMTP id
+ g13-20020a0565123b8d00b00499b113865fmr10662314lfv.505.1664286022625; Tue, 27
+ Sep 2022 06:40:22 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 27 Sep 2022 09:40:11 -0400
+Message-ID: <CAFnbyREjyULAvvDHjFHH26DLUAXu2iRNU001u3L3Xkda8oBSPw@mail.gmail.com>
+Subject: today
+To: Darryl Ross <darrylondunlin@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000002ef04805e9a8c9f8"
+
+--0000000000002ef04805e9a8c9f8
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+Alice has a possible UTI so she has an appointment at the Arbour clinic for
+530 pm tonight. I will pick her up close to 5 pm at your place and drop her
+off when we are back. Can you remind Alice to drink water and not pee while
+she is at your house?
+
+You mom can bring the girls home as per usual.
+
+Thanks.
+
+--0000000000002ef04805e9a8c9f8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><div><br></div><div>Alice has a possible UTI so she=
+ has an appointment at the Arbour clinic for 530 pm tonight. I will pick he=
+r up close to 5 pm at your place and drop her off when we are back. Can you=
+ remind=C2=A0Alice to drink water and not pee while she is at your house?</=
+div><div><br></div><div>You mom can bring the girls home as per usual.</div=
+><div><br></div><div>Thanks.</div></div>
+
+--0000000000002ef04805e9a8c9f8--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>988585</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801402</integer>
+	<key>date-received</key>
+	<integer>1664286023</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12423</string>
+</dict>
+</plist>

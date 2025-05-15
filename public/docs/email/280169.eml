@@ -1,0 +1,236 @@
+11491     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17090901.me.com by p133-mailgateway-smtp-8588b56cd7-67ndw (mailgateway 2316B325)
+	with SMTP id d7385d79-4a17-4777-84c8-8c3f3f39165e 
+	for <darrylross@icloud.com>; Fri, 26 May 2023 15:35:08 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: d7385d79-4a17-4777-84c8-8c3f3f39165e
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	by ms11p00im-qufv17090901.me.com (Postfix) with ESMTPS id DA8202A00CA
+	for <darrylross@icloud.com>; Fri, 26 May 2023 15:35:05 +0000 (UTC)
+X-ICL-SCORE: 3.333033330041
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRloQXgcZFltVFVFfDlgc
+ DEZVVgJTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwBGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqTD00AD0JTiMxKi48L397TwwXIB87dnktIBYsBy9gaRFERD8S
+ DVFbKQZOJzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K+evduBo
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.41; helo=mail-ej1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-96f50e26b8bso149529566b.2
+        for <darrylross@icloud.com>; Fri, 26 May 2023 08:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685115304; x=1687707304;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=saDef1E3fXfJ/chDjZVlI6HGzQmV8s4z0Te4XSk3zn8=;
+        b=K+evduBoLtSv1BVRtLCpCRELRwMjl61RJyZOLVJurtoNtcMxMtKQ+GmgmyDwsofizi
+         MJ4WD4T7i8Tolc99/QZjD0mXrpp0FmMyBjhhC57o5t6QDlWOQ2tNiYeUDz6W/uhI2yiZ
+         92v+on1IZV57TO0PMoe6efBv45Zy6LbTA0+pvQyOVFWSP3qZXcicG8R6MQJg/uzWvDQh
+         Z+QZbsyH57lPhfAM1aPC6n6CEPOjHqFFn7pYcictVAtebWgcjwXHHGot+5TQS3XkXG4d
+         RrtGu3zt5hnldlkPMGRd5a3WLIw8HcSLS56HyqOJY/nNqrfWuTHhDHxOI2gcEp1ObGbK
+         oxDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685115304; x=1687707304;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=saDef1E3fXfJ/chDjZVlI6HGzQmV8s4z0Te4XSk3zn8=;
+        b=UEUlF4SvPT5itYU/+bsb5GAUaL1gNpdtawxrU3VbtIzvIgWD/my21iSQICNT5LHVya
+         +rF6lx7tt7ueMRqbGcP2SAxPlsxqEf6aF+8c1MQmuyvzCGfUNbRJEOLxUbc8dQ428vAM
+         cgW2MsoH5mbzuvY+YxHJVuO//nO+uQQnF2d7C/zNLbwLyTSTGKSq1sQyTAW9B3Zy5YsE
+         uFf5QuHBD7tlIePGI2qhjwq2EmrPsc3do3snQO7LAHwMFqGo8G5XMLBaBn6NZnKNq55N
+         grJ+evJxjptBXbBE4b8V7eLE/+GItut9vlr+FMfnI9D4D5a2kWU3bq4trzI80RXRan48
+         Y55g==
+X-Gm-Message-State: AC+VfDxNU/6FY0ZQ1mKqbvjM5eDXaOBsDMMWwQ+TOua9bYSD642a3poK
+	PaE2202ICv2hFvmpOTdOAZmZDHnUy2qp/UUX9/OKtLav3D8=
+X-Google-Smtp-Source: ACHHUZ76Z7GPRonOypfjWWA69ZMJFycYBXkA6EjMCHT1AzRnnkkza9yV8lLkNhj+OBERZ/3qA9sUPtDvoxvLZ3A+kDM=
+X-Received: by 2002:a17:907:7e88:b0:94e:8559:b5c5 with SMTP id
+ qb8-20020a1709077e8800b0094e8559b5c5mr3041374ejc.64.1685115303708; Fri, 26
+ May 2023 08:35:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <EE26EF8A-FA81-4879-9134-45BDB7D97305@icloud.com>
+ <CAFnbyREn-PmddPLR+2zr0=wyC0x=DMiRa=30j_VGJJgkAcwUzQ@mail.gmail.com> <7A7262A9-7D7D-4BA7-B6ED-1F3A83E270BE@icloud.com>
+In-Reply-To: <7A7262A9-7D7D-4BA7-B6ED-1F3A83E270BE@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Fri, 26 May 2023 11:34:52 -0400
+Message-ID: <CAFnbyRH9DRwE9xADSHKWOM-ynFhCFOOUoJpWP_s1=YeuamKs7A@mail.gmail.com>
+Subject: Re: Regarding FaceTime Visits.
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="000000000000154b2305fc9a7b48"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQbExseGx0aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhoaEQpZRBdiRWJBeWNMYV17TxEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGBgaEQpfT
+ RdkRURPEQpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF056TmV/UnwSQW5
+ EQxoeS31vWG5rRl1MWBtST2FDU1oaEQpYXBcZBBoEHxoFGxoEEwQbEgQbGRwQGx4aHxoRCl5ZF
+ 0haRHBsEQpNXBcbEhkRCkxaF2hrTU1rEQpMRhdiTWsRCkNaFxgaEwQSHwQYGxIEHhsRCkJeFxs
+ RCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXa
+ BIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJ
+ LaUkRCkJAF2lJH0t+YXkbXHMfEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXYUkBB
+ UwYYFlsGhwQGRoRCnBoF2EcRkRDGHxHHlJQEBkaEQpwaBdjf1p5HmF8fWZPZBAZGhEKcGgXb2d
+ weGFORU5oYHgQGRoRCnBoF2QSa19tEklfUx1kEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XG
+ xEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-ORIG-GUID: dPdOUxV8kDni04aWErDAlwfr1xeKiyp0
+X-Proofpoint-GUID: dPdOUxV8kDni04aWErDAlwfr1xeKiyp0
+
+--000000000000154b2305fc9a7b48
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+
+I am not present from 4-5 pm on Thursday as I am still at the office so
+relying on Charlotte to coordinate. After I read your email I spoke to her
+and she said she talked to you  briefly and said they will call you Friday
+after school. I am not sure where the miscommunication happened. Again they
+never miss FT and if so they always reschedule.
+
+Alice has mentioned at times she is not up to speaking with you over FT but
+she says she is made to feel guilty, she says when you have an in
+person visit you speak to her about why she is not up to speaking at length
+and she says she is made to feel bad.  If this is accurate, please stop
+this immediately.
+
+Cynthia
+
+
+On Thu, May 25, 2023 at 8:09 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Good Evening Cynthia,
+>
+> I am writing to find out why the girls were unavailable for scheduled
+> FaceTime today. I was able to message with Charlotte long enough to say hi
+> and ask if she was available to talk but I have not heard back from her.
+> Please provide an update and further information.
+>
+> Virtual parenting time is important to me and I value the chance to
+> connect with them Thursday afternoons. I understand from the documents your
+> lawyer sent that you want to move the time from after school, when
+> Charlotte and I were usually able to connect, to 6 pm. You recently
+> informed me they would be available from 4-5 pm. Without any communication
+> I made sure to be available from 4 pm until 8 pm.
+>
+> I have asked repeatedly for notice if they are not available to no avail.
+> Please provide an update and if there are conflicts Thursday evening a
+> proposal for days and times that can be scheduled and routine.
+>
+> Thank you,
+>
+> Darryl Ross
+> darrylross@icloud.com
+> ___
+>
+> > On May 5, 2023, at 12:30, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> >
+> > Hi Darryl,
+> >
+> > The girls have never missed a FT and if they are busy they have always
+> rescheduled. Their calendar is very busy now with soccer, babysitting and
+> tutoring but they do make time to FT you twice a week normally for almost
+> an hour. on Thursdays and Saturdays.
+> >
+> > The tutor was last minute as they only have limited availability. It's a
+> free service offered by the board and will definitely help the girls with
+> their French levels. We were on a waitlist for months.
+> >
+> > The girls can FT Thursday 4-5 pm until the end of June and when tutoring
+> ends, pick up at 5 pm if that works.
+> >
+> > Cynthia
+> >
+>
+
+--000000000000154b2305fc9a7b48
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>I am not present=C2=A0fr=
+om 4-5 pm on Thursday as I am still at the office so relying on Charlotte t=
+o=C2=A0coordinate. After I read your email I spoke to her and she said she =
+talked to you=C2=A0 briefly and said they will call you Friday after school=
+. I am not sure where=C2=A0the miscommunication happened. Again they never =
+miss FT and if so they always reschedule.</div><div><br></div><div>Alice ha=
+s mentioned at times she is not up to speaking with you over FT but she say=
+s she is made to feel guilty, she says when you have an in person=C2=A0visi=
+t you speak to her about why she is not up to speaking at length and she sa=
+ys she is made to feel bad.=C2=A0 If this is accurate, please stop this imm=
+ediately.</div><div><br></div><div>Cynthia</div></div><div><div><br></div><=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Thu, May 25, 2023 at 8:09 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@=
+icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">Good Evening Cynthia,<br=
+>
+<br>
+I am writing to find out why the girls were unavailable for scheduled FaceT=
+ime today. I was able to message with Charlotte long enough to say hi and a=
+sk if she was available to talk but I have not heard back from her. Please =
+provide an update and further information. <br>
+<br>
+Virtual parenting time is important to me and I value the chance to connect=
+ with them Thursday afternoons. I understand from the documents your lawyer=
+ sent that you want to move the time from after school, when Charlotte and =
+I were usually able to connect, to 6 pm. You recently informed me they woul=
+d be available from 4-5 pm. Without any communication I made sure to be ava=
+ilable from 4 pm until 8 pm. <br>
+<br>
+I have asked repeatedly for notice if they are not available to no avail. P=
+lease provide an update and if there are conflicts Thursday evening a propo=
+sal for days and times that can be scheduled and routine.<br>
+<br>
+Thank you,<br>
+<br>
+Darryl Ross<br>
+<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@iclou=
+d.com</a><br>
+___<br>
+<br>
+&gt; On May 5, 2023, at 12:30, Cynthia Holmes &lt;<a href=3D"mailto:cynthmh=
+olm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl,<br>
+&gt; <br>
+&gt; The girls have never missed a FT and if they are busy they have always=
+ rescheduled. Their calendar is very busy now with soccer, babysitting and =
+tutoring but they do make time to FT you twice a week normally for almost a=
+n hour. on Thursdays and Saturdays.<br>
+&gt; <br>
+&gt; The tutor was last minute as they only have limited availability. It&#=
+39;s a free service offered by the board and will definitely help the girls=
+ with their French levels. We were on a waitlist for months.<br>
+&gt; <br>
+&gt; The girls can FT Thursday 4-5 pm until the end of June and when tutori=
+ng ends, pick up at 5 pm if that works.<br>
+&gt; <br>
+&gt; Cynthia<br>
+&gt; <br>
+</blockquote></div></div>
+</div>
+
+--000000000000154b2305fc9a7b48--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1092906</integer>
+	<key>date-last-viewed</key>
+	<integer>1744823152</integer>
+	<key>date-received</key>
+	<integer>1685115308</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12297</string>
+</dict>
+</plist>

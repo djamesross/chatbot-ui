@@ -1,0 +1,131 @@
+7374      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-2d-100-percent-36 by p158-mailgateway-smtp-948c59447-4mmhj (mailgateway 2516B137)
+	with SMTP id f10e5b42-f9a5-40e5-9aaa-8d6c1ca42dec 
+	for <darrylross@icloud.com>; Fri, 9 May 2025 00:29:02 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: f10e5b42-f9a5-40e5-9aaa-8d6c1ca42dec
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	by p00-icloudmta-smtpin-us-east-2d-100-percent-36.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-2d.k8s.cloud.apple.com (Postfix) with ESMTPS id 6759EC00160
+	for <darrylross@icloud.com>; Fri,  9 May 2025 00:28:59 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgAOTEFPRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxIcARsEQU9IEBdfUQ4QVwUYFRBGFgdECxYRXBsHEUhLEUwGGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDIuU1kBOTcWTjdnWFADEj82NUNgSQBMK04cCVIGLUo0FDZhVz0HDT8ELHpBIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CjCCXwkb
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.46 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.46 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.46; helo=mail-ed1-f46.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5fbed53b421so2447200a12.0
+        for <darrylross@icloud.com>; Thu, 08 May 2025 17:28:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746750538; x=1747355338; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=oqlSeskEYayMeBUqfbgnX758xC9aaJgFGMjCZkGWFFA=;
+        b=CjCCXwkbi9WooQFdgtnlqOl5mdYh0na7ifFgLJUSRI8KykfbHR1ob4EM54TNmmdq4t
+         /zdlefXrRGBi8nGHEYSp547M1FVNqsHZFY7qjYAlh4kfacvkWGlTdA4t7ehRh3rvXWG6
+         o3X9nf+Lsab3a/Qd7HdRYk9RiKyCPDFmc7n8RhsH8glNTtzrSq+LIxrLAP69zO2ifBJ0
+         ide9EHfI1GXCL8VwS731jg9GEuYK2XQOSLwK6XZ7JxQpGUauuk5hSOFN3iUg5BZqjZOW
+         HXWbfizxSat50tueqQICxGwYNg/OySzfqxemOxzmyJTzlVZyYEz5nav9hsRldZrQLsO5
+         6F3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746750538; x=1747355338;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oqlSeskEYayMeBUqfbgnX758xC9aaJgFGMjCZkGWFFA=;
+        b=C+cnnnqgZ3r9jcpSGldNVtERLSOjGu5R+WIy/mzgls4x306c6yz7zh1OeUCg6MMfJy
+         ewDwLFv7NfJZieUIfRkDzi/tXuEjSZIOmgWyI47SgRcxYAoGuUMsqG5ts3doiNZ0tApP
+         5VnAYCqqofDVxHMkHYyDDa3YFFD3xBZ2/rgYBCGccYFG2ofkLOW8FN19+BhhfpjHPQO0
+         ncRtbI4Rlwoc9FZ6bSF5HA07UsuV6SAzsjw+2kb6U0Nt1yymt3+IlBAdZJCVFDct70Z9
+         Wo6WrgYH2+s1zNUihm+TcWiwnmTC6k1k9yXdW2QTvVr7Rc6WoCIkpYiKWXZXMR8EjGey
+         TV/A==
+X-Gm-Message-State: AOJu0YwBOo9BqxOfzATYtvWb/73yFSAW1ce6FSXWMB8bNXzihd9QFizr
+	zLI1HjgTZ0fgku2Og4lvCOlSQJkI2DoQVLVSbP+tjvciMxL8058LqcOz03XwJmjReLEZ9NwgChB
+	C32HB/sgpMSY6QTfYnJBjp4JqRdnoA/fk
+X-Gm-Gg: ASbGncuhAD41jkP5X4EqMnXhUEPqvPtc9KWJwddhFrqLwE7zDLSCZ9yBo5KMlcfT61u
+	EmbKPtxqlTIke8DqTV/oOa1NolPrY9drmrjmjf7R9Wk9ukJFUX72WhHZu2SRLxOlTYy5rW/w8Cj
+	fWBGPpeIT6T3iS4qnHClsCqqwyJi32MODYeGQNb8T9INYFPY/wOWkvLMw=
+X-Google-Smtp-Source: AGHT+IG6cAVazN6UJzTd+dYTexuE6y9H4UBr0CZZYvO5Z4UMMIAmsSE4BFMpwONn5CL67Jw9QBuCm26R3hwQddV5oRU=
+X-Received: by 2002:a05:6402:26c1:b0:5f7:29e0:5cf9 with SMTP id
+ 4fb4d7f45d1cf-5fca073084amr1023900a12.5.1746750537874; Thu, 08 May 2025
+ 17:28:57 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 8 May 2025 20:28:46 -0400
+X-Gm-Features: AX0GCFsNTyVFtnMzbrR0puIsjkdlQZSoA4rWsbCvi9p4lf1hcgXLRjoH75MjJXw
+Message-ID: <CAFnbyREVcocLNp9OWn2vkYAMsV+u5M9d9ddX3RcNQa_rtYsTJw@mail.gmail.com>
+Subject: Medication
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000052426b0634a90dbc"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOFxtFUHh/bmlFXXoeH
+ mliUBpmeUAcEnBGHWIHTWAfaUASEQpYXBcZBBoEHxsFGxoaBB0bBBscGgQTGxAbHhofGhEKXlk
+ XTH9cbkcRCk1cFwcbGh0RCkxaF2lNTW8RCkxGF01rEQpDWhcYGhMEEh8EGBoSBB4cEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdkGxtcTRp/aUtaWxEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2ByZGdMf2geZk5IEBoRCnB
+ oF2ViSX5vflodRk1cEBoRCnBoF2ZbbX9hYnNSTnISEBoRCnBoF2kYX2dPf1JZSFxZEBoRCnBoF
+ 2IZHFt6HR15U2VnEBoRCnBoF3oFHh5eYhN7Y1lcEBoRCnBoF2EBUlJaTUZOYFByEBoRCnB/F2B
+ 4fWh9ExsBYRhFEAcSHhEKcF8XYXJoXmsdQnoBT30QBxIcEQpwfRdrXH9TGAFgZx95RBAaEQpwb
+ BdmRmsfGFttX0ZvbxAHGRoRCm1+FxoRClhNF0sR
+X-Proofpoint-GUID: 1ozRUDCowP44CHz0LSj68Zl7H-gJ5Cj8
+X-Proofpoint-ORIG-GUID: 1ozRUDCowP44CHz0LSj68Zl7H-gJ5Cj8
+X-Authority-Info: v=2.4 cv=UZurSLSN c=1 sm=1 tr=0 ts=681d4c4b cx=c_apl:c_pps a=BfGBKlfVCZkr1ZEMvOwMnA==:117 a=dt9VzEwgFbYA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=oDFKoPgachKbsEmeOU0A:9 a=QEXdDO2ut3YA:10 a=UzISIztuOb4A:10 a=fys2sDa9AAAA:8 a=bVRWojAbJRjeDSlW1pMA:9 a=e5ilF0vO9izieA4J:21 a=wwAePvBONnjDQaqHVNx2:22 a=7YpECbvlQQReuXKdpsOb:22
+
+--00000000000052426b0634a90dbc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Charlotte said you gave her an aspirin for headache. Aspirin are only
+supposed to be administered by doctors for children and teenagers. Advil
+and Tylenol would be appropriate in this situation.
+
+I=E2=80=99m happy to discuss it further with you and Dr. Brenhouse.
+
+Cynthia
+
+--00000000000052426b0634a90dbc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br clear=3D"all">Hi Darryl,</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Charlotte said you gave her an aspirin for headache.=
+ Aspirin are only supposed to be administered by doctors for children and t=
+eenagers. Advil and Tylenol would be appropriate in this situation.</div><d=
+iv dir=3D"auto"><br></div><div dir=3D"auto">I=E2=80=99m happy to discuss it=
+ further with you and Dr. Brenhouse.</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Cynthia<br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" cl=
+ass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"=
+><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAu=
+WT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA"><br></di=
+v></div></div></div>
+
+--00000000000052426b0634a90dbc--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1355171</integer>
+	<key>date-last-viewed</key>
+	<integer>1747080585</integer>
+	<key>date-received</key>
+	<integer>1746750542</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>20245</string>
+</dict>
+</plist>

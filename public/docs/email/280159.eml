@@ -1,0 +1,100 @@
+4661      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:a54:2b8a:0:0:0:0:0 with SMTP id f10csp474040ecp; Thu, 4 Aug
+ 2022 14:42:59 -0700 (PDT)
+X-Received: by 2002:a2e:a909:0:b0:25d:526d:6c47 with SMTP id
+ j9-20020a2ea909000000b0025d526d6c47mr1166245ljq.198.1659649378996; Thu, 04
+ Aug 2022 14:42:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659649378; cv=none; d=google.com;
+ s=arc-20160816;
+ b=Q6Z/FLlokEFrrb2IQflHjhbIhGxOjX/5hiHIE4Zv4yP9+Nu7QrxEEA+DYIQxsa6nlC
+ xtjzo52IB+BN6NnaWs2HD8/NQ96P5gB1+rztoXGR7mB5Jn4dAmchIAAQvN3Oz0TJjQK3
+ iee/1g/s9Q/wYW14YktZNf6YzHzdKm4xPxRvP/do0p9cKyZOY0PBhx1FUE++vVkTDn79
+ adpFWN7wwc7HfSpwFZ4PMMK7jWZBWFquKxGqG8brYAag/agIl7EpGU6mDBQ2xgd2+B6F
+ TAfi/B64yo0SBvmzFMoUCJRh5uP7bLFp7q02/AFznNOK5/LqExLW0PGIwsqJxZaw1MuP 8y8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816;
+ h=to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=qN5TWBGp2tV2WhSEfq0NguN9kjR8xyhUD4EgpixVqYE=;
+ b=FQNAi+wt6M5HBgEy72LO9vYk1ggngXJ0PoFRfFkSlZm8/xZh4BiRNhN2pmdRA7yIZb
+ 3xwQoqilAX1fZeqsBwbLfC9U4Rywq6Cx9ZALMgjqhSlswf61NYNArWwRbaZ3KSRSNggL
+ gFy1KCR4gcGKmwbw0ZV1peQike+lXKXQvjuAPO6Fg4r1KJ3d9aXGrjQZKnRCaMK+x7vO
+ wg/rekM94XNw7cgDWvucVmhDDvmLKxkcxGPIWTNq6EMaKLYSCyvxRTkRFO+9/g26gqUS
+ 99JhtTaatf/OijFVyKc9kC55h6j22INLcwUORJY1u5vRJi+kuzl2obSGpACLd/7k+9MN X3ew==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20210112 header.b=W9YOXn75; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ z21-20020a195055000000b0048af103d7c6sor494559lfj.97.2022.08.04.14.42.58 for
+ <darrylondunlin@gmail.com> (Google Transport Security); Thu, 04 Aug 2022
+ 14:42:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20210112 header.b=W9YOXn75; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc;
+ bh=qN5TWBGp2tV2WhSEfq0NguN9kjR8xyhUD4EgpixVqYE=;
+ b=W9YOXn757QORBsWQ0idAYDUmo7GFpHk2a9cU9AwUt6EbIJhE7qsnyy8qkX2SHaPlvJ
+ QDVV40MgMfTEfXcRgk9ekM30fo5Oa3iZyn3prx/UB9PUqrwg0RN1EtYo2ieZm7qJQUtQ
+ bdl2bI1RwuYGRvug041IqkePB8JspgF4C27SMGAes6BdrV+phaaprq1s0abuH0Tn4FOO
+ vp6U1SaYzneCFpWbOVOrXd5lIWFFKMgyEx6YqQyPb5ap2IcMBJy0O6diPRTNDL6X3CPi
+ tMITBGLQrzKPCcDm7cgq9pzkyk9KMynquKWULldFuDijoWp9ORe5uDlwInzqeAoj2Hqx 3vmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20210112; h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc; bh=qN5TWBGp2tV2WhSEfq0NguN9kjR8xyhUD4EgpixVqYE=;
+ b=ArE+8sYQ/QFdxn2lWoFHgvKS/EcWsccb40ANvFqxojQGIe14FVdeP+9uaZwAAxfqoT
+ 2D2JBWI7qXm9SsoUkzqkVdNp4lAJVdQs4/HeGvonfYqZuaTr7kmnbafEF+3QDHTPzDjf
+ pXJ48K9js9sVEQu3ef4swLLfdrEICC9w0vQOQxIw/kESCZFDC6wtFWxGAK6QdRnXvpE1
+ bbIJBW3vfZIXuogLGOCn2K+d4yCpDlu6uQXjLiKXMD44y/91UEnsH+oyUh3syqB5UWeK
+ idR74a6Ha1SvqrhqLqwf3CO2P3fpFAt4BI2nUo4XP6YE7tcd6k4+D+1Qtsqi67KCTd9L k6kw==
+X-Gm-Message-State: ACgBeo32Ox7dwpT4ggt0ae8DqjoxWIOp+WKKkgOhU0aWsKU9NTUs5ki9
+ afwKbBUockyZYN+uEcrcrOPQiIgA15rX/3nOX6VicxLy
+X-Google-Smtp-Source: AA6agR52oCerdmGf4hgmClMsGfOfF8hO28tvE8pjpfTC4qgddtNnRj938hy18Yw066zJn3ewTV1AVRrzAzOzz+6+oIA=
+X-Received: by 2002:a05:6512:31c6:b0:48b:2771:d0d2 with SMTP id
+ j6-20020a05651231c600b0048b2771d0d2mr1234219lfe.382.1659649377946; Thu, 04
+ Aug 2022 14:42:57 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 4 Aug 2022 17:42:47 -0400
+Message-ID: <CAFnbyRH+Ws9O7iYFy5ZOHjroYN+tMrSSh4euSOS9EHwTowayFw@mail.gmail.com>
+Subject: Charlotte
+To: Darryl Ross <darrylondunlin@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000009fd09105e5713b4c"
+
+--0000000000009fd09105e5713b4c
+Content-Type: text/plain; charset="UTF-8"
+
+We are heading to a movie and Char has asked if she can call you in the
+morning instead . Are you free at 10 am?
+
+--0000000000009fd09105e5713b4c
+Content-Type: text/html; charset="UTF-8"
+
+We are heading to a movie and Char has asked if she can call you in the morning instead . Are you free at 10 am?
+
+--0000000000009fd09105e5713b4c--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>916745</integer>
+	<key>date-last-viewed</key>
+	<integer>1745853565</integer>
+	<key>date-received</key>
+	<integer>1659649378</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12049</string>
+</dict>
+</plist>

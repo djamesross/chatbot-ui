@@ -1,0 +1,177 @@
+8160      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06031302.me.com by p133-mailgateway-smtp-6b494658c-7dt6s (mailgateway 2322B85)
+	with SMTP id 8132112a-09a3-457e-8ed2-e2914e7a5cc6 
+	for <darrylross@icloud.com>; Mon, 14 Aug 2023 17:32:14 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 8132112a-09a3-457e-8ed2-e2914e7a5cc6
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	by st43p00im-qukt06031302.me.com (Postfix) with ESMTPS id E6CEA3F8019B
+	for <darrylross@icloud.com>; Mon, 14 Aug 2023 17:32:11 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdXQEkSFgoQFQlKWl1XCxlU
+ Ch1JHVBTQkhIEBdfUQ4QVwUYFRIWEgELW1UVUV8OWBUMRlVWB1VEVwEYF1daB1saCRpaEFIGSFsB
+ GhlZWkwWFgtVWF1fBkhbWjQ5dlgADCsuOwJ/cDg2MioADWVgVD01KA0LSUQNAg4EBTwEXC1BLCsl
+ AQR7LidMWxQgcXYPFBAKWR9dVwsZVwUYFQ4UQgcaW1UcUUQQDBUUGAtDdgsWFQkCHB5VDRhb
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aTUSKxVw
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.171 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.171 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.171; helo=mail-lj1-f171.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2b9db1de50cso68798501fa.3
+        for <darrylross@icloud.com>; Mon, 14 Aug 2023 10:32:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692034331; x=1692639131;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qm3uPQUx9865O6zoOzA/N4dOEfS/+5NGdidFU7lomVI=;
+        b=aTUSKxVwSawN+nNw9PRHGVnE41KLSTC0rqip8nVx0YQt/SpB0AXw7IJcxHS+/+PmLp
+         4JrgzATJF07OudQTIoNP6JIxXc6UXFDl+if7VgX9CN1MCiTPfEi6AWtDa9XCS52V2SK5
+         h5W/RpKINgPljNcvy/zvP3HCflwxTVC5WQTw0xPNEj5Ggm3QQpdqykuqwk9Y6YlL3fUt
+         wLpau4OnsUG6j6ODrWlIADpBVSEvqCvuCHFy5DEllVSkThQaf/M/1VAxzhkeZoETGsPF
+         NWh1URBUKSkEMX7dStfzhfigIn0UPb+Lxjy3TP+LIJ9NQ4+lT6n6FpWK6en1iBieiV0I
+         MqmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692034331; x=1692639131;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qm3uPQUx9865O6zoOzA/N4dOEfS/+5NGdidFU7lomVI=;
+        b=RgBhj0THbq1zK3oFNtKZMKJJGx5qa+aytBniJmZbjT3L6SstFtIBWiQ4DpVy6jh2tD
+         nMDBwGDkQVYJju/rb4BYV83DC3j9ayskQYpVhWysgKG7cACjBLc5yna9KAurEj0KIlI3
+         oMoY415LziliNATQCg/2JRPNEzcfmrj6kXcnNFCI1P2RXTdqh8Ul7XIe8h7H0yLlyAkV
+         /NRSdMeSL6lpK24hPbkU3BjYAoCifUm0rlhnwBpnpd4mUI0Wdo7+8NI0HDOuK2zyzbXq
+         OHwdSIlb0uN2LDACBhQo6nBTUWtVgJrsLGq9wu0nE5OM+MKU+HOg8fRCqLqGnysfdPkh
+         jVyA==
+X-Gm-Message-State: AOJu0YwLfxMg/WL0D83r2D/vN1Lotrp0Pi2oL6xpcD3v55edHCYorFzp
+	cuZYZdi1ZIYThJ0aV5DgcoY7MthyVmDomMIvxBSHJr49
+X-Google-Smtp-Source: AGHT+IGEYdFbcwzzMD1ARYMuRTyRSz+0kIXjLlRUFsD81TA521PC2ijP5u4BObpNJcZneLRq/rshvzpM7qiAngQ4Hks=
+X-Received: by 2002:a2e:2c09:0:b0:2b8:3ac9:e201 with SMTP id
+ s9-20020a2e2c09000000b002b83ac9e201mr6871245ljs.40.1692034330397; Mon, 14 Aug
+ 2023 10:32:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREfgnksf6nS0b8s9ER0dBBg1uGvZ+z_kzwFqBmLRWhs_w@mail.gmail.com>
+ <C5EA6635-A357-4E14-A0D3-7F56C6EDBEC2@icloud.com>
+In-Reply-To: <C5EA6635-A357-4E14-A0D3-7F56C6EDBEC2@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 14 Aug 2023 13:31:59 -0400
+Message-ID: <CAFnbyRHLzOFZCKLwuUV6HLNzsyrowwbrD4jO4UMRy4MLR5=cXA@mail.gmail.com>
+Subject: Re: Sunday
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="00000000000036129e0602e571ad"
+X-MANTSH: 1TEIXW1kfG1oaGkNHB1tfQV4aGBoTGB8aGBEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcbeWd8c1JabUZMGmBbc15
+ +RW5YWHwcfxoeeWFiRk9EUxEKWFwXGQQaBB8aBRsaGgQSGAQbHxIEGBwQGx4aHxoRCl5ZF0lva
+ 0cZEQpNXBcZGRsRCkxaF01daxEKTEYXYk1rEQpDWhcYGhMEEh8EGBoSBBsdGxEKQl4XGxEKREk
+ XGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8e
+ HJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSRE
+ KQkAXbkcSExhIfxxoYBsRCkJYF2JrTm9vemxnWkdLEQpaWBcYEQpwaBdiQ0ZCb315HRphTxAZG
+ hEKcGgXZUhzbElfbF1ZRXkQGRoRCnBoF2MZY24dGRsBWFpGEBkaEQpwaBdoWEduXEtkHB1BTRA
+ ZGhEKcGgXbUNoZ1xOXVljch0QGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: 1SMVYxpGlf0JqYtToDrrV6U04SKHleny
+X-Proofpoint-GUID: 1SMVYxpGlf0JqYtToDrrV6U04SKHleny
+
+--00000000000036129e0602e571ad
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+My mom can bring them for noon tomorrow.
+
+Thursday won=E2=80=99t work as Charlotte has a consultation with a plastic =
+surgeon
+at CHEO on Thursday afternoon to remove the earring backing in her ear.
+
+If we extended next Tuesday for noon that would make up the time.
+
+
+Cynthia
+
+On Mon, Aug 14, 2023 at 11:39 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Can you confirm drop off tomorrow, or my mom can pick them up, for noon?
+>
+> Also, for one make up date, does Thursday work?
+>
+> Darryl
+>
+> > On Aug 12, 2023, at 09:59, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> >
+> > =EF=BB=BFHello,
+> >
+> > Charlotte=E2=80=99s coach put together a soccer game on Sunday at 6, sh=
+e has to
+> be there for 5:30 pm.
+> >
+> > Are you able to switch the schedule for a visit from 10 am - 5 pm tmrw
+> so I can bring her to her soccer game?
+> >
+> > Cynthia
+>
+
+--00000000000036129e0602e571ad
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hello,</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>My mom can bring them for noon tomorrow.=C2=A0</div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">Thursday won=E2=80=99t work as Charlotte has a cons=
+ultation with a plastic surgeon at CHEO on Thursday afternoon to remove the=
+ earring backing in her ear.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">If we extended next Tuesday for noon that would make up the time.</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+Cynthia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, Aug 14, 2023 at 11:39 AM Darryl Ross &lt;<a href=3D"mai=
+lto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
+#ccc solid;padding-left:1ex">Can you confirm drop off tomorrow, or my mom c=
+an pick them up, for noon?<br>
+<br>
+Also, for one make up date, does Thursday work?<br>
+<br>
+Darryl<br>
+<br>
+&gt; On Aug 12, 2023, at 09:59, Cynthia Holmes &lt;<a href=3D"mailto:cynthm=
+holm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BFHello,<br>
+&gt; <br>
+&gt; Charlotte=E2=80=99s coach put together a soccer game on Sunday at 6, s=
+he has to be there for 5:30 pm.<br>
+&gt; <br>
+&gt; Are you able to switch the schedule for a visit from 10 am - 5 pm tmrw=
+ so I can bring her to her soccer game?<br>
+&gt; <br>
+&gt; Cynthia <br>
+</blockquote></div></div>
+
+--00000000000036129e0602e571ad--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1162359</integer>
+	<key>date-last-viewed</key>
+	<integer>1744141784</integer>
+	<key>date-received</key>
+	<integer>1692034334</integer>
+	<key>flags</key>
+	<integer>2207647005697</integer>
+	<key>remote-id</key>
+	<string>19244</string>
+</dict>
+</plist>

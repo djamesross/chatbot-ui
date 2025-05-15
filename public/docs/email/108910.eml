@@ -1,0 +1,233 @@
+11687     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09071502.me.com by p72-mailgateway-smtp-bdf66cb5f-jgnxb (mailgateway 2220B102)
+	with SMTP id 41df349f-ce75-4864-91e5-497b6c0ceb92 
+	for <darrylross@icloud.com>; Wed, 3 Aug 2022 16:38:27 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 41df349f-ce75-4864-91e5-497b6c0ceb92
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by ci74p00im-qukt09071502.me.com (Postfix) with ESMTPS id A8514634017E
+	for <darrylross@icloud.com>; Wed,  3 Aug 2022 16:38:21 +0000 (UTC)
+X-ICL-SCORE: 3.3320333300
+X-ICL-INFO: GAtbVUseBVFHSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRUkJGFNCSURXEFVaDUhb
+ CxYRXBsbF0hLEUkHBkwSFgkQFFUYARoURFcIRERfVxQHHhQdTwBEVABGTwAYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFC
+ DG93M0IjIicKB3g2IzEJRyloYhQASiMZU3NADQQJHDsQAgAzRFIJP05FQSIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=k0C7Pxc4
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.170 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.170 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.170; helo=mail-yb1-f170.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-yb1-f170.google.com with SMTP id r3so29204352ybr.6
+        for <darrylross@icloud.com>; Wed, 03 Aug 2022 09:38:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc;
+        bh=C+01fb0qxYEJezPDSAi5L3LsW1Xz+TT8fJ1YwmQaXxU=;
+        b=k0C7Pxc4fjTjLEPVklq/hy+en4XQeBOaMrM+SLhthrbKq7lELMo2ju8SVqQ5I44vh6
+         L/8mn2IT3Xe2W3ssrhmjETPk0L/tLRuUwvAQzf7Nv7Z6CMsmOQTXhSl9R+ROEOX+Gptb
+         pyEFoORSl8A71ZElO+BkS3UdA98FF38XsALbnfC79CVAvPDI8j5Xu0lUbovrpzStCS7n
+         draBFDIMiHBpI7tcrbfQWPcrz8+416OP0871Yw5QniApxynCxI71qZb2Lly1gRCJ8KPI
+         +dCyZOapfs8+LsEY/vaK+aXj39EF7MfAaUo7ABxWd028ux/I3avshCzedhXddHS1X9Zi
+         BUuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc;
+        bh=C+01fb0qxYEJezPDSAi5L3LsW1Xz+TT8fJ1YwmQaXxU=;
+        b=tlQhyrYvJdtQBGXw615HVujxxdb4cUVScvsN2T4CHpd01aeptibuc8EfV0/a70Reyj
+         2PERlF2GUTn5i3CgobpQm7DFEoqqZbILxGoTjcFT9+kkBzDMZG6IHH8Eth9b+dmWSN+r
+         uT4MrPE0aYsw+vQFcI+n5nRQBqkOOKDvsP9trDpwyJ5akgOMueBEScHXHMCj6ks/trA5
+         0WyM4TWqkVnyuzLKCdQu46FLlFxAS4mcDssfq8tOEklyOq3pJy1YY6A2XmHNdrn1Thii
+         YVh0CopdqsbXMnxf+kZ4k80/Slu0h8M3t9E0doBtjjXUZMfipP3qeBCRpu6/q28tsg4/
+         PTjQ==
+X-Gm-Message-State: ACgBeo2B0FtbVARhEVXfpoGAmpdpkVzEY7GpC3tzVMRM58WDhdzC30XP
+	dfXZ5hSJOQP2jEa3e0cP2l9CLzTcmiJmE8oWdyYraHTnkX6bdA==
+X-Google-Smtp-Source: AA6agR4Ean5noaTqUEOz97iMjdzzFqF/8UZY6Ii479mObEwd308p/tTV11wPotqeDqsai9dHbt4djV15XBKv6/GPR8w=
+X-Received: by 2002:a25:b790:0:b0:66f:7978:f166 with SMTP id
+ n16-20020a25b790000000b0066f7978f166mr20856709ybh.17.1659544700900; Wed, 03
+ Aug 2022 09:38:20 -0700 (PDT)
+MIME-Version: 1.0
+References: <36A92015-9A54-40CE-87E3-E8C57A522C15@icloud.com>
+In-Reply-To: <36A92015-9A54-40CE-87E3-E8C57A522C15@icloud.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Wed, 3 Aug 2022 12:37:45 -0400
+Message-ID: <CAKimwG5t_AQ7ZDPr7NTVHo0QXTvu3En+CvoqpzLh26Q1+oH6uw@mail.gmail.com>
+Subject: Re: Update?
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000062e8c705e558dcef"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoTGxsaGBEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaGhEKWUQXZUBYXF9Zb0dBRU4RCllNF3pPWFlFREtGa0ZGRV0RCl9ZFxsSEhEKX
+ 00XZEVETxEKWUkXGnEaEBp3BhscEnETHxAadwYYGgYaEQpZXhdobnkRCkNOF3USGXVLf1twUn4
+ HYx5Zc3VAUh9NZhxhTW1yXkt7TFBgEQpYXBcZBBoEHhwHSx8bGRtMHRsFGxoaBBIYBB4YBBgSE
+ BseGh8aEQpeWRdLY29BThEKTVwXBxkRCkxaF01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGBsTBBs
+ dGhEKQl4XGxEKQkUXbBtASWxiXXpNH1wRCkJOF2J8W19FH2drTFxwEQpCTBdpfQVhGEZFQ01jb
+ BEKQmwXek8BGG1JG1NFbkURCkJAF2lZSH5fY2NgRhgdEQpCWBdia05vb3psZ1pHSxEKTV4XGxE
+ KWlgXHREKcGgXYVIScGxLWX5mSFMQGRoRCnBoF2BMUh1YRWNmYWF4EBkaEQpwaBdiQBwZbUYce
+ V1gWhAZGhEKcGgXZWV6cmRIXWV/YGQQGRoRCnBoF2tPYkxjSxITHkcFEBkaEQpwfRdvXE57aQF
+ /Y2l/axAYGhEKcH0XZlpocklefkESHR4QGBsRCnB9F2ceQGBFRFNyGEZoEBgTEQpwfxdgREMTf
+ mF8WFJNTRAZGREKcF8XYnBYTUxyTwV/fEgQGBIRCnBfF2tbGxN4fGN+RU9mEBkbEQpwbBdvT3J
+ 5c0BkRFB8WxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: _83_aUqZxT-I4sY_jx5gL6KgGXtaQfzJ
+X-Proofpoint-ORIG-GUID: _83_aUqZxT-I4sY_jx5gL6KgGXtaQfzJ
+
+--00000000000062e8c705e558dcef
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Good afternoon Darryl,
+
+As I noted in my email earlier today, I was away on Friday (it was a long
+weekend) by the time Alison sent her email.  The timing of her email could
+have been better.
+
+Allison
+
+<https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&utm_c=
+ampaign=3Dsig-email&utm_content=3Dwebmail>
+Virus-free.
+www.avast.com
+<https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&utm_c=
+ampaign=3Dsig-email&utm_content=3Dwebmail>
+<#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2>
+
+On Tue, Aug 2, 2022 at 2:56 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Allison,
+>
+> Cynthia just wrote to me that the time for today=E2=80=99s visit has chan=
+ged to
+> 4:30-7:30 pm as per Alison Boyce=E2=80=99s email from Friday.
+>
+> The number of things that have been changed unilaterally and without
+> discussion or agreement from me is unbelievable. Cynthia=E2=80=99s behavi=
+our has
+> not changed since the decision.
+>
+> Did Alison Boyce send an email or letter Friday?
+>
+> Darryl
+
+
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--00000000000062e8c705e558dcef
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Good afternoon Darryl,<br><div><br></div><div>As I noted i=
+n my email earlier today, I was away on Friday (it was a long weekend) by t=
+he=C2=A0time Alison sent her email.=C2=A0 The timing of her email could hav=
+e been better.</div><div><br></div><div>Allison</div></div><div id=3D"DAB4F=
+AD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br>
+<table style=3D"border-top:1px solid #d3d4de">
+	<tr>
+        <td style=3D"width:55px;padding-top:13px"><a href=3D"https://www.av=
+ast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlink&amp;utm_campaign=
+=3Dsig-email&amp;utm_content=3Dwebmail" target=3D"_blank"><img src=3D"https=
+://ipmcdn.avast.com/images/icons/icon-envelope-tick-round-orange-animated-n=
+o-repeat-v1.gif" alt=3D"" width=3D"46" height=3D"29" style=3D"width: 46px; =
+height: 29px;"></a></td>
+		<td style=3D"width:470px;padding-top:12px;color:#41424e;font-size:13px;fo=
+nt-family:Arial,Helvetica,sans-serif;line-height:18px">Virus-free. <a href=
+=3D"https://www.avast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlin=
+k&amp;utm_campaign=3Dsig-email&amp;utm_content=3Dwebmail" target=3D"_blank"=
+ style=3D"color:#4453ea">www.avast.com</a>
+		</td>
+	</tr>
+</table><a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" heigh=
+t=3D"1"></a></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Tue, Aug 2, 2022 at 2:56 PM Darryl Ross &lt;<a href=3D"mailt=
+o:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex">Hi Allison,<br>
+<br>
+Cynthia just wrote to me that the time for today=E2=80=99s visit has change=
+d to 4:30-7:30 pm as per Alison Boyce=E2=80=99s email from Friday.<br>
+<br>
+The number of things that have been changed unilaterally and without discus=
+sion or agreement from me is unbelievable. Cynthia=E2=80=99s behaviour has =
+not changed since the decision. <br>
+<br>
+Did Alison Boyce send an email or letter Friday? <br>
+<br>
+Darryl</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div>=
+=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13=
+px"><font face=3D"Calibri" size=3D"3">Allison Lendor</font></i><br></div><d=
+iv><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"=
+Calibri" size=3D"3">Lendor Guest LLP</font></span></i></div><div style=3D"f=
+ont-size:13px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font siz=
+e=3D"3">Barristers &amp; Solicitors</font></font></span></i></div><div styl=
+e=3D"font-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">209 -=
+ 460 West Hunt Club Road</font></font></span></i></div><div style=3D"font-s=
+ize:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Ottawa, ON</font=
+></font></span></i></div><div style=3D"font-size:13px"><i><span><font face=
+=3D"Calibri"><font size=3D"3">K2E 0B8</font></font></span></i></div><div st=
+yle=3D"font-size:13px"><i><font face=3D"Calibri"><font size=3D"3"><br clear=
+=3D"none"></font></font></i></div><div style=3D"font-size:13px"><font size=
+=3D"3"></font></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><sp=
+an><font face=3D"Calibri"><font size=3D"3">Tel.: (613)247-7964 ext 3</font>=
+</font></span></i></div><div style=3D"font-size:13px"><i><span><font face=
+=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</font></font></span></i></=
+div><div style=3D"font-size:13px"><span style=3D"font-family:tahoma,sans-se=
+rif;color:rgb(204,0,0);font-size:small;font-style:italic;white-space:nowrap=
+"><br></span></div><div style=3D"font-size:13px"><br></div><div style=3D"fo=
+nt-size:13px"></div><div style=3D"font-size:13px"><var></var></div></div><d=
+iv style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size:13px"><span lang=3D"E=
+N-US" style=3D"font-size:12pt">This email and any files transmitted with it=
+ are confidential and intended solely for the use of the individual or enti=
+ty to whom they are addressed and may be protected by solicitor-client priv=
+ilege. If you have received this email in error please notify us by e-mail =
+reply and delete it from your system; you may not copy this message or disc=
+lose its contents to anyone.</span></i></div><div><font size=3D"3"></font><=
+/div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"Calibri"><font size=3D=
+"3"><i></i></font></font></div><div></div></div><div></div></div></div></di=
+v>
+
+--00000000000062e8c705e558dcef--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>916628</integer>
+	<key>date-last-viewed</key>
+	<integer>1745853556</integer>
+	<key>date-received</key>
+	<integer>1659544707</integer>
+	<key>flags</key>
+	<integer>8623750277</integer>
+	<key>remote-id</key>
+	<string>814</string>
+</dict>
+</plist>

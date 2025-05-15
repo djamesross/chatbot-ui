@@ -1,0 +1,274 @@
+12226     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms13p00im-qukt33072702.me.com by p72-mailgateway-smtp-76dddfcdd4-g2cwr (mailgateway 2305B164)
+	with SMTP id 392aa42c-8fbf-41be-8253-48d8f829e9cb 
+	for <darrylross@icloud.com>; Sun, 18 Dec 2022 13:40:24 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 392aa42c-8fbf-41be-8253-48d8f829e9cb
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	by ms13p00im-qukt33072702.me.com (Postfix) with ESMTPS id 6F6CC690011E
+	for <darrylross@icloud.com>; Sun, 18 Dec 2022 13:40:23 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ5MQUtEVxBVWg1IWwsWEVwbBx9I
+ SxFMAhgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVxTWB9SRVZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qd2IbPk8LNEkDBF8YLgs0EVNxLCotHjtLUUxfOCk1KDdABikaFhNA
+ KW9OACQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DmTXm+Cv
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.42 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.42 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.42; helo=mail-ej1-f42.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id u19so16055246ejm.8
+        for <darrylross@icloud.com>; Sun, 18 Dec 2022 05:40:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rn8RpDu1J8HVP0r5pwbsA26+WF5b3KVmIs5gBm3CR1U=;
+        b=DmTXm+CvD4mXI4NhFC2qqtSrp5x92Z8uWh6Vs0AtQoQBiTLaxmOIiSPXqWbtS3nHMb
+         ismwphGpQmqc77kEV56TBOXN2qnCdO7c3Zt4mD18RyNTBq0HYLSFEdL2OY4KskJy6JCR
+         cjXZZWUFfmaIKXvWOkLvXC6iGlh7P86mAOwBzBgOCtPi7WFl5HS5rBrD7hOK93OOm3st
+         59Ur2R7biG/Q6CFyA3y86no6orRuEpDpEDUlf7zrXGAoq8dHf8kRLDQ2YtNXjIpOv+TI
+         +cQ9WNkQ+F4Mrm+0Mn7mw7zA2ZYFNVbhlRtW9jHksI0Yqj+ws4c/VU0IuIp+HmGO7/QK
+         jX/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rn8RpDu1J8HVP0r5pwbsA26+WF5b3KVmIs5gBm3CR1U=;
+        b=kDApRQLAbDo0Fckh2dOcwwieTyVQzQZi/zvEIqDwkQ1BHpJTdtEsVDyWhYre3Z5ETd
+         ayzzJK+cZwSWDMVoj0+RSvhHPvIaJcAGIZ4hE62IwoztpZ1Ab+O41ZkAJhfllXHgJXMC
+         l/YdCwVWp1EI4nAdqL7D1KmoLVbKpNJfBJGwqiC60u+O6knNaJfHP/fjRqeRvB8tKzpR
+         s8ocgVEleSMpXexRfzjPdbS+zwzjpH/uPB/F+QoapaqecEV6eGcLQkRBgXi7OfhFPWWG
+         3MzmLboiNHkZgfqZrb+pEPdg1xUXBo3IdvGdWvr4y5/xCIxPGRJ43hFJPUX8q79Y404A
+         jqIw==
+X-Gm-Message-State: ANoB5plq0PRD5WxUSXI1A6P+8c3dz3A2L582iJJS97/P4aDe2zhlmP9N
+	oCH+g1GcJ68VnsKN9uQ7MSj3M0WJASGzg3t8f5WQUT3w
+X-Google-Smtp-Source: AA0mqf5QcjrqFAPHdktSqImpvGT1uS+CfUQsRUaXHhfttPjhoidzyJFZJlFpX2//hHNrOGuj+8xGxyYVPBZVvVEX6PE=
+X-Received: by 2002:a17:906:c30a:b0:7c1:4f19:9b2 with SMTP id
+ s10-20020a170906c30a00b007c14f1909b2mr4515197ejz.289.1671370822443; Sun, 18
+ Dec 2022 05:40:22 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRGzOKAquhajScSEXXOEo0RRX=T_X2a84cBv4rGk_NhtZg@mail.gmail.com>
+ <4C87EAF1-A600-4FDD-BF77-9CC97E849E7B@icloud.com> <CAFnbyRHqjmM9Lvqt+VFDx9pfZC0nZya3h6Gq97UdaJzgWew4kA@mail.gmail.com>
+ <A04395C3-F526-44D7-A901-0EF3C21434BF@icloud.com>
+In-Reply-To: <A04395C3-F526-44D7-A901-0EF3C21434BF@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 18 Dec 2022 08:40:11 -0500
+Message-ID: <CAFnbyRGTyK6mC132=mWmCicGN_TxL3az=MPS_Op0Koou7Q_xbQ@mail.gmail.com>
+Subject: Re: Sunday schedule
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000028e87c05f01a5849"
+X-MANTSH: 1TEIXR1kbG1oaGkNHB1tfTFwbGhoSGx0aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF2R+Uk58ekF4YlpuG35kfFl
+ tYVJmex4aEx9FZn9zSGx9EQpYXBcZBBoEHhMHHRhJHx8dSRkFGxoEEwQbHQQYGBwQGx4aHxoRC
+ l5ZF0sbZlBDEQpNXBceHxEKTFoXTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQYGxIEHhgRCkJeFxs
+ RCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhyb
+ ngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJ
+ AF21DWktObm8ZHVNnEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXZW1jZ35HUk9MG
+ WEQGRoRCnBoF2JoTAEaSUUBGmFlEBkaEQpwaBdmSxhjHBkTSEgZaRAZGhEKcGgXbFocbWIbAUx
+ ZU2sQGRoRCnBoF2dAQ3ByZ15YAV15EBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XS
+ xE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: NTxdVPkRHpD1TNVsGKxLQ4095oLUYbFW
+X-Proofpoint-ORIG-GUID: NTxdVPkRHpD1TNVsGKxLQ4095oLUYbFW
+
+--00000000000028e87c05f01a5849
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+I have not heard back from Alison and wanted to get back to you on Xmas as
+it's quickly approaching and I know your mom is involved as well. My
+apologies for the delay.
+
+For holidays with the girls supervised:
+Sunday Dec. 25 noon-730 pm
+Tuesday Dec. 27 noon-730pm
+Sunday Jan. 1 noon-730 pm
+Tuesday, Jan.3 noon-730 pm
+Thursday, Jan.5 noon-730 pm
+
+The girls don't have soccer today but do they have church and practice for
+the Xmas Eve pageant.
+
+Cheers,
+
+Cynthia
+
+On Fri, Nov 25, 2022 at 5:23 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> I would like to firm up plans for Christmas and winter break given that
+> it=E2=80=99s coming so soon. I think having a full Christmas day with the=
+m is
+> important and suggest that rather than splitting Christmas day up as it i=
+s
+> we can alternate full days. I would be flexible about the 24 or 25th in
+> that case. For the rest of their winter break extending the regular Tuesd=
+ay
+> visit to a full day makes sense, in addition to another day, which could =
+be
+> Thursday or Friday.
+>
+> Please let me know as soon as possible if that schedule, depending on the
+> days, works for you so I can coordinate on my end.
+>
+> Darryl
+>
+>
+> On Nov 20, 2022, at 9:21 AM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Yes to that schedule time, both parents know that the girls will be with
+> you.
+>
+> I am agreeable to more time over the break.
+>
+> Let me chat with my mom and Jul to see if they have any set dates. We hav=
+e
+> Kelly visiting this year so cousin time will be scheduled too.
+>
+> On Sun, Nov 20, 2022 at 8:25 AM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Thank you for letting me know.
+>>
+>> My plan for Christmas is to celebrate Sunday December 25 during schedule=
+d
+>> parenting time. Given that it=E2=80=99s a holiday I am open to making al=
+ternate
+>> arrangements. I would also like to schedule additional time with them ov=
+er
+>> the break.
+>>
+>> Please let me know your Christmas plans and if you would like to discuss
+>> alternate plans, as well as when we can schedule additional time over th=
+e
+>> holiday.
+>>
+>> Thanks,
+>>
+>> Darryl
+>>
+>> > On Nov 20, 2022, at 8:10 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>> wrote:
+>> >
+>> > Hi,
+>> >
+>> > The girls soccer begins today and ends at noon, we will have to push
+>> back the visit time to 12:30 and girls can stay to 639.
+>> >
+>> > Can you please make sure they have lunch when they arrive as my mom
+>> will be driving them from soccer directly to your place?
+>> >
+>> >
+>> > Thanks so much. Please let me know if you have any Christmas plans thi=
+s
+>> year.
+>> >
+>> > Cynthia
+>>
+>>
+>
+
+--00000000000028e87c05f01a5849
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div><br></div><div>I have not heard back from A=
+lison and wanted to get back to you on Xmas as it&#39;s quickly approaching=
+ and I know your mom is involved as well. My apologies for the delay.</div>=
+<div><br></div><div>For holidays with the girls supervised:</div><div>Sunda=
+y Dec. 25 noon-730 pm</div><div>Tuesday Dec. 27 noon-730pm</div><div>Sunday=
+ Jan. 1 noon-730 pm</div><div>Tuesday, Jan.3 noon-730 pm</div><div>Thursday=
+, Jan.5 noon-730 pm</div><div><br></div><div>The girls don&#39;t have socce=
+r today but do they have church and practice=C2=A0for the Xmas Eve pageant.=
+</div><div><br></div><div>Cheers,</div><div><br></div><div>Cynthia</div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Fri, Nov 25, 2022 at 5:23 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@i=
+cloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div><div>Hi Cynthia,</div><div><br></div>=
+<div>I would like to firm up plans for Christmas and winter break given tha=
+t it=E2=80=99s coming so soon. I think having a full Christmas day with the=
+m is important and suggest that rather than splitting Christmas day up as i=
+t is we can alternate full days. I would be flexible about the 24 or 25th i=
+n that case. For the rest of their winter break extending the regular Tuesd=
+ay visit to a full day makes sense, in addition to another day, which could=
+ be Thursday or Friday.</div><div><br></div><div>Please let me know as soon=
+ as possible if that schedule, depending on the days, works for you so I ca=
+n coordinate on my end.</div><div><br></div><div>Darryl</div><br><div><br><=
+blockquote type=3D"cite"><div>On Nov 20, 2022, at 9:21 AM, Cynthia Holmes &=
+lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gma=
+il.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Yes to that schedule =
+time, both parents know that the girls will be with you.</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">I am agreeable to more time over the break=
+.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Let me chat with=
+ my mom and Jul to see if they have any set dates. We have Kelly visiting t=
+his year so cousin time will be scheduled too.</div><div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Nov 20, 2022 at =
+8:25 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"=
+_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">Thank you for letting me know.<br>
+<br>
+My plan for Christmas is to celebrate Sunday December 25 during scheduled p=
+arenting time. Given that it=E2=80=99s a holiday I am open to making altern=
+ate arrangements. I would also like to schedule additional time with them o=
+ver the break.<br>
+<br>
+Please let me know your Christmas plans and if you would like to discuss al=
+ternate plans, as well as when we can schedule additional time over the hol=
+iday.<br>
+<br>
+Thanks,<br>
+<br>
+Darryl<br>
+<br>
+&gt; On Nov 20, 2022, at 8:10 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; The girls soccer begins today and ends at noon, we will have to push b=
+ack the visit time to 12:30 and girls can stay to 639. <br>
+&gt; <br>
+&gt; Can you please make sure they have lunch when they arrive as my mom wi=
+ll be driving them from soccer directly to your place?<br>
+&gt; <br>
+&gt; <br>
+&gt; Thanks so much. Please let me know if you have any Christmas plans thi=
+s year. <br>
+&gt; <br>
+&gt; Cynthia <br>
+<br>
+</blockquote></div></div>
+</div></blockquote></div><br></div></blockquote></div>
+
+--00000000000028e87c05f01a5849--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1012090</integer>
+	<key>date-last-viewed</key>
+	<integer>1741388542</integer>
+	<key>date-received</key>
+	<integer>1671370824</integer>
+	<key>flags</key>
+	<integer>8590196101</integer>
+	<key>remote-id</key>
+	<string>12314</string>
+</dict>
+</plist>

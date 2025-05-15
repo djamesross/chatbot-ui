@@ -1,0 +1,387 @@
+19768     
+Return-path: <mariannecuhaci@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09081301.me.com by p72-mailgateway-smtp-79b88fc84c-jcrpp (mailgateway 2218B124)
+	with SMTP id 4b4ffd98-6557-4b0b-baab-fd63092ad836 
+	for <darrylross@icloud.com>; Wed, 29 Jun 2022 21:08:18 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 4b4ffd98-6557-4b0b-baab-fd63092ad836
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by ci74p00im-qukt09081301.me.com (Postfix) with ESMTPS id ED5894B004CD
+	for <darrylross@icloud.com>; Wed, 29 Jun 2022 21:08:15 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBoZQl8DGxcDFA1YVwEc
+ OQEaGVlaTBYWC1VYVlJfVx4LFhFcGAEaFERXC1lGX1dLVk5WCANMR0tUWUkIB0BVEQMbFw0UDxQQ
+ CloJWwdPE0heRlZXWQ0SFQNZG19bQFUJEgVFElsDHBVLBhMBGwREQVdZH19ZBRkcSBQXXRRCER1b
+ VR9dVwsZVwUYFRIWDxwdW1VEBnNRR0lSRjkdcFs0SktDPXUCT0xKUDZVdQdSM0lVRUgAAiRMOQEa
+ GVlaTBYWC0laEEQBSFsCFgpCTw4HFhUEOFlVDhoMAlkbX1tA
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZdRaa1pB
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of mariannecuhaci@gmail.com designates 209.85.222.181 as permitted sender) smtp.mailfrom=mariannecuhaci@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of mariannecuhaci@gmail.com designates 209.85.222.181 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.222.181; helo=mail-qk1-f181.google.com; envelope-from=mariannecuhaci@gmail.com
+Received: by mail-qk1-f181.google.com with SMTP id r138so12927594qke.13
+        for <darrylross@icloud.com>; Wed, 29 Jun 2022 14:08:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:mime-version:subject:date:references:to:in-reply-to:message-id;
+        bh=glhHWYCXcVg6HLbHm0RW1BiMYd1WbqGQk2bfYTVLl3I=;
+        b=ZdRaa1pBXGwWgmVTQ1V0B9Wn9QE6SWPCLLwRrsC+SUlkj4ILqz9s421I9tIGJoJrEs
+         Qp4lxu44K+2AO+1QMFhPyX0shMGqzLfdoX+yycVcjRFCWmXQIQq8cxMKR+VPgJVhQFuZ
+         sI38iISYDq0g6vzYfUSSfFoZslNdZOXhHRAH+2cWg7QTOLAjPQeM4A/fLv5ecSzQ+FDL
+         AZEsuF2U6ukLKGHlMdZxwtTUutNF/Y9ygn8w65jQdqKA7TkZ5LXiWX2UehuCULyS92h7
+         jV6111XJS+51p8uXGaUi603wzz70VDPYuhc0ydaeQLQOHm2nR9AJSLu+X+kS6pDZzTVB
+         NCMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:mime-version:subject:date:references:to
+         :in-reply-to:message-id;
+        bh=glhHWYCXcVg6HLbHm0RW1BiMYd1WbqGQk2bfYTVLl3I=;
+        b=LbF5Vj+u8Yip+Z7xhsCXBCLFLVPdNG2Db1MhJ63xf5E5kCbAB1iIoQZWODLjzRvPAe
+         f2M3g6LfNsvgKPzQyjPAWJx7KGOYsmBKljpmssfXyqRLhBULt56s5KWobQcuZR2xbajV
+         jXRovZdxoy0F3qGdcD3tPZNWgeOEvWLFW6jVAwAWkuRSGFiBNY3qMEJ+QB9Gq1MOxO88
+         Mj8UqiZLBVQRdshRt4Xc9D/6fL74ttVLoCqp7B5rgFPSwoTj7YY9CzEUHFWj7SoAMx2l
+         he9HEnhioP1SUjczmUyNDegzw6O1kDH9h7skQ/e8/+czWBCMPn8XDgjLYst3Y8MgPrb2
+         cZ9w==
+X-Gm-Message-State: AJIora9GwCA4Zy4q1kcOrvuR5+hQmXTdYjW6IcYNqDLkzQfTM05OnDHj
+	zsLW7MLv5gcn3c/obZ/Gm687JcZv+Q==
+X-Google-Smtp-Source: AGRyM1tEtJKVRB7M95/Ah+jWmit0ie2odr3kPCT3DTcveVZ0Ccg5sWvTOT1mbeP6XTOJ0aHziCeWxQ==
+X-Received: by 2002:a37:62c8:0:b0:6ae:fb95:2f2b with SMTP id w191-20020a3762c8000000b006aefb952f2bmr3639799qkb.645.1656536895042;
+        Wed, 29 Jun 2022 14:08:15 -0700 (PDT)
+Received: from smtpclient.apple ([2607:fea8:bf00:9b00:90e2:9fe7:afb:4551])
+        by smtp.gmail.com with ESMTPSA id v22-20020ac87496000000b003051f450049sm11466077qtq.8.2022.06.29.14.08.13
+        for <darrylross@icloud.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 Jun 2022 14:08:13 -0700 (PDT)
+From: Marianne Cuhaci <mariannecuhaci@gmail.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_FEBC9336-4A55-47E2-B86C-846887F32D64"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.100.31\))
+Subject: Re: Reunification Help.
+Date: Wed, 29 Jun 2022 17:08:12 -0400
+References: <CA2EA71A-0846-4AB8-A21B-C52BB36575D4@icloud.com>
+ <F1831D6A-9B99-4EC9-932B-2B85ED9D8365@gmail.com>
+ <11AC3B3D-0EBA-4753-BC23-D7217B5E988F@icloud.com>
+To: Darryl Ross <darrylross@icloud.com>
+In-Reply-To: <11AC3B3D-0EBA-4753-BC23-D7217B5E988F@icloud.com>
+Message-Id: <6E32041A-F9A3-4EE4-936A-E10F032004F9@gmail.com>
+X-Mailer: Apple Mail (2.3696.100.31)
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoTGxMaGBEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYUtTUGtObxNPSR8RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdQUF5SYRx1RxlCYB1Peh5
+ sTnhYYERPGHsHa2ldX0N8SxEKWFwXGQQaBB4cB0sfGxkbTB0bBRsaGgQSGAQeGAQYHBAbHhofG
+ hEKXlkXcBJHekgRCk1cFx4TGhEKTFoXaGtNTWsRCkxGF29ra2tia2sRCkNaFxgaEwQSHwQYGBg
+ EGxIbEQpCXhcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RC
+ kJFF3pNRmlIYn5me2NfEQpCThdjU2NrexNYfhpfXhEKQkwXZmgdcEFoHlt5bBkRCkJsF2sfelh
+ ySRxcQ0AaEQpCQBdnWRhhQnASWltQXxEKQlgXYmtOb296bGdaR0sRClpYFxkRCnBoF2YBG1BhZ
+ VoYHn8cEBkaEQpwaBdpY0liR19/TAEYYRAZGhEKcGgXYmBwAUhQGW5lZFMQGRoRCnBoF2gcHWh
+ ZeGMYG3ttEBkaEQpwaBdpfH1obhJfTH5LUBAZGhEKcH0XaWxNeR98aGdNXhsQGRoRCnB9F2MFZ
+ WQYTlBfHH4TEBkaEQpwfxduYX4eeBppX1hJEhAYBBsRCnBfF2caYRtMXl5deG5eEBkaEQpwfxd
+ vR2J6QmJTEkJLHhAZGhEKcF8Xa0BuQHIdEk9IaG0QGRoRCnBsF2RTfxppexp/XxhTEBkaEQptf
+ hcaEQpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: zztxK6_m3hJ7eP4FdRrJne2Q-ACwuiVa
+X-Proofpoint-GUID: zztxK6_m3hJ7eP4FdRrJne2Q-ACwuiVa
+
+
+--Apple-Mail=_FEBC9336-4A55-47E2-B86C-846887F32D64
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+Darryl:
+
+This will depend on whether one other reunification matter proceeds.  I =
+should know very soon.
+
+Meanwhile:
+
+Can you tell me your co-parent intend to contact me? =20
+
+Regards,
+
+
+Marianne Cuhaci, MSW, RSW,=20
+AccFM, FDRP Med Arb PC
+203-2430 Bank Street
+Ottawa, Ontario K1V 0T7
+Tel:  (613) 731-6005
+E-mail: mariannecuhaci@gmail.com
+Website: www.mariannecuhaci.com
+
+
+
+
+
+> On Jun 29, 2022, at 12:41 PM, Darryl Ross <darrylross@icloud.com> =
+wrote:
+>=20
+> Hi Marianne,
+>=20
+> A decision for the motion that I have been discussing with you =
+sporadically since last fall has been made and an order for =
+reunification therapy has been included, along with an order for =
+scheduled access with police enforcement if required, as well as case =
+management (to be assigned by Justice Audet). Before going into any =
+details are you still at capacity, or are you able to take on an =
+additional case?
+>=20
+> Thank you,
+>=20
+> Darryl
+>=20
+>> On Apr 5, 2022, at 4:11 PM, Marianne Cuhaci <mariannecuhaci@gmail.com =
+<mailto:mariannecuhaci@gmail.com>> wrote:
+>>=20
+>> Darryl:
+>>=20
+>> Is your co-parent willing to participate in this type of counselling? =
+ Have you seen the info on my site about my approach? =20
+>>=20
+>> =
+https://static1.squarespace.com/static/5dd704e50334db6a02ce1465/t/60a2f505=
+84a313608d835d5e/1621292293448/Reintegration+-+Referral+Process+Jan+2021-1=
+.pdf =
+<https://static1.squarespace.com/static/5dd704e50334db6a02ce1465/t/60a2f50=
+584a313608d835d5e/1621292293448/Reintegration+-+Referral+Process+Jan+2021-=
+1.pdf>
+>>=20
+>> At the moment I am not taking anymore Reunification cases as I am at =
+capacity. =20
+>>=20
+>> Regards,
+>>=20
+>>=20
+>> Marianne Cuhaci, MSW, RSW,=20
+>> AccFM, FDRP Med Arb PC
+>> 203-2430 Bank Street
+>> Ottawa, Ontario K1V 0T7
+>> Tel:  (613) 731-6005
+>> E-mail: mariannecuhaci@gmail.com <mailto:mariannecuhaci@gmail.com>
+>> Website: www.mariannecuhaci.com <http://www.mariannecuhaci.com/>
+>>=20
+>>=20
+>>=20
+>>=20
+>>> On Apr 5, 2022, at 3:55 PM, Darryl Ross <darrylross@icloud.com =
+<mailto:darrylross@icloud.com>> wrote:
+>>>=20
+>>> Hi Marianne,
+>>>=20
+>>> I was referred to you by Shirley Wallace in September of last year, =
+and again more recently by Carol Milstone, who I see for individual =
+therapy. I have had extremely limited contact with my daughters, age 8 & =
+10, since 2020 (3 brief in-person visits, sporadic FaceTime for a =
+while), with periods of no contact since we separated in 2015. Their =
+mother has refused to allow visits or to share information about them =
+with me, including basic and essential information about health, =
+caregivers, etc. There is a standing court order from 2017 that includes =
+joint-custody (decision making) as well as a minimum amount of parenting =
+time, which she is in breech of. Unfortunately she refused to =
+communicate about the issue or agree to mediation, and instead brought a =
+motion for sole custody and sole discretion over when and how our =
+daughters may have parenting time with me.
+>>>=20
+>>> We spoke briefly on phone last fall shortly before the motion was =
+brought, and long before I had a lawyer. We finally had a motion on =
+March 31st to address the issue, which is why I am contacting you now. =
+The judge will not make a decision for at least two weeks but she =
+recognized and spoke to the impact that a complete denial of access may =
+be having on my daughters, and the importance of reunification. I =
+strongly believe that they - and me, and their mom - need experienced =
+support. According to their mother they are having extreme emotional =
+issues and she describes abnormal separation anxiety that developed =
+around 2020, when they were age 6 and 8. While I question her =
+characterization, I do not doubt that our daughters are struggling =
+emotionally and psychologically. In addition, their mom has denied =
+access in the past, only to suddenly agree to visits again without =
+discussion or coordination, as though nothing had happened and there is =
+no need for our daughters to process or understand the changes to their =
+life.
+>>>=20
+>>> Do you have availability for a brief consultation or can I send =
+further information to see if we might fit the services you provide?
+>>>=20
+>>> Thank you,
+>>>=20
+>>> Darryl Ross
+>>>=20
+>>=20
+>=20
+
+
+--Apple-Mail=_FEBC9336-4A55-47E2-B86C-846887F32D64
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D"">Darryl:<div class=3D""><br class=3D""></div><div =
+class=3D"">This will depend on whether one other reunification matter =
+proceeds. &nbsp;I should know very soon.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Meanwhile:</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Can you tell me your co-parent intend =
+to contact me? &nbsp;</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Regards,</div><div class=3D""><br class=3D""></div><div =
+class=3D""><br class=3D""><div class=3D"">
+<div dir=3D"auto" style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, =
+0); letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; text-decoration: none; word-wrap: =
+break-word; -webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D""><div dir=3D"auto" style=3D"color: rgb(0, 0, 0); =
+letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><div =
+dir=3D"auto" style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+line-break: after-white-space;" class=3D""><div style=3D"color: rgb(0, =
+0, 0); font-family: Arial; font-size: 13px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-text-stroke-width: 0px;">Marianne =
+Cuhaci, MSW, RSW,&nbsp;<br class=3D"">AccFM, FDRP Med Arb PC<br =
+class=3D"">203-2430 Bank Street<br class=3D"">Ottawa, Ontario K1V 0T7<br =
+class=3D"">Tel: &nbsp;(613) 731-6005<br class=3D""><a =
+href=3D"mailto:mariannecuhaci@gmail.com" class=3D"">E-mail: =
+mariannecuhaci@gmail.com</a><br =
+class=3D"">Website:&nbsp;www.mariannecuhaci.com</div><br =
+class=3D"Apple-interchange-newline"></div></div><br =
+class=3D"Apple-interchange-newline"></div><br =
+class=3D"Apple-interchange-newline"><br =
+class=3D"Apple-interchange-newline">
+</div>
+<div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Jun 29, 2022, at 12:41 PM, Darryl Ross &lt;<a =
+href=3D"mailto:darrylross@icloud.com" =
+class=3D"">darrylross@icloud.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><meta =
+http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii" =
+class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
+space; line-break: after-white-space;" class=3D"">Hi Marianne,<div =
+class=3D""><br class=3D""></div><div class=3D"">A decision for the =
+motion that I have been discussing with you sporadically since last fall =
+has been made and an order for reunification therapy has been included, =
+along with an order for scheduled access with police enforcement if =
+required, as well as case management (to be assigned by Justice Audet). =
+Before going into any details are you still at capacity, or are you able =
+to take on an additional case?</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Thank you,</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Darryl<br class=3D""><div class=3D""><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D"">On Apr =
+5, 2022, at 4:11 PM, Marianne Cuhaci &lt;<a =
+href=3D"mailto:mariannecuhaci@gmail.com" =
+class=3D"">mariannecuhaci@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><meta =
+http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii" =
+class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
+space; line-break: after-white-space;" class=3D"">Darryl:<div =
+class=3D""><br class=3D""></div><div class=3D"">Is your co-parent =
+willing to participate in this type of counselling? &nbsp;Have you seen =
+the info on my site about my approach? &nbsp;</div><div class=3D""><br =
+class=3D""></div><div class=3D""><a =
+href=3D"https://static1.squarespace.com/static/5dd704e50334db6a02ce1465/t/=
+60a2f50584a313608d835d5e/1621292293448/Reintegration+-+Referral+Process+Ja=
+n+2021-1.pdf" =
+class=3D"">https://static1.squarespace.com/static/5dd704e50334db6a02ce1465=
+/t/60a2f50584a313608d835d5e/1621292293448/Reintegration+-+Referral+Process=
++Jan+2021-1.pdf</a></div><div class=3D""><br class=3D""></div><div =
+class=3D"">At the moment I am not taking anymore Reunification cases as =
+I am at capacity. &nbsp;</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Regards,</div><div class=3D""><br class=3D""></div><div =
+class=3D""><br class=3D""></div><div class=3D""><div class=3D"">
+<div dir=3D"auto" style=3D"caret-color: rgb(0, 0, 0); letter-spacing: =
+normal; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+text-decoration: none; word-wrap: break-word; -webkit-nbsp-mode: space; =
+line-break: after-white-space;" class=3D""><div dir=3D"auto" =
+style=3D"letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><div =
+dir=3D"auto" style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+line-break: after-white-space;" class=3D""><div style=3D"font-family: =
+Arial; font-size: 13px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D"">Marianne =
+Cuhaci, MSW, RSW,&nbsp;<br class=3D"">AccFM, FDRP Med Arb PC<br =
+class=3D"">203-2430 Bank Street<br class=3D"">Ottawa, Ontario K1V 0T7<br =
+class=3D"">Tel: &nbsp;(613) 731-6005<br class=3D""><a =
+href=3D"mailto:mariannecuhaci@gmail.com" class=3D"">E-mail: =
+mariannecuhaci@gmail.com</a><br class=3D"">Website:&nbsp;<a =
+href=3D"http://www.mariannecuhaci.com/" =
+class=3D"">www.mariannecuhaci.com</a></div><br =
+class=3D"Apple-interchange-newline"></div></div><br =
+class=3D"Apple-interchange-newline"></div><br =
+class=3D"Apple-interchange-newline"><br =
+class=3D"Apple-interchange-newline">
+</div>
+<div class=3D""><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Apr 5, 2022, at 3:55 PM, Darryl Ross &lt;<a =
+href=3D"mailto:darrylross@icloud.com" =
+class=3D"">darrylross@icloud.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div class=3D"">Hi =
+Marianne,<br class=3D""><br class=3D"">I was referred to you by Shirley =
+Wallace in September of last year, and again more recently by Carol =
+Milstone, who I see for individual therapy. I have had extremely limited =
+contact with my daughters, age 8 &amp; 10, since 2020 (3 brief in-person =
+visits, sporadic FaceTime for a while), with periods of no contact since =
+we separated in 2015. Their mother has refused to allow visits or to =
+share information about them with me, including basic and essential =
+information about health, caregivers, etc. There is a standing court =
+order from 2017 that includes joint-custody (decision making) as well as =
+a minimum amount of parenting time, which she is in breech of. =
+Unfortunately she refused to communicate about the issue or agree to =
+mediation, and instead brought a motion for sole custody and sole =
+discretion over when and how our daughters may have parenting time with =
+me.<br class=3D""><br class=3D"">We spoke briefly on phone last fall =
+shortly before the motion was brought, and long before I had a lawyer. =
+We finally had a motion on March 31st to address the issue, which is why =
+I am contacting you now. The judge will not make a decision for at least =
+two weeks but she recognized and spoke to the impact that a complete =
+denial of access may be having on my daughters, and the importance of =
+reunification. I strongly believe that they - and me, and their mom - =
+need experienced support. According to their mother they are having =
+extreme emotional issues and she describes abnormal separation anxiety =
+that developed around 2020, when they were age 6 and 8. While I question =
+her characterization, I do not doubt that our daughters are struggling =
+emotionally and psychologically. In addition, their mom has denied =
+access in the past, only to suddenly agree to visits again without =
+discussion or coordination, as though nothing had happened and there is =
+no need for our daughters to process or understand the changes to their =
+life.<br class=3D""><br class=3D"">Do you have availability for a brief =
+consultation or can I send further information to see if we might fit =
+the services you provide?<br class=3D""><br class=3D"">Thank you,<br =
+class=3D""><br class=3D"">Darryl Ross<br class=3D""><br =
+class=3D""></div></div></blockquote></div><br =
+class=3D""></div></div></div></blockquote></div><br =
+class=3D""></div></div></div></blockquote></div><br =
+class=3D""></div></body></html>=
+
+--Apple-Mail=_FEBC9336-4A55-47E2-B86C-846887F32D64--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>670892</integer>
+	<key>date-last-viewed</key>
+	<integer>1745844855</integer>
+	<key>date-received</key>
+	<integer>1656536898</integer>
+	<key>flags</key>
+	<integer>9160621189</integer>
+	<key>remote-id</key>
+	<string>796</string>
+</dict>
+</plist>

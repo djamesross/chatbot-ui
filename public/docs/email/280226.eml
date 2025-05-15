@@ -1,0 +1,143 @@
+7316      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01062702.me.com by p133-mailgateway-smtp-d96586b5c-rbnbw (mailgateway 2319B150)
+	with SMTP id 671fcf52-c49b-4049-bf1c-d54aa74ccf1c 
+	for <darrylross@icloud.com>; Sun, 2 Jul 2023 14:35:05 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 671fcf52-c49b-4049-bf1c-d54aa74ccf1c
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	by qs51p00im-qukt01062702.me.com (Postfix) with ESMTPS id 1372B64C036E
+	for <darrylross@icloud.com>; Sun,  2 Jul 2023 14:35:00 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRQRFdTQ1oQXgcZFltVFVFfDlgO
+ FEZVVgNWWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsVB0hLEU0EGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqBxMCLkhdQxEjCSQ8HgB5JD9UFgQRSQcsE08gPCdhZCA0MTIf
+ HV8ENCYtJzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i0lob0Ui
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.221.54 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.221.54 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.221.54; helo=mail-wr1-f54.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-31434226a2eso837482f8f.1
+        for <darrylross@icloud.com>; Sun, 02 Jul 2023 07:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688308499; x=1690900499;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=C62XvlK3qoRidpslaQNGXujw36+XoFUjRqbNMPvlei0=;
+        b=i0lob0UiRBitaLoBLBcBkEmiFgmJWfjG/CBc1NMFWg+kUG1otAXArTjS/6cCM7kKfz
+         m8CSVVVFM3TI3UoYm+i6rRHVJ+lNasNnZ/zBiUM7gWT0Sdv2/uMSTHfkTYFB9Dtkgu2I
+         IvSfe7RiQ+f9m5aiamNpw4lx6r3fxbibNl3uAkemDsvD+8udaQwSIYv6dDo3vOHyW3yT
+         lVZfVlD4zL7QGSF2PdHllB8hBUeZx5XflyIW9Io0GwRbU6mYGob36ex4w22fYjFS1wwg
+         9y7z0BZ7TNhwfyWHu+X8fwsHxjm7N4jVUlZa/YPotUI7B4NWwWFXUNWzsWCBbB7dVz/w
+         3vOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688308499; x=1690900499;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C62XvlK3qoRidpslaQNGXujw36+XoFUjRqbNMPvlei0=;
+        b=j1jEI3u7Qfrvd9wKnC29Vsx9K9ZbQe7jnAJRx2fM3GusCdXMzhcSod4vwogV4bT9NL
+         /yiA0QFax0qMUIP2y8Z/sR6v45+jjMxFKf4JQwV3LyOWcIq0O7aF2b/Qt/dfVCGSdwDM
+         Z+XKIBksXy1x27gj1jiK9usTaG/hOumjMlVeCZRR4Zonm5cMYDE/COJGPo4bgt9He/mJ
+         GQa7/YMOJFL7mjqITanC1OXvwObP1lnfjkSvlF5xQnGXoNpymIDsQ+Uqe+heQDCh10fH
+         j6uGVqOs4qN6IlhxnUAAhBDpUA+cnwSyd18CsKR6EAx2Igv7BcJ33Zd2tU6zdXwyGRyK
+         BFtQ==
+X-Gm-Message-State: ABy/qLaYp3no3Dp6rHPZF9vCBlgUVv1LAN3azdzcq+PWKAyOIpEGG8Zh
+	k90rqNsc/9yXKm93a7Z4eY3SAzGF2VlXnEx41EHUvTKK
+X-Google-Smtp-Source: APBJJlH0VE3HAWCS1zHelT4d7EUJ7+om7Gr1C+Q+s3OJ0yClk6LBmQS1NFCT/1uziI7o2e9jZe8aZX4Zr2DlokaG5FM=
+X-Received: by 2002:adf:e40b:0:b0:311:1b8a:b70e with SMTP id
+ g11-20020adfe40b000000b003111b8ab70emr8929389wrm.66.1688308498683; Sun, 02
+ Jul 2023 07:34:58 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 2 Jul 2023 10:34:47 -0400
+Message-ID: <CAFnbyRHrjdY0musVpBKf0OFJ-psiy1Nf6FK_QRBAHTheo2VSTA@mail.gmail.com>
+Subject: Today- postpone visit due to illness
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Cc: Michelle Williams <michelle.williams@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="00000000000055dc4205ff81f48e"
+X-MANTSH: 1TEIXW1kfGFoaGkNHB1tfQV4aGBoTGx0aGBEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdIdXhiUk5eeWwSbF8cc3h
+ kWl9zYklHQGxycERncnkSUhEKWFwXGQQaBB8aBRsaGgQSGAQbHxIEGBMQGx4aHxoRCl5ZF0gbU
+ wFSEQpNXBcHHxEKTFoXaGlNTWsRCkxGF01rEQpDWhcYGhMEEh8EGBgbBB8eEQpCXhcbEQpEXhc
+ YEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF
+ 2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRo
+ SS2lJEQpCQBdiY0hQSVNaRWlpUxEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2xIE
+ mUeHWV4ZENtEBkaEQpwaBdgeVMFSR5sYlJ+ThAZGhEKcGgXaXhja2l8Y01uXlwQGRoRCnBoF25
+ pY39dWUtlemlIEBkaEQpwaBdkRx9+TxJgAWcBexAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+F
+ xsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: b_RHxdtSF8Fu6YRNpuYHcmjFXZnMXS8x
+X-Proofpoint-ORIG-GUID: b_RHxdtSF8Fu6YRNpuYHcmjFXZnMXS8x
+
+--00000000000055dc4205ff81f48e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl and Holly,
+
+We will have to postpone the girls visit today. Charlotte is still sick and
+I have brought her to Queensway hospital to be checked out. I did this
+because it was recommended by nurse practitioner at telehealth due to her
+continual vomiting and signs of dehydration bc of dizziness.
+
+Charlotte is ok now, we are in the waiting room awaiting to be admitted.
+She didn=E2=80=99t vomit in the way here but still is lethargic.
+
+Alice is with family friends and has asked to visit you when Charlotte is
+feeling better.
+
+I will keep you posted on Charlotte.
+
+As it stands , if she is better, Monday they are free during the day and
+Tuesday after 12:30.
+
+
+Cynthia
+
+--00000000000055dc4205ff81f48e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl and Holly,<div dir=3D"auto"><br></div><div dir=3D"auto">We will h=
+ave to postpone the girls visit today. Charlotte is still sick and I have b=
+rought her to Queensway hospital to be checked out. I did this because it w=
+as recommended by nurse practitioner at telehealth due to her continual vom=
+iting and signs of dehydration bc of dizziness.</div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">Charlotte is ok now, we are in the waiting room awa=
+iting to be admitted. She didn=E2=80=99t vomit in the way here but still is=
+ lethargic.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Alice is wit=
+h family friends and has asked to visit you when Charlotte is feeling bette=
+r.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I will keep you poste=
+d on Charlotte.</div><div dir=3D"auto"><br></div><div dir=3D"auto">As it st=
+ands , if she is better, Monday they are free during the day and Tuesday af=
+ter 12:30.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">Cynthia</div>
+
+--00000000000055dc4205ff81f48e--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1141363</integer>
+	<key>date-last-viewed</key>
+	<integer>1741383476</integer>
+	<key>date-received</key>
+	<integer>1688308505</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12414</string>
+</dict>
+</plist>

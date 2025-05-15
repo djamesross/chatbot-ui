@@ -1,0 +1,150 @@
+6824      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr11p00im-smtpin006.me.com by p72-mailgateway-smtp-6666464f4-5hgmt (mailgateway 2211B241)
+	with SMTP id e8bfe284-ecaf-4c90-999b-91a6e4fca58f 
+	for <darrylross@icloud.com>; Tue, 29 Mar 2022 17:35:51 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: e8bfe284-ecaf-4c90-999b-91a6e4fca58f
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by mr11p00im-smtpin006.me.com (Postfix) with ESMTPS id 0239D20307DF
+	for <darrylross@icloud.com>; Tue, 29 Mar 2022 17:35:50 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAQ9MRE5WVVhYUw4aREQaGVlaTwwb
+ V1oeAQFSWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsbF0hLEUkHBkwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wM0kkDUBkBipMFDE0OXZyITQ3Mzo2RFRJLzJeRyxnBzg5OCEv
+ NHxdABxUCwA4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+x-dmarc-info: pass=pass; dmarc-policy=none; s=r1; d=r1
+x-dmarc-policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YPufKzJC
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.170 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.219.170 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.170; helo=mail-yb1-f170.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-yb1-f170.google.com with SMTP id f38so32576387ybi.3
+        for <darrylross@icloud.com>; Tue, 29 Mar 2022 10:35:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bqhpPHUPqkcjc6vn8pAA+rEA3hWfsIC0hF6T//6HP0k=;
+        b=YPufKzJCRGaMAHv3cNSQAjLPZIZx25SqemHKTop7eJpNAHccNt4zzWij2pT+hs6Xn6
+         s7WRtMR0Vatbjx5iEfgfr16AE77mTYdph7PKdx1HByDVYoRtLJz480hu4MEz1dAHlJ8i
+         +5gcrOKzVCXXwxkhpz/aeb6UoR4Vjqidl/9ZRH7Un/xgxfSmI4UsOfnSdFGt78gvFTwD
+         PXLlNRHHB5tY8lUMAJx/5hIDdfOWajQTUQLr5o+gim/avYBoJkfmD/hhdjwpe9qHRXHC
+         CtyzCo00AGnP1rUwotk2sXfyN3bV6d+/auL8Onjn0TRKf4k953jvzMX/ErHFFP/0aTZt
+         C7OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bqhpPHUPqkcjc6vn8pAA+rEA3hWfsIC0hF6T//6HP0k=;
+        b=wU+jcctCUS/W3wuKpVr9XhodX1QYSMZvbqKHYyhIfAYHHGea5Juabhl++Nr0PoByHu
+         0dcZ5hEP8d2VYnzQoSDkPZ158iUi8Oxzh9IjFMUmzXFPT+eKWvYv6JPtaJeZNXtzLGSI
+         VtrnmlJGf1qbSlwhqarzR1slix+RtYHYgoexEDtc+nhqDpbhTqnIENmZhGt6rk54YD3R
+         Jqu104rzWMNmjAlpt7+TpRaiNDJgJNpXr9g7vgfccAxso48YPlB1AD24+hYPe5yHpeBf
+         SgaMfiJhkrVqeJMOzUB8b30+qunMAQRIG5AQnIc5wZDRZjcF87rHZMfCLv5Llw6rILWx
+         WK0Q==
+X-Gm-Message-State: AOAM530D5Bn2s9QhgL0IPwK50rVLIEkGSMya6XtdmZUCSjxWfk81t5Ko
+	dR0IKmUmM7SW25sE2rLUwjJz9z1hqiQrYqzahlevBbPF
+X-Google-Smtp-Source: ABdhPJwEF0NXad+x37RweICVE3a0bkF3OQAlBvoUY5qnhiTd1HuoV0YA7QW2FyAXfH7ULqCad9DuyITv7LIlXWTOTlo=
+X-Received: by 2002:a05:6902:1502:b0:637:7536:65cf with SMTP id
+ q2-20020a056902150200b00637753665cfmr28079021ybu.91.1648575349703; Tue, 29
+ Mar 2022 10:35:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRHCy_urwT8tmrGDVJxJJiFw9intQHWe3LdpBdNDLsD1Xw@mail.gmail.com>
+ <E4CCD4C8-438F-4674-870D-6A7631571B7C@icloud.com>
+In-Reply-To: <E4CCD4C8-438F-4674-870D-6A7631571B7C@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 29 Mar 2022 13:35:39 -0400
+Message-ID: <CAFnbyRF0Bz8T0H9mWCAFDCANUMNtb+ZK80TW1ZLAGXLLkbi-mw@mail.gmail.com>
+Subject: Re: Alice's bday
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="0000000000001ac89905db5edc88"
+X-MANTSH: 1TEIXR1gYEloaGkNHB0tNT0ReQ0QZGRofEQpMQxcbGgQbGxgEEhwEHx8QGx4aHxo
+ RCkxZFxsaGhoRCllEF2JFYkF5Y0xhXXtPEQpZTRd6T1hZRURLRmtGRkVdEQpfWRcYGBoRCl9NF
+ 2RFRE8RCllJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XS1NIUF8dG1pnZFM
+ YY09aS0VEaX1Da3hETkRCR019TXkRClhcFxkEGgQeHAdLHxsZG0wdGwUbHQQbGxsEGx8fBBsfH
+ RAbHhofGhEKXlkXcE9lTXkRCk1cFxseGBEKTFoXaGtNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBg
+ bEwQbHRoRCkJeFxsRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2Nre
+ xNYfhpfXhEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQRE
+ KQmwXb0tHUEFtGhJLaUkRCkJAF2hwAVpLWxgfb10cEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKW
+ lgXGBEKcGgXZmFLZl5OaWQFUgUQGRoRCnBoF21/UFh7HHxoegVIEBkaEQpwaBd6bU9LYRt6U1l
+ uWxAZGhEKcGgXZ0xwfXpdb1xBXWYQGRoRCnBoF2ceYmdAYFx/BUJlEBkaEQpwbBdmRmsfGFttX
+ 0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+
+--0000000000001ac89905db5edc88
+Content-Type: text/plain; charset="UTF-8"
+
+Great, thanks. Is 613-762-2067 still the best to reach you at ?
+
+
+Additionally can you please provide your new address of residence. Thank
+you.
+
+Cynthia
+
+On Tue, Mar 29, 2022 at 9:57 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> Yes I am available tomorrow 4:30 - 5:30 pm on FaceTime, and look forward
+> to seeing and talking to Alice and Charlotte.
+>
+> Thank you,
+>
+> Darryl
+>
+> > On Mar 28, 2022, at 5:29 PM, Cynthia Holmes <cynthmholm@gmail.com>
+> wrote:
+> >
+> >
+>
+>
+
+--0000000000001ac89905db5edc88
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Great, thanks. Is 613-762-2067 still the best to reach yo=
+u at ?</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">Additionally can you please provide your new address of residenc=
+e. Thank you.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=
+=A0</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Tue, Mar 29, 2022 at 9:57 AM Darryl Ross &lt;<a href=3D"mailto:d=
+arrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
+solid;padding-left:1ex">Hi Cynthia,<br>
+<br>
+Yes I am available tomorrow 4:30 - 5:30 pm on FaceTime, and look forward to=
+ seeing and talking to Alice and Charlotte. <br>
+<br>
+Thank you,<br>
+<br>
+Darryl<br>
+<br>
+&gt; On Mar 28, 2022, at 5:29 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynt=
+hmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; <br>
+<br>
+</blockquote></div></div>
+
+--0000000000001ac89905db5edc88--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>663163</integer>
+	<key>date-received</key>
+	<integer>1648575351</integer>
+	<key>flags</key>
+	<integer>9127066757</integer>
+</dict>
+</plist>

@@ -1,0 +1,766 @@
+40902     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr11p00im-smtpin004.me.com by p72-mailgateway-smtp-689ff67499-5fdhw (mailgateway 2216B285)
+	with SMTP id 953ec2a7-9749-4085-aed6-01dd37b42dd7 
+	for <darrylross@icloud.com>; Fri, 27 May 2022 20:12:38 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 953ec2a7-9749-4085-aed6-01dd37b42dd7
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	by mr11p00im-smtpin004.me.com (Postfix) with ESMTPS id 28FCF132F1F6
+	for <darrylross@icloud.com>; Fri, 27 May 2022 20:12:36 +0000 (UTC)
+X-ICL-SCORE: 3.3320333300
+X-ICL-INFO: GAtbVUseBVFHSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRUkJGFNCSERXEFVaDUhb
+ CxYRXBsbF0hLEUkHB0wSFgkQFFUYARoURFcIRERfVxQHHhQdTwBEVABGTwEYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFD
+ IW9ODw8DJ0IwCFkAJjs3RkxJQwA9HiEVQWBQMUEMEyIiBQszTCwWRT9dZyIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=l6rS1DsE
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.171 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.219.171 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.171; helo=mail-yb1-f171.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-yb1-f171.google.com with SMTP id h75so3579375ybg.4
+        for <darrylross@icloud.com>; Fri, 27 May 2022 13:12:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=WZwmspy/IxavqdpBtvtlSUkzitKhPg8xCZ/1249gp2Y=;
+        b=l6rS1DsExyTtheQ6ndvAw4GCu44YdJdB4UKNP6r9MqLvnqBJilgCmuvvUWiuIqpqiv
+         jQbYV1Yd8VpwsZC39oHJ0Ouf6tEei319TEnVBK4YvkiiM9iYzNAaQycIh0TjyxS1vnef
+         ZATm4cq9wi88lSi2joQLQ1OKYjtxEiTZAj/dT2rRGlMyuIMwoGzUMp4sTmQAL5SGzC1k
+         8mAWxGyDC4FxdlkhJzGlwHtMPQz+1NOw7mcfGbkbT+T6mhoOygjHex5DO9QS8yTpHdxL
+         W8Eo6NolaMT142h3rrd/3QNk+3ITZE5Hx6vMIvao++qf2X08SbsgTDsGx7JqCjLspMvm
+         +EEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=WZwmspy/IxavqdpBtvtlSUkzitKhPg8xCZ/1249gp2Y=;
+        b=KgVEft+ybGwpzzpOEQMBTDrRYlXdwXdD2zEN6NttcT/S9WbpXanDv34n0+NWjIdSGX
+         aJ1atd4qV6Iot1l7FpzvdZLAQaja73pNUheiNaa0M+6TqJC6xrpGKno+LEtXD6xk1xHZ
+         ASKyJZ6p/Mb10ChlJtu+HJdcjVExaGMqDLwqg5NyUR/s6u35Ef3mj+4BdQ+NO7Q9NXfK
+         K5gnw3ItBkEpg6zRVfsvI8SZefSm9HjHMwrLtwlpyZbShD9H0H1G8DTr48knPYAM+3HD
+         hQKDEeMvAiXus8rMMLbnuwME++PJUzlg5WAwOlIJYzRhTzDIfJWvfmJ110Muh0MJ5Wb+
+         PX9A==
+X-Gm-Message-State: AOAM530um1bo5iYwPayvJihJu46OyuQiEJG4NyT4FN1UW1LDg5kGFE4O
+	XThlMNMNq11Zk3lNzaNpFRQ8I+Bd/s+ZhJ/YiSQ3igYC79XV/jX4
+X-Google-Smtp-Source: ABdhPJzmwHRSR3p0D9Lh8434D3lkP+D32h6tiet2N4AaMAY/VFrnUH71ZjfnL6eeNEB7I4pBuWt5fUk9GXYkcIKBS7c=
+X-Received: by 2002:a25:c090:0:b0:65b:d6b3:533e with SMTP id
+ c138-20020a25c090000000b0065bd6b3533emr2738885ybf.619.1653682356252; Fri, 27
+ May 2022 13:12:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAKimwG4KhY1pD3DfFsE+GwmYPSs5FeQ_8wRYfsk1cRqEBSC9gA@mail.gmail.com>
+ <63CB2344-C92E-4460-8408-F02E39E60F37@icloud.com>
+In-Reply-To: <63CB2344-C92E-4460-8408-F02E39E60F37@icloud.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Fri, 27 May 2022 16:12:00 -0400
+Message-ID: <CAKimwG4Y_xmzzA5H8obSBQ14yubHgGb9PfS4uuUZ5=Q9Up2GmQ@mail.gmail.com>
+Subject: Re: Draft letter to Alison Boyce for your review and comments
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000006a870e05e003edc5"
+X-MANTSH: 1TEIXR1geGFoaGkNHB1tfQEQaExsfGx0aGBEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhoaEQpZRBdlQFhcX1lvR0FFThEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGxITEQpfT
+ RdkRURPEQpZSRcacRoQGncGGxwTcRMdEBp3BhgaBhoRClleF2hueREKQ04XHXxIbHoYR3AbYU5
+ yT0B/G0twW38ZGRsZHkBjWnlYSGURClhcFxkEGgQeHAdLHxsZG0wdGwUbHQQbGxsEGx8fBBsdH
+ BAbHhofGhEKXlkXcFJefHsRCk1cFxgcGBEKTFoXaGtNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBg
+ bEwQbHRsRCkJeFxsRCkJFF2wbQElsYl16TR9cEQpCThdifFtfRR9na0xccBEKQkwXaX0FYRhGR
+ UNNY2wRCkJsF3pPARhtSRtTRW5FEQpCQBdoZWhecwVhf30SHhEKQlgXYmtOb296bGdaR0sRCk1
+ eFxsRClpYFxsRCnBoF2ZaSXlJf0lgQ3xNEBkaEQpwaBdgGXJSW3leQ316eRAZGhEKcGgXYR9TQ
+ GFSWEhvGmcQGRoRCnBoF2BhR3tNQk1kHUYbEBkaEQpwaBduGXxkXW8dQE8dWBAZGhEKcGwXb09
+ yeXNAZERQfFsQGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: 7VbFP2mZ1KdXejU1aZqU33134jIpSrbO
+X-Proofpoint-ORIG-GUID: 7VbFP2mZ1KdXejU1aZqU33134jIpSrbO
+
+--0000000000006a870e05e003edc5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Thank you for your feedback.  I revised the first part of the letter and
+included it below.  Let me know if you would like to make any further
+changes or additions.
+
+*Good afternoon Ms. Boyce,*
+
+*I am writing to provide information about Mr. Ross=E2=80=99 new residence =
+and to
+raise some concerns which have arisen.*
+
+*New address*
+
+
+
+
+*Mr. Ross moved on May 1, 2022, and his new address is 1266 Marygrove Cir.,
+Nepean, ON, K2C 2C9 *
+
+*Vacation for children in June, 2022*
+
+*Mr. Ross has learned that your client has already booked a vacation for
+the children without first discussing it with him or providing any details
+about the vacation which will impact his parenting time.  We understand
+that your client first booked a trip to Calgary in June for herself,
+Charlotte and Alice, prior to the end of the school year.  *
+
+*Why would your client book a trip prior to the hearing of the motion in
+March 2022, for before the end of the school year in June 2022?*
+
+*We understand that the intention of the trip is to spend time with her
+boyfriend who lives in Calgary. Mr. Ross is concerned that your client
+intends on moving to Calgary with Charlotte and Alice.  Please advise if
+this is her intention.*
+
+*The fact that your client made and then cancelled plans with his family,
+indicating to them that they are now flying into Calgary and then flying to
+Saskatoon for an indeterminate length of time has heightened his concerns. =
+*
+
+*Would you please have your client provide particulars about the trip with
+Charlotte and Alice, including but not limited to the date of departure,
+where they will be staying, and when they will be returning.  A copy of
+their plan tickets is also requested.  *
+
+*What is your client=E2=80=99s plan for parenting time when the children in=
+tents to
+be away with the children?*
+
+*Mr. Ross=E2=80=99 right to information about Charlotte and Alice/joint
+decision-making*
+
+*On May 11, 2022, Mr. Ross sent an email to your client requesting
+information about Charlotte and Alice=E2=80=99s missed school days, their h=
+ealth
+and to update me him anything else of importance.  His request has not been
+answered.  Would you please speak to your client about this issue as Mr.
+Ross has a right to receive information about the children, and you client
+cannot continue to make unilateral decisions about the health and well
+being of the children.  In fact, the parties still have joint custody, and
+decisions pertaining to the children are to be made jointly and not
+unilaterally by Ms. Holmes.*
+
+*Parenting time with Charlotte and Alice*
+
+*Mr. Ross continues to insist that there is no reason that he cannot have
+in person parenting time with the children.  Your client continues to
+refuse his in-person parenting time.  Although she recently offered some
+virtual FaceTime for Mr. Ross to have with the children, those times have
+been cancelled frequently, and they are irregular.  Given the comments made
+by Justice Somji, and pending her decision, we expected that your client
+would move forward with establishing regular parenting time with the
+children.  Would you please speak to your client about this issue so that
+we can establish a regular parenting schedule, in the best interest of the
+children?*
+
+*We look forward to hearing from you at your earliest opportunity.*
+
+*Regards,*
+
+*Allison Lendor*
+
+
+
+
+
+On Fri, May 27, 2022 at 2:59 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Allison,
+>
+> Regarding the vacation I am also concerned that she is taking the girls
+> out of school early, and the length of the trip. Even though it is the la=
+st
+> week it=E2=80=99s an important part of a =E2=80=99normal=E2=80=99 school =
+year, which has been
+> anything but normal. From what I have been told there is no reason to hav=
+e
+> planned and booked the trip prior to the end of school; she discussed it =
+as
+> early as last winter, and booked it before the recent motion. I am also
+> concerned that she made and then cancelled plans with my family, telling
+> them that they are now flying into Calgary and then flying to Saskatoon f=
+or
+> an indeterminate length of time.
+>
+> I like what you included in the second and third points.
+>
+> Thank. you,
+>
+> Darryl
+>
+> On May 27, 2022, at 2:35 PM, Allison Lendor <allison@lendorguest.ca>
+> wrote:
+>
+> Good afternoon Darryl,
+>
+> Please see below the draft letter for Alison Boyce we discussed
+> yesterday.  Sorry I was unable to get back to you yesterday.  Let me know
+> if you would like me to make any changes or additions to the letter.
+>
+> *Good afternoon Ms. Boyce,*
+>
+> *I am writing to provide information about Mr. Ross=E2=80=99 new residenc=
+e and to
+> raise some concerns which have arisen.*
+>
+> *New address*
+>
+>
+>
+>
+> *Mr. Ross moved on May 1, 2022 and his new address is 1266 Marygrove Cir.=
+,
+> Nepean, ON, K2C 2C9 *
+>
+> *Vacation for children in June, 2022*
+>
+> *Mr. Ross has learned that your client has already booked a vacation for
+> the children without first discussing it with him, or providing any detai=
+ls
+> about the vacation which will impact his parenting time.  I understand th=
+at
+> your client first booked a trip to Calgary in June for herself, Charlotte
+> and Alice. We understand that the intention of the trip is to spend time
+> with her boyfriend who lives in Calgary. Mr. Ross is concerned that your
+> client intends on moving to Calgary with Charlotte and Alice.  Please
+> advise if this is her intention.*
+>
+> *Mr. Ross=E2=80=99 right to information about Charlotte and Alice/joint
+> decision-making*
+>
+> *On May 11, 2022, Mr. Ross sent an email to your client requesting
+> information about Charlotte and Alice=E2=80=99s missed school days, their=
+ health
+> and to update me him anything else of importance.  His request has not be=
+en
+> answered.  Would you please speak to your client about this issue as Mr.
+> Ross has a right to receive information about the children, and you clien=
+t
+> cannot continue to make unilateral decisions about the health and well
+> being of the children.  In fact, the parties still have joint custody, an=
+d
+> decisions pertaining to the children are to be made jointly and not
+> unilaterally by Ms. Holmes.*
+>
+> *Parenting time with Charlotte and Alice*
+>
+> *Mr. Ross continues to insist that there is no reason that he cannot have
+> in person parenting time with the children.  Your client continues to
+> refuse his in-person parenting time.  Although she recently offered some
+> virtual FaceTime for Mr. Ross to have with the children, those times have
+> been cancelled frequently, and they are irregular.  Given the comments ma=
+de
+> by Justice Somji, and pending her decision, we expected that your client
+> would move forward with establishing regular parenting time with the
+> children.  Would you please speak to your client about this issue so that
+> we can establish a regular parenting schedule, in the best interest of th=
+e
+> children?*
+>
+> *We look forward to hearing from you at your earliest opportunity.*
+>
+> *Regards,*
+>
+> *Allison Lendor*
+>
+>
+> --
+>
+> *Allison Lendor*
+> *Lendor Guest LLP*
+> *Barristers & Solicitors*
+> *209 - 460 West Hunt Club Road*
+> *Ottawa, ON*
+> *K2E 0B8*
+>
+> *Tel.: (613)247-7964 ext 3*
+> *Fax: (613)233-9995*
+>
+>
+> *This email and any files transmitted with it are confidential and
+> intended solely for the use of the individual or entity to whom they are
+> addressed and may be protected by solicitor-client privilege. If you have
+> received this email in error please notify us by e-mail reply and delete =
+it
+> from your system; you may not copy this message or disclose its contents =
+to
+> anyone.*
+>
+>
+>
+
+--=20
+
+*Allison Lendor*
+*Lendor Guest LLP*
+*Barristers & Solicitors*
+*209 - 460 West Hunt Club Road*
+*Ottawa, ON*
+*K2E 0B8*
+
+*Tel.: (613)247-7964 ext 3*
+*Fax: (613)233-9995*
+
+
+*This email and any files transmitted with it are confidential and intended
+solely for the use of the individual or entity to whom they are addressed
+and may be protected by solicitor-client privilege. If you have received
+this email in error please notify us by e-mail reply and delete it from
+your system; you may not copy this message or disclose its contents to
+anyone.*
+
+--0000000000006a870e05e003edc5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div><br></div><div>Thank you for your feedback.=
+=C2=A0 I revised the first part of the letter and included it below.=C2=A0 =
+Let me know if you would like to make any further changes or additions.</di=
+v><div><br></div><div><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;li=
+ne-height:107%;font-size:12pt;font-family:&quot;Times New Roman&quot;,serif=
+"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial"><b><i>Good=
+ afternoon Ms. Boyce,</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>I am writing to provide in=
+formation about Mr.
+Ross=E2=80=99 new residence and to raise some concerns which have arisen.</=
+i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>New address</i></span><=
+/u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><i><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial">Mr. Ross moved on May 1, 2=
+022, and his new
+address is 1266 Marygrove Cir.,</span><span lang=3D"EN-US" style=3D"font-fa=
+mily:Arial,sans-serif"><br>
+<span style=3D"background-image:initial;background-position:initial;backgro=
+und-size:initial;background-repeat:initial;background-origin:initial;backgr=
+ound-clip:initial">Nepean, ON,</span> <span style=3D"background-image:initi=
+al;background-position:initial;background-size:initial;background-repeat:in=
+itial;background-origin:initial;background-clip:initial">K2C 2C9</span></sp=
+an><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;color:rgb(136=
+,136,136);background-image:initial;background-position:initial;background-s=
+ize:initial;background-repeat:initial;background-origin:initial;background-=
+clip:initial"><br>
+<br>
+</span><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;backgroun=
+d-image:initial;background-position:initial;background-size:initial;backgro=
+und-repeat:initial;background-origin:initial;background-clip:initial"></spa=
+n></i></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>Vacation for children i=
+n June, 2022</i></span></u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Mr. Ross has learned that =
+your client has
+already booked a vacation for the children without first discussing it with=
+ him
+or providing any details about the vacation which will impact his parenting
+time.=C2=A0 We understand that your client
+first booked a trip to Calgary in June for herself, Charlotte and Alice, pr=
+ior
+to the end of the school year. =C2=A0</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Why would your client book=
+ a trip prior to the
+hearing of the motion in March 2022, for before the end of the school year =
+in
+June 2022?</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>We understand that the int=
+ention of the trip is
+to spend time with her boyfriend who lives in Calgary. Mr. Ross is concerne=
+d
+that your client intends on moving to Calgary with Charlotte and Alice.=C2=
+=A0 Please advise if this is her intention.</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>The fact that your client =
+made and then
+cancelled plans with his family, indicating to them that they are now flyin=
+g
+into Calgary and then flying to Saskatoon for an indeterminate length of ti=
+me has
+heightened his concerns. </i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Would you please have your=
+ client provide
+particulars about the trip with Charlotte and Alice, including but not limi=
+ted
+to the date of departure, where they will be staying, and when they will be
+returning.=C2=A0 A copy of their plan tickets is
+also requested.=C2=A0 </i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>What is your client=E2=80=
+=99s plan for parenting time
+when the children intents to be away with the children?</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>Mr. Ross=E2=80=99 right=
+ to information about Charlotte
+and Alice/joint decision-making</i></span></u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>On May 11, 2022, Mr. Ross =
+sent an email to your
+client requesting information about Charlotte and Alice=E2=80=99s missed sc=
+hool days,
+their health and to update me him anything else of importance.=C2=A0 His re=
+quest has not been answered.=C2=A0 Would you please speak to your client ab=
+out this
+issue as Mr. Ross has a right to receive information about the children, an=
+d you
+client cannot continue to make unilateral decisions about the health and we=
+ll
+being of the children.=C2=A0 In fact, the parties
+still have joint custody, and decisions pertaining to the children are to b=
+e
+made jointly and not unilaterally by Ms. Holmes.</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"=
+EN-US" style=3D"font-family:Arial,sans-serif;background-image:initial;backg=
+round-position:initial;background-size:initial;background-repeat:initial;ba=
+ckground-origin:initial;background-clip:initial"><i>Parenting time with Cha=
+rlotte and Alice</i></span></u></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Mr. Ross continues to insi=
+st that there is no
+reason that he cannot have in person parenting time with the children.=C2=
+=A0 Your client continues to refuse his in-person
+parenting time.=C2=A0 Although she recently
+offered some virtual FaceTime for Mr. Ross to have with the children, those=
+ times
+have been cancelled frequently, and they are irregular.=C2=A0 Given the com=
+ments made by Justice Somji, and
+pending her decision, we expected that your client would move forward with
+establishing regular parenting time with the children.=C2=A0 Would you plea=
+se speak to your client about
+this issue so that we can establish a regular parenting schedule, in the be=
+st
+interest of the children?</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>We look forward to hearing=
+ from you at your
+earliest opportunity.</i></b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Regards,</i></b></span></p=
+>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial"><b><i>Allison Lendor</i></b></sp=
+an></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-si=
+ze:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US"=
+ style=3D"font-family:Arial,sans-serif;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial">=C2=A0</span></p></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, M=
+ay 27, 2022 at 2:59 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.=
+com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div style=3D"overflow-wrap: break-word;">Hi Alli=
+son,<div><br></div><div>Regarding the vacation I am also concerned that she=
+ is taking the girls out of school early, and the length of the trip. Even =
+though it is the last week it=E2=80=99s an important part of a =E2=80=99nor=
+mal=E2=80=99 school year, which has been anything but normal. From what I h=
+ave been told there is no reason to have planned and booked the trip prior =
+to the end of school; she discussed it as early as last winter, and booked =
+it before the recent motion. I am also concerned that she made and then can=
+celled plans with my family, telling them that they are now flying into Cal=
+gary and then flying to Saskatoon for an indeterminate length of time.</div=
+><div><br></div><div>I like what you included in the second and third point=
+s.</div><div><br></div><div>Thank. you,</div><div><br></div><div>Darryl</di=
+v><div><div><br><blockquote type=3D"cite"><div>On May 27, 2022, at 2:35 PM,=
+ Allison Lendor &lt;<a href=3D"mailto:allison@lendorguest.ca" target=3D"_bl=
+ank">allison@lendorguest.ca</a>&gt; wrote:</div><br><div><div dir=3D"ltr">G=
+ood afternoon Darryl,<div><br></div><div>Please see below the draft letter =
+for Alison Boyce we discussed yesterday.=C2=A0 Sorry I was unable to get ba=
+ck to you yesterday.=C2=A0 Let me know if you would like me to make any cha=
+nges or additions to the letter.</div><div><br></div><div><p class=3D"MsoNo=
+rmal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-fami=
+ly:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US" style=3D"font-fa=
+mily:Arial,sans-serif;background-image:initial;background-position:initial;=
+background-size:initial;background-repeat:initial;background-origin:initial=
+;background-clip:initial"><b><i>Good afternoon Ms. Boyce,</i></b></span></p=
+><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-s=
+ize:12pt;font-family:&quot;Times New Roman&quot;,serif"><span lang=3D"EN-US=
+" style=3D"font-family:Arial,sans-serif;background-image:initial;background=
+-position:initial;background-size:initial;background-repeat:initial;backgro=
+und-origin:initial;background-clip:initial"><b><i>I am writing to provide i=
+nformation about Mr.
+Ross=E2=80=99 new residence and to raise some concerns which have arisen.</=
+i></b></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-he=
+ight:107%;font-size:12pt;font-family:&quot;Times New Roman&quot;,serif"><b>=
+<u><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial"><i>New ad=
+dress</i></span></u></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm =
+8pt;line-height:107%;font-size:12pt;font-family:&quot;Times New Roman&quot;=
+,serif"><b><i><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;ba=
+ckground-image:initial;background-position:initial;background-size:initial;=
+background-repeat:initial;background-origin:initial;background-clip:initial=
+">Mr. Ross moved on May 1, 2022 and his new
+address is 1266 Marygrove Cir.,</span><span lang=3D"EN-US" style=3D"font-fa=
+mily:Arial,sans-serif"><br>
+<span style=3D"background-image:initial;background-position:initial;backgro=
+und-size:initial;background-repeat:initial;background-origin:initial;backgr=
+ound-clip:initial">Nepean, ON,</span> <span style=3D"background-image:initi=
+al;background-position:initial;background-size:initial;background-repeat:in=
+itial;background-origin:initial;background-clip:initial">K2C 2C9</span></sp=
+an><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;color:rgb(136=
+,136,136);background-image:initial;background-position:initial;background-s=
+ize:initial;background-repeat:initial;background-origin:initial;background-=
+clip:initial"><br>
+<br>
+</span><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;backgroun=
+d-image:initial;background-position:initial;background-size:initial;backgro=
+und-repeat:initial;background-origin:initial;background-clip:initial"></spa=
+n></i></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-heigh=
+t:107%;font-size:12pt;font-family:&quot;Times New Roman&quot;,serif"><b><u>=
+<span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial"><i>Vacation =
+for children in June, 2022</i></span></u></b></p><p class=3D"MsoNormal" sty=
+le=3D"margin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-family:&quot;=
+Times New Roman&quot;,serif"><span lang=3D"EN-US" style=3D"font-family:Aria=
+l,sans-serif;background-image:initial;background-position:initial;backgroun=
+d-size:initial;background-repeat:initial;background-origin:initial;backgrou=
+nd-clip:initial"><b><i>Mr. Ross has learned that your client has
+already booked a vacation for the children without first discussing it with
+him, or providing any details about the vacation which will impact his
+parenting time.=C2=A0 I understand that your
+client first booked a trip to Calgary in June for herself, Charlotte and Al=
+ice.
+We understand that the intention of the trip is to spend time with her
+boyfriend who lives in Calgary. Mr. Ross is concerned that your client inte=
+nds
+on moving to Calgary with Charlotte and Alice.=C2=A0
+Please advise if this is her intention.</i></b></span></p><p class=3D"MsoNo=
+rmal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-fami=
+ly:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"EN-US" style=3D"f=
+ont-family:Arial,sans-serif;background-image:initial;background-position:in=
+itial;background-size:initial;background-repeat:initial;background-origin:i=
+nitial;background-clip:initial"><i>Mr. Ross=E2=80=99 right to information a=
+bout Charlotte
+and Alice/joint decision-making</i></span></u></b></p><p class=3D"MsoNormal=
+" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-family:&=
+quot;Times New Roman&quot;,serif"><span lang=3D"EN-US" style=3D"font-family=
+:Arial,sans-serif;background-image:initial;background-position:initial;back=
+ground-size:initial;background-repeat:initial;background-origin:initial;bac=
+kground-clip:initial"><b><i>On May 11, 2022, Mr. Ross sent an email to your
+client requesting information about Charlotte and Alice=E2=80=99s missed sc=
+hool days,
+their health and to update me him anything else of importance.=C2=A0 His re=
+quest has not been answered.=C2=A0 Would you please speak to your client ab=
+out this
+issue as Mr. Ross has a right to receive information about the children, an=
+d you
+client cannot continue to make unilateral decisions about the health and we=
+ll
+being of the children.=C2=A0 In fact, the parties
+still have joint custody, and decisions pertaining to the children are to b=
+e
+made jointly and not unilaterally by Ms. Holmes.</i></b></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:107%;font-size:12pt;=
+font-family:&quot;Times New Roman&quot;,serif"><b><u><span lang=3D"EN-US" s=
+tyle=3D"font-family:Arial,sans-serif;background-image:initial;background-po=
+sition:initial;background-size:initial;background-repeat:initial;background=
+-origin:initial;background-clip:initial"><i>Parenting time with Charlotte a=
+nd Alice</i></span></u></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0=
+cm 8pt;line-height:107%;font-size:12pt;font-family:&quot;Times New Roman&qu=
+ot;,serif"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;backg=
+round-image:initial;background-position:initial;background-size:initial;bac=
+kground-repeat:initial;background-origin:initial;background-clip:initial"><=
+b><i>Mr. Ross continues to insist that there is no
+reason that he cannot have in person parenting time with the children.=C2=
+=A0 Your client continues to refuse his in-person
+parenting time.=C2=A0 Although she recently
+offered some virtual FaceTime for Mr. Ross to have with the children, those=
+ times
+have been cancelled frequently, and they are irregular.=C2=A0 Given the com=
+ments made by Justice Somji, and
+pending her decision, we expected that your client would move forward with
+establishing regular parenting time with the children.=C2=A0 Would you plea=
+se speak to your client about
+this issue so that we can establish a regular parenting schedule, in the be=
+st
+interest of the children?</i></b></span></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-family:&quot;Times=
+ New Roman&quot;,serif"><span lang=3D"EN-US" style=3D"font-family:Arial,san=
+s-serif;background-image:initial;background-position:initial;background-siz=
+e:initial;background-repeat:initial;background-origin:initial;background-cl=
+ip:initial"><b><i>We look forward to hearing from you at your
+earliest opportunity.</i></b></span></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-family:&quot;Times New=
+ Roman&quot;,serif"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-se=
+rif;background-image:initial;background-position:initial;background-size:in=
+itial;background-repeat:initial;background-origin:initial;background-clip:i=
+nitial"><b><i>Regards,</i></b></span></p><p class=3D"MsoNormal" style=3D"ma=
+rgin:0cm 0cm 8pt;line-height:107%;font-size:12pt;font-family:&quot;Times Ne=
+w Roman&quot;,serif"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-s=
+erif;background-image:initial;background-position:initial;background-size:i=
+nitial;background-repeat:initial;background-origin:initial;background-clip:=
+initial"><b><i>Allison Lendor</i></b></span></p><div style=3D"margin:0cm 0c=
+m 8pt;line-height:107%;font-size:12pt;font-family:&quot;Times New Roman&quo=
+t;,serif"><span lang=3D"EN-US" style=3D"font-family:Arial,sans-serif;backgr=
+ound-image:initial;background-position:initial;background-size:initial;back=
+ground-repeat:initial;background-origin:initial;background-clip:initial">=
+=C2=A0</span><br></div><div><br></div>-- <br><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0cm 0pt=
+"><i style=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allison Len=
+dor</font></i><br></div><div><div style=3D"font-size:13px;margin:0cm 0cm 0p=
+t"><i><span><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font></span=
+></i></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span><font =
+face=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors</font></font>=
+</span></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calib=
+ri"><font size=3D"3">209 - 460 West Hunt Club Road</font></font></span></i>=
+</div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><font s=
+ize=3D"3">Ottawa, ON</font></font></span></i></div><div style=3D"font-size:=
+13px"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font></font=
+></span></i></div><div style=3D"font-size:13px"><i><font face=3D"Calibri"><=
+font size=3D"3"><br clear=3D"none"></font></font></i></div><div style=3D"fo=
+nt-size:13px"><font size=3D"3"></font></div><div style=3D"font-size:13px;ma=
+rgin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Tel.: (6=
+13)247-7964 ext 3</font></font></span></i></div><div style=3D"font-size:13p=
+x"><i><span><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-9995</fon=
+t></font></span></i></div><div style=3D"font-size:13px"><span style=3D"font=
+-family:tahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-style:ita=
+lic;white-space:nowrap"><br></span></div><div style=3D"font-size:13px"><br>=
+</div><div style=3D"font-size:13px"></div><div style=3D"font-size:13px"><va=
+r></var></div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"font-size=
+:13px"><span lang=3D"EN-US" style=3D"font-size:12pt">This email and any fil=
+es transmitted with it are confidential and intended solely for the use of =
+the individual or entity to whom they are addressed and may be protected by=
+ solicitor-client privilege. If you have received this email in error pleas=
+e notify us by e-mail reply and delete it from your system; you may not cop=
+y this message or disclose its contents to anyone.</span></i></div><div><fo=
+nt size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font face=3D"=
+Calibri"><font size=3D"3"><i></i></font></font></div><div></div></div><div>=
+</div></div></div></div></div></div>
+</div></blockquote></div><br></div></div></blockquote></div><br clear=3D"al=
+l"><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div>=C2=A0</div><div><div style=3D"margin:0cm 0=
+cm 0pt"><i style=3D"font-size:13px"><font face=3D"Calibri" size=3D"3">Allis=
+on Lendor</font></i><br></div><div><div style=3D"font-size:13px;margin:0cm =
+0cm 0pt"><i><span><font face=3D"Calibri" size=3D"3">Lendor Guest LLP</font>=
+</span></i></div><div style=3D"font-size:13px;margin:0cm 0cm 0pt"><i><span>=
+<font face=3D"Calibri"><font size=3D"3">Barristers &amp; Solicitors</font><=
+/font></span></i></div><div style=3D"font-size:13px"><i><span><font face=3D=
+"Calibri"><font size=3D"3">209 - 460 West Hunt Club Road</font></font></spa=
+n></i></div><div style=3D"font-size:13px"><i><span><font face=3D"Calibri"><=
+font size=3D"3">Ottawa, ON</font></font></span></i></div><div style=3D"font=
+-size:13px"><i><span><font face=3D"Calibri"><font size=3D"3">K2E 0B8</font>=
+</font></span></i></div><div style=3D"font-size:13px"><i><font face=3D"Cali=
+bri"><font size=3D"3"><br clear=3D"none"></font></font></i></div><div style=
+=3D"font-size:13px"><font size=3D"3"></font></div><div style=3D"font-size:1=
+3px;margin:0cm 0cm 0pt"><i><span><font face=3D"Calibri"><font size=3D"3">Te=
+l.: (613)247-7964 ext 3</font></font></span></i></div><div style=3D"font-si=
+ze:13px"><i><span><font face=3D"Calibri"><font size=3D"3">Fax: (613)233-999=
+5</font></font></span></i></div><div style=3D"font-size:13px"><span style=
+=3D"font-family:tahoma,sans-serif;color:rgb(204,0,0);font-size:small;font-s=
+tyle:italic;white-space:nowrap"><br></span></div><div style=3D"font-size:13=
+px"><br></div><div style=3D"font-size:13px"></div><div style=3D"font-size:1=
+3px"><var></var></div></div><div style=3D"margin:0cm 0cm 0pt"><i style=3D"f=
+ont-size:13px"><span lang=3D"EN-US" style=3D"font-size:12pt">This email and=
+ any files transmitted with it are confidential and intended solely for the=
+ use of the individual or entity to whom they are addressed and may be prot=
+ected by solicitor-client privilege. If you have received this email in err=
+or please notify us by e-mail reply and delete it from your system; you may=
+ not copy this message or disclose its contents to anyone.</span></i></div>=
+<div><font size=3D"3"></font></div><div style=3D"margin:0cm 0cm 0pt"><font =
+face=3D"Calibri"><font size=3D"3"><i></i></font></font></div><div></div></d=
+iv><div></div></div></div></div>
+
+--0000000000006a870e05e003edc5--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>732607</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1653682358</integer>
+	<key>flags</key>
+	<integer>9160621061</integer>
+	<key>remote-id</key>
+	<string>781</string>
+</dict>
+</plist>

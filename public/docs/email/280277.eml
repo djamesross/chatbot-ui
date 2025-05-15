@@ -1,0 +1,274 @@
+14359     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr44p00im-qukt02162302.me.com by p133-mailgateway-smtp-579bf75dbf-8n86h (mailgateway 2403B92)
+	with SMTP id af199963-1fa9-4506-8eef-04fad968a3e4 
+	for <darrylross@icloud.com>; Mon, 18 Dec 2023 17:05:12 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: af199963-1fa9-4506-8eef-04fad968a3e4
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	by mr44p00im-qukt02162302.me.com (Postfix) with ESMTPS id 1A204408040C
+	for <darrylross@icloud.com>; Mon, 18 Dec 2023 17:05:09 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQloQXgcZFltVFVFfDlgc
+ DEZVVgJXWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwFGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqI08xOFNeRVMGNCENMm9XMBQRMBEbRQslOSZWHUUHTjMiF1dD
+ CWpHMQBUNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hl7WQN17
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.45 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.45; helo=mail-ej1-f45.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a1fae88e66eso384362166b.3
+        for <darrylross@icloud.com>; Mon, 18 Dec 2023 09:05:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702919109; x=1703523909; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0JyjH+0ZWdnRTp80vLTIRvS5QefCvWQQb2prGU3x3Yk=;
+        b=Hl7WQN17BjAUWm0RzX8e9f/of+fMYTxLKpoUi0xyxRZ3FXDjJjPtLQfa4MRHCfWyGh
+         1StQ2C3YK2I5Jv+R8iu84z5DjjtzB9xDq4GRJhWXizax3ksINfd+CSpxAiQuzEqh0Iw3
+         VpDC41VOihaXnUON+5TBPOM96ocZn02Af4M22o5OJlOyiIHxzPEygpiIufn2g9N6qkBl
+         17DGC1kJPVGOvJN2WTqPP4pd3mDpxDSsmU4c3EvrwrWRTEp9JlXs7LDQt+EoO83uCxMQ
+         Y7QHIv9sI+wN5phhifPGeVN9GjQOxo48MWOHRE5P7VpKZFZBvwHtoSKoreZId6N65CVV
+         elug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702919109; x=1703523909;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0JyjH+0ZWdnRTp80vLTIRvS5QefCvWQQb2prGU3x3Yk=;
+        b=kSzd7I/Lpj+Iz1Q3vLitVn8R+sn6PRWUcRKoBO5QtdxYdDPY+reZUeXQ2OnKGWOObA
+         slNxkeEpKg/ewx134zk4wqSDKiU4M6j/iOXockSuxVnLwuOYCKq2gJ/S5867i0jsNLdd
+         /YlIwAcm2R/qUFvrjWvS1fd2BaXsWzg+D5kG3UI3z0BqVEr9+/XzSvNPLrbak37h+RYC
+         dDPMaUCCvwLYV6H7yThSCTkAOmY9oCB128de+LkJ0kbTEk/gKA2DzDraqBr8vr1sUwu8
+         LolW9B//qY2YmQXtnKhBg+k09ZZf2cR6IDLbCDFXC53dxmsqzwXfH6jre1cZUUxvbegF
+         Ol/w==
+X-Gm-Message-State: AOJu0YzaDSXNnp7pE/w8l5k0xS/p7FYsW5W/a8e714h31ktGFTv0iaRv
+	OuLDX2pXBk1JC+5c5AVRIUDckIzJo7UTHd42NG8oIUkP
+X-Google-Smtp-Source: AGHT+IEu8/bRMe81REeMlOnn8j0teK83b7gZlrL4Yz2X0Jrabkr/D5Shd5Ekfx8HO3P19lAVdtnojz18AW+j/Eq72GQ=
+X-Received: by 2002:a17:906:e56:b0:a1c:6dfd:1480 with SMTP id
+ q22-20020a1709060e5600b00a1c6dfd1480mr7089034eji.136.1702919108932; Mon, 18
+ Dec 2023 09:05:08 -0800 (PST)
+MIME-Version: 1.0
+References: <1B953442-D8A4-4354-95E1-9A3F3ADE7EEB@icloud.com> <8BA7071B-BD3B-44A5-A76B-BC92B95F1C41@icloud.com>
+In-Reply-To: <8BA7071B-BD3B-44A5-A76B-BC92B95F1C41@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 18 Dec 2023 12:04:58 -0500
+Message-ID: <CAFnbyRHV6WO+ns1sMGzJ_aRahVfcu=GL_0j=7xQWn14qZqSu-Q@mail.gmail.com>
+Subject: Re: Sunday December 24th
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000091b991060ccbc051"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgaEhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsSEnEbHhMQGncGGBoGGhEKWV4XbGx5EQpDThdibWFQZU1OaRthe
+ 25TR0BHQkZPGkJNYW4dQlx+HVBHWBEKWFwXGQQaBB8aBRsaBBscGAQZGgQYExAbHhofGhEKXlk
+ XSV5DaEIRCk1cFwcYGx4RCkxaF01NbxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4fEQpCXhcbE
+ QpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm5
+ 4GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQ
+ BdiWG4TGG9cQx97chEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2lPehpvYn97Y2F
+ QEBkaEQpwaBdufWlST0lie2dMaRAZGhEKcGgXbHJJXGgbW0xkbmEQGRoRCnBoF2J5WkwTSAFgR
+ FBtEBkaEQpwaBdvXG5AWlhCXGcaRxAZGhEKcGgXZGFIQnpiEnIfaGUQGRoRCnBoF2ZYe1J5aWh
+ cX21mEBkaEQpwaBdkU2FsHG1PQmYFaRAeGhEKcGwXZkZrHxhbbV9Gb28QGhEKbX4XGxEKWE0XS
+ xE=
+X-Proofpoint-ORIG-GUID: HGKzOgdC1KQDymjmhle0hgKD7hvT7zmr
+X-Proofpoint-GUID: HGKzOgdC1KQDymjmhle0hgKD7hvT7zmr
+
+--00000000000091b991060ccbc051
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Xmas day works at noon until 8 and girls are free Dec .27 at noon until
+8pm. They are available Sunday Dec 31, Tuesday  Jan 2 and Thursday Jan 4
+the following week.
+
+
+
+On Mon, Dec 18, 2023 at 11:51=E2=80=AFAM Darryl Ross <darrylross@icloud.com=
+> wrote:
+
+> Hi Cynthia,
+>
+> I am following up on possibly changing Sunday=E2=80=99s visit to Monday. =
+I have to
+> confirm my plans over the holidays, and my mom has to confirm her own pla=
+ns
+> as well. My mom is not available both Christmas Day and Boxing Day if
+> Sunday=E2=80=99s visit is moved. She is available Christmas Day and Wedne=
+sday, Dec.
+> 27, otherwise it will have to be Christmas Eve Day and Boxing Day, based =
+on
+> her availability.
+>
+>
+> Both Thursdays she is only available during the day, 10-5. Over the break
+> earlier times are a lot easier for her as she is getting older and the
+> drive is very long and on country roads for much of the way.
+>
+>
+> Kindly let me know if those days work for you or if some need to be
+> changed by Tuesday evening so I can confirm my plans and ensure that my m=
+om
+> is available as well.
+>
+> Begin forwarded message:
+>
+>
+> *From: *Darryl Ross <darrylross@icloud.com>
+> *Subject: **Re: Sunday December 24th*
+> *Date: *December 11, 2023 at 15:09:50 EST
+> *To: *Cynthia Holmes <cynthmholm@gmail.com>
+>
+> Hi Cynthia,
+>
+> Acknowledged: Change of parenting time from Sunday, December 24th, to
+> Monday, December 25th, with noon as the start time.
+>
+> Regarding additional days during the holidays: Confirming availability to
+> extend both Tuesday visits to noon-8 pm and to add Thursday visits during
+> the two-week holiday period.
+>
+> Please confirm if this arrangement is suitable or advise of any necessary
+> adjustments.
+>
+> Regards,
+>
+> Darryl
+>
+>
+> On Dec 6, 2023, at 13:34, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> Can we switch Sunday 24th to Monday the 25th? Xmas Eve is busy one for ou=
+r
+> family, Dad and Jul we visit that day, and the girls take part in the Xma=
+s
+> Eve service at their grandmother;s chruch, also we have guest from out of
+> town tht evening and morning for breakfast.
+>
+> I can deliver the girls for noon on Monday.
+>
+> Aslo we can add a few extra days during the holidays depending on all
+> availability, perhaps Thursday and extend Tuesday from noon-8?
+>
+> I
+>
+>
+>
+>
+
+--00000000000091b991060ccbc051
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Xmas day works at noon until 8 and girls are free Dec .27=
+ at noon until 8pm. They are available Sunday Dec 31, Tuesday =C2=A0Jan 2 a=
+nd Thursday Jan 4 the following week.=C2=A0</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, Dec 18, 2023 at 11:51=E2=80=AFAM Darr=
+yl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-b=
+reak:after-white-space">Hi Cynthia,<div><br></div><div><p style=3D"margin:0=
+px;font-style:normal;font-variant-caps:normal;font-stretch:normal;font-size=
+:13px;line-height:normal;font-family:&quot;Helvetica Neue&quot;;font-size-a=
+djust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-li=
+gatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;f=
+ont-feature-settings:normal">I am following up on possibly changing Sunday=
+=E2=80=99s visit to Monday. I have to confirm my plans over the holidays, a=
+nd my mom has to confirm her own plans as well. My mom is not available bot=
+h Christmas Day and Boxing Day if Sunday=E2=80=99s visit is moved. She is a=
+vailable Christmas Day and Wednesday, Dec. 27, otherwise it will have to be=
+ Christmas Eve Day and Boxing Day, based on her availability.</p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Ne=
+ue&quot;;font-size-adjust:none;font-kerning:auto;font-variant-alternates:no=
+rmal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-feature-settings:normal;min-height:15px"><br></p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Ne=
+ue&quot;;font-size-adjust:none;font-kerning:auto;font-variant-alternates:no=
+rmal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-feature-settings:normal">Both Thursdays she is only=
+ available during the day, 10-5. Over the break earlier times are a lot eas=
+ier for her as she is getting older and the drive is very long and on count=
+ry roads for much of the way.</p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Ne=
+ue&quot;;font-size-adjust:none;font-kerning:auto;font-variant-alternates:no=
+rmal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-feature-settings:normal;min-height:15px"><br></p>
+<p style=3D"margin:0px;font-style:normal;font-variant-caps:normal;font-stre=
+tch:normal;font-size:13px;line-height:normal;font-family:&quot;Helvetica Ne=
+ue&quot;;font-size-adjust:none;font-kerning:auto;font-variant-alternates:no=
+rmal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant=
+-east-asian:normal;font-feature-settings:normal">Kindly let me know if thos=
+e days work for you or if some need to be changed by Tuesday evening so I c=
+an confirm my plans and ensure that my mom is available as well.</p><div><b=
+r><blockquote type=3D"cite"><div>Begin forwarded message:</div></blockquote=
+></div></div></div><div style=3D"line-break:after-white-space"><div><div><b=
+lockquote type=3D"cite"><br><div style=3D"margin-top:0px;margin-right:0px;m=
+argin-bottom:0px;margin-left:0px"><span style=3D"font-family:-webkit-system=
+-font,Helvetica Neue,Helvetica,sans-serif;color:rgba(0,0,0,1.0)"><b>From: <=
+/b></span><span style=3D"font-family:-webkit-system-font,Helvetica Neue,Hel=
+vetica,sans-serif">Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com"=
+ target=3D"_blank">darrylross@icloud.com</a>&gt;<br></span></div><div style=
+=3D"margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px"><spa=
+n style=3D"font-family:-webkit-system-font,Helvetica Neue,Helvetica,sans-se=
+rif;color:rgba(0,0,0,1.0)"><b>Subject: </b></span><span style=3D"font-famil=
+y:-webkit-system-font,Helvetica Neue,Helvetica,sans-serif"><b>Re: Sunday De=
+cember 24th</b><br></span></div><div style=3D"margin-top:0px;margin-right:0=
+px;margin-bottom:0px;margin-left:0px"><span style=3D"font-family:-webkit-sy=
+stem-font,Helvetica Neue,Helvetica,sans-serif;color:rgba(0,0,0,1.0)"><b>Dat=
+e: </b></span><span style=3D"font-family:-webkit-system-font,Helvetica Neue=
+,Helvetica,sans-serif">December 11, 2023 at 15:09:50 EST<br></span></div><d=
+iv style=3D"margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0=
+px"><span style=3D"font-family:-webkit-system-font,Helvetica Neue,Helvetica=
+,sans-serif;color:rgba(0,0,0,1.0)"><b>To: </b></span><span style=3D"font-fa=
+mily:-webkit-system-font,Helvetica Neue,Helvetica,sans-serif">Cynthia Holme=
+s &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@=
+gmail.com</a>&gt;<br></span></div><br><div><div>Hi Cynthia,<br><br>Acknowle=
+dged: Change of parenting time from Sunday, December 24th, to Monday, Decem=
+ber 25th, with noon as the start time.<br><br>Regarding additional days dur=
+ing the holidays: Confirming availability to extend both Tuesday visits to =
+noon-8 pm and to add Thursday visits during the two-week holiday period.<br=
+><br>Please confirm if this arrangement is suitable or advise of any necess=
+ary adjustments.<br><br>Regards,<br><br>Darryl<br><br><br><blockquote type=
+=3D"cite">On Dec 6, 2023, at 13:34, Cynthia Holmes &lt;<a href=3D"mailto:cy=
+nthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<b=
+r><br>Hi Darryl,<br><br>Can we switch Sunday 24th to Monday the 25th? Xmas =
+Eve is busy one for our family, Dad and Jul we visit that day, and the girl=
+s take part in the Xmas Eve service at their grandmother;s chruch, also we =
+have guest from out of town tht evening and morning for breakfast.<br><br>I=
+ can deliver the girls for noon on Monday.<br><br>Aslo we can add a few ext=
+ra days during the holidays depending on all availability, perhaps Thursday=
+ and extend Tuesday from noon-8?<br><br>I<br></blockquote><br></div></div><=
+/blockquote></div><br></div></div></blockquote></div></div>
+
+--00000000000091b991060ccbc051--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>ff9bf1</string>
+	<key>conversation-id</key>
+	<integer>1198185</integer>
+	<key>date-last-viewed</key>
+	<integer>1744641099</integer>
+	<key>date-received</key>
+	<integer>1702919112</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12077</string>
+</dict>
+</plist>

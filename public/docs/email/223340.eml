@@ -1,0 +1,176 @@
+11546     
+Return-path: <barbcollishaw@yahoo.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-1a-20-percent-7 by p133-mailgateway-smtp-8c9c79b9f-x6xtn (mailgateway 2424B107)
+	with SMTP id 40badfa2-e23a-453e-a942-c58c031cd54b 
+	for <darrylross@icloud.com>; Sun, 8 Sep 2024 20:04:19 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 40badfa2-e23a-453e-a942-c58c031cd54b
+Received: from sonic317-20.consmr.mail.gq1.yahoo.com (sonic317-20.consmr.mail.gq1.yahoo.com [98.137.66.146])
+	by p00-icloudmta-smtpin-us-east-1a-20-percent-7.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id 1E33EC0068D
+	for <darrylross@icloud.com>; Sun,  8 Sep 2024 20:04:13 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVFSwQEQgYMWxkXXlNCBhAWSkEIGFNGTkhBTh4HVkNZAxNFUlcQFxoJGxRZRQoUDiYOGVhZDVsaB1ceVAsbFBEJGFZTV0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1FDRsQBURJBxtQRVcFGBZDWxBbFAceFB5RE0RXHxYQX1lMFhYLVwhERF8GFggeGwMHVVhLVlkbX1gRGAtIGhlZWkwSCFdZAVFeDRpXBRgVEFIGSAAHHxdfGAEUWQseHA0KUEVPUENOBAVURVdSRUgIBVtDV1dASgUOUEBBUkJLAQUiGBgPG1ZJVwoaFkgUF10I
+X-ICL-Score: 3.3330332342
+Authentication-Results: bimi.icloud.com; bimi=none
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=yahoo.ca
+X-DMARC-Policy: v=DMARC1; p=reject; pct=100; rua=mailto:d@rua.agari.com; ruf=mailto:d@ruf.agari.com;
+X-DMARC-Info: pass=pass; dmarc-policy=reject; s=r1; d=r1; pdomain=yahoo.ca
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=yahoo.ca header.i=@yahoo.ca header.b=Hd9c4VDp
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of barbcollishaw@yahoo.ca designates 98.137.66.146 as permitted sender) smtp.mailfrom=barbcollishaw@yahoo.ca
+Received-SPF: pass (spf.icloud.com: domain of barbcollishaw@yahoo.ca designates 98.137.66.146 as permitted sender) receiver=spf.icloud.com; client-ip=98.137.66.146; helo=sonic317-20.consmr.mail.gq1.yahoo.com; envelope-from=barbcollishaw@yahoo.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.ca; s=s2048; t=1725825850; bh=mK38enRZoKOeE0jeyjPwIpvHliCRektTCOcxB+DhB1U=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Hd9c4VDpH0+81Ep1XZv1y7iOhXpUanLI/YJZL67Ol//aubfbCkvTdWxpMl8FEY2pUKgh5L3J7EAS7rmFpwBU78ba8W5Nx6+NdvgUBpYPnO5IG0mZIn1iVafugsv+1spw+YK8Zy4SeqFlnJbKkOGhuEbCDYmdbw/ou21ZpW+ddJsl+Lff0s7rh3leM1Tfypqv7A864rgbXC5MzYT6gRKJsXCm4J+rNW0YD2Lwumf7ndv9ef8ts8gat6QVlL3lBceCCDFfjQ3fFQqYv2KGML3gLrgoKOLdLO1z4I0AvSQITT8jP14D36L11v2kQamQXjLZXNw5Q8Ickg7z4cUUPWjv9Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1725825850; bh=FlIRBUAXGQ8qyKfsLp6JVxfaIoSde0pRiOH5gbBhFiP=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=dFMxs8nqVC9pssMb5XJ7n8q1sehSXPoiqXvy+TMxBVsuqmseBSDwiIirU42srwHDqh4nfLJLlAJrYiWc2mP06uCycQqaE4r3R+LMKJ5gUp0D7HppEv24y0x+n4AyeapHlHGY1XdrUlcws+HvzvlmPCMhlgeVp6QeH9uBpR7ew3uRt5BsuJILdlvAS69pXgvR/5wX441r+FcbyiGFjzwrY68VIoyD815NgHlHHofMRTcBDlyhqsd0XEW+31cszJW4pLqg0l+wr7qmYojX2qhVSajDIipspcWViSGfgRId4JsB1jR0wG/abqh+J7+DYYcoEmrC20Td2fGbkXGNxuLJDA==
+X-YMail-OSG: cCom.DEVM1kGRtcd19QPYgGHxjm5BkFfMwsX.LtoEAYTjWvzynSthaT_xDJipmg
+ W.hOb_.CCKDnJmIySUFAdrhtEd4V9I5I1Pr.BUUOhzo9PJbJVHnatI.GCtoL7OopPGXn5DP3dDhT
+ Oz37fy6eJWz1Zfcx6ETkkFAsDOl2dFJsMCoGHoFvRZd2eQ510tONIJ.k0C4f.XAQ9zHwVVc4F8wW
+ 5a9L9ynl1YCQXd.GKl4SNT5r5VV3gz9_kc4eM8Lpds10Z6fBgjIKMGpOAcarlfm.GgcZFfFgZrPa
+ IgDNWNnlPOr5TdbQ6H6lyc1Wbx41JHejW3Uc3n4vcoK28Sm_ZTscKqTPNABAD2QLQqH.fWgYEJjn
+ ANYg04uisfKKjOHoiPijp2Ydp_ymFGgmtd8W7d4mhLmvxOTojXu1yqeaxGpfb8xrwiRUcuAiKexL
+ xG.GXykKC2X_3Vh9fkattk4Jo7kH.sr2NrE4UR3iQAkHNg1JUKfqxt7LnSEe.YktaFmp4QqQaa1H
+ ieeLDitby8fVQdfkA8X1m.pKPe097plAtadfuPejMEXt.IrqwkcEv8HWd0MuldVX54b87X2xunXS
+ RAFvXidLgECS5f3m0Ntwvlwd3eLH.Y1wquJJ__oBW2fn5AwpN9mWQId2baYPOQ2KlYoxR6fS0DSV
+ SXBWnm9aggHWn8_.JnpdGTsOVak0vunHqQS3cGuyvwzc2HuoRJvPY37B_XMr2zeTUcV4PfEe2pEi
+ 8186yX2la8ms3rTIq982Dbouk3xwuU2xE0UHRWftJGKwVqBwWPjHtxNrMeZnSbL4LJRvQVny7BH6
+ mma3aG_qQQdfxNrqdWBuh2gPc.pvvIpt4hxxJegtNyCPHMNJHOxFNkDLa8mNSxQr_Z4Ro18qM_Z7
+ ckZpITuOKxMPDRm7DMksycCV6MH15LbrzVIv19dsNIvr8eeOVdvptQxVIAkxGNjA6Xgs4ZQpw9k7
+ nFnpwlNDMT6f_x0olb1BqKUKPkEN9f.yh1wC85EawK7NeO1VtA199vwI8o9h3j0rBFd9wW_.DBz7
+ teY1IzUG6Lz1acKh_dejt3CVSkOweazSdXakX4lGbsZubyd467sL6Yw3S5oQZs.rNPzQXLBenxx_
+ YSbb_psL4kYIXbHgkr29BvKZZj7_8CUwf4nb0hBFxfoorQj0vvWKsbNT6oCYYcyO_DipEa.dmVKz
+ TZ3x80FmP0fkjrj.rBPCFYXTjK09B2lM4EtPt.Ji4FpyPYiqDLo3g1HXPehrnr7rYm1W3xPGee1u
+ 9p62C6_khd1w9xbRITdwMZyBMYfHvJwNzihcxCEt3yMeRYKdD3muKeop2.85UtYBJwulsvei3WSs
+ 99drqbssWCiucBRervSoAiEV2wwLkXAcfUEgLXOXzlx2w_V8Jt_cM2DRHgnduZnse_hEf8U9DFdD
+ PCuOjs.u3u5Iq3645l8WIa96juOCZ53ED2mPQ9eL0YcqYoLX8tVnKGkOB9dlcLW85LJ3u3l7Zt5U
+ ZSy1u1x_4aJKUfH8CSnXKhbHRIBAr5w20iD3D_Wb9Ul3_6dWAIeP7.3YnWyLjX7ooY24KiEaz0rf
+ I12iD7CcPBZRW6q1bbgVY_Xm70DQik4WH1Z1bGIcwp2_aHgvI6q_gKtUvlrCddRpzSr9IumrW3Y3
+ QmG7bk8.QNScDJHNPkppbdOgRUqurNmW9T61D6cROKHG.BKrJVNiBnYZ9mZwAVjuqzw8Kj0Jl1ny
+ BJqheQ_JO87k08MvEXzEKOxUSZvbvfpBAPbKff23oovYJAQGGcl3Ok3Dm3.Ewx9l75zddoUHJcCk
+ gzwp9QE7K4sH23Yin8n_vc6xB2yjd8KPdHI5SjvtqW0ZF94SVvBqBA9b552Tk3isZvAjnL.m9qGd
+ eU5eXuFRFLyrcPv.O_pAF8GPpIRx7fVdA.Jwyva9l8h4aQe2fM8wmh95KOVOoQc2POT2DubsBjTy
+ b4uP1GN6shtGfqNvz2rsIPXZdVJHxWY6LNA5yDIebH3pRsIQTqZWul2Jjzarfr96JNoGwxpAl4FQ
+ b6bj7zJvmkJl8Pe_vXAmzCaFMrPUo_2I7o4V3ayqRX.RuHhTSTblTNp7Ty5_nrEI4kqz7A5VR.vZ
+ RhypLR4Er3XIgyqalMY9oKzd32NdCK8lqEIJ6RtgDW85HW4WYAGtX2xsCh5GwBRcEk3YFN8pkn3c
+ klznRZSBZcyKhg.K7QIJ0.wSIPbQrImejJe93VGLoNqPhuojxZ84BNyRKsLrAfIc37XpoFv4OoOJ
+ VIFcp5iy6eZgmODTRJJ3M1zHKzBGJMaUZ1XNGHIlm9z5Gc.0_mjQXWQxyc7K_VSk2K3Jz5OfUJS0
+ VXo8HohTKzT5pQ6F5oDBRLqQOgTTdaxb__SeaVNFeGwTEdMFSAwFb5c7LPJq9e9._u.jUX_Ezt0U
+ c
+X-Sonic-MF: <barbcollishaw@yahoo.ca>
+X-Sonic-ID: 060f0831-de53-4864-9bdd-af5e697c8433
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.gq1.yahoo.com with HTTP; Sun, 8 Sep 2024 20:04:10 +0000
+Date: Sun, 8 Sep 2024 20:04:05 +0000 (UTC)
+From: Barb <barbcollishaw@yahoo.ca>
+Reply-To: Barb <barbcollishaw@yahoo.ca>
+To: Darryl Ross <darrylross@icloud.com>, 
+	Cynthia Holmes <cynthmholm@gmail.com>
+Cc: Neil Collishaw <ncollishaw@smoke-free.ca>
+Message-ID: <2066464360.4208396.1725825845313@mail.yahoo.com>
+In-Reply-To: <400335375.4208887.1725824672944@mail.yahoo.com>
+References: <CAFnbyREUwj-AawK=18E-eg8HfiQQ_eKJWeLrh9JGr1gU_H-Vdg@mail.gmail.com> <400335375.4208887.1725824672944@mail.yahoo.com>
+Subject: Re: Are the ages of the window?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4208395_1544146134.1725825845312"
+X-Mailer: WebService/1.1.22645 YahooMailAndroidMobile
+X-CLX-Shades: None
+X-MANTSH: 1TFkXGx0dEQpZRBdvSVNkTBJnHllueBEKWU0XZEVETxEKWUkXGnEaEBp3BhsfHXE
+ ZHBAadwYYGgYaEQpZXhdsbHkRCkNOF1p8HXASaR5hSEQbYHB4XBxFWVlOGElBTxtnWHllUmdhE
+ QpYXBcZBBoEHxoFGxoEGxwYBBkaBB8QGx4aHxoRCl5ZF09vHExLEQpNXBcZGREKTFoXaGlFTWs
+ RCkxGF2xNaxEKQ1oXExIEGxkdBBwcBBseHBEKQl4XGxEKRF4XGBEKREkXGxEKQlwXGxEKXk4XG
+ xEKQksXa0J5fWdDZ15iZmwRCkJJF2tCeX1nQ2deYmZsEQpCRRdnbn9vXxllelxvZREKQk4Xa0J
+ 5fWdDZ15iZmwRCkJMF2VtZEBnGEZyYlBwEQpCbBdmSRNwa1hpZGVgHxEKQkAXa1lhSFNTfWBea
+ U4RCkJYF2JrTm9vemxnWkdLEQpaWBcTEQpwaBdlTVlOfkRSWEJiHhAaEQpwaBd6XRJlYhtpQBp
+ TeRAaEQpwaBdrYRhfGh4bYXpNExAaEQpwaBdrQW5dSFN4Xl1fSRAHHhIRCnBoF2dySHBkZBh9Z
+ E9fEBoRCnBoF2seQBscc0YaXloYEBoRCnBoF2dFWV9Ee0Z7YHtvEBoRCnBoF2hwXR5hcGscBVN
+ tEBoRCnB/F2kaYn5uR0AcRVxvEAcZGhkRCnBfF2lmf1pyaFJSRHIfEAcbGBMRCnB9F2xTU1scE
+ 2NmG1xkEAcbGx0RCnB/F2B4fWh9ExsBYRhFEAcbGB8RCnBfF2FyaF5rHUJ6AU99EAcbGR0RCnB
+ 9F2tcf1MYAWBnH3lEEBoRCnBsF2YbEn5uGEd/eXtNEBkaEQptfhcaEQpYTRdLEQ==
+X-Proofpoint-GUID: pV7Z8C4Kbn1JZRv6ossd2cke1MrSOxMK
+X-Proofpoint-ORIG-GUID: pV7Z8C4Kbn1JZRv6ossd2cke1MrSOxMK
+X-Authority-Info: v=2.4 cv=S7aLw5sP c=1 sm=1 tr=0 ts=66de033f cx=c_pps a=NUVSn+tT/RoCU0wlD1rttQ==:117 a=Oe-eJNGFVQzpIatG:21 a=nB8td1Qqqr4A:10 a=EaEq8P2WXUwA:10 a=r4lJmyDgPikA:10 a=x7bEGLp0ZPQA:10 a=Xn1IGSuEdlIA:10 a=dP5u6XrVH0wA:10 a=6huBqYH2AAAA:8 a=pGLkceISAAAA:8 a=Vlyx4zSb2mBSJDZsVCQA:9 a=QEXdDO2ut3YA:10 a=bpx254cdAAAA:8 a=fys2sDa9AAAA:8 a=UQs_jZCKg-ZI-HVg:21 a=-FEs8UIgK8oA:10 a=e0-2RUnbzGOYpVE5Pm3Y:22 a=6Oz2aaXJ70l2WwVMloxB:22 a=7YpECbvlQQReuXKdpsOb:22
+
+------=_Part_4208395_1544146134.1725825845312
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+This is what we believe:Wooden windows (interior and storm windows for porch) are original. So 1924Kitchen window 1989Sunroom windows and door and back basement door, 2007Other first floor, all second floor and attic windows about 2014.Basement windows 2024
+
+
+
+Yahoo Mail: Search, Organize, Conquer 
+ 
+  On Sun, Sept 8, 2024 at 3:44 p.m., Barb<barbcollishaw@yahoo.ca> wrote:    varied!
+    On Sunday, September 8, 2024 at 02:50:59 p.m. EDT, Cynthia Holmes <cynthmholm@gmail.com> wrote:  
+ 
+ 
+
+
+    
+
+------=_Part_4208395_1544146134.1725825845312
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+This is what we believe:<div>Wooden windows (interior and storm windows for=
+ porch) are original. So 1924</div><div>Kitchen window 1989</div><div>Sunro=
+om windows and door and back basement door, 2007</div><div>Other first floo=
+r, all second floor and attic windows about 2014.</div><div>Basement window=
+s 2024</div><div><br></div><div><br></div><div><br><br><div id=3D"ymail_and=
+roid_signature"><a id=3D"ymail_android_signature_link" href=3D"https://mail=
+.onelink.me/107872968?pid=3DNativePlacement&amp;c=3DGlobal_Acquisition_YMkt=
+g_315_EmailSignatureGrowth_YahooMail:Search,Organize,Conquer&amp;af_sub1=3D=
+Acquisition&amp;af_sub2=3DGlobal_YMktg&amp;af_sub3=3D&amp;af_sub4=3D1000009=
+45&amp;af_sub5=3DOrganizeConquer__Static_" target=3D"_blank" rel=3D"norefer=
+rer noopener">Yahoo Mail: Search, Organize, Conquer</a></div> <br> <blockqu=
+ote style=3D"margin: 0 0 20px 0;"> <div style=3D"font-family:Roboto, sans-s=
+erif; color:#6D00F6;"> <div>On Sun, Sept 8, 2024 at 3:44 p.m., Barb</div><d=
+iv>&lt;barbcollishaw@yahoo.ca&gt; wrote:</div> </div> <div style=3D"padding=
+: 10px 0 0 20px; margin: 10px 0 0 0; border-left: 1px solid #6D00F6;"> <div=
+ id=3D"yiv8964469098"><div><div style=3D"font-family:verdana, helvetica, sa=
+ns-serif;font-size:16px;" class=3D"yiv8964469098ydpe4eda250yahoo-style-wrap=
+"><div></div>
+        <div dir=3D"ltr">varied!</div><div><br clear=3D"none"></div>
+       =20
+        </div><div id=3D"yiv8964469098yqt46423" class=3D"yiv8964469098yqt04=
+59110253"><div id=3D"yiv8964469098ydpfd3f5d48yahoo_quoted_6349947574" class=
+=3D"yiv8964469098ydpfd3f5d48yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Sunday, September 8, 2024 at 02:50:59 p.m. EDT, =
+Cynthia Holmes &lt;cynthmholm@gmail.com&gt; wrote:
+                    </div>
+                    <div><br clear=3D"none"></div>
+                    <div><br clear=3D"none"></div>
+               =20
+               =20
+                <div><div id=3D"yiv8964469098ydpfd3f5d48yiv2825115980"><div=
+><br clear=3D"all"><br clear=3D"all"><div><div dir=3D"ltr" class=3D"yiv8964=
+469098ydpfd3f5d48yiv2825115980gmail_signature"><div dir=3D"ltr"><img src=3D=
+"https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxo=
+xORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA" style=3D"width:100%;=
+max-width:400px;" id=3D"ymail_ctr_id_-89920-11"><br clear=3D"none"></div></=
+div></div></div>
+</div></div>
+            </div>
+        </div></div></div></div> </div> </blockquote></div>
+------=_Part_4208395_1544146134.1725825845312--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1278949</integer>
+	<key>date-last-viewed</key>
+	<integer>1745403022</integer>
+	<key>date-received</key>
+	<integer>1725825859</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>4510</string>
+</dict>
+</plist>

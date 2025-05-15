@@ -1,0 +1,373 @@
+23004     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:a50:3688:0:0:0:0:0 with SMTP id w8csp164734ecb;
+        Fri, 14 Jan 2022 06:42:25 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwzZkd4Ul2UuiTP3Dvks3AzebT8Mf26InE8iHoql9KDiWOiaJKheg4bjtqy0fsEuvOYVaC7
+X-Received: by 2002:a25:1e89:: with SMTP id e131mr12688138ybe.614.1642171345686;
+        Fri, 14 Jan 2022 06:42:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1642171345; cv=none;
+        d=google.com; s=arc-20160816;
+        b=fXZH05jalKCZKIrJXI36oiGmYCHIZSBmI2CJN0MMCIFLp+zJ68/0z7ERe3LS3sP3D/
+         U5ERWjjHjynzmriwKKp1J8RolmjKM60Wvi5tBHKHoistiBb/dplRZcEdwSgne3sY3uSi
+         wMmigxfPropMwwQhTocugFaeKrus4lbMbE89RIKhgBXPenoy2SnER8eFVJ27RWMzmSo9
+         10Nwcc6rOTrqJ+F9dKMyiTb0MvTpVj5iyJF6M9OCBhHyJ3RQgcVbgEJ1gEzAg0qA3JAT
+         r+rDXzK7oZhULmF5/tW7nHe2YKFlXJ1TQsAehpvwCxRrkMLUWnEaNa2iIHKCdH96YDpV
+         2rhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:reply-to:from:date:ironport-sdr
+         :dkim-signature;
+        bh=3UIE/8bak30BnByJfDgZ8ekXf04qPxRufHJws4fD8rE=;
+        b=0xD6VegOjMklrbKn27Wo6WRJmddOzLUd712TiYTAfB0QflXS+z0/TeOaE5cm513+Eo
+         crjYLUOFm6/OaGOBo/IoEirKn5Sixp+ALl2JGP+jHHJtS83FQY6k4JaAtMbmvi3JmbzY
+         LBuIptp6eOwO/+IX0XKRVQUf5kl0wQD9R4lf2stdbJUwKqvnJkOBCd4uGiSWjX+Hhy2O
+         QOQe6LA8jNHDVJJ6IG1w3JNfaAsufL06L0KDlRq3opBXddJOEzKWeKjAJjTkAd/QW9Ss
+         ainCKwPTCEsSgyLgNzIcDkdfjCQEbVcIecJSKU8Z985+13HR9HKXYmloUZdcOIf8JveQ
+         7HSQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cra-arc.gc.ca header.s=mail116 header.b=qgygfbQT;
+       spf=pass (google.com: domain of do_not_reply-ne_pas_repondre@cra-arc.gc.ca designates 198.103.184.36 as permitted sender) smtp.mailfrom=do_not_reply-ne_pas_repondre@cra-arc.gc.ca;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=cra-arc.gc.ca
+Return-Path: <do_not_reply-ne_pas_repondre@cra-arc.gc.ca>
+Received: from mail116.cra-arc.gc.ca (mail116.cra-arc.gc.ca. [198.103.184.36])
+        by mx.google.com with ESMTP id g133si4233169ybg.721.2022.01.14.06.42.25
+        for <DARRYLONDUNLIN@gmail.com>;
+        Fri, 14 Jan 2022 06:42:25 -0800 (PST)
+Received-SPF: pass (google.com: domain of do_not_reply-ne_pas_repondre@cra-arc.gc.ca designates 198.103.184.36 as permitted sender) client-ip=198.103.184.36;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cra-arc.gc.ca header.s=mail116 header.b=qgygfbQT;
+       spf=pass (google.com: domain of do_not_reply-ne_pas_repondre@cra-arc.gc.ca designates 198.103.184.36 as permitted sender) smtp.mailfrom=do_not_reply-ne_pas_repondre@cra-arc.gc.ca;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=cra-arc.gc.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=cra-arc.gc.ca; s=mail116; t=1642171345;
+  h=date:from:reply-to:to:message-id:subject:mime-version;
+  bh=DakAHF8Bh2jf+HbibwLmTa2GBSXPqHp2FE0JxCSBwVY=;
+  b=qgygfbQT26Wh5w/KWRIg3HfaeaeVeiltuFe+AcUMGxzrfRcx9aGVxS/O
+   Qr2YTBqcRhD+l9Pj19C9u19kv7eEirUdg4HXjj+ZZU3oMC0+3uf/re2SH
+   mdLgRtXT1AF/arDdTWxG3JuiBuR7feiY/xst/7Q7ZGbHqVPRcwqC8LJTa
+   8=;
+IronPort-SDR: 5ruq9FIsnhbF0mdL7ydNXKC0wbWDE5gWm3jwMQVqGMxtekPIN2JvYbo0JiUxlcDqhksnn2yLqq
+ VzgxcEpa5zHg==
+Received: from unknown (HELO ec01lp4114y.isvcs.net) ([7.32.4.129])
+  by mail116.cra-arc.gc.ca with ESMTP; 14 Jan 2022 09:42:25 -0500
+Received: from wls-cra-p104-01-jb-02.isvcs.net (localhost [127.0.0.1])
+	by ec01lp4114y.isvcs.net (8.14.4/8.14.4) with ESMTP id 20EEgPKR004332
+	for <DARRYLONDUNLIN@GMAIL.COM>; Fri, 14 Jan 2022 09:42:25 -0500
+Date: Fri, 14 Jan 2022 09:42:25 -0500 (EST)
+From: Canada Revenue Agency / Agence du Revenu du Canada
+ <do_not_reply-ne_pas_repondre@cra-arc.gc.ca>
+Reply-To: Canada Revenue Agency / Agence du Revenu du Canada
+ <do_not_reply-ne_pas_repondre@cra-arc.gc.ca>
+To: DARRYLONDUNLIN@GMAIL.COM
+Message-ID: <157277376.517213.1642171345188@mailhost>
+Subject: Multi-factor Authentication - Canada Revenue Agency /
+ L'authentification multifacteur  - Agence du revenu du Canada
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_517211_336411409.1642171345176"
+
+------=_Part_517211_336411409.1642171345176
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_517212_1466278911.1642171345176"
+
+------=_Part_517212_1466278911.1642171345176
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Canada Revenue Agency | Agence du revenu du Canada
+
+English version  *** La version fran=E7aise suit ***
+
+Dear DARRYL J                       ROSS:=20
+
+You are now enrolled in multi-factor authentication with the Canada Revenue=
+ Agency sign-in services.
+
+If you signed up for multi-factor authentication, please disregard this ema=
+il.
+
+If you did not sign up for multi-factor authentication, please call 1-800-9=
+59-8281.
+
+If you're calling from outside Canada and the United States, call us collec=
+t at 613-940-8495.
+
+The TTY (teletypewriter) number is 1-800-665-0354.
+
+This is an automated email message. Please do not reply.
+
+Version fran=E7aise *** The English version precedes ***
+
+Cher/Ch=E8re DARRYL J                       ROSS :
+
+Vous =EAtes maintenant inscrit =E0 l'authentification multifacteur aupr=E8s=
+ des services d'ouverture de session de l'Agence du revenu du Canada
+
+Si vous vous =EAtes inscrit =E0 l'authentification multifacteur, veuillez n=
+e pas tenir compte de ce courriel.
+
+Si vous ne vous =EAtes pas inscrit =E0 l'authentification multifacteur, veu=
+illez appeler au 1-800-959-7383.
+
+Si vous t=E9l=E9phonez de l'ext=E9rieur du Canada et des =C9tats-Unis, appe=
+lez-nous =E0 frais vir=E9s au 613-940-8496.
+
+Le num=E9ro de t=E9l=E9imprimeur est le 1-800-665-0354.
+
+Ce courriel vous a =E9t=E9 envoy=E9 par un syst=E8me automatis=E9. Veuillez=
+ ne pas y r=E9pondre.
+
+Symbol of the Government of Canada | Symbole du gouvernement du Canada
+
+
+------=_Part_517212_1466278911.1642171345176
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D'text-align:left;'<img src=3D'cid:image' alt=3D'Canada Revenue A=
+gency | Agence du revenu du Canada'></p><p style=3D'color:blue;font-weight:=
+bold;margin-top:12px;margin-bottom:5px;text-align:center;'<span lang=3D'en'=
+>English version</span> <span lang=3D'fr'> *** La version fran=E7aise suit =
+***</span></p><p  lang=3D'en'><span style=3D'font:Helvetica;'>Dear </span><=
+span style=3D'font:Helvetica;'>DARRYL J                       ROSS</span><s=
+pan style=3D'font:Helvetica;'>: </span><span style=3D'font:Helvetica;'><br>=
+</span><span style=3D'font:Helvetica;'><br></span><span style=3D'font:Helve=
+tica;'>You are now enrolled in multi-factor authentication with the Canada =
+Revenue Agency sign-in services.</span><span style=3D'font:Helvetica;'><br>=
+</span><span style=3D'font:Helvetica;'><br></span><span style=3D'font:Helve=
+tica;'>If you signed up for multi-factor authentication, please disregard t=
+his email.</span><span style=3D'font:Helvetica;'><br></span><span style=3D'=
+font:Helvetica;'><br></span><span style=3D'font:Helvetica;'>If you did not =
+sign up for multi-factor authentication, please call </span><span style=3D'=
+font-weight:bold;font:Helvetica;'>1-800-959-8281</span><span style=3D'font:=
+Helvetica;'>.</span><span style=3D'font:Helvetica;'><br></span><span style=
+=3D'font:Helvetica;'><br></span><span style=3D'font:Helvetica;'>If you're c=
+alling from outside Canada and the United States, call us collect at </span=
+><span style=3D'font-weight:bold;font:Helvetica;'>613-940-8495</span><span =
+style=3D'font:Helvetica;'>.</span><span style=3D'font:Helvetica;'><br></spa=
+n><span style=3D'font:Helvetica;'><br></span><span style=3D'font:Helvetica;=
+'>The TTY (teletypewriter) number is </span><span style=3D'font-weight:bold=
+;font:Helvetica;'>1-800-665-0354</span><span style=3D'font:Helvetica;'>.</s=
+pan><span style=3D'font:Helvetica;'><br></span><span style=3D'font:Helvetic=
+a;'><br></span><span style=3D'font:Helvetica;'>This is an automated email m=
+essage. Please do not reply.</span></p><p style=3D'color:blue;font-weight:b=
+old;margin-top:12px;margin-bottom:5px;text-align:center;'<span lang=3D'fr'>=
+Version fran=E7aise</span><span lang=3D'en'> *** The English version preced=
+es ***</span></p><p  lang=3D'fr'><span style=3D'font:Helvetica;'>Cher/Ch=E8=
+re </span><span style=3D'font:Helvetica;'>DARRYL J                       RO=
+SS</span><span style=3D'font:Helvetica;'> :</span><span style=3D'font:Helve=
+tica;'><br></span><span style=3D'font:Helvetica;'><br></span><span style=3D=
+'font:Helvetica;'>Vous =EAtes maintenant inscrit =E0 l'authentification mul=
+tifacteur aupr=E8s des services d'ouverture de session de l'Agence du reven=
+u du Canada</span><span style=3D'font:Helvetica;'><br></span><span style=3D=
+'font:Helvetica;'><br></span><span style=3D'font:Helvetica;'>Si vous vous =
+=EAtes inscrit =E0 l'authentification multifacteur, veuillez ne pas tenir c=
+ompte de ce courriel.</span><span style=3D'font:Helvetica;'><br></span><spa=
+n style=3D'font:Helvetica;'><br></span><span style=3D'font:Helvetica;'>Si v=
+ous ne vous =EAtes pas inscrit =E0 l'authentification multifacteur, veuille=
+z appeler au </span><span style=3D'font-weight:bold;font:Helvetica;'>1-800-=
+959-7383</span><span style=3D'font:Helvetica;'>.</span><span style=3D'font:=
+Helvetica;'><br></span><span style=3D'font:Helvetica;'><br></span><span sty=
+le=3D'font:Helvetica;'>Si vous t=E9l=E9phonez de l'ext=E9rieur du Canada et=
+ des =C9tats-Unis, appelez-nous =E0 frais vir=E9s au </span><span style=3D'=
+font-weight:bold;font:Helvetica;'>613-940-8496</span><span style=3D'font:He=
+lvetica;'>.</span><span style=3D'font:Helvetica;'><br></span><span style=3D=
+'font:Helvetica;'><br></span><span style=3D'font:Helvetica;'>Le num=E9ro de=
+ t=E9l=E9imprimeur est le </span><span style=3D'font-weight:bold;font:Helve=
+tica;'>1-800-665-0354</span><span style=3D'font:Helvetica;'>.</span><span s=
+tyle=3D'font:Helvetica;'><br></span><span style=3D'font:Helvetica;'><br></s=
+pan><span style=3D'font:Helvetica;'>Ce courriel vous a =E9t=E9 envoy=E9 par=
+ un syst=E8me automatis=E9. Veuillez ne pas y r=E9pondre.</span></p><p styl=
+e=3D'text-align:right;'<img src=3D'cid:image2' alt=3D'Symbol of the Governm=
+ent of Canada | Symbole du gouvernement du Canada'></p>
+------=_Part_517212_1466278911.1642171345176--
+
+------=_Part_517211_336411409.1642171345176
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-ID: <image>
+Content-Disposition: inline
+
+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
+ALABYA//2Q==
+------=_Part_517211_336411409.1642171345176
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-ID: <image2>
+Content-Disposition: inline
+
+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
+/wDxXyz/ALM2eO3Ipr//2Q==
+------=_Part_517211_336411409.1642171345176--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>512034</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1642171345</integer>
+	<key>flags</key>
+	<integer>25770002433</integer>
+	<key>remote-id</key>
+	<string>789</string>
+</dict>
+</plist>

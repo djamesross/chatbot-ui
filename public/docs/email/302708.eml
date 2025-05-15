@@ -1,0 +1,116 @@
+5230      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:674b:0:0:0:0:0 with SMTP id f11csp4039363ltj; Thu, 21
+ Nov 2019 12:30:04 -0800 (PST)
+X-Received: by 2002:a05:620a:208d:: with SMTP id
+ e13mr9711122qka.287.1574368204485; Thu, 21 Nov 2019 12:30:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1574368204; cv=none; d=google.com;
+ s=arc-20160816;
+ b=vDF1ghnQA+kM6fN82jQ1VEayoopW/gBYYNpOyKRpL4qdFA2xp4LCHRTaV1hbd+v6YE
+ ZHL+fgbd+Fp4QfZuXq1qxhOqXy6mjiLLLHmpEVAs3OvjkvW5WhS/kkGkeiSLnFAqSvTN
+ JL2ZjRryyx32DftSzeUOZVF0GTqiI6JeLZS+3+68SL2hRHkx6o/tqLYNfsJqRTtJKIFr
+ BN/wioXPogUap3VDECXBSctBXAIWpKe/LlwjiCvdEyVk3h2Au78Zx3hs1BLcBuqsOWca
+ hbTXu/sSTXBkEssdedGyFrBTGsjsyqscKa/pSmcJ3Qkk6hZ1dSv0UW9XpVQeLam9syWF 6kpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=to:references:message-id:content-transfer-encoding:cc:date
+ :in-reply-to:from:subject:mime-version:dkim-signature;
+ bh=8wa9VkLyJ5lOX9ahwXb3YtWCCblWshoP3tS0xBU0dcA=;
+ b=sdQYyZUedndPSxRttAGRJHGup08JBcwV05FI3ocUc9iAVN7R0GOOwQpbvFG+gZtuNY
+ kX9N3RvC2a2qXgQ0a9W/UGiCejGdwwLg7kIUfDuq2d67+KJwlrotM/02ZMPQFnX107WQ
+ 6QLTSWX4f4Pw7l13VHYo9+y0jBapkaCQHcqyEKMnFJ7/k0AP5k4w1Y99onKdcrgqHWya
+ o8u+OtuXjmDbk53K6Cqaf4bIbl5IGPIwwBWbOlVVBTr26uMFFgu7HlohCt/Gf8O/divT
+ EvDnvRV0DYaMI0jVzXFD0lhirPfZaV5kSM031WUKpb/gjo/0a2xo/+JuYag79bFywxXv r9Kw==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=L1malJIZ; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ 65sor917645qte.22.2019.11.21.12.30.04 for <darrylondunlin@gmail.com> (Google
+ Transport Security); Thu, 21 Nov 2019 12:30:04 -0800 (PST)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=L1malJIZ; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=8wa9VkLyJ5lOX9ahwXb3YtWCCblWshoP3tS0xBU0dcA=;
+ b=L1malJIZR7SRKqpBciWSdEUkbvNNJ0bbjnxHOJ8EE2PkuYaao6x7qX2tvbGHZ+NHrr
+ hADXk0UoWz70Y6FyGyDAmDAD8DDuQnLQLZBwKgOU2GysQpEfLHTfCJGJMFFn1WTexrUg
+ rFUZw6qkx6rlH5vh5vpjiH3Gjid5o51Njgrmsn0TInHQD//a8U2CQtkyntutfN4Wk6Ch
+ P+nULC7jCrLbfGh/ynxRP15drNVv7M0BelQ+Gtz2Sb7QKhHZLux/CrRN1WjTknxewdDv
+ N/vjVuCNwxMKDh7Q22MsMXb9OdtDzMdHbnXKv1e91vLm3u45Af5+TOCKcqd1fkQLrZVG Kgiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=8wa9VkLyJ5lOX9ahwXb3YtWCCblWshoP3tS0xBU0dcA=;
+ b=uShjYlUTaX+/lB2Q+eSBB6I6RLkpRVvwLvmK05NLJMEkqGwvaVbFwjlgyjyBjB/i20
+ IjIaGR1gcsyDnvnmuQD4HwQXqVuTIr4i91VNZKcaqaoDl40bfeEJU13PboBz/8nmEfG8
+ HF8DVXQ74bj4diX5OCHkvB0N+US3GhXAko2Hz0OT3ahK5ugG3r3nm+cc4AWTf2jw2bmy
+ z7tkpQNk4z4Yofzaw4zA71i0TjBrcN1OgcR1awdDms/8lQii+NpiUjF1VD9GzA/EIbGT
+ EpWpiHu0nVeeTrn9K/Pzj2Dt3eK6MzhaH2aZePKCD4spupZnVUPtCFz4zFNMKDYuUJXS +ALw==
+X-Gm-Message-State: APjAAAUVIBg39ySTl7epA4O7JJR1+CdpZ4WTFZ55usQ6LS1SxAfsppWk
+ Pmrx5ViuK/DGXKi7RqoJAaJB6DAg
+X-Google-Smtp-Source: APXvYqzTNSKiSsPQiTtEf/KQrEaoXCi5VrwNwON6eg86Q3ZcsAxI1sZHrKV64tO8QIi79hLJGWe35g==
+X-Received: by 2002:ac8:5147:: with SMTP id h7mr4804711qtn.324.1574368203537;
+ Thu, 21 Nov 2019 12:30:03 -0800 (PST)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [100.88.116.233] ([161.216.164.97]) by smtp.gmail.com with
+ ESMTPSA id b81sm1958457qkc.135.2019.11.21.12.30.02 (version=TLS1_2
+ cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Thu, 21 Nov 2019 12:30:02
+ -0800 (PST)
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0 (1.0)
+Subject: Re: this afternoon
+From: Cynthia Holmes <cynthmholm@gmail.com>
+X-Mailer: iPhone Mail (16G114)
+In-Reply-To: <CABKo-oXvrwfnQxL5Vxg6OZkadqRPZJD5A_yrt1Mbux_tx5aS3w@mail.gmail.com>
+Date: Thu, 21 Nov 2019 15:30:00 -0500
+Cc: Linda Holmes <holmesmorrison@hotmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <332934F3-59ED-4131-A1C5-EC1F22F6C21A@gmail.com>
+References: <CABKo-oXvrwfnQxL5Vxg6OZkadqRPZJD5A_yrt1Mbux_tx5aS3w@mail.gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+
+ Hi Darryl,
+
+Today=E2=80=99s plan sounds good. I will let my mom know.
+
+Sent from my iPhone
+
+> On Nov 21, 2019, at 3:20 PM, Darryl Ross <darrylondunlin@gmail.com> wrote:=
+
+>=20
+> For this afternoon we can meet at McDonald's, have something to eat, I'll b=
+ring some games, and we may look around the stores if there's time.
+>=20
+> We'll be there a little after 4 pm.
+>=20
+> For the tomorrow the college works great. I'll meet them at the front entr=
+ance a little after 4.
+>=20
+> Darryl
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>8412</integer>
+	<key>date-last-viewed</key>
+	<integer>1746474137</integer>
+	<key>date-received</key>
+	<integer>1574368204</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>19899</string>
+</dict>
+</plist>

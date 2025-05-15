@@ -1,0 +1,179 @@
+9441      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09071502.me.com by p133-mailgateway-smtp-f657db5cc-5rdpz (mailgateway 2312B181)
+	with SMTP id f6f6a5e9-3188-47fc-98d2-b985268a84e5 
+	for <darrylross@icloud.com>; Wed, 22 Mar 2023 15:00:17 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: f6f6a5e9-3188-47fc-98d2-b985268a84e5
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by ci74p00im-qukt09071502.me.com (Postfix) with ESMTPS id 382E56340203
+	for <darrylross@icloud.com>; Wed, 22 Mar 2023 15:00:14 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQEpEVxBVWg1IWwsWEVwbBxFI
+ SxFNAxgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9TRFZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeAdSJk0tNk1+RC8nPSJBHnJxBRs9IDE5SGw1FBYTWjZFRSkCPhc5
+ T0pnDAI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AjqLnpSY
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.53; helo=mail-ed1-f53.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id i5so27254487eda.0
+        for <darrylross@icloud.com>; Wed, 22 Mar 2023 08:00:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679497214;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jc9IBKiXIsjwQ6qdPagD4aPXncguFf2/m9it2qIWALc=;
+        b=AjqLnpSYKtG2U6DL3JkCu83wzwTXiujuLNqNl3GmzFVR9xscRwC+g0VakFBBaMj903
+         +cK0rjMHrfF4FXOWZVMM8i/eGG0h2VlD9xr3Mdv1m5PK4bRq1k4A1g2DK+2rUy1+ilqq
+         X71WeefOqxokPk+dkWU3a7P0xm7//igFXiKzOaNYwDse7G5l7EWmFDQwaBGPRvWHdkst
+         WZVTwZ7wyOQIMYIYsb/2eLDwFQeylKAs7CdeaStyQeL4bs2orvAkRxyZGjmI7uodSmyG
+         x6ySzYFo/5902FTcyUQ/Ld7VKCkn7X8peWivVacpcnRNMvDiFdKJF7RH5a4Az+XfPhCQ
+         9V0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679497214;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jc9IBKiXIsjwQ6qdPagD4aPXncguFf2/m9it2qIWALc=;
+        b=IaiZEHVTJ7W+vN29A8kNlS3n9DuYVr6YDFMbkCOHc7nQmALaE7ywYbp8MkVCS1TDz7
+         jTj9FP9RsWTuxmDg5/keReiX0bG7OmJ1SMhA4itCLIhzFhYpRDSl3S6zqDErFRlcY6HH
+         15oOEcGrNvZbNDlRCSbjTfY0+v6g1bC5r9Uu7AFqMkHKXtMBrXpXoh7ssMtEbiMZ/oUN
+         6A7x9Hd0rgnwpnS47uTdI+7ACeUYq2q7WnY/AZJuIexTlHVozscSl+As7geLIlS2Vaok
+         KS94SO0mCWhciIM3sy80arjZI/led/dbzTl82gl+xh93Lt5pbmUgyhRcqvov/bmMLQjE
+         g4Ww==
+X-Gm-Message-State: AO0yUKV0b5uNZ7tgTy36JkIdsslUsIuPcEmDBaN7VSwO2vct9r/sJtzZ
+	4CVVAAfhXHiyXfKGqFXvyhXniF1rxccu22PWg2RBrC+I
+X-Google-Smtp-Source: AK7set9xhQCSQBAbNZ/ItMmztnptzv3IaFp9cXsDMJNhK/tseFz0r1Y0ngI7w+QUDgIHbp5TFPNEjOO3wDJTbdhEpUU=
+X-Received: by 2002:a17:906:34cd:b0:8e5:411d:4d09 with SMTP id
+ h13-20020a17090634cd00b008e5411d4d09mr3288308ejb.15.1679497214154; Wed, 22
+ Mar 2023 08:00:14 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Wed, 22 Mar 2023 11:00:03 -0400
+Message-ID: <CAFnbyRH10S4KA5NrMRDD6fBGgnDFFAxZWaou-NusKwGqN7zQnw@mail.gmail.com>
+Subject: Soccer schedule and summer
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Cc: Alison Boyce <alison.boyce@mannlawyers.com>, Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="000000000000d9da5605f77e6adb"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoSGB8aGBEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdmfWZNRn1tYERrbHNNB0Q
+ fRVl6fWNvR35/f2RmZgddGxEKWFwXGQQaBB8aBEhPXkseBRsaGgQSGAQeGAQYHBAbHhofGhEKX
+ lkXSH9mU0sRCk1cFwceGxEKTFoXaGlNTWsRCkNaFxgaEwQSHwQYGhIEHxkRCkJeFxsRCkReFxg
+ RCkRJFxgRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXa
+ BIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJ
+ LaUkRCkJAF29GZ0FJQ3hJZWVrEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXYkVAQ
+ GlpG2Z/fnIQGRoRCnBoF2gcQAVZH2Fce1oBEBkaEQpwaBdmaGdrck5/BQESXRAZGhEKcGgXYV9
+ zSU8bZGscEnkQGRoRCnBoF2twEhNjGEt8YWJIEBkaEQpwbBdmRmsfGFttX0ZvbxAeEhEKbX4XG
+ xEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: LWLglWGJnAFYg-n5osPWIEmTUUNLL-w1
+X-Proofpoint-ORIG-GUID: LWLglWGJnAFYg-n5osPWIEmTUUNLL-w1
+
+--000000000000d9da5605f77e6adb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+
+
+As you know both girls have been playing soccer for a few years now,
+Charlotte joined competitive team this winter, and practice/games are three
+times a week.
+
+
+As you are aware, we adjusted her Sunday practice with her competitive team
+ to only practice with Rec earlier in the day so not to interfere with your
+Sunday afternoon visits.
+
+The Spring season is approaching and now Alice has be accepted to join the
+competitive league!  I don=E2=80=99t know the practice/game dates for eithe=
+r girls
+in the spring m:summer Season but I want to give you a heads up as we may
+have to adjust the visits times. It will be three times a week for both
+girls.
+
+
+
+I included Holly and my mom in the e-mail as it impacts them too.
+
+
+
+Additionally for the summer, I plan to take the girls to Saskatoon for a
+few weeks in July ( I will send dates once I know) and they are returning
+to their overnight  camp with Rideau Hill from August 6-11. Want to give
+you enough notice so we can plan alternative dates.
+
+
+
+Regards,
+
+--000000000000d9da5605f77e6adb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p class=3D"MsoNormal" style=3D"font-size:1rem;color:rgb(49,49,49);font-fam=
+ily:-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1px">Hi Darryl,<u=
+></u><u></u></p><p class=3D"MsoNormal" style=3D"color:rgb(49,49,49);font-fa=
+mily:-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1px"><u></u>=C2=
+=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:1rem;color:rgb(49,4=
+9,49);font-family:-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1px=
+">As you know both girls have been playing soccer for a few years now, Char=
+lotte joined competitive team this winter, and practice/games are three tim=
+es a week.=C2=A0</p><p class=3D"MsoNormal" style=3D"font-size:1rem;color:rg=
+b(49,49,49);font-family:-apple-system,&quot;Helvetica Neue&quot;;word-spaci=
+ng:1px" dir=3D"auto"><br></p><p class=3D"MsoNormal" style=3D"font-size:1rem=
+;color:rgb(49,49,49);font-family:-apple-system,&quot;Helvetica Neue&quot;;w=
+ord-spacing:1px" dir=3D"auto">As you are aware, we adjusted her Sunday prac=
+tice with her competitive team =C2=A0to only practice with Rec earlier in t=
+he day so not to interfere with your Sunday afternoon visits.=C2=A0</p><p c=
+lass=3D"MsoNormal" style=3D"font-size:1rem;color:rgb(49,49,49);font-family:=
+-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1px" dir=3D"auto">The=
+ Spring season is approaching and now Alice has be accepted to join the com=
+petitive league!=C2=A0 I don=E2=80=99t know the practice/game dates for eit=
+her girls in the spring m:summer Season but I want to give you a heads up a=
+s we may have to adjust the visits times. It will be three times a week for=
+ both girls.<u></u><u></u></p><p class=3D"MsoNormal" style=3D"color:rgb(49,=
+49,49);font-family:-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1p=
+x"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:1rem;c=
+olor:rgb(49,49,49);font-family:-apple-system,&quot;Helvetica Neue&quot;;wor=
+d-spacing:1px">I included Holly and my mom in the e-mail as it impacts them=
+ too.<u></u><u></u></p><p class=3D"MsoNormal" style=3D"color:rgb(49,49,49);=
+font-family:-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1px"><u><=
+/u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:1rem;color:rg=
+b(49,49,49);font-family:-apple-system,&quot;Helvetica Neue&quot;;word-spaci=
+ng:1px">Additionally for the summer, I plan to take the girls to Saskatoon =
+for a few weeks in July ( I will send dates once I know) and they are retur=
+ning to their overnight =C2=A0camp with Rideau Hill from August 6-11. Want =
+to give you enough notice so we can plan alternative dates.<u></u><u></u></=
+p><p class=3D"MsoNormal" style=3D"color:rgb(49,49,49);font-family:-apple-sy=
+stem,&quot;Helvetica Neue&quot;;word-spacing:1px"><u></u>=C2=A0<u></u></p><=
+p class=3D"MsoNormal" style=3D"font-size:1rem;color:rgb(49,49,49);font-fami=
+ly:-apple-system,&quot;Helvetica Neue&quot;;word-spacing:1px">Regards,</p>
+
+--000000000000d9da5605f77e6adb--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1070343</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801613</integer>
+	<key>date-received</key>
+	<integer>1679497217</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>20084</string>
+</dict>
+</plist>

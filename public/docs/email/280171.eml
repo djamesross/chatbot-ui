@@ -1,0 +1,216 @@
+10580     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09072701.me.com by p133-mailgateway-smtp-8588b56cd7-67ndw (mailgateway 2316B325)
+	with SMTP id 67a8703c-ff35-4aba-9afd-0ac75c9c9488 
+	for <darrylross@icloud.com>; Tue, 30 May 2023 19:24:30 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 67a8703c-ff35-4aba-9afd-0ac75c9c9488
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	by ci74p00im-qukt09072701.me.com (Postfix) with ESMTPS id D90174280379
+	for <darrylross@icloud.com>; Tue, 30 May 2023 19:24:28 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQloQXgcZFltVFVFfDlgc
+ DEZVVgJXWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwFGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnFBwPMyobZA8zTUsERVFZSR4gJzlVewEDDS8hFBVyRVpDRBUE
+ LGFYIw1OATcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PEKY9eEF
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.45 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.45; helo=mail-ej1-f45.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-96f850b32caso927836266b.3
+        for <darrylross@icloud.com>; Tue, 30 May 2023 12:24:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685474668; x=1688066668;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lM4sop6m2EG7Kt8+/FUDSp7kVNUnNSPTfEvDsJyL/t0=;
+        b=PEKY9eEFGjvEV9+i2Z/4ylysbABnRlVipgjp2spueD244v4vhCwO0CfOIBb3Jxp8PP
+         1Dt29lTqI8ritnIe1XTzhJUKYcQ15XgKsGs8lox8hVQjLFfNG8Q0nCAYHf66volKrkKN
+         6gcBy7neKg3L7o7wUF53TE77cCXkKWdiWV13rUzQDuI+hOH18bbP5wYbhBxjhlDB5076
+         fsjzvZrUTwJPgQjfvCwEiohN10jO835n/V0lTXY2yBor7O4x3H9nzQpfkQqmKZYEQ0JB
+         jWGVnBcXNYdpQ5gl0/KbbEvm9+OaCAnvEsAAbYPR8dwYkmnOea2w68e66q8ACuyCpBe7
+         CTxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685474668; x=1688066668;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lM4sop6m2EG7Kt8+/FUDSp7kVNUnNSPTfEvDsJyL/t0=;
+        b=OMZdEsGHgYjFgJoyn3AcFws5FawHTZ9SZyqcQw2kEyHh+3EGHdM/5lVf3+WmE2jfA7
+         ckWoMYjAoXsNqfwhQtbjQT4TxfFFUDgZQl7eBx+ItrOLhDnGYS61bp8eZesRQxClWxBb
+         tIYYt3GQSi1WffGZ8eQ218+JYv3YgT4B0pPWP8q6bauTNMjK86CFduj4U6rsWfXQLLJs
+         NJQVKcf4Kps8OtH6OaN1mNxDzjpPQPsqERIOaqU0jKonYYYOpUlKlL9hmmLxU1atqK5P
+         oELsIsZZBB5XXilgarnuq32I8eCiz7hNsbq/zUFspzssOGaD6lny5wOeG7Mv3lXXVkWq
+         69XQ==
+X-Gm-Message-State: AC+VfDyI1L7TxGKifflr022a7fkGu3VmtlB/nQyEdeAnaV3Z5/feVYSL
+	jyFNLUoDXK/Dylt6M8IKexltQ2S3xHwYSdVUMjpN0G9Fefc=
+X-Google-Smtp-Source: ACHHUZ5MPG/L94wuMYG8VVQ+GKO0X7nfCRWb6dy4LW7iuJooM0GHFQH7Mt5Pznqm10v94eYRnNKVBCjQXWqsycYSC00=
+X-Received: by 2002:a17:907:9305:b0:974:1c90:b3d3 with SMTP id
+ bu5-20020a170907930500b009741c90b3d3mr3076194ejc.12.1685474667750; Tue, 30
+ May 2023 12:24:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREE3=PjtjJFmirS7_vpZGuD7JrDDb1n6JpHM5tWijNQ7Q@mail.gmail.com>
+ <CAFnbyRG_0hhQO5bVYrpewf7OHrTWpPCK_XgP8DqXdUVm4Og0LA@mail.gmail.com> <633FC0CE-27A6-4CDE-9F90-126B54111951@icloud.com>
+In-Reply-To: <633FC0CE-27A6-4CDE-9F90-126B54111951@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 30 May 2023 15:24:16 -0400
+Message-ID: <CAFnbyREaeiDR+RmF4-s=ao+kYAN-K7axVGcmBs86=ssTQnAx7g@mail.gmail.com>
+Subject: Re: Visits
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000d96c3e05fcee2626"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoTGB8aGxEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThd8UhwZQV54WUJGT2NzfGJ
+ 9bVxpYHNzHnpAcmFPRXp/UBEKWFwXGQQaBB8aBRsaGgQSGAQeGAQZGhAbHhofGhEKXlkXSFsFY
+ 2MRCk1cFxsTHREKTFoXY01BaxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4fEQpCXhcbEQpEXhc
+ YEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4c
+ m54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQp
+ CQBdtARtdS20YWU4bUBEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2BeQWh5ARhCE
+ kIdEBkaEQpwaBdjYUVcbFsbE2xSWxAZGhEKcGgXZU1yQ0lpYG5FfEwQGRoRCnBoF2ABeHNMSV9
+ STEUBEBkaEQpwaBdkaRkaR1N8BW59GRAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF
+ 0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: Vx63ktRshleIYVHWGvCJYY4PjXKeoPUz
+X-Proofpoint-ORIG-GUID: Vx63ktRshleIYVHWGvCJYY4PjXKeoPUz
+
+--000000000000d96c3e05fcee2626
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Darryl,
+
+Why did you not make me aware of this last week when I sent multiple
+e-mails about getting you subscribed? The director said you were added.
+
+I sent him another e-mail, and again, I asked that you to be added so you
+can coordinate with him.  Charlotte has a practice today at 730 pm, she
+needs to be there by 715pm, she cant keep missing practices because of
+this. Coach Maja has asked for her to be there.
+
+I dropped off the girls at noon Sunday so you had 7hours and 45 minutes
+with them which exceeds the original court order of 7 hours a week and that
+is not including Tuesday.
+
+Please confirm your mom can drop off girls at 7:15 pm tonight.
+
+On Tue, May 30, 2023 at 2:45=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hello Cynthia,
+>
+> I still have not been added to TeamSnap or sent an active calendar link.
+>
+> Thank you,
+>
+> Darryl Ross
+> darrylross@icloud.com
+> ___
+>
+> On May 27, 2023, at 10:51, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hello,
+>
+> Can you confirm below for Tuesday night drop off and having Holly greet
+> girls?
+>
+> Thanks!
+>
+> On Thu, May 25, 2023 at 10:40=E2=80=AFPM Cynthia Holmes <cynthmholm@gmail=
+.com>
+> wrote:
+>
+>> Hi Holly and Darryl,
+>>
+>> Schedule shared and as previously communicated Sundays are free and
+>> Tuesday nights there is practice for Charlotte.
+>>
+>> Girls will be dropped off for noon Sunday. Also my mother has noted  the
+>> past few times, Holly does not come out to greet girls  only Darryl. Hol=
+ly
+>> can you ensure you go out to greet girls so we know you are present? Tha=
+nks.
+>>
+>> Please confirm for Tuesday visit you can drop off Charlotte at her
+>> practice for 715 pm. She is looking forward to it.
+>>
+>> Cynthia
+>>
+>
+>
+
+--000000000000d96c3e05fcee2626
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Darryl,<br><div><br></div><div>Why did you not make me awa=
+re of this last week when I sent multiple e-mails=C2=A0about getting you su=
+bscribed? The director said you were added.=C2=A0</div><div><br></div><div>=
+I sent him another e-mail, and again, I asked that you to be added so you c=
+an coordinate with him.=C2=A0 Charlotte has a practice today at 730 pm, she=
+ needs to be there by 715pm, she cant keep missing practices because of thi=
+s. Coach Maja has asked for her to be there.</div><div><br></div><div>I dro=
+pped off the girls at noon Sunday so you had 7hours and 45 minutes with the=
+m which exceeds the original court order of 7 hours a week and that is not =
+including=C2=A0Tuesday.</div><div><br></div><div>Please confirm your mom ca=
+n drop off girls at 7:15 pm tonight.</div></div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 30, 2023 at 2:45=E2=
+=80=AFPM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylros=
+s@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div>Hello Cynthia,<div><br></div><div>I still have not been ad=
+ded to TeamSnap or sent an active calendar link.</div><div><br></div><div><=
+div>
+<div>Thank you,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"m=
+ailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></d=
+iv><div>___</div>
+
+</div>
+<div><br><blockquote type=3D"cite"><div>On May 27, 2023, at 10:51, Cynthia =
+Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthm=
+holm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hello,<br><div=
+><br></div><div>Can you confirm below for Tuesday night drop off and having=
+ Holly greet girls?</div><div><br></div><div>Thanks!</div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 25, 2=
+023 at 10:40=E2=80=AFPM Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gma=
+il.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex">Hi Holly and Darryl,<div dir=
+=3D"auto"><br><div dir=3D"auto">Schedule shared and as previously communica=
+ted Sundays are free and Tuesday nights there is practice for Charlotte.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">Girls will be dropped off =
+for noon Sunday. Also my mother has noted =C2=A0the past few times, Holly d=
+oes not come out to greet girls =C2=A0only Darryl. Holly can you ensure you=
+ go out to greet girls so we know you are present? Thanks.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Please confirm for Tuesday visit you can=
+ drop off Charlotte at her practice for 715 pm. She is looking forward to i=
+t.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div></=
+div>
+</blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--000000000000d96c3e05fcee2626--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1125190</integer>
+	<key>date-last-viewed</key>
+	<integer>1745523358</integer>
+	<key>date-received</key>
+	<integer>1685474670</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12467</string>
+</dict>
+</plist>

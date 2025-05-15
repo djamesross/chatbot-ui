@@ -1,0 +1,415 @@
+17605     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt06030701.me.com by p133-mailgateway-smtp-76d5569f95-rx68n (mailgateway 2408B54)
+	with SMTP id d445c85a-e195-464c-8f83-1c9e05fefe6c 
+	for <darrylross@icloud.com>; Sun, 21 Jan 2024 13:31:45 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: d445c85a-e195-464c-8f83-1c9e05fefe6c
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	by st43p00im-qukt06030701.me.com (Postfix) with ESMTPS id D107A37E0136
+	for <darrylross@icloud.com>; Sun, 21 Jan 2024 13:31:44 +0000 (UTC)
+X-ICL-SCORE: 3.333033030042
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFLRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQVoQXgcZFltVFVFfDlgc
+ DEZVVgJUWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwGGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnHjsUMQF0AEk2D15ON2oANQMtCQUXf3oPLDULGgJCWSYNSygg
+ EW9BKj0YATcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none; id=mx.google.com
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LCMR19RG
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.46 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.46 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.46; helo=mail-ej1-f46.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so240805166b.2
+        for <darrylross@icloud.com>; Sun, 21 Jan 2024 05:31:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705843903; x=1706448703; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SaTB/RFnGuDdr9RIW56UeZDN1lsaNEAF5lA/vfVjdio=;
+        b=LCMR19RGbN0E+4p9kYnYPJ5cw802tnm1per3jb6DhYdgMCE2YQyiDVd4f44uj1YgGl
+         OXw+QhJicocfoDqibXSAu6iMcCZKCY7odrBBEpd/5MB8LHTzFydpHSVRGiF26/fI6UXe
+         P191Ofm23Smv4mqzCWbPyHVMDt1/2VjgGtxcE7nDyDT0+tblc0+RM2WxK0SNgIShGQRc
+         YK2fGrDgfvPaxjF21wmI7Gt7rsvbFULO3ugjLhXsg3Fr8fMLvgxHNtm8rNxROUe2KBli
+         EL9QUzTtiq5QfRXx9KUDYHy403AORTfctvi/hPFQKpcwyXy/OX7nwpviy95BrJBHEQ6N
+         KNHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705843903; x=1706448703;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SaTB/RFnGuDdr9RIW56UeZDN1lsaNEAF5lA/vfVjdio=;
+        b=lx8Mcg1xR46AVrGv9TZ5FrEO0j2ZkBI2zjz9mjRq8iKbLwPOjqWB31+0ZmvvZ9CtES
+         mFfDmstfxXiyEdfR/ThD/4z/BO62b4QUTh1M7oqxFiRtipuYZuuy8P+kE57gsiZ23m+e
+         wSohw38hXyvlXMs885xmYemkdywYGJV1DK4W5wqmK5F8/QD2ROXmB5h3X1QKmJrjK6DW
+         umRUEUrZVGEJH80SaoQIY6fwQ5Dwb0HIlpx/Mp+b2J8VoABcZXQf4QHLafJtTIZpm4W2
+         0u5bFNdGtw5dxzFXOs+OeLYwXthL3FZW4f8Gqs7kfMUZZNYmU5/0vwBGqSHIluZWCzSV
+         xDzg==
+X-Gm-Message-State: AOJu0Yw+LF51bH+S531UX0jc9ajMSJ55OXCIHeDm2PKF8LfJF+f0TNXp
+	Z070Dw5vJNzBEXzs6MuznMXGbtBCMDAZ1VJu1PDRdSxKJMXaaCQslFWwcNYLsvWpp3QpnXOElDE
+	qWjr+askyiei++QQbC6a2D/2L+e/6xz2t
+X-Google-Smtp-Source: AGHT+IGKqwLSOvqzAv6fdJKM1gq6MHBTVn5dy3DLD7jp4g1yQscB1trfJsyKzIaW1DuLexZ72y8J14y8BqMrJBOYFl0=
+X-Received: by 2002:a17:907:7049:b0:a26:c9e6:d5e0 with SMTP id
+ ws9-20020a170907704900b00a26c9e6d5e0mr923647ejb.74.1705843903340; Sun, 21 Jan
+ 2024 05:31:43 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRHp29Ly0Yu_FU26PLUOdALMnKQZnPBn1G12Au-ZO9oxMg@mail.gmail.com>
+ <SJ2PR11MB7427EF3E9AF73E89CA303CE3C66C2@SJ2PR11MB7427.namprd11.prod.outlook.com>
+ <CAFr34Vz+FztVFXtW6Ai90F975fSUSN064B4JWqEi1LU+jcO3og@mail.gmail.com>
+ <SJ2PR11MB74272B4AC7F85DD9C0BC5886C66C2@SJ2PR11MB7427.namprd11.prod.outlook.com>
+ <SJ2PR11MB7427C42CA8BF12EACD95C847C6772@SJ2PR11MB7427.namprd11.prod.outlook.com>
+ <CAFr34Vwm7nWq7i6uv+TbCepqFK0qLmUHNhoDuy0duz099HddiA@mail.gmail.com> <SJ2PR11MB74273FC9E806C44AFD105C8EC6762@SJ2PR11MB7427.namprd11.prod.outlook.com>
+In-Reply-To: <SJ2PR11MB74273FC9E806C44AFD105C8EC6762@SJ2PR11MB7427.namprd11.prod.outlook.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 21 Jan 2024 08:31:32 -0500
+Message-ID: <CAFnbyREkBrFyD6+Cv89OZ6WvToroOLmYLmmzroDx2NWi_wHHag@mail.gmail.com>
+Subject: Re: sunday
+To: Linda holmes <holmesmorrison@hotmail.com>
+Cc: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000e6a337060f74bb11"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGxEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdG3EbGhoQGncGGBoGGhEKWV4XbGx5EQpDThdgQE1pZR0ecEJvR
+ XgZQFBkSXNBZXBudXpkZllPHkJjXBEKWFwXGQQaBB8aBRsaBBsSGAQYGxkEGx0QGx4aHxoRCl5
+ ZF0keWWxJEQpNXBcZHRkRCkxaF2lNXWsRCkxGF2xNaxEKQ1oXGBoTBBIfBBgbEgQeHBEKQl4XG
+ xEKREkXGBEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRd
+ oEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aE
+ ktpSREKQkAXbkcSExhIfxxoYBsRCkJYF2JrTm9vemxnWkdLEQpaWBcbGBEKcGgXbmgbTQEYGGt
+ uQHgQGRoRCnBoF2FZW3t5eE1mcEV8EBkaEQpwaBdvEgFJHlwSHFt6HRAZGhEKcGgXbX9Jf20FT
+ EdiZ20QGRoRCnBoF2VJXnh8YlxpTl5kEBkaEQpwaBd6aG5zcG5YTWhuUhAZGhEKcGgXbV97bH1
+ gZgVhE30QGRoRCnBoF25JEm8Za35QUF9TEBkaEQpwfxdvG0ISRUxvGEZZHxAHGgQcExEKcF8Xb
+ GlIYn99bxMYchwQGREKcH0XYhxjUxNMXGhkZmwQGAQTEQpwfRdiHGNTE0xcaGRmbBAYBBMRCnB
+ 9F2IcY1MTTFxoZGZsEBgEExEKcH0XYhxjUxNMXGhkZmwQGAQTEQpwfRdiHGNTE0xcaGRmbBAYB
+ BMRCnB9F2IcY1MTTFxoZGZsEBgEExEKcH0XYhxjUxNMXGhkZmwQGAQTEQpwfRdiHGNTE0xcaGR
+ mbBAYBBMRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcaEQpYTRdLEQ==
+X-Proofpoint-GUID: JjgCO74ZhEoR3jzNcYkOZD_PNLse4hIv
+X-Proofpoint-ORIG-GUID: JjgCO74ZhEoR3jzNcYkOZD_PNLse4hIv
+
+--000000000000e6a337060f74bb11
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Good morning
+
+Our flight have been delayed and we will be spending the night in Toronto
+and fly out tomorrow morning.
+
+Holly please bring the girls back to my moms place tonight.
+
+Please acknowledge receipt of this email
+
+On Sat, Jan 20, 2024 at 7:18=E2=80=AFPM Linda holmes <holmesmorrison@hotmai=
+l.com>
+wrote:
+
+> Hi Holly :
+> Thank you so much!
+> Linda
+>
+> Get Outlook for iOS <https://aka.ms/o0ukef>
+> ------------------------------
+> *From:* Holly Ross <hollygammie@gmail.com>
+> *Sent:* Saturday, January 20, 2024 7:13:05 PM
+> *To:* Linda holmes <holmesmorrison@hotmail.com>
+> *Cc:* Darryl Ross <darrylross@icloud.com>; Cynthia Holmes <
+> cynthmholm@gmail.com>
+> *Subject:* Re: sunday
+>
+> Hi Linda
+> Yes I will pick up the girls tomorrow am
+>
+>
+>
+> On Sat., Jan. 20, 2024, 3:48 p.m. Linda holmes, <
+> holmesmorrison@hotmail.com> wrote:
+>
+> Dear Holly :
+> I am hoping that you can pick up the girls at our house tomorrow around
+> 11:45. That will give Dennis time to get Alice back from her soccer
+> practice which runs from 10-11 am in Riverside south. I will be tied up a=
+t
+> church at a funeral which starts at 11:30.
+> And if you could bring the girls back to Cynthia=E2=80=99s tomorrow eveni=
+ng, that
+> would be appreciated.
+> Her plane is due in early tomorrow evening.
+> Thanks in advance.
+> Linda
+>
+> Get Outlook for iOS <https://aka.ms/o0ukef>
+> ------------------------------
+> *From:* Linda holmes <holmesmorrison@hotmail.com>
+> *Sent:* Monday, January 15, 2024 3:58:37 PM
+> *To:* Holly Ross <hollygammie@gmail.com>
+> *Cc:* Darryl Ross <darrylross@icloud.com>; Cynthia Holmes <
+> cynthmholm@gmail.com>
+> *Subject:* Re: Tuesday
+>
+> Thanks Holly!
+> Linda
+>
+> Get Outlook for iOS <https://aka.ms/o0ukef>
+> ------------------------------
+> *From:* Holly Ross <hollygammie@gmail.com>
+> *Sent:* Monday, January 15, 2024 3:31:52 PM
+> *To:* Linda holmes <holmesmorrison@hotmail.com>
+> *Cc:* Darryl Ross <darrylross@icloud.com>; Cynthia Holmes <
+> cynthmholm@gmail.com>
+> *Subject:* Re: Tuesday
+>
+> No problem
+> I will drop them off tomorrow at your place.
+>
+> On Mon., Jan. 15, 2024, 3:28 p.m. Linda holmes, <
+> holmesmorrison@hotmail.com> wrote:
+>
+> Hi Holly and Darryl:
+> I can get them to Darryl=E2=80=99s tomorrow at the usual time actually.
+> But I can=E2=80=99t pick them up as I have an evening meeting.
+> If Holly can bring them to our house, Dennis will be here.
+> Linda
+>
+> Get Outlook for iOS <https://aka.ms/o0ukef>
+> ------------------------------
+> *From:* Cynthia Holmes <cynthmholm@gmail.com>
+> *Sent:* Monday, January 15, 2024 3:19:41 PM
+> *To:* Darryl Ross <darrylross@icloud.com>; Holly Ross <
+> hollygammie@gmail.com>
+> *Cc:* Linda holmes <holmesmorrison@hotmail.com>
+> *Subject:* Tuesday
+>
+> Hello,
+>
+> The girls are with my mom all this week, Tuesday she is unable to drive
+> them but they can be picked up at her house.
+>
+> I am still waiting to hear back from you on solutions for driving girls o=
+n
+> unsupervised time  as we do not want to have to drive more at this point =
+as
+> it timely and costly.
+>
+>
+
+--000000000000e6a337060f74bb11
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Good morning=C2=A0</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Our flight have been delayed and we will be spending the night=
+ in Toronto and fly out tomorrow morning.</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">Holly please bring the girls back to my moms place tonigh=
+t.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Please acknowledge re=
+ceipt of this email=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Sat, Jan 20, 2024 at 7:18=E2=80=AFPM Linda=
+ holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com">holmesmorrison@ho=
+tmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Holly<span>=C2=A0:</span></div>
+<div dir=3D"ltr"><span>Thank you so much!</span></div>
+<div dir=3D"ltr"><span>Linda</span></div>
+<div id=3D"m_5063417095992042379ms-outlook-mobile-signature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef" target=3D"_blank">Outlook for iOS</a>=
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_5063417095992042379divRplyFwdMsg" dir=3D"ltr"><font face=3D"Ca=
+libri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>From:</b> =
+Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" target=3D"_blank">h=
+ollygammie@gmail.com</a>&gt;<br>
+<b>Sent:</b> Saturday, January 20, 2024 7:13:05 PM<br>
+<b>To:</b> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com" t=
+arget=3D"_blank">holmesmorrison@hotmail.com</a>&gt;<br>
+<b>Cc:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=
+=3D"_blank">darrylross@icloud.com</a>&gt;; Cynthia Holmes &lt;<a href=3D"ma=
+ilto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt;<b=
+r>
+<b>Subject:</b> Re: sunday</font>
+<div>=C2=A0</div>
+</div></div><div>
+<div>
+<div dir=3D"auto">Hi Linda
+<div dir=3D"auto">Yes I will pick up the girls tomorrow am</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Sat., Jan. 20, 2024, 3:48 p.m. Linda holmes, &lt;<a hre=
+f=3D"mailto:holmesmorrison@hotmail.com" target=3D"_blank">holmesmorrison@ho=
+tmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Dear Holly<span>=C2=A0:</span></div>
+<div dir=3D"ltr"><span>I am hoping that you can pick up the girls at our ho=
+use tomorrow around 11:45. That will give Dennis time to get Alice back fro=
+m her soccer practice which runs from 10-11 am in Riverside south. I will b=
+e tied up at church at a funeral which
+ starts at 11:30.</span></div>
+<div dir=3D"ltr">And if you could bring the girls back to Cynthia=E2=80=99s=
+ tomorrow evening, that would be appreciated.</div>
+<div dir=3D"ltr">Her plane is due in early tomorrow evening.</div>
+<div dir=3D"ltr">Thanks in advance.</div>
+<div dir=3D"ltr">Linda</div>
+<div id=3D"m_5063417095992042379x_m_2582883043358480664ms-outlook-mobile-si=
+gnature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef" rel=3D"noreferrer" target=3D"_blank">=
+Outlook for iOS</a></div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_5063417095992042379x_m_2582883043358480664divRplyFwdMsg" dir=
+=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font=
+-size:11pt"><b>From:</b> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@=
+hotmail.com" rel=3D"noreferrer" target=3D"_blank">holmesmorrison@hotmail.co=
+m</a>&gt;<br>
+<b>Sent:</b> Monday, January 15, 2024 3:58:37 PM<br>
+<b>To:</b> Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" rel=3D"n=
+oreferrer" target=3D"_blank">hollygammie@gmail.com</a>&gt;<br>
+<b>Cc:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" rel=3D"=
+noreferrer" target=3D"_blank">darrylross@icloud.com</a>&gt;; Cynthia Holmes=
+ &lt;<a href=3D"mailto:cynthmholm@gmail.com" rel=3D"noreferrer" target=3D"_=
+blank">cynthmholm@gmail.com</a>&gt;<br>
+<b>Subject:</b> Re: Tuesday</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div dir=3D"ltr">Thanks Holly!</div>
+<div dir=3D"ltr">Linda</div>
+<div><br>
+</div>
+<div id=3D"m_5063417095992042379x_m_2582883043358480664x_ms-outlook-mobile-=
+signature">Get <a href=3D"https://aka.ms/o0ukef" rel=3D"noreferrer" target=
+=3D"_blank">
+Outlook for iOS</a></div>
+</div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_5063417095992042379x_m_2582883043358480664x_divRplyFwdMsg" dir=
+=3D"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font=
+-size:11pt"><b>From:</b> Holly Ross &lt;<a href=3D"mailto:hollygammie@gmail=
+.com" rel=3D"noreferrer" target=3D"_blank">hollygammie@gmail.com</a>&gt;<br=
+>
+<b>Sent:</b> Monday, January 15, 2024 3:31:52 PM<br>
+<b>To:</b> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com" r=
+el=3D"noreferrer" target=3D"_blank">holmesmorrison@hotmail.com</a>&gt;<br>
+<b>Cc:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" rel=3D"=
+noreferrer" target=3D"_blank">darrylross@icloud.com</a>&gt;; Cynthia Holmes=
+ &lt;<a href=3D"mailto:cynthmholm@gmail.com" rel=3D"noreferrer" target=3D"_=
+blank">cynthmholm@gmail.com</a>&gt;<br>
+<b>Subject:</b> Re: Tuesday</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div dir=3D"auto">No problem
+<div dir=3D"auto">I will drop=C2=A0them off tomorrow at your place.</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Mon., Jan. 15, 2024, 3:28 p.m. Linda holmes, &lt;<a hre=
+f=3D"mailto:holmesmorrison@hotmail.com" rel=3D"noreferrer" target=3D"_blank=
+">holmesmorrison@hotmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">
+<div>
+<div dir=3D"ltr">
+<div dir=3D"ltr">Hi Holly and Darryl:<span></span><span></span></div>
+<div dir=3D"ltr">I can get them to Darryl=E2=80=99s tomorrow at the usual t=
+ime actually.</div>
+<div dir=3D"ltr">But I can=E2=80=99t pick them up as I have an evening meet=
+ing.<span></span><span></span></div>
+<div dir=3D"ltr">If Holly can bring them to our house, Dennis will be here.=
+</div>
+<div dir=3D"ltr">Linda=C2=A0</div>
+<div id=3D"m_5063417095992042379x_m_2582883043358480664x_x_m_11308361660073=
+74934ms-outlook-mobile-signature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef" rel=3D"noreferrer noreferrer" target=
+=3D"_blank">Outlook for iOS</a></div>
+</div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_5063417095992042379x_m_2582883043358480664x_x_m_11308361660073=
+74934divRplyFwdMsg" dir=3D"ltr">
+<font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11p=
+t"><b>From:</b> Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" =
+rel=3D"noreferrer noreferrer" target=3D"_blank">cynthmholm@gmail.com</a>&gt=
+;<br>
+<b>Sent:</b> Monday, January 15, 2024 3:19:41 PM<br>
+<b>To:</b> Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" rel=3D"=
+noreferrer noreferrer" target=3D"_blank">darrylross@icloud.com</a>&gt;; Hol=
+ly Ross &lt;<a href=3D"mailto:hollygammie@gmail.com" rel=3D"noreferrer nore=
+ferrer" target=3D"_blank">hollygammie@gmail.com</a>&gt;<br>
+<b>Cc:</b> Linda holmes &lt;<a href=3D"mailto:holmesmorrison@hotmail.com" r=
+el=3D"noreferrer noreferrer" target=3D"_blank">holmesmorrison@hotmail.com</=
+a>&gt;<br>
+<b>Subject:</b> Tuesday</font>
+<div>=C2=A0</div>
+</div>
+<div>Hello,
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">The girls are with my mom all this week, Tuesday she is u=
+nable to drive them but they can be picked up at her house.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I am still waiting to hear back from you on solutions for=
+ driving girls on unsupervised time =C2=A0as we do not want to have to driv=
+e more at this point as it timely and costly.</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+</blockquote></div></div>
+
+--000000000000e6a337060f74bb11--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>ff9bf1</string>
+	<key>conversation-id</key>
+	<integer>1205977</integer>
+	<key>date-last-viewed</key>
+	<integer>1743955585</integer>
+	<key>date-received</key>
+	<integer>1705843905</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12017</string>
+</dict>
+</plist>

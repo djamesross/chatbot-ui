@@ -1,0 +1,111 @@
+5635      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01060901.me.com by p133-mailgateway-smtp-f657db5cc-g8pls (mailgateway 2312B181)
+	with SMTP id 7f7326a5-4dad-4d93-bb42-a285f3def45c 
+	for <darrylross@icloud.com>; Tue, 21 Mar 2023 13:32:27 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 7f7326a5-4dad-4d93-bb42-a285f3def45c
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	by qs51p00im-qukt01060901.me.com (Postfix) with ESMTPS id 9D6CE6E000A1
+	for <darrylross@icloud.com>; Tue, 21 Mar 2023 13:32:24 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQUhEVxBVWg1IWwsWEVwbBxFI
+ SxFMARgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9SRlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qeHUTB0guFS5UehReLFI/OQ1iJDg2CToNcmI2HjETPA1DUiZHEQsi
+ F30EFiQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H9KeggC0
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.41; helo=mail-ed1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id eh3so59664890edb.11
+        for <darrylross@icloud.com>; Tue, 21 Mar 2023 06:32:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1679405544;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VZ8ivDb8QalG1yrKGKv9aN6MPqrdbJxLFsc2c4mgCGU=;
+        b=H9KeggC0cVYJq+Zhr/qAxK67Pv8DEuw+mgbnkDnqRTmaKju8gfF++rvAqakuMbAcsh
+         EIXJZZVhdvTiUClbrZCxnVu51vztcTkumHKbaK4XDgKIjoTLvJrmnkis7vl8LuIsN3zh
+         eOKE9S+/AGwimJuDc1QcYhxLj3wHwE94K/nnRcK+LCIcgJqECNhEVGcHvNZyfr98DKgh
+         bDMbgthv2Fy+6BQNeRSgKiQ543Rt4wR2TLF6gy28qprjZHXa1PTZBnr5JfmfZwQQrrTM
+         7PlxBFLxM2Obl+2YinYaisCpDzuwfQ6rrwrxgFtrR50Og3lz+/I0sSOBPP+GQiGzoNnb
+         XnnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679405544;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VZ8ivDb8QalG1yrKGKv9aN6MPqrdbJxLFsc2c4mgCGU=;
+        b=aIZclscMqWEmFORktDDCb3d7KmNSE/IkdQBAb7/z6nR2fpWSDyjK+L/ROpLrXcNt12
+         /zvHpnSt5ByuwJNpoSmBi1S+96Wxw1ymz11dLpb5pHEAYA53sO0kJ7g2Zhba5vejYYBm
+         xcPOI+RdOwTM5UywBGivuZE3qIC3Vmf66jgZoq86D9YIuZs8ez9XyPYGu/iCBIi4Ubo5
+         cJkCCYi3iqSZjtzAwolx8L54Qj206oY3VsTeiuQAg+ebaW4QteNnTNsuOMAkkY4WdHGN
+         9gXMVekwVNzX90hvflijT0lhmzZ/CQB/WHuoofzpgCUrJYznQ0Fqyqbc4pXw03pbv9h0
+         iwsQ==
+X-Gm-Message-State: AO0yUKUObAHqpcxvm17poFwgTcDjRMvyox1xwDcl1UoYf0TllYGV60sm
+	cb0+AHX4Bu7xuAqKRRv7Fbl5inpc8Nm+1UW1zBSyiykcNLk=
+X-Google-Smtp-Source: AK7set9Xj2DxdDltIh8GqC91knz7uWgDkczhEPTZn6jeYf3DzfjFqDNiX6R95tzvN8BF26YAwyKvpHHPps6LwRDUd+4=
+X-Received: by 2002:a50:9e6f:0:b0:4fa:da46:6f1c with SMTP id
+ z102-20020a509e6f000000b004fada466f1cmr1689713ede.2.1679405543744; Tue, 21
+ Mar 2023 06:32:23 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 21 Mar 2023 09:32:12 -0400
+Message-ID: <CAFnbyRHCqr1HbVdLv+U4HA=TFMOoMuBTTkHuKusdD2hmUoM2tQ@mail.gmail.com>
+Subject: Alice
+To: =?UTF-8?Q?Assiduit=C3=A9=2DSKA_CECCE?= <assiduite-ska@ecolecatholique.ca>
+Cc: Darryl Ross <darrylross@icloud.com>, Steffany Henry <henryst@ecolecatholique.ca>
+Content-Type: multipart/alternative; boundary="000000000000de68f005f769121d"
+X-MANTSH: 1TEIXW1kfGFoaGkNHB1tfQV4aGBoTGhkaGxEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdBU3BiBwdMWUJaSEhGYHx
+ zYmhtU2hPZ2NcT29NbWVIRhEKWFwXGQQaBB8aBEhPXksZBRsaGgQSGAQbHxIEGBwQGx4aHxoRC
+ l5ZF0h+G0tuEQpNXBcHGxwRCkxaF2lNTWsRCkNaFxgaEwQSHwQYGhIEHhsRCkJeFxsRCkRJFxg
+ RCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhyb
+ ngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJ
+ AF21uYFlsZW9QemVvEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXaGcdQhJAfhlAe
+ 1wQGRoRCnBoF29EQmAZTBxdRBpnEBkaEQpwaBdoXX9fcn9IbUJIHhAZGhEKcGwXZkZrHxhbbV9
+ Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: kyZH--fshpbblJVYHBGyBeMIveEgGObl
+X-Proofpoint-ORIG-GUID: kyZH--fshpbblJVYHBGyBeMIveEgGObl
+
+--000000000000de68f005f769121d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Alice est malade ( rhume )aujourd=E2=80=99hui et elle reste a la maison.
+
+Cynthia
+
+--000000000000de68f005f769121d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Alice est malade ( rhume )aujourd=E2=80=99hui et elle reste a la maison.<di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div>
+
+--000000000000de68f005f769121d--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1070297</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1679405547</integer>
+	<key>flags</key>
+	<integer>8590195843</integer>
+	<key>remote-id</key>
+	<string>7326</string>
+</dict>
+</plist>

@@ -1,0 +1,138 @@
+6109      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:65d3:0:0:0:0:0 with SMTP id m19csp42715lti; Tue, 20 Aug
+ 2019 13:41:10 -0700 (PDT)
+X-Received: by 2002:ac8:f43:: with SMTP id l3mr20223622qtk.278.1566333669874;
+ Tue, 20 Aug 2019 13:41:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1566333669; cv=none; d=google.com;
+ s=arc-20160816;
+ b=zOvbMzNK+f/jvm3HCTTsm3NmeZ3atQjSqEnXQ9lB/Eo2dGDgp6dWGwuk6OaPD3YAea
+ OL4eFFKaE84p9MrdFdlDql1b6WdQz3y7mSerkys0+44PZ2PXFONOuqZO6QNgtEfNZQ7I
+ DLyaPqGqP6TsFP2DIFwQg26sFxKekZR4T9ikSBkYZ5Lz1Ow8Y+BhqvtVxXJwAJdrlq61
+ Z/pIiFIKjyZGpJr1FSg4K0Vn33VC3HhzzHk7fIcjdN3jNxeVs66/G9Gh5Z5Q41o8lgEV
+ Fi09zHatZEC0Vy5l1OAdW/hVLwMmsyNlksvsGl/uJVjxBOKjNPDNyOyv8pdIpb1AwXcN DeMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=to:references:message-id:content-transfer-encoding:cc:date
+ :in-reply-to:from:subject:mime-version:dkim-signature;
+ bh=AEUG5V6Y32VX8vaKv7kLuRpwZ8xgf+jD2L2XsrPWzdw=;
+ b=M+D2tGow3+Wm1qmQxOK200H1MFBT0VbwLkaSk6Mi0SAGgPUxeFmIvdNgV1sc1S4Nge
+ Hv1XwndQvhbtdiGH7eICG0fbLq392MPGI34mQkjVdFgzU65Q1tzoedlN2QlWPDlfK7U8
+ FyDszvMSXTmLWvhbL6LRg/tFsfZNnmQUkxzSAoW3qgSmxx7yTfBZQk8gIqWMawdx4Goz
+ 2aYcwu4FBZYPFAfyEovK8WXx6lXIgI3I0ppMGJ50svvCAqXr2dv0cZKX//f/7tQbbGCt
+ pGz7VwnD3WW0WM2rIUJrUjofXZSoGbXwTJdwFXh0LC/cfYv0RXnJ8utCbBGK7iaP8V4O kiQw==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=mVpQ4aBM; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ 13sor8562031qkl.186.2019.08.20.13.41.09 (Google Transport Security); Tue, 20
+ Aug 2019 13:41:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=mVpQ4aBM; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=AEUG5V6Y32VX8vaKv7kLuRpwZ8xgf+jD2L2XsrPWzdw=;
+ b=mVpQ4aBMmwwdQgZMqKNXE81E0/lAR/McjSqfLuZoZlQlGpFvN2QuXv7F//+DLF+fTT
+ RQhr/jKxWGF4CAQdO7vR/wJR64qlLRzWMPxkeCs0FKEvEZAWtJ7AXHB4Yw6cTuJW41D7
+ j6bMnULT8lALuyvcfwz0BT5EpPEf7i3pp3yvWKSl/T1Y1dh4/oJxZOS7GldDfUluz9Yl
+ OX0ZxlZIS0qzyKpjvtM9nOVRWkNCYxUJ80dxyLMXLQPfx4wmgqYfOFW49Hs0rX9o7SA+
+ 6MjzFWdIP7z3NV8oCXvvJcqRRrQ/QZSABd0IhXjV4OTPaceT9yCAjLvo7vp/EQ2UzXhA HVpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=AEUG5V6Y32VX8vaKv7kLuRpwZ8xgf+jD2L2XsrPWzdw=;
+ b=Kq0XM/jRTuY8WUHD9OhSC7gWwcf8foakyiEkMHDPLEHqOkfsDt5Szd6zs5wjRFZeK5
+ QlCOF7VKes+4TE1UQ6qF9WVbS2bTpWRjFcb4/DjvRYp9TWrOekWPhuL1M0vmVv55bzXQ
+ kTFXveVbV9Ir1vkKq5B9UIgtPdT12XV3wmSU1hE4NvQEXC2+8rfnWY5Uy8c6g2ApIVer
+ qCXRibUfUEnENE9ID+5tYz5I1THNqcv9UrMHz0fxwzMM9OWZC0vdzh/IVzFn9Q3YKakj
+ Yin99yn3DPINlU98rI0gW+2bFE/pRcyUe3OcgvdZ7drqLTSB/u6e2qx81zpURwIO1aJy wZRw==
+X-Gm-Message-State: APjAAAWHWoXy6buKZCwEHVwrbNsgUezAr6oQhrZ8BnhZUYmLVLmXzRRR
+ S4erHBVd0fEvkQeOI7X2CWA=
+X-Google-Smtp-Source: APXvYqydgM1/2VM2mAfHj0AFz1v4b9lSdIiPu4v11xHqq2zgJ8BIutltcnrEKEt1nyRY3phY3zIHJQ==
+X-Received: by 2002:a37:709:: with SMTP id 9mr28449598qkh.2.1566333669572;
+ Tue, 20 Aug 2019 13:41:09 -0700 (PDT)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [100.94.153.115] ([161.216.164.13]) by smtp.gmail.com with
+ ESMTPSA id y23sm8887501qki.118.2019.08.20.13.41.08 (version=TLS1_2
+ cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Tue, 20 Aug 2019 13:41:08
+ -0700 (PDT)
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0 (1.0)
+Subject: Re: Court Order
+From: Cynthia Holmes <cynthmholm@gmail.com>
+X-Mailer: iPhone Mail (16G77)
+In-Reply-To: <5A6299D5-CBED-45EA-A9E9-01A93C64F0E2@gmail.com>
+Date: Tue, 20 Aug 2019 16:41:07 -0400
+Cc: aboyce@perlaw.ca, hollygammie@gmail.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <F3C50D7A-3C3B-46B5-BE3C-198EC910539F@gmail.com>
+References: <904B20AE-032E-4D14-B4A9-4EC216E3D6EB@gmail.com>
+ <5A6299D5-CBED-45EA-A9E9-01A93C64F0E2@gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+
+I will see you at your place at 630 pm. Thank you.
+
+Sent from my iPhone
+
+> On Aug 20, 2019, at 4:39 PM, Darryl Ross <darrylondunlin@gmail.com> wrote:=
+
+>=20
+> I will. It would have been completely avoidable, once again, to avoid as y=
+our first step the most extreme one available. You sent me this at 4 pm. I j=
+ust got the girls out of the water, and am they are warming up. We can avoid=
+ the dramatic scene and police involvement if you would agree to a reasonabl=
+e amount of time to pack up, bring them home, collect their things, and then=
+ treat it as a normal transition. Can we agree that would be better for the g=
+irls? I can do all of that by 6:30, and therefore avoid a traumatic and emot=
+ional scene.=20
+>=20
+> So unless you planned this timing for maximum effect and you intent was to=
+ manufacture this situation, I will have them ready for 6:30 and we can have=
+ a smooth transition.=20
+>=20
+> Please let me know as soon as possible.=20
+>=20
+> Darryl=20
+>=20
+>> On Aug 20, 2019, at 16:17, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>=20
+>> This order clearly states the girls are in my primary care and as such ar=
+e to be in my care.
+>>=20
+>> My lawyer ( who is cc=E2=80=99d) and police have advised me I am within m=
+y legal right as the primary caregiver. Please read over section 3.=20
+>>=20
+>> <IMG_5644.JPG>
+>>=20
+>>=20
+>>=20
+>> <IMG_5645.JPG>
+>>=20
+>>=20
+>> Sent from my iPhone
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>9260</integer>
+	<key>date-last-viewed</key>
+	<integer>1746730215</integer>
+	<key>date-received</key>
+	<integer>1566333669</integer>
+	<key>flags</key>
+	<integer>8590195717</integer>
+	<key>remote-id</key>
+	<string>15173</string>
+</dict>
+</plist>

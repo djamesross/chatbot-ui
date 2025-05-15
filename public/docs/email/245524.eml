@@ -1,0 +1,281 @@
+15582     
+Return-path: <holmesmorrison@hotmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-1a-100-percent-13 by p158-mailgateway-smtp-6f87f697c-hdg7v (mailgateway 2429B41)
+	with SMTP id 03557089-9a29-4e3d-9c67-469e852af653 
+	for <darrylross@icloud.com>; Mon, 9 Dec 2024 20:25:04 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 03557089-9a29-4e3d-9c67-469e852af653
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2091.outbound.protection.outlook.com [40.92.40.91])
+	by p00-icloudmta-smtpin-us-east-1a-100-percent-13.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id 05EF8C000A0
+	for <darrylross@icloud.com>; Mon,  9 Dec 2024 20:25:02 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQFUVUKE0oWX1gHVQoPB0UEBkxMS0hDSB4PU1UcAkoQX1oPEAoLGApCXxEaFyYfF0RbAxwVSBQXXRYEEUQOGAxdVwsZVwUYFRBEAUgdBwUKSVoQGgoVNxFTWg0AHUgUF10WChAVCUo2cXtTRVQkOU8dWQAQVwkCDFJZFxsdSAcKX0IHFg0PGBYeWRcBFQkYEx5VDRhZFgMKDVsDHBVLFRYHWAMYSFYYFFtYUEVAV1kXRUIAGgwIE1ZARA0BHAUDEV9YTBoMEhsXX11MFhYLVxxUCwoaDQsWEVwYARoURhoRVAteJjNUJyoBBy83TlJFTwZwVDc9IkJNCXdbMz1VNj0JBSNFOlBEOwJ2MT9LNiVJAXsgQk1UQFZeVw8FCwJGSR5GEBodSBgNRFoNGhJIFBddCA==
+X-ICL-Score: 3.33303303433
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=pass; id=mx.microsoft.com 1
+Authentication-Results: arc.icloud.com; arc=pass
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=hotmail.com
+X-DMARC-Policy: v=DMARC1; p=none; rua=mailto:rua@dmarc.microsoft;ruf=mailto:ruf@dmarc.microsoft;fo=1:s:d
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=hotmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=b/6KX9W4
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of holmesmorrison@hotmail.com designates 40.92.40.91 as permitted sender) smtp.mailfrom=holmesmorrison@hotmail.com
+Received-SPF: pass (spf.icloud.com: domain of holmesmorrison@hotmail.com designates 40.92.40.91 as permitted sender) receiver=spf.icloud.com; client-ip=40.92.40.91; helo=NAM10-BN7-obe.outbound.protection.outlook.com; envelope-from=holmesmorrison@hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HD8+tJcGM8nuqTYeYB4k52IlE20YTTgoR/7ft5f5YBf/lN0uoDsCKOAQGGac5wwsw6vju2fDSp0RfrFIJXk8loSFyYnG/mrRV16IZverP7GrnKw/HmJzqrtIYmgKe/kLJnhNp19V2fD9/efrF2lVgDaEkxnbs/roW+9Q7RcJjANz3bGJkGZUCksFvrTFF5K8oa/iaIEu1qciRRLyrUqYqNxA0ZRzvHPSns7+G8E3WM6BTQy+i1v1bya17myw7wJay6lOHQQ2xiov4PkaWE2HNdYOjh3CxThw47CFNaQefJtarhFQaWV4XX5hYsctIqLCbok3wTSITpDn/UwcJVHvGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2GbM3Gnft4/syFKFkBcF4XOSKRpWId64Njj5RCuifb0=;
+ b=fyu/5wcAEwyi5ael+iY2/yo4eaSpSMH6jzbIU3vA5BxBJlO4JFgwmqCnKR7I98oDmhTD3O1alzLpu0jvFkHtj+Xbr4REmaMebZqMCC9RXYAyqAop9vXaIxyjn/wV+UnHZ4aYwuHto5DQitZQbPGM7U6UH2qXYt+4PKeIdDHUPbkBi15uKJlQIHrh0SXLzj7adWRawe7tWPwb9cLLL0mr8oNYSUSk1N0S0QJpapazZW4Crji0bNx77I6SU+88jIbZ6tF7ydtJGBNUpAyIhZpVLysaX05NPdSgrncLyyDHQy8kMw/i3E74qUCxuaiakE2kTn1s3fEUBwv/DLnnlAG58Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2GbM3Gnft4/syFKFkBcF4XOSKRpWId64Njj5RCuifb0=;
+ b=b/6KX9W4t9MSCxaytiwGIqmZi82zZVEowwEIIQRnJNKxTx/NKJTMcJgofhFGFm0S1SlyPB1OWRUxNRGOMPqSHyDVVsUVDaVOgr3spiSMvh8eNfVeYdCJ7Ntn4LzoAItH063FmWOtl4JQLRZ4wXPb/Jx6uw6L4CLYCf0VUVCK7P/oQmeP65NmTWYeBlUAiSH9Baa1y+5eklQkdV3Xrq7h6VHDPYAAWX0rWGfMVxucAZxD7BZ8EhwZscOHLdSQxhCI8ldhd2xBhSffhRSryWc6VT9jRaZfOQ/jFOWo0AIBM9l0UqQQ/y2qmnsJC20h3w9Lk5DEaraaufnHmuNDUDxozw==
+Received: from SJ2PR11MB7427.namprd11.prod.outlook.com (2603:10b6:a03:4c1::15)
+ by CH3PR11MB7204.namprd11.prod.outlook.com (2603:10b6:610:146::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.11; Mon, 9 Dec
+ 2024 20:24:58 +0000
+Received: from SJ2PR11MB7427.namprd11.prod.outlook.com
+ ([fe80::b9f6:e360:c76:f885]) by SJ2PR11MB7427.namprd11.prod.outlook.com
+ ([fe80::b9f6:e360:c76:f885%4]) with mapi id 15.20.8230.016; Mon, 9 Dec 2024
+ 20:24:58 +0000
+From: Linda holmes <holmesmorrison@hotmail.com>
+To: Cynthia Holmes <cynthmholm@gmail.com>, Darryl Ross
+	<darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Subject: Re: Next weekend
+Thread-Topic: Next weekend
+Thread-Index: AQHbSnZR8WFinOg5NkueKX0JFktKfrLeW5dB
+Date: Mon, 9 Dec 2024 20:24:58 +0000
+Message-ID:
+ <SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2@SJ2PR11MB7427.namprd11.prod.outlook.com>
+References:
+ <CAFnbyRF1ApTXOAdgep00689n0X+co36ygGCR_2FWn4d_WPfiTQ@mail.gmail.com>
+In-Reply-To:
+ <CAFnbyRF1ApTXOAdgep00689n0X+co36ygGCR_2FWn4d_WPfiTQ@mail.gmail.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-ms-reactions: allow
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ2PR11MB7427:EE_|CH3PR11MB7204:EE_
+x-ms-office365-filtering-correlation-id: 1ba5151a-6e05-4843-47ef-08dd188f8cff
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|9400799027|6092099012|461199028|15080799006|8060799006|19110799003|7092599003|8062599003|12050799009|1680799054|9000799050|14030799003|56899033|1602099012|3412199025|20055399003|4302099013|440099028|102099032;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?3NkYFY4O18S70g/8d6+LD1ih3Fh+kESRdBidKSPLwlw96JMy2vNvS7Lq/lc/?=
+ =?us-ascii?Q?NOUZGWguTncEqoZ8xbJiTiCMfux6htpn5xbD+AXlQK2uJNs39pxUzh7tQKoq?=
+ =?us-ascii?Q?hAdvw4GcN+MQYfOhIzNF4GriXUchURa+vORRRBvKA1ClaJgxdqSFwBzYBjqE?=
+ =?us-ascii?Q?rRieTol5l08LqN8cupaLbw4pw9LkizQhm2mCHEQVfBmqnhmm+bZ5lgEPYb7m?=
+ =?us-ascii?Q?OWP3LhD9K/Cd6jxaGPPQXS86UB+rHVnMJyejNiLpUWMKs7c/A6AHTVgxBRMi?=
+ =?us-ascii?Q?MBlr8dwHlbLcYdkOfZAhvb+aM6M6ra5/oK4pqXeLWf/XWyJ8HZxD3adeGgZl?=
+ =?us-ascii?Q?EyI5xPrnq6LrzIXmjb5qXA/9TGb1DhXqKBtxYzJjPySbFcP4RPdeXm1sBA50?=
+ =?us-ascii?Q?Kssky79v4BYdbZ1ZBgO1IxqNPkfyBCE9u7cRR61blE8hMSB9ehJB0Ys4Juj5?=
+ =?us-ascii?Q?AVxXLxDyjJ4D9adHk98+mDf52WDbcVe6P1DT2o+CpEzbUZIqzEQ5cry+ueKy?=
+ =?us-ascii?Q?83fjZ7o0m9RPWuwV28bHpEgHq2xzs36wTtpsNjTJFrgU32cL3KVzJXRcs7o3?=
+ =?us-ascii?Q?rFrmvj17xd3QzaTvwKA8KPKf7h5m/CdbsFEFtxeZSaTOq1adITXuvZS2sveC?=
+ =?us-ascii?Q?7xXtVgGvqFwmE0uszBOk/526KLEPV7TPu5aEa5xWzFNJ5VBvqMeK82zjHRKq?=
+ =?us-ascii?Q?SuI7W+oQugw7r+LhXeH18Y1CWRoV+uUKuB14c7sE+aJ8scl9rZV5on7pHkZ9?=
+ =?us-ascii?Q?ds6IJ2C9BQlYnjaa35PinPTJF1ySmw69mxVyCf7AhAFHtTEjkegdNoHKOSj8?=
+ =?us-ascii?Q?AXFH3UiaAfw8FOnqGJgvX+sjtgzSU510pqse3DQI+1td4AkNf/U77FjKfUJP?=
+ =?us-ascii?Q?DA0c8Eso5+PT6Q5XoztoiLjx2gW7P92FkDyh0ra5DV73Nv4MOQombaDGW6Wj?=
+ =?us-ascii?Q?nJLexpbjTWn956DhyZr/osSGr+Rwoh43ju0uke2fsrs1H2GC/ut2ksTsDpu0?=
+ =?us-ascii?Q?QWBOH8oXcXrWeOLq9jTWmd5ZIusmBiw4nfw6zVaK2VTc0zUEWeq30j5Okifz?=
+ =?us-ascii?Q?Af8COrmZXiE5ZY5DeiTCwxM1PHJUXs0/dTz8X9ACbejN0ucd9p7HIObJwNY1?=
+ =?us-ascii?Q?R7qAItEnLqiUcxs7nhQHrDn20dSRwoPs7q7Ot8XGqkdF3qCTf9h2o4EeVNkQ?=
+ =?us-ascii?Q?lQjmWAGHTJ6r3AdMjWaqzpO2raNHq87O3TeGx+eYuS7dZKlcJSZLKdmJsf10?=
+ =?us-ascii?Q?R5vcdhr+j3It72Le+wQ7mKPlXEM0yzYbMW/nI+nsr8AhTEbK5QiWIituQNYb?=
+ =?us-ascii?Q?4CaH9BQXhY25AZAZlR833pXhDP28c7mq1WjocAqLeYkp0g=3D=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?wKi/78+O1TGrPdMqodIE26mLuxAngji/1gP5KsfqzuHx/y7SRl9KKURnsGdR?=
+ =?us-ascii?Q?fOsF+honnh35+ubDAydCM9Sl3Yio4ZPr8x/B6uQCzixZPQ8+ICDqJT1yJRwM?=
+ =?us-ascii?Q?q9hnjR6bwGY/KX4lqeIissEc6j94/eHcPKTdpRtO6gcVYKTR7IYVwtLPbqm2?=
+ =?us-ascii?Q?jDnSmS8O6X8gjRM3+z+LXk8Pj1YFyzC+prhrB3SV597aERBEVonW9Buvfieh?=
+ =?us-ascii?Q?POXBmNBQAhiwdfV9i/hYoyWYzHBYH9ibPXhMU/DdhglM43EinYuzWKNlK14P?=
+ =?us-ascii?Q?D0G+s4SaqIxCZKD+2nRVhl3HwjFmXadvb6acpTfwxZaU25NY0MhmOGsc6m7m?=
+ =?us-ascii?Q?cCRtJimJJql5qUWYpSRxJUf3y9jSQ7nzQi7tNBjevLjB5vhoXlC5+MVq2BEf?=
+ =?us-ascii?Q?zIL2EQzKsgwwqIw3rc1kUCrE7G7pOyNxTA2auPlcB7UBHvuAHwERqaMO1frh?=
+ =?us-ascii?Q?+HzbEK83v1y74nopa7Fpx2tzwCEpONYCSDXRtMVqu3hOIDcZ62J5E3acauGO?=
+ =?us-ascii?Q?SMekMWQnHChfUC1VAKM6+nMsXtgwM56VA2Voz88pgNulcqyvK1ycrod9zEDR?=
+ =?us-ascii?Q?hikViLEJrYWNwvYvFhK7O+D8MewLubLJymLn5/yWjoTlCyWF2kPskFYuvZ5T?=
+ =?us-ascii?Q?WuhTQJ1UzRIV9pnjPCewMVKES8rzsc8PPt019V1+36lnar9dbM59VYLxsSon?=
+ =?us-ascii?Q?h12LIgiUjHC1AFekNuk/99u3eqx0XGEbpSMTzcAh712M8+x/aATXhRfVfZmS?=
+ =?us-ascii?Q?kwbU/n8AYnU/tkQ086JsNX1qxHO9ZFCuxq3k0AYgwQ3NUk/sWyYpJnuvAv3f?=
+ =?us-ascii?Q?8Ca4jJtEzQm8KW8WGClKqpFDRFj6iBt3FRz2onETbzuSGKq+ujjw6SySPR0T?=
+ =?us-ascii?Q?OSEnL+yMTgz2YvclsZYPEA5zaO3v1O3ZTbFW0OqRO0B9mytFISOcd4Ojtlae?=
+ =?us-ascii?Q?koMSdCSXwF0FZFeU/U8Wsg9mnJVGoo1s3j4P5NeroruXkq5hYazIa0os3BMV?=
+ =?us-ascii?Q?z5VQdVVCoMT1NNHrwSarkhUTq0mrrbVD+hIzPMs8LBIjqIS6gq4SAJwsihyf?=
+ =?us-ascii?Q?pqt3eqLoDk7P0wNgIXcWo5Vr6EBLmwhuiiyn5Xx0XCBIdDy3oQZkhHFNiCNR?=
+ =?us-ascii?Q?Zp6tuUXXlEVXv/WI//jc2tY2wfOoWsmD+X+YQDxKjVzkjm4H/Cw9LmJguK6s?=
+ =?us-ascii?Q?wjNsJSqt3/8Ac/b+GcEptEIyE/KJcKdHlPra+0W1dIY8Dk/e+1itnPEQoCPW?=
+ =?us-ascii?Q?SFVA/nh4MSseO0QMXctJNwQS/rKONflwBgYBAPa/x0RjmH5/fdxUyQ92N+nH?=
+ =?us-ascii?Q?c/AegLzL4/5M0jx9FAWClt2Iu1NmKO0ANxdqJ2DtW1wgPw=3D=3D?=
+Content-Type: multipart/mixed;
+	boundary="_004_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-7719-20-msonline-outlook-d1079.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7427.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ba5151a-6e05-4843-47ef-08dd188f8cff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2024 20:24:58.1067
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7204
+X-MANTSH: 1TFkXGxoaHxEKWUQXaEl5YmNrSXx6ExMRCllNF25PRkNcT1gRCl9ZFxgaGREKX00
+ XZEVETxEKWUkXGnEaEBp3BhsSGXEbGR8QGncGGBoGGhEKWV4XbGx5EQpDThcfTHBjB19vZ1Jpf
+ 2cTGExJSW5OYwdiGRwbGXVoXkJ1RxEKWFwXGQQaBB8bBRsaBBscGAQZGgQfEBseGh8aEQpeWRd
+ PQHpLHBEKTVwXEhsRCkxaF01pTU1rEQpMRhdva2trbE1rEQpDWhceGgQTGAQeGgQTGxEKQl4XG
+ xEKRF4XGREKQlwXGxEKXk4XGxEKQksXbVt7XmdJcBNzAUsRCkJJF21be15nSXATcwFLEQpCRRd
+ lRERofh1yaXhSQBEKQk4XbVt7XmdJcBNzAUsRCkJMF2hvXmMZYmN8UlJzEQpCbBdvc2ZJBUlFS
+ 0FOeBEKQkAXbGFYBV19XXlCRGcRCkJYF2JrTm9vemxnWkdLEQpaWBcTEQpwaBdtf3prSx4ZWB1
+ gQxAaEQpwaBdgXgFyRUhwblldSRAaEQpwaBdlSBhlWHBOY0ZjRhAaEQpwaBdsBVxnThxPb1xEQ
+ BAYHxEKcGgXb0Z+ExlQTG1Ie2kQGhEKcGgXYElubUV/a0hbUkYQGhEKcGgXYUkaTUt+cnxlE3I
+ QGhEKcGgXemVPTlIcbE0FbE8QGhEKcH8XbxtCEkVMbxhGWR8QGx8RCnBfF2xpSGJ/fW8TGHIcE
+ BsTEQpwfRdiHGNTE0xcaGRmbBAbExEKcH8XYHh9aH0TGwFhGEUQBxsYGREKcF8XYXJoXmsdQno
+ BT30QBxsYHREKcH0XYmFdXR0ZfV0FRn8QGhEKcH0XYhxjUxNMXGhkZmwQGxMRCnB9F2tcf1MYA
+ WBnH3lEEBoRCnBjF25SElxnHx1pTx5+EBoRCnBsF2xDZFtHRmwBGmxwEBoRCm1+FxoRClhNF0s
+ R
+X-Proofpoint-GUID: 5fZI-uEMxCUM92fccDdI-H3613_Bth_m
+X-Proofpoint-ORIG-GUID: 5fZI-uEMxCUM92fccDdI-H3613_Bth_m
+X-Authority-Info: v=2.4 cv=K8FwHDWI c=1 sm=1 tr=0 ts=67575220 cx=c_pps a=ieAa1ZJMXqlCcRYOnNciQg==:117 a=xqWC_Br6kY4A:10 a=RZcAm9yDv7YA:10 a=D8_imv6IFssA:10 a=x7bEGLp0ZPQA:10 a=kASEfVIaMzsA:10 a=xqIuV22J30AA:10 a=_EeEMxcBAAAA:8 a=fys2sDa9AAAA:8 a=pGLkceISAAAA:8 a=v3ZZPjhaAAAA:8 a=69EAbJreAAAA:8 a=ESgmTnEapBM-NN2VhNkA:9 a=CjuIK1q_8ugA:10 a=5UeK9suJl1gA:10 a=9N2508kqwVI-mCSqgtsA:9 a=JmicRj4aw3pFHXiE:21 a=_W_S_7VecoQA:10 a=Y-VuXnVFAvJp8thlcY4A:9 a=UyJwmPUJozw58VCsoXQsA4RukbM=:19 a=KQqxNPgzF0kA:10 a=yJrd0tL6NRsA:10 a=7YpECbvlQQReuXKdpsOb:22
+
+
+--_004_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_
+Content-Type: multipart/alternative;
+	boundary=_000_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_
+
+
+--_000_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+I added the poster from the church..the Xmas Eve pageant is the second serv=
+ice on the poster.
+Linda
+
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Sent: Monday, December 9, 2024 3:09:42 PM
+To: Darryl Ross <darrylross@icloud.com>; Holly Ross <hollygammie@gmail.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Subject: Next weekend
+
+
+Hi Darryl,
+
+Can the girls visit you this Saturday en lieu of Sunday? The church has a p=
+otluck, Xmas carols and Santa visiting Sunday.
+
+Also both girls are in the Xmas pageant at Knox United Church Christmas Eve=
+ at 7 pm I believe. Alice is Mary and Charlotte is a narrator and leads the=
+ kids in Silent night.
+
+Holly, George and you are all welcome to join.
+[https://ci3.googleusercontent.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxo=
+xORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkdEhi_cA]
+
+--_000_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"ltr">
+<div dir=3D"ltr">I added the poster from the church..the Xmas Eve pageant i=
+s the second service on the poster.</div>
+<div dir=3D"ltr">Linda&nbsp;</div>
+<div id=3D"ms-outlook-mobile-signature">
+<div><br>
+</div>
+Get <a href=3D"https://aka.ms/o0ukef">Outlook for iOS</a></div>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Cynthia Holmes &lt;cy=
+nthmholm@gmail.com&gt;<br>
+<b>Sent:</b> Monday, December 9, 2024 3:09:42 PM<br>
+<b>To:</b> Darryl Ross &lt;darrylross@icloud.com&gt;; Holly Ross &lt;hollyg=
+ammie@gmail.com&gt;<br>
+<b>Cc:</b> Linda holmes &lt;holmesmorrison@hotmail.com&gt;<br>
+<b>Subject:</b> Next weekend</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"auto"><br clear=3D"all">
+Hi Darryl,</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Can the girls visit you this Saturday en lieu of Sunday? =
+The church has a potluck, Xmas carols and Santa visiting Sunday.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Also both girls are in the Xmas pageant at Knox United&nb=
+sp;Church Christmas Eve at 7 pm I believe. Alice is Mary and Charlotte is a=
+ narrator and leads the kids in Silent night.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Holly, George and you are all welcome to join.<br clear=
+=3D"all">
+<div dir=3D"auto">
+<div dir=3D"ltr" class=3D"x_gmail_signature" data-smartmail=3D"gmail_signat=
+ure">
+<div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIo=
+rK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50BJU64sS3iXon9fAkd=
+Ehi_cA"><br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_--
+
+--_004_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	size=1609128;
+	modification-date="Mon, 09 Dec 2024 20:24:12 GMT";
+	filename=IMG_5037.jpeg;
+	creation-date="Mon, 09 Dec 2024 20:24:12 GMT"
+Content-Type: image/jpeg;
+	name=IMG_5037.jpeg
+X-Apple-Content-Length: 2173735
+
+
+--_004_SJ2PR11MB74276F6BDD559A9FD3AE93A0C63C2SJ2PR11MB7427namp_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1299311</integer>
+	<key>date-last-viewed</key>
+	<integer>1744900349</integer>
+	<key>date-received</key>
+	<integer>1733775905</integer>
+	<key>flags</key>
+	<integer>8623686785</integer>
+	<key>remote-id</key>
+	<string>4569</string>
+</dict>
+</plist>

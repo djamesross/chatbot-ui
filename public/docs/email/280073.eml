@@ -1,0 +1,188 @@
+9905      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09072502.me.com by p133-mailgateway-smtp-65c7446cdf-rlf98 (mailgateway 2314B998)
+	with SMTP id 7b6de78b-374c-4dd7-9ec1-51169c61d891 
+	for <darrylross@icloud.com>; Mon, 24 Apr 2023 20:13:10 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 7b6de78b-374c-4dd7-9ec1-51169c61d891
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	by ci74p00im-qukt09072502.me.com (Postfix) with ESMTPS id 5B7034AC0444
+	for <darrylross@icloud.com>; Mon, 24 Apr 2023 20:13:07 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSTloQXgcZFltVFVFfDlgc
+ DEZVVgJbWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwJGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlQSslFiJpVTQfOBUQC0R8JAISNCdKZExVOj0xXDt8XAtACUsi
+ QXd4AwJNATcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MeAJrQWE
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.49 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.49 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.49; helo=mail-ej1-f49.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-94f6c285d92so900767566b.3
+        for <darrylross@icloud.com>; Mon, 24 Apr 2023 13:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682367187; x=1684959187;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kXtUC6XwBrmZ72vjl9PvTkK7DB6qCGCu+W0z+oOJrHQ=;
+        b=MeAJrQWEu5oAjrE5euLqcAKB3/24vcFQm806mbiIQeoifDO03Q4lIo41ssLEpiPdox
+         VWIWXQbm1/1wQqaRwZdVmP5Fvx7kyDUeOUt03jIOUzJHjkzYxwI96Pfw1DPWYSHOBqt8
+         vfI892w3vrGtnLiBeJY2rsTtK92SntPgWZfKXXKpS1p0SFOakEBuOi1BFrX62eilf9ao
+         6xoklg9o7ecE6MDnsI5KqLB3sJwzPq5rCsNNUO0vcx/ozu7SyjEZiGNyXpUilqW0Hz0C
+         77XZuN9f6WK8/PA5zrVRhsesDggxfwyDgW5Di/T3yDehk+r/On/b5HQ1dvucW3oJYvaS
+         uRSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682367187; x=1684959187;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kXtUC6XwBrmZ72vjl9PvTkK7DB6qCGCu+W0z+oOJrHQ=;
+        b=Bg6JYEH2tSMFE9yxMautBazQLSklpX50gTHWgKyZxjUCYCLYpfHaz8HV13Wprhah2T
+         lgMZMJ/2uFQdNZ8e+GsNN1/P1MmnUK/jxy08Wv/8i7ZguTXAyRSSjP2hGQhf0dNwS6Pk
+         TuNxJsRSxX3VfG9GZJEBq/gF5c75NfWOYPWISbht67zY4XDnXqN60xP4UH/BO/iukQAF
+         3+vPg1K6fJ7R0/5wswA/jepiVDboPaVvcnjRPnONkJuuzGRr7KjjOXzIqe95HMVuuO4n
+         5uWTeDVKPdQWCTBWRL8/HhN6J+C5rGTAKAdKS2MEOHoMVBLa/e3MAUO3smys/xKvfF84
+         GsXw==
+X-Gm-Message-State: AAQBX9eM9gFH+HxZAZCP/yqZFSMC8NBhzHBbZBGGitH4jzvU1jZMwMRR
+	5hrgbJcV+tOP9ed05TaYRBhoxwBs9wHfR5jJp+zuGkX2V58=
+X-Google-Smtp-Source: AKy350bbWX/U2M4ERGyIh9ePW1V8sBJoi9JQ/Y03BkryL20HR7UhdXXep77PuGAzxvqW79vJ0ZkugBWvRFqDRRTVQBU=
+X-Received: by 2002:a17:906:4fca:b0:958:4870:8d09 with SMTP id
+ i10-20020a1709064fca00b0095848708d09mr8100549ejw.37.1682367187106; Mon, 24
+ Apr 2023 13:13:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <DC575102-1991-43D4-8A0B-5AA56E02E2FB@icloud.com>
+In-Reply-To: <DC575102-1991-43D4-8A0B-5AA56E02E2FB@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 24 Apr 2023 16:12:54 -0400
+Message-ID: <CAFnbyRG4RCaZYcVjAsgstJFwkRP2Tz7ODW+CLji5p-U9GNaw4g@mail.gmail.com>
+Subject: Re: Medical Updates.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000091c0a205fa1aa2f2"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhsaGhkaGBEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdMZUJpeXNNT1luH216Zm1
+ 1WWtYXVNtR1taUm0TRhhDXhEKWFwXGQQaBB8aBRsaGgQSGAQeGAQYHRAbHhofGhEKXlkXSExjT
+ lwRCk1cFx4RCkxaF2hrTU1rEQpMRhdiTWsRCkNaFxgaEwQSHwQYGxIEHhMRCkJeFxsRCkJcFxs
+ RCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhybngaYmMRC
+ kJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJAF2QSHmZ
+ oHGtHGRJ+EQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXbRIfHhxwQhlHbWwQGRoRC
+ nBoF2Rvb2dNcBsYAVprEBkaEQpwaBdhTGFOZGtrYUJcWBAZGhEKcGgXaWtfXUAZEl8eZn0QGRo
+ RCnBoF2dHGGh9fERfTGwcEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: fOhCSYgesD5GPLG_sArwyGmqpxG9l2it
+X-Proofpoint-ORIG-GUID: fOhCSYgesD5GPLG_sArwyGmqpxG9l2it
+
+--00000000000091c0a205fa1aa2f2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Alice has been talking about discomfort that is like a UTII but is not, and
+that she has a follow up appointment. Please let me know the details,
+including any treatment plans. As you know she has had repealed UTIs, we
+requested an ultrasound to rule out internal issues. Ultrasound came back
+normal. We will return to the doctor this week to see if she has a vaginal
+infection. Dr. Brenhouse and her associates have been educating Alice on
+proper wiping, hygiene and creams to apply. It's been an ongoing issue and
+we are still working on it.
+
+Also, can you provide details about what happened to Charlotte when she was
+home on April 6 and injured herself after following a TikTok video that
+teaches you how to make yourself faint, including whether she was taken to
+a doctor.
+As you know from Charlotte she did faint and hit her head as she fell, it
+was a scary experience for her and I. I understand she told you as well. I
+monitored Charlotte for a few days and felt she did not suffer any head
+trauma that needed medical attention. She was responsive, able to move and
+experienced no signs of a head injury that required medical attention. We
+have spoken at length about the dangers of social media and how to best
+protect herself. We also deleted tik tok from her phone. I am confident
+Charlotte has learned a hard lesson from this one and we are both moving on=
+.
+
+On Fri, Apr 21, 2023 at 9:02=E2=80=AFAM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Good Morning,
+>
+> Alice has been talking about discomfort that is like a UTII but is not,
+> and that she has a follow up appointment. Please let me know the details,
+> including any treatment plans.
+>
+> Also, can you provide details about what happened to Charlotte when she
+> was home on April 6 and injured herself after following a TikTok video th=
+at
+> teaches you how to make yourself faint, including wether she was taken to=
+ a
+> doctor.
+>
+> Thank you,
+>
+> Darryl
+
+--00000000000091c0a205fa1aa2f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Alice has been talking about discomfort that is like a UTI=
+I but is not, and that she has a follow up appointment. Please let me know =
+the details, including any treatment plans. As you know she has had repeale=
+d=C2=A0UTIs, we requested an ultrasound to rule out internal issues. Ultras=
+ound came back normal. We will return to the doctor this week to see if she=
+ has a vaginal infection. Dr. Brenhouse and her associates have been educat=
+ing Alice on proper wiping, hygiene=C2=A0and creams=C2=A0to apply. It&#39;s=
+ been an ongoing issue and we are still working on it.<br><br>Also, can you=
+ provide details about what happened to Charlotte when she was home on Apri=
+l 6 and injured herself after following a TikTok video that teaches you how=
+ to make yourself faint, including whether she was taken to a doctor.<br><d=
+iv>As you know from Charlotte she did faint and hit her head as she fell, i=
+t was a scary experience for her and I. I understand she told you as well. =
+I monitored Charlotte for a few days and felt she did not suffer any head t=
+rauma that needed medical attention. She was responsive, able to move and e=
+xperienced no signs of a head injury that required medical attention. We ha=
+ve spoken at length about the=C2=A0dangers of social media and how to best =
+protect herself. We also deleted tik tok from her phone. I am confident Cha=
+rlotte has learned a hard lesson from this one and we are both moving on.</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri, Apr 21, 2023 at 9:02=E2=80=AFAM Darryl Ross &lt;<a href=3D"mail=
+to:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">Good Morning,<br>
+<br>
+Alice has been talking about discomfort that is like a UTII but is not, and=
+ that she has a follow up appointment. Please let me know the details, incl=
+uding any treatment plans.<br>
+<br>
+Also, can you provide details about what happened to Charlotte when she was=
+ home on April 6 and injured herself after following a TikTok video that te=
+aches you how to make yourself faint, including wether she was taken to a d=
+octor.<br>
+<br>
+Thank you,<br>
+<br>
+Darryl</blockquote></div>
+
+--00000000000091c0a205fa1aa2f2--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1085539</integer>
+	<key>date-last-viewed</key>
+	<integer>1742412712</integer>
+	<key>date-received</key>
+	<integer>1682367190</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12030</string>
+</dict>
+</plist>

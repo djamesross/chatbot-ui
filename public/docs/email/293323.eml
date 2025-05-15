@@ -1,0 +1,495 @@
+24697     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from st43p00im-qukt05021901.me.com by p133-mailgateway-smtp-7676fb8bcc-t595x (mailgateway 2323B104)
+	with SMTP id 39fb2a74-bb02-402a-8045-f9c085ffad43 
+	for <darrylross@icloud.com>; Tue, 22 Aug 2023 22:29:22 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 39fb2a74-bb02-402a-8045-f9c085ffad43
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	by st43p00im-qukt05021901.me.com (Postfix) with ESMTPS id 9C81531C038A
+	for <darrylross@icloud.com>; Tue, 22 Aug 2023 22:29:21 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdTRloQXgcZFltVFVFfDlgc
+ DEZVVgNTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEU0BGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqBTZWRAhFcFYdMjIDMFROFB8DCDsXeBsKGiApMQoFA1BEOygR
+ N3RUAyM2JzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Le1GuHnV
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.51 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.51 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.51; helo=mail-ej1-f51.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so678589166b.2
+        for <darrylross@icloud.com>; Tue, 22 Aug 2023 15:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692743359; x=1693348159;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OzEZgvtG3OWaecF4xrxotLUI+y+lMvjAaqHezdiNvtc=;
+        b=Le1GuHnV9HqCSdTHZTAyJXCi5ZB7XJkPP3n1KJ+UlmmjhRgWAz/MSVCeL83rxN961z
+         K+99/adUXKSC4XYOnECRSuuUFaiZbpihahx86v9VMBLo/b6CzfD1HW/pcw4UForzNxOv
+         VdHTddhXAla4YMQDb/nJvbNxyPnORo1CWt4LKJacdSSEKy4u5iuzm9f9ktALL9LXHpiT
+         +PxKOkslMFTHqE/1tOsISH2brsJ7VzW60vmcsgVY6Tc1rMo77snsFGutOMYzoVmIVbGl
+         SpTZB8rae8VtSV891rHDXLUCCic8bKlHkotC5TgwHm0sk/+XX5HXZ740668JDWohWQBk
+         6Vrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692743359; x=1693348159;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OzEZgvtG3OWaecF4xrxotLUI+y+lMvjAaqHezdiNvtc=;
+        b=WosDr6VUYto1GnuNfdmQ2ihlS3DWiXsXJK62xZPH422mqY0LCTM8l51S0J/ZH7Np5T
+         lvHr5qePoBWUw5ijqU9yx2SMFvxhDNKakMQSdGowqsCrl5Tjt7kJxP/Eqe1cvFbW7AYF
+         UvpWbSLVK0TNzRxidkFfj9POHjrOivitbiAFmvhBvILmsl4cv1pokxMJNvOrL7fproFc
+         Go7wujsi8SYPcDUMGLI1bG3vCyyIu0rgZNWMnAQsa0pyN4LZhKEqHi9aAlW4kM08t9lK
+         60wpXQzWy81FR7EfA3dg0CfExQ/EgXDRKBf4moasghxZwAAZswrUvMG42WbEAmnsP5+q
+         PUnQ==
+X-Gm-Message-State: AOJu0Yx9dNbhikv9XhyfRQNrXf+zbK+VaSEy9kbKbShgUPPvqqsiRJEZ
+	BcQsMLMLzP+9EOCPY6JT0S3qzNAbAWsKjPZALb1rXKVl
+X-Google-Smtp-Source: AGHT+IES45sjxxRVqYs1Lqwl+XhuGhXxeZ4KeiFyc2WFsJNOqIdMNsFmwxSOiIvjdcteySw6Th9iolC0PbDPZvi6ETY=
+X-Received: by 2002:a17:907:7818:b0:99e:8e:d41a with SMTP id
+ la24-20020a170907781800b0099e008ed41amr8605229ejc.52.1692743358819; Tue, 22
+ Aug 2023 15:29:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREfgnksf6nS0b8s9ER0dBBg1uGvZ+z_kzwFqBmLRWhs_w@mail.gmail.com>
+ <C5EA6635-A357-4E14-A0D3-7F56C6EDBEC2@icloud.com> <CAFnbyRHLzOFZCKLwuUV6HLNzsyrowwbrD4jO4UMRy4MLR5=cXA@mail.gmail.com>
+ <DCC841F1-0F2E-4D19-B960-DD768A259EC7@icloud.com> <CAFnbyRGzbUPm3a-NHdC6B4Zc4mwdbdJ2hMqV+Bwn9GTR-Zcpiw@mail.gmail.com>
+ <F5FFBA79-4349-46E9-8A25-E63BD605A547@icloud.com>
+In-Reply-To: <F5FFBA79-4349-46E9-8A25-E63BD605A547@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 22 Aug 2023 18:29:07 -0400
+Message-ID: <CAFnbyRHpO03puF4hKTtHdxvjznLoH-hoYOFr5521BNfODbaVOA@mail.gmail.com>
+Subject: Re: Sunday
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Alison Boyce <Alison.Boyce@mannlawyers.com>, 
+	Michelle Williams <michelle.williams@mannlawyers.com>
+Content-Type: multipart/alternative; boundary="0000000000009931e606038a86c6"
+X-MANTSH: 1TEIXR1gfG1oaGkNHB1tfQV4aHRgaGhMaGxEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBsYEQpfTRdkRURPE
+ QpZSRcacRoQGncGGxMYcRscHxAadwYYGgYaEQpZXhdsbHkRCkNOF2toQ0MeU0FmZUhcGWEbRgd
+ tfRlTbGQefF5ne0xTQXxkEQpYXBcZBBoEHxoFGx0EGxsbBBsfHwQbHx0QGx4aHxoRCl5ZF0ltX
+ l5OEQpNXBcdHREKTFoXTV1rEQpMRhdiTWsRCkNaFxgaEwQSHwQYGxIEHxsRCkJeFxsRCkRJFxg
+ RCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhyb
+ ngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJ
+ AF25HEhMYSH8caGAbEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGcXb2Voe19ABUxLe
+ mMQGRoRCnBoF2l6f3toE1kZTkJMEBkaEQpwaBdsHnJdGl9TZX5NWBAZGhEKcGgXYGJLHHlEWWR
+ bSFsQGRoRCnBoF2lhUxhHSEJ7bxNPEBkaEQpwaBdlYWwafH1fTEdyThAZGhEKcGwXZkZrHxhbb
+ V9Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: ABii4ykLObv3K1l-GW3yFN4VtMQfykVN
+X-Proofpoint-GUID: ABii4ykLObv3K1l-GW3yFN4VtMQfykVN
+
+--0000000000009931e606038a86c6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+I think I have found a temporary solution for the Tuesday nights remainder
+of the soccer season ( until September 12).
+
+Another team similar to Alice=E2=80=99s level practices Tuesday nights at 5=
+ pm at
+Half Moon Bay Park right before Charlotte=E2=80=99s team. I am going to ask=
+ if Ali
+can swap this practice with Wednesday for the rest of the season.
+
+Would your mom and yourself be available next week for visits to take place
+on Wednesday instead of Tuesday?
+
+
+No news on Fall soccer -/-there will be sort outs and then teams will be
+divided again.  I am hopeful they won=E2=80=99t fall on Sunday afternoon.
+
+
+Cynthia
+
+On Wed, Aug 16, 2023 at 3:13 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Dear Cynthia,
+>
+> Thank you for confirming Friday, August 18 and next Tuesday, August 22.
+>
+> It was already agreed that Tuesdays would be extended for the summer, and
+> this includes next Tuesday, August 22, as well as this past Tuesday, Augu=
+st
+> 8. It was also previously agreed that missed parenting time would be made
+> up and this included the time they were scheduled to be away and
+> unavailable this summer. The time missed while they were away in Saskatoo=
+n
+> was made up without issue, leaving one final visit to schedule before
+> summer vacation ends the week after next. I am suggesting Thursday, Augus=
+t
+> 24, but the 23 or 24th may work as well if they are more convenient.
+>
+> I am not agreeable to moving to once-weekly visits and reducing the amoun=
+t
+> of parenting time Tuesday evenings once school begins. I don=E2=80=99t th=
+ink it=E2=80=99s
+> in the best interests of the girls and does not follow the order. Please
+> let me know if there are any other evenings that might work and I will tr=
+y
+> to accommodate to make Tuesdays work for earlier practice. I think it=E2=
+=80=99s
+> important to be flexible and try to find ways to solve issues as they com=
+e
+> up, because they will continually come up.
+>
+> Regards,
+>
+> Darryl
+>
+>
+>
+> On Aug 15, 2023, at 21:00, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl,
+>
+> This Friday would work as a make up day for both the missed camp visits
+> days as it's 7 additional hours which total weekly in person visit time a=
+nd *I
+> can confirm the girls can be there from 10-5pm*. For the record, you have
+> had in person visits Sunday noon- 8pm and half days on Tuesdays for most =
+of
+> the summer which is more than what was court ordered and have have made u=
+p
+> more than 7 hours a week for some time..
+>
+> Next week is quite booked up with camp, soccer, dentist appointment for
+> Alice and open house for Charlotte's junior highschool. I will take them
+> out of camp on Tuesday so you can have some extra time for the last day o=
+f
+> the extended summer visit from noon-5:45 pm.
+>
+>  To compensate for the shorter visits for Tuesday August 29, September 5,
+> and Tuesday September 12, I suggest  just sticking to the extended Sunday
+> which is eight hours a week (12-8 pm)  for the total in person
+> weekly visits. Again this is an hour longer than the 7 hour in person
+> weekly court ordered visit.
+>
+> The three Tuesday nights mentioned above are temporary as we wait for
+> their Fall soccer season schedule and I will be in touch when we
+> receive it.
+>
+>
+> Cynthia
+>
+> On Tue, Aug 15, 2023 at 1:26=E2=80=AFPM Darryl Ross <darrylross@icloud.co=
+m> wrote:
+>
+>> Dear Cynthia,
+>>
+>> I can accommodate the earlier soccer practice schedule for this week and
+>> next week. Once school starts Tuesday's after school until soccer will b=
+e
+>> unreasonably short. Please suggest other days and times that will work
+>> instead of Tuesday.
+>>
+>> While they were away at camp they missed out on a Tuesday visit and a
+>> Sunday visit, as well as virtual parenting time on Thursday and Saturday=
+.
+>> To make this up I would like to schedule an additional day this week and
+>> one next week. Since Charlotte has an appointment Thursday I am suggesti=
+ng:
+>> - Friday, August 18, 10 am - 5 pm
+>> - Thursday, August 24, 10 am - 5 pm
+>>
+>> Please let me know if this works or if we need to consider other days an=
+d
+>> times. I am flexible on the exact days and times, although my mother is
+>> less so and needs reasonable notice.
+>>
+>> Kindly send me a link to the soccer schedule as soon as it is released s=
+o
+>> that I am able to accommodate.
+>>
+>> As we both work to comply with the terms of the court order, if there ar=
+e
+>> any matters that cannot be reasonably and amicably resolved I think it i=
+s
+>> best to direct any substantive discussions about scheduling, changes or
+>> areas of disagreement through your lawyer.
+>>
+>> Regards,
+>>
+>> Darryl
+>>
+>
+> Begin forwarded message:
+>
+> *From: *Cynthia Holmes <cynthmholm@gmail.com>
+> *Subject: **Tuesday visits*
+> *Date: *August 15, 2023 at 09:12:48 EDT
+> *To: *Darryl Ross <darrylross@icloud.com>
+> *Cc: *Holly Ross <hollygammie@gmail.com>, Michelle Williams <
+> michelle.williams@mannlawyers.com>
+>
+> Hello,
+>
+> Charlotte=E2=80=99s coach has moved Tuesday night  practices to 6:30 pm t=
+o
+> accommodate the the shorter days, their last practice is September 12 for
+> the season.
+>
+> Going forward, Charlotte will need to be there for 6:15 pm. Can you kindl=
+y
+> confirm you are able to accommodate this? This is important for Charlotte=
+.
+>
+>  The visiting hours are extended on Tuesday this summer and their new
+> school schedule begin  August 29 which will mean back for shorter periods
+> time for visits.
+>
+> For August 29, September 5th and September 12 the visits will be a bit
+> shorter, however Sunday visits have been extended to 8 hours which exceed=
+s
+> the court ordered time of weekly in person visits.
+>
+> I have not received the soccer Fall schedule but when I do, I will be sur=
+e
+> to let you know to give you time to accommodate.
+>
+>
+> Cynthia
+>
+>
+>> On Aug 14, 2023, at 13:31, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>
+>> Hello,
+>>
+>> My mom can bring them for noon tomorrow.
+>>
+>> Thursday won=E2=80=99t work as Charlotte has a consultation with a plast=
+ic
+>> surgeon at CHEO on Thursday afternoon to remove the earring backing in h=
+er
+>> ear.
+>>
+>> If we extended next Tuesday for noon that would make up the time.
+>>
+>>
+>> Cynthia
+>>
+>> On Mon, Aug 14, 2023 at 11:39 AM Darryl Ross <darrylross@icloud.com>
+>> wrote:
+>>
+>>> Can you confirm drop off tomorrow, or my mom can pick them up, for noon=
+?
+>>>
+>>> Also, for one make up date, does Thursday work?
+>>>
+>>> Darryl
+>>>
+>>> > On Aug 12, 2023, at 09:59, Cynthia Holmes <cynthmholm@gmail.com>
+>>> wrote:
+>>> >
+>>> > =EF=BB=BFHello,
+>>> >
+>>> > Charlotte=E2=80=99s coach put together a soccer game on Sunday at 6, =
+she has
+>>> to be there for 5:30 pm.
+>>> >
+>>> > Are you able to switch the schedule for a visit from 10 am - 5 pm tmr=
+w
+>>> so I can bring her to her soccer game?
+>>> >
+>>> > Cynthia
+>>>
+>>
+>>
+>
+
+--0000000000009931e606038a86c6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">I think I have found a temporary solution for the Tuesday nights remai=
+nder of the soccer season ( until September 12).</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">Another team similar to Alice=E2=80=99s level prac=
+tices Tuesday nights at 5 pm at Half Moon Bay Park right before Charlotte=
+=E2=80=99s team. I am going to ask if Ali can swap this practice with Wedne=
+sday for the rest of the season.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Would your mom and yourself be available next week for visits to =
+take place on Wednesday instead of Tuesday?</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">No news on Fall soccer -/-t=
+here will be sort outs and then teams will be divided again.=C2=A0 I am hop=
+eful they won=E2=80=99t fall on Sunday afternoon.</div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia</div><div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, A=
+ug 16, 2023 at 3:13 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.=
+com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex"><div style=3D"line-break:after-white-space">Dear Cynthia,<div><br></=
+div><div>Thank you for confirming Friday, August 18 and next Tuesday, Augus=
+t 22.</div><div><br></div><div>It was already agreed that Tuesdays would be=
+ extended for the summer, and this includes next Tuesday, August 22, as wel=
+l as this past Tuesday, August 8. It was also previously agreed that missed=
+ parenting time would be made up and this included the time they were sched=
+uled to be away and unavailable this summer. The time missed while they wer=
+e away in Saskatoon was made up without issue, leaving one final visit to s=
+chedule before summer vacation ends the week after next. I am suggesting Th=
+ursday, August 24, but the 23 or 24th may work as well if they are more con=
+venient.</div><div><br></div><div>I am not agreeable to moving to once-week=
+ly visits and reducing the amount of parenting time Tuesday evenings once s=
+chool begins. I don=E2=80=99t think it=E2=80=99s in the best interests of t=
+he girls and does not follow the order. Please let me know if there are any=
+ other evenings that might work and I will try to accommodate to make Tuesd=
+ays work for earlier practice. I think it=E2=80=99s important to be flexibl=
+e and try to find ways to solve issues as they come up, because they will c=
+ontinually come up.</div><div><br></div><div>Regards,</div><div><br></div><=
+div>Darryl</div><div><br></div><div><br></div><div><div><br><blockquote typ=
+e=3D"cite"><div>On Aug 15, 2023, at 21:00, Cynthia Holmes &lt;<a href=3D"ma=
+ilto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; w=
+rote:</div><br><div><div dir=3D"ltr">Hi Darryl,<div><br></div><div>This Fri=
+day would work as a make up day for both the missed camp visits days as it&=
+#39;s 7 additional hours which total weekly in person visit time and <b>I c=
+an confirm the girls can be there from 10-5pm</b>. For the record, you have=
+ had in person visits Sunday noon- 8pm and half days on Tuesdays for most o=
+f the summer which=C2=A0is more than what was court ordered and have have=
+=C2=A0made up more than 7 hours a week for some time..=C2=A0=C2=A0</div><di=
+v><br></div><div>Next week is quite booked up with camp, soccer, dentist ap=
+pointment for Alice and open house for Charlotte&#39;s junior highschool. I=
+ will take them out of camp on Tuesday so you can have some extra time for =
+the last day of the extended summer visit from noon-5:45 pm.=C2=A0</div><di=
+v><br></div><div>=C2=A0To compensate for the shorter visits for Tuesday Aug=
+ust=C2=A029, September 5, and Tuesday September=C2=A012, I suggest=C2=A0 ju=
+st sticking to the extended Sunday which=C2=A0is eight hours a week (12-8 p=
+m)=C2=A0 for the=C2=A0total in person weekly=C2=A0visits. Again this is an =
+hour longer than the 7 hour in person weekly court ordered visit.</div><div=
+><br></div><div>The three Tuesday nights mentioned above are temporary as w=
+e wait for their Fall soccer=C2=A0season schedule and I will be in touch wh=
+en we receive=C2=A0it.=C2=A0</div><div><br></div><div><br></div><div>Cynthi=
+a</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, Aug 15, 2023 at 1:26=E2=80=AFPM Darryl Ross &lt;<a href=3D"m=
+ailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><d=
+iv dir=3D"auto"><div dir=3D"auto">Dear Cynthia,<div><br></div><div>I can ac=
+commodate the earlier soccer practice schedule for this week and next week.=
+ Once school starts Tuesday&#39;s after school until soccer will be unreaso=
+nably short. Please suggest other days and times that will work instead of =
+Tuesday.</div><div><br></div><div>While they were away at camp they missed =
+out on a Tuesday visit and a Sunday visit, as well as virtual parenting tim=
+e on Thursday and Saturday. To make this up I would like to schedule an add=
+itional day this week and one next week. Since Charlotte has an appointment=
+ Thursday I am suggesting:</div><div><span style=3D"white-space:pre-wrap">	=
+</span>- Friday, August 18, 10 am - 5 pm</div><div><span style=3D"white-spa=
+ce:pre-wrap">	</span>- Thursday, August 24, 10 am - 5 pm</div><div><br></di=
+v><div>Please let me know if this works or if we need to consider other day=
+s and times. I am flexible on the exact days and times, although my mother =
+is less so and needs reasonable notice.</div><div><br></div><div>Kindly sen=
+d me a link to the soccer schedule as soon as it is released so that I am a=
+ble to accommodate.=C2=A0</div><div><br></div><div>As we both work to compl=
+y with the terms of the court order, if there are any matters that cannot b=
+e reasonably and amicably resolved I think it is best to direct any substan=
+tive discussions about scheduling, changes or areas of disagreement through=
+ your lawyer.</div><div><br></div><div>Regards,</div><div><br></div><div>Da=
+rryl</div></div></div></div></blockquote></div></div></blockquote><div><br>=
+</div><div><blockquote type=3D"cite"><div>Begin forwarded message:</div><br=
+><div style=3D"margin:0px"><span style=3D"font-family:-webkit-system-font,&=
+quot;Helvetica Neue&quot;,Helvetica,sans-serif"><b>From:=C2=A0</b></span><s=
+pan style=3D"font-family:-webkit-system-font,&quot;Helvetica Neue&quot;,Hel=
+vetica,sans-serif">Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.co=
+m" target=3D"_blank">cynthmholm@gmail.com</a>&gt;<br></span></div><div styl=
+e=3D"margin:0px"><span style=3D"font-family:-webkit-system-font,&quot;Helve=
+tica Neue&quot;,Helvetica,sans-serif"><b>Subject:=C2=A0</b></span><span sty=
+le=3D"font-family:-webkit-system-font,&quot;Helvetica Neue&quot;,Helvetica,=
+sans-serif"><b>Tuesday visits</b><br></span></div><div style=3D"margin:0px"=
+><span style=3D"font-family:-webkit-system-font,&quot;Helvetica Neue&quot;,=
+Helvetica,sans-serif"><b>Date:=C2=A0</b></span><span style=3D"font-family:-=
+webkit-system-font,&quot;Helvetica Neue&quot;,Helvetica,sans-serif">August =
+15, 2023 at 09:12:48 EDT<br></span></div><div style=3D"margin:0px"><span st=
+yle=3D"font-family:-webkit-system-font,&quot;Helvetica Neue&quot;,Helvetica=
+,sans-serif"><b>To:=C2=A0</b></span><span style=3D"font-family:-webkit-syst=
+em-font,&quot;Helvetica Neue&quot;,Helvetica,sans-serif">Darryl Ross &lt;<a=
+ href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.=
+com</a>&gt;<br></span></div><div style=3D"margin:0px"><span style=3D"font-f=
+amily:-webkit-system-font,&quot;Helvetica Neue&quot;,Helvetica,sans-serif">=
+<b>Cc:=C2=A0</b></span><span style=3D"font-family:-webkit-system-font,&quot=
+;Helvetica Neue&quot;,Helvetica,sans-serif">Holly Ross &lt;<a href=3D"mailt=
+o:hollygammie@gmail.com" target=3D"_blank">hollygammie@gmail.com</a>&gt;, M=
+ichelle Williams &lt;<a href=3D"mailto:michelle.williams@mannlawyers.com" t=
+arget=3D"_blank">michelle.williams@mannlawyers.com</a>&gt;<br></span></div>=
+<br><div>Hello,<div dir=3D"auto"><br></div><div dir=3D"auto">Charlotte=E2=
+=80=99s coach has moved Tuesday night =C2=A0practices to 6:30 pm to accommo=
+date the the shorter days, their last practice is September 12 for the seas=
+on.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Going forward, Charl=
+otte will need to be there for 6:15 pm. Can you kindly confirm you are able=
+ to accommodate this? This is important for Charlotte.</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">=C2=A0The visiting hours are extended on Tue=
+sday this summer and their new school schedule begin =C2=A0August 29 which =
+will mean back for shorter periods time for visits.<br></div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">For August 29, September 5th and September =
+12 the visits will be a bit shorter, however Sunday visits have been extend=
+ed to 8 hours which exceeds the court ordered time of weekly in person visi=
+ts.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I have not rec=
+eived the soccer Fall schedule but when I do, I will be sure to let you kno=
+w to give you time to accommodate.</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div></div></blockquot=
+e></div></div></div></div><div style=3D"line-break:after-white-space"><div>=
+<div><blockquote type=3D"cite"><div><div class=3D"gmail_quote"><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div><div dir=3D"auto"><div dir=3D"au=
+to"><div><div><br><blockquote type=3D"cite"><div>On Aug 14, 2023, at 13:31,=
+ Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blan=
+k">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"auto">Hell=
+o,</div><div dir=3D"auto"><br></div><div dir=3D"auto">My mom can bring them=
+ for noon tomorrow.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Thursday won=E2=80=99t work as Charlotte has a consultation with a plasti=
+c surgeon at CHEO on Thursday afternoon to remove the earring backing in he=
+r ear.</div><div dir=3D"auto"><br></div><div dir=3D"auto">If we extended ne=
+xt Tuesday for noon that would make up the time.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia</div><div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Au=
+g 14, 2023 at 11:39 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.=
+com" target=3D"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">Can you confirm drop off tomorr=
+ow, or my mom can pick them up, for noon?<br>
+<br>
+Also, for one make up date, does Thursday work?<br>
+<br>
+Darryl<br>
+<br>
+&gt; On Aug 12, 2023, at 09:59, Cynthia Holmes &lt;<a href=3D"mailto:cynthm=
+holm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BFHello,<br>
+&gt; <br>
+&gt; Charlotte=E2=80=99s coach put together a soccer game on Sunday at 6, s=
+he has to be there for 5:30 pm.<br>
+&gt; <br>
+&gt; Are you able to switch the schedule for a visit from 10 am - 5 pm tmrw=
+ so I can bring her to her soccer game?<br>
+&gt; <br>
+&gt; Cynthia <br>
+</blockquote></div></div>
+</div></blockquote></div><br></div></div></div></div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+
+--0000000000009931e606038a86c6--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1162359</integer>
+	<key>date-last-viewed</key>
+	<integer>1745523393</integer>
+	<key>date-received</key>
+	<integer>1689780736</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>14518</string>
+</dict>
+</plist>

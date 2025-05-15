@@ -1,0 +1,120 @@
+6150      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin012.me.com by p133-mailgateway-smtp-7c84bb69b6-2w8d2 (mailgateway 2407B24)
+	with SMTP id 6be5fbbb-0b16-4246-997c-0a61a6e74fba 
+	for <darrylross@icloud.com>; Mon, 15 Jan 2024 20:19:56 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 6be5fbbb-0b16-4246-997c-0a61a6e74fba
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	by pv33p00im-smtpin012.me.com (Postfix) with ESMTPS id 003569400B7
+	for <darrylross@icloud.com>; Mon, 15 Jan 2024 20:19:53 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTR1oQXgcZFltVFVFfDlgc
+ AkZVVgNSWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0AGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQqBUtfOwEAbxcqPzNFTmB6NzodJzs1Xn0zLxc2NRYBcVNHOBNa
+ In8PDQ00ATcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WkAoItNJ
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.50 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.50 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.50; helo=mail-ed1-f50.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55969c01168so1406970a12.1
+        for <darrylross@icloud.com>; Mon, 15 Jan 2024 12:19:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705349993; x=1705954793; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bElyYrPCA9adc14fN5nJDSBxm/uh59LJYUlsnIilEh4=;
+        b=WkAoItNJf2+94QOqHR5MbrIhnT2G+Z1HmOaed91GbHwtRCbGBIcGFdF9nPFaHAu1I1
+         2QPPSEAeoTAMhgOl/4G4YXYm8Pb7S1PDd0/yVpH2diUWbxIAr3T6PdqCaFADaJNMjKMl
+         VlPy2r3WQuaUCh89PY84pvBxvtti4jM15T8WdDTTT3BTJMXx33SkjUNx0rvxH04ddp07
+         rL22Ww5LWm21fPjGUQa41IpCQ2h3otP0GtWR931g/CbwbIGvCZuckPmdO+5PUd0LVmNy
+         3Lloadeiayljt/CYEJ8gWhNv6jIts4jYeciN6Tj9/M4iCZ9qF7F3i1SaKZI36WfvwUV5
+         nEHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705349993; x=1705954793;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bElyYrPCA9adc14fN5nJDSBxm/uh59LJYUlsnIilEh4=;
+        b=X91GnYqztOy1IHQG27jIyJruCmrENZEWA9zNrGz5yfNVyGWbyXZdAiZCn0tH5Toj5Q
+         wR0QGJ5RvlsdpRJIzB/zGnqs9EwPNY+LnZ48VVnV7G+38VUod5G4kbj775RI4jL5jlS+
+         KEUyIDfyTqEryPTIWMkFCFUF0HC/NwlrX+gIVLvWdRJgcmT6MnVkJT5NcIF6lzxxxcDV
+         u/9xh+yiI4POqmbRFZtitfJnuCYMlODEB7JwTVBG/vccuf9kJSsXD7vddWXIKGjvXdK7
+         zB6wM55EjXzzw1QJMI42V+s6o4g8g4+eI1JgBRwUVG2jOB1M9Vj6W31y6LYVBAo54MOv
+         3C9g==
+X-Gm-Message-State: AOJu0YzD9fk8kScR8zjmOKsU120uWuuzgDHEBUBfm63cqMC0W7qEesn6
+	25sSMhHOq3BHpJXeTE6QEUE/F8O5TwKi1e2/Y8yvhZvw
+X-Google-Smtp-Source: AGHT+IGmhty1rX2GonrIqSj2iAKPJXQ5nqLkktoW5Z88KYGrYFCsHItZ5ebdNWGWl4K0bla4x2EaAGbbfTcEI+1JW9g=
+X-Received: by 2002:a17:906:7c52:b0:a2b:12e2:31b5 with SMTP id
+ g18-20020a1709067c5200b00a2b12e231b5mr6045904ejp.64.1705349992585; Mon, 15
+ Jan 2024 12:19:52 -0800 (PST)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 15 Jan 2024 15:19:41 -0500
+Message-ID: <CAFnbyRHp29Ly0Yu_FU26PLUOdALMnKQZnPBn1G12Au-ZO9oxMg@mail.gmail.com>
+Subject: Tuesday
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="000000000000869cd4060f01bc4c"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgbExEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsTE3EbExkQGncGGBoGGhEKWV4XbGx5EQpDThdlT1hvTnkaQ3BjY
+ 2tMbmxMeB5EUFlAY3plH2YSQEdpUxEKWFwXGQQaBB8aBRsaBBscGAQZGgQYExAbHhofGhEKXlk
+ XSRhQTWwRCk1cFwcbGhEKTFoXaU1daxEKTEYXTWsRCkNaFxgaEwQSHwQYGhIEHxoRCkJeFxsRC
+ kReFxgRCkRJFxsRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhE
+ KQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHU
+ EFtGhJLaUkRCkJAF2J4ZWxrbE9EQn1jEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGg
+ XYF9yfEkSBR1MHWQQGRoRCnBoF29IHVMYaAVSAXMcEBkaEQpwaBdkaxNbXnlHZHBgexAZGhEKc
+ GgXbn9nHlpZfR1aY2QQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbEQpYTRdLEQ==
+X-Proofpoint-GUID: OerEdS0iZIIAfDFfR4nzsjIPO5L8jmCy
+X-Proofpoint-ORIG-GUID: OerEdS0iZIIAfDFfR4nzsjIPO5L8jmCy
+
+--000000000000869cd4060f01bc4c
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+The girls are with my mom all this week, Tuesday she is unable to drive
+them but they can be picked up at her house.
+
+I am still waiting to hear back from you on solutions for driving girls on
+unsupervised time  as we do not want to have to drive more at this point as
+it timely and costly.
+
+--000000000000869cd4060f01bc4c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,<div dir=3D"auto"><br></div><div dir=3D"auto">The girls are with my m=
+om all this week, Tuesday she is unable to drive them but they can be picke=
+d up at her house.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am =
+still waiting to hear back from you on solutions for driving girls on unsup=
+ervised time =C2=A0as we do not want to have to drive more at this point as=
+ it timely and costly.</div>
+
+--000000000000869cd4060f01bc4c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1205977</integer>
+	<key>date-last-viewed</key>
+	<integer>1741389012</integer>
+	<key>date-received</key>
+	<integer>1705349996</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12139</string>
+</dict>
+</plist>

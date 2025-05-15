@@ -1,0 +1,330 @@
+18356     
+Return-path: <Allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin003.me.com by p133-mailgateway-smtp-5dd8b85c5-8sxqr (mailgateway 2315B206)
+	with SMTP id db04c513-1ea7-43ba-9b94-1af5e7005861 
+	for <darrylross@icloud.com>; Fri, 5 May 2023 19:32:08 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: db04c513-1ea7-43ba-9b94-1af5e7005861
+Received: from CAN01-YQB-obe.outbound.protection.outlook.com (mail-yqbcan01on2139.outbound.protection.outlook.com [40.107.116.139])
+	by pv33p00im-smtpin003.me.com (Postfix) with ESMTPS id 6274D9C0870
+	for <darrylross@icloud.com>; Fri,  5 May 2023 19:32:04 +0000 (UTC)
+X-ICL-SCORE: 3.332033230033
+X-ICL-INFO: GAtbVUseBVFHSVVESgMGUkZKRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpacVoOHAoJGThcUwwR
+ FhQQDVVFFlsaB1VYVlJfVxUDGRxfRAUAHBUDVlNXQFUKDwdFEgJSW0hWQFYBB1RbSFVOWhBeBxkW
+ W1U7cXhSRFQ/JjodWQAQVwkCDFJZFxsdSAcKX0IHFg0PGBYeWRcBFQkYEx5VDRhbRgcMQgtAGBgP
+ G1VJRwAWGAhHSV9YUERKX1kXRUIAGgwIE1ZARA0BHAUDEV9YTBoMEhsXX11MFhYLVVhUUl9XFQMZ
+ HF9EBQAcFQNWU1dAVRQPE0USPEJJIDJFKGIGUzg7V0dOAgZWRj1QQ0xyc1pBPCU1SXEDUkM9XjRK
+ BwRbNSAyRShiBlM4O1dHTgIGTDY4KCcqdAZTWyk0ODweeTchNSk4Mx51LThHRFcKUwtAERgUBQFc
+ RA0GCiYeG1xZFxFXBRgVEg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=pass; arc=pass; id=mx.microsoft.com 1
+Authentication-Results: arc.icloud.com; arc=pass
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest.ca header.i=@lendorguest.ca header.b=MSP7+TLw
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of Allison@lendorguest.ca designates 40.107.116.139 as permitted sender) smtp.mailfrom=Allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of Allison@lendorguest.ca designates 40.107.116.139 as permitted sender) receiver=spf.icloud.com; client-ip=40.107.116.139; helo=CAN01-YQB-obe.outbound.protection.outlook.com; envelope-from=Allison@lendorguest.ca
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=isSpNO8/l0/QHbdqMqXYD0OL9GaCWgumqq/HHtD6ZadUb2KA3j6tosvC7ptqDHBR337ogQL/tF8XAF4rwXjx36B20J84DOM1Br1xDRHWt//YC1GFEWfINrIA7s1/CaVrxxKPHdPQfDPtrfkqh4PRgCk3M2csk9h52nwuPqLk/T+03c5ogg4rn5ONWd89KXtLEQeR2VABEKZ4CvdW6bbGEz3X2ASnZrnix41Q5VzMT1UW3E/K70oyJT+3djYksLItp99WCSPDFqWbpMfqO+GORrE4zGinjgKsIvvng9UYcLyHNRQzUyGV9/dh58E5GMqQAtMok/kF6d3vcshrKBw5wQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Lu5yw1iiWs+81ku1jEhxDbcPn1EY5tW1nuy0e2Yv9ok=;
+ b=U434UdJMqNnf1+49IsS09H/URz/cNCUVnAUZnymvXh7WDYsS8uFDTZllCLOyxyr312+otradoVdWOZHwfngAQIr/kmV8Eb8Ddy9Z5xI+p+h2i3iEry3cd2O/FLfcIp6lBH/ea9mzunGx6JvOBhW93jlEv2dcuQkHTnYkX2VGpD+Pvm04pPJC/o6FekzGjgdlmuxih8VEdr40i6TEc8JbV+9ycPgn0TJ0Hxy5cbsXGXsbnGgFl+7F39lcVB3pOcQmqs2OjBJ/4sCtOLQCYdN6Lzsx/dIqmJi3xKlLgKhyamgo9dvM70tOO61IzDw0nyT9oaJn6YmbA2WYKk4qstaFrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=lendorguest.ca; dmarc=pass action=none
+ header.from=lendorguest.ca; dkim=pass header.d=lendorguest.ca; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lendorguest.ca;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Lu5yw1iiWs+81ku1jEhxDbcPn1EY5tW1nuy0e2Yv9ok=;
+ b=MSP7+TLwOar7qdlUtQZX/emtuyBUBw0hWr/ooFMBoThw2MvjLH6OfRdRTeWobZD6oJXQjKY35Vtx2/C14ECqS0yBb/XD1Kj77imjCn2ZKWw8E8yipw7f0hhXFmnU/pLikaTYh4xSl6BT802J71KMmlDPkBisiWM24CJRmIHVLv3iCP+Cxlji+alSLPsOr/440rKGy7yaF0QiKVpKd9cGftbP4+bgKQVrxg6aRa2b1paoYMeFk9eBka5pCr46WZG9lkfoOlNygABAvKyGyLV7wvjeukbui9MOu16QRAzYvhstSwtSRnAAWBaUc51QeKBP22B+8TMy4kwiJQCmhdzpWw==
+Received: from YT2PR01MB10620.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:f5::15)
+ by YT3PR01MB6212.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
+ 2023 19:32:01 +0000
+Received: from YT2PR01MB10620.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::4bba:b40b:6062:6ac8]) by YT2PR01MB10620.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::4bba:b40b:6062:6ac8%5]) with mapi id 15.20.6363.027; Fri, 5 May 2023
+ 19:32:01 +0000
+From: Allison Lendor <Allison@lendorguest.ca>
+To: "darrylross@icloud.com" <darrylross@icloud.com>
+CC: Roxane Delaney <roxane@lendorguest.ca>
+Subject: Finalizing draft order
+Thread-Topic: Finalizing draft order
+Thread-Index: Adl/h23xdLYCIXiPSeat5s9q0s6+Vg==
+Date: Fri, 5 May 2023 19:32:01 +0000
+Message-ID:
+ <YT2PR01MB1062043D644BE84ECB1A506D8C2729@YT2PR01MB10620.CANPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: YT2PR01MB10620:EE_|YT3PR01MB6212:EE_
+x-ms-office365-filtering-correlation-id: d54c570a-92f9-41fb-67c7-08db4d9f665c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ +rPiPV2vOBquOexaas1SwMc8TbnuEuXi9x7AEH6z5xxQO8EilTXrkdIISkOe2VpC+4V+Hnnbj91oIHYaMyR6YClwZL6p2886fBFfJgUBa0d8a4iRTefX+zqJZ7q2anNeQUF33Tzl2JTD64l2yGsXVkD3ucNQwn3Y6FLBcnppwL7IdkDIabs9BihIXNtoOkQbnTPZtNXtSEpwzfbNRupSbbOacHS5UyR/4QfStAhIlGtfwGArR9gklh3/s6J6+Luwwqti7CK69JfEwfkjV9l/RwCD7Ffa0zYVRudoMrky/maZ8jvRl6cRPttFUGQlEzCOZLnHVUoEPlkD6GdQ1aCCNcW9Z5iAl2bR1WM0zFxF+E08wkPvZ0IrLBNxqc4clULKQ6a44D4GZ3jiHrBOPiN/2AB4mrcGAA9U9RrPn/i+cOpiyvk0+3gbQds7Q35pnf00ul3WkubAfrYhjoN+JocVbxjigQuJetjptPpumHjoBz9/wVDPTu5GFNuBs22sEJzQwzG1PDpFfcYaED4Gm4YFGxVatK0011V6BuheeFc+K2O634FDMzj0X2I4YDWjBDbm
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT2PR01MB10620.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(396003)(376002)(366004)(136003)(39830400003)(346002)(451199021)(7696005)(76116006)(66946007)(66556008)(66476007)(64756008)(66446008)(6916009)(4326008)(478600001)(71200400001)(316002)(86362001)(40140700001)(33656002)(83380400001)(6506007)(26005)(9686003)(107886003)(8676002)(8936002)(2906002)(5660300002)(52536014)(7116003)(41300700001)(4744005)(55016003)(99936003)(38070700005)(186003)(122000001)(38100700002)(3480700007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?6ykqJvFA+1aHyVmG14Af72B0jyqwsZWKXTD2VFLefAvKM+bV77GpirgzQSpJ?=
+ =?us-ascii?Q?HJf8bOv54CESjqve1MpPW9xwMIbp2jlEwslSanvB2XkV1uIQHVA8ow8lp01A?=
+ =?us-ascii?Q?80PsKMxamLHNZUZKnd7ec3heMazwzbM9wheK5RIoFwNbzyGvFCcQ/7lIctA7?=
+ =?us-ascii?Q?SbMcaA1cJGOtmcWqH9xhP70Zvlabdu2D0np/U5cUQtZmPmmw8QPkgYW9qLqR?=
+ =?us-ascii?Q?AN9nLICuixG8CJPM6gCPihcmLisw4Bjr0Zl8uLO7wd9P2vrtBAOnI3IcvPCE?=
+ =?us-ascii?Q?odbbvu1qQG/nHCe7CQAwHAk50F8Vuxu97+OhN3VTfbpjv0ZSckwN2CJiCt39?=
+ =?us-ascii?Q?bQmICrKhXjT/KJd6S9BKU8J91XGnqzqMVTGostUPR/Ch8sdnk1+Dy5Q/u225?=
+ =?us-ascii?Q?XLAarKIykNbk6lD3/iwDzgVau8Ys8vYumYtTacjM1S+gmRt7EBli6xYh+Y/t?=
+ =?us-ascii?Q?zqNeZcdpcwdOikoyvhEtjSqoN4RN/cMo39DMR8SWYJSKQFLdurqRyGdFeUmb?=
+ =?us-ascii?Q?D+TCifH4AkbfHmiRde+L/YnuchSdF+G1280+0mxnBBtGvkxYN3J6Nk4e5NL/?=
+ =?us-ascii?Q?4qV52O0pVPhZ9oikUxraIkNubcfM+JwGGcBcbb1tj+/rIAx+u6z2O5XjdcE6?=
+ =?us-ascii?Q?+jfOIg1Pr5UzOgu3Zjj13G9nzUp7cPJAY4wBuT66ZoODTMWjDIm6BPECyxxo?=
+ =?us-ascii?Q?zAUeWXw00fXbmhWjxiBQF79e4eA814/nPL0o/LCfqtmaQ5CU1IwUoWpSh/s4?=
+ =?us-ascii?Q?SEfVZIoYWa7NOBqKEZYX+LjfFeWD9fUnlP7RdOlrB/d7KpK0kgSr2zX33+pa?=
+ =?us-ascii?Q?J/zbVPJUMO88UBpa5wV0j8e0mRbaT3TGFknH7hr60BEcdmBKak6cqjT1CZWk?=
+ =?us-ascii?Q?P9PyNiDkVEwbfEhEup6Pt/Hv22HcY5jrb8/oFDKfbrfjwOOpwfYE8/klu0Bg?=
+ =?us-ascii?Q?wWaLDykvqrbiFOebPMDxVoBPQezmo97rwL+9xxOtztB0ySxl2VTlhLZaA6Vy?=
+ =?us-ascii?Q?ZeYguTOCGFzInSo/+ma1xBYt0pKZRrUWak0RSorcAWNVVcB2Y+8Otlkfz1Rz?=
+ =?us-ascii?Q?2IRElRRPk06PHgAqUaHgFSQmrWT8TnmdvAKT8jxrHqxUQvuW0VqeOoKLcr8R?=
+ =?us-ascii?Q?vC1SlAf2dBg3HSnNCnNLBtf4+9jumXt2S2ryAZ12gG7rhP/nubLytIaH11qx?=
+ =?us-ascii?Q?RPA7+ZjS3fGSKM3ooD4nOYsKMz048Xn1j6pCmE9sLDLRNre8MKBaSxZjLVLi?=
+ =?us-ascii?Q?wQS3ZbB6JlNBfgmJ6ryNytwqeeciLNNr8l8MAqSxW5DNvmVAcCS92dnR3Dbk?=
+ =?us-ascii?Q?29T+of5ZwqImCB/iJHM6Z7c3zzdOVcEl5FhXfmXXOQBsNaVGb4UlE/UhLxcP?=
+ =?us-ascii?Q?tjTTUhZcz3tYaAhiGCFvC6TnWN1Cf2mI6D4UR+OsOH+SDT7o3QOmqIvzUOy1?=
+ =?us-ascii?Q?4CA15sIisSiQklzlRUoCFxKV+ql9dXWpm8vlnP89DG4ir0XZdR5gHEysbjUk?=
+ =?us-ascii?Q?s1uxGCJklKyYQp/tqwmL1THS3VFKWaAG+7gmiBsHuEhZpTpvg/XaRIj35L+3?=
+ =?us-ascii?Q?nYbVaiLFb9AN3ZS24fmufRFwxUYrp12OCGM3Yx/+?=
+Content-Type: multipart/mixed;
+	boundary="_004_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_"
+MIME-Version: 1.0
+X-OriginatorOrg: lendorguest.ca
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: YT2PR01MB10620.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d54c570a-92f9-41fb-67c7-08db4d9f665c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 May 2023 19:32:01.5398
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f65abe55-3142-4121-9f7b-05d113d672aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /2+p4qnd7tDQ/Wok9r9yLbUmwBpEcm1iaIqI2J/GsD1va8EwbUWJOiV9k/mJhJUfllwiI1FIoHm1wkeclVMzvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT3PR01MB6212
+X-MANTSH: 1TEIXWlwfHloaGkNHB1tfQEQbHhsbGR4aGBEKTEMXGxoEGxsYBBwTBBgYHxAbHho
+ fGhEKTFkXHR0RCllEF3piZmkfchlsekRHEQpZTRdkRURPEQpZSRcYGXEbBh4cdwYbGh4GGgYaB
+ gcfGgYacRoQGncGGgYaBhoGGgYaBhpxGhAadwYaEQpZXhdsbHkRCkNOF2hNEm9DZkxpUFNwZUl
+ oT1taRlBpHRlFe35nT3tlE1xzEQpYXBcZBBoEHxoFGxoaBB0aBBsTEgQbHxAbHhofGhEKXlkXS
+ ENcH3sRCk1cFwcbHBwRCkxaF2hpTW9vEQpMRhdva2tra01rEQpDWhceGgQbGh0EGxscBBsZExE
+ KQl4XGxEKRF4XGBEKREkXGxEKQlwXGxEKXk4XGxEKQksXYnxbX0UfZ2tMXHARCkJJF2J8W19FH
+ 2drTFxwEQpCRRdpHnIFeElJXU97XBEKQk4XYnxbX0UfZ2tMXHARCkJMF2l9BWEYRkVDTWNsEQp
+ CbBd6TwEYbUkbU0VuRREKQkAXaG5acmhgY15bSVsRCkJYF2JrTm9vemxnWkdLEQpNXhcHGxEKc
+ GgXZUl/G294XG1daHIQBxkaEQpwaBdjbWxSTWBdR2lPTxAHGRoRCnBoF28fHHAdWxpgeRhbEAc
+ ZGhEKcGgXYBtSfHNLX2t9EkAQBxkaEQpwaBdrAVtzE0QBARkBQBAHGRoRCnBrF2VtTUdyQHAZc
+ l5cEAcZGhEKcEsXa0JzaEBHQgFHZ3oQBxkaEQpwbBdvT3J5c0BkRFB8WxAHGRoRCm1+FwcbEQp
+ YTRdLEQ==
+X-CLX-Shades: None
+X-Proofpoint-ORIG-GUID: Bg8EiLfCzyZOcBeqplzC73oQTMeQO9vY
+X-Proofpoint-GUID: Bg8EiLfCzyZOcBeqplzC73oQTMeQO9vY
+
+
+--_004_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_
+Content-Type: multipart/alternative;
+	boundary=_000_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_
+
+
+--_000_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+Good afternoon Darryl,
+
+I hope this email finds you well. It has been some time we have been in tou=
+ch about your matter. I hope you are enjoying your parenting time with the =
+children.
+
+We are in the process of finalizing the draft court order, and I am attachi=
+ng to this email the draft documents which I believe represents what Justic=
+e Somji ordered. Please have a look at it and get back to me at your earlie=
+st opportunity. The main section that you need to confirm is the parenting =
+schedule. Everything else is as noted in the endorsement.
+
+If you would like to discuss the matter, I am available until 5pm today, or=
+ on Monday, May 8 between 10am and 1pm.
+
+Regards,
+
+Allison
+
+Allison Lendor
+Lendor Guest LLP
+Barristers & Solicitors
+209 - 460 West Hunt Club Road
+Ottawa, ON
+K2E 0B8
+
+Tel.: (613)247-7964 ext 3
+Fax: (613)233-9995
+
+
+--_000_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Good afternoon Darryl,<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I hope this email finds you wel=
+l. It has been some time we have been in touch about your matter. I hope yo=
+u are enjoying your parenting time with the children.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">We are in the process of finali=
+zing the draft court order, and I am attaching to this email the draft docu=
+ments which I believe represents what Justice Somji ordered. Please have a =
+look at it and get back to me at your
+ earliest opportunity. The main section that you need to confirm is the par=
+enting schedule. Everything else is as noted in the endorsement.<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If you would like to discuss th=
+e matter, I am available until 5pm today, or on Monday, May 8 between 10am =
+and 1pm.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Allison<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">Alli=
+son Lendor</span></i><span style=3D"font-size:12.0pt;font-family:&quot;Aria=
+l&quot;,sans-serif;color:#202124;mso-ligatures:none;mso-fareast-language:EN=
+-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">Lend=
+or Guest LLP</span></i><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;color:#202124;mso-ligatures:none;mso-fareast-language:=
+EN-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">Barr=
+isters &amp; Solicitors</span></i><span style=3D"font-size:10.0pt;font-fami=
+ly:&quot;Arial&quot;,sans-serif;color:#202124;mso-ligatures:none;mso-fareas=
+t-language:EN-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">209 =
+- 460 West Hunt Club Road</span></i><span style=3D"font-size:10.0pt;font-fa=
+mily:&quot;Arial&quot;,sans-serif;color:#202124;mso-ligatures:none;mso-fare=
+ast-language:EN-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">Otta=
+wa, ON</span></i><span style=3D"font-size:10.0pt;font-family:&quot;Arial&qu=
+ot;,sans-serif;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA"=
+><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">K2E =
+0B8</span></i><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;=
+,sans-serif;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA"><o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#202124;mso-ligatures=
+:none;mso-fareast-language:EN-CA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">Tel.=
+: (613)247-7964 ext 3</span></i><span style=3D"font-size:10.0pt;font-family=
+:&quot;Arial&quot;,sans-serif;color:#202124;mso-ligatures:none;mso-fareast-=
+language:EN-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><i><span style=3D"font-si=
+ze:12.0pt;color:#202124;mso-ligatures:none;mso-fareast-language:EN-CA">Fax:=
+ (613)233-9995</span></i><span style=3D"font-size:10.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#202124;mso-ligatures:none;mso-fareast-languag=
+e:EN-CA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_--
+
+--_004_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	size=171254;
+	modification-date="Fri, 05 May 2023 19:32:01 GMT";
+	filename="2023-04-18 updated draft order.pdf";
+	creation-date="Fri, 05 May 2023 19:32:01 GMT"
+Content-Type: application/pdf;
+	name="2023-04-18 updated draft order.pdf"
+X-Apple-Content-Length: 231345
+
+
+--_004_YT2PR01MB1062043D644BE84ECB1A506D8C2729YT2PR01MB10620CA_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1094740</integer>
+	<key>date-last-viewed</key>
+	<integer>1743681888</integer>
+	<key>date-received</key>
+	<integer>1683315128</integer>
+	<key>flags</key>
+	<integer>8623686789</integer>
+	<key>remote-id</key>
+	<string>3917</string>
+</dict>
+</plist>

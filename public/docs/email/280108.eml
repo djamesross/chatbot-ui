@@ -1,0 +1,160 @@
+8062      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09080101.me.com by p72-mailgateway-smtp-584cf58857-9drd7 (mailgateway 2301B253)
+	with SMTP id b9fd7d93-6970-44cc-a00a-13db2ccde7f1 
+	for <darrylross@icloud.com>; Tue, 18 Oct 2022 18:33:30 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: b9fd7d93-6970-44cc-a00a-13db2ccde7f1
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	by ci74p00im-qukt09080101.me.com (Postfix) with ESMTPS id 11FEE33001DC
+	for <darrylross@icloud.com>; Tue, 18 Oct 2022 18:33:28 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJAg5MQUxEVxBVWg1IWwsWEVwbFRhI
+ SxFMBRgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVR1tTWB9SQlZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdgMXOQMCHxdTGyNeGCFFLngdMzhUUAQbHX0TDUoNQElIXho7HTIw
+ QXRUNwI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qZxGyk3f
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.128.45 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.128.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.128.45; helo=mail-wm1-f45.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id n16-20020a05600c4f9000b003c17bf8ddecso1666591wmq.0
+        for <darrylross@icloud.com>; Tue, 18 Oct 2022 11:33:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6Eomy1Ed++Z+QlEdIN5hJvwrHH88TcrxxZt/gfI/RYg=;
+        b=qZxGyk3fBs/fHS4iqfsbmDd3un0F66d5mHa6vd4VPiRGRZoHKR9JeJgIjlw1d8rlPw
+         prBGvS1B/ieBP+PoZugpTEhOjvyRRjFvnkPkVeuZHAElLAX3EY67mOKNDyeNahakT27I
+         h4KWuSZS0Xhet4GwoF42UORcql06iiRmLwhyFDPRFb7AZ59DCPm5MxWP03sT85Ha1MEd
+         N+5WtymtmgwIl00+90DEtIr3v0WEba61kvwVUDy9nVgmlzAcQAEh6Fnq/RTv+01eMLA8
+         /zj76398lN2xN8bh7XapADM+m6vhPN/dxboL2a+2oWRTt939Db0DQeuVPIag+tD1yfgy
+         Ep9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Eomy1Ed++Z+QlEdIN5hJvwrHH88TcrxxZt/gfI/RYg=;
+        b=Bga/CQ8EtPflMZCFzgpb4EJRIznh+NyvFC1Bq5xijPX4LoY6FRcGh1SVjmGK2sSDLA
+         UUIBEJvTvvz2Uv03vSmgNLl8r2gCLTmzb6OMOt9+EZm8eGXdsNg5gjOAJP4J09Vvp/aH
+         D/EF1Wg4FS6PC+PWCylFoT5Ho4n39op1SpWaADnC0yCJ86tBeAGIDMvxlCqhY1uWZOmj
+         I27WOzS8q6m9U4sk7JgOl0g9qL+9iWJX/gQHCfiHXki6FpVNQGaSSX0r/Yzzv2DJtF+7
+         ngQoJltZlg9oGmLLKmkb1QS/q26uYYvTq4FG+1mtNjEL45baahgveEZv4xJmGxEN0AWB
+         l5Jg==
+X-Gm-Message-State: ACrzQf2y1eIEYcjFCEJmDfnYnoGetwSB4V4USjDKeN4nUmx9Pj65dMvV
+	MS9lUqEy0fw2q5DGy4o3lpY3XrIuHK88YuVDWpXjqqb/Ogg=
+X-Google-Smtp-Source: AMsMyM68EVY9/2lYm3ahIigfoXF5alxcgiGHa1OEzY3pvTNZAFg85ylrQ57FhoIXglA/9xmzaotdiXVKJnIA61C+ay4=
+X-Received: by 2002:a05:600c:4fcf:b0:3c6:cdb9:b68f with SMTP id
+ o15-20020a05600c4fcf00b003c6cdb9b68fmr24666396wmq.73.1666118007423; Tue, 18
+ Oct 2022 11:33:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRFXFNGhRedZmo4GN+oTe62gpUzsgQ_VQObEsMLJmcz+KA@mail.gmail.com>
+ <CAFnbyRGC1txC36wweh8C=FmLet25CTO=wTo9zXcOnUiF0vtHwA@mail.gmail.com> <96856F4F-6D05-4D8C-BD91-1485EAE7FB53@icloud.com>
+In-Reply-To: <96856F4F-6D05-4D8C-BD91-1485EAE7FB53@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 18 Oct 2022 14:33:16 -0400
+Message-ID: <CAFnbyRF5uLzdhoc-A+aG2VH+QM-6sc-Kqx3k71xhxNdTG9DbUw@mail.gmail.com>
+Subject: Re: Alice Holmes
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000fc876b05eb5353ca"
+X-MANTSH: 1TEIXSUMdHVoaGkNHB1tfQV4aEhoTGhMaGxEKTEMXGxoEGxwSBBscGgQfGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00XZEVET
+ xEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdzZRpmHh8eRnphYkEfUnN
+ +WR94QURuE3IbT3xtG24eYxEKWFwXGQQaBB4TBx0YSR8fHUkZBRsaGgQSGAQeGAQYEhAbHhofG
+ hEKXlkXS0Jgc38RCk1cFxgYGhEKTFoXaGtNTWsRCkxGF2JraxEKQ1oXGBoTBBIfBBsYEgQeHxE
+ KQl4XGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoE
+ ht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEkt
+ pSREKQkAXaVtOW1NJRkJ5f0wRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBduQ1tZe
+ hxJZUQdTRAZGhEKcGgXb3JuWn0SRxJ+G34QGRoRCnBoF2wZZVtgYBMfQ0hfEBkaEQpwaBdvXht
+ mGBJsGEh6HBAZGhEKcGgXZ0gbGhlnSRlsfhoQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbE
+ QpYTRdLEQ==
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: YO0L454lPKHk5xYTs5RknD9X1eVG1D4I
+X-Proofpoint-GUID: YO0L454lPKHk5xYTs5RknD9X1eVG1D4I
+
+--000000000000fc876b05eb5353ca
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi.
+
+She is feeling better this afternoon.
+
+Cynthia
+On Tue, Oct 18, 2022 at 12:53 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hi Cynthia,
+>
+> Thanks for letting me know. She will be well taken care of however she is
+> feeling.
+>
+> Darryl
+>
+> On Oct 18, 2022, at 9:17 AM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Alice has a sore throat and a sore tummy. No fever. I will keep you
+> posted , her mood is fine.
+>
+> On Tue, Oct 18, 2022 at 9:01 AM Cynthia Holmes <cynthmholm@gmail.com>
+> wrote:
+>
+>> Bonjour,
+>>
+>> Alice est malade aujourd=E2=80=99hui alors et elle se repose =C3=A0 la m=
+aison.
+>>
+>> Cynthia
+>>
+>
+>
+
+--000000000000fc876b05eb5353ca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">Hi.</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">She is feeling better this afternoon.</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Cynthia=C2=A0<br><div class=3D"gmail_quote" dir=
+=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 18, 2022 at 12:=
+53 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@i=
+cloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div sty=
+le=3D"line-break:after-white-space">Hi Cynthia,<div><br></div><div>Thanks f=
+or letting me know. She will be well taken care of however she is feeling.<=
+/div></div><div style=3D"line-break:after-white-space"><div><div><br></div>=
+<div>Darryl<br><div><br><blockquote type=3D"cite"><div>On Oct 18, 2022, at =
+9:17 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=
+=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"a=
+uto">Hi Alice has a sore throat and a sore tummy. No fever. I will keep you=
+ posted , her mood is fine.</div><div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 18, 2022 at 9:01 AM Cynthia Hol=
+mes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmhol=
+m@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Bonjour,=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Alice est malade aujourd=E2=
+=80=99hui alors et elle se repose =C3=A0 la maison.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">Cynthia=C2=A0</div>
+</blockquote></div></div>
+</div></blockquote></div><br></div></div></div></blockquote></div></div>
+
+--000000000000fc876b05eb5353ca--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1001775</integer>
+	<key>date-received</key>
+	<integer>1666118010</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

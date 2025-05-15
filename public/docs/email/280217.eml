@@ -1,0 +1,754 @@
+40500     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01061102.me.com by p133-mailgateway-smtp-7676fb8bcc-g4mjq (mailgateway 2323B104)
+	with SMTP id 240d698a-98e8-4bc3-b7e8-e45cabefb98b 
+	for <darrylross@icloud.com>; Tue, 29 Aug 2023 18:03:47 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 240d698a-98e8-4bc3-b7e8-e45cabefb98b
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	by qs51p00im-qukt01061102.me.com (Postfix) with ESMTPS id 280523360376
+	for <darrylross@icloud.com>; Tue, 29 Aug 2023 18:03:43 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdTRVoQXgcZFltVFVFfDlgc
+ AkZVVgNQWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEU0CGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlGlIJRiB2czItIwVaIFobOD4RD0czA2cVXhc2RCoERA9ePh8f
+ CltlAwI8ATcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WYABe5fV
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.52 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.52 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.52; helo=mail-ed1-f52.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so145260a12.1
+        for <darrylross@icloud.com>; Tue, 29 Aug 2023 11:03:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693332223; x=1693937023; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jIpFjmHMyeUelUNp6UljNgfpWp94DIJW4JYqw0N17Tw=;
+        b=WYABe5fVAGZOg0qls9yRKAiPGIgg71MdUvEwrJGItVgjgqFXSKudPIh4o7LeSv4cDD
+         qx4uPD5dSU2W/F8zVrv7iE/3/1+WsCxuX7RajogcOrK9mju7Xz1/Hxwu3xrwO+ehtlHa
+         M3SumMq0yvmwzaVtkYRxC80HZDa9R3vMAdtX8ZqEG6x7CLoVMQHbO1FMQjZsFjofx+tD
+         WB+N2EUqDvix8QtesYlHkI2EpVCJRGki642LeoarDCwggfbctOkvQ4QGBQAoD5jY0OZz
+         QrSBD+oCpV6qt8KL9JEp4XPd88Jh775xBRX/N7J9TAwJELb+7ei9EZeak9cQbKHwOq32
+         6SLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693332223; x=1693937023;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jIpFjmHMyeUelUNp6UljNgfpWp94DIJW4JYqw0N17Tw=;
+        b=i8/vXx8anLC7zUaUVtdz/0s6f694V07nidk0S9I2DvGuLQJkXvE4fLaAZd2zZWjQnj
+         /8qpGmZG/9a8bRGGZ1M6eM9AoML3FzDfVg2rNpsRpDHFxKC/eFm5CG7dli2qQVZXbjAZ
+         3iRTex1t1PvBfCP/mzFLZSSSlWL5nfGxph8jhWfJ9m79C04pAoBv0qj+r0R4xqW0oMVu
+         K/oE6kuLazXnIAePGmFxsQvmuy/KSg8WO03+ZfLV3xp1e0xhy0xF88uD3TNWjWe/k0qL
+         NwZq787s/Nai/iU5Vp3DcsnREo/HS0ITTi9laRJs4+36glfmvqng6OT1wCKnE9nnGq2A
+         nGMQ==
+X-Gm-Message-State: AOJu0YwQlY/LpBvWlrEjRuI9u6EyaRt2f07aRqhn0H+OzHhmE3hO42+k
+	rDE1utd5KrSte5fm+ULb6vzcmJPwiaJzBiY8+6dR/+fQ
+X-Google-Smtp-Source: AGHT+IHnymcL/nZs1mcI6P9RcOTV0CgOyppqJYmpLWeIEKCbKUqJYpPzJbCl2XI0A6ImCZGLTMXYyRDqdma3a1Q8dXA=
+X-Received: by 2002:a17:906:9746:b0:9a5:962c:cb6c with SMTP id
+ o6-20020a170906974600b009a5962ccb6cmr3902014ejy.31.1693332222979; Tue, 29 Aug
+ 2023 11:03:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <7N8TxG0iRMOlNlqwwSiS1Q@geopod-ismtpd-8>
+In-Reply-To: <7N8TxG0iRMOlNlqwwSiS1Q@geopod-ismtpd-8>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 29 Aug 2023 14:03:32 -0400
+Message-ID: <CAFnbyRGo+o1XFEPXZc-Xj-ZKhi0K3Qw+nP3R4rm+GyhrkSawEg@mail.gmail.com>
+Subject: Fwd: [Ottawa South United] Planning ahead: September & Fall
+ transition to next season
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000a330d6060413a16c"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxkcGxEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcdW2FteEt/RmFge
+ h5ARkdfQGZ5fx8aHBhMYHt5ElNIXhEKWFwXGQQaBB8aBRsaGgQSGAQbHxIEGBMQGx4aHxoRCl5
+ ZF0ljE09IEQpNXBcYHhEKTFoXaGFNQWsRCkxGF2xNaxEKQ1oXGBoTBBIfBBgaEgQfGBEKQl4XG
+ xEKWUUXGREKRUkXGxEKRWYXGxEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t
+ 7E1h+Gl9eEQpCRRdoEht8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BE
+ QpCbBdvS0dQQW0aEktpSREKQkAXa39naAEZRn1iTRgRCkJYF2JrTm9vemxnWkdLEQpaWBcSEQp
+ wZxdiehwcTBtBfEdtHxAHHQQZEQpwaBdoSGVkflJGb0REGBAaEQpwaBdoQ09JRUNtSGUfTBAaE
+ QpwaBdgb2lfW1paUGMBQxAaEQpwaBdmaE5Nc0VMUE5TTBAaEQpwaBduSEZTcHJGQxN8exAaEQp
+ waBdnRB5bTV0FZxtdfhAaEQpwaBdufW16HVNZXUR+axAaEQpwaBdmWWVZZVJ/E1lSexAaEQpwf
+ RducFlfSx9MRhh8YBAaEQpwfRdme38TbGt4aFJgRhAaEQpwfRdoRh1kaX9CAW8YWBAaEQpwfRd
+ rQWwbaUMTQGdnZhAaEQpwfRdvTBljBRkcfRkeHBAaEQpwfRduaH4fWFNQTmd5GBAaEQpwfRdie
+ FAFUHh6HEUcbRAaEQpwfRdkf0llGVt7bB15ThAHGRoRCnB9F2ZnZU1AUHptemRjEBoRCnB9F2Z
+ rZU57ZEVcUExQEBoRCnB9F2ZgUEdCT2ceBU98EAcZGhEKcH8XYE9QY0duW3B/G0cQBxgTEQpwX
+ xdsQk1OQU94YH1oexAaEQpwfxdiW0tHYGtTG11gRBAHGx0RCnBfF2NaYltZGEdGGWETEBoRCnB
+ /F29EYVASE38bHBJ+EAcbGx8RCnBfF2RJfHhfG39/TlBEEAcbGxkRCnB/F21DZWQYZkhNYX8aE
+ AcTGxEKcF8XaU97a05mYExvQU0QBxkaEQpwbBdmRmsfGFttX0ZvbxAaEQptfhcaEQpYTRdLEQ=
+ =
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: 7qKGRaUlKJP4jlmujLSU5062fJQS8ybt
+X-Proofpoint-GUID: 7qKGRaUlKJP4jlmujLSU5062fJQS8ybt
+
+--000000000000a330d6060413a16c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+FYI,
+
+No dates yet  set for Fall practices and games ( mid Sept. - Oct)
+
+Tryouts take place Saturdays in October .
+
+
+
+---------- Forwarded message ---------
+From: Craig Stead - Director Soccer Operations <
+donotreply@email.teamsnap.com>
+Date: Tue, Aug 29, 2023 at 8:38 AM
+Subject: [Ottawa South United] Planning ahead: September & Fall transition
+to next season
+To: <cynthmholm@gmail.com>
+
+
+[image: division logo]
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUNBgE9DVxzZ=
+jlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx18Jm-2B8uqbBtNL3cNsfBzdt=
+6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ61D1VC1gmo2Igz4C-2FlYVox=
+Y9-2Bf-2F4S5SzwfmTS59wPNShH_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12y=
+OEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk5kAXY-2B9F=
+iPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8FebcO1PKQIq8Q=
+lqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2FcPLYv9Tin6=
+mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9U4-2FKoCCptuGJ4aUz6fajbk73lhcxqfNWL=
+s2LRuyE-2FGqP3x7NaFiTZ-2BBfQ1EnqUWpr2fMOQ5LPcAuVY6epdWyL1refxld-2FnL4CgsN-2=
+Bdk-2B-2FLC-2BvRZwJ42ji3Lc4bhGv-2FUUyF-2F-2FB1U6Cd8XOV7QbfKVb8H6HI0UGUWJkVP=
+Ksb6dkhTyOZsRIV1hN2gobiFYP4vgE-3D>
+Ottawa
+South United
+
+Hello Parents,
+
+Now that September is almost here, it is a good time to keep you well
+informed as we approach the transition to the next 2023/24 cycle. Please
+see the logistical update below:
+
+*Conclusion of Summer League:*
+
+   - Most league games for U9-U18 should be concluded no later than
+   September 16, or sooner depending on reschedules and the number of teams=
+ in
+   your division
+
+*Fall Assessments:*
+
+   - *Fall Assessments are now scheduled,* with the details posted here: 20=
+23
+   Fall Assessments
+   <http://email.teamsnap.com/ls/click?upn=3Daf7MBdElWhnmlgo3KkQqrP0-2FLN7d=
+9VNmLKh39xPV8zskzLIL4iOAItOvx9nsYR3nKiR1PUKmjdpTuDQV1HFmarD-2BdV3evgPOkWAVD=
+DVkUn1lfyRo8Uqf7zV7VO5pLEecu8-2BZJg1XHx44YN2IusS7Qg-3D-3D6g3f_gph5yBD-2FEpX=
+dkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2Hx=
+wzXxVvjXJ9h0ufErNWWs-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWu=
+kYSzo40cy18tv5MAB8br8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4Ll=
+ZwRqz6v6sXBMq4WC-2FXx-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9V=
+j8a-2B3u7lK5HQ0v81rreA0QqZcTPpnxquE55F8J4YJpMyWMK302Fp7Yq9S5mY6tiIBc9fHwpLW=
+ApO7-2F2Kh5v6FI0kjhrcn7Fa665kZ-2BIZkeDlh9Fn4XwZHmByEH9o49hAtCVt1Ju8rzbGs6nV=
+6OgAVFvnWou4axpSI6rXUHKmR3VwHFmLyfgSU5KMd8LQS0LI-3D>
+   - These events will include new and returning players, with the
+   objective of helping us set rosters for the upcoming indoor season, and
+   start of the new cycle
+   - As a current Academy player, you do not need to register to attend
+   these events
+   - Note: 2016 & 2017 existing Pre-Academy participants do not participate
+   in the Fall Assessments, just new players at this time
+   - Players should attempt to make as many events as possible, to help the
+   coaching team make the most accurate placement decisions
+   - At the end of the Fall Trials process, players will be provided with
+   their new/formal program and level placements, along with registration
+   details for the new cycle
+
+For any players who are not participating in the indoor program, or
+departing the program at this time, please kindly complete this form:
+https://forms.gle/w3ZZih8GLW5i7RNXA
+<http://email.teamsnap.com/ls/click?upn=3DVOAGQdsURTDZ4wRrKQ-2BgCyVXMjcHdMg=
+W9JZkIQ6c0M0WJRMX2nLqmRdtBSDvUfJuonqC_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJ=
+v2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk=
+5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8Feb=
+cO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2F=
+cPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9U-2Bs-2FDS8luZF-2FQ-2BuoI=
+wBn3Vyp9c2AC8bJAvL1pZZlG6Rx5QmNhbmzh3I5Xi6F4bRk9M7J3azlTcGmwlCfcSKEZRuzb3ID=
+NDfoNc0XuIL1l2MVZnBatmS3T47isnU4S0le03PQXm0fbyc9Vggwvym6-2FAJA-2FBFuZAcfN7w=
+OyeRg0wNSbsNZqQ7zS3r2FG6toUV9w-3D>
+
+*Fall Programming & Training (Sept-Oct):*
+
+   - While the try-outs are taking place, typically 1-2 tmes per week,
+   teams will continue to engage in practice and game time, usually on a
+   slightly reduced schedule for Fall
+   - A break period will be in place from approximately October 30-November
+   12, before the indoor season begins
+
+*Feedback*
+
+We know that the opportunity to provide feedback is important to you, as it
+is to us. You can expect to see our annual club surveying being released in
+the next few weeks. Your feedback matters, and is a key driver for our
+Board of Directors and Club Management Team to setting priorities and areas
+of focus, towards improvement and attention.
+
+If you have any questions, please do not hesitate to reach out.
+
+Thank you,
+
+Craig Stead
+
+Director, Soccer Operations & Community Engagement
+
+You are receiving this message because you are a member of the *Ottawa
+South United* club
+Log In
+<http://email.teamsnap.com/ls/click?upn=3DYGDhJHk72kYkzbfksAWZ19rpBJVKS9Ot5=
+2i1KBbTqmy8hXTgIQfR8nOigP6T89lOQXUmUSFLABSRbe2P1mR8y8Q4WhAXUNDWvx2whmg16c48=
+zXGnPJHdvm0t2C2tHf7ToMeISMXqTitHxMkZsx8MIT2O0tXjzknuRJKdPtG90OWnyS0k8XMujqM=
+vHSzb-2FJIQdfUXFM2gqqacNqmXntqXKe4v3HLenSxf6DH8ae8L-2BupsDBupYjbSGuJHeYzMKH=
+fZP8C4Q3nTp1p8dbCxgicafEgiro3EZFxaQWJaDZiNGdAAvj2QaJrZVHcAkRT0dewwNVpG_gph5=
+yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9=
+vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJh=
+T9WZx2bWukYSzo40cy18tv5MAB8br8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXk=
+nNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8=
+YedNtoU9VkhOwQeJaU8tT0NnbbyWA-2FMN31BErBJXDOMpNhdE4RLv1j-2BmUI80Iuqkw-2B6WX=
+kjhNOUQvZXFeuQNQA-2FwL8NxNpDCBQH-2FaiA7KYkO17c41mL8NiAgJOKGj0GDb9i9QN0hgVNO=
+yPwHs2AN3X6-2FT0EJz9U92kncltlA8lt9D-2F0vprHaxbPOBdi-2B06S4sP-2BT6U6P0-3D>
+
+If you prefer not to receive email from *2011 Girls Force Academy Iron*, up=
+date
+your communication preferences
+<http://email.teamsnap.com/ls/click?upn=3DHriSoJ-2BIgA7vg8bKshF7u-2FqJ1wcDn=
+nMG27qUCo75DJmEdKOIWjKozQANAynuH77iCNnxsziREa9P9a0Z3qsh3v7y02Z-2F08lo2CmZRh=
+fyFV1P6xCk9Qt10bWhR18sQPxNvbrOTBzMY3e6SpX2LVyBrUgJXDE3LUQP0T1GKaYqcHL2JBzK-=
+2FHWp-2Fu9fivv-2FpEO7TJ4myvwkmpnGW8zmK38yFA-3D-3D-77U_gph5yBD-2FEpXdkKIlLPO=
+e9kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjX=
+J9h0ufErNWWs-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40c=
+y18tv5MAB8br8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6=
+sXBMq4WC-2FXx-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9Vz5zX1GKe=
+20efumAQ6WnTHEBnK-2FMpQwSQ8ms0SYRsgf23rgJ4LGnQsBhL5YbdxXMJCokrvyBdi9QWYNVt5=
+HtNzAP4rObdcaYKAilDUo4aLjTJzmE48HcTsz-2FuKG3BTsrzMmbIjaMofYhxcjGNjmG1tG3BcN=
+0V7mUAiLcrYEA8keBl5-2FbRXqr4elJ8SrbZtqFg-3D>.
+
+Copyright =C2=A9 2023 TeamSnap, all rights reserved. View our Privacy Polic=
+y
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUFoLp2IPrRn=
+70-2B65xgSDsMKQ0YKFStW3fcAOdn5V33MqOUIZ_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDq=
+sJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2=
+Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8F=
+ebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-=
+2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9WBI-2BL30jrhejVHp7RQkXC=
+XJ32sLf0OIxonCK7vjX5L34a8HgKLKAZcz8SXRejDBEl-2BtDyzcYLv-2BMBv400oMuExLFcTHt=
+SfU5Ug80bUh2xndsuajKQqtVf4bhVNxlOUaBExn-2FFTNdVy8uzSiw16O9OqY9AjAZxZ8KcQUs-=
+2BZudoduhN3j-2BbUAvnJVu9Gvhyo3Yk-3D>
+.
+TeamSnap World HQ, 2040 14th Street,
+<https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?ent=
+ry=3Dgmail&source=3Dg>
+Boulder,
+CO 80302
+<https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?ent=
+ry=3Dgmail&source=3Dg>
+[image: TeamSnap]
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUNBgE9DVxzZ=
+jlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx18Jm-2B8uqbBtNL3cNsfBzdt=
+6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ61D1VC1gmo2Igz4C-2FlYVox=
+Y9-2Bf-2F4S5SzwfmTS59wPlzTN_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12y=
+OEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk5kAXY-2B9F=
+iPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8FebcO1PKQIq8Q=
+lqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2FcPLYv9Tin6=
+mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9XWfqkvr34jmPAC-2BNpoIxvavAKiGHtgLtg=
+Vqbz1NMksMFa-2BH7BaDmvZc5LqaFXXQHBA5llL4wzB60-2FNmXaQ8KA9B-2BTmL07CxLqR55Mk=
+5JvcH-2BgG8uYAHJVQWbJRItWMsTw-2FS5GZO51VCuVOBDIuWmzfKzT1iaslj5u6dmonQE14Ch4=
+ynAdFTfgemW1RDKPgr6s-3D>
+
+--000000000000a330d6060413a16c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">FYI,</div><div dir=3D"auto"><br></div><div dir=3D"auto">N=
+o dates yet =C2=A0set for Fall practices and games ( mid Sept. - Oct)</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Tryouts take place Saturdays =
+in October .=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br><=
+/div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">---------- Forwarded message ---------<br>From: <strong class=3D"gmail_=
+sendername" dir=3D"auto">Craig Stead - Director Soccer Operations</strong> =
+<span dir=3D"auto">&lt;<a href=3D"mailto:donotreply@email.teamsnap.com">don=
+otreply@email.teamsnap.com</a>&gt;</span><br>Date: Tue, Aug 29, 2023 at 8:3=
+8 AM<br>Subject: [Ottawa South United] Planning ahead: September &amp; Fall=
+ transition to next season<br>To:  &lt;<a href=3D"mailto:cynthmholm@gmail.c=
+om">cynthmholm@gmail.com</a>&gt;<br></div><br><br>
+<u></u>
+
+
+
+ =20
+ =20
+ =20
+ =20
+
+ =20
+
+
+<div style=3D"width:100%!important;min-width:100%;color:#222222;font-family=
+:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-we=
+ight:normal;text-align:left;line-height:22px;font-size:16px;margin:0;paddin=
+g:0">
+
+<table style=3D"border-spacing:0;border-collapse:collapse;vertical-align:to=
+p;text-align:left;height:100%;width:100%;color:#222222;font-family:&#39;Ope=
+n Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:norm=
+al;line-height:22px;font-size:16px;background:#fcfcfc;margin:0;padding:0" b=
+gcolor=3D"#FCFCFC">
+  <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+    <td align=3D"center" valign=3D"top" style=3D"word-break:break-word;bord=
+er-collapse:collapse!important;vertical-align:top;text-align:center;color:#=
+222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,=
+sans-serif;font-weight:normal;line-height:22px;font-size:16px;margin:0;padd=
+ing:0">
+      <center style=3D"width:100%;min-width:580px">
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:100%;border-bottom-width:1px;border-bottom-=
+style:solid;border-bottom-color:#ededed;margin-bottom:20px;background:#ffff=
+ff;padding:0px" bgcolor=3D"#FFFFFF">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td align=3D"center" style=3D"word-break:break-word;border-coll=
+apse:collapse!important;vertical-align:top;text-align:center;color:#222222;=
+font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-se=
+rif;font-weight:normal;line-height:22px;font-size:16px;background:#fff;marg=
+in:0;padding:0" bgcolor=3D"#fff" valign=3D"top">
+              <center style=3D"width:100%;min-width:580px">
+                <table style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:inherit;width:580px;margin:0 auto;padding:0">
+                  <tbody><tr style=3D"vertical-align:top;text-align:left;pa=
+dding:0" align=3D"left">
+                    <td style=3D"word-break:break-word;border-collapse:coll=
+apse!important;vertical-align:top;text-align:left;color:#222222;font-family=
+:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-we=
+ight:normal;line-height:22px;font-size:16px;background:#fff;margin:0;paddin=
+g:10px 0px 0px" align=3D"left" bgcolor=3D"#fff" valign=3D"top">
+                      <table style=3D"border-spacing:0;border-collapse:coll=
+apse;vertical-align:top;text-align:left;width:580px;margin:0 auto;padding:0=
+">
+                        <tbody><tr style=3D"vertical-align:top;text-align:l=
+eft;padding:0" align=3D"left">
+                            <td style=3D"word-break:break-word;border-colla=
+pse:collapse!important;vertical-align:top;text-align:center;min-width:0px;w=
+idth:20%;color:#222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,=
+&#39;Arial&#39;,sans-serif;font-weight:normal;line-height:22px;font-size:16=
+px;background:#fff;margin:0;padding:0px 10px 10px 0px" align=3D"left" bgcol=
+or=3D"#fff" valign=3D"top">
+    <a href=3D"http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0g=
+zHnUNBgE9DVxzZjlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx18Jm-2B8uq=
+bBtNL3cNsfBzdt6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ61D1VC1gmo=
+2Igz4C-2FlYVoxY9-2Bf-2F4S5SzwfmTS59wPNShH_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ce=
+DqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs=
+-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br=
+8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FX=
+x-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9U4-2FKoCCptuGJ4aUz6fa=
+jbk73lhcxqfNWLs2LRuyE-2FGqP3x7NaFiTZ-2BBfQ1EnqUWpr2fMOQ5LPcAuVY6epdWyL1refx=
+ld-2FnL4CgsN-2Bdk-2B-2FLC-2BvRZwJ42ji3Lc4bhGv-2FUUyF-2F-2FB1U6Cd8XOV7QbfKVb=
+8H6HI0UGUWJkVPKsb6dkhTyOZsRIV1hN2gobiFYP4vgE-3D" target=3D"_blank"><img alt=
+=3D"division logo" style=3D"outline:none;text-decoration:none;width:auto;ma=
+x-width:100%;max-height:80px;display:inline-block;float:none;padding:20px 0=
+" width=3D"80" src=3D"https://storage.googleapis.com/ts_assets_prod-sport_l=
+ogos/logo-soccer.png"></a>
+  </td>
+  <td style=3D"word-break:break-word;border-collapse:collapse!important;ver=
+tical-align:middle;text-align:left;min-width:0px;width:90%;color:#222222;fo=
+nt-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-seri=
+f;font-weight:normal;line-height:22px;font-size:16px;background:#fff;margin=
+:0;padding:0px 10px 10px 0px" align=3D"left" bgcolor=3D"#fff" valign=3D"top=
+">
+    <h3>Ottawa South United</h3>
+  </td>
+
+                          <td style=3D"text-align:right;vertical-align:midd=
+le;word-break:break-word;border-collapse:collapse!important;min-width:0px;w=
+idth:50%;color:#222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,=
+&#39;Arial&#39;,sans-serif;font-weight:normal;line-height:22px;font-size:16=
+px;background:#fff;margin:0;padding:0px 0px 10px" align=3D"right" bgcolor=
+=3D"#fff" valign=3D"middle">
+                            <table style=3D"border-spacing:0;border-collaps=
+e:collapse;vertical-align:top;text-align:left;width:100%;overflow:hidden;pa=
+dding:0">
+                              <tbody><tr style=3D"vertical-align:top;text-a=
+lign:left;padding:0" align=3D"left">
+                                <td style=3D"word-break:break-word;border-c=
+ollapse:collapse!important;vertical-align:top;text-align:right;color:#fffff=
+f;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-=
+serif;font-weight:bold;line-height:22px;font-size:13px;display:block;width:=
+auto!important;margin:0;border:none" align=3D"right" valign=3D"top">
+                                </td>
+                              </tr>
+                            </tbody></table>
+                          </td>
+
+                          <td style=3D"word-break:break-word;border-collaps=
+e:collapse!important;vertical-align:top;text-align:left;width:0px;color:#22=
+2222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sa=
+ns-serif;font-weight:normal;line-height:22px;font-size:16px;background:#fff=
+;margin:0;padding:0" align=3D"left" bgcolor=3D"#fff" valign=3D"top"></td>
+                        </tr>
+                      </tbody></table>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </center>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:inherit;width:580px;margin:0 auto;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Op=
+en Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:nor=
+mal;line-height:22px;font-size:16px;margin:0;padding:0" align=3D"left" vali=
+gn=3D"top">
+
+                <table style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;width:100%;display:block;padding:0px">
+    <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;li=
+ne-height:22px;font-size:16px;margin:0;padding:10px 0px 0px" align=3D"left"=
+ valign=3D"top">
+       =20
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Op=
+en Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:nor=
+mal;line-height:22px;font-size:16px;margin:0;padding:0px 0px 10px" align=3D=
+"left" valign=3D"top">
+              <div>
+                <p>Hello Parents,</p>
+<p>Now that September is almost here, it is a good time to keep you well in=
+formed as we approach the transition to the next 2023/24 cycle. Please see =
+the logistical update below:</p>
+<p><strong>Conclusion of Summer League:</strong></p>
+<ul>
+<li>Most league games for U9-U18 should be concluded no later than Septembe=
+r 16, or sooner depending on reschedules and the number of teams in your di=
+vision</li>
+</ul>
+<p><strong>Fall Assessments:</strong></p>
+<ul>
+<li><strong>Fall Assessments are now scheduled,</strong> with the details p=
+osted here: <a href=3D"http://email.teamsnap.com/ls/click?upn=3Daf7MBdElWhn=
+mlgo3KkQqrP0-2FLN7d9VNmLKh39xPV8zskzLIL4iOAItOvx9nsYR3nKiR1PUKmjdpTuDQV1HFm=
+arD-2BdV3evgPOkWAVDDVkUn1lfyRo8Uqf7zV7VO5pLEecu8-2BZJg1XHx44YN2IusS7Qg-3D-3=
+D6g3f_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1E=
+yTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B=
+3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQ=
+dksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJl=
+ssMAW09qV8YedNtoU9Vj8a-2B3u7lK5HQ0v81rreA0QqZcTPpnxquE55F8J4YJpMyWMK302Fp7Y=
+q9S5mY6tiIBc9fHwpLWApO7-2F2Kh5v6FI0kjhrcn7Fa665kZ-2BIZkeDlh9Fn4XwZHmByEH9o4=
+9hAtCVt1Ju8rzbGs6nV6OgAVFvnWou4axpSI6rXUHKmR3VwHFmLyfgSU5KMd8LQS0LI-3D" tar=
+get=3D"_blank">2023 Fall Assessments</a></li>
+<li>These events will include new and returning players, with the objective=
+ of helping us set rosters for the upcoming indoor season, and start of the=
+ new cycle</li>
+<li>As a current Academy player, <span style=3D"text-decoration:underline">=
+you do not need to register to attend these events</span></li>
+<li>Note: 2016 &amp; 2017 existing Pre-Academy participants do not particip=
+ate in the Fall Assessments, just new players at this time</li>
+<li>Players should attempt to make as many events as possible, to help the =
+coaching team make the most accurate placement decisions</li>
+<li>At the end of the Fall Trials process, players will be provided with th=
+eir new/formal program and level placements, along with registration detail=
+s for the new cycle</li>
+</ul>
+<p>For any players who are not participating in the indoor program, or depa=
+rting the program at this time, please kindly complete this form: <a href=
+=3D"http://email.teamsnap.com/ls/click?upn=3DVOAGQdsURTDZ4wRrKQ-2BgCyVXMjcH=
+dMgW9JZkIQ6c0M0WJRMX2nLqmRdtBSDvUfJuonqC_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceD=
+qsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-=
+2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8=
+FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx=
+-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9U-2Bs-2FDS8luZF-2FQ-2B=
+uoIwBn3Vyp9c2AC8bJAvL1pZZlG6Rx5QmNhbmzh3I5Xi6F4bRk9M7J3azlTcGmwlCfcSKEZRuzb=
+3IDNDfoNc0XuIL1l2MVZnBatmS3T47isnU4S0le03PQXm0fbyc9Vggwvym6-2FAJA-2FBFuZAcf=
+N7wOyeRg0wNSbsNZqQ7zS3r2FG6toUV9w-3D" target=3D"_blank">https://forms.gle/w=
+3ZZih8GLW5i7RNXA</a></p>
+<p><strong>Fall Programming &amp; Training (Sept-Oct):</strong></p>
+<ul>
+<li>While the try-outs are taking place, typically 1-2 tmes per week, teams=
+ will continue to engage in practice and game time, usually on a slightly r=
+educed schedule for Fall</li>
+<li>A break period will be in place from approximately October 30-November =
+12, before the indoor season begins</li>
+</ul>
+<p><strong>Feedback</strong></p>
+<p>We know that the opportunity to provide feedback is important to you, as=
+ it is to us. You can expect to see our annual club surveying being release=
+d in the next few weeks.=C2=A0Your feedback matters, and is a key driver fo=
+r our Board of Directors and <span style=3D"font-family:-apple-system,Blink=
+MacSystemFont,&#39;Segoe UI&#39;,Roboto,Oxygen,Ubuntu,Cantarell,&#39;Open S=
+ans&#39;,&#39;Helvetica Neue&#39;,sans-serif">Club Management Team to</span=
+><span style=3D"font-family:-apple-system,BlinkMacSystemFont,&#39;Segoe UI&=
+#39;,Roboto,Oxygen,Ubuntu,Cantarell,&#39;Open Sans&#39;,&#39;Helvetica Neue=
+&#39;,sans-serif"> setting priorities and areas of focus, towards improveme=
+nt and attention.</span></p>
+<p>If you have any questions, please do not hesitate to reach out.</p>
+<p>Thank you,</p>
+<p>Craig Stead</p>
+<p>Director, Soccer Operations &amp; Community Engagement</p>
+              </div>
+              <p style=3D"color:#222222;font-family:&#39;Open Sans&#39;,&#3=
+9;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;text-align:l=
+eft;line-height:21px;font-size:16px;margin:0 0 10px;padding:10px 0 0" align=
+=3D"left">
+                You are receiving this message because you are a member of =
+the <strong>Ottawa South United</strong> club
+              </p>
+            </td>
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:left;width:0px;color:#222222;font-fami=
+ly:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-=
+weight:normal;line-height:22px;font-size:16px;margin:0;padding:0" align=3D"=
+left" valign=3D"top"></td>
+          </tr>
+        </tbody></table>
+       =20
+      </td>
+    </tr>
+  </tbody></table>
+
+
+              <table style=3D"border-spacing:0;border-collapse:collapse;ver=
+tical-align:top;text-align:left;width:100%;display:block;padding:0px">
+                <tbody><tr style=3D"vertical-align:top;text-align:left;padd=
+ing:0" align=3D"left">
+                  <td style=3D"word-break:break-word;border-collapse:collap=
+se!important;vertical-align:top;text-align:left;color:#222222;font-family:&=
+#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weig=
+ht:normal;line-height:22px;font-size:16px;margin:0;padding:10px 0px 0px" al=
+ign=3D"left" valign=3D"top">
+                    <table style=3D"border-spacing:0;border-collapse:collap=
+se;vertical-align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+                      <tbody><tr style=3D"vertical-align:top;text-align:lef=
+t;padding:0" align=3D"left">
+                        <td style=3D"word-break:break-word;border-collapse:=
+collapse!important;vertical-align:top;text-align:left;color:#222222;font-fa=
+mily:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;fon=
+t-weight:normal;line-height:22px;font-size:16px;margin:0;padding:0px 0px 10=
+px" align=3D"left" valign=3D"top">
+                         =20
+
+ =20
+  <table style=3D"border-spacing:0;border-collapse:collapse;vertical-align:=
+top;text-align:left;width:300px;margin:0 auto;padding:0">
+    <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;li=
+ne-height:22px;font-size:16px;margin:0;padding:0px 0px 10px 10px" align=3D"=
+left" valign=3D"top">
+       =20
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:100%;overflow:hidden;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:center;color:#ffffff!important;font-fa=
+mily:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;fon=
+t-weight:bold;line-height:22px;font-size:16px;display:block;width:auto!impo=
+rtant;border-radius:3px;margin:0;padding:0;border:none;background:#ffffff" =
+align=3D"center" bgcolor=3D"#ffffff" valign=3D"top">
+             =20
+
+
+
+  <a style=3D"border:1px solid #d6d6d6;border-radius:3px;color:#3e9de7!impo=
+rtant;text-decoration:none;font-weight:bold;font-family:&#39;Open Sans&#39;=
+,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-size:16px;display:bloc=
+k;padding:10px 30px;background:#ffffff" href=3D"http://email.teamsnap.com/l=
+s/click?upn=3DYGDhJHk72kYkzbfksAWZ19rpBJVKS9Ot52i1KBbTqmy8hXTgIQfR8nOigP6T8=
+9lOQXUmUSFLABSRbe2P1mR8y8Q4WhAXUNDWvx2whmg16c48zXGnPJHdvm0t2C2tHf7ToMeISMXq=
+TitHxMkZsx8MIT2O0tXjzknuRJKdPtG90OWnyS0k8XMujqMvHSzb-2FJIQdfUXFM2gqqacNqmXn=
+tqXKe4v3HLenSxf6DH8ae8L-2BupsDBupYjbSGuJHeYzMKHfZP8C4Q3nTp1p8dbCxgicafEgiro=
+3EZFxaQWJaDZiNGdAAvj2QaJrZVHcAkRT0dewwNVpG_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1c=
+eDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWW=
+s-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8b=
+r8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2F=
+Xx-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9VkhOwQeJaU8tT0NnbbyW=
+A-2FMN31BErBJXDOMpNhdE4RLv1j-2BmUI80Iuqkw-2B6WXkjhNOUQvZXFeuQNQA-2FwL8NxNpD=
+CBQH-2FaiA7KYkO17c41mL8NiAgJOKGj0GDb9i9QN0hgVNOyPwHs2AN3X6-2FT0EJz9U92knclt=
+lA8lt9D-2F0vprHaxbPOBdi-2B06S4sP-2BT6U6P0-3D" target=3D"_blank">Log In</a>
+
+            </td>
+          </tr>
+        </tbody></table>
+       =20
+      </td>
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;width:0px;color:#222222;font-family:&#3=
+9;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight=
+:normal;line-height:22px;font-size:16px;margin:0;padding:0" align=3D"left" =
+valign=3D"top"></td>
+    </tr>
+  </tbody></table>
+
+
+                        </td>
+                      </tr>
+                    </tbody></table>
+                  </td>
+                </tr>
+              </tbody></table>
+
+             =20
+             =20
+
+              <table style=3D"border-spacing:0;border-collapse:collapse;ver=
+tical-align:top;text-align:left;width:100%;display:block;padding:0px">
+                <tbody><tr style=3D"vertical-align:top;text-align:left;padd=
+ing:0" align=3D"left">
+                  <td style=3D"word-break:break-word;border-collapse:collap=
+se!important;vertical-align:top;text-align:left;color:#222222;font-family:&=
+#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weig=
+ht:normal;line-height:22px;font-size:16px;margin:0;padding:10px 0px 0px" al=
+ign=3D"left" valign=3D"top">
+                    <table style=3D"border-spacing:0;border-collapse:collap=
+se;vertical-align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+                        <tbody><tr>
+    <td>
+      <p style=3D"border-radius:3px;color:#959595;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;te=
+xt-align:center;line-height:20px;font-size:12px;margin:0 0 10px 0;padding:1=
+0px;text-align:center" align=3D"center">
+        If you prefer not to receive email from <strong>2011 Girls Force Ac=
+ademy Iron</strong>, <a style=3D"color:#4a90e2" href=3D"http://email.teamsn=
+ap.com/ls/click?upn=3DHriSoJ-2BIgA7vg8bKshF7u-2FqJ1wcDnnMG27qUCo75DJmEdKOIW=
+jKozQANAynuH77iCNnxsziREa9P9a0Z3qsh3v7y02Z-2F08lo2CmZRhfyFV1P6xCk9Qt10bWhR1=
+8sQPxNvbrOTBzMY3e6SpX2LVyBrUgJXDE3LUQP0T1GKaYqcHL2JBzK-2FHWp-2Fu9fivv-2FpEO=
+7TJ4myvwkmpnGW8zmK38yFA-3D-3D-77U_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2Th=
+T6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk5kAX=
+Y-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8FebcO1P=
+KQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2FcPLY=
+v9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9Vz5zX1GKe20efumAQ6WnTHEBnK-2F=
+MpQwSQ8ms0SYRsgf23rgJ4LGnQsBhL5YbdxXMJCokrvyBdi9QWYNVt5HtNzAP4rObdcaYKAilDU=
+o4aLjTJzmE48HcTsz-2FuKG3BTsrzMmbIjaMofYhxcjGNjmG1tG3BcN0V7mUAiLcrYEA8keBl5-=
+2FbRXqr4elJ8SrbZtqFg-3D" target=3D"_blank">update your communication prefer=
+ences</a>.
+        <br>
+        Copyright =C2=A9 2023 TeamSnap, all rights reserved. <span style=3D=
+"white-space:nowrap">View our <a style=3D"color:#a6a6a6" href=3D"http://ema=
+il.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUFoLp2IPrRn70-2B65xgSD=
+sMKQ0YKFStW3fcAOdn5V33MqOUIZ_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12=
+yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9h0ufErNWWs-2Fk5kAXY-2B9=
+FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy18tv5MAB8br8FebcO1PKQIq8=
+QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sXBMq4WC-2FXx-2FcPLYv9Tin=
+6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9WBI-2BL30jrhejVHp7RQkXCXJ32sLf0OIx=
+onCK7vjX5L34a8HgKLKAZcz8SXRejDBEl-2BtDyzcYLv-2BMBv400oMuExLFcTHtSfU5Ug80bUh=
+2xndsuajKQqtVf4bhVNxlOUaBExn-2FFTNdVy8uzSiw16O9OqY9AjAZxZ8KcQUs-2BZudoduhN3=
+j-2BbUAvnJVu9Gvhyo3Yk-3D" target=3D"_blank">Privacy Policy</a>.</span>
+        <br>
+        TeamSnap World HQ, <span><a href=3D"https://www.google.com/maps/sea=
+rch/2040+14th+Street,+Boulder,+CO+80302?entry=3Dgmail&amp;source=3Dg">2040 =
+14th Street,</a></span> <span style=3D"white-space:nowrap"><a href=3D"https=
+://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?entry=3Dg=
+mail&amp;source=3Dg">Boulder, CO 80302</a></span>
+      </p>
+    </td>
+  </tr>
+
+                    </tbody></table>
+                  </td>
+                </tr>
+              </tbody></table>
+                <table style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:inherit;width:580px;margin:0 auto;padding:0">
+    <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;li=
+ne-height:22px;font-size:16px;background:#fff;margin:0;padding:10px 0px 0px=
+" align=3D"left" bgcolor=3D"#fff" valign=3D"top">
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:center;padding:=
+0" align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:center;min-width:0px;width:100%;color:=
+#222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;=
+,sans-serif;font-weight:normal;line-height:22px;font-size:16px;margin:0;pad=
+ding:0px 10px 10px 0px" align=3D"left" bgcolor=3D"#fff" valign=3D"top">
+              <a href=3D"http://email.teamsnap.com/ls/click?upn=3DirMOA7Fgl=
+o-2FCDed0gzHnUNBgE9DVxzZjlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx=
+18Jm-2B8uqbBtNL3cNsfBzdt6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ=
+61D1VC1gmo2Igz4C-2FlYVoxY9-2Bf-2F4S5SzwfmTS59wPlzTN_gph5yBD-2FEpXdkKIlLPOe9=
+kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2HxwzXxVvjXJ9=
+h0ufErNWWs-2Fk5kAXY-2B9FiPXbONAu2Da1vnm9tIq18B3A-2BJIqJhT9WZx2bWukYSzo40cy1=
+8tv5MAB8br8FebcO1PKQIq8QlqBsVLLt-2F3LZLUHC5XtQdksxcszeXknNxRNO4LlZwRqz6v6sX=
+BMq4WC-2FXx-2FcPLYv9Tin6mGRW3BD2sGL07L6Q1pnwJlssMAW09qV8YedNtoU9XWfqkvr34jm=
+PAC-2BNpoIxvavAKiGHtgLtgVqbz1NMksMFa-2BH7BaDmvZc5LqaFXXQHBA5llL4wzB60-2FNmX=
+aQ8KA9B-2BTmL07CxLqR55Mk5JvcH-2BgG8uYAHJVQWbJRItWMsTw-2FS5GZO51VCuVOBDIuWmz=
+fKzT1iaslj5u6dmonQE14Ch4ynAdFTfgemW1RDKPgr6s-3D" target=3D"_blank"><img alt=
+=3D"TeamSnap" height=3D"auto" style=3D"outline:none;text-decoration:none;wi=
+dth:150px;max-width:80%;clear:both;display:inline-block;padding:20px 0;floa=
+t:none" src=3D"https://emails.teamsnap.com/2017/10/powered_by_logo-300w-160=
+x61.png"></a>
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+  </tbody></table>
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+<img src=3D"http://email.teamsnap.com/wf/open?upn=3DVBjCVHbcZuVp1fVx0fHJUdS=
+TYQrf6QGCGMYrNLVa0Dt1J1STBkP-2Bdmk9HrYFkUBPZ8rfWT2rHrRKfkT-2BCDUg-2BbXAe4aB=
+0sF0MW5VQOi1VH-2Fp7sNgM4EVubIydl0Zj0XhorZa5JRcMOnoipU0dMDgzrDKNlKU9Wg2Efn4U=
+DbmhsihC3uYQbBGjAo72er5QC-2FLd13URn0K-2FKQHpeqgfaLgyeBX1-2BT4bhMZXs5wktCUo6=
+kwxlUx-2B0Kn20j-2B9m5-2FXU7pcJN-2Fz6zE398eWaEM3AWIO-2FxLonDdaCjVdcbfqP5u-2B=
+rVhIluEzhPM3w8dA-2BVnOQFIMr-2BMwee9zXT5lNPKR-2FaqDKEzIj5BBZrGpkPKjgp0t0uQ5t=
+B10B9OcSr3wxM6bI0RDPvdyCZsuV-2FFlj-2FRUVIjCWdDdp3AqFVQ7-2Fa0EPlcmG-2BS4m4Xp=
+r6bVRuh8DAZ59OsX9qB6Urxpelbu2R1eoIxrnMrY1k71-2FEu0tlna7r1w1SQy53qeywq0-2FCt=
+3IWqvmzL" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1p=
+x!important;width:1px!important;border-width:0!important;margin-top:0!impor=
+tant;margin-bottom:0!important;margin-right:0!important;margin-left:0!impor=
+tant;padding-top:0!important;padding-bottom:0!important;padding-right:0!imp=
+ortant;padding-left:0!important"></div>
+
+</div></div>
+
+--000000000000a330d6060413a16c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1165383</integer>
+	<key>date-last-viewed</key>
+	<integer>1745786266</integer>
+	<key>date-received</key>
+	<integer>1693332227</integer>
+	<key>flags</key>
+	<integer>2207613451393</integer>
+	<key>remote-id</key>
+	<string>12458</string>
+</dict>
+</plist>

@@ -1,0 +1,159 @@
+7924      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09070302.me.com by p133-mailgateway-smtp-6dd85f4b49-zhv7z (mailgateway 2321B81)
+	with SMTP id a343884e-8c53-41d6-83d2-8f04826133f9 
+	for <darrylross@icloud.com>; Sun, 30 Jul 2023 14:54:01 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: a343884e-8c53-41d6-83d2-8f04826133f9
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	by ci74p00im-qukt09070302.me.com (Postfix) with ESMTPS id 6B0892A000EC
+	for <darrylross@icloud.com>; Sun, 30 Jul 2023 14:53:59 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQloQXgcZFltVFVFfDlgc
+ DEZVVgJXWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwFGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnIBg8MD1yR1Q2UhMRQVYbLw0BCCISfGNbExA1ECkDHTcaJlIG
+ N1NwJzkgNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hMzCxo6y
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.45 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.45 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.45; helo=mail-ej1-f45.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-99c136ee106so39865366b.1
+        for <darrylross@icloud.com>; Sun, 30 Jul 2023 07:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690728838; x=1691333638;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GDbxU1+wdyIOPX2tgP92C9QwAJ1iY+swxhd6SzA812A=;
+        b=hMzCxo6y+eU0dJ8DgdjVCCMJ5GM9EYFzJVNKZSYEcJpaWrX8DCy8q8NJWdB6Sn06L8
+         zTHREdhApNcr/QlxzkBxI/q5uNea/8WLGowquiKW9I04jAFnwJ6CDriloPDVeby23AVJ
+         99XAxb5x/TbQWKKeP8dW4wXbBzty6QEnF9oMq+PkfKQcKnKLJA1Ngs5Rrsv9Cni5+Cfy
+         /HwevvIvgW9+QRUpzjuNt2Z3H6dP0/vYqlEDvVMPXHYnIUSbAdX+3GbA7dZYi2/xZsu4
+         EWJW51GNhTkLS1KriwkaAiXx8yoGP5Iag4pk7epV/A6jJZGKZj4UEiRMaVi04puQvihN
+         CnTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690728838; x=1691333638;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GDbxU1+wdyIOPX2tgP92C9QwAJ1iY+swxhd6SzA812A=;
+        b=EecD4uAQC5gA9E/3xOY6vOQYB7Oh34NfJjvTI49G6FSQHY44ASQ6a2tfaIkpiKh0ub
+         jgMXZ3eNGi1X2KyyOilwrnTivvbQTinCzg2dK/a36thtBoPgBTVn8OnrgWquIvSncANQ
+         yBUbH8hCEk6PyHxniEKJE2gxQlURvgSd79XnY9oDcpjoqEt1lGTQ0WS8N1uJxMWa2Jbw
+         InjQzqora1v+NgSUvlqvFhFxTLwrGCGneFAjlD3Y+xyps1pCKjPSOdSHlKOT2j1a0HJO
+         JJklO6E/nwa2Rj0DhOdAw9d9TJuwX1m7pYqqXY2PyoXzqw6zoWuD0PpxfkkGF5GraEkM
+         m1Hw==
+X-Gm-Message-State: ABy/qLbo7cqyyPX7fmOuwbCom79sq7I0DRElpB9jFf+xO+fGdz0mKbXl
+	zs/8KdzN6qtcTMlhpgkbMmXX3gwIiGsYD3mu2vTXZlhM
+X-Google-Smtp-Source: APBJJlFv6JI8DtBafy5znrJG2sUUIz6gFlST2RrjqM+iAyq6KdYwWv+/fsJ12n5kAwGF6DJAXDdTfFbx8Q8Dvf/JCEY=
+X-Received: by 2002:a17:906:9bf0:b0:99b:40b5:1c3b with SMTP id
+ de48-20020a1709069bf000b0099b40b51c3bmr5676267ejc.57.1690728838284; Sun, 30
+ Jul 2023 07:53:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <EF60FE15-4F23-4716-9B22-3F24DAEAEB52@icloud.com>
+In-Reply-To: <EF60FE15-4F23-4716-9B22-3F24DAEAEB52@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sun, 30 Jul 2023 10:53:47 -0400
+Message-ID: <CAFnbyREUaZGEBq6C+uf9f-MxxnUjLU9fiSgQ3+Uo_4qOcFELYQ@mail.gmail.com>
+Subject: Re: Sunday.
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000d14dac0601b57bf5"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThcfWBkYR2tTT0FmY
+ UlpT10dWE8HB09IH3NBZE9IG1kTRhEKWFwXGQQaBB8aBRsaGgQSGAQeGAQYEhAbHhofGhEKXlk
+ XSAVoHkMRCk1cFxIRCkxaF01NaxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4fEQpCXhcbEQpCX
+ BcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4cm54GmJ
+ jEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQpCQBdvH
+ VIZZX8ZXh5IRxEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF3pGfERkGxhOeHtlEBk
+ aEQpwaBdvfRwTYUsYGVBdHRAZGhEKcGgXYkdHGhtzXB15REUQGRoRCnBoF2xSHGJCWH8BXR1vE
+ BkaEQpwaBdhT29lbE5pG1lpGhAZGhEKcGgXZ0BuSX9zR29mU0IQGRoRCnBoF2dvbXNdYXJNWX4
+ ZEBkaEQpwaBd6H0xfHhJnclJhRRAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: 5r32mAyekLKcCew7re--eb5YkNeb1s9l
+X-Proofpoint-ORIG-GUID: 5r32mAyekLKcCew7re--eb5YkNeb1s9l
+
+--000000000000d14dac0601b57bf5
+Content-Type: text/plain; charset="UTF-8"
+
+Hi.
+
+Yes they are visiting at noon today as planned.
+
+Soccer camp this week and then overnight camp beginning Sunday Aug 6-Friday
+August 11 (I had already given you advance notice via my lawyer and emails).
+
+To make up the two missed visits from our trip away, girls can come right
+after camp Tuesday at 12:45 pm and Friday afternoon.
+
+
+
+On Fri, Jul 28, 2023 at 11:06 AM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hello,
+>
+> Please let me know when the girls are arriving home and confirm that they
+> will be dropped off Sunday.
+>
+> Additionally, please let me know if you have to booked any camps or
+> activities for the rest of the summer so we can plan make up time for this
+> period of time.
+>
+> Best,
+>
+> Darryl Ross
+> darrylross@icloud.com
+> ___
+>
+>
+
+--000000000000d14dac0601b57bf5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Ye=
+s they are visiting at noon today as planned.</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">Soccer camp this week and then overnight camp beginni=
+ng Sunday Aug 6-Friday August 11 (I had already given you advance notice vi=
+a my lawyer and emails).</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>To make up the two missed visits from our trip away, girls can come right =
+after camp Tuesday at 12:45 pm and Friday afternoon.</div><div dir=3D"auto"=
+><br></div><div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jul 28, 2023 at 11:06 AM Darr=
+yl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left=
+:1ex;border-left-color:rgb(204,204,204)"><div style=3D"line-break:after-whi=
+te-space"><div>Hello,</div><div><br></div><div>Please let me know when the =
+girls are arriving home and confirm that they will be dropped off Sunday.</=
+div><div><br></div><div>Additionally, please let me know if you have to boo=
+ked any camps or activities for the rest of the summer so we can plan make =
+up time for this period of time.</div><br><div>
+<div>Best,</div><div><br></div><div>Darryl Ross</div><div><a href=3D"mailto=
+:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a></div><d=
+iv>___</div>
+
+</div>
+
+<br></div></blockquote></div></div>
+
+--000000000000d14dac0601b57bf5--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1157919</integer>
+	<key>date-received</key>
+	<integer>1690728841</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

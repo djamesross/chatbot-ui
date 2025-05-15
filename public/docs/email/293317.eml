@@ -1,0 +1,194 @@
+11968     
+Return-path: <>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-west-2a-10-percent-4 by p158-mailgateway-smtp-75dc68d6fd-dcplr (mailgateway 2429B103)
+	with SMTP id dcd0c5f5-4aa6-42a3-8c5c-5e62ee5a8a5a 
+	for <darrylross@icloud.com>; Fri, 28 Feb 2025 22:04:03 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: dcd0c5f5-4aa6-42a3-8c5c-5e62ee5a8a5a
+Received: from YQZPR01CU011.outbound.protection.outlook.com (mail-canadaeastazhn15010001.outbound.protection.outlook.com [52.102.145.1])
+	by p00-icloudmta-smtpin-us-west-2a-10-percent-4.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-west-2a.k8s.cloud.apple.com (Postfix) with ESMTPS id 70D0DC00103
+	for <darrylross@icloud.com>; Fri, 28 Feb 2025 22:04:02 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQFUFUKE0oWX1gHVQoPB0UFBExESVRZSQQDTERZAxNFRVgJGxYRGVhWUl8YGAgZFFFBGxALFVkbX1tCBxpbExlCRBsZCwkEC3BfARkWExNWU1kPVREDGxcNbzMvKTRHSXNjUkRISBgNRFQNABcCWQhCWRYQGhIeF14YDQANChgXWxgBGhRGBwxCCw8UEApaG1FYAxEYAxYLRFcYHRdXQkgBBlJFSEgYDURUDQAXAlkIQlkWEBoSHhdeGA0ADQoYF1sYARoURhMcDVsDGxcKFg9JUxAGVwUYFRBbCxFEWkVBUw4AFxheFk5VAlYXGgUWQAMOVkZBUxYcA1AEQ0BWNyFkBTInSVc6OgYFW0VXJTY2YGQmRUhIJyp/ckw6LDI7N399TDY2K0k=
+X-ICL-Score: 3.33303303432
+Authentication-Results: bimi.icloud.com; bimi=none
+X-ARC-Info: policy=fail; arc=pass; id=mx.microsoft.com 1
+Authentication-Results: arc.icloud.com; arc=pass
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=mannlawyers.com
+X-DMARC-Policy: v=DMARC1;p=quarantine;pct=100;rua=mailto:dmarc@mannlawyers.com;ruf=mailto:dmarc@mannlawyers.com;ri=86400;fo=1;
+X-DMARC-Info: pass=pass; dmarc-policy=quarantine; s=r0; d=r1; pdomain=mannlawyers.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (1024-bit key) header.d=mannlawyers.com header.i=@mannlawyers.com header.b=RtV0ikCj
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of mailer_daemon@YQZPR01CU011.outbound.protection.outlook.com designates 52.102.145.1 as permitted sender) smtp.mailfrom=
+Received-SPF: pass (spf.icloud.com: domain of mailer_daemon@YQZPR01CU011.outbound.protection.outlook.com designates 52.102.145.1 as permitted sender) receiver=spf.icloud.com; client-ip=52.102.145.1; helo=YQZPR01CU011.outbound.protection.outlook.com; envelope-from=
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LMH5DD0JIhJf5HjsX3Ejj/GL15ukk/7fPgLq3RGRQJ5NhA+LbiiKndWhnO76Feesqo06cXf9pxl0AetUfGnVTVF0B9jjVhZFewogwh3Nj93YAzZk4cUmhvPBLCf18XT1YSAmMNYCLOwvXSglzumFsI4BP8NbW6uSAiICIAgL0jDIJ6ATVrgGxUagljVwfjtGD5BWNOq/4FbAgXJiOMiZXjZCF7U5liS1ivV+O+TmEsyBoX8w7PuP+pbB1NU4TXbT/ZUHCYnlnlg6ctq6/kB1FOOiSZ4yTbtbmBpSfDcxnSURqJ2p07WTfSfOJ4P+sdVm5IjbQLrQW5hwMGbJHjhn6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZSA9A+dSgK3jWqjeVZk63Y/75jIZLjFZgINHLyeeSgs=;
+ b=yl7uztLM+RAP2I3uuxoUjI/p+Vh1y8NwB7ToKkCBUQ1xXklFc9x2yTm2eoXK1iSsbTSje1vCotTG5c1wqu5lgBzgyOK1bxVTqUfApW5wvQf7ECwO84LnuHe0zXEKF9sJAmK1qPhg+mL5C+EaG1r3tp8u8eSHvQTF6pkOENdO8fe4DVOvKGmA3Kgt9cva2jsVbzRcJ7A0ccjivSCQSuXZ7mpB7mwkDu2C+ceQTPwVdT9vWnCDWtLNIjitj0P3sx3cJZItndUorg9ouS5t2cKLIeALcZF8epC1/1rwl9l6la63JmIBYayJqDmnJjSq7heGW8cUNKOc6uczWUw0HHzQHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=pass
+ action=none header.from=mannlawyers.com; dkim=pass header.d=mannlawyers.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mannlawyers.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZSA9A+dSgK3jWqjeVZk63Y/75jIZLjFZgINHLyeeSgs=;
+ b=RtV0ikCjNx5pWM8/G3DwVBeyq3MYQp3s+abJL8w5IivzQ3rWg09p0t02H7AuF1ILjZ5R4VqtqJADboxSWkQbxCJpRUbwvc20G2kDsob9IEObC6RxcV58ixKHk2GVLqkrJn0cRZhXSqX/944fwjwTFlRk7k1w1YiNsekullklySo=
+Received: from YT3PR01MB6390.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:74::7)
+ by TO1PPF2ABAD5728.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b08::629) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.24; Fri, 28 Feb
+ 2025 22:04:00 +0000
+Received: from YT3PR01MB6390.CANPRD01.PROD.OUTLOOK.COM ([::1]) by
+ YT3PR01MB6390.CANPRD01.PROD.OUTLOOK.COM ([fe80::8ac1:598b:7346:7dcd%6]) with
+ Microsoft SMTP Server id 15.20.8489.021; Fri, 28 Feb 2025 22:04:00 +0000
+From: Alison Boyce <Alison.Boyce@mannlawyers.com>
+To: Darryl Ross <darrylross@icloud.com>
+Subject: Automatic reply: Passport Office will call you
+Thread-Topic: Passport Office will call you
+Thread-Index: AQHbigDIPLu7tFGJFUCODBYrVuQDIbNdDfIAgAA3Yz4=
+Date: Fri, 28 Feb 2025 22:04:00 +0000
+Message-ID:
+ <29c8bba8a6e44bcca8384385ad3ff690@YT3PR01MB6390.CANPRD01.PROD.OUTLOOK.COM>
+References:
+ <CAFnbyRG6mCoh4XRCLhr2yn5ZKMDpw558c9sPoxUAD_o1bt0suA@mail.gmail.com>
+ <273FAB6E-F997-4B7D-B768-B79808F7A0BC@icloud.com>
+In-Reply-To: <273FAB6E-F997-4B7D-B768-B79808F7A0BC@icloud.com>
+X-MS-Has-Attach:
+X-Auto-Response-Suppress: All
+X-MS-Exchange-Inbox-Rules-Loop: alison.boyce@mannlawyers.com
+X-MS-TNEF-Correlator:
+x-ms-exchange-parent-message-id:
+ <273FAB6E-F997-4B7D-B768-B79808F7A0BC@icloud.com>
+auto-submitted: auto-generated
+x-ms-exchange-generated-message-source: Mailbox Rules Agent
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: YT3PR01MB6390:EE_|TO1PPF2ABAD5728:EE_
+x-ms-office365-filtering-correlation-id: ad196169-dbd6-48cf-aeb3-08dd5843ce3f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|50650200027|366016|1800799024|10070799003|376014|8096899003|80100003;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?RdVCB3ngMw08TiMBbgoED0FdsGnFEsyLlUDbyH2CVo7W9mfVlBngYYjWVknd?=
+ =?us-ascii?Q?20/i6dl7kc0z9WJRbQ+R7AjxMenPlhektSjpXi6XtpGdb0VgHxTYVedg/Q+U?=
+ =?us-ascii?Q?64SBSboqcHfCMBXayaxrzFktGTeW8DX1aVsth5aBnO3ltiHInaiiaYLafud1?=
+ =?us-ascii?Q?M6BSc889nR2G9RysCJPOSENf2G+0veFlXJsWDD1cftHpAb6RrrkWvh40xpl1?=
+ =?us-ascii?Q?Mz2xiPB+Ed4/pg08hjJyHjl5iaDrHjRmfzYzb9rToSqMFciIYBxPCaYz+PRF?=
+ =?us-ascii?Q?mzDfChKgAgvfuAKS2cKsdiCxk0UELyzLvYef7YlBePVF8OxgyRsFw/9II022?=
+ =?us-ascii?Q?zI48LCkyah8YbQGUg6eWWyaqdSYVunPWl3LgPcB2HNRd6Kx2fQT/X4el+CPY?=
+ =?us-ascii?Q?W8wP6GS3+FoCTARIyt+6TfcgASX8UZ13n+jV+3bCZmCoRPQNaHS0cFsklcjt?=
+ =?us-ascii?Q?hfRs7N1kBdPRkbTjxJkdlJgOG7p65u7SCx8Qq2FPYBDNcY1UfpIz+ePBirb+?=
+ =?us-ascii?Q?VKK/G6WT4WueHzSwhljAKVQ6ZXcpZZlZYsVGeoh20TA1Er17/Asddis1pJoT?=
+ =?us-ascii?Q?8GYSzb1RsMbcu3Csply+yTpwUp/QN/g46zk5wLtyWFpntdtqyI27Y3bcPHZk?=
+ =?us-ascii?Q?wxDHmpgDqMpmN5k4AV+Wf6AUE6I6x+t6ietAyruXk9eGr00TZ1hSTX3TrWXO?=
+ =?us-ascii?Q?e1ATAMOyh8sGUz7Ce4UVQjl71JXfCo2i5w0cY4qSTYt+w9lAKVnU61o7oDMb?=
+ =?us-ascii?Q?tjdxQF/+E9VEWDq+FYHiTB2QKlJnS4qO5o4PDMpCGI6U6FpnL+kHPeHebqc4?=
+ =?us-ascii?Q?KW1roYf9cfBRXywLde30HWLZ8xDlVQDqv7Ls6ynevVeibSkp0jIl8oc1pjag?=
+ =?us-ascii?Q?XDEvCmc7lgy2ydZDYp2137KDQYir7arL/UmC1eShmz0FVbleb4UFo+IPSUTD?=
+ =?us-ascii?Q?EgOsta01WB48VguDI355Ob2xArddKYGfaS5xluKy7CTuSIGvB5I4WRfL1tRn?=
+ =?us-ascii?Q?/DTi6makxXmVeGRgML015M9vxIhe52IM3YbLH6c+YsTgFj7h+wHoqf/qER8+?=
+ =?us-ascii?Q?9ILHm2uoMfg49WRQaQQ92mWdm73IHEadBs4kTE+/XQT/5bBDNRo6x0kjLMxK?=
+ =?us-ascii?Q?ny3VL8/3I+s1CShn0EuyW1vvHAsDluEDHBTs98GHV/1ZoiLNRV773P/V0D4n?=
+ =?us-ascii?Q?Pg481T8M7A/+oMzVu4yE+DUJlKeHiLaly7L20TnSN5kVAQf/fMz8W3r7bB/W?=
+ =?us-ascii?Q?bV0iOV28j1rUAjhKkLjLP/rfSQtux2ynAhYr4mai+bmUf6aD7siraNKSzkoe?=
+ =?us-ascii?Q?PNdUkEtqxca2YWRPsiy+9nxMJR08eoenDL5IkyWVM9J7L1z6ljXyTwK4mGGw?=
+ =?us-ascii?Q?70mdoP7oM/IO6Neyj55R6rktJwih?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6390.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(50650200027)(366016)(1800799024)(10070799003)(376014)(8096899003)(80100003);DIR:OUT;SFP:1501;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ udfdYAm/2xaI8RJnm896zo21Me9tOEwTE4TZ/11nmOOm7trUUzvMf2Tml7cSJtuj8bfNU9AyRTnVAO9Qx+Qx+HDajTyZfqAlb5VKhmvGs9Na19ukTuevY+FtIS/D8ARhyTw+5D1/nZxQeSVNQZn5h3KAk/QILFV7yGsHb15lxE9qS8RMkI2RKmKYR3QdanL3oa20s69vl2wFUzBELQZt9OyEx35fb1L5kx5Vh+kBaLDPxYDNNCCiTvX6uPbOHKXeJAGzFuH27oMxhbbgDOPJByyaf7543hho0tVsQtHW5Z2y35bDzGKrEgcosM/I3bah
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: mannlawyers.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6390.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad196169-dbd6-48cf-aeb3-08dd5843ce3f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2025 22:04:00.2721
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 452ed5c1-35fd-4661-81ec-a31dccbdf93e
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TO1PPF2ABAD5728
+X-MANTSH: 1TFkXGxoaHxEKWUQXZUV9RgVjXGJHARIRCllNF25PRkNcT1gRCl9ZFxgaGREKX00
+ XZEVETxEKWUkXGnEaEBp3BhsSGXEbGR8QGncGGBoGGhEKWV4XbGx5EQpDThd9Zx9oTm1JZFkTf
+ WV8R3NLWXx5Z0NpXWRAHlobYGVwUxEKWFwXGQQaBB8bBRsaBBscGAQYEwQYHhIQGx4aHxoRCl5
+ ZF08TE05fEQpNXBcYGx0RCkxaF2hvTU1rEQpMRhdvTWtjYk1rEQpDWhcfGAQbGhgEGx4fBBsRC
+ kJeFxsRCkJcFxsRCl5OFxsRCkJLF3pGQW58eFxLbnkfEQpCSRd6RkFufHhcS255HxEKQkUXYXp
+ EfkF5WlNGHG0RCkJOF3pGQW58eFxLbnkfEQpCTBdrXnl5YV1nfH5YXREKQmwXbExtUwVETm1kZ
+ GIRCkJAF2BrXkBaGE5mZHB+EQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGREKcGcXZ1JNf2M
+ aZWYZQBMQGRoRCnBoF2B6ZnhNRGZuQ2FAEBkaEQpwaBdpe2weSUJbYQVYUhAZGhEKcGgXaFxec
+ xwSQG1aTRMQGxoeEQpwaBdofG9ufkRlWEZJRRAZGhEKcGgXemIBXkZpEkdYTWEQGxoRCnBoF2R
+ NZl1tHEtZemdpEBgeEQpwaBdgQRsBXR4BbFxIYBAZGhEKcGgXbx5ibX1BSWx8Wm0QGRoRCnBsF
+ 2NcHE9ZUBkFEkx/EBkaEQptfhcbEQpYTRdLEQ==
+X-Proofpoint-GUID: WM5BdGcNs9WOVmYasVSMiCwNj4p1JOZy
+X-Proofpoint-ORIG-GUID: WM5BdGcNs9WOVmYasVSMiCwNj4p1JOZy
+X-Authority-Info: v=2.4 cv=BshnwZX5 c=1 sm=1 tr=0 ts=67c232d3 cx=c_apl:c_pps a=jjm9HXEzKahfPbIoKOH6nw==:117 a=KWvOQs04uFl5JYH95pWQHK6vTCQ=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=T2h4t0Lz3GQA:10 a=SoFHwXHNSRUA:10 a=8SjStyGTHMEA:10 a=ZZnuYtJkoWoA:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=nDyHVyt-AAAA:8 a=Gusgpt4y1fa6ufuZyDMA:9 a=RT68Fw0EWLl79XnJ:21 a=gKO2Hq4RSVkA:10 a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10 a=CjuIK1q_8ugA:10 a=93l0H5oNYEb9PJKJfRw_:22 a=Lcw6dl7kLhG240Z2xKZo:22 a=NWVoK91CQySWRX1oVYDe:22 cc=bnc
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Aptos",sans-serif;
+	mso-ligatures:standardcontextual;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:11.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+</head>
+<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:12.0pt;font-family:&quot;Arial&quot;,sans-serif">Thank you for your emai=
+l. Please note that I am in court on Wednesday, February 26, 2025 and Frida=
+y, February 28, 2025. I will have limited access
+ to my emails during this time. If your matter is urgent, you can contact R=
+ebecca Chippure at Rebecca.Chippure@mannlawyers.com or 613-722-1500 ext. 28=
+8.
+</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+</div>
+</body>
+</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1324495</integer>
+	<key>date-last-viewed</key>
+	<integer>1744642446</integer>
+	<key>date-received</key>
+	<integer>1740780244</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>14488</string>
+</dict>
+</plist>

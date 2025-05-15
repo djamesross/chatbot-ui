@@ -1,0 +1,616 @@
+30913     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17083201.me.com by p72-mailgateway-smtp-bdf66cb5f-djdfl (mailgateway 2220B102)
+	with SMTP id a987473d-fc42-45b2-b5a9-6e12d025c9e2 
+	for <darrylross@icloud.com>; Thu, 28 Jul 2022 17:32:43 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: a987473d-fc42-45b2-b5a9-6e12d025c9e2
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	by ms11p00im-qufv17083201.me.com (Postfix) with ESMTPS id 4FB3BE40DF
+	for <darrylross@icloud.com>; Thu, 28 Jul 2022 17:32:42 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lJBgFMQU1EVxBVWg1IWwsWEVwbDhNI
+ SxFMBBgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVXFBTWB9SQ1ZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdm4mJS00PTxvWQ82EgEVKEVYNkUBLCIPenUvIDc1JztJWzseHFsU
+ AnF1NQI5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IR1p9Mf3
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.167.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.44; helo=mail-lf1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id d17so3803154lfa.12
+        for <darrylross@icloud.com>; Thu, 28 Jul 2022 10:32:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yGIgx9GEuUI0JrHJKql+J/gPLq8QwidDZseKpgQJ18A=;
+        b=IR1p9Mf3SLybhgtYrU3egGdmW/hag66dvEHcDxpyrrk7+pAi3ybD0xEDhIMOXAZ0tY
+         qRVTRzWKpeEhAuhGJE/wu5SnSu64fsc/bBDhEH4Qi97UTBWbYBhrG/duTY4nr3CvFS5v
+         iuCS4DjChIavGj+RmUMvdAuQB9pOUrz9qUCfC7VjAoq+pLOkB3zOsUA0ns1Hsd4a+XTx
+         n2UeYxiVa6DqtzVveP4UNdTPhsy+2Ae/y1lJKJL1u7/xhkeZY8xDkkri1GMvYawIRyvb
+         etGBgVtB7sewi2l4kMkDX4dgKBast7CJwh57WVepprWixfpXq1A9kWV6tC2x64Y1Ew+O
+         2UBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yGIgx9GEuUI0JrHJKql+J/gPLq8QwidDZseKpgQJ18A=;
+        b=nBBTAtrNnVWqtL3INHn8UE3+KyCs6OcMkT6M61jIcJE1kK3ld8t8A1RsZml2QWyp9O
+         /JdxQ5GAGtmd6v9ES2noihl6/b2G1atJOes/CHtGzzI3lwv4QLhNzrqer+QAxiRKRTgs
+         4qZEZp4C+XLoaByaCkSquXrqb6K6pSzlUocoVOQDcQ69CfHV3vfJM3tx9aByN1SzfrH3
+         P7WwbN6w7tvCLVZdG18k1Upk8bF1qCde9MwfLizFbsTUxbggF7+zSLUxZfFqjaZHnEBX
+         S29uobI1QccfSdnhs9s3xurU24VBhKm6BbQK7+js04vj0JXlbvhFdTohfdedwne0W6tY
+         iE9w==
+X-Gm-Message-State: AJIora+jd+Wjin1cUqhQ7mOi7624xDE4GfSxkfrTRRdPZEHOtoXweION
+	tha1mLkvlUZPgyJ6vByIWtb7OOBc0a0Cbxccf/TcrLUjHQg=
+X-Google-Smtp-Source: AGRyM1ukrGmF7Q2CNdhv1yobnNlljLDcnPyQ+C71SRz91So019NjJr/r4gLyqnWrLJ+O3fP/ie7uUeDypKTsy6lUwKo=
+X-Received: by 2002:a05:6512:36cf:b0:48a:8ca8:1331 with SMTP id
+ e15-20020a05651236cf00b0048a8ca81331mr7766260lfs.89.1659029560993; Thu, 28
+ Jul 2022 10:32:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <ADE2F505-DE88-40F4-922F-08BC1A74E9D9@gmail.com>
+ <CAFnbyRHU6GBzCD7sLaqVKj-0Ds2yJC6Aj9NfbPvHoOo-fnh8Bw@mail.gmail.com>
+ <c-19dda6-l62ci0ie-eceebq=1skevmy@259.gethop.com> <CAFnbyRGq41N9O+sMGUpQwLUtNCVVP-zd7CrWCDT3EWFXmVPTiA@mail.gmail.com>
+ <DF9283F7-EC9F-4729-8380-518A09E53513@icloud.com> <CAFnbyRHHn4LxGX9evUnY=1LQpM+W0wzv1nkyrf73jQfkrVyO+g@mail.gmail.com>
+ <24D76D5D-C6BB-413E-80A8-A8DEFAA688BD@icloud.com>
+In-Reply-To: <24D76D5D-C6BB-413E-80A8-A8DEFAA688BD@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 28 Jul 2022 13:32:29 -0400
+Message-ID: <CAFnbyRFXDPTRJD_omCkgbPunT0xJUwJCMUNSPCymYke=czACWw@mail.gmail.com>
+Subject: Re: Parenting Time
+To: Darryl Ross <darrylross@icloud.com>, Alison Boyce <alison.boyce@mannlawyers.com>
+Cc: Allison Lendor <allison@lendorguest.ca>
+Content-Type: multipart/alternative; boundary="000000000000a7b16d05e4e0eb42"
+X-MANTSH: 1TEIXR1kbG1oaGkNHB1tfTFwbGhsbGx4aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhoaEQpZRBdiRWJBeWNMYV17TxEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGBgaEQpfT
+ RdkRURPEQpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOF08bT0tFHWhnQWF
+ JXUJdR15OfUl7QG9GbH5pXUxEHEtBEQpYXBcZBBoEHhwHSx8bGRtMHRsFGxoEEwQbHQQYGxkQG
+ x4aHxoRCl5ZF0ttbVB8EQpNXBcfGhkRCkxaF01NaxEKTEYXYmtrEQpDWhcYGhMEEh8EGxwdBB4
+ eEQpCXhcbEQpEXhcYEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja
+ 3sTWH4aX14RCkJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkE
+ RCkJsF29LR1BBbRoSS2lJEQpCQBdveAFpTG1uRVlrfBEKQlgXYmtOb296bGdaR0sRClpYFxgRC
+ nBnF2hyeFxAWxlPf0UTEBkaEQpwaBdhXR8dGgVLHWBQUBAZGhEKcGgXaBJuY05PSWYeSUQQGRo
+ RCnBoF2MdBWQcfGdHHnJPEBkaEQpwaBdhRUZkbERcH3JBXhAZGhEKcGgXZxprGGJYbn0BYmQQG
+ RoRCnB9F2VnGl5wXmJIE24YEBkaEQpwfRd6T2gZX3BLRB1DRRAZGhEKcH0XY2lJZmdfBR9fR0I
+ QGRoRCnB/F2VQZmteYhwfcF1EEBsTEQpwXxdjRRlhb0FQSGQTHxAYHBEKcF8XbWtuQkh9AXNcQ
+ hgQHhIRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcaEQpYTRdLEQ==
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-ORIG-GUID: e1eao7BMkKcwhwmtdWcQjElFTCwfn6ak
+X-Proofpoint-GUID: e1eao7BMkKcwhwmtdWcQjElFTCwfn6ak
+
+--000000000000a7b16d05e4e0eb42
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+Unfortunately I am unable to leave early and will drop off the girls at 5
+pm and pick up at 730 pm so that you can leave for your appointment. I will
+text you both 5 mins away for pick up.
+
+As for the lost 30 minutes of parenting time, I can suggest making it up
+this Sunday, 2pm - 6:30 pm. Let me know if that works for you both.
+
+
+See you then.
+
+Cynthia
+
+On Thu, Jul 28, 2022 at 12:39 PM Darryl Ross <darrylross@icloud.com> wrote:
+
+> Hello Cynthia,
+>
+> I am not available until 8 pm. I have an MRI appointment this evening and
+> I have to leave by 7:30 pm. I have planned for this, my mom has changed h=
+er
+> plans for this, and as you wrote Charlotte and Alice are expecting to see
+> me. We have agreed to this make up visit, my mom drives in by your house
+> and her picking them up is no different than you dropping them off to her=
+.
+> She has planned to pick the girls up at 4 pm. There is no condition in th=
+e
+> Judges decision and no justification to make parenting time conditional o=
+n
+> you being able to drop them off and pick them up from my mom. Refusing
+> today=E2=80=99s make up visit because of an arbitrary conditionis not acc=
+eptable.
+>
+> In terms of the girls being ready for pick up, please text me as well as
+> my mom like you did for pick up and drop off for the first visit, and dro=
+p
+> off for the second visit. If for some reason you don=E2=80=99t get a resp=
+onse in a
+> reasonable amount of time please call my phone or my mom=E2=80=99s, or th=
+e cell
+> phone that you sent Charlotte with on Sunday. There are many ways to reac=
+h
+> us.
+>
+> The matter of what constitutes reasonable illness to cancel parenting
+> time, and why parenting time for Charlotte was cancelled, remains to be
+> addressed. I spoke to both of them. Alice was dressed, lying on your bed
+> watching a video. Charlotte was energetic and told me about what she did
+> during the day, including how Alice took part in activities but had to li=
+e
+> down in between, and that the plan was to go for a walk so Alice can get
+> some fresh air, and then watch a movie. These are things that are part of
+> parenting time. The bar for cancelling court ordered parenting is higher
+> than this, and will have to be set out clearly.
+>
+> Kindly let me know where they can be picked up this afternoon and my mom
+> will be there. Please confirm and provide the pick up location by 1:30 pm
+> so that I can let my mom know.
+>
+> Thank you,
+>
+> Darryl
+>
+> On Jul 28, 2022, at 12:04 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>
+> Hi Darryl,
+>
+> Sorry my message did not go through yesterday.
+>
+> As covid cases are on the rise and Alice was exhibiting symptoms and had
+> been exposed, it was best that we isolate until we got a few
+> negative tests. Unfortunately for illnesses, we will have to postpone unt=
+il
+> we can confirm it is not Covid. As I understand you did speak to Alice ov=
+er
+> FT on Tuesday and had an hour of FT with Charlotte.  Alice spent the whol=
+e
+> day in bed Tuesday,  she has tested 3x negative so we are in the clear an=
+d
+> she is feeling better today and they are expecting to see you and your
+> mother.
+>
+> I work full time outside of the home three days a week and  the girls are
+>  available for visits in the summer as follows:
+> Tuesdays in person 5-8 pm ( I can only leave work at the earliest 4 pm).
+> Sunday 2-6 pm in person (this was previously agreed upon)
+> Saturdays  FT 10 am (30 mins)
+> Thursdays FT-  6pm (30 mins)
+>
+> I will continue to drive and pick up the girls at this time.
+>
+> If your mother is not available for rescheduling or if the timetable does
+> not work, we should have a backup just in case. I am looking into this.
+>
+> As for pick up, please have the girls ready at the front yard for the
+> agreed pick up time, your mother is the supervisor and should be able to
+> make sure the girls are ready to be picked up at the agreed upon time. Th=
+is
+> past Sunday, I waited for 10 minutes after texting her and then had to wa=
+it
+> another ten minutes while you said goodbye. If this continues to be an
+> issue, please have your lawyer or yourself speak to your mom about the
+> expectations as a supervisor so that there is less stress on everyone at
+> drop off. We want to keep this as healthy and positive for the girls.
+>
+> I will drop off girls today at 5 pm.
+>
+> Cynthia
+>
+>
+> On Wed, Jul 27, 2022 at 6:03 PM Darryl Ross <darrylross@icloud.com> wrote=
+:
+>
+>> Hi Cynthia,
+>>
+>> Unfortunately I could not send emails yesterday and so you may not have
+>> received my response.
+>>
+>> Please confirm your agreement with the parenting schedule of Tuesdays 4-=
+7
+>> pm and Sundays 1- 5 pm, and FaceTime Thursday afternoon and Saturday
+>> morning at 10 am.
+>>
+>> I believe it is important to be clear about issues like illness and what
+>> constitutes being too sick for parenting time. I am more than capable of
+>> caring for them when they are not feeling well, and unless she was unabl=
+e
+>> to leave her bed or travel by car, and a doctor=E2=80=99s appointment is=
+ made or
+>> she needs to go to the hospital, schedule parenting time should continue=
+.
+>> Alice is certainly not feeling well, but I do not agree that yesterday=
+=E2=80=99s
+>> parenting time should have been cancelled.
+>>
+>> If one or both of them is sick as their father I should be able to
+>> FaceTime them to see how they are doing, or they should be allowed to
+>> FaceTime me. Parenting time includes the right to information about heal=
+th
+>> and well-being.
+>>
+>> Going forward, If it is agreed that one of them is too sick scheduled
+>> parenting time with the other should not be cancelled as well. My mom co=
+uld
+>> have picked Charlotte up and brought her here.
+>>
+>> Please confirm with me by 1 pm tomorrow whether or not you agreed with
+>> the schedule, how we will handle the issue of illness in the future, and
+>> tomorrow=E2=80=99s visit from 4-7 pm.
+>>
+>> Thank you,
+>>
+>> Darryl
+>>
+>>
+>>
+>>
+>>
+>> On Jul 26, 2022, at 11:55 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>> wrote:
+>>
+>> Hi Darryl,
+>>
+>> Unfortunately, we will have to postpone until Thursday as Alice is still
+>> under the weather, her muscles are sore, no fever but a headache. She ha=
+s
+>> been resting in my bed all morning. I will test for Covid again today an=
+d
+>> let you know the results.
+>>
+>> Can we tentatively schedule Thursday 5-8 pm and move FT to 5 pm today?
+>>
+>> Thanks.
+>> Cynthia
+>>
+>> On Tue, Jul 26, 2022 at 11:41 AM Darryl <darrylross@icloud.com> wrote:
+>>
+>>> Cynthia Holmes
+>>> Hi there, Going forward 10 am works on Saturday works unless they have
+>>> soccer. Thanks Cynthia
+>>> Hi,
+>>>
+>>> I'm writing to confirm this afternoon's visit from 4-7 pm. Kindly
+>>> respond before 1 pm so that I can let my mom know.
+>>>
+>>>   *Darryl*
+>>> <https://spikenow.com/r/a/?ref=3Dspike-organic-signature&_ts=3D1nm7xw> =
+[image:
+>>> 1nm7xw]
+>>> Best,
+>>>
+>>> Darryl
+>>>
+>>> On July 22, 2022 at 16:00 GMT, Cynthia Holmes <cynthmholm@gmail.com>
+>>> wrote:
+>>>
+>>>
+>>> Hi there,
+>>>
+>>> Going forward 10 am works on Saturday works unless they have soccer.
+>>>
+>>> Thanks
+>>> Cynthia
+>>>
+>>> On Fri, Jul 22, 2022 at 9:01 AM Darryl Ross <darrylondunlin@gmail.com>
+>>> wrote:
+>>>
+>>>> Hi Cynthia,
+>>>>
+>>>> Thank you for the information. Please send me their team info and
+>>>> schedule for soccer.
+>>>>
+>>>> Sunday 2-6 pm will work. I would also like to arrange a time to
+>>>> FaceTime with them Saturday morning. Will 9 am work?
+>>>>
+>>>> Darryl
+>>>>
+>>>> On Jul 22, 2022, at 8:57 AM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>> wrote:
+>>>>
+>>>> Hey Darryl,
+>>>>
+>>>> Parenting on Sunday is 2-6. I will drop off the girls and pick up at
+>>>> your home where Holly will be supervising. I am expecting they will ha=
+ve
+>>>> dinner with you.
+>>>>
+>>>> The girls are at Rideau Hill camp as junior campers . They are being
+>>>> picked up today.
+>>>>
+>>>> Their sitter has been Salem Avery, she is my friend=E2=80=99s daughter=
+ and
+>>>> Alice=E2=80=99s French tutor. She has her babysitting license.
+>>>>
+>>>> Going forward Eva Doyle a family friend from across the street will be
+>>>> caring for them when I am not here.
+>>>>
+>>>> I plan to sign them up for soccer camp in August and will send dates
+>>>> when it is confirmed.
+>>>>
+>>>> The girls are both playing Rec soccer with OSU on Wednesday and
+>>>> Saturdays for the summer.
+>>>>
+>>>> Cynthia
+>>>>
+>>>> On Thu, Jul 21, 2022 at 4:10 PM Darryl Ross <darrylondunlin@gmail.com>
+>>>> wrote:
+>>>>
+>>>>> Hello Cynthia,
+>>>>>
+>>>>> I would like to arrange a visit with Char and Ali this weekend. I=E2=
+=80=99m
+>>>>> proposing Sunday afternoon, from 1-5 pm.
+>>>>>
+>>>>> Also, kindly send me information about the camp they are or were at,
+>>>>> as well as details about activities, soccer, and other camps or activ=
+ities
+>>>>> they are doing this summer, as well as the name and information about=
+ the
+>>>>> person who has been taking care of them during the day.
+>>>>>
+>>>>> Thank you,
+>>>>>
+>>>>> Darryl
+>>>>>
+>>>>> On Jul 14, 2022, at 4:37 PM, Cynthia Holmes <cynthmholm@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>> Hi.
+>>>>>
+>>>>> We are waiting close by for confirmation that your mom will be there =
+.
+>>>>>
+>>>>> We will drive there now to 1266 Maryglove Crescent.
+>>>>>
+>>>>> On Thu, Jul 14, 2022 at 4:32 PM Darryl Ross <darrylondunlin@gmail.com=
+>
+>>>>> wrote:
+>>>>>
+>>>>>> Hi Cynthia,
+>>>>>>
+>>>>>> Kindly confirm that you are dropping Charlotte and Alice off today a=
+s
+>>>>>> agreed, and when you expect to arrive.
+>>>>>>
+>>>>>> Darryl
+>>>>>
+>>>>>
+>>>>>
+>>>>
+>>>
+>>
+>
+
+--000000000000a7b16d05e4e0eb42
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<div>=C2=A0</div><div>Unfortunately I am unable =
+to leave early and will drop off the girls at 5 pm and pick up at 730 pm so=
+ that you can leave for your appointment. I will text you both 5 mins away =
+for pick=C2=A0up.</div><div><br></div><div>As for the lost 30 minutes of pa=
+renting time, I can suggest making it up this Sunday, 2pm - 6:30 pm. Let me=
+ know if that works for you both.</div><div><br></div><div><br></div><div>S=
+ee you then.</div><div><br></div><div>Cynthia</div></div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 28, 2022 at =
+12:39 PM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylros=
+s@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid=
+;border-left-color:rgb(204,204,204);padding-left:1ex"><div style=3D"line-br=
+eak:after-white-space">Hello Cynthia,<div><br></div><div>I am not available=
+ until 8 pm. I have an MRI appointment this evening and I have to leave by =
+7:30 pm. I have planned for this, my mom has changed her plans for this, an=
+d as you wrote Charlotte and Alice are expecting to see me. We have agreed =
+to this make up visit, my mom drives in by your house and her picking them =
+up is no different than you dropping them off to her. She has planned to pi=
+ck the girls up at 4 pm. There is no condition in the Judges decision and n=
+o justification to make parenting time conditional on you being able to dro=
+p them off and pick them up from my mom. Refusing today=E2=80=99s make up v=
+isit because of an arbitrary conditionis not acceptable.=C2=A0</div><div><b=
+r></div><div>In terms of the girls being ready for pick up, please text me =
+as well as my mom like you did for pick up and drop off for the first visit=
+, and drop off for the second visit. If for some reason you don=E2=80=99t g=
+et a response in a reasonable amount of time please call my phone or my mom=
+=E2=80=99s, or the cell phone that you sent Charlotte with on Sunday. There=
+ are many ways to reach us.</div><div><br></div><div>The matter of what con=
+stitutes reasonable illness to cancel parenting time, and why parenting tim=
+e for Charlotte was cancelled, remains to be addressed. I spoke to both of =
+them. Alice was dressed, lying on your bed watching a video. Charlotte was =
+energetic and told me about what she did during the day, including how Alic=
+e took part in activities but had to lie down in between, and that the plan=
+ was to go for a walk so Alice can get some fresh air, and then watch a mov=
+ie. These are things that are part of parenting time. The bar for cancellin=
+g court ordered parenting is higher than this, and will have to be set out =
+clearly.=C2=A0</div><div><br></div><div>Kindly let me know where they can b=
+e picked up this afternoon and my mom will be there. Please confirm and pro=
+vide the pick up location by 1:30 pm so that I can let my mom know.</div><d=
+iv><br></div><div>Thank you,</div><div><br></div><div>Darryl</div><div><div=
+><br><blockquote type=3D"cite"><div>On Jul 28, 2022, at 12:04 PM, Cynthia H=
+olmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmh=
+olm@gmail.com</a>&gt; wrote:</div><br><div><div dir=3D"ltr">Hi Darryl,<div>=
+<br></div><div>Sorry my message did not go through yesterday.</div><div><br=
+></div><div>As covid cases are on the rise and Alice was exhibiting=C2=A0sy=
+mptoms and=C2=A0had been exposed, it was best that we isolate until we got =
+a few negative=C2=A0tests. Unfortunately=C2=A0for illnesses, we will have t=
+o postpone until we can confirm it is not Covid. As I understand=C2=A0you d=
+id speak to Alice over FT on Tuesday and had an hour of=C2=A0FT with Charlo=
+tte.=C2=A0 Alice spent the whole day in bed Tuesday, =C2=A0she has tested 3=
+x negative so we are in the clear and she is feeling better today and they =
+are expecting to see you and your mother.=C2=A0</div><div><br></div><div>I =
+work full time outside of the home three days a week and =C2=A0the girls ar=
+e =C2=A0available=C2=A0for visits in the summer as follows:</div><div>Tuesd=
+ays in person 5-8 pm ( I can only leave work at the earliest=C2=A04 pm).</d=
+iv><div>Sunday 2-6 pm in person (this was previously agreed upon)</div><div=
+>Saturdays=C2=A0 FT 10 am (30 mins)</div><div>Thursdays FT- =C2=A06pm (30 m=
+ins)</div><div><br></div><div>I will continue to drive and pick up the girl=
+s at this time.</div><div><br></div><div>If your mother is not available=C2=
+=A0for rescheduling=C2=A0or if the timetable does not work, we should have =
+a backup just in case. I am looking into this.</div><div><br></div><div>As =
+for pick up, please have the girls ready at the front yard for the agreed p=
+ick up time, your mother is the supervisor and should be able to make sure =
+the girls are ready to be picked up at the agreed upon time. This past Sund=
+ay, I waited for 10 minutes after texting her and then had to wait another =
+ten minutes while you said goodbye. If this continues to be an issue, pleas=
+e have your lawyer or yourself speak to your mom about the expectations as =
+a supervisor so that there is less stress on everyone at drop off. We want =
+to keep this as healthy and positive=C2=A0for the girls.</div><div><br></di=
+v><div>I will drop off girls today at 5 pm.</div><div><br></div><div>Cynthi=
+a</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Wed, Jul 27, 2022 at 6:03 PM Darryl Ross &lt;<a hr=
+ef=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left=
+-color:rgb(204,204,204);padding-left:1ex"><div style=3D"line-break:after-wh=
+ite-space">Hi Cynthia,<div><br></div><div>Unfortunately I could not send em=
+ails yesterday and so you may not have received my response.=C2=A0</div><di=
+v><br></div><div>Please confirm your agreement with the parenting schedule =
+of Tuesdays 4-7 pm and Sundays 1- 5 pm, and FaceTime Thursday afternoon and=
+ Saturday morning at 10 am.</div><div><br></div><div>I believe it is import=
+ant to be clear about issues like illness and what constitutes being too si=
+ck for parenting time. I am more than capable of caring for them when they =
+are not feeling well, and unless she was unable to leave her bed or travel =
+by car, and a doctor=E2=80=99s appointment is made or she needs to go to th=
+e hospital, schedule parenting time should continue. Alice is certainly not=
+ feeling well, but I do not agree that yesterday=E2=80=99s parenting time s=
+hould have been cancelled.=C2=A0</div><div><br></div><div>If one or both of=
+ them is sick as their father I should be able to FaceTime them to see how =
+they are doing, or they should be allowed to FaceTime me. Parenting time in=
+cludes the right to information about health and well-being.=C2=A0</div><di=
+v><br></div><div>Going forward, If it is agreed that one of them is too sic=
+k scheduled parenting time with the other should not be cancelled as well. =
+My mom could have picked Charlotte up and brought her here.</div><div><br><=
+/div><div>Please confirm with me by 1 pm tomorrow whether or not you agreed=
+ with the schedule, how we will handle the issue of illness in the future, =
+and tomorrow=E2=80=99s visit from 4-7 pm.</div><div><br></div><div>Thank yo=
+u,</div><div><br></div><div>Darryl</div><div><br></div><div><br></div><div>=
+<br></div><div><br></div><div><div><br><blockquote type=3D"cite"><div>On Ju=
+l 26, 2022, at 11:55 AM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gm=
+ail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:</div><br><di=
+v><div dir=3D"auto">Hi Darryl,</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">Unfortunately, we will have to postpone until Thursday as Alice is s=
+till under the weather, her muscles are sore, no fever but a headache. She =
+has been resting in my bed all morning. I will test for Covid again today a=
+nd let you know the results.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Can we tentatively schedule Thursday 5-8 pm and move FT to 5 pm today?=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks.</div><div dir=
+=3D"auto">Cynthia=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Tue, Jul 26, 2022 at 11:41 AM Darryl &lt;<=
+a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-=
+left-color:rgb(204,204,204);padding-left:1ex"><u></u><u></u><div>
+					<div style=3D"border-left-width:3px;border-left-style:solid;border-lef=
+t-color:rgb(142,142,142);padding-left:5px;font-weight:500;margin-bottom:8px=
+">
+						<div style=3D"color:rgb(142,142,142);font-size:0.9pc">Cynthia Holmes<=
+/div>
+						<div style=3D"text-overflow:ellipsis;overflow:hidden;white-space:nowr=
+ap;color:rgb(142,142,142);font-size:0.9pc"> Hi there, Going forward 10 am w=
+orks on Saturday works unless they have soccer. Thanks  Cynthia</div>
+					</div>
+				</div><div dir=3D"LTR">Hi,<br><br>I&#39;m writing to confirm this after=
+noon&#39;s visit from 4-7 pm. Kindly respond before 1 pm so that I can let =
+my mom know.</div><div><br><table cellspacing=3D"0" border=3D"0" style=3D"m=
+argin-bottom:4px"><tbody><tr><td><img src=3D"https://res.spikenow.com/c/?id=
+=3Dskvyq37qt50g8iak&amp;s=3D48&amp;m=3Dc&amp;_ts=3D1nm7xw" width=3D"24" hei=
+ght=3D"24" style=3D"vertical-align: bottom;"></td><td width=3D"4" nowrap>=
+=C2=A0</td><td><a href=3D"https://spikenow.com/r/a/?ref=3Dspike-organic-sig=
+nature&amp;_ts=3D1nm7xw" style=3D"text-decoration:none" target=3D"_blank"><=
+b style=3D"color:rgb(0,132,255)">Darryl</b></a></td><td><img alt=3D"1nm7xw"=
+ width=3D"10" height=3D"10" src=3D"https://spikenow.com/t/"></td></tr></tbo=
+dy></table><div>Best,</div><div><br></div>Darryl<br></div><div><br>On July =
+22, 2022 at 16:00 GMT, Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmai=
+l.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br><blockquote=
+ style=3D"margin:0px 0px 0px 0.2ex;border-left-width:1px;border-left-style:=
+solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div><br></div><=
+div dir=3D"auto">Hi there,</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">Going forward 10 am works on Saturday works unless they have soccer.</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks=C2=A0</div><div dir=
+=3D"auto">Cynthia=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, Jul 22, 2022 at 9:01 AM Darryl Ross &=
+lt;<a href=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank">darrylondu=
+nlin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:sol=
+id;border-left-color:rgb(204,204,204);padding-left:1ex"><div style=3D"word-=
+wrap:break-word;line-break:after-white-space">Hi Cynthia,<div><br></div><di=
+v>Thank you for the information. Please send me their team info and schedul=
+e for soccer.</div><div><br></div><div>Sunday 2-6 pm will work. I would als=
+o like to arrange a time to FaceTime with them Saturday morning. Will 9 am =
+work?</div></div><div style=3D"word-wrap:break-word;line-break:after-white-=
+space"><div><br></div><div>Darryl</div><div><div><br><blockquote type=3D"ci=
+te"><div>On Jul 22, 2022, at 8:57 AM, Cynthia Holmes &lt;<a href=3D"mailto:=
+cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:=
+</div><br><div><div dir=3D"auto">Hey Darryl,</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">Parenting on Sunday is 2-6. I will drop off the girls =
+and pick up at your home where Holly will be supervising. I am expecting th=
+ey will have dinner with you.</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">The girls are at Rideau Hill camp as junior campers . They are being =
+picked up today.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Their s=
+itter has been Salem Avery, she is my friend=E2=80=99s daughter and Alice=
+=E2=80=99s French tutor. She has her babysitting license.</div><div dir=3D"=
+auto"><br></div><div dir=3D"auto">Going forward Eva Doyle a family friend f=
+rom across the street will be caring for them when I am not here.</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto">I plan to sign them up for soccer=
+ camp in August and will send dates when it is confirmed.</div><div dir=3D"=
+auto"><br></div><div dir=3D"auto">The girls are both playing Rec soccer wit=
+h OSU on Wednesday and Saturdays for the summer.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">Cynthia</div><div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 21, 2022 at 4:10 PM Darryl=
+ Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank">dar=
+rylondunlin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-st=
+yle:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div style=
+=3D"word-wrap:break-word;line-break:after-white-space">Hello Cynthia,<div><=
+br></div><div>I would like to arrange a visit with Char and Ali this weeken=
+d. I=E2=80=99m proposing Sunday afternoon, from 1-5 pm.</div><div><br></div=
+><div>Also, kindly send me information about the camp they are or were at, =
+as well as details about activities, soccer, and other camps or activities =
+they are doing this summer, as well as the name and information about the p=
+erson who has been taking care of them during the day.</div><div><br></div>=
+<div>Thank you,</div><div><br></div><div>Darryl<br><div><br><blockquote typ=
+e=3D"cite"><div>On Jul 14, 2022, at 4:37 PM, Cynthia Holmes &lt;<a href=3D"=
+mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt;=
+ wrote:</div><br><div><div dir=3D"auto">Hi.=C2=A0</div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">We are waiting close by for confirmation that you=
+r mom will be there .</div><div dir=3D"auto"><br></div><div dir=3D"auto">We=
+ will drive there now to 1266 Maryglove Crescent.</div><div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jul 14, 2022=
+ at 4:32 PM Darryl Ross &lt;<a href=3D"mailto:darrylondunlin@gmail.com" tar=
+get=3D"_blank">darrylondunlin@gmail.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:=
+1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left=
+:1ex">Hi Cynthia,<br>
+<br>
+Kindly confirm that you are dropping Charlotte and Alice off today as agree=
+d, and when you expect to arrive.<br>
+<br>
+Darryl</blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div></div>
+<div><br></div></blockquote></div><div><img src=3D"https://bolt.im/t/?gGLuX=
+tjJFrcU9DrciOQhIsao23B6acsJCPA2VtkNnf88LBeiX9rqSudttzTBNhwAYED-gAKGMGEk4-GF=
+QUiKow"></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--000000000000a7b16d05e4e0eb42--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>959791</integer>
+	<key>date-last-viewed</key>
+	<integer>1745856308</integer>
+	<key>date-received</key>
+	<integer>1659029563</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>14600</string>
+</dict>
+</plist>

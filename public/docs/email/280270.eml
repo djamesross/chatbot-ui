@@ -1,0 +1,666 @@
+35530     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09071302.me.com by p133-mailgateway-smtp-749447c794-vrw8g (mailgateway 2402B76)
+	with SMTP id dad7c8e7-fb59-4dec-8ebd-968f436197ea 
+	for <darrylross@icloud.com>; Mon, 30 Oct 2023 18:41:37 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: dad7c8e7-fb59-4dec-8ebd-968f436197ea
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by ci74p00im-qukt09071302.me.com (Postfix) with ESMTPS id 6B8D52D80194
+	for <darrylross@icloud.com>; Mon, 30 Oct 2023 18:41:34 +0000 (UTC)
+X-ICL-SCORE: 3.333033330041
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSQFoQXgcZFltVFVFfDlgc
+ DEZVVgJVWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwHGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQkQxQlOQheBgMUAT8kP0FHNDYAKTI2QHNJAT4UGjt8XDoXMlcz
+ SUJ0EwcDJzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eKDU/hc3
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.47 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.47 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.47; helo=mail-ej1-f47.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-9c2a0725825so776160166b.2
+        for <darrylross@icloud.com>; Mon, 30 Oct 2023 11:41:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698691293; x=1699296093; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6zurAXXFlOYGR19/BlJ0WCnoeM/9tk775vtjsiE11I=;
+        b=eKDU/hc3v9Au47TncuUyYgWRRyMRP510+8XKWlnnhldk+rEr15Q5kGE4hO2m3ZqnVU
+         IfJ3ldhaUmjwQLzDFGppcjFktY1zLtRRcB6IaAI3FzhkZeMY2bEJ7e525wsTrh+v8GYo
+         PeftiDO/Pk+4eeW6CG0soZtVG+c0Bc3BPT3GrFHmUsLYXrtKLYyMlu/gEiGk3LUXSzz8
+         WaByBmmSXZ+zqg+z7aBKb2eC4BNhU+IlV9I7aIUX4SXkqClG4ik8xKzLzmTyU+RzlI0V
+         Aj34gBrQ5gBrEPtVGmViQJzxVm8yqnuXwFG7LmAI9FY0LSLZvNE6Bk3DhjOK6SQOC45u
+         sh6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698691293; x=1699296093;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q6zurAXXFlOYGR19/BlJ0WCnoeM/9tk775vtjsiE11I=;
+        b=YZXvw+Z7OWi8LvQjBVLENZFYIBfOWNO0btTyVFVg3XLJQdSIvB6LVowMQLNVct9lC9
+         c3sPICbDWV4poartQ6KY74xyfYeHHz+ynGNvFUrybUPoJNwLKQgYnUWA+5YbSVTMjgma
+         TWw/SbNl3b6TGGNKNW4k23VujVqj1EwVnoO0lG9a3kBZWHOR5P7DgXIQqdSYq2sfxyOQ
+         saQLq1w9XRgB9C6sJRUySOP57TIwhHh5ypXI/WbthCAr+TAUyzZlzz3QY/PoVCuoY1Yx
+         WNyXV/oa30L/hrJeuddH/iHGuGYwvrvAsjbeI4rLfGjCdN0T9olLhLUtzlVzVxwFLWdf
+         GJmA==
+X-Gm-Message-State: AOJu0Yyf/AKQ49hitVfEkYBID600onTdXThmKw4VjPHMXPs+b0MwNgIP
+	C4oMO/FJEaUpMM3ycERocMetvgQ6voPMTj66ABJOrQO+
+X-Google-Smtp-Source: AGHT+IGg3wcecHM8snDZeSm3P7l51Q54Kwn8i7tsGcVOHxFHmrrVxeXDO+RkKaFN7O7i779ICzy8cccqYgz/205Mp9I=
+X-Received: by 2002:a17:907:86a0:b0:9c3:7510:e522 with SMTP id
+ qa32-20020a17090786a000b009c37510e522mr9178523ejc.63.1698691292706; Mon, 30
+ Oct 2023 11:41:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <YYfJYY10QkKovmFPiMBG7g@geopod-ismtpd-24>
+In-Reply-To: <YYfJYY10QkKovmFPiMBG7g@geopod-ismtpd-24>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Mon, 30 Oct 2023 14:41:21 -0400
+Message-ID: <CAFnbyRF6mCNpn0aaxYSGqqVCyOENpE+tGrmCLjXbK1D1rBqrzA@mail.gmail.com>
+Subject: Fwd: [U9-U12 Force Academy Girls] 2011: Winter planning (pre-offers message)
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="00000000000015ba4d0608f3632c"
+X-MANTSH: 1TEIXWV4fGVoaGkNHB1tfQEQbHxobGh0aGxEKTEMXGxoEHRwEGxMTBBIQGx4aHxo
+ RCkxZFxsaGhoRCllEF2JFYkF5Y0xhXXtPEQpZTRd6T1hZRURLRmtGRkVdEQpfWRcYGBoRCl9NF
+ 2RFRE8RCllJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XbHVLaXx7XHtTUEg
+ YWh1+eEQeRhsZTAcZbEFaEl9ubEwRClhcFxkEGgQfGgUbGgQbHBgEGRoEGBIQGx4aHxoRCl5ZF
+ 0lOcBscEQpNXBcHHBEKTFoXaGlNTWsRCkxGF2xNaxEKQ1oXGBoTBBIfBBgbEgQeHREKQl4XGxE
+ KQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJue
+ BpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQkA
+ XZAV9SGBlTmZEbGERCkJYF2JrTm9vemxnWkdLEQpaWBcdEQpwZxdiehwcTBtBfEdtHxAfGREKc
+ GgXbwF4Hn5GY31tWHAQGhEKcGgXbG8cEhtweU5kbhoQGhEKcGgXbxhob35pYWF6QxIQGhEKcGg
+ XbRpleXJtU2VkRhIQGhEKcGgXa0tIRW5sW0EaQmwQGhEKcGcXYkxmX3BjT2xZUGgQGhEKcH0XZ
+ kNgTU5dbUJNRh8QGhEKcH0XbVtSQnBgXUVdQX8QGhEKcH0XaGlabmlgGGdAXn0QGhEKcH0Xem9
+ NfHJ5ekFOcmkQGhEKcH0XZH9JZRlbe2wdeU4QBxkaEQpwfRdlaAVyTWRTRx9jchAaEQpwfRdma
+ 2VOe2RFXFBMUBAaEQpwfxdgT1BjR25bcH8bRxAbExEKcF8XbEJNTkFPeGB9aHsQHxwRCnB/F29
+ EYVASE38bHBJ+EAcbGB4RCnBfF2RJfHhfG39/TlBEEAcbGBsRCnB/F21DZWQYZkhNYX8aEAcbG
+ B4RCnBfF2lPe2tOZmBMb0FNEBoRCnBsF2ZGax8YW21fRm9vEBoRCm1+FxoRClhNF0sR
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-GUID: F_aCVQvQyzb2p7TRn4l13f-3Fkp8uDFf
+X-Proofpoint-ORIG-GUID: F_aCVQvQyzb2p7TRn4l13f-3Fkp8uDFf
+
+--00000000000015ba4d0608f3632c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+FYI on Sunday afternoon practices
+
+---------- Forwarded message ---------
+From: Craig Stead - Director Soccer Operations <
+donotreply@email.teamsnap.com>
+Date: Sun, Oct 29, 2023 at 9:52 PM
+Subject: [U9-U12 Force Academy Girls] 2011: Winter planning (pre-offers
+message)
+To: <cynthmholm@gmail.com>, <holcha04@ecolecatholique.ca>
+
+
+[image: division logo]
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUNBgE9DVxzZ=
+jlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx18Jm-2B8uqbBtNL3cNsfBzdt=
+6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ61D1VC1gmo2Igz4C-2FlYVox=
+Y9-2Bf-2F4S5SzwfmTS59wPHwdk_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12y=
+OEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2FbagUSuY6cJxOqqGic=
+f6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kETGRZ-2FcDSa7noiA=
+tuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMcWBgJK8M3t6L-2FU=
+FrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMqaW0UtdjFi5fzlT0hF-2FZ-2FefHeV6jG=
+YLI19UXejIvAYj0HdpKTI2-2Fe8-2FDfHbhXNH4A-2FVXexIrwQNA47sdee08h4hfIN3G0jJmRa=
+X8201-2B3JZ3-2F7Yq8Qon3jMAIiOs4dS1-2FVM01CtLqUNXmHw5ABD5pTN1FvSSpXek4nvlQFq=
+884a90qKL3cKoE9e-2F8ldFgkHYE-3D>
+U9-U12
+Force Academy Girls
+
+Hi Everyone,
+
+I am helping with communications and the distribution of offer placements,
+as Rene is currently away/off the last week or so.
+
+Please see the message below:
+
+   - We are aiming to form two training pools this winter: White & Blue
+   - Rene will be the primary lead for both teams, while working with Coach
+   Melina as well
+   - The two training pools will likely expand to be three summer teams:
+   White (Regional), Blue (Tier 1), Iron (Tier 2)
+   - For the winter time, we are looking at Wednesday evenings and Sunday
+   afternoon training, with game play on Saturdays at the RA Centre
+   - The RA Centre based league is called the "Coliseum" and is for U13+
+   teams - noting that it is 7v7 play, so we will need to adapt who is call=
+ed
+   in each week based on total availabilty
+   - For any players who are not able well suited for the RA Centre league
+   (once we better understand the opposition), we will also have our intern=
+al,
+   local Futsal league, on Saturdays available as a regular game-play outle=
+t
+
+We will offer team placements shortly, with a reminder that:
+
+   - Summer team coaches provide(d) their opinions on player placement,
+   after watching the girls over the course of the season
+   - Players may continue to be moved between teams/levels as appropriate
+   to do so
+   - We understand that some players are also trying out with the Black
+   (OPDL League) program, and the coaches will discuss should there be any
+   overlap or confusion on final placements - please reach out if you are
+   unsure
+
+Thank you,
+
+Craig Stead
+
+You are receiving this message because you are a member of the *U9-U12
+Force Academy Girls* club
+Log In
+<http://email.teamsnap.com/ls/click?upn=3DYGDhJHk72kYkzbfksAWZ19rpBJVKS9Ot5=
+2i1KBbTqmy8hXTgIQfR8nOigP6T89lOQXUmUSFLABSRbe2P1mR8y8Q4WhAXUNDWvx2whmg16c48=
+zXGnPJHdvm0t2C2tHf7ToMeISMXqTitHxMkZsx8MIT2O0tXjzknuRJKdPtG90OWnyS0k8XMujqM=
+vHSzb-2FJIQdfUXFM2gqqacNqmXntqXKe4v3HLenSxf6DH8ae8L-2BupsDBupYjbSGuJHeYzMKH=
+fZP8C4Q3nTp1p8dbCxgicafEgiro3EZFxaQWJaDZiNGdAAvj2QaJrZVHcAkRT0dewwzcbj_gph5=
+yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9=
+vlqlFA2H5-2BJxPqZOeLkAx-2FbagUSuY6cJxOqqGicf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6k=
+QikLwhF-2F3MJ20bMie5hjNg5kETGRZ-2FcDSa7noiAtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf=
+1hg3qWRNszyoW9rg80BtgpdeetMcWBgJK8M3t6L-2FUFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrM=
+p7JTflluZMqrrDTpBdPa-2F1PlrsAuMMENcWWg44qBYgSbDjKqoGMNqwZh-2BFQLSAsUOqZeS6s=
+9pcl4M4UHmGYVGGznYaklLoSBu74f8JMKVlgNUwO4FNhv6tP4PX9cSYhmgNz8lBNLipLrRD8adp=
+aZYt3LYSC8FKF7wyYpXRTKYOhA5mkKRKkEca6-2B1K8MUgNO-2BOs971OuKUk-3D>
+
+If you prefer not to receive email from *2011 Girls Force Academy Iron*, up=
+date
+your communication preferences
+<http://email.teamsnap.com/ls/click?upn=3DHriSoJ-2BIgA7vg8bKshF7u-2FqJ1wcDn=
+nMG27qUCo75DJmEdKOIWjKozQANAynuH77iCNnxsziREa9P9a0Z3qsh3v7y02Z-2F08lo2CmZRh=
+fyFV3E8u-2BjIHx7f0SITg-2B1XL5JsaFSzhg46LMmwN1yAadE3ELsDJ9wh1BY2CRhQy-2FgBMg=
+pWiYBB-2FcvUaEelC-2BcxvOnuJf2k9SxVFuLosUfuQ6YNP4CVehU75uDQt9VcpajP0ztROE8Tj=
+9Vj3QLlQqZPYTRWyHc0QE4VUutEtQpQC4GIw-3D-3DBdYG_gph5yBD-2FEpXdkKIlLPOe9kf5fl=
+Si1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-=
+2FbagUSuY6cJxOqqGicf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg=
+5kETGRZ-2FcDSa7noiAtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80Btgpde=
+etMcWBgJK8M3t6L-2FUFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMr8KlpJvTQ4qacL=
+Cke-2BQN5kHOsVFQuaeOx2LK5RWzKYuVelxr3yvznCG9YlFVZlycxr1533leDpD4n2vSqcGfwb8=
+xPLVJHljYecbLjpZVIcn6YsTE-2BXq0UtouHeE1VRNUXsAtdMagbUb-2BTZ3dm0w-2B50ZnyttP=
+1ayB7nqDXCk-2Fe-2FlQdGBWQ1nRwaanBXx8RKxec-3D>.
+
+Copyright =C2=A9 2023 TeamSnap, all rights reserved. View our Privacy Polic=
+y
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUFoLp2IPrRn=
+70-2B65xgSDsMKQ0YKFStW3fcAOdn5V33MqQ5cZ_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDq=
+sJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2FbagUS=
+uY6cJxOqqGicf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kETGRZ=
+-2FcDSa7noiAtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMcWBg=
+JK8M3t6L-2FUFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMrIRrs4sip2ESmxxb-2FoW=
+QnfbbjuHLMKSQcWlGVVU7Fw-2FVOXoXtFN6TupwqyfxZBtrHyohxG-2BzBdnLmVyXtaAATBvdg6=
+RooL2KEqqs-2BioPfDvuGwap824siPZmaTxMvG4L6vqIxvN-2FnH2fqITJQW7R9bl2d9FJR7QEC=
+YqqyEIA0Iy8FXZKZoo90EKz0iPZsMQRQ-3D>
+.
+TeamSnap World HQ, 2040 14th Street,
+<https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?ent=
+ry=3Dgmail&source=3Dg>
+Boulder,
+CO 80302
+<https://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?ent=
+ry=3Dgmail&source=3Dg>
+[image: TeamSnap]
+<http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUNBgE9DVxzZ=
+jlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx18Jm-2B8uqbBtNL3cNsfBzdt=
+6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ61D1VC1gmo2Igz4C-2FlYVox=
+Y9-2Bf-2F4S5SzwfmTS59wP8UEn_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12y=
+OEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2FbagUSuY6cJxOqqGic=
+f6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kETGRZ-2FcDSa7noiA=
+tuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMcWBgJK8M3t6L-2FU=
+FrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMqnnjgMO9XWfJ4LG9zoEwBDB8q-2Fu-2FK=
+990dY-2BgBEnDuU2THP4Z4iMV2MQp-2Fwg3TC2c8iAWsIF-2F4YoySxp9kR9u1y3IhL-2BWAT8X=
+ClbW1MI72wM2dmv3vRZ1hPEZpTc9lhLoOAOqG4vnxufG4JCtdYqBF33z2aBmVnbaNaCsAi2Oduk=
+Jz3BCrkCJN7wcGb1zf3APg-3D>
+
+--00000000000015ba4d0608f3632c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">FYI on Sunday afternoon practices</div><div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarde=
+d message ---------<br>From: <strong class=3D"gmail_sendername" dir=3D"auto=
+">Craig Stead - Director Soccer Operations</strong> <span dir=3D"auto">&lt;=
+<a href=3D"mailto:donotreply@email.teamsnap.com">donotreply@email.teamsnap.=
+com</a>&gt;</span><br>Date: Sun, Oct 29, 2023 at 9:52 PM<br>Subject: [U9-U1=
+2 Force Academy Girls] 2011: Winter planning (pre-offers message)<br>To:  &=
+lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmail.com</a>&gt;,  &=
+lt;<a href=3D"mailto:holcha04@ecolecatholique.ca">holcha04@ecolecatholique.=
+ca</a>&gt;<br></div><br><br>
+<u></u>
+
+
+
+ =20
+ =20
+ =20
+ =20
+
+ =20
+
+
+<div style=3D"width:100%!important;min-width:100%;color:#222222;font-family=
+:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-we=
+ight:normal;text-align:left;line-height:22px;font-size:16px;margin:0;paddin=
+g:0">
+
+<table style=3D"border-spacing:0;border-collapse:collapse;vertical-align:to=
+p;text-align:left;height:100%;width:100%;color:#222222;font-family:&#39;Ope=
+n Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:norm=
+al;line-height:22px;font-size:16px;background:#fcfcfc;margin:0;padding:0" b=
+gcolor=3D"#FCFCFC">
+  <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+    <td align=3D"center" valign=3D"top" style=3D"word-break:break-word;bord=
+er-collapse:collapse!important;vertical-align:top;text-align:center;color:#=
+222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,=
+sans-serif;font-weight:normal;line-height:22px;font-size:16px;margin:0;padd=
+ing:0">
+      <center style=3D"width:100%;min-width:580px">
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:100%;border-bottom-width:1px;border-bottom-=
+style:solid;border-bottom-color:#ededed;margin-bottom:20px;background:#ffff=
+ff;padding:0px" bgcolor=3D"#FFFFFF">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td align=3D"center" style=3D"word-break:break-word;border-coll=
+apse:collapse!important;vertical-align:top;text-align:center;color:#222222;=
+font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-se=
+rif;font-weight:normal;line-height:22px;font-size:16px;background:#fff;marg=
+in:0;padding:0" bgcolor=3D"#fff" valign=3D"top">
+              <center style=3D"width:100%;min-width:580px">
+                <table style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:inherit;width:580px;margin:0 auto;padding:0">
+                  <tbody><tr style=3D"vertical-align:top;text-align:left;pa=
+dding:0" align=3D"left">
+                    <td style=3D"word-break:break-word;border-collapse:coll=
+apse!important;vertical-align:top;text-align:left;color:#222222;font-family=
+:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-we=
+ight:normal;line-height:22px;font-size:16px;background:#fff;margin:0;paddin=
+g:10px 0px 0px" align=3D"left" bgcolor=3D"#fff" valign=3D"top">
+                      <table style=3D"border-spacing:0;border-collapse:coll=
+apse;vertical-align:top;text-align:left;width:580px;margin:0 auto;padding:0=
+">
+                        <tbody><tr style=3D"vertical-align:top;text-align:l=
+eft;padding:0" align=3D"left">
+                            <td style=3D"word-break:break-word;border-colla=
+pse:collapse!important;vertical-align:top;text-align:center;min-width:0px;w=
+idth:20%;color:#222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,=
+&#39;Arial&#39;,sans-serif;font-weight:normal;line-height:22px;font-size:16=
+px;background:#fff;margin:0;padding:0px 10px 10px 0px" align=3D"left" bgcol=
+or=3D"#fff" valign=3D"top">
+    <a href=3D"http://email.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0g=
+zHnUNBgE9DVxzZjlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx18Jm-2B8uq=
+bBtNL3cNsfBzdt6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ61D1VC1gmo=
+2Igz4C-2FlYVoxY9-2Bf-2F4S5SzwfmTS59wPHwdk_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ce=
+DqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2Fbag=
+USuY6cJxOqqGicf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kETG=
+RZ-2FcDSa7noiAtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMcW=
+BgJK8M3t6L-2FUFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMqaW0UtdjFi5fzlT0hF-=
+2FZ-2FefHeV6jGYLI19UXejIvAYj0HdpKTI2-2Fe8-2FDfHbhXNH4A-2FVXexIrwQNA47sdee08=
+h4hfIN3G0jJmRaX8201-2B3JZ3-2F7Yq8Qon3jMAIiOs4dS1-2FVM01CtLqUNXmHw5ABD5pTN1F=
+vSSpXek4nvlQFq884a90qKL3cKoE9e-2F8ldFgkHYE-3D" target=3D"_blank"><img alt=
+=3D"division logo" style=3D"outline:none;text-decoration:none;width:auto;ma=
+x-width:100%;max-height:80px;display:inline-block;float:none;padding:20px 0=
+" width=3D"80" src=3D"https://storage.googleapis.com/ts_assets_prod-sport_l=
+ogos/logo-soccer.png"></a>
+  </td>
+  <td style=3D"word-break:break-word;border-collapse:collapse!important;ver=
+tical-align:middle;text-align:left;min-width:0px;width:90%;color:#222222;fo=
+nt-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-seri=
+f;font-weight:normal;line-height:22px;font-size:16px;background:#fff;margin=
+:0;padding:0px 10px 10px 0px" align=3D"left" bgcolor=3D"#fff" valign=3D"top=
+">
+    <h3>U9-U12 Force Academy Girls</h3>
+  </td>
+
+                          <td style=3D"text-align:right;vertical-align:midd=
+le;word-break:break-word;border-collapse:collapse!important;min-width:0px;w=
+idth:50%;color:#222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,=
+&#39;Arial&#39;,sans-serif;font-weight:normal;line-height:22px;font-size:16=
+px;background:#fff;margin:0;padding:0px 0px 10px" align=3D"right" bgcolor=
+=3D"#fff" valign=3D"middle">
+                            <table style=3D"border-spacing:0;border-collaps=
+e:collapse;vertical-align:top;text-align:left;width:100%;overflow:hidden;pa=
+dding:0">
+                              <tbody><tr style=3D"vertical-align:top;text-a=
+lign:left;padding:0" align=3D"left">
+                                <td style=3D"word-break:break-word;border-c=
+ollapse:collapse!important;vertical-align:top;text-align:right;color:#fffff=
+f;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-=
+serif;font-weight:bold;line-height:22px;font-size:13px;display:block;width:=
+auto!important;margin:0;border:none" align=3D"right" valign=3D"top">
+                                </td>
+                              </tr>
+                            </tbody></table>
+                          </td>
+
+                          <td style=3D"word-break:break-word;border-collaps=
+e:collapse!important;vertical-align:top;text-align:left;width:0px;color:#22=
+2222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sa=
+ns-serif;font-weight:normal;line-height:22px;font-size:16px;background:#fff=
+;margin:0;padding:0" align=3D"left" bgcolor=3D"#fff" valign=3D"top"></td>
+                        </tr>
+                      </tbody></table>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </center>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:inherit;width:580px;margin:0 auto;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Op=
+en Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:nor=
+mal;line-height:22px;font-size:16px;margin:0;padding:0" align=3D"left" vali=
+gn=3D"top">
+
+                <table style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:left;width:100%;display:block;padding:0px">
+    <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;li=
+ne-height:22px;font-size:16px;margin:0;padding:10px 0px 0px" align=3D"left"=
+ valign=3D"top">
+       =20
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Op=
+en Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:nor=
+mal;line-height:22px;font-size:16px;margin:0;padding:0px 0px 10px" align=3D=
+"left" valign=3D"top">
+              <div>
+                <p>Hi Everyone,</p>
+<p>I am helping with communications and the distribution of offer placement=
+s, as Rene is currently away/off the last week or so.</p>
+<p>Please see the message below:</p>
+<ul>
+<li>We are aiming to form two training pools this winter: White &amp; Blue<=
+/li>
+<li>Rene will be the primary lead for both teams, while working with Coach =
+Melina as well</li>
+<li>The two training pools will likely expand to be three summer teams: Whi=
+te (Regional), Blue (Tier 1), Iron (Tier 2)</li>
+<li>For the winter time, we are looking at Wednesday evenings and Sunday af=
+ternoon training, with game play on Saturdays at the RA Centre</li>
+<li>The RA Centre based league is called the &quot;Coliseum&quot; and is fo=
+r U13+ teams - noting that it is 7v7 play, so we will need to adapt who is =
+called in each week based on total availabilty</li>
+<li>For any players who are not able well suited for the RA Centre league (=
+once we better understand the opposition), we will also have our internal, =
+local Futsal league, on Saturdays available as a regular game-play outlet</=
+li>
+</ul>
+<p>We will offer team placements shortly, with a reminder that:</p>
+<ul>
+<li>Summer team coaches provide(d) their opinions on player placement, afte=
+r watching the girls over the course of the season</li>
+<li>Players may continue to be moved between teams/levels as appropriate to=
+ do so</li>
+<li>We understand that some players are also trying out with the Black (OPD=
+L League) program, and the coaches will discuss should there be any overlap=
+ or confusion on final placements - please reach out if you are unsure</li>
+</ul>
+<p>Thank you,</p>
+<p>Craig Stead</p>
+              </div>
+              <p style=3D"color:#222222;font-family:&#39;Open Sans&#39;,&#3=
+9;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;text-align:l=
+eft;line-height:21px;font-size:16px;margin:0 0 10px;padding:10px 0 0" align=
+=3D"left">
+                You are receiving this message because you are a member of =
+the <strong>U9-U12 Force Academy Girls</strong> club
+              </p>
+            </td>
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:left;width:0px;color:#222222;font-fami=
+ly:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-=
+weight:normal;line-height:22px;font-size:16px;margin:0;padding:0" align=3D"=
+left" valign=3D"top"></td>
+          </tr>
+        </tbody></table>
+       =20
+      </td>
+    </tr>
+  </tbody></table>
+
+
+              <table style=3D"border-spacing:0;border-collapse:collapse;ver=
+tical-align:top;text-align:left;width:100%;display:block;padding:0px">
+                <tbody><tr style=3D"vertical-align:top;text-align:left;padd=
+ing:0" align=3D"left">
+                  <td style=3D"word-break:break-word;border-collapse:collap=
+se!important;vertical-align:top;text-align:left;color:#222222;font-family:&=
+#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weig=
+ht:normal;line-height:22px;font-size:16px;margin:0;padding:10px 0px 0px" al=
+ign=3D"left" valign=3D"top">
+                    <table style=3D"border-spacing:0;border-collapse:collap=
+se;vertical-align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+                      <tbody><tr style=3D"vertical-align:top;text-align:lef=
+t;padding:0" align=3D"left">
+                        <td style=3D"word-break:break-word;border-collapse:=
+collapse!important;vertical-align:top;text-align:left;color:#222222;font-fa=
+mily:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;fon=
+t-weight:normal;line-height:22px;font-size:16px;margin:0;padding:0px 0px 10=
+px" align=3D"left" valign=3D"top">
+                         =20
+
+ =20
+  <table style=3D"border-spacing:0;border-collapse:collapse;vertical-align:=
+top;text-align:left;width:300px;margin:0 auto;padding:0">
+    <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;li=
+ne-height:22px;font-size:16px;margin:0;padding:0px 0px 10px 10px" align=3D"=
+left" valign=3D"top">
+       =20
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:100%;overflow:hidden;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0"=
+ align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:center;color:#ffffff!important;font-fa=
+mily:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;fon=
+t-weight:bold;line-height:22px;font-size:16px;display:block;width:auto!impo=
+rtant;border-radius:3px;margin:0;padding:0;border:none;background:#ffffff" =
+align=3D"center" bgcolor=3D"#ffffff" valign=3D"top">
+             =20
+
+
+
+  <a style=3D"border:1px solid #d6d6d6;border-radius:3px;color:#3e9de7!impo=
+rtant;text-decoration:none;font-weight:bold;font-family:&#39;Open Sans&#39;=
+,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-size:16px;display:bloc=
+k;padding:10px 30px;background:#ffffff" href=3D"http://email.teamsnap.com/l=
+s/click?upn=3DYGDhJHk72kYkzbfksAWZ19rpBJVKS9Ot52i1KBbTqmy8hXTgIQfR8nOigP6T8=
+9lOQXUmUSFLABSRbe2P1mR8y8Q4WhAXUNDWvx2whmg16c48zXGnPJHdvm0t2C2tHf7ToMeISMXq=
+TitHxMkZsx8MIT2O0tXjzknuRJKdPtG90OWnyS0k8XMujqMvHSzb-2FJIQdfUXFM2gqqacNqmXn=
+tqXKe4v3HLenSxf6DH8ae8L-2BupsDBupYjbSGuJHeYzMKHfZP8C4Q3nTp1p8dbCxgicafEgiro=
+3EZFxaQWJaDZiNGdAAvj2QaJrZVHcAkRT0dewwzcbj_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1c=
+eDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2Fba=
+gUSuY6cJxOqqGicf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kET=
+GRZ-2FcDSa7noiAtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMc=
+WBgJK8M3t6L-2FUFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMqrrDTpBdPa-2F1Plrs=
+AuMMENcWWg44qBYgSbDjKqoGMNqwZh-2BFQLSAsUOqZeS6s9pcl4M4UHmGYVGGznYaklLoSBu74=
+f8JMKVlgNUwO4FNhv6tP4PX9cSYhmgNz8lBNLipLrRD8adpaZYt3LYSC8FKF7wyYpXRTKYOhA5m=
+kKRKkEca6-2B1K8MUgNO-2BOs971OuKUk-3D" target=3D"_blank">Log In</a>
+
+            </td>
+          </tr>
+        </tbody></table>
+       =20
+      </td>
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;width:0px;color:#222222;font-family:&#3=
+9;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight=
+:normal;line-height:22px;font-size:16px;margin:0;padding:0" align=3D"left" =
+valign=3D"top"></td>
+    </tr>
+  </tbody></table>
+
+
+                        </td>
+                      </tr>
+                    </tbody></table>
+                  </td>
+                </tr>
+              </tbody></table>
+
+             =20
+             =20
+
+              <table style=3D"border-spacing:0;border-collapse:collapse;ver=
+tical-align:top;text-align:left;width:100%;display:block;padding:0px">
+                <tbody><tr style=3D"vertical-align:top;text-align:left;padd=
+ing:0" align=3D"left">
+                  <td style=3D"word-break:break-word;border-collapse:collap=
+se!important;vertical-align:top;text-align:left;color:#222222;font-family:&=
+#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weig=
+ht:normal;line-height:22px;font-size:16px;margin:0;padding:10px 0px 0px" al=
+ign=3D"left" valign=3D"top">
+                    <table style=3D"border-spacing:0;border-collapse:collap=
+se;vertical-align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+                        <tbody><tr>
+    <td>
+      <p style=3D"border-radius:3px;color:#959595;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;te=
+xt-align:center;line-height:20px;font-size:12px;margin:0 0 10px 0;padding:1=
+0px;text-align:center" align=3D"center">
+        If you prefer not to receive email from <strong>2011 Girls Force Ac=
+ademy Iron</strong>, <a style=3D"color:#4a90e2" href=3D"http://email.teamsn=
+ap.com/ls/click?upn=3DHriSoJ-2BIgA7vg8bKshF7u-2FqJ1wcDnnMG27qUCo75DJmEdKOIW=
+jKozQANAynuH77iCNnxsziREa9P9a0Z3qsh3v7y02Z-2F08lo2CmZRhfyFV3E8u-2BjIHx7f0SI=
+Tg-2B1XL5JsaFSzhg46LMmwN1yAadE3ELsDJ9wh1BY2CRhQy-2FgBMgpWiYBB-2FcvUaEelC-2B=
+cxvOnuJf2k9SxVFuLosUfuQ6YNP4CVehU75uDQt9VcpajP0ztROE8Tj9Vj3QLlQqZPYTRWyHc0Q=
+E4VUutEtQpQC4GIw-3D-3DBdYG_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12yO=
+EqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2FbagUSuY6cJxOqqGicf=
+6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kETGRZ-2FcDSa7noiAt=
+uYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMcWBgJK8M3t6L-2FUF=
+rP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMr8KlpJvTQ4qacLCke-2BQN5kHOsVFQuaeO=
+x2LK5RWzKYuVelxr3yvznCG9YlFVZlycxr1533leDpD4n2vSqcGfwb8xPLVJHljYecbLjpZVIcn=
+6YsTE-2BXq0UtouHeE1VRNUXsAtdMagbUb-2BTZ3dm0w-2B50ZnyttP1ayB7nqDXCk-2Fe-2FlQ=
+dGBWQ1nRwaanBXx8RKxec-3D" target=3D"_blank">update your communication prefe=
+rences</a>.
+        <br>
+        Copyright =C2=A9 2023 TeamSnap, all rights reserved. <span style=3D=
+"white-space:nowrap">View our <a style=3D"color:#a6a6a6" href=3D"http://ema=
+il.teamsnap.com/ls/click?upn=3DirMOA7Fglo-2FCDed0gzHnUFoLp2IPrRn70-2B65xgSD=
+sMKQ0YKFStW3fcAOdn5V33MqQ5cZ_gph5yBD-2FEpXdkKIlLPOe9kf5flSi1ceDqsJv2ThT6k12=
+yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOeLkAx-2FbagUSuY6cJxOqqGi=
+cf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie5hjNg5kETGRZ-2FcDSa7noi=
+AtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80BtgpdeetMcWBgJK8M3t6L-2F=
+UFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMrIRrs4sip2ESmxxb-2FoWQnfbbjuHLMK=
+SQcWlGVVU7Fw-2FVOXoXtFN6TupwqyfxZBtrHyohxG-2BzBdnLmVyXtaAATBvdg6RooL2KEqqs-=
+2BioPfDvuGwap824siPZmaTxMvG4L6vqIxvN-2FnH2fqITJQW7R9bl2d9FJR7QECYqqyEIA0Iy8=
+FXZKZoo90EKz0iPZsMQRQ-3D" target=3D"_blank">Privacy Policy</a>.</span>
+        <br>
+        TeamSnap World HQ, <span><a href=3D"https://www.google.com/maps/sea=
+rch/2040+14th+Street,+Boulder,+CO+80302?entry=3Dgmail&amp;source=3Dg">2040 =
+14th Street,</a></span> <span style=3D"white-space:nowrap"><a href=3D"https=
+://www.google.com/maps/search/2040+14th+Street,+Boulder,+CO+80302?entry=3Dg=
+mail&amp;source=3Dg">Boulder, CO 80302</a></span>
+      </p>
+    </td>
+  </tr>
+
+                    </tbody></table>
+                  </td>
+                </tr>
+              </tbody></table>
+                <table style=3D"border-spacing:0;border-collapse:collapse;v=
+ertical-align:top;text-align:inherit;width:580px;margin:0 auto;padding:0">
+    <tbody><tr style=3D"vertical-align:top;text-align:left;padding:0" align=
+=3D"left">
+      <td style=3D"word-break:break-word;border-collapse:collapse!important=
+;vertical-align:top;text-align:left;color:#222222;font-family:&#39;Open San=
+s&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;,sans-serif;font-weight:normal;li=
+ne-height:22px;font-size:16px;background:#fff;margin:0;padding:10px 0px 0px=
+" align=3D"left" bgcolor=3D"#fff" valign=3D"top">
+        <table style=3D"border-spacing:0;border-collapse:collapse;vertical-=
+align:top;text-align:left;width:580px;margin:0 auto;padding:0">
+          <tbody><tr style=3D"vertical-align:top;text-align:center;padding:=
+0" align=3D"left">
+            <td style=3D"word-break:break-word;border-collapse:collapse!imp=
+ortant;vertical-align:top;text-align:center;min-width:0px;width:100%;color:=
+#222222;font-family:&#39;Open Sans&#39;,&#39;Helvetica&#39;,&#39;Arial&#39;=
+,sans-serif;font-weight:normal;line-height:22px;font-size:16px;margin:0;pad=
+ding:0px 10px 10px 0px" align=3D"left" bgcolor=3D"#fff" valign=3D"top">
+              <a href=3D"http://email.teamsnap.com/ls/click?upn=3DirMOA7Fgl=
+o-2FCDed0gzHnUNBgE9DVxzZjlP5hiPP1DQc013EnsuT-2F4MUFU9PRZkqXAZ4va1f7hXMlqOKx=
+18Jm-2B8uqbBtNL3cNsfBzdt6nETwwxsnOylncCs2jIm9Vcd8D6uZ-2Fru4FelvKwIsSaapn1lJ=
+61D1VC1gmo2Igz4C-2FlYVoxY9-2Bf-2F4S5SzwfmTS59wP8UEn_gph5yBD-2FEpXdkKIlLPOe9=
+kf5flSi1ceDqsJv2ThT6k12yOEqhN5CaAujHazURlcWZ1EyTV0mEjfT9vlqlFA2H5-2BJxPqZOe=
+LkAx-2FbagUSuY6cJxOqqGicf6G7Hah0nNwDCtnae6Wrm3WZhkMqyw6kQikLwhF-2F3MJ20bMie=
+5hjNg5kETGRZ-2FcDSa7noiAtuYoO7tgYZCh9gKj48OEt-2F11ufUXWf1hg3qWRNszyoW9rg80B=
+tgpdeetMcWBgJK8M3t6L-2FUFrP6slg2zwwIY-2Fk9jxuYkf2tlXlfrMp7JTflluZMqnnjgMO9X=
+WfJ4LG9zoEwBDB8q-2Fu-2FK990dY-2BgBEnDuU2THP4Z4iMV2MQp-2Fwg3TC2c8iAWsIF-2F4Y=
+oySxp9kR9u1y3IhL-2BWAT8XClbW1MI72wM2dmv3vRZ1hPEZpTc9lhLoOAOqG4vnxufG4JCtdYq=
+BF33z2aBmVnbaNaCsAi2OdukJz3BCrkCJN7wcGb1zf3APg-3D" target=3D"_blank"><img a=
+lt=3D"TeamSnap" height=3D"auto" style=3D"outline:none;text-decoration:none;=
+width:150px;max-width:80%;clear:both;display:inline-block;padding:20px 0;fl=
+oat:none" src=3D"https://emails.teamsnap.com/2017/10/powered_by_logo-300w-1=
+60x61.png"></a>
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+  </tbody></table>
+
+            </td>
+          </tr>
+        </tbody></table>
+      </center>
+    </td>
+  </tr>
+</tbody></table>
+<img src=3D"http://email.teamsnap.com/wf/open?upn=3DVBjCVHbcZuVp1fVx0fHJUdS=
+TYQrf6QGCGMYrNLVa0Dt1J1STBkP-2Bdmk9HrYFkUBPZ8rfWT2rHrRKfkT-2BCDUg-2BWlWGhTA=
+gcTPBauJaWXAe4mlXwtsZlQ4nyjX9483-2B7aWPSNiPr0Ceqvwoa-2B2WvgmDLBKOTVmVDPYW1o=
+6Q-2BJbOQlfR3D1bYnlwp31r1kVYFQ0NB4PgCs52ldxika38yEwOqEEanYmU40U9HMPtzP96Y9g=
+mB6Aksd9EYjgT2qhbxdUwztO-2BBSsUM1OBvGkPDFSo4unoyXxeBwc0rQm0mfPZnDo6OFDaWfqi=
+-2FsMgDJFsX-2FqTvpwoS590HA27kCLv3eyn73ORj7Wqba0g-2BdESWqhuxfAMFDJZRN0zY5kpd=
+LiUcR6AohfWgNtXBhQX-2Bw-2Bnm7-2FZKTzn1BwZ4JijBPrhPpR0eLn-2F0gRC-2Fhyi564OJq=
+SFyGl0Ny7PneAdqzqcLNytyjhwXIvd9HCIozrZX0x6IJKr4tH6Rv-2BkrlFaSfjojRir1kx" al=
+t=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px!important;=
+width:1px!important;border-width:0!important;margin-top:0!important;margin-=
+bottom:0!important;margin-right:0!important;margin-left:0!important;padding=
+-top:0!important;padding-bottom:0!important;padding-right:0!important;paddi=
+ng-left:0!important"></div>
+
+</div></div>
+
+--00000000000015ba4d0608f3632c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1187621</integer>
+	<key>date-last-viewed</key>
+	<integer>1745785883</integer>
+	<key>date-received</key>
+	<integer>1698691297</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12299</string>
+</dict>
+</plist>

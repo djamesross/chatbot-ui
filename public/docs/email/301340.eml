@@ -1,0 +1,854 @@
+45644     
+Return-path: <frasen@ecolecatholique.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from qs51p00im-qukt01062502.me.com by p133-mailgateway-smtp-5dd8b85c5-m6z6d (mailgateway 2315B206)
+	with SMTP id 0e7675ce-134f-4d9b-8b56-1c6d3620e320 
+	for <darrylross@icloud.com>; Wed, 10 May 2023 18:29:49 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: 0e7675ce-134f-4d9b-8b56-1c6d3620e320
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by qs51p00im-qukt01062502.me.com (Postfix) with ESMTPS id 3B30C49400CC
+	for <darrylross@icloud.com>; Wed, 10 May 2023 18:29:45 +0000 (UTC)
+X-ICL-SCORE: 3.332033030041
+X-ICL-INFO: GAtbVUseBVFHSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaVkQDBhwINx1TWQ4Q
+ GgcDEF9aCwQMA1kbURRCEx1bVR1TWQ4QGgcDEF9aCwQMA1kbURRCBhAWSloCBltbQVNZSgEPTERO
+ VlVYWFMOGkREGhlZWk8MG1daHgEBUlseCRgfXFNMFhYLVVhAQhBIWwsWEVwbGxdISxFJBwZMEhYJ
+ EBRVGAEaFERXHFQLQBAaCRsdU1cWHRYKHglFU0wWGERXFVlSX1dFJTY9WANfQ0gtNj5CQQkdDj9P
+ IWZfEUAgKjUsURtQFz4EMUh/YgtMPw5EP2ZEJQNIUSMPcFsDHBVIEBVRXw5bGgkaRhIWEBZERBMZ
+ QkQbGQsJBAtwXwEZFhMTVlNZD1c=
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=ecolecatholique.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=ecolecatholique.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=ecolecatholique.ca header.i=@ecolecatholique.ca header.b=MdOhsUYk
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of frasen@ecolecatholique.ca designates 209.85.219.170 as permitted sender) smtp.mailfrom=frasen@ecolecatholique.ca
+Received-SPF: pass (spf.icloud.com: domain of frasen@ecolecatholique.ca designates 209.85.219.170 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.219.170; helo=mail-yb1-f170.google.com; envelope-from=frasen@ecolecatholique.ca
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-b9a6d9dcbebso6709272276.2
+        for <darrylross@icloud.com>; Wed, 10 May 2023 11:29:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ecolecatholique.ca; s=google; t=1683743385; x=1686335385;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FyoezWhEIxnHkNGhzi/lB2tcOJWTpLpTj+IzhhldHFo=;
+        b=MdOhsUYk/mdEfFWTkwav6c8OOFrYmIdTnpCUH5Oxl2SW9JCjrdMWW/CUCBMglf/hf3
+         eaqBcwq4PhIh+urO5GrIt2dMaC4SVEQOju8icSTB2Jqb6l8XafvqMGGnrywkFShQhyW9
+         XZeXU5RTJeqUatXCa6UhTjDrKaLQlpQWDSh+u60sc0EgHygjai8TU+whGoLtarMAIj+r
+         e35VDllA2PkPmz3YSnOhV/a2AgbbJVvumt6f3uHi+rDup95cm+n83VbKu1VyvpvFL69j
+         CxW8UWeUSPaOgDCnx1IkDtYiM/Q1v/NuNTj1l3My+R9lX1x3p2LWPoAzC+dLjTQNegxd
+         hhEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683743385; x=1686335385;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FyoezWhEIxnHkNGhzi/lB2tcOJWTpLpTj+IzhhldHFo=;
+        b=N13ut2pkPZm7fcqZFF4SFwhTYpvo/7LpObrZWNMsejyed1lP2zVMwdaSk1BErPpuX2
+         mL2frwJkfD5uLYKuY/ZPQJPPJ0YgqqR+IeizpZADglLtSD47QJnAruz7DAJulmcdSjfk
+         TORoBlvCHvMGmarK6dcPWjT/lvorVlj/5yhl4p5zVIqAV5vlTtUEiCqUKnurbPxsbLCs
+         PN6i7TxKPDSEOQv2U7IWL+Dt1vdpUmlBewdxTLI+Px7sTJ+RyAlIg9bycPkMCEIykRwb
+         /Bfgy3+85btGX+8yLYDcpArApUIkosiKnOpcEDbqs8TVLau1pSSuHvP2TPobQ6LLLsLd
+         PlXg==
+X-Gm-Message-State: AC+VfDx62gJAKlzPjkVJsPQSn16uUxRDmBtCmVHqMDpvuKTy3t5vBE78
+	RzgbgLfxQWHkRyDIUfHYYwrx52pGlI3Iwc/OjB+tAS/dfP3Md7JPVjVbADxwo8D2FNg0CyF4snV
+	ajQwO31W0bE2ENmBWhNyFzCmx5r9hY1JpQOzpaw==
+X-Google-Smtp-Source: ACHHUZ79kaX8NpYhPQ/MENyQOzkvD0QjaQojPQtxgxTiMoyQiZHvxkydZWesgc+9uJUV8TFoIbtNJ2RalXRZHkRZX+U=
+X-Received: by 2002:a25:c1c3:0:b0:b9e:5fef:8b4a with SMTP id
+ r186-20020a25c1c3000000b00b9e5fef8b4amr17488230ybf.24.1683743384986; Wed, 10
+ May 2023 11:29:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <7BF1E520-8A14-46A6-BA47-9D8787899229@icloud.com>
+ <CAD0=z-XOEmi_0ow+yu=O_MPRQfWZ8GqAgZmtq3=kvSk0k487hA@mail.gmail.com>
+ <4A032E05-8BA5-4CB4-9DE6-BD2106BDD582@icloud.com> <CAD0=z-Uo3nM+FZkGuGm_UrbcwFUs-SJ__o8Pt0YB2R_=4N76Ow@mail.gmail.com>
+ <CAEh5=62CQoGGEer39sWzE_sEAtyCBWJdgCw43QRkTMkDRbnZbg@mail.gmail.com>
+ <7EF5D7DA-256B-4978-A176-D102489DBE8F@icloud.com> <CAEh5=61+zFCJDtaPVHbjmu5CkzKq1R6FxwYG=WKThE-GcvQdsw@mail.gmail.com>
+ <7CA672A3-DBD3-459E-957A-9254F0D13501@icloud.com> <CAEh5=60RSscUc4wqau0C7Y+VNsqo=eX7uJLSgcMgMA9KgoWyGA@mail.gmail.com>
+In-Reply-To: <CAEh5=60RSscUc4wqau0C7Y+VNsqo=eX7uJLSgcMgMA9KgoWyGA@mail.gmail.com>
+From: Nathalie Fraser <frasen@ecolecatholique.ca>
+Date: Wed, 10 May 2023 14:29:08 -0400
+Message-ID: <CAEh5=61KAFrwkhwY8YVis5YLBTa-2bGbF0OTi9Fh3GVrGv17Tw@mail.gmail.com>
+Subject: Re:
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000005afd8905fb5b0eb4"
+X-MANTSH: 1TEIXW1kfG1oaGkNHB1tfQV4aGBoTGBkaGBEKTEMXGxoEGxsYBBsbGQQbGhAbHho
+ fGhEKTFkXGxoaHxEKWUQXZXtBSWRNRUkfY2sRCllNF25PRkNcT1gRCl9ZFx4aHxEKX00XZEVET
+ xEKWUkXHR9xGwYbHxp3BhgaGgYaBhoGGxoaBhpxGhAadwYaBhoGGRoGGgYaBhpxGhAadwYaEQp
+ ZXhdsbHkRCkNOF0BnW01fUnUTUllcXFhMWwdzRHJaX0NzeRpZHm5AWV1eEQpYXBcZBBoEHxoFG
+ xoaBBIYBBsfEgQYExAbHhofGhEKXlkXSEFzSRsRCk1cFxgaGREKTFoXaGlNe2sRCk1OF2lrEQp
+ MRhdsTWsRCkNaFxgaEwQSHwQYGxMEGx0aEQpCXhcbEQpCXBcbEQpeThcbEQpCSxdif3p5TkVGR
+ XJ4UhEKQkkXYn96eU5FRkVyeFIRCkJFF3pjemxQTUxCHlJrEQpCThdif3p5TkVGRXJ4UhEKQkw
+ XaRN4HEJbTn9we0kRCkJsF2wTS1xkc3NyTmhOEQpCQBdpZEZNTHNZHXNuaREKQlgXYmtOb296b
+ GdaR0sRClpYFx8RCnBnF2Z6c1llbBlsRVNrEBoRCnBoF28cGmZ5RXNncnpZEBoRCnBoF21eG3J
+ BeGhCYWhgEBoRCnBoF2h8GXt6ZB98R0xgEBoRCnBoF2JZTkFJTU9DZBIbEBoRCnBoF2kcGkB+Z
+ Fhaf2dTEBoRCnBnF2ZcYV1JS2hlR18aEBoRCnBnF2F6a2NMYkhyQGltEBwaEQpwfRdnbWweWnl
+ PbGFHGxAaEQpwfRdga3h6QmxHSW0caRAHGRoRCnB/F2B4fWh9ExsBYRhFEAcSHBEKcF8XYXJoX
+ msdQnoBT30QBx0eEQpwXxdga3h6QmxHSW0caRAHGRoRCnBsF2MbaG4cY098ZmR5EBoRCm1+Fxo
+ RClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: jMqgux_9xsvvrfq-YnXpuiYS0s4Djswt
+X-Proofpoint-ORIG-GUID: jMqgux_9xsvvrfq-YnXpuiYS0s4Djswt
+
+--0000000000005afd8905fb5b0eb4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Monsieur,
+
+J'ai v=C3=A9rifi=C3=A9 pour le magasin en ligne et voici l'information que =
+j'ai re=C3=A7u :
+
+Il y a 2 choses, quand on clique sur le magasin en ligne (dans Aspen), =C3=
+=A7a
+ouvre une fen=C3=AAtre bleue (Espace parent) et dans cet espace parent, il =
+y a
+un autre ic=C3=B4ne du magasin en ligne qui lui va directement dans le maga=
+sin
+en ligne. Plus t=C3=B4t aujourd'hui, le d=C3=A9partement d'informatique a
+r=C3=A9initialis=C3=A9 le mot de passe de la fen=C3=AAtre bleue. En fait, v=
+ous devriez
+avoir re=C3=A7u un courriel avec un mot de passe temporaire de 5 chiffres. =
+Je ne
+sais pas si vous l'avez essay=C3=A9 ?
+
+Si vous l'avez essay=C3=A9 et que tout fonctionne, cela r=C3=A8gle la situa=
+tion.
+Comme nous ne savons pas si c'est la fen=C3=AAtre bleue (espace parent) qui=
+ ne
+fonctionne pas ou l'ic=C3=B4ne m=C3=AAme du magasin en ligne, le d=C3=A9par=
+tement de
+l'informatique va demander =C3=A0 la programmation de v=C3=A9rifier si votr=
+e compte
+de l'espace parent est correct.
+
+Est-ce possible de me confirmer si cela a fonctionn=C3=A9 ?
+
+Merci,
+
+
+Nathalie Fraser-Kenney
+Agente administrative
+Bureau de la surintendance
+Conseil des =C3=A9coles catholiques du Centre-Est (CECCE)
+4000, rue Labelle
+Ottawa (Ontario)  K1J 1A1
+T=C3=A9l=C3=A9phone : (613) 746-3621
+T=C3=A9l=C3=A9copieur : (613) 746-3618
+Courriel : frasen@ecolecatholique.ca <lamotn@ecolecatholique.ca>
+
+
+
+
+
+Le mar. 9 mai 2023 =C3=A0 08:58, Nathalie Fraser <frasen@ecolecatholique.ca=
+> a
+=C3=A9crit :
+
+> Merci pour le retour rapide. Je vais tenter d'obtenir une solution d'ici
+> demain pour vos acc=C3=A8s.
+>
+>
+> Nathalie Fraser-Kenney
+> Agente administrative
+> Bureau de la surintendance
+> Conseil des =C3=A9coles catholiques du Centre-Est (CECCE)
+> 4000, rue Labelle
+> Ottawa (Ontario)  K1J 1A1
+> T=C3=A9l=C3=A9phone : (613) 746-3621
+> T=C3=A9l=C3=A9copieur : (613) 746-3618
+> Courriel : frasen@ecolecatholique.ca <lamotn@ecolecatholique.ca>
+>
+>
+>
+>
+>
+> Le mar. 9 mai 2023 =C3=A0 08:40, Darryl Ross <darrylross@icloud.com> a =
+=C3=A9crit :
+>
+>> Merci. Elle peut me joindre au 613-762-2067.
+>>
+>> Daryl
+>>
+>> On May 9, 2023, at 08:38, Nathalie Fraser <frasen@ecolecatholique.ca>
+>> wrote:
+>>
+>> Parfait. Je vais contacter les TI aujourd'hui. =C3=80 quel num=C3=A9ro p=
+eut-elle
+>> vous joindre ?
+>>
+>>
+>> Nathalie Fraser-Kenney
+>> Agente administrative
+>> Bureau de la surintendance
+>> Conseil des =C3=A9coles catholiques du Centre-Est (CECCE)
+>> 4000, rue Labelle
+>> Ottawa (Ontario)  K1J 1A1
+>> T=C3=A9l=C3=A9phone : (613) 746-3621
+>> T=C3=A9l=C3=A9copieur : (613) 746-3618
+>> Courriel : frasen@ecolecatholique.ca <lamotn@ecolecatholique.ca>
+>>
+>>
+>>
+>>
+>>
+>> Le mar. 9 mai 2023 =C3=A0 08:37, Darryl Ross <darrylross@icloud.com> a =
+=C3=A9crit :
+>>
+>>> Bonjour,
+>>>
+>>> Oui, elle peut m'appeler =C3=A0 11h00 demain matin.
+>>>
+>>> Non =C3=A7a ne marche pas. J'ai essay=C3=A9 de r=C3=A9initialiser mon m=
+ot de passe il y
+>>> a quelques minutes et cela ne fonctionne toujours pas.
+>>>
+>>> Merci,
+>>>
+>>> Daryl
+>>>
+>>> On May 9, 2023, at 08:25, Nathalie Fraser <frasen@ecolecatholique.ca>
+>>> wrote:
+>>>
+>>> Bonjour,
+>>>
+>>> Je vous confirme que nous avons bien re=C3=A7u votre courriel et madame
+>>> Goulard serait disponible demain matin =C3=A0 11 h. Est-ce possible pou=
+r elle de
+>>> vous appeler ?
+>>>
+>>> Pour ce qui est de vos acc=C3=A8s, est-ce que tout fonctionne ?
+>>>
+>>> Merci,
+>>>
+>>>
+>>> Nathalie Fraser-Kenney
+>>> Agente administrative
+>>> Bureau de la surintendance
+>>> Conseil des =C3=A9coles catholiques du Centre-Est (CECCE)
+>>> 4000, rue Labelle
+>>> Ottawa (Ontario)  K1J 1A1
+>>> T=C3=A9l=C3=A9phone : (613) 746-3621
+>>> T=C3=A9l=C3=A9copieur : (613) 746-3618
+>>> Courriel : frasen@ecolecatholique.ca <lamotn@ecolecatholique.ca>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> ---------- Forwarded message ---------
+>>> De : Darryl Ross <darrylross@icloud.com>
+>>> Date: jeu. 4 mai 2023 =C3=A0 18:08
+>>> Subject: Re:
+>>> To: France Goulard <goulaf@ecolecatholique.ca>
+>>>
+>>>
+>>> Ch=C3=A8re France,
+>>>
+>>> Je vous remercie sinc=C3=A8rement pour votre message et pour votre trav=
+ail
+>>> diligent dans la r=C3=A9solution du probl=C3=A8me. J'appr=C3=A9cie votr=
+e intervention
+>>> aupr=C3=A8s de l'=C3=A9cole et votre aide pour acc=C3=A9der =C3=A0 la b=
+outique en ligne.
+>>>
+>>> J'esp=C3=A8re que nous pourrons entrer en contact demain, mais si ce n'=
+est
+>>> pas le cas, je m'arrangerai avec votre assistante administrative pour f=
+ixer
+>>> un moment pour notre discussion la semaine prochaine.
+>>>
+>>> Merci encore pour votre temps et votre attention.
+>>>
+>>> Chaleureusement,
+>>>
+>>> M. Ross
+>>>
+>>> On May 4, 2023, at 17:19, France Goulard <goulaf@ecolecatholique.ca>
+>>> wrote:
+>>>
+>>> Good evening Mr. Ross,
+>>>
+>>> Thank you for your email and the 2017 court order. I followed up with
+>>> the school to let them know our points of discussion and I also looked =
+into
+>>> your access to the magasin en ligne. It should be in working order now,=
+ but
+>>> if not, please let me know, and I will get a technical support staff to
+>>> address the issue with you. I will try and give you a call tomorrow, bu=
+t if
+>>> I'm not successful in reaching you, I will ask my administrative assist=
+ant
+>>> to set a time for us to discuss at some point next week.
+>>>
+>>> Kind regards.
+>>> France
+>>>
+>>> France Goulard, MEd
+>>> Surintendante de l'=C3=A9ducation
+>>> CECCE
+>>>
+>>>
+>>>
+>>> Le mar. 2 mai 2023 =C3=A0 21:21, Darryl Ross <darrylross@icloud.com> a
+>>> =C3=A9crit :
+>>>
+>>>> Good evening,
+>>>>
+>>>> I=E2=80=99ve attached the 2017 Order below. As you will see there is a=
+n order
+>>>> concerning primary residence (par. 2) and an order concerning custody =
+(par.
+>>>> 1).
+>>>>
+>>>> I sent a copy of this order to Mms. Girard on April 19 and asked her t=
+o
+>>>> confirm that she received it. She did not respond.
+>>>>
+>>>> The only communication I received was the following message on April 2=
+5:
+>>>>
+>>>> "I just wanted to follow up with you on your request to have access to
+>>>> Magasin en ligne. Since  the beginning of this school year, all school
+>>>> boards in Ontario have changed student data base system (from Trillium=
+ to
+>>>> Aspen). In this new data base, there is only the option of giving view=
+ing
+>>>> access to the parent that has legal custody. We have asked the IT
+>>>> department to look into it and are waiting for their response. I will =
+keep
+>>>> you informed as soon as I hear anything."
+>>>>
+>>>> I was concerned that it made no mention of our meeting, my email,
+>>>> whether the court order was received, and it says that the problem is =
+both
+>>>> a technical issue and due to the fact that only the parent with custod=
+y can
+>>>> have access. Or that the problem is not actually a technical issue due=
+ to
+>>>> database migration but rather that the new database only allows parent=
+s
+>>>> with legal custody to access the magasin en ligne. There=E2=80=99s two=
+, maybe three
+>>>> explanations in that message and none of them addressed the fact that =
+I had
+>>>> access to and used the magasin en ligne, received school newsletters, =
+and
+>>>> notifications if the girls were sick from the start of the school year
+>>>> through at least Nov. 15 without issue. I contacted the school to ask =
+for
+>>>> clarification. During our meeting I was told that she would review the
+>>>> Orders and get back to me about them. I did not receive a response to =
+my
+>>>> email or message, and the explanation provided clearly states that I d=
+o not
+>>>> have custody and so some kind of work around will be provided.
+>>>>
+>>>> I tried to reset my password a few minutes ago and it does not work.
+>>>>
+>>>> I am sorry that the vice-principal and you have become so involved in
+>>>> private family matters but I appreciate your phone call today and look
+>>>> forward to speaking further this week.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Darryl
+>>>>
+>>>>
+>>> ------------------------------
+>>> Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent cont=
+enir de
+>>> l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou =
+confidentielle, sujette au
+>>> droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99=
+individu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+>>> l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie =
+ou
+>>> distribution non autoris=C3=A9e du contenu de ce courriel est interdite=
+. Si vous
+>>> croyez que ce message est un pourriel au sens de la Loi canadienne
+>>> anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivan=
+te :
+>>> pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par er=
+reur,
+>>> veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel e=
+t supprimer de
+>>> votre syst=C3=A8me ce message et tout document joint. Merci de votre
+>>> collaboration.
+>>> ------------------------------
+>>>
+>>>
+>>>
+>>> ------------------------------
+>>> Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent cont=
+enir de
+>>> l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou =
+confidentielle, sujette au
+>>> droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99=
+individu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+>>> l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie =
+ou
+>>> distribution non autoris=C3=A9e du contenu de ce courriel est interdite=
+. Si vous
+>>> croyez que ce message est un pourriel au sens de la Loi canadienne
+>>> anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivan=
+te :
+>>> pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par er=
+reur,
+>>> veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel e=
+t supprimer de
+>>> votre syst=C3=A8me ce message et tout document joint. Merci de votre
+>>> collaboration.
+>>> ------------------------------
+>>>
+>>> ------------------------------
+>>> Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent cont=
+enir de
+>>> l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou =
+confidentielle, sujette au
+>>> droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99=
+individu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+>>> l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie =
+ou
+>>> distribution non autoris=C3=A9e du contenu de ce courriel est interdite=
+. Si vous
+>>> croyez que ce message est un pourriel au sens de la Loi canadienne
+>>> anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivan=
+te :
+>>> pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par er=
+reur,
+>>> veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel e=
+t supprimer de
+>>> votre syst=C3=A8me ce message et tout document joint. Merci de votre
+>>> collaboration.
+>>> ------------------------------
+>>>
+>>>
+>>>
+>> ------------------------------
+>> Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent conte=
+nir de
+>> l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou c=
+onfidentielle, sujette au
+>> droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99i=
+ndividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0
+>> l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie o=
+u
+>> distribution non autoris=C3=A9e du contenu de ce courriel est interdite.=
+ Si vous
+>> croyez que ce message est un pourriel au sens de la Loi canadienne
+>> anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivant=
+e :
+>> pourriel@ecolecatholique.ca . Si vous avez re=C3=A7u ce courriel par err=
+eur,
+>> veuillez en informer l=E2=80=99exp=C3=A9diteur par retour de courriel et=
+ supprimer de
+>> votre syst=C3=A8me ce message et tout document joint. Merci de votre
+>> collaboration.
+>> ------------------------------
+>>
+>>
+>>
+
+--=20
+Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent contenir=
+ de=20
+l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou conf=
+identielle, sujette au=20
+droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99indi=
+vidu ou =C3=A0 l=E2=80=99organisme ou =C3=A0=20
+l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie ou=
+=20
+distribution non autoris=C3=A9e du contenu de ce courriel est interdite. Si=
+ vous=20
+croyez que ce message est un pourriel au sens de la Loi canadienne=20
+anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivante :=
+=20
+pourriel@ecolecatholique.ca <mailto:pourriel@ecolecatholique.ca> . Si vous=
+=20
+avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par=20
+retour de courriel et supprimer de votre syst=C3=A8me ce message et tout=20
+document joint. Merci de votre collaboration.
+
+
+--0000000000005afd8905fb5b0eb4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:trebuche=
+t ms,sans-serif">Monsieur,</div><div class=3D"gmail_default" style=3D"font-=
+family:trebuchet ms,sans-serif"><br></div><div class=3D"gmail_default" styl=
+e=3D"font-family:trebuchet ms,sans-serif">J&#39;ai v=C3=A9rifi=C3=A9 pour l=
+e magasin en ligne et voici l&#39;information que j&#39;ai re=C3=A7u :</div=
+><div class=3D"gmail_default" style=3D"font-family:trebuchet ms,sans-serif"=
+><br></div><div class=3D"gmail_default" style=3D"font-family:trebuchet ms,s=
+ans-serif"><span style=3D"font-family:Arial,Helvetica,sans-serif">Il y a 2 =
+choses, quand on clique sur le magasin en ligne (dans Aspen), =C3=A7a ouvre=
+ une fen=C3=AAtre bleue (Espace parent) et dans cet espace parent, il y a u=
+n autre ic=C3=B4ne du magasin en ligne qui lui va directement dans le magas=
+in en ligne. Plus t=C3=B4t aujourd&#39;hui, le d=C3=A9partement d&#39;infor=
+matique a r=C3=A9initialis=C3=A9 le mot de=C2=A0passe de la fen=C3=AAtre=C2=
+=A0bleue. En fait, vous devriez avoir re=C3=A7u un=C2=A0courriel avec un mo=
+t de passe temporaire de 5 chiffres. Je ne sais pas si vous l&#39;avez essa=
+y=C3=A9 ?</span><div style=3D"font-family:Arial,Helvetica,sans-serif"><br><=
+/div><div style=3D"font-family:Arial,Helvetica,sans-serif">Si vous l&#39;av=
+ez essay=C3=A9 et que tout fonctionne, cela r=C3=A8gle la situation. Comme =
+nous ne savons pas si c&#39;est la fen=C3=AAtre bleue (espace parent) qui n=
+e fonctionne pas ou l&#39;ic=C3=B4ne=C2=A0m=C3=AAme du magasin en ligne, le=
+ d=C3=A9partement de l&#39;informatique va demander =C3=A0 la=C2=A0programm=
+ation de v=C3=A9rifier si votre compte de l&#39;espace parent est correct.=
+=C2=A0</div><div style=3D"font-family:Arial,Helvetica,sans-serif"><br></div=
+><div style=3D"font-family:Arial,Helvetica,sans-serif">Est-ce possible de m=
+e confirmer si cela a fonctionn=C3=A9 ?</div><div style=3D"font-family:Aria=
+l,Helvetica,sans-serif"><br></div><div style=3D"font-family:Arial,Helvetica=
+,sans-serif">Merci,</div></div><div><div dir=3D"ltr" class=3D"gmail_signatu=
+re" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div style=3D"font-size:12.8px"><font face=3D"ari=
+al, helvetica, sans-serif"><br></font></div><div style=3D"font-size:12.8px"=
+><font face=3D"arial, helvetica, sans-serif"><br></font></div><div style=3D=
+"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif">Nathalie Fra=
+ser-Kenney</font></div><div style=3D"font-size:12.8px"><font face=3D"arial,=
+ helvetica, sans-serif">Agente administrative</font></div><div style=3D"fon=
+t-size:12.8px"><font face=3D"arial, helvetica, sans-serif">Bureau de la sur=
+intendance</font></div><div style=3D"font-size:12.8px"><font face=3D"arial,=
+ helvetica, sans-serif">Conseil des =C3=A9coles catholiques du Centre-Est (=
+CECCE)</font></div><div style=3D"font-size:12.8px"><font face=3D"arial, hel=
+vetica, sans-serif">4000, rue Labelle</font></div><div style=3D"font-size:1=
+2.8px"><font face=3D"arial, helvetica, sans-serif">Ottawa (Ontario) =C2=A0K=
+1J 1A1</font></div><div style=3D"font-size:12.8px"><font face=3D"arial, hel=
+vetica, sans-serif">T=C3=A9l=C3=A9phone : (613) 746</font>-3621</div><div s=
+tyle=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif">T=C3=
+=A9l=C3=A9copieur : (613) 746-3618=C2=A0</font></div><div style=3D"font-siz=
+e:12.8px"><font face=3D"arial, helvetica, sans-serif">Courriel :=C2=A0<a hr=
+ef=3D"mailto:lamotn@ecolecatholique.ca" style=3D"color:rgb(17,85,204)" targ=
+et=3D"_blank">frasen@ecolecatholique.ca</a></font></div><div style=3D"font-=
+size:12.8px"><br></div><div style=3D"font-size:12.8px">=C2=A0<img src=3D"ht=
+tps://ci3.googleusercontent.com/mail-sig/AIorK4zeInNMi1mc0vxuDNZXlX6z8XALJP=
+92oBJFNhRf7jkQy5EGIqaQ-RnaSWviucL7Fs6xJaZoxLs" width=3D"420" height=3D"121"=
+ style=3D"font-size:small"><br></div><div style=3D"font-size:12.8px"><br></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div><br></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 9 mai 2023 =C3=A0=C2=
+=A008:58, Nathalie Fraser &lt;<a href=3D"mailto:frasen@ecolecatholique.ca">=
+frasen@ecolecatholique.ca</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_=
+default" style=3D"font-family:&quot;trebuchet ms&quot;,sans-serif">Merci po=
+ur le retour rapide. Je vais tenter d&#39;obtenir une solution d&#39;ici de=
+main pour vos acc=C3=A8s.=C2=A0</div><div><div dir=3D"ltr"><div dir=3D"ltr"=
+><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-size:12.8p=
+x"><font face=3D"arial, helvetica, sans-serif"><br></font></div><div style=
+=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif"><br></fon=
+t></div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica, san=
+s-serif">Nathalie Fraser-Kenney</font></div><div style=3D"font-size:12.8px"=
+><font face=3D"arial, helvetica, sans-serif">Agente administrative</font></=
+div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-se=
+rif">Bureau de la surintendance</font></div><div style=3D"font-size:12.8px"=
+><font face=3D"arial, helvetica, sans-serif">Conseil des =C3=A9coles cathol=
+iques du Centre-Est (CECCE)</font></div><div style=3D"font-size:12.8px"><fo=
+nt face=3D"arial, helvetica, sans-serif">4000, rue Labelle</font></div><div=
+ style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif">Ott=
+awa (Ontario) =C2=A0K1J 1A1</font></div><div style=3D"font-size:12.8px"><fo=
+nt face=3D"arial, helvetica, sans-serif">T=C3=A9l=C3=A9phone : (613) 746</f=
+ont>-3621</div><div style=3D"font-size:12.8px"><font face=3D"arial, helveti=
+ca, sans-serif">T=C3=A9l=C3=A9copieur : (613) 746-3618=C2=A0</font></div><d=
+iv style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif">C=
+ourriel :=C2=A0<a href=3D"mailto:lamotn@ecolecatholique.ca" style=3D"color:=
+rgb(17,85,204)" target=3D"_blank">frasen@ecolecatholique.ca</a></font></div=
+><div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">=
+=C2=A0<img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4zeInNMi1=
+mc0vxuDNZXlX6z8XALJP92oBJFNhRf7jkQy5EGIqaQ-RnaSWviucL7Fs6xJaZoxLs" width=3D=
+"420" height=3D"121" style=3D"font-size: small;"><br></div><div style=3D"fo=
+nt-size:12.8px"><br></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div><br></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar.=
+ 9 mai 2023 =C3=A0=C2=A008:40, Darryl Ross &lt;<a href=3D"mailto:darrylross=
+@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; a =C3=A9crit=
+=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><di=
+v>Merci. Elle peut me joindre au 613-762-2067.</div><div><br></div><div>Dar=
+yl</div><div><br><blockquote type=3D"cite"><div>On May 9, 2023, at 08:38, N=
+athalie Fraser &lt;<a href=3D"mailto:frasen@ecolecatholique.ca" target=3D"_=
+blank">frasen@ecolecatholique.ca</a>&gt; wrote:</div><br><div><div dir=3D"l=
+tr"><div class=3D"gmail_default" style=3D"font-family:&quot;trebuchet ms&qu=
+ot;,sans-serif">Parfait. Je vais contacter les TI aujourd&#39;hui. =C3=80 q=
+uel num=C3=A9ro peut-elle vous joindre ?</div><div><div dir=3D"ltr"><div di=
+r=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"=
+><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-s=
+ize:12.8px"><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif"><=
+br></font></div><div style=3D"font-size:12.8px"><font face=3D"arial, helvet=
+ica, sans-serif">Nathalie Fraser-Kenney</font></div><div style=3D"font-size=
+:12.8px"><font face=3D"arial, helvetica, sans-serif">Agente administrative<=
+/font></div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica,=
+ sans-serif">Bureau de la surintendance</font></div><div style=3D"font-size=
+:12.8px"><font face=3D"arial, helvetica, sans-serif">Conseil des =C3=A9cole=
+s catholiques du Centre-Est (CECCE)</font></div><div style=3D"font-size:12.=
+8px"><font face=3D"arial, helvetica, sans-serif">4000, rue Labelle</font></=
+div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-se=
+rif">Ottawa (Ontario) =C2=A0K1J 1A1</font></div><div style=3D"font-size:12.=
+8px"><font face=3D"arial, helvetica, sans-serif">T=C3=A9l=C3=A9phone : (613=
+) 746</font>-3621</div><div style=3D"font-size:12.8px"><font face=3D"arial,=
+ helvetica, sans-serif">T=C3=A9l=C3=A9copieur : (613) 746-3618=C2=A0</font>=
+</div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-=
+serif">Courriel :=C2=A0<a href=3D"mailto:lamotn@ecolecatholique.ca" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank">frasen@ecolecatholique.ca</a></=
+font></div><div style=3D"font-size:12.8px"><br></div><div style=3D"font-siz=
+e:12.8px">=C2=A0<img src=3D"https://ci3.googleusercontent.com/mail-sig/AIor=
+K4zeInNMi1mc0vxuDNZXlX6z8XALJP92oBJFNhRf7jkQy5EGIqaQ-RnaSWviucL7Fs6xJaZoxLs=
+" width=3D"420" height=3D"121" style=3D"font-size: small;"><br></div><div s=
+tyle=3D"font-size:12.8px"><br></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div><br></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=
+=C2=A0mar. 9 mai 2023 =C3=A0=C2=A008:37, Darryl Ross &lt;<a href=3D"mailto:=
+darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt; a =
+=C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div><div>Bonjour,</div><div><br></div><div>Oui, elle peut m&#39;appeler =
+=C3=A0 11h00 demain matin.</div><div><br></div><div>Non =C3=A7a ne marche p=
+as. J&#39;ai essay=C3=A9 de r=C3=A9initialiser mon mot de passe il y a quel=
+ques minutes et cela ne fonctionne toujours pas.</div><div><br></div><div>M=
+erci,</div><div><br></div><div>Daryl</div><div><br><blockquote type=3D"cite=
+"><div>On May 9, 2023, at 08:25, Nathalie Fraser &lt;<a href=3D"mailto:fras=
+en@ecolecatholique.ca" target=3D"_blank">frasen@ecolecatholique.ca</a>&gt; =
+wrote:</div><br><div><div dir=3D"ltr"><div class=3D"gmail_default" style=3D=
+"font-family:&quot;trebuchet ms&quot;,sans-serif">Bonjour,</div><div class=
+=3D"gmail_default" style=3D"font-family:&quot;trebuchet ms&quot;,sans-serif=
+"><br></div><div class=3D"gmail_default" style=3D"font-family:&quot;trebuch=
+et ms&quot;,sans-serif">Je vous confirme que nous avons bien re=C3=A7u votr=
+e courriel et madame Goulard serait disponible demain matin =C3=A0 11 h. Es=
+t-ce possible pour elle de vous appeler ?</div><div class=3D"gmail_default"=
+ style=3D"font-family:&quot;trebuchet ms&quot;,sans-serif"><br></div><div c=
+lass=3D"gmail_default" style=3D"font-family:&quot;trebuchet ms&quot;,sans-s=
+erif">Pour ce qui est de vos acc=C3=A8s, est-ce que tout fonctionne ?</div>=
+<div class=3D"gmail_default" style=3D"font-family:&quot;trebuchet ms&quot;,=
+sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:&qu=
+ot;trebuchet ms&quot;,sans-serif">Merci,</div><div><div dir=3D"ltr"><div di=
+r=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"=
+><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-s=
+ize:12.8px"><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-serif"><=
+br></font></div><div style=3D"font-size:12.8px"><font face=3D"arial, helvet=
+ica, sans-serif">Nathalie Fraser-Kenney</font></div><div style=3D"font-size=
+:12.8px"><font face=3D"arial, helvetica, sans-serif">Agente administrative<=
+/font></div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica,=
+ sans-serif">Bureau de la surintendance</font></div><div style=3D"font-size=
+:12.8px"><font face=3D"arial, helvetica, sans-serif">Conseil des =C3=A9cole=
+s catholiques du Centre-Est (CECCE)</font></div><div style=3D"font-size:12.=
+8px"><font face=3D"arial, helvetica, sans-serif">4000, rue Labelle</font></=
+div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-se=
+rif">Ottawa (Ontario) =C2=A0K1J 1A1</font></div><div style=3D"font-size:12.=
+8px"><font face=3D"arial, helvetica, sans-serif">T=C3=A9l=C3=A9phone : (613=
+) 746</font>-3621</div><div style=3D"font-size:12.8px"><font face=3D"arial,=
+ helvetica, sans-serif">T=C3=A9l=C3=A9copieur : (613) 746-3618=C2=A0</font>=
+</div><div style=3D"font-size:12.8px"><font face=3D"arial, helvetica, sans-=
+serif">Courriel :=C2=A0<a href=3D"mailto:lamotn@ecolecatholique.ca" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank">frasen@ecolecatholique.ca</a></=
+font></div><div style=3D"font-size:12.8px"><br></div><div style=3D"font-siz=
+e:12.8px">=C2=A0<img src=3D"https://ci3.googleusercontent.com/mail-sig/AIor=
+K4zeInNMi1mc0vxuDNZXlX6z8XALJP92oBJFNhRf7jkQy5EGIqaQ-RnaSWviucL7Fs6xJaZoxLs=
+" width=3D"420" height=3D"121" style=3D"font-size: small;"><br></div><div s=
+tyle=3D"font-size:12.8px"><br></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div><br><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"><br></di=
+v><div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">---------- Forwarded message ---------<br>De=C2=A0: <strong cl=
+ass=3D"gmail_sendername" dir=3D"auto">Darryl Ross</strong> <span dir=3D"aut=
+o">&lt;<a href=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylros=
+s@icloud.com</a>&gt;</span><br>Date: jeu. 4 mai 2023 =C3=A0=C2=A018:08<br>S=
+ubject: Re:<br>To: France Goulard &lt;<a href=3D"mailto:goulaf@ecolecatholi=
+que.ca" target=3D"_blank">goulaf@ecolecatholique.ca</a>&gt;<br></div><br><b=
+r><div><div>Ch=C3=A8re France,</div><div><br></div><div>Je vous remercie si=
+nc=C3=A8rement pour votre message et pour votre travail diligent dans la r=
+=C3=A9solution du probl=C3=A8me. J&#39;appr=C3=A9cie votre intervention aup=
+r=C3=A8s de l&#39;=C3=A9cole et votre aide pour acc=C3=A9der =C3=A0 la bout=
+ique en ligne.</div><div><br></div><div>J&#39;esp=C3=A8re que nous pourrons=
+ entrer en contact demain, mais si ce n&#39;est pas le cas, je m&#39;arrang=
+erai avec votre assistante administrative pour fixer un moment pour notre d=
+iscussion la semaine prochaine.</div><div><br></div><div>Merci encore pour =
+votre temps et votre attention.</div><div><br></div><div>Chaleureusement,</=
+div><div><br></div><div>M. Ross</div><div><br><blockquote type=3D"cite"><di=
+v>On May 4, 2023, at 17:19, France Goulard &lt;<a href=3D"mailto:goulaf@eco=
+lecatholique.ca" target=3D"_blank">goulaf@ecolecatholique.ca</a>&gt; wrote:=
+</div><br><div><div dir=3D"ltr"><div dir=3D"ltr">Good evening Mr. Ross,<div=
+><br></div><div>Thank you for your email and the 2017 court order. I follow=
+ed up with the school to let them know our points of discussion and I also =
+looked into your access to the magasin en ligne. It should be in working or=
+der now, but if not, please=C2=A0let me know, and I will get a technical su=
+pport staff to address the issue with you. I will try and give you a call t=
+omorrow, but if I&#39;m not successful in reaching you, I will ask my admin=
+istrative assistant to set a time for us to discuss at some point next=C2=
+=A0week.</div><div><br></div><div>Kind regards.</div><div>France</div><div>=
+<br clear=3D"all"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div style=3D"font-family:arial;font-size:small">France Goulard, M=
+Ed<br></div><div style=3D"font-family:arial;font-size:small">Surintendante =
+de l&#39;=C3=A9ducation</div><div style=3D"font-family:arial;font-size:smal=
+l">CECCE</div><div style=3D"font-family:arial;font-size:small"><img src=3D"=
+https://drive.google.com/a/ecolecatholique.ca/uc?id=3D0B4EwWeG5jOQ2QUJYWEh5=
+QUxZakRXaHR0eG9iYkVwWjd4aHA0&amp;export=3Ddownload" width=3D"96" height=3D"=
+33"><br></div></div></div></div></div></div></div></div></div></div><br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">Le=C2=A0mar. 2 mai 2023 =C3=A0=C2=A021:21, Darryl Ross &lt;<a href=3D"ma=
+ilto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</a>&gt;=
+ a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div>Good evening,<br><div><br></div><div>I=E2=80=99ve attached the 20=
+17 Order below. As you will see there is an order concerning primary reside=
+nce (par. 2) and an order concerning custody (par. 1).</div><div><br></div>=
+<div>I sent a copy of this order to Mms. Girard on April 19 and asked her t=
+o confirm that she received it. She did not respond.=C2=A0</div><div><br></=
+div><div>The only communication I received was the following message on Apr=
+il 25:</div><div><br></div><div><span style=3D"font-family:&quot;trebuchet =
+ms&quot;,sans-serif">&quot;I just wanted to follow up with you on your requ=
+est to have access to Magasin en ligne. Since=C2=A0 the beginning of this s=
+chool year, all school boards in Ontario have changed student data base=C2=
+=A0system (from Trillium to Aspen). In this new=C2=A0data base, there is on=
+ly the option of giving viewing access to the parent that has legal custody=
+. We have asked the IT department to look into it and are waiting=C2=A0for =
+their response. I will keep you informed as soon as I hear anything.&quot;<=
+/span></div><div><span style=3D"font-family:&quot;trebuchet ms&quot;,sans-s=
+erif"><br></span></div><div><font face=3D"trebuchet ms, sans-serif">I was c=
+oncerned that it made no mention of our meeting, my email, whether the cour=
+t order was received, and it says that the problem is both a technical issu=
+e and due to the fact that only the parent with custody can have access. Or=
+ that the problem is not actually a technical issue due to database migrati=
+on but rather that the new database only allows parents with legal custody =
+to access the magasin en ligne. There=E2=80=99s two, maybe three explanatio=
+ns in that message and none of them addressed the fact that I had access to=
+ and used the magasin en ligne, received=C2=A0school newsletters, and notif=
+ications if the girls were sick from the start of the school year through a=
+t least Nov. 15 without issue. I contacted the school to ask for clarificat=
+ion. During our meeting I was told that she would review the Orders and get=
+ back to me about them. I did not receive a response to my email or message=
+, and the explanation provided clearly states that I do not have custody an=
+d so some kind of work around will be provided.=C2=A0</font></div><div><fon=
+t face=3D"trebuchet ms, sans-serif"><br></font></div><div><font face=3D"tre=
+buchet ms, sans-serif">I tried to reset my password a few minutes ago and i=
+t does not work.</font></div><div><font face=3D"trebuchet ms, sans-serif"><=
+br></font></div><div><font face=3D"trebuchet ms, sans-serif">I am sorry tha=
+t the vice-principal and you have become so involved in private family matt=
+ers but I appreciate your phone call today and look forward to speaking fur=
+ther this week.</font></div><div><font face=3D"trebuchet ms, sans-serif"><b=
+r></font></div><div><font face=3D"trebuchet ms, sans-serif"><span>Regards,<=
+/span></font></div><div><font face=3D"trebuchet ms, sans-serif"><br></font>=
+</div><div><font face=3D"trebuchet ms, sans-serif">Darryl</font></div><div>=
+<font face=3D"trebuchet ms, sans-serif"><br></font></div><div></div></div><=
+div><div></div></div></blockquote></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></div></blockquote></div><br></div></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></div></blockquote></div><br></div></blockquote></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+></div></blockquote></div><br></div></blockquote></div>
+</blockquote></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+>
+--0000000000005afd8905fb5b0eb4--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1091106</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1683743389</integer>
+	<key>flags</key>
+	<integer>8623750145</integer>
+	<key>remote-id</key>
+	<string>18980</string>
+</dict>
+</plist>

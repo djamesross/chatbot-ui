@@ -1,0 +1,150 @@
+7803      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09081302.me.com by p133-mailgateway-smtp-68cc9b87fb-hscx4 (mailgateway 2401B119)
+	with SMTP id bab991fd-a362-467a-82fb-f846fae251d7 
+	for <darrylross@icloud.com>; Tue, 24 Oct 2023 19:38:22 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: bab991fd-a362-467a-82fb-f846fae251d7
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by ci74p00im-qukt09081302.me.com (Postfix) with ESMTPS id 67A84374023F
+	for <darrylross@icloud.com>; Tue, 24 Oct 2023 19:38:19 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdSRFoQXgcZFltVFVFfDlgc
+ DEZVVgJRWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEUwDGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnAyAeQTBiRAchNg8SU2kOFgcpIB4sAwc3BDVQMABpdAoMLQhC
+ TnsFOyQ4JzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cw4pzyOK
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.43; helo=mail-ej1-f43.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-9c3aec5f326so23027766b.1
+        for <darrylross@icloud.com>; Tue, 24 Oct 2023 12:38:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698176299; x=1698781099; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w4RjxSZV9F8m3ATcEgXwAUkkanHW+Wtj1zTqIZE7SUY=;
+        b=Cw4pzyOKBgW+7AwgbXq0+LjuKzXMReOXA/ohPkherbOFAEv01yHlMCAH6HIkIVLmy9
+         ocdZkWtqEt+8yJtqYbp9Ze2eO1j7Zu51D1tALq8RcpX2zoO+HhzpbagU9n9oMgqqFvVP
+         tvv9LmGbOSn+0N25KZ5QLXXR8LV27BOR6ezpvraP8SEPyUAgafdHJNtoXW+URdSisVXU
+         7hgphDBemi8c65f2cybaMbXkGfhqICeFz8JZ8aJQWGUwIAU0FqJiBk0f6IfvPgeyUZ9u
+         veu31SyIFtw0xhrZZ4LTp5TSIBNoqCBJRukhs3FDpq8bVIFL39bANKPxIUgQ8wX/mKTI
+         TUKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698176299; x=1698781099;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w4RjxSZV9F8m3ATcEgXwAUkkanHW+Wtj1zTqIZE7SUY=;
+        b=Ol3Jln1jyd4reF3A//QGnl24+ZrtQrhOjQZhjSn80PLAy77IfAWouD/4Yh6UykKYDS
+         C88t+2ShqdUR0oPJyBaqYZ7p78ALjciwtJKUdpZt8mE7hN6z8NSnKj51816ehOO1t/7u
+         wihltsPaESVxVMKYi6ifvjkrppv9sFrs4Khs5qjkcajSEzAWFEPgjIusedivuCnVCn53
+         6zTvTaYcUPRQE51xsMR+t4LqrCvOrHHawKn6Ngigz2WY/pTBxlXCeGX8OAKfl5Nx6Ig+
+         hxBjY0f0DS6/u12VtcVQqMS3XAN5DGGlRx3otsU12FLAgbQkAGR79Jdxr5V9hw4mJm+h
+         BG5g==
+X-Gm-Message-State: AOJu0YzKqBZ5ZY2M5MwMW12AR0BKovbEi//UuBeBvjOdiacFqbYyI75t
+	52cmRb5idI9ZMuh+MvhFwIlpIKAh2eSAdMRj/ZDGlOP1ry4=
+X-Google-Smtp-Source: AGHT+IE8GoXRjlM7AneIAj06NmdOTzxlQVzVXQg6cg5UspbVkhY2yasnkAd4yP6cN7x52Zl1yhJ1eLCGxNQq5cYgDtw=
+X-Received: by 2002:a17:907:72c5:b0:9b2:bdbb:f145 with SMTP id
+ du5-20020a17090772c500b009b2bdbbf145mr11359677ejc.34.1698176298800; Tue, 24
+ Oct 2023 12:38:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyRHhD05hbE_OVTF-Vent566KpMMQUW9MkKWwf_ds6M80Ew@mail.gmail.com>
+In-Reply-To: <CAFnbyRHhD05hbE_OVTF-Vent566KpMMQUW9MkKWwf_ds6M80Ew@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 24 Oct 2023 15:38:07 -0400
+Message-ID: <CAFnbyREvYx6HRreTOie+Y8trPFiT31UqL6GxYBhyTn56K3YQAA@mail.gmail.com>
+Subject: Re: Today- soccer tournament
+To: Darryl Ross <darrylross@icloud.com>, Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="0000000000000e591506087b7bc5"
+X-MANTSH: 1TEIXR1gYEloaGkNHB0tNT0ReQ0QZHBsaEQpMQxcbGgQbGxgEEhwEHx8QGx4aHxo
+ RCkxZFxsaGh8RCllEF2JFYkF5Y0xhXXtPEQpZTRduT0ZDXE9YEQpfWRcYGBoRCl9NF2RFRE8RC
+ llJFxpxGhAadwYYGhpxGxMTEBp3BhgaBhoRClleF2xseREKQ04XZ2RDXmgcf2lMT09jYXJCQnx
+ GXWBzYBwZcn9CHRJuaW0RClhcFxkEGgQfGgUbGhoEHRsEGxwaBBMYEBseGh8aEQpeWRdJSEliY
+ hEKTVwXHBsRCkxaF2hpTU1rEQpMRhdsTWsRCkNaFxgaEwQSHwQYGxIEHhkRCkJeFxsRCkReFxg
+ RCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfXhEKQkUXaBIbfHhyb
+ ngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0tHUEFtGhJLaUkRCkJ
+ AF2VcRmttZB5LSW4bEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKcGgXekRiXlJcQkx4X
+ hIQGRoRCnBoF3pEU18cRmRHE25uEBkaEQpwaBdtHQFbG2dSZGJPZhAZGhEKcGgXZ1pEXlhQemx
+ kQFsQGRoRCnBoF2UdGkNMHEUfeBNrEBkaEQpwbBdmRmsfGFttX0ZvbxAZGhEKbX4XGxEKWE0XS
+ xE=
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: MNitB6UCfeeIKXhhVlwJYJ63XUh78DCG
+X-Proofpoint-ORIG-GUID: MNitB6UCfeeIKXhhVlwJYJ63XUh78DCG
+
+--0000000000000e591506087b7bc5
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl.
+
+Charlotte just called me, they are playing another game as they have done
+well. The game ends at 430 in Orleans so the earliest she will be back at
+her school is 5:15.
+
+Did you want to change the visiting date to tomorrow or go ahead for today
+and make up the time next Sunday or another time they are off?
+
+On Tue, Oct 24, 2023 at 2:20 PM Cynthia Holmes <cynthmholm@gmail.com> wrote:
+
+> Hi Darryl,
+>
+> Just a heads up, Charlotte is at a soccer tournament with her school all
+> day and I am still unsure of her time back to Barrhaven. It depends on how
+> well they play. She may be arriving back at the school by 430 thus making
+> them late for a visit.
+>
+> I have asked Charlotte to keep me posted and trying to reach out to the
+> other parents so I can keep you informed.
+>
+
+--0000000000000e591506087b7bc5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Charlotte just called me, they are playing another game as they have d=
+one well. The game ends at 430 in Orleans so the earliest she will be back =
+at her school is 5:15.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Did you want to change the visiting date to tomorrow or go ahead for t=
+oday and make up the time next Sunday or another time they are off?=C2=A0</=
+div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Tue, Oct 24, 2023 at 2:20 PM Cynthia Holmes &lt;<a href=3D"mailto:cyn=
+thmholm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><div dir=3D"ltr">Hi Darryl,<div><br></div><div>Just a h=
+eads up, Charlotte=C2=A0is at a soccer=C2=A0tournament with her school all =
+day and I am still unsure of her time back to Barrhaven. It depends on how =
+well they play. She may be arriving back at the school by 430 thus making t=
+hem late for a visit.=C2=A0=C2=A0</div><div><br></div><div>I have asked Cha=
+rlotte to keep me posted and trying to reach out to the other parents so I =
+can keep you informed.</div></div>
+</blockquote></div></div>
+
+--0000000000000e591506087b7bc5--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>ff9bf1</string>
+	<key>conversation-id</key>
+	<integer>1186789</integer>
+	<key>date-last-viewed</key>
+	<integer>1741271762</integer>
+	<key>date-received</key>
+	<integer>1698176302</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12127</string>
+</dict>
+</plist>

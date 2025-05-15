@@ -1,0 +1,125 @@
+6453      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ci74p00im-qukt09080102.me.com by p133-mailgateway-smtp-5fdcc87f54-kvmx4 (mailgateway 2403B92)
+	with SMTP id d7700415-eca3-4e04-9edc-58abcf539744 
+	for <darrylross@icloud.com>; Sat, 25 Nov 2023 18:37:25 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: d7700415-eca3-4e04-9edc-58abcf539744
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	by ci74p00im-qukt09080102.me.com (Postfix) with ESMTPS id 19873980143
+	for <darrylross@icloud.com>; Sat, 25 Nov 2023 18:37:22 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRTTVdTRloQXgcZFltVFVFfDlgc
+ DEZVVgNTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHH0hLEU0BGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlEDIoIxV2HSosDRYESA1sXxgrFBA7VWIAAzUeGDtAcBstIw4E
+ M2lPKkQTNzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UHxfSjOU
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.51 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.51 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.51; helo=mail-ej1-f51.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a02d12a2444so427890166b.3
+        for <darrylross@icloud.com>; Sat, 25 Nov 2023 10:37:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700937442; x=1701542242; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=gxMhwCQjPZFaTQ+rYu9fath/rCZlyyEn3fhfEGfsbn4=;
+        b=UHxfSjOURKQHK0CmSYQzbdySYfuZgMX7Ed5/1nTWmhD8MjVWLqD4vbZv11gsckFjZJ
+         g1MAlIR4/LD4PQteU08Snauwz80Ca2e6uYAfONVD/drrlKJSJ/Rj5JeDBpK7gyM6mFwR
+         rR4V9eaDa9nY10at8ALXidEkvUmbSPGFO6/AAA3RK/ybpXVFdjr9MAlWvIYQkFu9ePEG
+         qKTnUlXpGkVuvVnQ0NCQhfFcuu8hT3K/LrDyOleeIOte6DmmW264Xo33BVUZa63CMN59
+         TgUw+EChqKePXz3iDRGFUxUjh72VPb/VwBnlUdDplKdw71vDVUqPE0tfAz6F1bWKedgT
+         Mszg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700937442; x=1701542242;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gxMhwCQjPZFaTQ+rYu9fath/rCZlyyEn3fhfEGfsbn4=;
+        b=j/Z4hfcldG5RXyG8YMFkxIIT4t176i/rt8/2IEvdGJuzOuCGB3gvQx9lqpgmtvRAwa
+         XjWLfO+E6OGmd1dqJtSQ8LAKV2sPbPBexrXYbtqhFE1+rSiKw74cNsDl8MMD9cvsWQ7a
+         lObsVNWhYI39cbmfVRpKhwepPQO8yGqhGBMTD0fl6Q9LZyfoLz0DvfV79ghtx3Iyj96u
+         QMXq+xdXiUE0WVVScXYpveDAdsu3YMr3rOasnJq8JfciPtczY6dHJrVEIEbpVcafMLnD
+         Qu3azq50VIwlA35ohjnyTwJmbRG1rf2Ov6RoWKwpIyd8rGwAbudnEHp/tMIV2ufDN1/a
+         VX9Q==
+X-Gm-Message-State: AOJu0YyDj9mmY/d3tHI1dULPhZi90N760V0G1wM0xuFOJO2oKAdqtAXv
+	0cixnChHMii1Lex15vjDvjyVXAqTjX0Ak5LV87qUegZpeVg=
+X-Google-Smtp-Source: AGHT+IGiIWrzoxYxddQPfcNizExRAsCQSGPLH1S2v78jFz1baTctBC5cg0oI9K5bWt06EVyjP19fk3iI1LKaWALr9V4=
+X-Received: by 2002:a17:906:2099:b0:a0a:c9f0:fa2c with SMTP id
+ 25-20020a170906209900b00a0ac9f0fa2cmr2962719ejq.29.1700937441761; Sat, 25 Nov
+ 2023 10:37:21 -0800 (PST)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 25 Nov 2023 13:37:11 -0500
+Message-ID: <CAFnbyRGeKNTmF+HYtps0=Z=mRrgCeTbvLxoCpFyXZhsKYyH1jQ@mail.gmail.com>
+Subject: Sunday
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>, 
+	Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="000000000000005fa2060afe5c7c"
+X-CLX-Shades: Deliver
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgYGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhgaGnEbExMQGncGGBoGGhEKWV4XbGx5EQpDThdneBJIUE1Yc11Nf
+ ntPRxlpW1tIf1xwS2x/b2V9R3IfYhEKWFwXGQQaBB8aBRsaGgQSGAQbHxIEGB0QGx4aHxoRCl5
+ ZF0lGAWQBEQpNXBcaEQpMWhdpTV1rEQpMRhdNaxEKQ1oXGBoTBBIfBBgbEgQfGxEKQl4XGxEKR
+ F4XGREKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht
+ 8eHJueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpS
+ REKQkAXYGdbYl9hE2keT1IRCkJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdgTE0TRmR
+ GG31wThAZGhEKcGgXb3NJZh5IfFNLbBIQGRoRCnBoF2FyUGZQRnNCHWVsEBkaEQpwaBdgXmhgX
+ kZjEkBHZRAZGhEKcGgXZVxNYH9/b0taRHMQGRoRCnBoF29mUxtgWVhHf1JjEBkaEQpwaBdmG2M
+ BaR1oa0FeXxAZGhEKcGgXa3kFQ1xDYXhfUEIQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbE
+ QpYTRdLEQ==
+X-Proofpoint-ORIG-GUID: MR8bzgrYwgTQem3CqqbUvZaFUEOWmX5H
+X-Proofpoint-GUID: MR8bzgrYwgTQem3CqqbUvZaFUEOWmX5H
+
+--000000000000005fa2060afe5c7c
+Content-Type: text/plain; charset="UTF-8"
+
+Hi.
+I am in Toronto from this Sunday to Tuesday night and the girls are staying
+with mom.
+
+Holly are you able to pick up the girls here tomorrow for 11:30 am and drop
+them off at my moms place at 8 pm after the visit?
+
+No need to change arrangements for Tuesday as Sam will be home and I arrive
+at 930 pm.
+
+Thanks in advance.
+
+Cynthia
+
+--000000000000005fa2060afe5c7c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi.<div dir=3D"auto">I am in Toronto from this Sunday to Tuesday night and =
+the girls are staying with mom.=C2=A0</div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">Holly are you able to pick up the girls here tomorrow for 11:=
+30 am and drop them off at my moms place at 8 pm after the visit?</div><div=
+ dir=3D"auto"><br></div><div dir=3D"auto">No need to change arrangements fo=
+r Tuesday as Sam will be home and I arrive at 930 pm.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">Thanks in advance.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">Cynthia=C2=A0</div>
+
+--000000000000005fa2060afe5c7c--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1194291</integer>
+	<key>date-received</key>
+	<integer>1700937445</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>

@@ -1,0 +1,504 @@
+27068     
+Return-path: <allison@lendorguest.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin005.me.com by p72-mailgateway-smtp-76dddfcdd4-w2x2w (mailgateway 2305B164)
+	with SMTP id ab4d8852-9b65-40d9-b520-8fd5ecba2eaf 
+	for <darrylross@icloud.com>; Sat, 24 Dec 2022 03:06:02 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: ab4d8852-9b65-40d9-b520-8fd5ecba2eaf
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	by pv33p00im-smtpin005.me.com (Postfix) with ESMTPS id 991AB5400D7
+	for <darrylross@icloud.com>; Sat, 24 Dec 2022 03:05:59 +0000 (UTC)
+X-ICL-SCORE: 3.3320330300
+X-ICL-INFO: GAtbVUseBVFHSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBYUXF8RGhcmGx1eUg0H
+ HhMSC0QYARRbRhEcDRQOEBcCGApXQwcGDUgUGRIWERwJW1VKAA9MTUxIRk4HGFNCSkRXEFVaDUhb
+ CxYRXBsNHEhLEUkHBUwSFgkQFFUYARoURFcIRERfVxQHHhQdWQtEVABGTwMYBRoWARsdHlUNGFtG
+ ExwNFA4QFwIYCldDBwYNSxQZHgRSR0hWRkkCGAUUCRYEC11CElsaCRpaEFsLEURESztxfQsYDiFA
+ O2BwERZPPgBARVk9ARpUOVNJeBUnNicmPWkFGyJEUkUrdQI2Oj0JHjx2USIYGA8bVldbAxwVSBQX
+ XQhAVQsFSlpUVxAHAAoFF0NFIhwaChgNVBgBGhRE
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=lendorguest.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=lendorguest.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=lendorguest-ca.20210112.gappssmtp.com header.i=@lendorguest-ca.20210112.gappssmtp.com header.b=qix3vA3r
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.167.173 as permitted sender) smtp.mailfrom=allison@lendorguest.ca
+Received-SPF: pass (spf.icloud.com: domain of allison@lendorguest.ca designates 209.85.167.173 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.167.173; helo=mail-oi1-f173.google.com; envelope-from=allison@lendorguest.ca
+Received: by mail-oi1-f173.google.com with SMTP id s186so6073663oia.5
+        for <darrylross@icloud.com>; Fri, 23 Dec 2022 19:05:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lendorguest-ca.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wJrW3/EXTTy0Ma2wm6isXENxV4p/t2YdGAVwWuyh2z4=;
+        b=qix3vA3r9qxtHTyjRmwZOOvsjd7RioYIcxsMCT1CHFw7rTsckufiLuCPABmAdMN99y
+         EKEmJd2Go7ajrQo1oiMl1cPfVSbmNhy3mIAQqn+6DMEPt3/CZQMWwfYvqasm57A29LQI
+         PdJxSMzTzYYKT+0jyXJtKlTvmW8n8yv8Pe6uPX4BSsbMJ5L+CsHPPObOqLiTNhBfaZCO
+         6x8VZOxWOGfLJUcaFNnCBb63zLAmY1/tF2uPpZQrT0TqZ0TTTokQ32AZAtJupBpfMDSc
+         47tLoyFy65UOZ66dSZ++lGCcZ2qRtrzWn/57ei52jV3sKl9IdjzefnETSlqv5cPe6OgU
+         LPJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wJrW3/EXTTy0Ma2wm6isXENxV4p/t2YdGAVwWuyh2z4=;
+        b=DSdAWkwwnDIbU0yf99gxWu8QM+B1hcFNjRLfXzsZ7TJr4GkosChCudU3BsJujsFUqT
+         eZu49/k/eXBEWT+9cFq8ydUiKohqkmZDoFftdnUzFGVl+CY3S/PPz8yoBG/VWZKmND2e
+         Y/1l5ihrKvHwR95JXDxOB1Nils5RHG80Fv086pXXfLYvN7eZdHmofAV0VmMwBdIzhU5H
+         vGafkrwvTtB088Q/ljiiuJXTQtYkGyaUPsElO+eSs1ho4ziAX0oqbmHuiC/NnTYC4FIX
+         P4QfjHNdr7EuSQaV/dH+sEHs6JeN9yTB+0EM3yOg7msV++u/1kS4wm87ObbaxuWXL9Ti
+         PVJA==
+X-Gm-Message-State: AFqh2kqAzYlQ9L9+6Hg9zjkSYmwuVKi8Jmp98GPtEbNKbM+fdE6o6V9d
+	BUunbGY7m+RbStlUFO2fKHUS3vLrxEHjymINTeo9kdIxEE7//g==
+X-Google-Smtp-Source: AMrXdXvEpwqlIB2wJLsDwjqK9C62qX4tO3QfdTS5S2huzPanbmDJift9Rwaz9BkJvIsYuVlUEX8l+gg5/HfSBdZiL68=
+X-Received: by 2002:a05:6808:5d6:b0:360:f4ca:ec80 with SMTP id
+ d22-20020a05680805d600b00360f4caec80mr578697oij.95.1671851158725; Fri, 23 Dec
+ 2022 19:05:58 -0800 (PST)
+MIME-Version: 1.0
+References: <YQBPR0101MB54016FB1666C62927EFCC12EF7EB9@YQBPR0101MB5401.CANPRD01.PROD.OUTLOOK.COM>
+ <CAKimwG6N4FpD57DVAg=rSna5F94WkOk_XJm8apDTr-xqON+rfw@mail.gmail.com> <8C9B08AD-CBCB-43DF-8BEB-582D19A19F2F@icloud.com>
+In-Reply-To: <8C9B08AD-CBCB-43DF-8BEB-582D19A19F2F@icloud.com>
+From: Allison Lendor <allison@lendorguest.ca>
+Date: Fri, 23 Dec 2022 22:05:46 -0500
+Message-ID: <CAKimwG7CPFsc6Xw8uo_tc2N+yNwROAQEY3yW=42SE4TODoiDFg@mail.gmail.com>
+Subject: Re: Ross v. Holmes - Christmas Break
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000006effd205f08a2ea5"
+X-MANTSH: 1TFkXGxoaHxEKWUQXb1l9BWtsWGx/e04RCllNF25PRkNcT1gRCl9ZFxsfHhEKX00
+ XZEVETxEKWUkXHR9xGwYbHxp3BhsfBhoGGgYZHgYacRoQGncGGgYaBhkaBhoGGgYacRoQGncGG
+ hEKWV4XY2N5EQpDThdSdU5+XEZmQ1NnT19baFhkbWdiH1hAHh1+fBxraVpjchEKWFwXGQQaBB4
+ TBx0YSR8fHUkZBRsYHQQaBBoEGxAbHhofGhEKXlkXSxlob1ARCk1cFxwSEQpMWhdoa01raxEKT
+ EYXYmtrEQpDWhcYGhMEEh8EGxwdBBsdGREKQl4XGxEKQkUXbBtASWxiXXpNH1wRCkJOF2J8W19
+ FH2drTFxwEQpCTBdpfQVhGEZFQ01jbBEKQmwXek8BGG1JG1NFbkURCkJAF2QYfF1dXltDQ3gTE
+ QpCWBdia05vb3psZ1pHSxEKWlgXHxEKcGcXehoZZBpNYE9LSXoQGhEKcGgXZUxSYX9FAUQBRkE
+ QGhEKcGgXY0lIGBpEXXgdH1MQGhEKcGgXZHJwfFhEcEFTAX8QGhEKcGgXYVNObmZDXkMeZhoQG
+ hEKcGgXbn9zTG9LU2ZGQEkQGhEKcGgXaFNcTwFIcxJOZk4QGhEKcGgXYnpuYHt7HhgbGB8QGhE
+ KcGgXbR1tWWtOGmN+c0MQGhEKcGcXZx9hSGdQWH5BEnoQGhEKcGcXbXtiGFJIHmF+exkQGhEKc
+ GcXaBhEb3kfcmAFZ08QGhEKcGcXYXNeYnNkQ24fZR0QGhEKcH0XaEsaW2FtfHhce2MQGhEKcH0
+ XaHx4EllCTUtoYRIQGhEKcH0XZRobQmlpSVpzWk8QGhEKcH0XZUdwUH9ubmlFBUkQGhEKcH0Xb
+ Xp6TBN6GRNSHUwQGhEKcH0Xa1Nzb2V9ehJmW14QGhEKcH0XYFN4XBJdZ1BeekEQGhEKcH0XYmN
+ bf21cbFxFa0UQGhEKcH0XZ0luZnNeSWJsWn8QGhEKcH0XZR16fltaUkdpSR8QGhEKcH0XZwF7Q
+ 30FUkJCYB0QGhEKcH0XYWdebWFhX3l9E14QGhEKcH8Xa3MbfW5ZGW5NQksQGhEKcF8XZxtfcF0
+ TeFxjb3sQGhEKcH8XZwFGZmAcUH14ek0QGhEKcF8XaHtoaHxLHkNIfGkQGhEKcH8XYU8fGXlJa
+ Vx5GmYQBxMdEQpwXxdvZHBES0dmeVtfZhAaEQpwfxdlSRxQGWdmThphQxAZGhEKcF8XaFpAbxx
+ Zc0xkcxMQGhEKcH8XYVwZc0J5b3lCQF4QBxMeEQpwXxdgQ2xMbXtHaGxTXhAZGhEKcH8XbxtBa
+ HpjZh5IZhMQBx0fEQpwXxdtf29If3AbHkNgYxAZGhEKcF8Xax1cY0FaHm5mbHwQGhEKcF8XYEl
+ bbW5aaXtof1oQGhEKcF8XaRxkeUxQTBp4ZEkQGhEKcF8XaVwebF5GX0cSHgUQGhEKcF8XaVJYb
+ WN8Un9IZ04QGhEKcF8XbWJmex9lSFpvGHMQGhEKcGwXb09yeXNAZERQfFsQGhEKbX4XGhEKWE0
+ XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: x_dTvlLiyMeuqBrNGMH5rj47TV6ACpIX
+X-Proofpoint-GUID: x_dTvlLiyMeuqBrNGMH5rj47TV6ACpIX
+
+--0000000000006effd205f08a2ea5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+We will provide a proper and complete response after the holidays.
+
+Have a Merry Christmas.
+
+Allison
+
+On Fri., Dec. 23, 2022, 4:52 p.m. Darryl Ross, <darrylross@icloud.com>
+wrote:
+
+> Hi Allison,
+>
+> That is simply not true. Is there a brief way to respond today that
+> disclosure has been provided per Justice Smoji=E2=80=99s order, even if i=
+t=E2=80=99s just
+> for the record?
+>
+> I=E2=80=99m just so frustrated at how clear it is she is not being honest=
+ and
+> frankly acts with impunity.
+>
+> Thank you,
+>
+> Darryl
+>
+> On Dec 23, 2022, at 4:43 PM, Allison Lendor <allison@lendorguest.ca>
+> wrote:
+>
+> Hi Darryl,  this email came in and I thought it was sent to you. Let me
+> know if you have any questions.
+>
+> Allison
+>
+> ---------- Forwarded message ---------
+> From: Michelle Williams <michelle.williams@mannlawyers.com>
+> Date: Wed., Dec. 21, 2022, 5:14 p.m.
+> Subject: Ross v. Holmes - Christmas Break
+> To: allison@lendorguest.ca <allison@lendorguest.ca>,
+> brandon@lendorguest.ca <brandon@lendorguest.ca>
+> Cc: Larissa Kelley <Larissa.Kelley@mannlawyers.com>, Alison Boyce <
+> Alison.Boyce@mannlawyers.com>, Cynthia Holmes <cynthmholm@gmail.com>
+>
+>
+> Dear Ms. Lendor,
+>
+> *Without Prejudice*
+>
+> Ms. Boyce is away from the office due to illness and I have accordingly
+> stepped in to assist on this matter.
+>
+> I have spoken with Ms. Holmes and reviewed your email of December 6, 2022=
+.
+>
+> Ms. Holmes agrees that there ought to be more time between Mr. Ross and
+> the children over their winter break and is agreeable to herself dropping
+> off and Mr. Ross's mother, Holly Ross dropping off the children at Ms.
+> Holmes's residence on the following dates (all from 12:00 pm =E2=80=93 7:=
+30 pm):
+>
+>    - December 25, 2022
+>    - December 27, 2022
+>    - January 1, 2023
+>    - January 3, 2023
+>    - January 5, 2023
+>
+> Ms. Holmes advises that getting all the children up and out the door on
+> Christmas morning by 10:00 am, which is when they open their gifts, would
+> be extremely challenging and would negatively impact their holiday
+> experience. I understand that the parties discussed this by email beginni=
+ng
+> on December 18, 2022.
+>
+> I acknowledge in your email correspondence that Mr. Ross would like to do
+> away with the requirement of supervision. It is my understanding based on
+> my knowledge of this file that limited medical disclosure has been receiv=
+ed
+> from Mr. Ross updating his status since the motion before Justice Somji
+> upon which Ms. Holmes can make an informed decision regarding supervision=
+.
+>
+> Ms. Holmes will meet with Ms. Boyce in the New Year to discuss the change=
+s
+> to the general schedule being sought by Mr. Ross and determine the gaps i=
+n
+> disclosure. For the winter break, Mr. Ross=E2=80=99 mother should remain =
+present
+> during his parenting time.
+>
+> I trust the foregoing is satisfactory.
+>
+>
+>
+> Please be advised that our office will be closed for the holidays between
+> December 24, 2022 and January 2, 2023. We will reopen for regular busines=
+s
+> on January 3, 2023. Happy Holidays!
+>
+>
+>
+>
+>
+>
+>
+> * =E2=80=8B =E2=80=8B*
+>
+>
+>
+>
+>
+>
+> Please note our office will be closed for the Holiday season from Decembe=
+r 24th, 2022 to 8:30 a.m. on Tuesday, January 3
+> =E2=80=8Brd, 2023.
+> =E2=80=8BHave a safe and happy Holiday season!
+> [image: Mann Lawyers 25 years] <https://www.mannlawyers.com/>
+> [image: Mann Website] <http://www.mannlawyers.com/>
+> [image: Facebook]
+> <https://www.facebook.com/pages/Mann-Lawyers-LLP/107448242674497?ref=3Dhl=
+>
+> [image: LinkedIn] <http://linkd.in/1CTRRnn>
+> [image: Instagram] <https://www.instagram.com/mannlawyers/?hl=3Den>
+> [image: Twitter] <https://twitter.com/MannLawyers>
+> Michelle Williams
+> Lawyer
+> 613=E2=80=91369=E2=80=910362
+> 11 Holland Avenue | Suite 300 | Ottawa | Ontario | K1Y 4S1
+> =E2=80=8Bt: 613=E2=80=91722=E2=80=911500 | f: 613=E2=80=91722=E2=80=91767=
+7
+>
+> This e-mail message is intended for the indicated recipient only and may
+> contain confidential information that is subject to solicitor-client
+> privilege. If you have received this message in error, kindly advise the
+> sender by reply e-mail or phone and destroy any copies in your possession=
+.
+>
+>
+>
+
+--0000000000006effd205f08a2ea5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl,=C2=A0<div dir=3D"auto"><br></div><div dir=3D"a=
+uto">We will provide a proper and complete response after=C2=A0the holidays=
+.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Have a Merry Chr=
+istmas.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Allison=C2=A0</d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Fri., Dec. 23, 2022, 4:52 p.m. Darryl Ross, &lt;<a href=3D"mailto:dar=
+rylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
+lid;padding-left:1ex"><div style=3D"line-break:after-white-space">Hi Alliso=
+n,<div><br></div><div>That is simply not true. Is there a brief way to resp=
+ond today that disclosure has been provided per Justice Smoji=E2=80=99s ord=
+er, even if it=E2=80=99s just for the record?</div><div><br></div><div>I=E2=
+=80=99m just so frustrated at how clear it is she is not being honest and f=
+rankly acts with impunity.</div><div><br></div><div>Thank you,</div><div><b=
+r></div><div>Darryl<br><div><br><blockquote type=3D"cite"><div>On Dec 23, 2=
+022, at 4:43 PM, Allison Lendor &lt;<a href=3D"mailto:allison@lendorguest.c=
+a" target=3D"_blank" rel=3D"noreferrer">allison@lendorguest.ca</a>&gt; wrot=
+e:</div><br><div><div dir=3D"auto">Hi Darryl,=C2=A0 this email came in and =
+I thought it was sent to you. Let me know if you have any questions.=C2=A0<=
+div dir=3D"auto"><br></div><div dir=3D"auto">Allison</div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwar=
+ded message ---------<br>From: <strong class=3D"gmail_sendername" dir=3D"au=
+to">Michelle Williams</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:mic=
+helle.williams@mannlawyers.com" target=3D"_blank" rel=3D"noreferrer">michel=
+le.williams@mannlawyers.com</a>&gt;</span><br>Date: Wed., Dec. 21, 2022, 5:=
+14 p.m.<br>Subject: Ross v. Holmes - Christmas Break<br>To: <a href=3D"mail=
+to:allison@lendorguest.ca" target=3D"_blank" rel=3D"noreferrer">allison@len=
+dorguest.ca</a> &lt;<a href=3D"mailto:allison@lendorguest.ca" target=3D"_bl=
+ank" rel=3D"noreferrer">allison@lendorguest.ca</a>&gt;, <a href=3D"mailto:b=
+randon@lendorguest.ca" target=3D"_blank" rel=3D"noreferrer">brandon@lendorg=
+uest.ca</a> &lt;<a href=3D"mailto:brandon@lendorguest.ca" target=3D"_blank"=
+ rel=3D"noreferrer">brandon@lendorguest.ca</a>&gt;<br>Cc: Larissa Kelley &l=
+t;<a href=3D"mailto:Larissa.Kelley@mannlawyers.com" target=3D"_blank" rel=
+=3D"noreferrer">Larissa.Kelley@mannlawyers.com</a>&gt;, Alison Boyce &lt;<a=
+ href=3D"mailto:Alison.Boyce@mannlawyers.com" target=3D"_blank" rel=3D"nore=
+ferrer">Alison.Boyce@mannlawyers.com</a>&gt;, Cynthia Holmes &lt;<a href=3D=
+"mailto:cynthmholm@gmail.com" target=3D"_blank" rel=3D"noreferrer">cynthmho=
+lm@gmail.com</a>&gt;<br></div><br><br>
+
+
+
+
+
+<div lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:b=
+reak-word">
+<div><p class=3D"MsoNormal">Dear Ms. Lendor,
+<u></u><u></u></p><p class=3D"MsoNormal"><i>Without Prejudice<u></u><u></u>=
+</i></p><p class=3D"MsoNormal">Ms. Boyce is away from the office due to ill=
+ness and I have accordingly stepped in to assist on this matter.
+<u></u><u></u></p><p class=3D"MsoNormal">I have spoken with Ms. Holmes and =
+reviewed your email of December 6, 2022.
+<u></u><u></u></p><p class=3D"MsoNormal">Ms. Holmes agrees that there ought=
+ to be more time between Mr. Ross and the children over their winter break =
+and is agreeable to<span style=3D"color:red"> herself
+</span>dropping off and Mr. Ross&#39;s mother, Holly Ross dropping off<span=
+ style=3D"color:red">=C2=A0</span>the children at Ms. Holmes&#39;s residenc=
+e on the following dates (all from 12:00 pm =E2=80=93 7:30 pm):<u></u><u></=
+u></p>
+<ul type=3D"disc">
+<li>
+December 25, 2022 <u></u><u></u></li><li>
+December 27, 2022<u></u><u></u></li><li>
+January 1, 2023<u></u><u></u></li><li>
+January 3, 2023<u></u><u></u></li><li>
+January 5, 2023<u></u><u></u></li></ul><p class=3D"MsoNormal">Ms. Holmes ad=
+vises that getting all the children up and out the door on Christmas mornin=
+g by 10:00 am, which is when they open their gifts, would be extremely chal=
+lenging and would
+ negatively impact their holiday experience. I understand that the parties =
+discussed this by email beginning on December 18, 2022.
+<u></u><u></u></p><p class=3D"MsoNormal">I acknowledge in your email corres=
+pondence that Mr. Ross would like to do away with the requirement of superv=
+ision. It is my understanding based on my knowledge of this file that
+ limited medical disclosure has been received from Mr. Ross updating his st=
+atus since the motion before Justice Somji upon which Ms. Holmes can make a=
+n informed decision regarding supervision.<u></u><u></u></p><p class=3D"Mso=
+Normal">Ms. Holmes will meet with Ms. Boyce in the New Year to discuss the =
+changes to the general schedule being sought by Mr. Ross and determine the =
+gaps in disclosure. For the winter
+ break, Mr. Ross=E2=80=99 mother should remain present during his parenting=
+ time. <u></u><u></u></p><p class=3D"MsoNormal">I trust the foregoing is sa=
+tisfactory.
+<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=
+=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Arial&quot;,=
+sans-serif;color:#c00000">Please be advised that our office will be closed =
+for the holidays between December 24, 2022 and January 2, 2023. We will reo=
+pen for regular
+ business on January 3, 2023. Happy Holidays!<u></u><u></u></span></p><p cl=
+ass=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Arial&quo=
+t;,sans-serif;color:#c00000"><u></u>=C2=A0<u></u></span></p><p class=3D"Mso=
+Normal"><span lang=3D"EN-US" style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:#c00000"><u></u>=C2=A0<u></u></span></p>
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"width:100.0%">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 0cm">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 0cm"><p class=3D"MsoNormal"=
+><i><span style=3D"font-size:8.5pt;font-family:&quot;Arial&quot;,sans-serif=
+;color:#c00000"><br>
+=E2=80=8B<br>
+=E2=80=8B<u></u><u></u></span></i></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table><p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p clas=
+s=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%;font-size:1px;col=
+or:#000001;font-style:normal;font-weight:400;white-space:nowrap"><tbody><tr=
+ style=3D"font-size:14.67px"><td align=3D"left" style=3D"vertical-align:top=
+;font-family:Calibri,Arial,sans-serif"><br></td></tr><tr style=3D"font-size=
+:13px;color:#2c3444;font-style:italic"><td align=3D"left" style=3D"vertical=
+-align:top;font-family:Roboto,Arial,Helvetica,Tahoma,sans-serif"><span styl=
+e=3D"background-color:#ffffff">Please=C2=A0note=C2=A0our=C2=A0office=C2=A0w=
+ill=C2=A0be=C2=A0closed=C2=A0for=C2=A0the=C2=A0Holiday=C2=A0season=C2=A0fro=
+m=C2=A0December=C2=A024th,=C2=A02022=C2=A0to=C2=A08:30=C2=A0a.m.=C2=A0on=C2=
+=A0Tuesday,=C2=A0January=C2=A03<span style=3D"font-family:remialcxesans;fon=
+t-size:1px;color:#ffffff;line-height:1px">=E2=80=8B</span>rd,=C2=A02023.</s=
+pan><br><span style=3D"background-color:#ffffff">=E2=80=8BHave=C2=A0a=C2=A0=
+safe=C2=A0and=C2=A0happy=C2=A0Holiday=C2=A0season!</span><br></td></tr><tr =
+style=3D"font-size:0"><td align=3D"left" style=3D"vertical-align:top"><tabl=
+e cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0"><t=
+body><tr style=3D"font-size:0"><td align=3D"left" style=3D"padding:15px 0 0=
+;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0=
+" style=3D"width:450px;font-size:0"><tbody><tr style=3D"font-size:0"><td al=
+ign=3D"left" style=3D"padding:0;vertical-align:top"><table cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" style=3D"width:100%;font-size:0"><tbody><t=
+r style=3D"font-size:0"><td align=3D"left" style=3D"vertical-align:top"><ta=
+ble cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0;l=
+ine-height:normal"><tbody><tr style=3D"font-size:0"><td align=3D"left" styl=
+e=3D"padding:5px;vertical-align:top"><a href=3D"https://www.mannlawyers.com=
+/" id=3D"m_-3131971991662506262m_647004746365869587LPlnk689713" style=3D"te=
+xt-decoration:none" rel=3D"noreferrer noreferrer" target=3D"_blank"><img sr=
+c=3D"https://www.mannlawyers.com/wp-content/uploads/2021/10/MannLawyers_Log=
+o_Burgundy_300.png" width=3D"150" border=3D"0" title=3D"Mann Lawyers 25 yea=
+rs" alt=3D"Mann Lawyers 25 years" style=3D"width:150px;min-width:150px;max-=
+width:150px;font-size:12px"></a></td></tr></tbody></table></td></tr><tr sty=
+le=3D"font-size:0"><td align=3D"left" style=3D"vertical-align:middle"><tabl=
+e cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0"><t=
+body><tr style=3D"font-size:0"><td align=3D"left" style=3D"vertical-align:t=
+op"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-s=
+ize:0;line-height:normal"><tbody><tr style=3D"font-size:0"><td align=3D"lef=
+t" style=3D"padding:3px;vertical-align:top"><a href=3D"http://www.mannlawye=
+rs.com/" id=3D"m_-3131971991662506262m_647004746365869587LPlnk689713" style=
+=3D"text-decoration:none" rel=3D"noreferrer noreferrer" target=3D"_blank"><=
+img src=3D"https://www.webmail.mannlawyers.com/images/MannLawyers_Icon.png"=
+ border=3D"0" title=3D"Mann Website" alt=3D"Mann Website" style=3D"font-siz=
+e:12px"></a></td></tr></tbody></table></td><td align=3D"left" style=3D"vert=
+ical-align:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" sty=
+le=3D"font-size:0;line-height:normal"><tbody><tr style=3D"font-size:0"><td =
+align=3D"left" style=3D"padding:3px;vertical-align:top"><a href=3D"https://=
+www.facebook.com/pages/Mann-Lawyers-LLP/107448242674497?ref=3Dhl" id=3D"m_-=
+3131971991662506262m_647004746365869587LPlnk689713" style=3D"text-decoratio=
+n:none" rel=3D"noreferrer noreferrer" target=3D"_blank"><img src=3D"https:/=
+/www.webmail.mannlawyers.com/images/Facebook_Icon.png" border=3D"0" title=
+=3D"Facebook" alt=3D"Facebook" style=3D"font-size:12px"></a></td></tr></tbo=
+dy></table></td><td align=3D"left" style=3D"vertical-align:top"><table cell=
+padding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0;line-heig=
+ht:normal"><tbody><tr style=3D"font-size:0"><td align=3D"left" style=3D"pad=
+ding:3px;vertical-align:top"><a href=3D"http://linkd.in/1CTRRnn" id=3D"m_-3=
+131971991662506262m_647004746365869587LPlnk689713" style=3D"text-decoration=
+:none" rel=3D"noreferrer noreferrer" target=3D"_blank"><img src=3D"https://=
+www.webmail.mannlawyers.com/images/LinkedIn_Icon.png" border=3D"0" title=3D=
+"LinkedIn" alt=3D"LinkedIn" style=3D"font-size:12px"></a></td></tr></tbody>=
+</table></td><td align=3D"left" style=3D"vertical-align:top"><table cellpad=
+ding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0;line-height:=
+normal"><tbody><tr style=3D"font-size:0"><td align=3D"left" style=3D"paddin=
+g:3px;vertical-align:top"><a href=3D"https://www.instagram.com/mannlawyers/=
+?hl=3Den" id=3D"m_-3131971991662506262m_647004746365869587LPlnk689713" styl=
+e=3D"text-decoration:none" rel=3D"noreferrer noreferrer" target=3D"_blank">=
+<img src=3D"https://www.webmail.mannlawyers.com/images/Instagram_Icon.png" =
+border=3D"0" title=3D"Instagram" alt=3D"Instagram" style=3D"font-size:12px"=
+></a></td></tr></tbody></table></td><td align=3D"left" style=3D"vertical-al=
+ign:top"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"f=
+ont-size:0;line-height:normal"><tbody><tr style=3D"font-size:0"><td align=
+=3D"left" style=3D"padding:3px;vertical-align:top"><a href=3D"https://twitt=
+er.com/MannLawyers" id=3D"m_-3131971991662506262m_647004746365869587LPlnk68=
+9713" style=3D"text-decoration:none" rel=3D"noreferrer noreferrer" target=
+=3D"_blank"><img src=3D"https://www.webmail.mannlawyers.com/images/Twitter_=
+Icon.png" border=3D"0" title=3D"Twitter" alt=3D"Twitter" style=3D"font-size=
+:12px"></a></td></tr></tbody></table></td></tr></tbody></table></td></tr></=
+tbody></table></td><td align=3D"center" style=3D"padding:0;vertical-align:m=
+iddle"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"fon=
+t-size:0"><tbody><tr style=3D"font-size:0"><td align=3D"left" style=3D"vert=
+ical-align:middle"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"font-size:0"><tbody><tr style=3D"font-size:0"><td align=3D"left" s=
+tyle=3D"vertical-align:middle"><table cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0" style=3D"white-space:normal;color:#030303;font-size:14.67px;fon=
+t-family:Calibri;font-weight:700;font-style:normal;text-align:center"><tbod=
+y><tr style=3D"font-size:16px"><td style=3D"font-family:Calibri">Michelle W=
+illiams<br></td></tr></tbody></table></td></tr><tr style=3D"font-size:0"><t=
+d align=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" cell=
+spacing=3D"0" border=3D"0" style=3D"white-space:normal;color:#030303;font-s=
+ize:14.67px;font-family:Calibri;font-weight:700;font-style:normal;text-alig=
+n:center"><tbody><tr style=3D"font-size:14.67px"><td style=3D"font-family:C=
+alibri">Lawyer</td></tr></tbody></table></td></tr><tr style=3D"font-size:0"=
+><td align=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"white-space:nowrap;color:#030303;fon=
+t-size:14.67px;font-family:Calibri;font-weight:700;font-style:normal;text-a=
+lign:center"><tbody><tr style=3D"font-size:14.67px"><td style=3D"font-famil=
+y:Calibri">613=E2=80=91369=E2=80=910362<br></td></tr></tbody></table></td><=
+/tr></tbody></table></td></tr><tr style=3D"font-size:0"><td align=3D"center=
+" style=3D"vertical-align:middle"><table cellpadding=3D"0" cellspacing=3D"0=
+" border=3D"0" style=3D"font-size:0"><tbody><tr style=3D"font-size:0"><td a=
+lign=3D"center" style=3D"padding:10px 0 0;vertical-align:middle"><table cel=
+lpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"white-space:nowrap;c=
+olor:#0a0909;font-size:14.67px;font-family:Calibri;font-weight:400;font-sty=
+le:normal;text-align:left;width:350px"><tbody><tr style=3D"font-size:14.67p=
+x"><td style=3D"font-family:Calibri"><span style=3D"font-size:13px">11=C2=
+=A0Holland=C2=A0Avenue=C2=A0|=C2=A0Suite=C2=A0300=C2=A0|=C2=A0Ottawa=C2=A0|=
+=C2=A0Ontario=C2=A0|=C2=A0K1Y=C2=A04S1<br>=E2=80=8Bt<span style=3D"color:#0=
+50505">:=C2=A0613=E2=80=91722=E2=80=911500=C2=A0|=C2=A0f:=C2=A0613=E2=80=91=
+722=E2=80=917677</span></span><br></td></tr></tbody></table></td></tr></tbo=
+dy></table></td></tr></tbody></table></td></tr><tr style=3D"font-size:0"><t=
+d colspan=3D"2" align=3D"left" style=3D"padding:0;vertical-align:top"><tabl=
+e cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:450px;fon=
+t-size:0"><tbody><tr style=3D"font-size:0"><td style=3D"padding:10px 0 0;bo=
+rder-top:none;border-right:none;border-bottom:solid 3px #670000;border-left=
+:none">=C2=A0</td></tr><tr style=3D"font-size:0"><td align=3D"left" style=
+=3D"padding:0;vertical-align:top"><table cellpadding=3D"0" cellspacing=3D"0=
+" border=3D"0" style=3D"font-size:0"><tbody><tr style=3D"font-size:0"><td a=
+lign=3D"left" style=3D"padding:10px 0 20px;vertical-align:top"><table cellp=
+adding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"white-space:normal;col=
+or:#030202;font-size:14.67px;font-family:Calibri,Arial,sans-serif;font-weig=
+ht:400;font-style:normal;text-align:justify;width:599px"><tbody><tr style=
+=3D"font-size:10.67px"><td style=3D"font-family:Arial">This e-mail message =
+is intended for the indicated recipient only and may contain confidential i=
+nformation that is subject to solicitor-client privilege. If you have recei=
+ved this message in error, kindly advise the sender by reply e-mail or phon=
+e and destroy any copies in your possession.<br></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></tabl=
+e></td></tr></tbody></table></td></tr></tbody></table></div></div>
+
+</div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--0000000000006effd205f08a2ea5--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1036667</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1671851162</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>4177</string>
+</dict>
+</plist>

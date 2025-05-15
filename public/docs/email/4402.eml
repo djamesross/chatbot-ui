@@ -1,0 +1,759 @@
+38494     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:a4f:3816:0:0:0:0:0 with SMTP id f22-v6csp72388iva;
+        Thu, 7 Jun 2018 13:32:42 -0700 (PDT)
+X-Received: by 2002:a24:202:: with SMTP id 2-v6mr3218941itu.63.1528403562844;
+        Thu, 07 Jun 2018 13:32:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1528403562; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XKQm2f46Upf2TXIjhZxC6U19RSn0RlQfUMEpFrmmCHu81Si8ZuMqjC7cI8z6KrshoV
+         fOEfH2dtl92rpb9arDb7oRHZ6wrmqVt1IHo4rcvLCvqtfLgcJ/ex6yRSWH+LEyXLMUrt
+         saC6H0F8oBUVUrKa+NMO0yhY+CRDZ0SdfymVWNY1JDnnCSS1zF44HcIM4tByE02wS5pm
+         jR2+0lMKZiOaVgQ2MdRzGj8QDi5NppEdVIcxpc9SviluZqzkQUQZHlD6SYSe38hu628F
+         nb+0Zp6Tb1b9dk/xcBrrBdoD8tQozHoCZSW4jbxTZhn1dNapdSwC/r6uAdzQE3UJ+vUJ
+         vkBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:references:message-id:date:in-reply-to:from:subject:mime-version
+         :dkim-signature:arc-authentication-results;
+        bh=JeTZ2uHmCQjrHkf25dSxFV7bIXgj7R3osuxfmjeAz9E=;
+        b=RM9qo0XlTKZVC6HW6iqQcnLS/4YwpveFDk/uEnOhaLzqEsO9JOOAl4YXDZF2K/Uwxo
+         380opE6Iu3TfMN3L0w0tdPshnB4CYYiYW+fiwZMTrJt3pw1I1uvb2bOQj6RdNqf6DmqM
+         JZiA27YIZ4IP2dgNEQKIZ/195uOIUu3da7yyT7bsocWTnGTMgUfEEExK1SV/Qhhv0p4/
+         j+gDWc2H+8LPTUMGyoGFOJQCeS2i45HraR7r+wRvmWxGkdU0hp6FAbF32HUbmvnGdCt7
+         0wDPXBwPTQmITcld6+J3TCjnwUxUZMRDCovheBqy/FmpJjPTbJL+ercdAv7XvbLWNOTG
+         Jnuw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@delaneys-ca.20150623.gappssmtp.com header.s=20150623 header.b=fClkF04p;
+       spf=softfail (google.com: domain of transitioning alison@delaneys.ca does not designate 209.85.220.41 as permitted sender) smtp.mailfrom=alison@delaneys.ca
+Return-Path: <alison@delaneys.ca>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id e74-v6sor16536093ioe.256.2018.06.07.13.32.42
+        for <darrylondunlin@gmail.com>
+        (Google Transport Security);
+        Thu, 07 Jun 2018 13:32:42 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning alison@delaneys.ca does not designate 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@delaneys-ca.20150623.gappssmtp.com header.s=20150623 header.b=fClkF04p;
+       spf=softfail (google.com: domain of transitioning alison@delaneys.ca does not designate 209.85.220.41 as permitted sender) smtp.mailfrom=alison@delaneys.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=delaneys-ca.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:subject:from:in-reply-to:date:message-id:references:to;
+        bh=JeTZ2uHmCQjrHkf25dSxFV7bIXgj7R3osuxfmjeAz9E=;
+        b=fClkF04pivc9GfRMPq0ieQX8nMtNJcDcbXLMEjwTo/Ct0Di8Ab7duW437mFoQHyt49
+         GYc8xGa1wrQM8KuUkIGvZO4W3RenYVM+eQccfW9muieCaIb1AiBlEsApYqbn2dWDMLs1
+         ym9hfJhOJbP0llLCTwUg7iM07kB0Ieb/0/kW8wFKmGn2jx+7sjV+jrAXcQSctReM37QL
+         SPj8MV6R48RhSwDhvSQ8+Ys5sizQ2dJumgWBEpabw96wPmvnLePsNUa3t6EDzUAF7qDb
+         i0611ME5D4cFawDMW650wR8ytHpPeiuaS6Jb9Aftxky0BudMS049F/hJ+8WgA/5MWVpV
+         LgEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date
+         :message-id:references:to;
+        bh=JeTZ2uHmCQjrHkf25dSxFV7bIXgj7R3osuxfmjeAz9E=;
+        b=Yxz9ESjnIJJlb+JfctA2Se87THRRY+YQ8K5gisN3X1FVowDWTre+4DQDE4QGD0FD8M
+         Yekm7CzxtFsfILy7rn88aalMnojDFNJmA35gqRuq0V5eopNxhFCZMfSGXP3wxrvanDwk
+         FPEFJS886Hk0IA/2dSQ2M6EEfXEWuP1Kx5TPq2AMav1nqNHt5kgx3pEZfl+jBcmiJlIY
+         jC82DZRVEQZ5F5+XndK9NSHYhAPR+SOGaP04wiNye5Yf0YV5C20HLLsT7ooQhlWscmOW
+         k+wVU9O9hhLsN7WRHuBD+XyUyQdEaXzCAafqh21sweQ9YXdJXZxP/v6uWPnEaCkbUcST
+         /xig==
+X-Gm-Message-State: APt69E0YzY5wohNgNS57Np3aambNmrqcEGcivshH9v+tgTQaW0/DT/1T
+	NsQL2/CflTLCHc5tMq1cI5xBJzPtp7AVhg==
+X-Google-Smtp-Source: ADUXVKKg+kI0N/3Xf+2GB//Sf6qaSVrT4VIDLh1T8RU2eZqtkUaUWsG887bndIy3Gcy07GIeYcr2GA==
+X-Received: by 2002:a5e:880b:: with SMTP id l11-v6mr3145810ioj.241.1528403561876;
+        Thu, 07 Jun 2018 13:32:41 -0700 (PDT)
+Return-Path: <alison@delaneys.ca>
+Received: from [192.168.2.19] (kntaon1614w-lp140-05-64-231-104-73.dsl.bell.ca. [64.231.104.73])
+        by smtp.gmail.com with ESMTPSA id o89-v6sm10295709ioi.85.2018.06.07.13.32.41
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Thu, 07 Jun 2018 13:32:41 -0700 (PDT)
+Content-Type: multipart/alternative; boundary="Apple-Mail=_12B8691D-517F-412A-9276-8BCD8F6C65DD"
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: Holmes v. Ross - Motion June 14, 2018
+From: Alison Boyce <alison@delaneys.ca>
+In-Reply-To: <25B6985A-3164-4345-8866-83CF58B9CEB8@gmail.com>
+Date: Thu, 7 Jun 2018 16:32:40 -0400
+Message-Id: <33A7AE3E-C89F-4AB2-9F04-E6440B1B76A8@delaneys.ca>
+References: <5867BAF7-CDBD-4018-B485-8A86A7E8B3F4@delaneys.ca> <77A36C40-B0B9-4311-803D-6B0664081066@delaneys.ca> <25B6985A-3164-4345-8866-83CF58B9CEB8@gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: Apple Mail (2.3124)
+
+
+--Apple-Mail=_12B8691D-517F-412A-9276-8BCD8F6C65DD
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+WITHOUT PREJUDICE
+
+Hi Darryl,
+
+Cynthia and I are agreeable to a settlement meeting on Monday June 11th =
+at 11:00 a.m. at my office, conditional on all of the following:
+The motion scheduled for June 14th will not be adjourned and will =
+proceed. Of course, if we reach an Agreement and sign Minutes of =
+Settlement than we can dismiss the motion date. Otherwise, the motion =
+will proceed if we do not reach a signed agreement.
+
+All, or substantially all, of the financial disclosure ordered by the =
+Court is provided to my office by 4:00 p.m. on Friday (June 8th).=20
+
+An advanced copy of your proposal for settling the issues is provided to =
+my office by 4:00 p.m. on Friday (June 8th).
+I await your reply.
+
+Sincerely,
+Alison=20
+
+Alison Boyce
+Barrister & Solicitor
+
+Delaney=E2=80=99s Law Firm
+Professional Corporation
+543 Somerset Street W
+Ottawa, ON K1R 5J9
+
+Tel: 613-233-7000
+Toll-Free Tel: 1-866-976-3396
+Fax: 1-866-846-4191
+Email: alison@delaneys.ca <mailto:alison@delaneys.ca>
+
+This e-mail transmission, and any documents, files or previous e-mail =
+messages attached to it may contain information that is confidential or =
+legally privileged. If you are not the intended recipient, or a person =
+responsible for delivering it to the intended recipient, you are hereby =
+notified that you must not read this transmission and that any =
+disclosure, copying, printing, distribution or use of any of the =
+information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received this transmission in error, please =
+immediately notify the sender by return e-mail and delete the original =
+transmission and its attachments without reading, printing, or saving in =
+any manner. Thank you.
+
+> On Jun 6, 2018, at 1:28 PM, Darryl Ross <darrylondunlin@gmail.com> =
+wrote:
+>=20
+> Hi Alison,
+>=20
+> I apologize for not getting back to you sooner. Before I went into =
+hospital I was not focused on this, but now that I=E2=80=99m out I am =
+scrambling to catch up, and very much want to work this out. =
+Unfortunately I=E2=80=99m short on resources, so I have to figure this =
+all out as I go, but I am committed to negotiating, and am working on =
+collecting the documents requested.  I have an appointment tomorrow =
+which will help, and plan to send you what I have been able to collect =
+by late Thursday/early Friday, with the rest to follow as soon as =
+possible. (Ideally I=E2=80=99ll have it by then.)
+>=20
+> I was going to ask you how you would prefer to arrange negotiating, =
+but Cynthia asked if I was willing to meet you before the 14th. If =
+that=E2=80=99s the case, I certainly am. Would Monday work for you?
+>=20
+> Please let me know if you need anything else,
+>=20
+> Best
+>=20
+> Darryl
+>=20
+> On Jun 6, 2018, at 10:58 AM, Alison Boyce <alison@delaneys.ca =
+<mailto:alison@delaneys.ca>> wrote:
+>=20
+>> Hi Darryl,
+>>=20
+>> I have not heard from you since my last correspondence set out below. =
+I would remind you that our motion is scheduled for next Thursday (June =
+14th) and your motion materials would be due by 2:00 p.m. on June 12th.=20=
+
+>>=20
+>> My client and I are still willing to negotiate a settlement with you. =
+Kindly contact my office in writing to discuss same.
+>>=20
+>> Sincerely,
+>> Alison=20
+>>=20
+>> Alison Boyce
+>> Barrister & Solicitor
+>>=20
+>> Delaney=E2=80=99s Law Firm
+>> Professional Corporation
+>> 543 Somerset Street W
+>> Ottawa, ON K1R 5J9
+>>=20
+>> Tel: 613-233-7000
+>> Toll-Free Tel: 1-866-976-3396
+>> Fax: 1-866-846-4191
+>> Email: alison@delaneys.ca <mailto:alison@delaneys.ca>
+>>=20
+>> This e-mail transmission, and any documents, files or previous e-mail =
+messages attached to it may contain information that is confidential or =
+legally privileged. If you are not the intended recipient, or a person =
+responsible for delivering it to the intended recipient, you are hereby =
+notified that you must not read this transmission and that any =
+disclosure, copying, printing, distribution or use of any of the =
+information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received this transmission in error, please =
+immediately notify the sender by return e-mail and delete the original =
+transmission and its attachments without reading, printing, or saving in =
+any manner. Thank you.
+>>=20
+>>> Begin forwarded message:
+>>>=20
+>>> From: Alison Boyce <alison@delaneys.ca <mailto:alison@delaneys.ca>>
+>>> Subject: Re: Holmes v. Ross - Motion June 14, 2018
+>>> Date: May 18, 2018 at 2:46:01 PM EDT
+>>> To: Darryl Ross <darrylondunlin@gmail.com =
+<mailto:darrylondunlin@gmail.com>>
+>>> Cc: Cynthia Holmes <cynthmholm@gmail.com =
+<mailto:cynthmholm@gmail.com>>
+>>>=20
+>>> Hi Darryl,
+>>>=20
+>>> Thank you for your email. I am glad to hear that you are doing =
+better.=20
+>>>=20
+>>> Yes, Cynthia and I would certainly be amenable to negotiating with =
+you to come to a settlement before our motion on June 14th.=20
+>>>=20
+>>> We are seeking that you commence your child support payments per the =
+Child Support Guidelines. Cynthia is also seeking reimbursement for your =
+share of the extraordinary expenses that she had covered on your behalf. =
+You can certainly consult with a lawyer to obtain your own legal advice.=20=
+
+>>>=20
+>>> Please let me know in writing any proposals you may have to settle =
+these issues.
+>>>=20
+>>> The disclosure that we are seeking are pursuant to the Orders of =
+Master Fortier and Master Champagne from our respective Case =
+Conferences. Please forward them to my office as soon as possible.
+>>>=20
+>>> Please do not hesitate to contact me by email or by fax should you =
+have further questions.=20
+>>>=20
+>>> Have a good weekend.
+>>>=20
+>>> Sincerely,
+>>> Alison=20
+>>>=20
+>>>=20
+>>> Alison Boyce
+>>> Barrister & Solicitor
+>>>=20
+>>> Delaney=E2=80=99s Law Firm
+>>> Professional Corporation
+>>> 543 Somerset Street W
+>>> Ottawa, ON K1R 5J9
+>>>=20
+>>> Tel: 613-233-7000
+>>> Toll-Free Tel: 1-866-976-3396
+>>> Fax: 1-866-846-4191
+>>> Email: alison@delaneys.ca <mailto:alison@delaneys.ca>
+>>>=20
+>>> This e-mail transmission, and any documents, files or previous =
+e-mail messages attached to it may contain information that is =
+confidential or legally privileged. If you are not the intended =
+recipient, or a person responsible for delivering it to the intended =
+recipient, you are hereby notified that you must not read this =
+transmission and that any disclosure, copying, printing, distribution or =
+use of any of the information contained in or attached to this =
+transmission is STRICTLY PROHIBITED. If you have received this =
+transmission in error, please immediately notify the sender by return =
+e-mail and delete the original transmission and its attachments without =
+reading, printing, or saving in any manner. Thank you.
+>>>=20
+>>>> On May 17, 2018, at 8:26 PM, Darryl Ross <darrylondunlin@gmail.com =
+<mailto:darrylondunlin@gmail.com>> wrote:
+>>>>=20
+>>>> Hi Alison,
+>>>>=20
+>>>> I=E2=80=99m not sure if Cynthia has informed you that I have been =
+in the hospital since May 2nd. Unfortunately I have been ill for some =
+time before that, and unable to collect the documents requested. My =
+condition has improved, and I will be leaving on the 23 of May, at which =
+point I will collect all of the documents requested and send them to =
+you.=20
+>>>>=20
+>>>> I will also review the documents you attached, and seek any =
+necessary advice.
+>>>>=20
+>>>> It was my hope that we could come to an agreement/settlement and =
+avoid going to court, now that I am well. Is that still a possibility =
+that you and/or Cynthia would be willing to consider?
+>>>>=20
+>>>> Best,
+>>>>=20
+>>>> Darryl
+>>>>=20
+>>>>> On Apr 24, 2018, at 4:51 PM, Alison Boyce <alison@delaneys.ca =
+<mailto:alison@delaneys.ca>> wrote:
+>>>>>=20
+>>>>> Dear Mr. Ross,
+>>>>>=20
+>>>>> Enclosed please find the Respondent=E2=80=99s Notice of Motion and =
+Affidavit served upon you pursuant to the Family Law Rules. Kindly note =
+the Court will hear the motion on June 14, 2018 at 10:00 a.m.
+>>>>>=20
+>>>>> I strongly suggest that you seek the advice of an Ontario family =
+lawyer of your choosing who can advise you in the circumstances. Your =
+lawyer can help you understand the motion and explain your rights and =
+responsibilities in your situation. You have a limited time to respond =
+to the motion. If you have questions or need advice about your case, =
+your lawyer can advise you.
+>>>>>=20
+>>>>> I trust the above is satisfactory.
+>>>>>=20
+>>>>> Sincerely,
+>>>>> Alison Boyce=20
+>>>>>=20
+>>>>>=20
+>>>>> Alison Boyce
+>>>>> Barrister & Solicitor
+>>>>>=20
+>>>>> Delaney=E2=80=99s Law Firm
+>>>>> Professional Corporation
+>>>>> 543 Somerset Street W
+>>>>> Ottawa, ON K1R 5J9
+>>>>>=20
+>>>>> Tel: 613-233-7000
+>>>>> Toll-Free Tel: 1-866-976-3396
+>>>>> Fax: 1-866-846-4191
+>>>>> Email: alison@delaneys.ca <mailto:alison@delaneys.ca>
+>>>>>=20
+>>>>> This e-mail transmission, and any documents, files or previous =
+e-mail messages attached to it may contain information that is =
+confidential or legally privileged. If you are not the intended =
+recipient, or a person responsible for delivering it to the intended =
+recipient, you are hereby notified that you must not read this =
+transmission and that any disclosure, copying, printing, distribution or =
+use of any of the information contained in or attached to this =
+transmission is STRICTLY PROHIBITED. If you have received this =
+transmission in error, please immediately notify the sender by return =
+e-mail and delete the original transmission and its attachments without =
+reading, printing, or saving in any manner. Thank you.
+>>>>>=20
+>>>>>=20
+>>>>> <2018-04-05 Notice of Motion.pdf><Exhibit Pages.pdf><2018-03-27 =
+Affidavit of C. Holmes.pdf>
+>>>>=20
+>>>=20
+>>=20
+
+
+--Apple-Mail=_12B8691D-517F-412A-9276-8BCD8F6C65DD
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div class=3D""><div class=3D""><b class=3D"">WITHOUT =
+PREJUDICE</b></div><div class=3D""><br class=3D""></div><div class=3D"">Hi=
+ Darryl,</div><div class=3D""><br class=3D""></div><div class=3D"">Cynthia=
+ and I are agreeable to a settlement meeting on Monday June 11th at =
+11:00 a.m. at my office, conditional on all of the following:</div><div =
+class=3D""><ol class=3D"MailOutline"><li class=3D"">The motion scheduled =
+for June 14th will not be adjourned and will proceed. Of course, if we =
+reach an Agreement and sign Minutes of Settlement than we can dismiss =
+the motion date. Otherwise, the motion will proceed if we do not reach a =
+signed agreement.<br class=3D""><br class=3D""></li><li class=3D"">All, =
+or substantially all, of the financial disclosure ordered by the Court =
+is provided to my office by 4:00 p.m. on Friday (June 8th).&nbsp;<br =
+class=3D""><br class=3D""></li><li class=3D"">An advanced copy of your =
+proposal for settling the issues is provided to my office&nbsp;by 4:00 =
+p.m. on Friday (June 8th).</li></ol><div class=3D"">I await your =
+reply.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Sincerely,</div><div =
+class=3D"">Alison&nbsp;</div></div></div><br class=3D""><div class=3D"">
+<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: =
+auto; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div class=3D""><b class=3D"">Alison Boyce</b></div><div =
+class=3D"">Barrister &amp; Solicitor</div><div class=3D""><br =
+class=3D""></div><div class=3D""><b class=3D"">Delaney=E2=80=99s Law =
+Firm</b></div><div class=3D""><b class=3D"">Professional =
+Corporation</b></div><div class=3D"">543 Somerset Street W</div><div =
+class=3D"">Ottawa, ON K1R 5J9</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Tel: 613-233-7000</div><div =
+class=3D"">Toll-Free Tel: 1-866-976-3396</div><div class=3D"">Fax: =
+1-866-846-4191</div><div class=3D"">Email:<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:alison@delaneys.ca" =
+class=3D"">alison@delaneys.ca</a></div><div class=3D""><br =
+class=3D""></div><div class=3D""><i class=3D"" style=3D"font-size: =
+12.8000001907349px; font-family: Calibri, sans-serif;">This e-mail =
+transmission, and any documents, files or previous e-mail messages =
+attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person =
+responsible for delivering it to the intended recipient, you are hereby =
+notified that you must not read this transmission and that any =
+disclosure, copying, printing, distribution or use of any of the =
+information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received this transmission in error, please =
+immediately notify the sender by return e-mail and delete the original =
+transmission and its attachments without reading, printing, or saving in =
+any manner. Thank you.</i></div></div>
+</div>
+<br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Jun 6, 2018, at 1:28 PM, Darryl Ross &lt;<a =
+href=3D"mailto:darrylondunlin@gmail.com" =
+class=3D"">darrylondunlin@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><meta =
+http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8" =
+class=3D""><div dir=3D"auto" class=3D""><div class=3D""></div><div =
+class=3D""><div style=3D"margin: 0px; font-size: 11px; line-height: =
+normal; font-family: '.SF UI Text'; color: rgb(69, 69, 69);" =
+class=3D""><span style=3D"font-family: &quot;.SFUIText&quot;; font-size: =
+11pt;" class=3D"">Hi Alison,</span></div><div style=3D"margin: 0px; =
+font-size: 11px; line-height: normal; font-family: '.SF UI Text'; color: =
+rgb(69, 69, 69); min-height: 13.1px;" class=3D""><span =
+style=3D"font-family: &quot;.SFUIText&quot;; font-size: 11pt;" =
+class=3D""></span><br class=3D""></div><div style=3D"margin: 0px; =
+font-size: 11px; line-height: normal; font-family: '.SF UI Text'; color: =
+rgb(69, 69, 69);" class=3D""><span style=3D"font-family: =
+&quot;.SFUIText&quot;; font-size: 11pt;" class=3D"">I apologize for not =
+getting back to you sooner. Before I went into hospital I was not =
+focused on this, but now that I=E2=80=99m out I am scrambling to catch =
+up, and very much want to work this out. Unfortunately I=E2=80=99m short =
+on resources, so I have to figure this all out as I go, but I am =
+committed to negotiating, and am working on collecting the documents =
+requested.&nbsp; I have an appointment tomorrow which will help, and =
+plan to send you what I have been able to collect by late Thursday/early =
+Friday, with the rest to follow as soon as possible. (Ideally I=E2=80=99ll=
+ have it by then.)</span></div><div style=3D"margin: 0px; font-size: =
+11px; line-height: normal; font-family: '.SF UI Text'; color: rgb(69, =
+69, 69); min-height: 13.1px;" class=3D""><span style=3D"font-family: =
+&quot;.SFUIText&quot;; font-size: 11pt;" class=3D""></span><br =
+class=3D""></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: '.SF UI Text'; color: rgb(69, 69, =
+69);" class=3D""><span style=3D"font-family: &quot;.SFUIText&quot;; =
+font-size: 11pt;" class=3D"">I was going to ask you how you would prefer =
+to arrange negotiating, but Cynthia asked if I was willing to meet you =
+before the 14th. If that=E2=80=99s the case, I certainly am. Would =
+Monday work for you?</span></div><div style=3D"margin: 0px; font-size: =
+11px; line-height: normal; font-family: '.SF UI Text'; color: rgb(69, =
+69, 69); min-height: 13.1px;" class=3D""><span style=3D"font-family: =
+&quot;.SFUIText&quot;; font-size: 11pt;" class=3D""></span><br =
+class=3D""></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: '.SF UI Text'; color: rgb(69, 69, =
+69);" class=3D""><span style=3D"font-family: &quot;.SFUIText&quot;; =
+font-size: 11pt;" class=3D"">Please let me know if you need anything =
+else,</span></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: '.SF UI Text'; color: rgb(69, 69, 69); =
+min-height: 13.1px;" class=3D""><span style=3D"font-family: =
+&quot;.SFUIText&quot;; font-size: 11pt;" class=3D""></span><br =
+class=3D""></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: '.SF UI Text'; color: rgb(69, 69, =
+69);" class=3D""><span style=3D"font-family: &quot;.SFUIText&quot;; =
+font-size: 11pt;" class=3D"">Best</span></div><div style=3D"margin: 0px; =
+font-size: 11px; line-height: normal; font-family: '.SF UI Text'; color: =
+rgb(69, 69, 69);" class=3D""><span style=3D"font-family: =
+&quot;.SFUIText&quot;; font-size: 11pt;" class=3D""><br =
+class=3D""></span></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: '.SF UI Text'; color: rgb(69, 69, =
+69);" class=3D""><span style=3D"font-family: &quot;.SFUIText&quot;; =
+font-size: 11pt;" class=3D"">Darryl</span></div></div><div class=3D""><br =
+class=3D"">On Jun 6, 2018, at 10:58 AM, Alison Boyce &lt;<a =
+href=3D"mailto:alison@delaneys.ca" class=3D"">alison@delaneys.ca</a>&gt; =
+wrote:<br class=3D""><br class=3D""></div><blockquote type=3D"cite" =
+class=3D""><div class=3D""><meta http-equiv=3D"Content-Type" =
+content=3D"text/html charset=3Dutf-8" class=3D""><div class=3D"">Hi =
+Darryl,</div><div class=3D""><br class=3D""></div><div class=3D"">I have =
+not heard from you since my last correspondence set out below. I would =
+remind you that our motion is scheduled for next Thursday (June 14th) =
+and your motion materials would be due by 2:00 p.m. on June =
+12th.&nbsp;</div><div class=3D""><br class=3D""></div><div class=3D"">My =
+client and I are still willing to negotiate a settlement with you. =
+Kindly contact my office in writing to discuss same.</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Sincerely,</div><div =
+class=3D"">Alison&nbsp;</div><br class=3D""><div class=3D"">
+<div style=3D"letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
+break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;" class=3D""><div class=3D""><b class=3D"">Alison =
+Boyce</b></div><div class=3D"">Barrister &amp; Solicitor</div><div =
+class=3D""><br class=3D""></div><div class=3D""><b class=3D"">Delaney=E2=80=
+=99s Law Firm</b></div><div class=3D""><b class=3D"">Professional =
+Corporation</b></div><div class=3D"">543 Somerset Street W</div><div =
+class=3D"">Ottawa, ON K1R 5J9</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Tel: 613-233-7000</div><div =
+class=3D"">Toll-Free Tel: 1-866-976-3396</div><div class=3D"">Fax: =
+1-866-846-4191</div><div class=3D"">Email:<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:alison@delaneys.ca" =
+class=3D"">alison@delaneys.ca</a></div><div class=3D""><br =
+class=3D""></div><div class=3D""><i class=3D"" style=3D"font-size: =
+12.8000001907349px; font-family: Calibri, sans-serif;">This e-mail =
+transmission, and any documents, files or previous e-mail messages =
+attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person =
+responsible for delivering it to the intended recipient, you are hereby =
+notified that you must not read this transmission and that any =
+disclosure, copying, printing, distribution or use of any of the =
+information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received this transmission in error, please =
+immediately notify the sender by return e-mail and delete the original =
+transmission and its attachments without reading, printing, or saving in =
+any manner. Thank you.</i></div></div>
+</div>
+<div class=3D""><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">Begin forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span=
+ style=3D"font-family: -webkit-system-font, 'Helvetica Neue', Helvetica, =
+sans-serif;" class=3D""><b class=3D"">From: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;" class=3D"">Alison Boyce &lt;<a =
+href=3D"mailto:alison@delaneys.ca" =
+class=3D"">alison@delaneys.ca</a>&gt;<br class=3D""></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;" class=3D""><span style=3D"font-family: =
+-webkit-system-font, 'Helvetica Neue', Helvetica, sans-serif;" =
+class=3D""><b class=3D"">Subject: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;" class=3D""><b=
+ class=3D"">Re: Holmes v. Ross - Motion June 14, 2018</b><br =
+class=3D""></span></div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span =
+style=3D"font-family: -webkit-system-font, 'Helvetica Neue', Helvetica, =
+sans-serif;" class=3D""><b class=3D"">Date: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;" class=3D"">May 18, 2018 at 2:46:01 PM EDT<br =
+class=3D""></span></div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span =
+style=3D"font-family: -webkit-system-font, 'Helvetica Neue', Helvetica, =
+sans-serif;" class=3D""><b class=3D"">To: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;" class=3D"">Darryl Ross &lt;<a =
+href=3D"mailto:darrylondunlin@gmail.com" =
+class=3D"">darrylondunlin@gmail.com</a>&gt;<br =
+class=3D""></span></div><div style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px;" class=3D""><span =
+style=3D"font-family: -webkit-system-font, 'Helvetica Neue', Helvetica, =
+sans-serif;" class=3D""><b class=3D"">Cc: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;" class=3D"">Cynthia Holmes &lt;<a =
+href=3D"mailto:cynthmholm@gmail.com" =
+class=3D"">cynthmholm@gmail.com</a>&gt;<br class=3D""></span></div><br =
+class=3D""><div class=3D""><meta http-equiv=3D"Content-Type" =
+content=3D"text/html charset=3Dutf-8" class=3D""><div style=3D"word-wrap: =
+break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;" class=3D""><div class=3D"">Hi Darryl,</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Thank you for your =
+email. I am glad to hear that you are doing better.&nbsp;</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Yes, Cynthia and I would =
+certainly be amenable to negotiating with you to come to a settlement =
+before our motion on June 14th.&nbsp;</div><div class=3D""><br =
+class=3D""></div><div class=3D"">We are seeking that you commence your =
+child support payments per the Child Support Guidelines. Cynthia is also =
+seeking reimbursement for your share of the extraordinary expenses that =
+she had covered on your behalf. You can certainly consult with a lawyer =
+to obtain your own legal advice.&nbsp;</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Please let me know in writing any =
+proposals you may have to settle these issues.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">The disclosure that we are seeking are =
+pursuant to the Orders of Master Fortier and Master Champagne from our =
+respective Case Conferences. Please forward them to my office as soon as =
+possible.</div><div class=3D""><br class=3D""></div><div class=3D"">Please=
+ do not hesitate to contact me by email or by fax should you have =
+further questions.&nbsp;</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Have a good weekend.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Sincerely,</div><div =
+class=3D"">Alison&nbsp;</div><div class=3D""><br class=3D""></div><div =
+class=3D""><br class=3D""></div><div class=3D"">
+<div style=3D"letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-wrap: =
+break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;" class=3D""><div class=3D""><b class=3D"">Alison =
+Boyce</b></div><div class=3D"">Barrister &amp; Solicitor</div><div =
+class=3D""><br class=3D""></div><div class=3D""><b class=3D"">Delaney=E2=80=
+=99s Law Firm</b></div><div class=3D""><b class=3D"">Professional =
+Corporation</b></div><div class=3D"">543 Somerset Street W</div><div =
+class=3D"">Ottawa, ON K1R 5J9</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Tel: 613-233-7000</div><div =
+class=3D"">Toll-Free Tel: 1-866-976-3396</div><div class=3D"">Fax: =
+1-866-846-4191</div><div class=3D"">Email:<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:alison@delaneys.ca" =
+class=3D"">alison@delaneys.ca</a></div><div class=3D""><br =
+class=3D""></div><div class=3D""><i class=3D"" style=3D"font-size: =
+12.8000001907349px; font-family: Calibri, sans-serif;">This e-mail =
+transmission, and any documents, files or previous e-mail messages =
+attached to it may contain information that is confidential or legally =
+privileged. If you are not the intended recipient, or a person =
+responsible for delivering it to the intended recipient, you are hereby =
+notified that you must not read this transmission and that any =
+disclosure, copying, printing, distribution or use of any of the =
+information contained in or attached to this transmission is STRICTLY =
+PROHIBITED. If you have received this transmission in error, please =
+immediately notify the sender by return e-mail and delete the original =
+transmission and its attachments without reading, printing, or saving in =
+any manner. Thank you.</i></div></div>
+</div>
+<br class=3D""><div class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On May 17, 2018, at 8:26 PM, Darryl Ross &lt;<a =
+href=3D"mailto:darrylondunlin@gmail.com" =
+class=3D"">darrylondunlin@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><meta =
+http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
+class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
+space; line-break: after-white-space;" class=3D"">Hi Alison,<div =
+class=3D""><br class=3D""></div><div class=3D"">I=E2=80=99m not sure if =
+Cynthia has informed you that I have been in the hospital since May 2nd. =
+Unfortunately I have been ill for some time before that, and unable to =
+collect the documents requested. My condition has improved, and I will =
+be leaving on the 23 of May, at which point I will collect all of the =
+documents requested and send them to you.&nbsp;</div><div class=3D""><br =
+class=3D""></div><div class=3D"">I will also review the documents you =
+attached, and seek any necessary advice.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">It was my hope that we could come to an =
+agreement/settlement and avoid going to court, now that I am well. Is =
+that still a possibility that you and/or Cynthia would be willing to =
+consider?</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Best,</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Darryl</div><div class=3D"">
+<div class=3D""><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Apr 24, 2018, at 4:51 PM, Alison Boyce &lt;<a =
+href=3D"mailto:alison@delaneys.ca" class=3D"">alison@delaneys.ca</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D"">
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
+class=3D"">
+
+<div class=3D"">
+<div class=3D"" style=3D"word-wrap:break-word">
+<div class=3D"">Dear Mr. Ross,</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Enclosed&nbsp;please find the Respondent=E2=80=99s =
+Notice of Motion and Affidavit served upon&nbsp;you&nbsp;pursuant to =
+the&nbsp;<i class=3D"">Family Law&nbsp;Rules</i>.&nbsp;Kindly note the =
+Court will hear the motion on&nbsp;June 14, 2018 at 10:00 a.m.<br =
+class=3D"">
+<br class=3D"">
+I&nbsp;strongly suggest that you seek the advice of an Ontario family =
+lawyer of your&nbsp;choosing who can advise you in the circumstances. =
+Your lawyer can help you&nbsp;understand the motion and explain your =
+rights and responsibilities in your&nbsp;situation.&nbsp;You have a =
+limited
+ time to respond to the motion. If you have&nbsp;questions or =
+need&nbsp;advice about your case, your lawyer can advise you.<br =
+class=3D"">
+<br class=3D"">
+I&nbsp;trust the above is satisfactory.</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Sincerely,</div>
+<div class=3D"">Alison Boyce&nbsp;</div>
+<div class=3D""><br class=3D"">
+</div>
+<br class=3D"">
+<div class=3D"">
+<div class=3D"" style=3D"letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; word-wrap: break-word;">
+<div class=3D""><b class=3D"">Alison Boyce</b></div>
+<div class=3D"">Barrister &amp; Solicitor</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><b class=3D"">Delaney=E2=80=99s Law Firm</b></div>
+<div class=3D""><b class=3D"">Professional Corporation</b></div>
+<div class=3D"">543 Somerset Street W</div>
+<div class=3D"">Ottawa, ON K1R 5J9</div>
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D"">Tel: 613-233-7000</div>
+<div class=3D"">Toll-Free Tel: 1-866-976-3396</div>
+<div class=3D"">Fax: 1-866-846-4191</div>
+<div class=3D"">Email:<span =
+class=3D"x_Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:alison@delaneys.ca" class=3D"">alison@delaneys.ca</a></div>=
+
+<div class=3D""><br class=3D"">
+</div>
+<div class=3D""><i class=3D"" style=3D"font-size:12.8000001907349px; =
+font-family:Calibri,sans-serif">This e-mail transmission, and any =
+documents, files or previous e-mail messages attached to it may contain =
+information that is confidential or legally privileged.
+ If you are not the intended recipient, or a person responsible for =
+delivering it to the intended recipient, you are hereby notified that =
+you must not read this transmission and that any disclosure, copying, =
+printing, distribution or use of any of the information
+ contained in or attached to this transmission is STRICTLY PROHIBITED. =
+If you have received this transmission in error, please immediately =
+notify the sender by return e-mail and delete the original transmission =
+and its attachments without reading, printing,
+ or saving in any manner. Thank you.</i></div>
+<div class=3D""><i class=3D"" style=3D"font-size:12.8000001907349px; =
+font-family:Calibri,sans-serif"><br class=3D"">
+</i></div>
+<div class=3D""><i class=3D"" style=3D"font-size:12.8000001907349px; =
+font-family:Calibri,sans-serif"></i></div>
+</div>
+</div>
+</div>
+<div style=3D"word-wrap:break-word" class=3D"">
+<div id=3D"x_AppleMailSignature" class=3D"">
+<div style=3D"letter-spacing: normal; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; word-spacing: 0px; =
+word-wrap: break-word;" class=3D"">
+<div class=3D""><i class=3D"" style=3D"font-size:12.8000001907349px; =
+font-family:Calibri,sans-serif"></i></div>
+</div>
+</div>
+</div>
+<div style=3D"word-wrap:break-word" class=3D"">
+<div id=3D"x_AppleMailSignature" class=3D"">
+<div style=3D"letter-spacing: normal; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; word-spacing: 0px; =
+word-wrap: break-word;" class=3D"">
+<div class=3D""><i class=3D"" style=3D"font-size:12.8000001907349px; =
+font-family:Calibri,sans-serif"></i></div>
+</div>
+</div>
+</div>
+<div class=3D"" style=3D"word-wrap:break-word">
+<div class=3D"">
+<div class=3D"" style=3D"letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; word-wrap: break-word;">
+<div class=3D""><i class=3D"" style=3D"font-size:12.8000001907349px; =
+font-family:Calibri,sans-serif"></i></div>
+</div>
+</div>
+<br class=3D"">
+</div>
+</div>
+
+<span =
+id=3D"cid:f1960d1d-4506-40fc-aab8-3e9d8d92cd08@namprd02.prod.outlook.com" =
+class=3D"">&lt;2018-04-05 Notice of Motion.pdf&gt;</span><span =
+id=3D"cid:d61588fe-fac9-4983-bc0f-1a3ee36377e7@namprd02.prod.outlook.com" =
+class=3D"">&lt;Exhibit Pages.pdf&gt;</span><span =
+id=3D"cid:9955ce09-2103-468d-b7e8-b77dd1087787@namprd02.prod.outlook.com" =
+class=3D"">&lt;2018-03-27 Affidavit of C. =
+Holmes.pdf&gt;</span></div></blockquote></div><br =
+class=3D""></div></div></div></blockquote></div><br =
+class=3D""></div></div></blockquote></div><br =
+class=3D""></div></blockquote></div></div></blockquote></div><br =
+class=3D""></body></html>=
+
+--Apple-Mail=_12B8691D-517F-412A-9276-8BCD8F6C65DD--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>10772</integer>
+	<key>date-last-viewed</key>
+	<integer>1747068662</integer>
+	<key>date-received</key>
+	<integer>1528403562</integer>
+	<key>flags</key>
+	<integer>25770065281</integer>
+	<key>remote-id</key>
+	<string>1873</string>
+</dict>
+</plist>

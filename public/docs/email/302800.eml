@@ -1,0 +1,180 @@
+8421      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17090901.me.com by p133-mailgateway-smtp-5d89b48cff-nsrsc (mailgateway 2310B184)
+	with SMTP id 74cbd17d-4ada-41b4-8dc0-3ab0ba65e315 
+	for <darrylross@icloud.com>; Tue, 28 Feb 2023 19:16:28 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 74cbd17d-4ada-41b4-8dc0-3ab0ba65e315
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by ms11p00im-qufv17090901.me.com (Postfix) with ESMTPS id 867192A005C
+	for <darrylross@icloud.com>; Tue, 28 Feb 2023 19:16:27 +0000 (UTC)
+X-ICL-SCORE: 3.3330333300
+X-ICL-INFO: GAtbVUseBVFGSVVESwMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MQEpEVxBVWg1IWwsWEVwbBxFI
+ SxFNAxgFGhYBGx0eVQ0YW0YHDEILQBgYDxtVVVJTWB9TRFZXWQ0SFQNZG19bQFUdAkpaV1sDHBVI
+ FBddFEIYEAJKWgx1IzMXBA4qdVBXAThbAAtVR1Q2Gx8QHQVDViMhDz8nVAUDKiAVR0xjejYRGyQY
+ N0hwVjQ5CxYRXBgFGBgPG1ZTWQ9LW0YFGw0UBhQLFA4UQlkRBjkPFBRfQwZbGgkaWg==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MJZuk+vn
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.53 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.53; helo=mail-ed1-f53.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id da10so44503416edb.3
+        for <darrylross@icloud.com>; Tue, 28 Feb 2023 11:16:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1677611786;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UamMCFTRVCeASKx/hJcqv2WoFdXWd0A5MEmDWq+ugEA=;
+        b=MJZuk+vnhHPIrLqcmCXtjBvDpO2gWzPZJ/7agLPqT91SSQbVcLN5WMKyuFrUuiyNlB
+         e+5tUPzt5bdeJU8qFqZAxbSqPUIK9PoQQE3l7IUYZxNSjwxsoVj/6Sld1zKDlEgTl640
+         m5rUBamx7Nq3shW4U0ShpptSPfi8sHl92hEVI0+25ZvxiqQFGY9kzlE1+BEnu/uUdEtN
+         UUZzMe5M2EZd1AvgrA86PcH7PXu2J8TJAhw8qhyuyJfmWkWP63G5mskwnC+wDZEiRHlk
+         bpLKUG2ZxvkPxRkRCYSeyFjU0dXMu8mZyQ3QDxpsjcY4B5zsJx7AqWBMO4U6feJumfhF
+         fEOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1677611786;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UamMCFTRVCeASKx/hJcqv2WoFdXWd0A5MEmDWq+ugEA=;
+        b=GVp0dCmNDsFPETJbFIDGlpqFNluOYS58V4PA/1DmeWI19EH8uPgdy6HEIwO3ArC7k9
+         dANLYNS3PvUHW3JOQ0c/hZ1ZVdTXkQ7KNBh6sc0mANDlsfX0dooTfp4bafUOl9rq6nbX
+         CKga2tlUNJGgSShnrJwn0V6bhJzJWwsu9E4NIPf4mR4KvnTGvA9HObDWKbx7BhjdAty+
+         G1VjnYUHxv+oJvasU1mZae938crDKUVoMBRLKe/pTdl9MbYJICiIaKfAkVV5ZnB/gc8B
+         XRAqhRve+lrI0FcwbGbZEeE1oPtRNcWVIFuWCdKpWoQZThZNYrReI+Br2GGpL0yG6fWi
+         LbGw==
+X-Gm-Message-State: AO0yUKX/RFxmCWaoZNcOu7fzAK9qLtQoWmpWNugf6Iho4qT3P1KOXZ5c
+	eJ+u2FzsdRB5413D1Z27zMp9gl5tvM9QcJJAjZgSSBJeeP4=
+X-Google-Smtp-Source: AK7set/SnFgja4mkQUCv6lvztuxa/BMNvrSg3v2Hy1KQ2AspBVERMO8BGAV/vnXcdTZnzCE7pb9lfLHKuyqeuoiseok=
+X-Received: by 2002:a17:907:985b:b0:8dc:6674:5bac with SMTP id
+ jj27-20020a170907985b00b008dc66745bacmr1807867ejc.4.1677611786608; Tue, 28
+ Feb 2023 11:16:26 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRHfpcc7EZ_DSB_KANQ=jM_RRTYOmVxBnySPWUVY0PHzZQ@mail.gmail.com>
+ <97C574DE-CBAF-43F2-AE3A-07D2D4B83BC9@icloud.com> <CAFnbyRHtiggCHUuYu8DOOwXvEKsAtLwxE6964o45e_QXfUCQew@mail.gmail.com>
+ <18BEB29B-0449-4F80-AB93-7DEC9BF230CB@icloud.com>
+In-Reply-To: <18BEB29B-0449-4F80-AB93-7DEC9BF230CB@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 28 Feb 2023 14:16:15 -0500
+Message-ID: <CAFnbyREf5tA=wseq6Cbyge5u4VXiH_d3a_Ys04SLTdbBoOxF4A@mail.gmail.com>
+Subject: Re: Postpone visit
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Holly Ross <hollygammie@gmail.com>, Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="0000000000009ca17605f5c76ee2"
+X-MANTSH: 1TEIXR1kbG1oaGkNHB1tfTFwbGhsbGh4aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhoaEQpZRBdiRWJBeWNMYV17TxEKWU0Xek9YWUVES0ZrRkZFXREKX1kXGBgaEQpfT
+ RdkRURPEQpZSRcacRoQGncGGBoacRsTExAadwYYGgYaEQpZXhdsbHkRCkNOFxpbHgccbRhcGkB
+ rUkBNaFkbTmRyHxh/QEtPGUl4Y1hHEQpYXBcZBBoEHxoESE9eSxgFGxoEEwQbEgQbGRwQGx4aH
+ xoRCl5ZF0hnBU9HEQpNXBcYHxkRCkxaF2hrTU1rEQpMRhdia2sRCkNaFxgaEwQSHwQYGhIEHxk
+ RCkJeFxsRCkRJFxgRCkJcFxsRCl5OFxsRCkJLF2NTY2t7E1h+Gl9eEQpCSRdjU2NrexNYfhpfX
+ hEKQkUXaBIbfHhybngaYmMRCkJOF2NTY2t7E1h+Gl9eEQpCTBdsHkJTZGZ8eEZuQREKQmwXb0t
+ HUEFtGhJLaUkRCkJAF2VZW0AabVB5GX5EEQpCWBdia05vb3psZ1pHSxEKTV4XGxEKWlgXGBEKc
+ GgXaV17aERNQEJARB8QGRoRCnBoF2N/aGMeWkUTcEVzEBkaEQpwaBdkfGJOWlsfW0d9ehAZGhE
+ KcGgXa3x+YR8ZT0JbTXgQGRoRCnBoF2BDexl7c2seek1oEBkaEQpwbBdmRmsfGFttX0ZvbxAZG
+ hEKbX4XGxEKWE0XSxE=
+X-CLX-Shades: PersonalAllow
+X-Proofpoint-ORIG-GUID: 0q4-6G2v0jAxjgBs1dNX52Ujae3cRIrm
+X-Proofpoint-GUID: 0q4-6G2v0jAxjgBs1dNX52Ujae3cRIrm
+
+--0000000000009ca17605f5c76ee2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ok, please let us know.
+
+On Tue, Feb 28, 2023 at 2:12=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Roads and weather are ok. Waiting to hear back if laneway has been
+> cleared. Will confirm by 2:45 pm.
+>
+> On Feb 28, 2023, at 11:41, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Ok, thanks for the update.
+>
+> On Tue, Feb 28, 2023 at 11:33 AM Darryl Ross <darrylross@icloud.com>
+> wrote:
+>
+>> I=E2=80=99m keeping an eye on conditions and traffic reports and will co=
+nfirm
+>> whether my mom is driving in today by 2 pm.
+>>
+>> Darryl
+>>
+>> > On Feb 28, 2023, at 10:48, Cynthia Holmes <cynthmholm@gmail.com> wrote=
+:
+>> >
+>> > Hi there,
+>> >
+>> > The roads are not great today and weather reports show this snow will
+>> continue. Can we postpone Wednesday or Thursday this week when it's safe=
+r
+>> to drive?
+>> >
+>> > Cynthia
+>>
+>>
+>
+
+--0000000000009ca17605f5c76ee2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Ok, please let us know.</div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 28, 2023 at 2:12=E2=80=
+=AFPM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com">darrylross@i=
+cloud.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div>Roads and weather are ok. Waiting to hear back if laneway h=
+as been cleared. Will confirm by 2:45 pm.<div><div><br><blockquote type=3D"=
+cite"><div>On Feb 28, 2023, at 11:41, Cynthia Holmes &lt;<a href=3D"mailto:=
+cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:=
+</div><br><div><div>Ok, thanks for the update.</div><div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 28, 2023 at =
+11:33 AM Darryl Ross &lt;<a href=3D"mailto:darrylross@icloud.com" target=3D=
+"_blank">darrylross@icloud.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">I=E2=80=99m keeping an eye on conditions and =
+traffic reports and will confirm whether my mom is driving in today by 2 pm=
+. <br>
+<br>
+Darryl<br>
+<br>
+&gt; On Feb 28, 2023, at 10:48, Cynthia Holmes &lt;<a href=3D"mailto:cynthm=
+holm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi there,<br>
+&gt; <br>
+&gt; The roads are not great today and weather reports show this snow will =
+continue. Can we postpone Wednesday or Thursday this week when it&#39;s saf=
+er to drive?<br>
+&gt; <br>
+&gt; Cynthia<br>
+<br>
+</blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--0000000000009ca17605f5c76ee2--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1066314</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1677611788</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>20053</string>
+</dict>
+</plist>

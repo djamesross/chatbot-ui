@@ -1,0 +1,101 @@
+4592      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:ab3:674b:0:0:0:0:0 with SMTP id f11csp10873369ltj; Thu, 14
+ Nov 2019 07:41:44 -0800 (PST)
+X-Received: by 2002:a0c:d40c:: with SMTP id t12mr8719171qvh.157.1573746104712;
+ Thu, 14 Nov 2019 07:41:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1573746104; cv=none; d=google.com;
+ s=arc-20160816;
+ b=COlfBsay4EtrlkOgRgHIHNrjgZkT+Jp3hsfwQcurCGQJlDfU/Ky5hOPmYy6uAiRpOz
+ ETVTfMM/RvwxZsAaaM4hBvTjAl9Qrh4lQiEUccVqHzwjxN/Ek9Q8rzupq8ZYDwD5Gvw+
+ 1JaKqT9HTmVvu2bkKKjL+Rxk9cviAmkhl+f5A5AKz/4DGpGNMx8YA3Hqzdrh9dmALOGN
+ NuHVSm6k5eG4zhbLjymyHxFZdZAHo4q28xx6hWRFtVqu0t7vis+FeglJTfVJMlISMeBN
+ qTYC0pTJk8XBPtayPTqWmmtaj9P23x1yNbXSu9qdRZq1XmjoDNVy0vkrvnPFT01p9tSk smyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=to:cc:message-id:subject:date:mime-version
+ :content-transfer-encoding:from:dkim-signature;
+ bh=KAX1BkzH6Nue01uiAOf+6rGrCMox4b/BbCfFIaZpu7c=;
+ b=kn0vkeBxIA/3FlJfTEMZTd8qEWXzQtCiqVf4mqBc0L00upGMHK6o3PbS6MFKUWVTLy
+ ju6WsDPewWtHsL60i+jtKyQJBTvpLpujime/xRmkKsx+PQMMCt+OcCa2XpKVZMM/w6qS
+ cHZFtfIBz5N1s5ZlFLx8beaBrzyetEwWG/wT3ZcSZcjI35/6TCI4CLF07YdKqzqXR6K6
+ l2FhJFj4bpgM+nB7MLZlmj/2r6GJDsTm8KoJy3AYQwgs0nvl/use2c35MlnfCnBPe109
+ ipEkkyfyMxIK6DRpVfQclJ1rvZVwCklrzrfPts8OeUsiKzmBSYu9uOlu7Qh48cl2h+sB AGsw==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=t8Z0YlPt; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com.
+ [209.85.220.41]) by mx.google.com with SMTPS id
+ m62sor2874410qke.165.2019.11.14.07.41.44 for <darrylondunlin@gmail.com>
+ (Google Transport Security); Thu, 14 Nov 2019 07:41:44 -0800 (PST)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates
+ 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=t8Z0YlPt; spf=pass (google.com: domain of
+ cynthmholm@gmail.com designates 209.85.220.41 as permitted sender)
+ smtp.mailfrom=cynthmholm@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE
+ dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:content-transfer-encoding:mime-version:date:subject:message-id :cc:to;
+ bh=KAX1BkzH6Nue01uiAOf+6rGrCMox4b/BbCfFIaZpu7c=;
+ b=t8Z0YlPt4zLJUZBuOf+YjWnKZsKslAKqDKqOSqupCKW4i9U0PvSgeA/aMVhou5VdOC
+ vEMsRBSDrCSG8ykztmMB0bccpekyPfJOpJDMHCivsilYqeArv1bIrk8tEZEv6tleff4N
+ L4yl7cRSqJXodJeL7mwdROlqXyC5TiNTFiYjqe8xC+000hsLkzziEslDKP2OkAEqpvBz
+ 4UV68F4MRnmxsVYsqLp+bmNZjnesGGnx0zi6ET074jLE36/MppTfx5quzVAiqqr+pn86
+ nqJCKyN6Uh/QNl1P8ce3joLCle4pk24RWjv5/bd8Ne1a2wcHFR+jPUnndJVY5N5h6+Ko cmAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
+ :subject:message-id:cc:to; bh=KAX1BkzH6Nue01uiAOf+6rGrCMox4b/BbCfFIaZpu7c=;
+ b=PXi93TQ7dmIw/DEnG116ofySUvmGMG6JvOvl7JPE68xUopff2VfXsrbJF0L04BNiuk
+ WSNwBx2dMpjh1umSfeVbaxDoeMB19kCsY38Nz7LZjzQAem/3DA0CvBlbD4u4QOy2c+Zm
+ QecaG8I+zv3BtrBLxgclBuxzYCz9TgXHJv9WxFbNIT86ILq8lmWn0vnDmSfu3n+Hvn5e
+ T1A2uRqOVGtaPlj3DSxLAxQw9nk4+687+zp4rkhIuG3AsbPMOZkv2Cgr+Hbr+dXgFSBK
+ dBP2EMS1snfv2+qoYdsDGnYplwmUvO5yuk69jDER1/Y1AOwDXvImT8wAZ7Tk3U/Oh5Pj ACqQ==
+X-Gm-Message-State: APjAAAWuRXEpmYDRhtIWNssVKB7BChmvJpDcashHZvXf5Yxi0FBJ/a4N
+ 1S3Atz2ysN7VFZj8vIncCnyXhOI/
+X-Google-Smtp-Source: APXvYqwRK88EEO/ffJhfWUur90Rvb+PN63uefvioP1sEq4EZNC1tybbbFrql/aeS9KmfYpsQo4X3Cw==
+X-Received: by 2002:a37:4ed7:: with SMTP id
+ c206mr8044116qkb.440.1573746103557; Thu, 14 Nov 2019 07:41:43 -0800 (PST)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [100.88.179.113] ([161.216.164.61]) by smtp.gmail.com with
+ ESMTPSA id v20sm2591844qkg.92.2019.11.14.07.41.42 (version=TLS1_2
+ cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128); Thu, 14 Nov 2019 07:41:42
+ -0800 (PST)
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (1.0)
+Date: Thu, 14 Nov 2019 10:41:40 -0500
+Subject: Today
+Message-Id: <FCBA097E-DA04-4B6C-B13E-859015A440DC@gmail.com>
+Cc: Linda Holmes <holmesmorrison@hotmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: iPhone Mail (16G114)
+
+Hi there. 
+
+Can you coordinate directly with my mom today about the visit?
+
+Thanks.
+
+Sent from my iPhone
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>30365</integer>
+	<key>date-last-viewed</key>
+	<integer>1746105123</integer>
+	<key>date-received</key>
+	<integer>1573746104</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>remote-id</key>
+	<string>20060</string>
+</dict>
+</plist>

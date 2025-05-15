@@ -1,0 +1,157 @@
+7772      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from pv33p00im-smtpin020.me.com by p133-mailgateway-smtp-8588b56cd7-jqz2m (mailgateway 2316B325)
+	with SMTP id 9ca8e776-0fc6-484a-83d9-4b1678e5afdf 
+	for <darrylross@icloud.com>; Sat, 27 May 2023 14:51:16 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 9ca8e776-0fc6-484a-83d9-4b1678e5afdf
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	by pv33p00im-smtpin020.me.com (Postfix) with ESMTPS id 9F9347C0143
+	for <darrylross@icloud.com>; Sat, 27 May 2023 14:51:13 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdSRVoQXgcZFltVFVFfDlgc
+ AkZVVgJQWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEUwCGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQlKkkOHyl/AwAjIBQHHUdQVToxFCMvQGYhPiY+ECgIchMtHTMh
+ FQR5BUU1JzcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wp7fspT1
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.42 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.42 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.42; helo=mail-ed1-f42.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-51480d3e161so1661782a12.3
+        for <darrylross@icloud.com>; Sat, 27 May 2023 07:51:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685199072; x=1687791072;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ekjondv/NZdR7D6bUNutge51RVD8w4L7xgbrSzu5qjE=;
+        b=Wp7fspT1rAYg8qV8lV9jZZiyb/IdkNSqigfH5Dez+524OX29I47OvM8j5u2stbFK+W
+         gCrXEVHVXid2USUX3gb4XgWuUHJdW30z5fakSadKSPooqBaYRmiroadRssDiKTTcG+ct
+         3A+dD67i7LRt08xaOntf3AefaISvKU/HrPN7jXKWHLCyz9GYpqQ0BnPCXDcWEF50NNUt
+         EjeIybnWryMvgLKpy6Y+rEXrYajtkLaLHYvKKGOTwPZYip0ndFC4+xBcotvt8duu3u/0
+         52cmfeI8G5kZbumN4gejbkm5ny23JYAWe8qZaZ7zW7gUjS7lNq8XS+D3xRygV81a/DYc
+         0CNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685199072; x=1687791072;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ekjondv/NZdR7D6bUNutge51RVD8w4L7xgbrSzu5qjE=;
+        b=L7RBnjWWjKMYZyzgJHpgvMdyr6QsNnhwpfcxUqak4uJBr3f50iY90Iviq925AiqNdP
+         m4VbagTMjBv47uN+RCxxxrv6DxisA3sXbQXjxGQw5oW/XvL2JNEd14qz4hxg3ZobaaYX
+         TQzv8tS6/qiv3fuZvtUFa/iYoMSF1K7q2oNTHG7wKDeVONB+iGNHbUkJbEXWIPTcuKFJ
+         u+4zRVGfPPXgVmdlP2s4Q4lLmp9R+h4tsw4VoUB8Xi6tSq/B3kYGTwyGHZ8qTtEGFLOw
+         vh9POntrVOSG9LwlhplAkAC2VZYGqq9QlcB9XmvC4ickUtzcC2KKcw2cUwZRgsMAzDU6
+         2xXw==
+X-Gm-Message-State: AC+VfDw5iogFKcOBfN9+3xYQbxGBl/EM54MYTcWGXU42YktMl/fCr575
+	UgNCKeQmY9G5fMKTPol7wjx9vLfGJmy2NnbaEP3m6ozDris=
+X-Google-Smtp-Source: ACHHUZ6aWmxmB87uDFSkh9DySRGTQRQvPeNN4Dr6o33cM8GE/7R/ysH/PYHlxlUwIb8N1drnXujyC6OqJ3tu7aKNjsc=
+X-Received: by 2002:a17:907:a08:b0:973:e69d:c720 with SMTP id
+ bb8-20020a1709070a0800b00973e69dc720mr998743ejc.51.1685199072055; Sat, 27 May
+ 2023 07:51:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFnbyREE3=PjtjJFmirS7_vpZGuD7JrDDb1n6JpHM5tWijNQ7Q@mail.gmail.com>
+In-Reply-To: <CAFnbyREE3=PjtjJFmirS7_vpZGuD7JrDDb1n6JpHM5tWijNQ7Q@mail.gmail.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 27 May 2023 10:51:00 -0400
+Message-ID: <CAFnbyRG_0hhQO5bVYrpewf7OHrTWpPCK_XgP8DqXdUVm4Og0LA@mail.gmail.com>
+Subject: Re: Visits
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="00000000000010d56b05fcadfccf"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxgaEhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsSEnEbHhIQGncGGBoGGhEKWV4XbGx5EQpDThcZGXAbb2dGZlgcQ
+ kd7EhpYHV9lTmJdYhNDW3BlQGJBWxEKWFwXGQQaBB8aBRsaGgQdHwQZHwQbHxwQGx4aHxoRCl5
+ ZF0haHRsSEQpNXBcHGx4TEQpMWhdNaU1NbxEKTEYXbE1rEQpDWhcYGhMEEh8EGBoSBB4YEQpCX
+ hcbEQpEXhcYEQpESRcbEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4
+ aX14RCkJFF2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF
+ 29LR1BBbRoSS2lJEQpCQBdtARtdS20YWU4bUBEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxg
+ RCnBoF29mWnlbSUh/bWsFEBkaEQpwaBdtax1hSXBJXxhyEhAZGhEKcGgXa2BSbXlcclx6fU0QH
+ hIRCnBoF2dcHxplXFNBU3liEBkaEQpwaBd6T0htZmtPaXgdXxAZGhEKcGgXZXp6HBJTWBhEWm8
+ QGRoRCnBoF2ZtS0BHZUF6exlBEBkaEQpwaBdjYUVcbFsbE2xSWxAZGhEKcGwXZkZrHxhbbV9Gb
+ 28QGRoRCm1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: 33Z1EMlLr6hmQ80r7uOdHwH9iqZOjHkq
+X-Proofpoint-GUID: 33Z1EMlLr6hmQ80r7uOdHwH9iqZOjHkq
+
+--00000000000010d56b05fcadfccf
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+Can you confirm below for Tuesday night drop off and having Holly greet
+girls?
+
+Thanks!
+
+On Thu, May 25, 2023 at 10:40=E2=80=AFPM Cynthia Holmes <cynthmholm@gmail.c=
+om>
+wrote:
+
+> Hi Holly and Darryl,
+>
+> Schedule shared and as previously communicated Sundays are free and
+> Tuesday nights there is practice for Charlotte.
+>
+> Girls will be dropped off for noon Sunday. Also my mother has noted  the
+> past few times, Holly does not come out to greet girls  only Darryl. Holl=
+y
+> can you ensure you go out to greet girls so we know you are present? Than=
+ks.
+>
+> Please confirm for Tuesday visit you can drop off Charlotte at her
+> practice for 715 pm. She is looking forward to it.
+>
+> Cynthia
+>
+
+--00000000000010d56b05fcadfccf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<br><div><br></div><div>Can you confirm below for Tu=
+esday night drop off and having Holly greet girls?</div><div><br></div><div=
+>Thanks!</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, May 25, 2023 at 10:40=E2=80=AFPM Cynthia Holmes &lt=
+;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Holly and D=
+arryl,<div dir=3D"auto"><br><div dir=3D"auto">Schedule shared and as previo=
+usly communicated Sundays are free and Tuesday nights there is practice for=
+ Charlotte.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Girls will b=
+e dropped off for noon Sunday. Also my mother has noted =C2=A0the past few =
+times, Holly does not come out to greet girls =C2=A0only Darryl. Holly can =
+you ensure you go out to greet girls so we know you are present? Thanks.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">Please confirm for Tuesday=
+ visit you can drop off Charlotte at her practice for 715 pm. She is lookin=
+g forward to it.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Cynthia=
+=C2=A0</div></div>
+</blockquote></div>
+
+--00000000000010d56b05fcadfccf--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1125190</integer>
+	<key>date-last-viewed</key>
+	<integer>1744823153</integer>
+	<key>date-received</key>
+	<integer>1685199076</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>19815</string>
+</dict>
+</plist>

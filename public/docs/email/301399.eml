@@ -1,0 +1,292 @@
+16039     
+Return-path: <goulaf@ecolecatholique.ca>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17083601.me.com by p133-mailgateway-smtp-5dd8b85c5-pg7sw (mailgateway 2315B206)
+	with SMTP id ecf5e234-4683-4427-964c-516f1a4fde6a 
+	for <darrylross@icloud.com>; Thu, 4 May 2023 21:20:00 GMT
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: MOVE_TO_FOLDER/INBOX
+X-Apple-UUID: ecf5e234-4683-4427-964c-516f1a4fde6a
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
+	by ms11p00im-qufv17083601.me.com (Postfix) with ESMTPS id 94B7A2C00EF
+	for <darrylross@icloud.com>; Thu,  4 May 2023 21:19:57 +0000 (UTC)
+X-ICL-SCORE: 3.332033030041
+X-ICL-INFO: GAtbVUseBVFHSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaV1kXGRgANx1TWQ4Q
+ GgcDEF9aCwQMA1kbURRCEx1bVR1TWQ4QGgcDEF9aCwQMA1kbURRCBhAWSloCBltbQVNZSgEBTEFK
+ RFcQVVoNSFsLFhFcGxQGSEsRTAMYBRoWARsdHlUNGFtGBwxCC0AYGA8bVUZFU1gfUkRWV1kNEhUD
+ WRtfW0BVHQJKWlVVDRkcBRYMWFkOHAgTElZTV0BVFA8TRRIKITQ9VkoCHW4tMBQPKEhfQUkMDFs4
+ J31mMCQfMS1Ad0cjEiMLAwkDCwkDKg1HEwQOVR04JhoZWVpMEhQHHhQeVQ0YR0RXClMLQBEYFAUB
+ XEQNBgomHhtcWRcRVwUYFRI=
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=none header.from=ecolecatholique.ca
+X-DMARC-Info: pass=none; dmarc-policy=(nopolicy); s=u0; d=u0; pdomain=ecolecatholique.ca
+X-DMARC-Policy: none
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=ecolecatholique.ca header.i=@ecolecatholique.ca header.b=fogEmIR5
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of goulaf@ecolecatholique.ca designates 209.85.217.43 as permitted sender) smtp.mailfrom=goulaf@ecolecatholique.ca
+Received-SPF: pass (spf.icloud.com: domain of goulaf@ecolecatholique.ca designates 209.85.217.43 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.217.43; helo=mail-vs1-f43.google.com; envelope-from=goulaf@ecolecatholique.ca
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4346efda846so623714137.1
+        for <darrylross@icloud.com>; Thu, 04 May 2023 14:19:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ecolecatholique.ca; s=google; t=1683235197; x=1685827197;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o0GpDAGt2OX0WxCrQK9FNlrPz7dHKEuayt0sKYpnXcA=;
+        b=fogEmIR5ZG6fncHHKiN8Qjqfxom6qN2N2R1JlrHUu4/cGECLLyf1VkdD721xPqg99N
+         3zkBemAO6XcUm/xwhJ/ZhPsfxaWHp8qQBDNyI01SJCAol59vJXGmXVQ0nLxJAMtu3CWa
+         NgjzuVDnGfZzRAsXsFUmlzBLlCA0x28DKZriP0rmfEEtFEobEdSoLSipys//8k/Qcx2m
+         sDwBsF/UOjnJI3FODiT8HV8TmT/krZQjk59sqVHbVXhDsbkidqwsMwjCOrYkO6LmoAlq
+         mFIFgoG3ET89uT6lffcWepfyiCuKBZ4n8jA7CrYhzP0lHErx/U8T/IujkC75G+TjejST
+         04bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683235197; x=1685827197;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o0GpDAGt2OX0WxCrQK9FNlrPz7dHKEuayt0sKYpnXcA=;
+        b=Ki5p6aqv+aimf7bUuJEaK83XGZXvSeOGkVPk0Zp8S0y4eXbHbXJ6ZPxnuV1b//GquT
+         P6EtAAY19BclQ6RrUUN1ltafk09ZZU/ykSabXvKWC1+BuZPqx/8vyc3ntjGQOMzEfBcK
+         bYXvwhJdeaXRXpJMHJPmahoFrfymBlWpAboYCP4zeZfxzXKU+vLWtgBPeE3Dnjqotyzz
+         Usj0FZk6xLVD8WDKdr7/HiVe7L18CpD8i1zXmVO6JzPITb3KU2jkrjYCiAVGUhlgF7uU
+         /FEoDm2Rku4nAV48HzYLxyczWG9sQitjZIy6SexzEPJgBtxEuFM2DW1DGu9wOqb5xY5I
+         pB8A==
+X-Gm-Message-State: AC+VfDwcNI5iueKEWj2+rVYr1pEnMmu8WZIjarbFqgvM+VEX/E8cGhmy
+	sm5UvY9BwRCcbkEIwHZex9oBXg+5/YnuElifZtgpLg1LjjbvLX6XlSWYNH2j4ozkXk8PhuGurwZ
+	Sq1K+WfRQsFzt5a7YWLOjiR4FVLXwUep5SgkxQw==
+X-Google-Smtp-Source: ACHHUZ4xUDAgTAOz/CMqMLQw4oNaFEzn/EZ4BRdYCBqnG9xdlD2w/E+DVgXG9QA7/pblYFtoYdK20cGpJgJiEDFyLwc=
+X-Received: by 2002:a67:ec8e:0:b0:42c:3457:6718 with SMTP id
+ h14-20020a67ec8e000000b0042c34576718mr3665790vsp.5.1683235196715; Thu, 04 May
+ 2023 14:19:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <7BF1E520-8A14-46A6-BA47-9D8787899229@icloud.com>
+In-Reply-To: <7BF1E520-8A14-46A6-BA47-9D8787899229@icloud.com>
+From: France Goulard <goulaf@ecolecatholique.ca>
+Date: Thu, 4 May 2023 17:19:20 -0400
+Message-ID: <CAD0=z-XOEmi_0ow+yu=O_MPRQfWZ8GqAgZmtq3=kvSk0k487hA@mail.gmail.com>
+Subject: Re:
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="000000000000f9559305fae4bb70"
+X-MANTSH: 1TEIXR1kbG1oaGkNHB1tfTFwbGhoeGx8aGxEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdhQXp5cnNZeW9aXBEKWU0Xbk9GQ1xPWBEKX1kXGxwbEQpfTRdkRURPE
+ QpZSRcacRoQGncGGx4bcR8aEBp3BhgaBhoRClleF2xseREKQ04XckFSQlJARmxMHR54f05kclx
+ uaBN6aBJ1WB5ZaEgTWX8RClhcFxkEGgQfGgUbGgQTBBsEHR4QGx4aHxoRCl5ZF0hDSXNwEQpNX
+ BcHGx8bEQpMWhdoa01dbxEKTU4XaWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgbHQQeGREKQl4XGxE
+ KQlwXGxEKXk4XGxEKQksXYn96eU5FRkVyeFIRCkJJF2J/enlORUZFcnhSEQpCRRdna25bQ0F/U
+ xhjQxEKQk4XYn96eU5FRkVyeFIRCkJMF2NEb05ZGEx+Yk1YEQpCbBdjGhJ8ZGFEUwFmbxEKQkA
+ XaWRGTUxzWR1zbmkRCkJYF2JrTm9vemxnWkdLEQpaWBcYEQpwZxdhemtjTGJIckBpbRAcGhEKc
+ GgXZm8aRF1SH1p7Qh0QGhEKcGgXZmJYW15lWGh4eE4QGhEKcGgXY3xSUnB/SUZYaB0QGhEKcGg
+ XY0N8eF5vQXBAaFwQHBoRCnBoF2Mda1lPHmFSTWBDEBoRCnB9F2sFTEx/R216GmxmEBoRCnB/F
+ 29EYVASE38bHBJ+EAcTExEKcF8XYlNwExpSaWNcHE0QGhEKcGwXYV9ZR2seGkBOT00QGhEKbX4
+ XGhEKWE0XSxE=
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: XkxhxjlFf74RUdNXvDB9PB8_r4sBb9sU
+X-Proofpoint-GUID: XkxhxjlFf74RUdNXvDB9PB8_r4sBb9sU
+
+--000000000000f9559305fae4bb70
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Good evening Mr. Ross,
+
+Thank you for your email and the 2017 court order. I followed up with the
+school to let them know our points of discussion and I also looked into
+your access to the magasin en ligne. It should be in working order now, but
+if not, please let me know, and I will get a technical support staff to
+address the issue with you. I will try and give you a call tomorrow, but if
+I'm not successful in reaching you, I will ask my administrative assistant
+to set a time for us to discuss at some point next week.
+
+Kind regards.
+France
+
+France Goulard, MEd
+Surintendante de l'=C3=A9ducation
+CECCE
+
+
+
+Le mar. 2 mai 2023 =C3=A0 21:21, Darryl Ross <darrylross@icloud.com> a =C3=
+=A9crit :
+
+> Good evening,
+>
+> I=E2=80=99ve attached the 2017 Order below. As you will see there is an o=
+rder
+> concerning primary residence (par. 2) and an order concerning custody (pa=
+r.
+> 1).
+>
+> I sent a copy of this order to Mms. Girard on April 19 and asked her to
+> confirm that she received it. She did not respond.
+>
+> The only communication I received was the following message on April 25:
+>
+> "I just wanted to follow up with you on your request to have access to
+> Magasin en ligne. Since  the beginning of this school year, all school
+> boards in Ontario have changed student data base system (from Trillium to
+> Aspen). In this new data base, there is only the option of giving viewing
+> access to the parent that has legal custody. We have asked the IT
+> department to look into it and are waiting for their response. I will kee=
+p
+> you informed as soon as I hear anything."
+>
+> I was concerned that it made no mention of our meeting, my email, whether
+> the court order was received, and it says that the problem is both a
+> technical issue and due to the fact that only the parent with custody can
+> have access. Or that the problem is not actually a technical issue due to
+> database migration but rather that the new database only allows parents
+> with legal custody to access the magasin en ligne. There=E2=80=99s two, m=
+aybe three
+> explanations in that message and none of them addressed the fact that I h=
+ad
+> access to and used the magasin en ligne, received school newsletters, and
+> notifications if the girls were sick from the start of the school year
+> through at least Nov. 15 without issue. I contacted the school to ask for
+> clarification. During our meeting I was told that she would review the
+> Orders and get back to me about them. I did not receive a response to my
+> email or message, and the explanation provided clearly states that I do n=
+ot
+> have custody and so some kind of work around will be provided.
+>
+> I tried to reset my password a few minutes ago and it does not work.
+>
+> I am sorry that the vice-principal and you have become so involved in
+> private family matters but I appreciate your phone call today and look
+> forward to speaking further this week.
+>
+> Regards,
+>
+> Darryl
+>
+>
+
+--=20
+Le pr=C3=A9sent courriel et toutes les pi=C3=A8ces jointes peuvent contenir=
+ de=20
+l=E2=80=99information priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou conf=
+identielle, sujette au=20
+droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99indi=
+vidu ou =C3=A0 l=E2=80=99organisme ou =C3=A0=20
+l=E2=80=99agent responsable de le lui livrer. Toute utilisation, copie ou=
+=20
+distribution non autoris=C3=A9e du contenu de ce courriel est interdite. Si=
+ vous=20
+croyez que ce message est un pourriel au sens de la Loi canadienne=20
+anti-pourriel, veuillez le faire suivre =C3=A0 l=E2=80=99adresse suivante :=
+=20
+pourriel@ecolecatholique.ca <mailto:pourriel@ecolecatholique.ca> . Si vous=
+=20
+avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par=20
+retour de courriel et supprimer de votre syst=C3=A8me ce message et tout=20
+document joint. Merci de votre collaboration.
+
+
+--000000000000f9559305fae4bb70
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Good evening Mr. Ross,<div><br></div><div=
+>Thank you for your email and the 2017 court order. I followed up with the =
+school to let them know our points of discussion and I also looked into you=
+r access to the magasin en ligne. It should be in working order now, but if=
+ not, please=C2=A0let me know, and I will get a technical support staff to =
+address the issue with you. I will try and give you a call tomorrow, but if=
+ I&#39;m not successful in reaching you, I will ask my administrative assis=
+tant to set a time for us to discuss at some point next=C2=A0week.</div><di=
+v><br></div><div>Kind regards.</div><div>France</div><div><br clear=3D"all"=
+><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div style=3D"font-family:arial;font-size:small">France =
+Goulard, MEd<br></div><div style=3D"font-family:arial;font-size:small">Suri=
+ntendante de l&#39;=C3=A9ducation</div><div style=3D"font-family:arial;font=
+-size:small">CECCE</div><div style=3D"font-family:arial;font-size:small"><i=
+mg src=3D"https://drive.google.com/a/ecolecatholique.ca/uc?id=3D0B4EwWeG5jO=
+Q2QUJYWEh5QUxZakRXaHR0eG9iYkVwWjd4aHA0&amp;export=3Ddownload" width=3D"96" =
+height=3D"33"><br></div></div></div></div></div></div></div></div></div></d=
+iv><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">Le=C2=A0mar. 2 mai 2023 =C3=A0=C2=A021:21, Darryl Ross &lt;<a =
+href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; a =C3=
+=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div>Good evening,<br><div><br></div><div>I=E2=80=99ve attached the 2017 Ord=
+er below. As you will see there is an order concerning primary residence (p=
+ar. 2) and an order concerning custody (par. 1).</div><div><br></div><div>I=
+ sent a copy of this order to Mms. Girard on April 19 and asked her to conf=
+irm that she received it. She did not respond.=C2=A0</div><div><br></div><d=
+iv>The only communication I received was the following message on April 25:=
+</div><div><br></div><div><span style=3D"color:rgb(0,0,0);font-family:&quot=
+;trebuchet ms&quot;,sans-serif">&quot;I just wanted to follow up with you o=
+n your request to have access to Magasin en ligne. Since=C2=A0 the beginnin=
+g of this school year, all school boards in Ontario have changed student da=
+ta base=C2=A0system (from Trillium to Aspen). In this new=C2=A0data base, t=
+here is only the option of giving viewing access to the parent that has leg=
+al custody. We have asked the IT department to look into it and are waiting=
+=C2=A0for their response. I will keep you informed as soon as I hear anythi=
+ng.&quot;</span></div><div><span style=3D"color:rgb(0,0,0);font-family:&quo=
+t;trebuchet ms&quot;,sans-serif"><br></span></div><div><font color=3D"#0000=
+00" face=3D"trebuchet ms, sans-serif">I was concerned that it made no menti=
+on of our meeting, my email, whether the court order was received, and it s=
+ays that the problem is both a technical issue and due to the fact that onl=
+y the parent with custody can have access. Or that the problem is not actua=
+lly a technical issue due to database migration but rather that the new dat=
+abase only allows parents with legal custody to access the magasin en ligne=
+. There=E2=80=99s two, maybe three explanations in that message and none of=
+ them addressed the fact that I had access to and used the magasin en ligne=
+, received=C2=A0school newsletters, and notifications if the girls were sic=
+k from the start of the school year through at least Nov. 15 without issue.=
+ I contacted the school to ask for clarification. During our meeting I was =
+told that she would review the Orders and get back to me about them. I did =
+not receive a response to my email or message, and the explanation provided=
+ clearly states that I do not have custody and so some kind of work around =
+will be provided.=C2=A0</font></div><div><font color=3D"#000000" face=3D"tr=
+ebuchet ms, sans-serif"><br></font></div><div><font color=3D"#000000" face=
+=3D"trebuchet ms, sans-serif">I tried to reset my password a few minutes ag=
+o and it does not work.</font></div><div><font color=3D"#000000" face=3D"tr=
+ebuchet ms, sans-serif"><br></font></div><div><font color=3D"#000000" face=
+=3D"trebuchet ms, sans-serif">I am sorry that the vice-principal and you ha=
+ve become so involved in private family matters but I appreciate your phone=
+ call today and look forward to speaking further this week.</font></div><di=
+v><font color=3D"#000000" face=3D"trebuchet ms, sans-serif"><br></font></di=
+v><div><font color=3D"#000000" face=3D"trebuchet ms, sans-serif"><span>Rega=
+rds,</span></font></div><div><font color=3D"#000000" face=3D"trebuchet ms, =
+sans-serif"><br></font></div><div><font color=3D"#000000" face=3D"trebuchet=
+ ms, sans-serif">Darryl</font></div><div><font color=3D"#000000" face=3D"tr=
+ebuchet ms, sans-serif"><br></font></div><div></div></div><div><div></div><=
+/div></blockquote></div></div>
+
+<br>
+<hr style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><font =
+face=3D"Arial, Helvetica, sans-serif" size=3D"1">Le pr=C3=A9sent courriel e=
+t toutes les pi=C3=A8ces jointes peuvent contenir de l=E2=80=99information =
+priv=C3=A9e, exclusive, privil=C3=A9gi=C3=A9e ou confidentielle, sujette au=
+ droit d=E2=80=99auteur s=E2=80=99adressant uniquement =C3=A0 l=E2=80=99ind=
+ividu ou =C3=A0 l=E2=80=99organisme ou =C3=A0 l=E2=80=99agent responsable d=
+e le lui livrer. Toute utilisation, copie ou distribution non autoris=C3=A9=
+e du contenu de ce courriel est interdite. Si vous croyez que ce message es=
+t un pourriel au sens de la Loi canadienne anti-pourriel, veuillez le faire=
+ suivre =C3=A0 l=E2=80=99adresse suivante : <a href=3D"mailto:pourriel@ecol=
+ecatholique.ca" target=3D"_blank">pourriel@ecolecatholique.ca</a> . Si vous=
+ avez re=C3=A7u ce courriel par erreur, veuillez en informer l=E2=80=99exp=
+=C3=A9diteur par retour de courriel et supprimer de votre syst=C3=A8me ce m=
+essage et tout document joint. Merci de votre collaboration.</font><br><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em"><hr></div=
+>
+--000000000000f9559305fae4bb70--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1091106</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1683235200</integer>
+	<key>flags</key>
+	<integer>8623750149</integer>
+	<key>remote-id</key>
+	<string>18981</string>
+</dict>
+</plist>

@@ -1,0 +1,282 @@
+15418     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from ms11p00im-qufv17081301.me.com by p72-mailgateway-smtp-749855b995-zqh4x (mailgateway 2225B382)
+	with SMTP id 78961244-6d0a-44ec-97d7-373ce36f5b52 
+	for <darrylross@icloud.com>; Tue, 4 Oct 2022 14:35:48 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 78961244-6d0a-44ec-97d7-373ce36f5b52
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	by ms11p00im-qufv17081301.me.com (Postfix) with ESMTPS id C9683320261
+	for <darrylross@icloud.com>; Tue,  4 Oct 2022 14:35:47 +0000 (UTC)
+X-ICL-SCORE: 3.3330330300
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUldZCh4MXUMRSFsIVVhDQ19XFwkZHRIWBxFERBQBXkIKGBEJGxVwUQ8U
+ EApZG19bQFUfAkpaV1sDHBVIFBddFEIGEBZKWgIGW1tBU1lKAA5MRE5QVVhYUw4aREQaGVlaTxkT
+ V1oeAQFUWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsOH0hLEUkHAEwSFgkQFFUYARoURFccVAtAEhQH
+ HhQeVQ0YW0YaEVQLQEk6JzEWUk8wMioMWjV4AglIE1QSDghdUhdEATQgZVkkQRQ5EQJaYC0hDDkd
+ CUEFDycxPzY4XVcLGVcBGhlZWkwWFgtJWhBEAUhbAhYKQk8OBxYVBDhZVQ4aDAJZG19bQA==
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZXVSFBG8
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.176 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.176 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.176; helo=mail-lj1-f176.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id bn8so2101031ljb.6
+        for <darrylross@icloud.com>; Tue, 04 Oct 2022 07:35:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date;
+        bh=DFATIsmMROVimDHz3og9c9Z0nNBu1GJ7fMjjyF/uIfI=;
+        b=ZXVSFBG8RQwPRVZ9ZTmI736H+KKcX/JFipFNHrGI/HVJVCfvZXg4JQYFVcAJhQT03a
+         zLk9oRYdkOchig7xL6eV0nokP9/qy8blivOOWpntw52sK94scE/2gL5QMp3Qe1Ml7x6J
+         cJRqWHAQg2gQWfQRbhYqRrKHmKPOm/KjCvZGqYpOYS0GKxv/DQ/JVhqTgNl7Drq0tEsD
+         iHFeJrWWPpECQAf0Ii+ahImMiNw6sCthWmR2kN9pQg0V5RhhX+Di9Vvy5XyuaEisr2df
+         pq+OTGZVjcA0mH2JqQi5jOl83QezByLvcKJg4O35KybBzZg0zSobc8Rt/XyA0SA30v79
+         zUhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=DFATIsmMROVimDHz3og9c9Z0nNBu1GJ7fMjjyF/uIfI=;
+        b=tPwdt3WK/q4hHQZUNVdzvGKxOkip4qPCw11nusLSmUAui3bm9uvbI/9uDOOBgmLjI+
+         yrHZvsUmpwvzioITw3gQ49i4R6bw6dMm/c9HauiftA++CuHPQ0MjaLWGTYqLRMjgox8h
+         /C1BmxDkf4+wdWVEXeKfzYqhTHx/dp12lCNAcCZWvUZT/NF5202g/enSDubMuM+TxtLt
+         1MpaTEB2/i1JovW0Cmnoeja5csLeGMLGjWunjrvzQAmmVpSnbKM/43N29PVo8ifxqzQr
+         o4fmFqPWGSAbpHjXGNHOUWWRGJ93mQz1ZIrpLKKss85jv6EFF5emHltpnywHPaZp3Esp
+         c8nw==
+X-Gm-Message-State: ACrzQf0fPHk4m/SEFAAsB/NlCzMEPBWgEjrnHCmgfhlOLciGoGXrfIJl
+	LOcTf3ZPP5mOCmg8Z2dXDQHWqZzEGRQT2Jf/0+9sb8NGQQc=
+X-Google-Smtp-Source: AMsMyM66bNMYdBe+zgOC6C4O1kJp6F7bSVbuQ7gsgvfPSviiW2JvQqHWlfuY4+2WicjKu5RK0bGUVMCsudu6Lt7kOX0=
+X-Received: by 2002:a05:651c:101:b0:250:896d:f870 with SMTP id
+ a1-20020a05651c010100b00250896df870mr8746032ljb.235.1664894147245; Tue, 04
+ Oct 2022 07:35:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <1318874502.9650615.1664893881074@schoolm.smtp.e.sparkpost.com>
+In-Reply-To: <1318874502.9650615.1664893881074@schoolm.smtp.e.sparkpost.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 4 Oct 2022 10:35:35 -0400
+Message-ID: <CAFnbyRGSj-MH4k=j2ev8k0b=gCXUoF4m_fzjVOTu_jqq3mRHYA@mail.gmail.com>
+Subject: =?UTF-8?B?RndkOiBBc3NpZHVpdMOp?=
+To: =?UTF-8?Q?Assiduit=C3=A9=2DSKA_CECCE?= <assiduite-ska@ecolecatholique.ca>, 
+	Nathalie Tremblay <trembna@ecolecatholique.ca>, Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000003c3c3505ea3660d0"
+X-MANTSH: 1TEIXR1kbH1oaGkNHB1tfQEQbExseGx8aGBEKTEMXGxoEGxsYBBMSBBMTEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBgaEQpfTRdkRURPE
+ QpZSRcacRoQGncGGBoacRsTHBAadwYYGgYaEQpZXhdsbHkRCkNOF1xwbGZTR2UaHgdmG1hhSFh
+ 5YnN1bh1YRk9JbRpQZmFbEQpYXBcZBBoEHhMHHRhJHx8dSRkFGxoEEwQbBB0eEBseGh8aEQpeW
+ RdLSU9GTxEKTVwXGxkRCkxaF2hpTU1rEQpMRhdsa2sRCkNaFxgaEwQSHwQYGhIEGx0cEQpCXhc
+ bEQpEXhcZEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF
+ 2gSG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRo
+ SS2lJEQpCQBdhH19eeVAbWRoBWBEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxkRCnBnF2F4U
+ nxTAUZtYnBcEBkaEQpwaBdtAWVhWGhTGFJ6GRAZGhEKcGgXY3JJQlJ5GVNQRGMQGRoRCnBoF2l
+ bSUt6YVlwAX5CEBkaEQpwaBdjElhTTlIdSBJZUBAZGhEKcGgXbksaGkNQWEZmW2IQGRoRCnB9F
+ 25deFt6HUBDZB5DEBkaEQpwfRdtYWlgc0JLYm5wbBAZGhEKcH8XZ3xGHWFJb38BZGQQHxIRCnB
+ fF2lyfh5PTH5waBxtEBkaEQpwXxdsSExebVBCYEhuHxAZGhEKcGwXZkZrHxhbbV9Gb28QGRoRC
+ m1+FxsRClhNF0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-ORIG-GUID: vZFLymO04-L1rKbrSHY_D7rlecG0zLKq
+X-Proofpoint-GUID: vZFLymO04-L1rKbrSHY_D7rlecG0zLKq
+
+--0000000000003c3c3505ea3660d0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+Charlotte est encore malade.
+
+---------- Forwarded message ---------
+From: Sainte-Kateri Attendance <assiduite-ska@ecolecatholique.ca>
+Date: Tue, Oct 4, 2022 at 10:31 AM
+Subject: Assiduit=C3=A9
+To: <cynthmholm@gmail.com>
+
+
+Bonjour,
+
+Ceci est un message de l=E2=80=99=C3=A9cole Sainte-Kateri visant =C3=A0 vou=
+s informer que
+votre enfant Charlotte Holmes =C3=A9tait absent aujourd=E2=80=99hui pour la=
+ ou les
+p=C3=A9riodes  AM, and PM.
+
+Veuillez communiquer avec l=E2=80=99=C3=A9cole au 613-741-6754 pour justifi=
+er l=E2=80=99absence
+ou, veuillez envoyer une note sign=C3=A9e lors du retour =C3=A0 l=E2=80=99=
+=C3=A9cole. Si vous avez
+d=C3=A9j=C3=A0 appel=C3=A9 l=E2=80=99=C3=A9cole, vous pouvez ignorer ce mes=
+sage.
+
+Merci.
+
+
+------------------------------
+
+Le Conseil des =C3=A9coles catholiques du Centre-Est est heureux de vous co=
+mpter
+dans sa liste d'envoi. Si votre enfant ne fr=C3=A9quente plus une =C3=A9col=
+e du
+CECCE, veuillez aviser le secr=C3=A9tariat de son =C3=A9cole afin que vos c=
+oordonn=C3=A9es
+soient retir=C3=A9es de la liste d'envoi. SchoolMessenger est un service de
+communication utilis=C3=A9 pour =C3=A9tablir le contact avec les parents, l=
+es =C3=A9l=C3=A8ves
+et les membres du personnel, que ce soit par courriel, par texto ou par
+appel. Pour ne plus recevoir tous les messages distribu=C3=A9s via notre se=
+rvice
+SchoolMessenger, suivez ce lien et confirmez: Se d=C3=A9sabonner
+<http://track.spe.schoolmessenger.com/f/a/CFbknpnM40EOXtGwZMq7_Q~~/AAAAAQA~=
+/RgRlHXc5P0RLaHR0cHM6Ly9nby5zY2hvb2xtZXNzZW5nZXIuY2EvIy91bnN1YnNjcmliZS80MT=
+EvWTNsdWRHaHRhRzlzYlVCbmJXRnBiQzVqYjIwVwdzY2hvb2xtQgpjM7lDPGM3ZPlXUhRjeW50a=
+G1ob2xtQGdtYWlsLmNvbVgEAAAAAg~~>
+
+The Conseil des =C3=A9coles catholiques du Center-Est is pleased to have yo=
+u on
+its mailing list. If your child is no longer attending a CECCE school,
+please contact their school secretary so that your contact information will
+be removed from the mailing list. SchoolMessenger is a communication
+service used to connect with parents, students and staff, whether by email,
+text or phone. To stop receiving all email messages distributed through our
+SchoolMessenger service, follow this link and confirm: Unsubscribe
+<http://track.spe.schoolmessenger.com/f/a/CFbknpnM40EOXtGwZMq7_Q~~/AAAAAQA~=
+/RgRlHXc5P0RLaHR0cHM6Ly9nby5zY2hvb2xtZXNzZW5nZXIuY2EvIy91bnN1YnNjcmliZS80MT=
+EvWTNsdWRHaHRhRzlzYlVCbmJXRnBiQzVqYjIwVwdzY2hvb2xtQgpjM7lDPGM3ZPlXUhRjeW50a=
+G1ob2xtQGdtYWlsLmNvbVgEAAAAAg~~>
+
+Le consortium de transport scolaire d'Ottawa est heureux de vous compter
+dans sa liste d'envoi. Si votre enfant ne fr=C3=A9quente plus cette =C3=A9c=
+ole,
+veuillez svp aviser le secr=C3=A9tariat de son =C3=A9cole. Si vous ne souha=
+itez pas
+recevoir les communications du CTSO, veuillez vous rendre au lien suivant
+et s=C3=A9lectionner Se d=C3=A9sabonner
+<http://track.spe.schoolmessenger.com/f/a/CFbknpnM40EOXtGwZMq7_Q~~/AAAAAQA~=
+/RgRlHXc5P0RLaHR0cHM6Ly9nby5zY2hvb2xtZXNzZW5nZXIuY2EvIy91bnN1YnNjcmliZS80MT=
+EvWTNsdWRHaHRhRzlzYlVCbmJXRnBiQzVqYjIwVwdzY2hvb2xtQgpjM7lDPGM3ZPlXUhRjeW50a=
+G1ob2xtQGdtYWlsLmNvbVgEAAAAAg~~>.
+
+--0000000000003c3c3505ea3660d0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Bonjour,=C2=A0<div>Charlotte est encore malade.=C2=A0<br><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">-------=
+--- Forwarded message ---------<br>From: <strong class=3D"gmail_sendername"=
+ dir=3D"auto">Sainte-Kateri Attendance</strong> <span dir=3D"auto">&lt;<a h=
+ref=3D"mailto:assiduite-ska@ecolecatholique.ca">assiduite-ska@ecolecatholiq=
+ue.ca</a>&gt;</span><br>Date: Tue, Oct 4, 2022 at 10:31 AM<br>Subject: Assi=
+duit=C3=A9<br>To:  &lt;<a href=3D"mailto:cynthmholm@gmail.com">cynthmholm@g=
+mail.com</a>&gt;<br></div><br><br><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:12pt;margin-bottom:12pt"><span style=3D"font-family:arial,helvet=
+ica,sans-serif"><span style=3D"font-size:14px"><span id=3D"m_91461595723060=
+12579docs-internal-guid-6a406f7c-7fff-f5b6-fe46-a776f6a26cd4"><span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">Bonjour,</span></span></span></span></p>
+
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12pt=
+"><span style=3D"font-family:arial,helvetica,sans-serif"><span style=3D"fon=
+t-size:14px"><span id=3D"m_9146159572306012579docs-internal-guid-6a406f7c-7=
+fff-f5b6-fe46-a776f6a26cd4"><span style=3D"font-variant-numeric:normal;font=
+-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Ce=
+ci est un message de l=E2=80=99=C3=A9cole </span><span style=3D"font-varian=
+t-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whi=
+te-space:pre-wrap"><span style=3D"background-color:#ffffff">Sainte-Kateri</=
+span></span><span style=3D"font-variant-numeric:normal;font-variant-east-as=
+ian:normal;vertical-align:baseline;white-space:pre-wrap"> visant =C3=A0 vou=
+s informer que votre enfant </span></span><span style=3D"font-variant-numer=
+ic:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spac=
+e:pre-wrap"> Charlotte Holmes =C3=A9tait absent aujourd=E2=80=99hui </span>=
+pour la ou les p=C3=A9riodes=C2=A0 AM, and PM<span style=3D"font-variant-nu=
+meric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-s=
+pace:pre-wrap">.</span></span></span></p>
+
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12pt=
+"><span style=3D"font-family:arial,helvetica,sans-serif"><span style=3D"fon=
+t-size:14px"><span id=3D"m_9146159572306012579docs-internal-guid-6a406f7c-7=
+fff-f5b6-fe46-a776f6a26cd4"><span style=3D"font-variant-numeric:normal;font=
+-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Ve=
+uillez communiquer avec l=E2=80=99=C3=A9cole au </span><span style=3D"font-=
+variant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseli=
+ne;white-space:pre-wrap"><span style=3D"background-color:#ffffff">613-741-6=
+754</span></span><span style=3D"font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;vertical-align:baseline;white-space:pre-wrap"> pour justifi=
+er l=E2=80=99absence ou, veuillez envoyer une note sign=C3=A9e lors du reto=
+ur =C3=A0 l=E2=80=99=C3=A9cole. Si vous avez d=C3=A9j=C3=A0 appel=C3=A9 l=
+=E2=80=99=C3=A9cole, vous pouvez ignorer ce message.</span></span></span></=
+span></p>
+
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;margin-bottom:12pt=
+"><span style=3D"font-family:arial,helvetica,sans-serif"><span style=3D"fon=
+t-size:14px"><span id=3D"m_9146159572306012579docs-internal-guid-6a406f7c-7=
+fff-f5b6-fe46-a776f6a26cd4"><span style=3D"font-variant-numeric:normal;font=
+-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Me=
+rci.</span></span></span></span></p><br><br><hr>
+
+<p style=3D"font-family:verdana;color:#6b6b6b;font-size:75%">
+Le Conseil des =C3=A9coles catholiques du Centre-Est est heureux de vous co=
+mpter dans sa liste d&#39;envoi. Si votre enfant ne fr=C3=A9quente plus une=
+ =C3=A9cole du CECCE, veuillez aviser le secr=C3=A9tariat de son =C3=A9cole=
+ afin que vos coordonn=C3=A9es soient retir=C3=A9es de la liste d&#39;envoi=
+. SchoolMessenger est un service de communication utilis=C3=A9 pour =C3=A9t=
+ablir le contact avec les parents, les =C3=A9l=C3=A8ves et les membres du p=
+ersonnel, que ce soit par courriel, par texto ou par appel. Pour ne plus re=
+cevoir tous les messages distribu=C3=A9s via notre service SchoolMessenger,=
+ suivez ce lien et confirmez: <a href=3D"http://track.spe.schoolmessenger.c=
+om/f/a/CFbknpnM40EOXtGwZMq7_Q~~/AAAAAQA~/RgRlHXc5P0RLaHR0cHM6Ly9nby5zY2hvb2=
+xtZXNzZW5nZXIuY2EvIy91bnN1YnNjcmliZS80MTEvWTNsdWRHaHRhRzlzYlVCbmJXRnBiQzVqY=
+jIwVwdzY2hvb2xtQgpjM7lDPGM3ZPlXUhRjeW50aG1ob2xtQGdtYWlsLmNvbVgEAAAAAg~~" ta=
+rget=3D"_blank">Se d=C3=A9sabonner</a>
+</p>
+<p style=3D"font-family:verdana;color:#6b6b6b;font-size:75%">
+The Conseil des =C3=A9coles catholiques du Center-Est is pleased to have yo=
+u on its mailing list. If your child is no longer attending a CECCE school,=
+ please contact their school secretary so that your contact information wil=
+l be removed from the mailing list. SchoolMessenger is a communication serv=
+ice used to connect with parents, students and staff, whether by email, tex=
+t or phone. To stop receiving all email messages distributed through our Sc=
+hoolMessenger service, follow this link and confirm: <a href=3D"http://trac=
+k.spe.schoolmessenger.com/f/a/CFbknpnM40EOXtGwZMq7_Q~~/AAAAAQA~/RgRlHXc5P0R=
+LaHR0cHM6Ly9nby5zY2hvb2xtZXNzZW5nZXIuY2EvIy91bnN1YnNjcmliZS80MTEvWTNsdWRHaH=
+RhRzlzYlVCbmJXRnBiQzVqYjIwVwdzY2hvb2xtQgpjM7lDPGM3ZPlXUhRjeW50aG1ob2xtQGdtY=
+WlsLmNvbVgEAAAAAg~~" target=3D"_blank">Unsubscribe</a>
+</p>
+
+<p style=3D"font-family:verdana;color:#6b6b6b;font-size:75%">
+Le consortium de transport scolaire d&#39;Ottawa est heureux de vous compte=
+r dans sa liste d&#39;envoi.  Si votre enfant ne fr=C3=A9quente plus cette =
+=C3=A9cole, veuillez svp aviser le secr=C3=A9tariat de son =C3=A9cole.  Si =
+vous ne souhaitez pas recevoir les communications du CTSO, veuillez vous re=
+ndre au lien suivant et s=C3=A9lectionner <a href=3D"http://track.spe.schoo=
+lmessenger.com/f/a/CFbknpnM40EOXtGwZMq7_Q~~/AAAAAQA~/RgRlHXc5P0RLaHR0cHM6Ly=
+9nby5zY2hvb2xtZXNzZW5nZXIuY2EvIy91bnN1YnNjcmliZS80MTEvWTNsdWRHaHRhRzlzYlVCb=
+mJXRnBiQzVqYjIwVwdzY2hvb2xtQgpjM7lDPGM3ZPlXUhRjeW50aG1ob2xtQGdtYWlsLmNvbVgE=
+AAAAAg~~" target=3D"_blank">Se d=C3=A9sabonner</a>.
+</p>
+<img border=3D"0" width=3D"1" height=3D"1" alt=3D"" src=3D"http://track.spe=
+.schoolmessenger.com/q/SPQ9HrbgNuav-1i7GLHTxg~~/AAAAAQA~/RgRlHXc5PlcHc2Nob2=
+9sbUIKYzO5QzxjN2T5V1IUY3ludGhtaG9sbUBnbWFpbC5jb21YBAAAAAI~">
+
+
+</div></div></div>
+
+--0000000000003c3c3505ea3660d0--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>994243</integer>
+	<key>date-last-viewed</key>
+	<integer>1741103901</integer>
+	<key>date-received</key>
+	<integer>1664894148</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12099</string>
+</dict>
+</plist>

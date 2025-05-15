@@ -1,0 +1,131 @@
+6510      
+Delivered-To: darrylondunlin@gmail.com
+Received: by 2002:a05:6400:420a:0:0:0:0 with SMTP id a10csp361740ecf;
+        Tue, 6 Sep 2022 11:08:19 -0700 (PDT)
+X-Received: by 2002:a05:6512:1322:b0:492:de5b:dc3c with SMTP id x34-20020a056512132200b00492de5bdc3cmr17620975lfu.503.1662487698853;
+        Tue, 06 Sep 2022 11:08:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1662487698; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uwOjrsrbbutFcGzGcJ1n6DwK8ATwmvjv/p5vm/nOslpo2xbX29FNLrDo9LCogT6X+F
+         pmSs6M+pdI3xVUd4NNNdcAkCsv5ltoo4b62GaJ3DD/OGlyec9ViJgWdglekN/6wCfewL
+         uFGvq/t9dauHMfTGAf0TXT4YspqGsy9JJJTU5PXLBxBm3SF5Knagc8xyH65QwvLh0zO9
+         zRlKnLbozxvIGhKFTGna4njtGUAqZ2xKvjbd00I89KEzwsSyGoNY58+wZ0a+6kCYwvoW
+         8Dh+P+6UnFqF9PZlI+DeR+wFRntNDyYtsMOHDGW28X89bjoWCBuVcikjtigRMJ/5BMEQ
+         hWLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=6JzF2rXMulPYtAluP+r4QmMH7XrMGB5sAEYipXRYGIA=;
+        b=Ouiv+v1xZXc79navXs1+OEwaoC7CamjY+mqQTO068MyLIJ6Je7XjxDV/VWbkNMCejW
+         RfQ97JAWxVVDyn9GcCKSzCgaVPLh1sBeJj0nQQkVUn4YMKDVelZuFUh2uD3s+oQdiOGm
+         VpTOZFN4Sn0xLOtgfsCnQo2c4PqR/xMjnctIyFwGJW+8SZ3c8HX+rSEuYBjIaW/3YW/v
+         bT9s1s1SCTeKSdCuxkimMj3tzf1TGtdXArcz3AlAYckzp8uXQx3fBUfWMpQKeP4N+rr6
+         W8Mlymho1ZlXRcisAyCyes7md8afA8OZhkmX/43kCMwuXQwCRJhnNJ+O4+teybcyMAjT
+         MhWw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=e+pP8gNY;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id f13-20020a19dc4d000000b004947619538bsor2436960lfj.34.2022.09.06.11.08.18
+        for <darrylondunlin@gmail.com>
+        (Google Transport Security);
+        Tue, 06 Sep 2022 11:08:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=e+pP8gNY;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date;
+        bh=6JzF2rXMulPYtAluP+r4QmMH7XrMGB5sAEYipXRYGIA=;
+        b=e+pP8gNYo80HKlB9B3Wf1ePZg7+Wrmn0PLxX4MSlT2HlFCRj/TT4rw8kJZyYZ9NU1t
+         OSCPnaxxFJtWWR6PMnlcLpb+ENtsMuNJxjVhRCWFjh9YFbiIA2fcPHkSu9q/ZRO2wIHg
+         jpyTr+5xQiLjeVO6mUV9cOgpPIBDOWla1ZpEzF3/k0DvpbiAvV90ViMQlCEelDKa2P3y
+         OTFPN+MFK6W+gqtDuR+Ev0gw3rhublEqFTIKQuPlQ1AD+Sm02ClgPBSld38+EHjlZRYn
+         rL90rFc5iOkI9SEACVkVDuYp1QVAAFPQXLVu2ylQJ4/bQ9Uc1DPCK/OSkqbsHaO05bMF
+         G4kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=6JzF2rXMulPYtAluP+r4QmMH7XrMGB5sAEYipXRYGIA=;
+        b=lN1mrgqPJDC5+dB9WPeiQ7fqT56LJQPAsVhB5tHykAiqd26+241dND3A96CO/fwwZZ
+         vi2p39A+Xs/TL8ghvrXw8KuMO9kjWZf7wpZ8mzxr2nq4j1zEwae2spR3CjBIWuMj/P1b
+         9JZKP8kV64sW76HAi2KhRoyGOc+0sEj3uvYTzIOoawVPY+8bhSwf2gP7qFFbH+6v9VsG
+         tr10leqhYbz4px8m1hI/OfM74lqBwTltF+Pk7Qp8V7AOoHbNrOq56IJyK8NiYxIdgRyj
+         47V/4SFCi/TZkmzwmMJyP1gNaUiOzgpGn8eEVEf+QVIKc5jwvG/IgH1JYTY2wW+ACQqa
+         Vg7A==
+X-Gm-Message-State: ACgBeo2xcL8zipB9vBDurgZ2uB12Hqjx73ezqJuMS7vlcfbTGnKa9XHy
+	fNX7ToRs02+LlOSVKlFF5CeH+SG5fbwrTRJCfgJaKYv+
+X-Google-Smtp-Source: AA6agR6KtiU1mchMcgdTirsfnqtAUMyiMRMdRQiCD7Ga8/Oq2XD3F9xhWcv53noBryC9CPV5SkBEBTLaPt9fY/Dsh0w=
+X-Received: by 2002:a05:6512:3f0e:b0:48a:5edd:99b2 with SMTP id
+ y14-20020a0565123f0e00b0048a5edd99b2mr17413126lfa.124.1662487697938; Tue, 06
+ Sep 2022 11:08:17 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 6 Sep 2022 14:08:06 -0400
+Message-ID: <CAFnbyRF=aNKJ3umnQZ5=K9eHBQv=LuF5JWYqHKJTZe4MR1yHMA@mail.gmail.com>
+Subject: Charlotte's wrist
+To: Darryl Ross <darrylondunlin@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000adddc905e806142e"
+
+--000000000000adddc905e806142e
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+
+The doctor confirmed Charlotte has a buckle fracture at her wrist and the
+technincaican reported there may alos be a buckle fracture at her elbow, he
+has made a request through CHEO ortho section for further investigation of
+the elbow. Luckily no damage to the growth plate.
+
+His advice was the same from last week, keep the wrist in a splint 24/7 for
+the next few weeks, avoid sports (we have taken her out of soccer). and if
+she feels the need she can use a sling to support her elbow. Manage pain
+with ice and painkillers.
+
+We are looking for  a sling that is comfortable and will wait for an
+appointment with CHEO.
+
+Feel free to call Arbour Medicine to discuss further.
+
+Cynthia
+
+--000000000000adddc905e806142e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>The doctor confirmed Cha=
+rlotte has a buckle fracture at her wrist and the technincaican=C2=A0report=
+ed there may alos be a buckle fracture at her elbow, he has made a request =
+through=C2=A0CHEO ortho section for further investigation of the elbow. Luc=
+kily=C2=A0no damage=C2=A0to the growth plate.</div><div><br></div><div>His =
+advice was the same from last week, keep the wrist=C2=A0in a splint 24/7 fo=
+r the next few weeks, avoid sports (we have taken her out of soccer). and i=
+f she feels the need she can use a sling to support her elbow. Manage pain =
+with ice and painkillers.=C2=A0=C2=A0</div><div><br></div><div>We are looki=
+ng for=C2=A0 a sling that is comfortable and will wait for an appointment w=
+ith CHEO.</div><div><br></div><div>Feel free to call Arbour Medicine to dis=
+cuss=C2=A0further.</div><div><br></div><div>Cynthia</div><div><br></div><di=
+v><br></div></div>
+
+--000000000000adddc905e806142e--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>978986</integer>
+	<key>date-last-viewed</key>
+	<integer>1745801385</integer>
+	<key>date-received</key>
+	<integer>1662487698</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12037</string>
+</dict>
+</plist>

@@ -1,0 +1,1399 @@
+84296     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 10.79.24.193 with SMTP id 184csp2213671ivy;
+        Thu, 31 Aug 2017 07:54:37 -0700 (PDT)
+X-Google-Smtp-Source: ADKCNb6bB9r83RVYSdvQhiWmLmtoCagIIozjMULEC2Pz3+zg/3HQcG5WTD4LNlDGnMCHk7EG2D+S
+X-Received: by 10.84.238.142 with SMTP id v14mr2932503plk.405.1504191277196;
+        Thu, 31 Aug 2017 07:54:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1504191277; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bKLGT+utKgZSbcxmWNq7ouroHtaResMXdq2IQV0CBEH2d0UMu/TRCiIJxXk8bvnLED
+         abSMvjkWdQDs7V3m5i48ddk1VsfX8ARPPtuxTGWMMc2FmvYRBs7bQJ2RG+WPAHTJGNCB
+         gAMfWgv0ZSCMv8LGd43CPTubcCYQVNlc+N4tOvfrl5A4RFtfBK5ooGYrA1NfTI+2vgMc
+         Ns/BvGzStwotrbVzvfx1gr5muzlQbSK7FQAgSj/ElaJKDcYUyzU3ORsp08nuX0V3N9BI
+         RH1pC6wTRlfuFQ7d9UqFBK24K7TKpwmiu7QD/BuJZAJoOjqzlkCM1BBDioGkGGr/orAM
+         VfwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=spamdiagnosticmetadata:spamdiagnosticoutput:references
+         :content-disposition:date:from:message-id:to:subject:in-reply-to
+         :mime-version:dkim-signature:arc-authentication-results;
+        bh=PSVa9yCD8T5HYSM9NTbzZwyevHHzay9CQ66tzWtHbnU=;
+        b=woLFRemMOjtiL/b6+bm1VSX4S3N9KAT6zeYpOMjVs/t1P2yj8YzRgxnpzwZDYo/mDx
+         +WZtv/847qO2SBBsxrBMwz7K67tINVVGjuN+p7kDAP++XQCBB72ptPu/+ZTehHbn9BFp
+         LpmO0EzXyrCkT+t2Q0tgTtkruFneu2xPWH3dcmR2PvS5xk1Bs/y1dXeeHlXknFaChRJr
+         tVhKgUoD87auO7IVjMOtmf7027+rp6B7RfXWHtZdjplbPZ1TuIy2u8atIpCY47R+Ww3G
+         3KL2Xnd8NFy7NLPPBptXEamh8MCePVZ7H9Eg/6ebJ/sszqcGGwA3J2bR/JOBxDG1nnia
+         diaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-on-ca header.b=DPROLWgG;
+       spf=pass (google.com: domain of btv1==416070c4a34==lynda.reece@casott.on.ca designates 104.47.42.139 as permitted sender) smtp.mailfrom=btv1==416070c4a34==lynda.reece@casott.on.ca
+Return-Path: <btv1==416070c4a34==lynda.reece@casott.on.ca>
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com (mail-by2nam03on0139.outbound.protection.outlook.com. [104.47.42.139])
+        by mx.google.com with ESMTPS id f8si1622343plm.21.2017.08.31.07.54.36
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Thu, 31 Aug 2017 07:54:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of btv1==416070c4a34==lynda.reece@casott.on.ca designates 104.47.42.139 as permitted sender) client-ip=104.47.42.139;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@casott.onmicrosoft.com header.s=selector1-casott-on-ca header.b=DPROLWgG;
+       spf=pass (google.com: domain of btv1==416070c4a34==lynda.reece@casott.on.ca designates 104.47.42.139 as permitted sender) smtp.mailfrom=btv1==416070c4a34==lynda.reece@casott.on.ca
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=casott.onmicrosoft.com; s=selector1-casott-on-ca;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=PSVa9yCD8T5HYSM9NTbzZwyevHHzay9CQ66tzWtHbnU=;
+ b=DPROLWgGn2EZcrCu1qTAUGsumGJxe+2yjYPmYx1QURXlB1JsAxS4MAKO9P5fGu/IF+eheo7tZpdLNg7E3XsdVCgI9Cc3YQNiyh5nhXG33lHEDC9qdiy7zLpsKRzP9TTiCMo/spBn2PlIpAToBlufHDGLDvji/q/z2ASC4LxE3dM=
+Received: from CY4PR04CA0062.namprd04.prod.outlook.com (2603:10b6:910:4f::27)
+ by BN1PR04MB201.namprd04.prod.outlook.com (2a01:111:e400:411::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1385.9; Thu, 31
+ Aug 2017 14:54:33 +0000
+Received: from TO1CAN01FT009.eop-CAN01.prod.protection.outlook.com
+ (2a01:111:f400:7e5d::206) by CY4PR04CA0062.outlook.office365.com
+ (2603:10b6:910:4f::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.13.10 via
+ Frontend Transport; Thu, 31 Aug 2017 14:54:33 +0000
+Received-SPF: Pass (protection.outlook.com: domain of casott.on.ca designates
+ 108.63.19.19 as permitted sender) receiver=protection.outlook.com;
+ client-ip=108.63.19.19; helo=mail.casott.on.ca;
+Received: from mail.casott.on.ca (108.63.19.19) by
+ TO1CAN01FT009.mail.protection.outlook.com (10.152.122.134) with Microsoft
+ SMTP Server id 15.1.1385.11 via Frontend Transport; Thu, 31 Aug 2017 14:54:32
+ +0000
+X-ASG-Debug-ID: 1504191267-078fb81b0ac8370001-pd0lUs
+Received: from mail.casott.local ([10.0.1.10]) by mail.casott.on.ca with ESMTP id chCPd6WhGUOIDZ7a (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO) for <darrylondunlin@gmail.com>; Thu, 31 Aug 2017 10:54:32 -0400 (EDT)
+X-Barracuda-Envelope-From: lynda.reece@casott.on.ca
+X-ASG-Whitelist: Client
+MIME-Version: 1.0
+In-Reply-To: <77288ED4-DA75-4FDC-9852-8AA2B325444F@gmail.com>
+Subject: Re: Friday - meeting
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-ASG-Orig-Subj: Re: Friday - meeting
+Message-ID: <OF1A42B143.F5B0CAB1-ON8525818D.0051CBA5-8525818D.0051EC0D@LocalDomain>
+From: <lynda.reece@casott.on.ca>
+Date: Thu, 31 Aug 2017 10:54:35 -0400
+Content-Type: multipart/alternative;
+	boundary="0__=0ABB0B1EDFC24D358f9e8a93df938690918c0ABB0B1EDFC24D35"
+Content-Disposition: inline
+References: <E4DD6F48-CCA5-4AD6-B5C5-7AAC7A6604A8@gmail.com>
+ <CABKo-oWs7fRgxXOrkkHzFggtQYxA2QA_iUKKifQrVj20kwjvkw@mail.gmail.com>
+ <OF585C9CDC.FD4BDC90-ON85258187.00492751-85258187.00493DF3@LocalDomain>
+ <171EF838-1614-4E15-9C62-294C678F1893@gmail.com>
+ <OF8D283448.B0BE0743-ON85258187.00574D5A-85258187.0057638D@LocalDomain>
+ <ED8E06BD-A1EE-4E47-8374-488B8570EC65@gmail.com>
+ <OF63C98E57.1A15CC32-ON8525818A.004519AA-8525818A.00453225@LocalDomain>
+ <5140B6F6-0FBE-4838-9EFF-A0E3A9E034BF@gmail.com>
+ <OF6F9A756B.60A4525B-ON8525818B.004D9AFC-8525818B.004DAEB6@LocalDomain>
+ <57796C0F-6EFA-477E-B01C-DDBDAC8226CF@gmail.com>
+ <OFBE6CE434.9B62F453-ON8525818C.004C62B9-8525818C.004C7DFA@LocalDomain>
+ <67BBE89B-7DFD-48C7-8C01-B8ED698807A2@gmail.com> <OF990B
+ <77288ED4-DA75-4FDC-9852-8AA2B325444F@gmail.com>
+X-KeepSent: 1A42B143:F5B0CAB1-8525818D:0051CBA5; name=$KeepSent; type=4
+X-Disclaimed: 42419
+X-MIMETrack: CD-MIME by Router on Mail/Server/CASOC at 2017-08-31 10:54:39 AM,CD-MIME
+ complete at 2017-08-31 10:54:39 AM,Itemize by Router on Mail/Server/CASOC at
+ 2017-08-31 10:54:39 AM
+X-Barracuda-Connect: UNKNOWN[10.0.1.10]
+X-Barracuda-Start-Time: 1504191267
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-GCM-SHA384
+X-Barracuda-URL: https://10.0.1.100:443/cgi-mod/mark.cgi
+X-Barracuda-BRTS-Status: 1
+X-Virus-Scanned: by bsmtpd at casott.on.ca
+X-Barracuda-Scan-Msg-Size: 67125
+Return-Path: btv1==416070c4a34==lynda.reece@casott.on.ca
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report:
+	CIP:108.63.19.19;IPV:NLI;CTRY:CA;EFV:NLI;SFV:NSPM;SFS:(10019020)(39830400002)(2980300002)(438002)(54024002)(377454003)(189002)(24454002)(199003)(2906002)(54434003)(626005)(81166006)(478600001)(8936002)(81156014)(229853002)(733005)(53546010)(86152003)(5660300001)(2876002)(54356999)(33716001)(50986999)(110136004)(189998001)(6246003)(76176999)(77096006)(2950100002)(69596002)(106466001)(39060400002)(356003)(6916009)(42882006)(5890100001)(8676002)(16200700003)(33656002)(104016004)(236005)(9686003)(93886005)(53946003)(74482002)(1411001)(84326002)(559001)(569006);DIR:OUT;SFP:1102;SCL:1;SRVR:BN1PR04MB201;H:mail.casott.on.ca;FPR:;SPF:Pass;PTR:vmm-108-63-19-19.tor.primus.ca;MX:1;A:1;LANG:en;
+X-Microsoft-Exchange-Diagnostics: 1;TO1CAN01FT009;1:8n3f0TUFv404addKsigKxs0S0kUj9s4uvRwjMDGmni8kcvztAUInLjW/rNr0reaVjeu3hyTxOW7hmy20noWOjQ7F6urzYEKP72OyU3TLXkrErk2e0sYgKJncu5OChWX2
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2e8682af-2437-4678-92a3-08d4f08030b4
+X-Microsoft-Antispam:
+	UriScan:;BCL:0;PCL:0;RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254152)(8251501002)(300000503095)(300135400095)(2017052603199)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);SRVR:BN1PR04MB201;
+X-Microsoft-Exchange-Diagnostics:
+	1;BN1PR04MB201;3:NiR3kN8Cn1GzkIVB4Fme6k8gHc8As60PEIeG2fU0cbnjpt6UKTwLEphK15+J60k+wZyRn4WboxQQM6PGqUoAkBaTZLDnDY133uBLsMWoPDBd6OVSshJJwv5Z4yBPIQuxkqhTGjhmPWoKVJkJVtTN/01KNsGxYqbX4l2hNBz4k74WtBuwdiqx5dSQBlraENOBuhxlBRjKEwsSMnnL/2G6PH49hHghJf00gT84WZuwfA6+XcgTsbfkfyO3qwsPDOXZIcnYVcXtNtS0s7LRNmU8gj+02ZCPTRBVgNG96JBvsomLGQj9IYe5xqmmV2KhjeRQbutJvhYeCdSVOn4ZDmlR6n3N8VDAqWI8H6hcHD7k3v0=;25:0dsE2hwifG3dWZUwKo+RYyVPp6Qm9h2o2BrncoRd949yohMcUwcTZ9s/whCwvqNAFpKLPAe7CdipNgSUsdZ4x0hpIY+E/+xJxPkIt7DQdtff9i8JczMCgQuvqxMSdz4Sc+Pg8FpdikNZLA/60nX8WmAMQMm6BL5XBxy5rJsKqZG+yi/Y+i8VsA6fGbxYSvJDn7p+eAaLM6+9I5OUpM8gssOkiX1xnHPsBRGo6aDVEPaWCzSABxLAqRLrikVHU6ElS8H965LE7g0YjGC0Z6wOrV5gbnrLvez0vcvOwnzc177FVinDs08/VCXk59j3Ps47d/nTynZM4zPBhxYJ7BjsAA==
+X-MS-TrafficTypeDiagnostic: BN1PR04MB201:
+X-Microsoft-Exchange-Diagnostics:
+	1;BN1PR04MB201;31:2jzgtjqnoWmNZCcjBdRhwgnzVi3dEAys3JvI5fyE33AfWhO4+9vficwzUvpikbag+ep4vwnTkl7/tIjJfZhLJ3tued0aUiK9iOkrFqXgxX9b5oz6GbFm7/V6xIQ8Vq0dC5pyStejvAmVc7mZ6qyI5GOGA2ixXhCq0euje2DHilox/2dp+Sd8DE9EXir1uZapFKzFwffZ8mm53PbWaJLLBkuYGY90I7i4Np8+riZVc2E=;20:sh03335xne7iE0qPmH7KjwQWPQeIFhIEk2rdspXFDRV0cV92GPhf89ZXvzgXjj2yeXTUN1FhqP8vAUt5lbNvP1ysbz5FcfM6Fl23pckoLh/RiyQp8S+wi9qbtAvgcEo3xFWjRYfOEARpgrECTCfIXQc4NTlIG18dwEQoz3cKlYXAKMTprOo3KUoimahy2a7JMZ4sUdKD2xU5MeqCDe7G2VaequWZCQ6WIVEaLCPyiboPQIaVYSiDtdeArNxt4fE89WJJErjbZbU6wBGf5KbOqw+hOziu6Ygh0t4W3RWo0UGDKRXAnjzQmSkuJfa2WY43dA9zeBchEaICGAwC4yCuXNfijr1nz9egJsd0E674Fa+JQOhQ9LMTUyU8B7OmgLwPbY6s1CaLyW8blhAgVaI9msK5xmxfYzQKHeJZqeSoErU=
+X-Exchange-Antispam-Report-Test: UriScan:(244540007438412);
+X-Microsoft-Antispam-PRVS:
+	<BN1PR04MB201AFB3E72314DE8E3CDA01A79D0@BN1PR04MB201.namprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-CFA-Test:
+	BCL:0;PCL:0;RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(13018025)(13016025)(10201501046)(100000703101)(100105400095)(3002001)(93006095)(93004095)(6041248)(20161123558100)(20161123555025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123560025)(20161123564025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);SRVR:BN1PR04MB201;BCL:0;PCL:0;RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);SRVR:BN1PR04MB201;
+X-Microsoft-Exchange-Diagnostics:
+	1;BN1PR04MB201;4:HBy1F39odlcU9WGP82ia+DyL+p7DnuC+wwBFSVAMxEyiG5fZeAaowK+J32sfz7nptLbXf1yb+miSqnMgcRlNe8u0DWTtG/yfHl6+52jiqX36dRp3G0u0IYkP7O+yyl4JNsns25s6F4PXuzmVGeiERT4UuDUoM7D6fGFJAdeJrwjjfIxg5YBum6AmQILJ0TBOv4MbzMCco62eVuFEoqeB1ESS0n2jpDIoHTl6Mh/XlK3Yx5XdISZZvAK0u/t6a1LTju+aGF3mXsyxOxsySq/3LtTOoLwfpOvbb1Y0avn3U5o=
+X-Forefront-PRVS: 04163EF38A
+X-Microsoft-Exchange-Diagnostics:
+	=?us-ascii?Q?1;BN1PR04MB201;23:uoBlv/ayyv4nDb1CP5YEPKPZenxbI83KrnEJ42t52R?=
+ =?us-ascii?Q?l1TiDPfOamqeFlh9hX4Y+6hxuaEmqEyLwlVzXxNjs3RYHsXVp4nUaEO6mvmQ?=
+ =?us-ascii?Q?OIo3un0AwdySAGEZVLRN+w5qIsWSJKekdkj+pia1Lq1Bs89hwRG84wYYMj9y?=
+ =?us-ascii?Q?rl1FSipn5JfKKbR0MP11PwxvZI19shARfFFukTnTxrsqn6oLH2sBLg6WrrCq?=
+ =?us-ascii?Q?bVYhKyH+/GIC7iflIWVCJAHOctT0aedZJshCxoufJm+GpDN4crMyYKDyB4d1?=
+ =?us-ascii?Q?tejVMCZAuIP7CyWrrezXVdlq4EHTJ0NE167UErFY9k7Ugt1t0fmdH8M+SuQA?=
+ =?us-ascii?Q?Ep1iiDSIhEqiZulmDFcsJ3vqeXKOH/3Dh0GwCkPL/+xNGqIrj8yKpmhIUQnO?=
+ =?us-ascii?Q?vTcAkf9JKV1MEnls7FTJnG1JtoUOyJfRU904uwy0H1xa+K+xXB5WX1VyythM?=
+ =?us-ascii?Q?MUXuF+NR7NPAcgMRgUSHewaNrZEox1bT9wRwkWRFW05Y87u6+oxVrIYZfUq5?=
+ =?us-ascii?Q?0PBVYM0L4fZ5u1872ysyZ8A73sQE87zRV09pxY7Xv+X2qItnqjQgQh11b6/y?=
+ =?us-ascii?Q?nKNJlaCBrkcToiXjeNXM1VYQlwJzaeYVxjAuqu/V6O3ec7OpOJ3eH075SOsA?=
+ =?us-ascii?Q?8T2JK6RcuZJMu2bmlVY8/n7+yvirg/J1le3y6FBUVzJBlFuUveVu5MoMqvd8?=
+ =?us-ascii?Q?ObG8GVkksRUsFThuk5lLeenUKo4mCEJ6iOdXEurwhdIMgNJNFRMhcOVZSNyJ?=
+ =?us-ascii?Q?zuNtVckcFeoCyTvQQjeT8vEKXohE4YHyJlVH4JaMipGYpnCgijALsgtg3LNp?=
+ =?us-ascii?Q?lPWFixUNheNoAWHfGcZnOlOah7JGE+jTOu8Zq7gyjXdlFB6Us4WV6dLh/z8X?=
+ =?us-ascii?Q?o4iVuHy9UggFUPhR2apWvh1WWskjOXphHo4jCXG7CGUCrD9klONWOxw+G7g4?=
+ =?us-ascii?Q?vYdehvGLR5NB0ExmBidYVaPSlapmoUDGGvs3/N8A0roK9PxUiG8KSJ/RmkA5?=
+ =?us-ascii?Q?lVI+fPMU2wvIlQaJYYIWfHbGszEhBmUg/8k1VVxmDslDYcL1CsGKIsWX+wbW?=
+ =?us-ascii?Q?SDaA6sxLm3Ej7e1JLhOb8iDFqg+69sDkAYj6QVS8mHzDq/A8XtgI8cME6zx9?=
+ =?us-ascii?Q?Y5mbE4evYfedA1YOsvH5jV0DrcKv0BdCtdDBGejKAPmGpVyvvxZvgCuP3F+E?=
+ =?us-ascii?Q?CZAmQ4KB8VWMY=3D?=
+X-Microsoft-Exchange-Diagnostics:
+	1;BN1PR04MB201;6:iQLwvT0QfaTH+JPn7To+59h0BNysnxgQXr0rCrMoOdH61o2f50B7gKO0Ifsv+E+xNGBDSInWGj8kHSm8SUkAeRWE7T6QJrWIJfOoe6OCBHQwfCUMn0akRZlFVdhM6EcLqBmfUOtlzHlFV16ypIFi56ftDdNrjWp5s0PgJa1byPTeC5a+BKUA6f5AB8aBkRUfQmUikMI3a/EFig30WP7dE7ea2IqWCzFD6pPy9UsKGdoTUJKX2OpE3Le5A2l5+PeKdLcfjS0VjF4PVRouYc6jmW8UM+g8NQKzskTsYutVYhsLKWIQWVWc4bWBlGJ7C5sAiDEahp0FyUfzHdmi15rpIQ==;5:p3tbQwdCAXD/PWlLPvcLfix2MSDfLD2AbYnrGi+p6E8KoP6ZP/cJZD9GOoc1LgfdaA3XgrgtSmvRK1V33VsLkoQWlAJKV/WWxzBbCk92g/jnmgy6BNSaKmbgyGtsnCQOIog53E/VXOe7iX2Gj8CWSA==;24:K+v1y+cVHYhFs+Io4khMqXi2wuC4XN5MFC72zeUh9CyTR3vZ/viAVXtnyBmHNiSpq/3IIfggfa26ZArJ8yiCP93UYq+yV8gpsRK/hun7gpo=;7:HJq3BrVwL6+yd0TEbXn/IOPaJpYRUQhD7Da1T/+xaeh+UXFZWs4GUVYshaodMgQkhPpEw6c8EdtyPXc63swc9haz9ChZnvxpmWbGwZv3YX5LfBGToJWjpZapxx9R7J8D73GlsPuwamF2V7dMLX9E043zkSn2AbzFVQimJ1g+7PjjpW8X+PsET5xxpLMWqvYN9Uy2FHdTdz92hZtehC5Zwi0/MQTre8RXT++ow+3OkyU=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: casott.on.ca
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2017 14:54:32.8765
+ (UTC)
+X-MS-Exchange-CrossTenant-Id: e6da767b-f287-4dbf-ae9f-9fe542f5efe5
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e6da767b-f287-4dbf-ae9f-9fe542f5efe5;Ip=[108.63.19.19];Helo=[mail.casott.on.ca]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN1PR04MB201
+
+--0__=0ABB0B1EDFC24D358f9e8a93df938690918c0ABB0B1EDFC24D35
+Content-type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Yes that is great that it works. I will just be introducing myself, going
+over reasons for our involvement and we would be talking about goals moving
+forward and I can answer any questions you have.
+Just show up at our office for 10:00am and I will  come get you in the
+lobby.
+
+
+
+From:	Darryl Ross <darrylondunlin@gmail.com>
+To:	lynda.reece@casott.on.ca
+Cc:	heather.clark@casott.on.ca
+Date:	30/08/2017 12:31 PM
+Subject:	Re: Friday - meeting
+
+
+
+HI Lynda,
+
+Friday at 10 am works. Let me know the room when it=E2=80=99s booked.
+
+Just to be sure: you=E2=80=99re at 150 Katimavik? (If so, I know roughly wh=
+ere that
+is)
+
+Heather  told me what you do, but if you have time could you give me a few
+more details, and what we=E2=80=99ll be doing?
+
+Thanks,
+
+Darryl
+
+
+      On Aug 30, 2017, at 12:12 PM, <lynda.reece@casott.on.ca> <
+      lynda.reece@casott.on.ca> wrote:
+
+
+
+      Hi Darryl, Thursday am does not work for me as I am booked for the
+      day. Does Friday am at 10:00 am work?
+      I am on back up and someone will cover me for the time we plan to
+      meet.
+      If this works please let me know as I will need to book a room.
+      Thanks!
+
+
+      Darryl Ross ---30/08/2017 11:00:31 AM---Ok, I can come to your office
+      tomorrow at 11 am. I know the area (grew up near there). But does
+      tomo
+      Darryl Ross ---30/08/2017 11:00:31 AM---Ok, I can come to your office
+      tomorrow at 11 am. I know the area (grew up near there). But does
+      tomo
+
+      From: Darryl Ross <darrylondunlin@gmail.com>
+      To: lynda.reece@casott.on.ca
+      Date: 30/08/2017 11:00 AM
+      Subject: Re: Friday - meeting
+
+
+
+      Ok, I can come to your office tomorrow at 11 am. I know the area
+      (grew up near there). But does tomorrow work? I have meetings today
+      that I couldn't reschedule, unfortunately.
+
+      Darryl
+
+
+
+      On Aug 30, 2017, at 9:55 AM, <lynda.reece@casott.on.ca> <
+      lynda.reece@casott.on.ca> wrote:
+
+            Hi Daryll. I am still available to meet today Thursday am at
+            11:00. My office is at 150 Katimavik Road, Kanata. We are
+            around the side of the building.
+
+
+            Darryl Ross ---29/08/2017 10:11:41 PM---Hi Lynda, Tomorrow
+            morning should work. Will you come here, or do you want me to
+            come to your office
+            Darryl Ross ---29/08/2017 10:11:41 PM---Hi Lynda, Tomorrow
+            morning should work. Will you come here, or do you want me to
+            come to your office
+
+            From: Darryl Ross <darrylondunlin@gmail.com>
+            To: lynda.reece@casott.on.ca
+            Date: 29/08/2017 10:11 PM
+            Subject: Re: Friday - meeting
+
+
+
+
+
+            Hi Lynda,
+
+            Tomorrow morning should work. Will you come here, or do you
+            want me to come to your office? (If it=E2=80=99s your office, w=
+hat is
+            the address?)
+
+            Darryl
+
+
+                  On Aug 29, 2017, at 10:08 AM, lynda.reece@casott.on.ca
+                  wrote:
+
+
+                  Hi Darryl, thanks for your message. Does tomorrow morning
+                  for 11:00 am work by chance?
+
+
+                  Darryl Ross ---28/08/2017 03:06:35 PM---Thanks Heather. I
+                  appreciate it. Hi Lynda. I=E2=80=99m available most days =
+this
+                  week, except for tomorrow mo
+                  Darryl Ross ---28/08/2017 03:06:35 PM---Thanks Heather. I
+                  appreciate it. Hi Lynda. I=E2=80=99m available most days =
+this
+                  week, except for tomorrow mo
+
+                  From: Darryl Ross <darrylondunlin@gmail.com>
+                  To: heather.clark@casott.on.ca
+                  Cc: lynda.reece@casott.on.ca
+                  Date: 28/08/2017 03:06 PM
+                  Subject: Re: Friday - meeting
+
+
+
+
+
+
+                  Thanks Heather. I appreciate it.
+
+                  Hi Lynda. I=E2=80=99m available most days this week, exce=
+pt for
+                  tomorrow morning until about 1 pm.
+
+                  Darryl
+                        On Aug 28, 2017, at 8:35 AM,
+                        heather.clark@casott.on.ca wrote:
+
+
+                        Hi, Darryl.
+
+                        Sorry about Friday.  I am cc'ing Lynda on this
+                        email as she was anxious to meet with you asap as
+                        well.  I will leave it to the two of you to get in
+                        touch and I will be back on September 5 if there
+                        are any questions.
+
+                        Thank you!
+
+
+                        Heather Clark
+                        Child Protection Worker
+                        Children's Aid Society
+                        Southwest Services
+                        (613) 747-7800 ext. 3478
+
+
+                        Darryl Ross ---25/08/2017 11:58:13 AM---I
+                        understand. If you have time earlier - even last
+                        minute - I=E2=80=99m usually flexible. Otherwise th=
+e week
+                        Darryl Ross ---25/08/2017 11:58:13 AM---I
+                        understand. If you have time earlier - even last
+                        minute - I=E2=80=99m usually flexible. Otherwise th=
+e week
+
+                        From: Darryl Ross <darrylondunlin@gmail.com>
+                        To: heather.clark@casott.on.ca
+                        Date: 25/08/2017 11:58 AM
+                        Subject: Re: Friday - meeting
+
+
+
+
+
+
+                        I understand. If you have time earlier - even last
+                        minute - I=E2=80=99m usually flexible. Otherwise th=
+e week
+                        of September 5 I=E2=80=99m available everyday except
+                        Tuesday.
+
+                        Will I be able to meet with the new case worker
+                        before then? And is it possible to meet with Lynda
+                        on her own?
+
+                        Darryl
+                              On Aug 25, 2017, at 11:54 AM,
+                              heather.clark@casott.on.ca wrote:
+
+
+                              I'm so sorry about today, but there have been
+                              a few emergencies that have come up and we
+                              are not going to be able to meet.
+
+                              I would like to try and schedule something
+                              for the week of September 5, when you have
+                              your availability.
+
+                              Heather
+
+
+                              Heather Clark
+                              Child Protection Worker
+                              Children's Aid Society
+                              Southwest Services
+                              (613) 747-7800 ext. 3478
+
+
+                              Darryl Ross ---25/08/2017 11:36:48 AM---Hi
+                              Heather, Sorry, but I was offline working and
+                              just got a call from someone from your
+                              office. I ca
+                              Darryl Ross ---25/08/2017 11:36:48 AM---Hi
+                              Heather, Sorry, but I was offline working and
+                              just got a call from someone from your
+                              office. I ca
+
+                              From: Darryl Ross <darrylondunlin@gmail.com>
+                              To: heather.clark@casott.on.ca
+                              Date: 25/08/2017 11:36 AM
+                              Subject: Re: Friday - meeting
+
+
+
+
+
+
+
+                              Hi Heather,
+
+                              Sorry, but I was offline working and just got
+                              a call from someone from your office. I can
+                              come to your office this afternoon: anytime
+                              after 1-1:1:30, if you=E2=80=99re available.
+
+                              I have my phone on now. It may be easier to
+                              coordinate that way, but I=E2=80=99ll keep ch=
+ecking
+                              my email.
+
+                              Darryl
+                                    On Aug 25, 2017, at 9:19 AM, <
+                                    heather.clark@casott.on.ca> <
+                                    heather.clark@casott.on.ca> wrote:
+
+
+                                    Hi, Darryl.  I apologize for the
+                                    change, but we are not going to be able
+                                    to come to your home today.  I wondered
+                                    if you were able to come to our office
+                                    in Kanata around the same time that we
+                                    had booked to attend your home?  It's
+                                    150 Katimavik.
+
+                                    Let me know, if it doesn't work, we
+                                    will reschedule.
+
+
+                                    Heather Clark
+                                    Child Protection Worker
+                                    Children's Aid Society
+                                    Southwest Services
+                                    (613) 747-7800 ext. 3478
+
+
+                                    Darryl Ross ---24/08/2017 05:03:05
+                                    PM---Yes, that works. See you tomorrow,
+                                    Darryl
+                                    Darryl Ross ---24/08/2017 05:03:05
+                                    PM---Yes, that works. See you tomorrow,
+                                    Darryl
+
+                                    From: Darryl Ross <
+                                    darrylondunlin@gmail.com>
+                                    To: heather.clark@casott.on.ca
+                                    Date: 24/08/2017 05:03 PM
+                                    Subject: Re: Friday - meeting
+
+
+
+
+
+
+                                    Yes, that works. See you tomorrow,
+
+                                    Darryl
+
+                                    On Aug 24, 2017 4:54 PM, <
+                                    heather.clark@casott.on.ca> wrote:
+                                          Yes, could we come around 1130?
+
+                                          ~
+                                          Heather Clark
+                                          ~
+
+                                          On Aug 24, 2017, at 12:03 PM,
+                                          Darryl Ross <
+                                          darrylondunlin@gmail.com> wrote:
+                                                This Friday? If so, yes,
+                                                I=E2=80=99m available. Will=
+ you be
+                                                coming here, or should I
+                                                meet you at your office?
+
+                                                Darryl
+                                                      On Aug 23, 2017, at
+                                                      8:41 PM,
+                                                      heather.clark@casott.=
+on.ca
+                                                       wrote:
+
+
+                                                      Hi, Darryl, are you
+                                                      available to meet
+                                                      with Lynda and I on
+                                                      Friday morning around
+                                                      11:30?
+
+
+                                                      Heather Clark
+                                                      Child Protection
+                                                      Worker
+                                                      Children's Aid
+                                                      Society
+                                                      Southwest Services
+                                                      (613) 747-7800 ext.
+                                                      3478
+                                                      CONFIDENTIALITY
+                                                      NOTICE
+
+                                                      This e-mail
+                                                      transmission, and any
+                                                      documents, files or
+                                                      previous e-mail
+                                                      messages attached to
+                                                      it may contain
+                                                      information that is
+                                                      confidential or
+                                                      legally privileged.
+                                                      If you are not the
+                                                      intended recipient,
+                                                      or a person
+                                                      responsible for
+                                                      delivering it to the
+                                                      intended recipient,
+                                                      you are hereby
+                                                      notified that you
+                                                      must not read this
+                                                      transmission and that
+                                                      any disclosure,
+                                                      copying, printing,
+                                                      distribution or use
+                                                      of any of the
+                                                      information contained
+                                                      in or attached to
+                                                      this transmission is
+                                                      STRICTLY PROHIBITED.
+                                                      If you have received
+                                                      this transmission in
+                                                      error, please
+                                                      immediately notify
+                                                      the sender by return
+                                                      e-mail and delete the
+                                                      original transmission
+                                                      and its attachments
+                                                      without reading,
+                                                      printing, or saving
+                                                      in any manner. Thank
+                                                      you.
+
+
+
+                                                      AVIS DE
+                                                      CONFIDENTIALIT=C3=89
+
+                                                      Le pr=C3=A9sent courr=
+iel,
+                                                      ainsi que tout
+                                                      document, fichier ou
+                                                      courriel ant=C3=A9rie=
+ur
+                                                      qui y est joint, peut
+                                                      contenir des
+                                                      renseignements
+                                                      confidentiels ou
+                                                      prot=C3=A9g=C3=A9s pa=
+r le
+                                                      secret professionnel.
+                                                      Si vous n=E2=80=99=C3=
+=AAtes pas le
+                                                      destinataire vis=C3=
+=A9, ni
+                                                      son mandataire, nous
+                                                      vous signalons que
+                                                      vous ne devez pas le
+                                                      lire et qu=E2=80=99il=
+ est
+                                                      STRICTEMENT INTERDIT
+                                                      de divulguer, de
+                                                      copier, d=E2=80=99imp=
+rimer,
+                                                      de diffuser ou
+                                                      d=E2=80=99utiliser
+                                                      l=E2=80=99information=
+ qui y
+                                                      figure ou qui y est
+                                                      jointe. Si cette
+                                                      communication vous a
+                                                      =C3=A9t=C3=A9 transmi=
+se par
+                                                      erreur, veuillez en
+                                                      aviser l=E2=80=99exp=
+=C3=A9diteur
+                                                      imm=C3=A9diatement par
+                                                      courriel et supprimer
+                                                      la communication
+                                                      originale ainsi que
+                                                      les pi=C3=A8ces joint=
+es
+                                                      sans les lire, les
+                                                      imprimer ou les
+                                                      sauvegarder de
+                                                      quelque mani=C3=A8re =
+que
+                                                      ce soit. Merci.
+
+
+
+
+                                          CONFIDENTIALITY NOTICE
+
+                                          This e-mail transmission, and any
+                                          documents, files or previous
+                                          e-mail messages attached to it
+                                          may contain information that is
+                                          confidential or legally
+                                          privileged. If you are not the
+                                          intended recipient, or a person
+                                          responsible for delivering it to
+                                          the intended recipient, you are
+                                          hereby notified that you must not
+                                          read this transmission and that
+                                          any disclosure, copying,
+                                          printing, distribution or use of
+                                          any of the information contained
+                                          in or attached to this
+                                          transmission is STRICTLY
+                                          PROHIBITED. If you have received
+                                          this transmission in error,
+                                          please immediately notify the
+                                          sender by return e-mail and
+                                          delete the original transmission
+                                          and its attachments without
+                                          reading, printing, or saving in
+                                          any manner. Thank you.
+
+
+
+                                          AVIS DE CONFIDENTIALIT=C3=89
+
+                                          Le pr=C3=A9sent courriel, ainsi q=
+ue
+                                          tout document, fichier ou
+                                          courriel ant=C3=A9rieur qui y est
+                                          joint, peut contenir des
+                                          renseignements confidentiels ou
+                                          prot=C3=A9g=C3=A9s par le secret
+                                          professionnel. Si vous n=E2=80=99=
+=C3=AAtes pas
+                                          le destinataire vis=C3=A9, ni son
+                                          mandataire, nous vous signalons
+                                          que vous ne devez pas le lire et
+                                          qu=E2=80=99il est STRICTEMENT INT=
+ERDIT de
+                                          divulguer, de copier, d=E2=80=99i=
+mprimer,
+                                          de diffuser ou d=E2=80=99utiliser
+                                          l=E2=80=99information qui y figur=
+e ou qui
+                                          y est jointe. Si cette
+                                          communication vous a =C3=A9t=C3=A9
+                                          transmise par erreur, veuillez en
+                                          aviser l=E2=80=99exp=C3=A9diteur =
+imm=C3=A9diatement
+                                          par courriel et supprimer la
+                                          communication originale ainsi que
+                                          les pi=C3=A8ces jointes sans les =
+lire,
+                                          les imprimer ou les sauvegarder
+                                          de quelque mani=C3=A8re que ce so=
+it.
+                                          Merci.
+
+                                    CONFIDENTIALITY NOTICE
+
+                                    This e-mail transmission, and any
+                                    documents, files or previous e-mail
+                                    messages attached to it may contain
+                                    information that is confidential or
+                                    legally privileged. If you are not the
+                                    intended recipient, or a person
+                                    responsible for delivering it to the
+                                    intended recipient, you are hereby
+                                    notified that you must not read this
+                                    transmission and that any disclosure,
+                                    copying, printing, distribution or use
+                                    of any of the information contained in
+                                    or attached to this transmission is
+                                    STRICTLY PROHIBITED. If you have
+                                    received this transmission in error,
+                                    please immediately notify the sender by
+                                    return e-mail and delete the original
+                                    transmission and its attachments
+                                    without reading, printing, or saving in
+                                    any manner. Thank you.
+
+
+
+                                    AVIS DE CONFIDENTIALIT=C3=89
+
+                                    Le pr=C3=A9sent courriel, ainsi que tout
+                                    document, fichier ou courriel ant=C3=A9=
+rieur
+                                    qui y est joint, peut contenir des
+                                    renseignements confidentiels ou
+                                    prot=C3=A9g=C3=A9s par le secret profes=
+sionnel.
+                                    Si vous n=E2=80=99=C3=AAtes pas le dest=
+inataire
+                                    vis=C3=A9, ni son mandataire, nous vous
+                                    signalons que vous ne devez pas le lire
+                                    et qu=E2=80=99il est STRICTEMENT INTERD=
+IT de
+                                    divulguer, de copier, d=E2=80=99imprime=
+r, de
+                                    diffuser ou d=E2=80=99utiliser l=E2=80=
+=99information
+                                    qui y figure ou qui y est jointe. Si
+                                    cette communication vous a =C3=A9t=C3=A9
+                                    transmise par erreur, veuillez en
+                                    aviser l=E2=80=99exp=C3=A9diteur imm=C3=
+=A9diatement par
+                                    courriel et supprimer la communication
+                                    originale ainsi que les pi=C3=A8ces joi=
+ntes
+                                    sans les lire, les imprimer ou les
+                                    sauvegarder de quelque mani=C3=A8re que=
+ ce
+                                    soit. Merci.
+
+
+
+                              CONFIDENTIALITY NOTICE
+
+                              This e-mail transmission, and any documents,
+                              files or previous e-mail messages attached to
+                              it may contain information that is
+                              confidential or legally privileged. If you
+                              are not the intended recipient, or a person
+                              responsible for delivering it to the intended
+                              recipient, you are hereby notified that you
+                              must not read this transmission and that any
+                              disclosure, copying, printing, distribution
+                              or use of any of the information contained in
+                              or attached to this transmission is STRICTLY
+                              PROHIBITED. If you have received this
+                              transmission in error, please immediately
+                              notify the sender by return e-mail and delete
+                              the original transmission and its attachments
+                              without reading, printing, or saving in any
+                              manner. Thank you.
+
+
+
+                              AVIS DE CONFIDENTIALIT=C3=89
+
+                              Le pr=C3=A9sent courriel, ainsi que tout docu=
+ment,
+                              fichier ou courriel ant=C3=A9rieur qui y est
+                              joint, peut contenir des renseignements
+                              confidentiels ou prot=C3=A9g=C3=A9s par le se=
+cret
+                              professionnel. Si vous n=E2=80=99=C3=AAtes pa=
+s le
+                              destinataire vis=C3=A9, ni son mandataire, no=
+us
+                              vous signalons que vous ne devez pas le lire
+                              et qu=E2=80=99il est STRICTEMENT INTERDIT de
+                              divulguer, de copier, d=E2=80=99imprimer, de =
+diffuser
+                              ou d=E2=80=99utiliser l=E2=80=99information q=
+ui y figure ou
+                              qui y est jointe. Si cette communication vous
+                              a =C3=A9t=C3=A9 transmise par erreur, veuille=
+z en
+                              aviser l=E2=80=99exp=C3=A9diteur imm=C3=A9dia=
+tement par
+                              courriel et supprimer la communication
+                              originale ainsi que les pi=C3=A8ces jointes s=
+ans
+                              les lire, les imprimer ou les sauvegarder de
+                              quelque mani=C3=A8re que ce soit. Merci.
+
+
+
+                        CONFIDENTIALITY NOTICE
+
+                        This e-mail transmission, and any documents, files
+                        or previous e-mail messages attached to it may
+                        contain information that is confidential or legally
+                        privileged. If you are not the intended recipient,
+                        or a person responsible for delivering it to the
+                        intended recipient, you are hereby notified that
+                        you must not read this transmission and that any
+                        disclosure, copying, printing, distribution or use
+                        of any of the information contained in or attached
+                        to this transmission is STRICTLY PROHIBITED. If you
+                        have received this transmission in error, please
+                        immediately notify the sender by return e-mail and
+                        delete the original transmission and its
+                        attachments without reading, printing, or saving in
+                        any manner. Thank you.
+
+
+
+                        AVIS DE CONFIDENTIALIT=C3=89
+
+                        Le pr=C3=A9sent courriel, ainsi que tout document,
+                        fichier ou courriel ant=C3=A9rieur qui y est joint,=
+ peut
+                        contenir des renseignements confidentiels ou
+                        prot=C3=A9g=C3=A9s par le secret professionnel. Si =
+vous
+                        n=E2=80=99=C3=AAtes pas le destinataire vis=C3=A9, =
+ni son mandataire,
+                        nous vous signalons que vous ne devez pas le lire
+                        et qu=E2=80=99il est STRICTEMENT INTERDIT de divulg=
+uer, de
+                        copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=
+=99utiliser
+                        l=E2=80=99information qui y figure ou qui y est joi=
+nte. Si
+                        cette communication vous a =C3=A9t=C3=A9 transmise =
+par
+                        erreur, veuillez en aviser l=E2=80=99exp=C3=A9diteur
+                        imm=C3=A9diatement par courriel et supprimer la
+                        communication originale ainsi que les pi=C3=A8ces
+                        jointes sans les lire, les imprimer ou les
+                        sauvegarder de quelque mani=C3=A8re que ce soit. Me=
+rci.
+
+
+
+                  CONFIDENTIALITY NOTICE
+
+                  This e-mail transmission, and any documents, files or
+                  previous e-mail messages attached to it may contain
+                  information that is confidential or legally privileged.
+                  If you are not the intended recipient, or a person
+                  responsible for delivering it to the intended recipient,
+                  you are hereby notified that you must not read this
+                  transmission and that any disclosure, copying, printing,
+                  distribution or use of any of the information contained
+                  in or attached to this transmission is STRICTLY
+                  PROHIBITED. If you have received this transmission in
+                  error, please immediately notify the sender by return
+                  e-mail and delete the original transmission and its
+                  attachments without reading, printing, or saving in any
+                  manner. Thank you.
+
+
+
+                  AVIS DE CONFIDENTIALIT=C3=89
+
+                  Le pr=C3=A9sent courriel, ainsi que tout document, fichie=
+r ou
+                  courriel ant=C3=A9rieur qui y est joint, peut contenir des
+                  renseignements confidentiels ou prot=C3=A9g=C3=A9s par le=
+ secret
+                  professionnel. Si vous n=E2=80=99=C3=AAtes pas le destina=
+taire vis=C3=A9,
+                  ni son mandataire, nous vous signalons que vous ne devez
+                  pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT de
+                  divulguer, de copier, d=E2=80=99imprimer, de diffuser ou
+                  d=E2=80=99utiliser l=E2=80=99information qui y figure ou =
+qui y est
+                  jointe. Si cette communication vous a =C3=A9t=C3=A9 trans=
+mise par
+                  erreur, veuillez en aviser l=E2=80=99exp=C3=A9diteur imm=
+=C3=A9diatement par
+                  courriel et supprimer la communication originale ainsi
+                  que les pi=C3=A8ces jointes sans les lire, les imprimer o=
+u les
+                  sauvegarder de quelque mani=C3=A8re que ce soit. Merci.
+
+
+
+            CONFIDENTIALITY NOTICE
+
+            This e-mail transmission, and any documents, files or previous
+            e-mail messages attached to it may contain information that is
+            confidential or legally privileged. If you are not the intended
+            recipient, or a person responsible for delivering it to the
+            intended recipient, you are hereby notified that you must not
+            read this transmission and that any disclosure, copying,
+            printing, distribution or use of any of the information
+            contained in or attached to this transmission is STRICTLY
+            PROHIBITED. If you have received this transmission in error,
+            please immediately notify the sender by return e-mail and
+            delete the original transmission and its attachments withoutCON=
+FIDENTIALITY NOTICE
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged.  If you are not the intended recipient, or a person responsible=
+ for delivering it to the intended recipient, you are hereby notified that =
+you must not read this transmission and that any disclosure, copying, print=
+ing, distribution or use of any of the information contained in or attached=
+ to this transmission is STRICTLY PROHIBITED.  If you have received this tr=
+ansmission in error, please immediately notify the sender by return e-mail =
+and delete the original transmission and its attachments without reading, p=
+rinting, or saving in any manner.  Thank you.
+
+AVIS DE CONFIDENTIALIT=C3=89
+Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=
+=C3=A9rieur qui y est joint, peut contenir des renseignements confidentiels=
+ ou prot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=
+=AAtes pas le destinataire vis=C3=A9, ni son mandataire, nous vous signalon=
+s que vous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT d=
+e divulguer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utilis=
+er l=E2=80=99information qui y figure ou qui y est jointe. Si cette communi=
+cation vous a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=
+=80=99exp=C3=A9diteur imm=C3=A9diatement par courriel et supprimer la commu=
+nication originale ainsi que les pi=C3=A8ces jointes sans les lire, les imp=
+rimer ou les sauvegarder de quelque mani=C3=A8re que ce soit. Merci.
+
+--0__=0ABB0B1EDFC24D358f9e8a93df938690918c0ABB0B1EDFC24D35
+Content-type: text/html; charset=UTF-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p><font size=3D"2" face=3D"sans-serif">Yes that is great that =
+it works. I will just be introducing myself, going over reasons for our inv=
+olvement and we would be talking about goals moving forward and I can answe=
+r any questions you have. </font><br><font size=3D"2" face=3D"sans-serif">J=
+ust show up at our office for 10:00am and I will &nbsp;come get you in the =
+lobby.</font><br>
+<script language=3D"JavaScript" type=3D"text/javascript"><!--=20
+function =5FdSectionExpand(sec) {
+	 document.getElementById("cSec"+sec).style.display =3D "none";
+	 document.getElementById("xSec"+sec).style.display =3D "block";
+}
+function =5FdSectionCollapse(sec) {
+	 document.getElementById("xSec"+sec).style.display =3D "none";
+	 document.getElementById("cSec"+sec).style.display =3D "block";
+}
+// -->
+</script><div id=3D"cSec1"><a href=3D"javascript:=5FdSectionExpand('1')" on=
+click=3D"return =5FdSectionExpand('1');"><img src=3D"/icons/expand.gif" bor=
+der=3D"0" alt=3D"Show details for Darryl Ross ---30/08/2017 12:31:47 PM---H=
+I Lynda, Friday at 10 am works. Let me know the room when it=E2=80=99s book=
+ed."></a><a onclick=3D"return =5FdSectionExpand('1');"><font size=3D"2" col=
+or=3D"#424282" face=3D"sans-serif">Darryl Ross ---30/08/2017 12:31:47 PM---=
+HI Lynda, Friday at 10 am works. Let me know the room when it=E2=80=99s boo=
+ked.</font></a></div><div id=3D"xSec1"><a href=3D"javascript:=5FdSectionCol=
+lapse('1')" onclick=3D"return =5FdSectionCollapse('1');"><img src=3D"/icons=
+/collapse.gif" border=3D"0" alt=3D"Hide details for Darryl Ross ---30/08/20=
+17 12:31:47 PM---HI Lynda, Friday at 10 am works. Let me know the room when=
+ it=E2=80=99s booked."></a><a onclick=3D"return =5FdSectionCollapse('1');">=
+<font size=3D"2" color=3D"#424282" face=3D"sans-serif">Darryl Ross ---30/08=
+/2017 12:31:47 PM---HI Lynda, Friday at 10 am works. Let me know the room w=
+hen it=E2=80=99s booked.</font></a><br><br><font size=3D"1" color=3D"#5F5F5=
+F" face=3D"sans-serif">From:        </font><font size=3D"1" face=3D"sans-se=
+rif">Darryl Ross &lt;darrylondunlin@gmail.com&gt;</font><br><font size=3D"1=
+" color=3D"#5F5F5F" face=3D"sans-serif">To:        </font><font size=3D"1" =
+face=3D"sans-serif">lynda.reece@casott.on.ca</font><br><font size=3D"1" col=
+or=3D"#5F5F5F" face=3D"sans-serif">Cc:        </font><font size=3D"1" face=
+=3D"sans-serif">heather.clark@casott.on.ca</font><br><font size=3D"1" color=
+=3D"#5F5F5F" face=3D"sans-serif">Date:        </font><font size=3D"1" face=
+=3D"sans-serif">30/08/2017 12:31 PM</font><br><font size=3D"1" color=3D"#5F=
+5F5F" face=3D"sans-serif">Subject:        </font><font size=3D"1" face=3D"s=
+ans-serif">Re: Friday - meeting</font><br><hr width=3D"100%" size=3D"2" ali=
+gn=3D"left" noshade style=3D"color:#8091A5; "><br><br><br><font size=3D"3" =
+face=3D"serif">HI Lynda,</font><br><br><font size=3D"3" face=3D"serif">Frid=
+ay at 10 am works. Let me know the room when it=E2=80=99s booked.</font><br=
+><br><font size=3D"3" face=3D"serif">Just to be sure: you=E2=80=99re at 150=
+ Katimavik? (If so, I know roughly where that is)</font><br><br><font size=
+=3D"3" face=3D"serif">Heather &nbsp;told me what you do, but if you have ti=
+me could you give me a few more details, and what we=E2=80=99ll be doing?</=
+font><br><br><font size=3D"3" face=3D"serif">Thanks,</font><br><br><font si=
+ze=3D"3" face=3D"serif">Darryl</font><br><br>
+<ul style=3D"padding-left: 36pt"><font size=3D"3" face=3D"serif">On Aug 30,=
+ 2017, at 12:12 PM, &lt;</font><a href=3D"mailto:lynda.reece@casott.on.ca">=
+<font size=3D"3" color=3D"#0000FF" face=3D"serif"><u>lynda.reece@casott.on.=
+ca</u></font></a><font size=3D"3" face=3D"serif">&gt; &lt;</font><a href=3D=
+"mailto:lynda.reece@casott.on.ca"><font size=3D"3" color=3D"#0000FF" face=
+=3D"serif"><u>lynda.reece@casott.on.ca</u></font></a><font size=3D"3" face=
+=3D"serif">&gt; wrote:</font><br>
+<p><font size=3D"2" face=3D"sans-serif">Hi Darryl, Thursday am does not wor=
+k for me as I am booked for the day. Does Friday am at 10:00 am work?<br>I =
+am on back up and someone will cover me for the time we plan to meet.<br>If=
+ this works please let me know as I will need to book a room. Thanks!</font=
+><p><a href=3D"javascript:=5FdSectionExpand('1')"></a><font size=3D"2" colo=
+r=3D"#424282" face=3D"sans-serif">Darryl Ross ---30/08/2017 11:00:31 AM---O=
+k, I can come to your office tomorrow at 11 am. I know the area (grew up ne=
+ar there). But does tomo</font><br><a href=3D"javascript:=5FdSectionCollaps=
+e('1')"></a><font size=3D"2" color=3D"#424282" face=3D"sans-serif">Darryl R=
+oss ---30/08/2017 11:00:31 AM---Ok, I can come to your office tomorrow at 1=
+1 am. I know the area (grew up near there). But does tomo</font><font size=
+=3D"3" face=3D"serif"><br></font><font size=3D"1" color=3D"#5F5F5F" face=3D=
+"sans-serif"><br>From: </font><font size=3D"1" face=3D"sans-serif">Darryl R=
+oss &lt;</font><a href=3D"mailto:darrylondunlin@gmail.com"><font size=3D"1"=
+ color=3D"#0000FF" face=3D"sans-serif"><u>darrylondunlin@gmail.com</u></fon=
+t></a><font size=3D"1" face=3D"sans-serif">&gt;</font><font size=3D"1" colo=
+r=3D"#5F5F5F" face=3D"sans-serif"><br>To: </font><a href=3D"mailto:lynda.re=
+ece@casott.on.ca"><font size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u=
+>lynda.reece@casott.on.ca</u></font></a><font size=3D"1" color=3D"#5F5F5F" =
+face=3D"sans-serif"><br>Date: </font><font size=3D"1" face=3D"sans-serif">3=
+0/08/2017 11:00 AM</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-se=
+rif"><br>Subject: </font><font size=3D"1" face=3D"sans-serif">Re: Friday - =
+meeting</font><font size=3D"3" face=3D"serif"><br></font><hr width=3D"100%"=
+ size=3D"2" align=3D"left" noshade><font size=3D"3" face=3D"serif"><br><br>=
+<br>Ok, I can come to your office tomorrow at 11 am. I know the area (grew =
+up near there). But does tomorrow work? I have meetings today that I couldn=
+'t reschedule, unfortunately. <br><br>Darryl<br><br><br><br>On Aug 30, 2017=
+, at 9:55 AM, &lt;</font><a href=3D"mailto:lynda.reece@casott.on.ca"><font =
+size=3D"3" color=3D"#0000FF" face=3D"serif"><u>lynda.reece@casott.on.ca</u>=
+</font></a><font size=3D"3" face=3D"serif">&gt; &lt;</font><a href=3D"mailt=
+o:lynda.reece@casott.on.ca"><font size=3D"3" color=3D"#0000FF" face=3D"seri=
+f"><u>lynda.reece@casott.on.ca</u></font></a><font size=3D"3" face=3D"serif=
+">&gt; wrote:</font><ul style=3D"padding-left: 36pt"><font size=3D"2" face=
+=3D"sans-serif"><br>Hi Daryll. I am still available to meet today Thursday =
+am at 11:00. My office is at 150 Katimavik Road, Kanata. We are around the =
+side of the building.</font><p><a href=3D"javascript:=5FdSectionExpand('1')=
+"></a><font size=3D"2" color=3D"#424282" face=3D"sans-serif">Darryl Ross --=
+-29/08/2017 10:11:41 PM---Hi Lynda, Tomorrow morning should work. Will you =
+come here, or do you want me to come to your office</font><font size=3D"3" =
+color=3D"#0000FF" face=3D"serif"><u><br></u></font><a href=3D"javascript:=
+=5FdSectionCollapse('1')"></a><font size=3D"2" color=3D"#424282" face=3D"sa=
+ns-serif">Darryl Ross ---29/08/2017 10:11:41 PM---Hi Lynda, Tomorrow mornin=
+g should work. Will you come here, or do you want me to come to your office=
+</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br><br>From:=
+ </font><font size=3D"1" face=3D"sans-serif">Darryl Ross &lt;</font><a href=
+=3D"mailto:darrylondunlin@gmail.com"><font size=3D"1" color=3D"#0000FF" fac=
+e=3D"sans-serif"><u>darrylondunlin@gmail.com</u></font></a><font size=3D"1"=
+ face=3D"sans-serif">&gt;</font><font size=3D"1" color=3D"#5F5F5F" face=3D"=
+sans-serif"><br>To: </font><a href=3D"mailto:lynda.reece@casott.on.ca"><fon=
+t size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u>lynda.reece@casott.on=
+.ca</u></font></a><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><b=
+r>Date: </font><font size=3D"1" face=3D"sans-serif">29/08/2017 10:11 PM</fo=
+nt><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>Subject: </fo=
+nt><font size=3D"1" face=3D"sans-serif">Re: Friday - meeting</font><p><hr w=
+idth=3D"100%" size=3D"2" align=3D"left" noshade><font size=3D"3" face=3D"se=
+rif"><br><br><br>Hi Lynda,<br><br>Tomorrow morning should work. Will you co=
+me here, or do you want me to come to your office? (If it=E2=80=99s your of=
+fice, what is the address?)<br><br>Darryl<br><br></font><ul style=3D"paddin=
+g-left: 36pt"><font size=3D"3" face=3D"serif">On Aug 29, 2017, at 10:08 AM,=
+ </font><a href=3D"mailto:lynda.reece@casott.on.ca"><font size=3D"3" color=
+=3D"#0000FF" face=3D"serif"><u>lynda.reece@casott.on.ca</u></font></a><font=
+ size=3D"3" face=3D"serif">&nbsp;wrote:</font><p><font size=3D"2" face=3D"s=
+ans-serif">Hi Darryl, thanks for your message. Does tomorrow morning for 11=
+:00 am work by chance?</font><p><a href=3D"javascript:=5FdSectionExpand('1'=
+)"></a><font size=3D"2" color=3D"#424282" face=3D"sans-serif">Darryl Ross -=
+--28/08/2017 03:06:35 PM---Thanks Heather. I appreciate it. Hi Lynda. I=E2=
+=80=99m available most days this week, except for tomorrow mo</font><font s=
+ize=3D"3" color=3D"#0000FF" face=3D"serif"><u><br></u></font><a href=3D"jav=
+ascript:=5FdSectionCollapse('1')"></a><font size=3D"2" color=3D"#424282" fa=
+ce=3D"sans-serif">Darryl Ross ---28/08/2017 03:06:35 PM---Thanks Heather. I=
+ appreciate it. Hi Lynda. I=E2=80=99m available most days this week, except=
+ for tomorrow mo</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-seri=
+f"><br><br>From: </font><font size=3D"1" face=3D"sans-serif">Darryl Ross &l=
+t;</font><a href=3D"mailto:darrylondunlin@gmail.com"><font size=3D"1" color=
+=3D"#0000FF" face=3D"sans-serif"><u>darrylondunlin@gmail.com</u></font></a>=
+<font size=3D"1" face=3D"sans-serif">&gt;</font><font size=3D"1" color=3D"#=
+5F5F5F" face=3D"sans-serif"><br>To: </font><a href=3D"mailto:heather.clark@=
+casott.on.ca"><font size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u>hea=
+ther.clark@casott.on.ca</u></font></a><font size=3D"1" color=3D"#5F5F5F" fa=
+ce=3D"sans-serif"><br>Cc: </font><a href=3D"mailto:lynda.reece@casott.on.ca=
+"><font size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u>lynda.reece@cas=
+ott.on.ca</u></font></a><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-ser=
+if"><br>Date: </font><font size=3D"1" face=3D"sans-serif">28/08/2017 03:06 =
+PM</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>Subject=
+: </font><font size=3D"1" face=3D"sans-serif">Re: Friday - meeting</font><p=
+><br><hr width=3D"100%" size=3D"2" align=3D"left" noshade><font size=3D"3" =
+face=3D"serif"><br><br><br>Thanks Heather. I appreciate it.<br><br>Hi Lynda=
+. I=E2=80=99m available most days this week, except for tomorrow morning un=
+til about 1 pm. <br><br>Darryl</font><ul style=3D"padding-left: 36pt"><font=
+ size=3D"3" face=3D"serif">On Aug 28, 2017, at 8:35 AM, </font><a href=3D"m=
+ailto:heather.clark@casott.on.ca"><font size=3D"3" color=3D"#0000FF" face=
+=3D"serif"><u>heather.clark@casott.on.ca</u></font></a><font size=3D"3" fac=
+e=3D"serif">&nbsp;wrote:</font><p><font size=3D"2" face=3D"sans-serif">Hi, =
+Darryl.<br><br>Sorry about Friday. &nbsp;I am cc'ing Lynda on this email as=
+ she was anxious to meet with you asap as well. &nbsp;I will leave it to th=
+e two of you to get in touch and I will be back on September 5 if there are=
+ any questions.<br><br>Thank you!<br><br><br>Heather Clark<br>Child Protect=
+ion Worker<br>Children's Aid Society <br>Southwest Services<br>(613) 747-78=
+00 ext. 3478</font><p><a href=3D"javascript:=5FdSectionExpand('1')"></a><fo=
+nt size=3D"2" color=3D"#424282" face=3D"sans-serif">Darryl Ross ---25/08/20=
+17 11:58:13 AM---I understand. If you have time earlier - even last minute =
+- I=E2=80=99m usually flexible. Otherwise the week</font><font size=3D"3" c=
+olor=3D"#0000FF" face=3D"serif"><u><br></u></font><a href=3D"javascript:=5F=
+dSectionCollapse('1')"></a><font size=3D"2" color=3D"#424282" face=3D"sans-=
+serif">Darryl Ross ---25/08/2017 11:58:13 AM---I understand. If you have ti=
+me earlier - even last minute - I=E2=80=99m usually flexible. Otherwise the=
+ week</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br><br>=
+From: </font><font size=3D"1" face=3D"sans-serif">Darryl Ross &lt;</font><a=
+ href=3D"mailto:darrylondunlin@gmail.com"><font size=3D"1" color=3D"#0000FF=
+" face=3D"sans-serif"><u>darrylondunlin@gmail.com</u></font></a><font size=
+=3D"1" face=3D"sans-serif">&gt;</font><font size=3D"1" color=3D"#5F5F5F" fa=
+ce=3D"sans-serif"><br>To: </font><a href=3D"mailto:heather.clark@casott.on.=
+ca"><font size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u>heather.clark=
+@casott.on.ca</u></font></a><font size=3D"1" color=3D"#5F5F5F" face=3D"sans=
+-serif"><br>Date: </font><font size=3D"1" face=3D"sans-serif">25/08/2017 11=
+:58 AM</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>Sub=
+ject: </font><font size=3D"1" face=3D"sans-serif">Re: Friday - meeting</fon=
+t><p><br><hr width=3D"100%" size=3D"2" align=3D"left" noshade><font size=3D=
+"3" face=3D"serif"><br><br><br>I understand. If you have time earlier - eve=
+n last minute - I=E2=80=99m usually flexible. Otherwise the week of Septemb=
+er 5 I=E2=80=99m available everyday except Tuesday.<br><br>Will I be able t=
+o meet with the new case worker before then? And is it possible to meet wit=
+h Lynda on her own?<br><br>Darryl</font><ul style=3D"padding-left: 36pt"><f=
+ont size=3D"3" face=3D"serif">On Aug 25, 2017, at 11:54 AM, </font><a href=
+=3D"mailto:heather.clark@casott.on.ca"><font size=3D"3" color=3D"#0000FF" f=
+ace=3D"serif"><u>heather.clark@casott.on.ca</u></font></a><font size=3D"3" =
+face=3D"serif">&nbsp;wrote:</font><p><font size=3D"2" face=3D"sans-serif">I=
+'m so sorry about today, but there have been a few emergencies that have co=
+me up and we are not going to be able to meet.<br><br>I would like to try a=
+nd schedule something for the week of September 5, when you have your avail=
+ability.<br><br>Heather<br><br><br>Heather Clark<br>Child Protection Worker=
+<br>Children's Aid Society <br>Southwest Services<br>(613) 747-7800 ext. 34=
+78</font><p><a href=3D"javascript:=5FdSectionExpand('1')"></a><font size=3D=
+"2" color=3D"#424282" face=3D"sans-serif">Darryl Ross ---25/08/2017 11:36:4=
+8 AM---Hi Heather, Sorry, but I was offline working and just got a call fro=
+m someone from your office. I ca</font><font size=3D"3" color=3D"#0000FF" f=
+ace=3D"serif"><u><br></u></font><a href=3D"javascript:=5FdSectionCollapse('=
+1')"></a><font size=3D"2" color=3D"#424282" face=3D"sans-serif">Darryl Ross=
+ ---25/08/2017 11:36:48 AM---Hi Heather, Sorry, but I was offline working a=
+nd just got a call from someone from your office. I ca</font><font size=3D"=
+1" color=3D"#5F5F5F" face=3D"sans-serif"><br><br>From: </font><font size=3D=
+"1" face=3D"sans-serif">Darryl Ross &lt;</font><a href=3D"mailto:darrylondu=
+nlin@gmail.com"><font size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u>d=
+arrylondunlin@gmail.com</u></font></a><font size=3D"1" face=3D"sans-serif">=
+&gt;</font><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>To: <=
+/font><a href=3D"mailto:heather.clark@casott.on.ca"><font size=3D"1" color=
+=3D"#0000FF" face=3D"sans-serif"><u>heather.clark@casott.on.ca</u></font></=
+a><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>Date: </font><=
+font size=3D"1" face=3D"sans-serif">25/08/2017 11:36 AM</font><font size=3D=
+"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>Subject: </font><font size=3D=
+"1" face=3D"sans-serif">Re: Friday - meeting</font><p><br><br><hr width=3D"=
+100%" size=3D"2" align=3D"left" noshade><font size=3D"3" face=3D"serif"><br=
+><br><br>Hi Heather,<br><br>Sorry, but I was offline working and just got a=
+ call from someone from your office. I can come to your office this afterno=
+on: anytime after 1-1:1:30, if you=E2=80=99re available.<br><br>I have my p=
+hone on now. It may be easier to coordinate that way, but I=E2=80=99ll keep=
+ checking my email. <br><br>Darryl</font><ul style=3D"padding-left: 36pt"><=
+font size=3D"3" face=3D"serif">On Aug 25, 2017, at 9:19 AM, &lt;</font><a h=
+ref=3D"mailto:heather.clark@casott.on.ca"><font size=3D"3" color=3D"#0000FF=
+" face=3D"serif"><u>heather.clark@casott.on.ca</u></font></a><font size=3D"=
+3" face=3D"serif">&gt; &lt;</font><a href=3D"mailto:heather.clark@casott.on=
+.ca"><font size=3D"3" color=3D"#0000FF" face=3D"serif"><u>heather.clark@cas=
+ott.on.ca</u></font></a><font size=3D"3" face=3D"serif">&gt; wrote:</font><=
+p><font size=3D"2" face=3D"sans-serif">Hi, Darryl. &nbsp;I apologize for th=
+e change, but we are not going to be able to come to your home today. &nbsp=
+;I wondered if you were able to come to our office in Kanata around the sam=
+e time that we had booked to attend your home? &nbsp;It's 150 Katimavik.<br=
+><br>Let me know, if it doesn't work, we will reschedule.<br><br><br>Heathe=
+r Clark<br>Child Protection Worker<br>Children's Aid Society <br>Southwest =
+Services<br>(613) 747-7800 ext. 3478</font><p><a href=3D"javascript:=5FdSec=
+tionExpand('1')"></a><font size=3D"2" color=3D"#424282" face=3D"sans-serif"=
+>Darryl Ross ---24/08/2017 05:03:05 PM---Yes, that works. See you tomorrow,=
+ Darryl</font><font size=3D"3" color=3D"#0000FF" face=3D"serif"><u><br></u>=
+</font><a href=3D"javascript:=5FdSectionCollapse('1')"></a><font size=3D"2"=
+ color=3D"#424282" face=3D"sans-serif">Darryl Ross ---24/08/2017 05:03:05 P=
+M---Yes, that works. See you tomorrow, Darryl</font><font size=3D"1" color=
+=3D"#5F5F5F" face=3D"sans-serif"><br><br>From: </font><font size=3D"1" face=
+=3D"sans-serif">Darryl Ross &lt;</font><a href=3D"mailto:darrylondunlin@gma=
+il.com"><font size=3D"1" color=3D"#0000FF" face=3D"sans-serif"><u>darrylond=
+unlin@gmail.com</u></font></a><font size=3D"1" face=3D"sans-serif">&gt;</fo=
+nt><font size=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>To: </font><a=
+ href=3D"mailto:heather.clark@casott.on.ca"><font size=3D"1" color=3D"#0000=
+FF" face=3D"sans-serif"><u>heather.clark@casott.on.ca</u></font></a><font s=
+ize=3D"1" color=3D"#5F5F5F" face=3D"sans-serif"><br>Date: </font><font size=
+=3D"1" face=3D"sans-serif">24/08/2017 05:03 PM</font><font size=3D"1" color=
+=3D"#5F5F5F" face=3D"sans-serif"><br>Subject: </font><font size=3D"1" face=
+=3D"sans-serif">Re: Friday - meeting</font><p><br><hr width=3D"100%" size=
+=3D"2" align=3D"left" noshade><font size=3D"3" face=3D"serif"><br><br><br>Y=
+es, that works. See you tomorrow,<br><br>Darryl <br><br>On Aug 24, 2017 4:5=
+4 PM, &lt;</font><a href=3D"mailto:heather.clark@casott.on.ca"><font size=
+=3D"3" color=3D"#0000FF" face=3D"serif"><u>heather.clark@casott.on.ca</u></=
+font></a><font size=3D"3" face=3D"serif">&gt; wrote:</font><ul style=3D"pad=
+ding-left: 36pt"><font size=3D"3" face=3D"serif">Yes, could we come around =
+1130?<br><br>~ <br>Heather Clark<br>~<br><br>On Aug 24, 2017, at 12:03 PM, =
+Darryl Ross &lt;</font><a href=3D"mailto:darrylondunlin@gmail.com" target=
+=3D"=5Fblank"><font size=3D"3" color=3D"#0000FF" face=3D"serif"><u>darrylon=
+dunlin@gmail.com</u></font></a><font size=3D"3" face=3D"serif">&gt; wrote:<=
+/font><ul style=3D"padding-left: 36pt"><font size=3D"3" face=3D"serif">This=
+ Friday? If so, yes, I=E2=80=99m available. Will you be coming here, or sho=
+uld I meet you at your office? <br><br>Darryl</font><ul style=3D"padding-le=
+ft: 36pt"><font size=3D"3" face=3D"serif">On Aug 23, 2017, at 8:41 PM, </fo=
+nt><a href=3D"mailto:heather.clark@casott.on.ca" target=3D"=5Fblank"><font =
+size=3D"3" color=3D"#0000FF" face=3D"serif"><u>heather.clark@casott.on.ca</=
+u></font></a><font size=3D"3" face=3D"serif">&nbsp;wrote:</font><p><font si=
+ze=3D"2" face=3D"sans-serif">Hi, Darryl, are you available to meet with Lyn=
+da and I on Friday morning around 11:30?<br><br><br>Heather Clark<br>Child =
+Protection Worker<br>Children's Aid Society <br>Southwest Services</font><f=
+ont size=3D"3" color=3D"#0000FF" face=3D"serif"><u><br></u></font><a href=
+=3D"tel:(613)%20747-7800" target=3D"=5Fblank"><font size=3D"2" color=3D"#00=
+00FF" face=3D"sans-serif"><u>(613) 747-7800 ext. 3478</u></font></a><font s=
+ize=3D"3" face=3D"serif"><br>CONFIDENTIALITY NOTICE<br><br>This e-mail tran=
+smission, and any documents, files or previous e-mail messages attached to =
+it may contain information that is confidential or legally privileged. If y=
+ou are not the intended recipient, or a person responsible for delivering i=
+t to the intended recipient, you are hereby notified that you must not read=
+ this transmission and that any disclosure, copying, printing, distribution=
+ or use of any of the information contained in or attached to this transmis=
+sion is STRICTLY PROHIBITED. If you have received this transmission in erro=
+r, please immediately notify the sender by return e-mail and delete the ori=
+ginal transmission and its attachments without reading, printing, or saving=
+ in any manner. Thank you.<br><br><br><br>AVIS DE CONFIDENTIALIT=C3=89<br><=
+br>Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel a=
+nt=C3=A9rieur qui y est joint, peut contenir des renseignements confidentie=
+ls ou prot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=
+=AAtes pas le destinataire vis=C3=A9, ni son mandataire, nous vous signalon=
+s que vous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT d=
+e divulguer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utilis=
+er l=E2=80=99information qui y figure ou qui y est jointe. Si cette communi=
+cation vous a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=
+=80=99exp=C3=A9diteur imm=C3=A9diatement par courriel et supprimer la commu=
+nication originale ainsi que les pi=C3=A8ces jointes sans les lire, les imp=
+rimer ou les sauvegarder de quelque mani=C3=A8re que ce soit. Merci.</font>=
+</ul><br></ul><font size=3D"3" face=3D"serif"><br>CONFIDENTIALITY NOTICE<br=
+><br>This e-mail transmission, and any documents, files or previous e-mail =
+messages attached to it may contain information that is confidential or leg=
+ally privileged. If you are not the intended recipient, or a person respons=
+ible for delivering it to the intended recipient, you are hereby notified t=
+hat you must not read this transmission and that any disclosure, copying, p=
+rinting, distribution or use of any of the information contained in or atta=
+ched to this transmission is STRICTLY PROHIBITED. If you have received this=
+ transmission in error, please immediately notify the sender by return e-ma=
+il and delete the original transmission and its attachments without reading=
+, printing, or saving in any manner. Thank you.<br><br><br><br>AVIS DE CONF=
+IDENTIALIT=C3=89<br><br>Le pr=C3=A9sent courriel, ainsi que tout document, =
+fichier ou courriel ant=C3=A9rieur qui y est joint, peut contenir des rense=
+ignements confidentiels ou prot=C3=A9g=C3=A9s par le secret professionnel. =
+Si vous n=E2=80=99=C3=AAtes pas le destinataire vis=C3=A9, ni son mandatair=
+e, nous vous signalons que vous ne devez pas le lire et qu=E2=80=99il est S=
+TRICTEMENT INTERDIT de divulguer, de copier, d=E2=80=99imprimer, de diffuse=
+r ou d=E2=80=99utiliser l=E2=80=99information qui y figure ou qui y est joi=
+nte. Si cette communication vous a =C3=A9t=C3=A9 transmise par erreur, veui=
+llez en aviser l=E2=80=99exp=C3=A9diteur imm=C3=A9diatement par courriel et=
+ supprimer la communication originale ainsi que les pi=C3=A8ces jointes san=
+s les lire, les imprimer ou les sauvegarder de quelque mani=C3=A8re que ce =
+soit. Merci.</font></ul><font size=3D"3" face=3D"serif"><br>CONFIDENTIALITY=
+ NOTICE<br><br>This e-mail transmission, and any documents, files or previo=
+us e-mail messages attached to it may contain information that is confident=
+ial or legally privileged. If you are not the intended recipient, or a pers=
+on responsible for delivering it to the intended recipient, you are hereby =
+notified that you must not read this transmission and that any disclosure, =
+copying, printing, distribution or use of any of the information contained =
+in or attached to this transmission is STRICTLY PROHIBITED. If you have rec=
+eived this transmission in error, please immediately notify the sender by r=
+eturn e-mail and delete the original transmission and its attachments witho=
+ut reading, printing, or saving in any manner. Thank you.<br><br><br><br>AV=
+IS DE CONFIDENTIALIT=C3=89<br><br>Le pr=C3=A9sent courriel, ainsi que tout =
+document, fichier ou courriel ant=C3=A9rieur qui y est joint, peut contenir=
+ des renseignements confidentiels ou prot=C3=A9g=C3=A9s par le secret profe=
+ssionnel. Si vous n=E2=80=99=C3=AAtes pas le destinataire vis=C3=A9, ni son=
+ mandataire, nous vous signalons que vous ne devez pas le lire et qu=E2=80=
+=99il est STRICTEMENT INTERDIT de divulguer, de copier, d=E2=80=99imprimer,=
+ de diffuser ou d=E2=80=99utiliser l=E2=80=99information qui y figure ou qu=
+i y est jointe. Si cette communication vous a =C3=A9t=C3=A9 transmise par e=
+rreur, veuillez en aviser l=E2=80=99exp=C3=A9diteur imm=C3=A9diatement par =
+courriel et supprimer la communication originale ainsi que les pi=C3=A8ces =
+jointes sans les lire, les imprimer ou les sauvegarder de quelque mani=C3=
+=A8re que ce soit. Merci.</font></ul><font size=3D"3" face=3D"serif"><br><b=
+r><br>CONFIDENTIALITY NOTICE<br><br>This e-mail transmission, and any docum=
+ents, files or previous e-mail messages attached to it may contain informat=
+ion that is confidential or legally privileged. If you are not the intended=
+ recipient, or a person responsible for delivering it to the intended recip=
+ient, you are hereby notified that you must not read this transmission and =
+that any disclosure, copying, printing, distribution or use of any of the i=
+nformation contained in or attached to this transmission is STRICTLY PROHIB=
+ITED. If you have received this transmission in error, please immediately n=
+otify the sender by return e-mail and delete the original transmission and =
+its attachments without reading, printing, or saving in any manner. Thank y=
+ou.<br><br><br><br>AVIS DE CONFIDENTIALIT=C3=89<br><br>Le pr=C3=A9sent cour=
+riel, ainsi que tout document, fichier ou courriel ant=C3=A9rieur qui y est=
+ joint, peut contenir des renseignements confidentiels ou prot=C3=A9g=C3=A9=
+s par le secret professionnel. Si vous n=E2=80=99=C3=AAtes pas le destinata=
+ire vis=C3=A9, ni son mandataire, nous vous signalons que vous ne devez pas=
+ le lire et qu=E2=80=99il est STRICTEMENT INTERDIT de divulguer, de copier,=
+ d=E2=80=99imprimer, de diffuser ou d=E2=80=99utiliser l=E2=80=99informatio=
+n qui y figure ou qui y est jointe. Si cette communication vous a =C3=A9t=
+=C3=A9 transmise par erreur, veuillez en aviser l=E2=80=99exp=C3=A9diteur i=
+mm=C3=A9diatement par courriel et supprimer la communication originale ains=
+i que les pi=C3=A8ces jointes sans les lire, les imprimer ou les sauvegarde=
+r de quelque mani=C3=A8re que ce soit. Merci.</font></ul><font size=3D"3" f=
+ace=3D"serif"><br><br><br>CONFIDENTIALITY NOTICE<br><br>This e-mail transmi=
+ssion, and any documents, files or previous e-mail messages attached to it =
+may contain information that is confidential or legally privileged. If you =
+are not the intended recipient, or a person responsible for delivering it t=
+o the intended recipient, you are hereby notified that you must not read th=
+is transmission and that any disclosure, copying, printing, distribution or=
+ use of any of the information contained in or attached to this transmissio=
+n is STRICTLY PROHIBITED. If you have received this transmission in error, =
+please immediately notify the sender by return e-mail and delete the origin=
+al transmission and its attachments without reading, printing, or saving in=
+ any manner. Thank you.<br><br><br><br>AVIS DE CONFIDENTIALIT=C3=89<br><br>=
+Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=
+=C3=A9rieur qui y est joint, peut contenir des renseignements confidentiels=
+ ou prot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=
+=AAtes pas le destinataire vis=C3=A9, ni son mandataire, nous vous signalon=
+s que vous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT d=
+e divulguer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utilis=
+er l=E2=80=99information qui y figure ou qui y est jointe. Si cette communi=
+cation vous a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=
+=80=99exp=C3=A9diteur imm=C3=A9diatement par courriel et supprimer la commu=
+nication originale ainsi que les pi=C3=A8ces jointes sans les lire, les imp=
+rimer ou les sauvegarder de quelque mani=C3=A8re que ce soit. Merci.</font>=
+</ul><font size=3D"3" face=3D"serif"><br><br><br>CONFIDENTIALITY NOTICE<br>=
+<br>This e-mail transmission, and any documents, files or previous e-mail m=
+essages attached to it may contain information that is confidential or lega=
+lly privileged. If you are not the intended recipient, or a person responsi=
+ble for delivering it to the intended recipient, you are hereby notified th=
+at you must not read this transmission and that any disclosure, copying, pr=
+inting, distribution or use of any of the information contained in or attac=
+hed to this transmission is STRICTLY PROHIBITED. If you have received this =
+transmission in error, please immediately notify the sender by return e-mai=
+l and delete the original transmission and its attachments without reading,=
+ printing, or saving in any manner. Thank you.<br><br><br><br>AVIS DE CONFI=
+DENTIALIT=C3=89<br><br>Le pr=C3=A9sent courriel, ainsi que tout document, f=
+ichier ou courriel ant=C3=A9rieur qui y est joint, peut contenir des rensei=
+gnements confidentiels ou prot=C3=A9g=C3=A9s par le secret professionnel. S=
+i vous n=E2=80=99=C3=AAtes pas le destinataire vis=C3=A9, ni son mandataire=
+, nous vous signalons que vous ne devez pas le lire et qu=E2=80=99il est ST=
+RICTEMENT INTERDIT de divulguer, de copier, d=E2=80=99imprimer, de diffuser=
+ ou d=E2=80=99utiliser l=E2=80=99information qui y figure ou qui y est join=
+te. Si cette communication vous a =C3=A9t=C3=A9 transmise par erreur, veuil=
+lez en aviser l=E2=80=99exp=C3=A9diteur imm=C3=A9diatement par courriel et =
+supprimer la communication originale ainsi que les pi=C3=A8ces jointes sans=
+ les lire, les imprimer ou les sauvegarder de quelque mani=C3=A8re que ce s=
+oit. Merci.</font></ul><font size=3D"3" face=3D"serif"><br><br><br>CONFIDEN=
+TIALITY NOTICE<br><br>This e-mail transmission, and any documents, files or=
+ previous e-mail messages attached to it may contain information that is co=
+nfidential or legally privileged. If you are not the intended recipient, or=
+ a person responsible for delivering it to the intended recipient, you are =
+hereby notified that you must not read this transmission and that any discl=
+osure, copying, printing, distribution or use of any of the information con=
+tained in or attached to this transmission is STRICTLY PROHIBITED. If you h=
+ave received this transmission in error, please immediately notify the send=
+er by return e-mail and delete the original transmission and its attachment=
+s without reading, printing, or saving in any manner. Thank you.<br><br><br=
+><br>AVIS DE CONFIDENTIALIT=C3=89<br><br>Le pr=C3=A9sent courriel, ainsi qu=
+e tout document, fichier ou courriel ant=C3=A9rieur qui y est joint, peut c=
+ontenir des renseignements confidentiels ou prot=C3=A9g=C3=A9s par le secre=
+t professionnel. Si vous n=E2=80=99=C3=AAtes pas le destinataire vis=C3=A9,=
+ ni son mandataire, nous vous signalons que vous ne devez pas le lire et qu=
+=E2=80=99il est STRICTEMENT INTERDIT de divulguer, de copier, d=E2=80=99imp=
+rimer, de diffuser ou d=E2=80=99utiliser l=E2=80=99information qui y figure=
+ ou qui y est jointe. Si cette communication vous a =C3=A9t=C3=A9 transmise=
+ par erreur, veuillez en aviser l=E2=80=99exp=C3=A9diteur imm=C3=A9diatemen=
+t par courriel et supprimer la communication originale ainsi que les pi=C3=
+=A8ces jointes sans les lire, les imprimer ou les sauvegarder de quelque ma=
+ni=C3=A8re que ce soit. Merci.</font></ul><font size=3D"3" face=3D"serif"><=
+br>CONFIDENTIALITY NOTICE<br><br>This e-mail transmission, and any document=
+s, files or previous e-mail messages attached to it may contain information=
+ that is confidential or legally privileged. If you are not the intended re=
+cipient, or a person responsible for delivering it to the intended recipien=
+t, you are hereby notified that you must not read this transmission and tha=
+t any disclosure, copying, printing, distribution or use of any of the info=
+rmation contained in or attached to this transmission is STRICTLY PROHIBITE=
+D. If you have received this transmission in error, please immediately noti=
+fy the sender by return e-mail and delete the original transmission and its=
+ attachments without reading, printing, or saving in any manner. Thank you.=
+<br><br><br><br>AVIS DE CONFIDENTIALIT=C3=89<br><br>Le pr=C3=A9sent courrie=
+l, ainsi que tout document, fichier ou courriel ant=C3=A9rieur qui y est jo=
+int, peut contenir des renseignements confidentiels ou prot=C3=A9g=C3=A9s p=
+ar le secret professionnel. Si vous n=E2=80=99=C3=AAtes pas le destinataire=
+ vis=C3=A9, ni son mandataire, nous vous signalons que vous ne devez pas le=
+ lire et qu=E2=80=99il est STRICTEMENT INTERDIT de divulguer, de copier, d=
+=E2=80=99imprimer, de diffuser ou d=E2=80=99utiliser l=E2=80=99information =
+qui y figure ou qui y est jointe. Si cette communication vous a =C3=A9t=C3=
+=A9 transmise par erreur, veuillez en aviser l=E2=80=99exp=C3=A9diteur imm=
+=C3=A9diatement par courriel et supprimer la communication originale ainsi =
+que les pi=C3=A8ces jointes sans les lire, les imprimer ou les sauvegarder =
+de quelque mani=C3=A8re que ce soit. Merci.</font></ul><br></div><script la=
+nguage=3D"JavaScript" type=3D"text/javascript"><!--=20
+=5FdSectionExpand('1');
+// -->
+</script><br><BR>
+CONFIDENTIALITY NOTICE<BR>
+<BR>
+This e-mail transmission, and any documents, files or previous e-mail messa=
+ges attached to it may contain information that is confidential or legally =
+privileged.  If you are not the intended recipient, or a person responsible=
+ for delivering it to the intended recipient, you are hereby notified that =
+you must not read this transmission and that any disclosure, copying, print=
+ing, distribution or use of any of the information contained in or attached=
+ to this transmission is STRICTLY PROHIBITED.  If you have received this tr=
+ansmission in error, please immediately notify the sender by return e-mail =
+and delete the original transmission and its attachments without reading, p=
+rinting, or saving in any manner.  Thank you.<BR>
+<BR>
+<BR>
+<BR>
+AVIS DE CONFIDENTIALIT=C3=89<BR>
+<BR>
+Le pr=C3=A9sent courriel, ainsi que tout document, fichier ou courriel ant=
+=C3=A9rieur qui y est joint, peut contenir des renseignements confidentiels=
+ ou prot=C3=A9g=C3=A9s par le secret professionnel. Si vous n=E2=80=99=C3=
+=AAtes pas le destinataire vis=C3=A9, ni son mandataire, nous vous signalon=
+s que vous ne devez pas le lire et qu=E2=80=99il est STRICTEMENT INTERDIT d=
+e divulguer, de copier, d=E2=80=99imprimer, de diffuser ou d=E2=80=99utilis=
+er l=E2=80=99information qui y figure ou qui y est jointe. Si cette communi=
+cation vous a =C3=A9t=C3=A9 transmise par erreur, veuillez en aviser l=E2=
+=80=99exp=C3=A9diteur imm=C3=A9diatement par courriel et supprimer la commu=
+nication originale ainsi que les pi=C3=A8ces jointes sans les lire, les imp=
+rimer ou les sauvegarder de quelque mani=C3=A8re que ce soit. Merci.<BR>
+</body></html>
+
+--0__=0ABB0B1EDFC24D358f9e8a93df938690918c0ABB0B1EDFC24D35--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1122278</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1504191277</integer>
+	<key>flags</key>
+	<integer>25770064901</integer>
+	<key>remote-id</key>
+	<string>18763</string>
+</dict>
+</plist>

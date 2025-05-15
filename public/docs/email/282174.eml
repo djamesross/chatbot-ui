@@ -1,0 +1,337 @@
+16382     
+Delivered-To: darrylondunlin@gmail.com
+Received: by 10.79.110.201 with SMTP id j192csp750629ivc;
+        Sat, 3 Jun 2017 07:33:19 -0700 (PDT)
+X-Received: by 10.36.207.212 with SMTP id y203mr4078952itf.18.1496500399740;
+        Sat, 03 Jun 2017 07:33:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1496500399; cv=none;
+        d=google.com; s=arc-20160816;
+        b=gwRS/dZckgT8ukku83SdDvWeBx2egNHArcey6JKKoAp6zmElFYjm7sQFG1LdZKWvq7
+         yxkVAZlMXVuFp9tWEfinZZAqI3TTIxtxiW0OCQPAP2TfPnGCoyVgcmMmtJTlk3msJ7uu
+         QRQbMYzj7/0RTZD7EhCNZMyDXiGA5qpShMO8iw4AyxRelZh8CdJaw5zlaNuX/CGyQ3ic
+         CrQro7mVa1LIUvLFJjrXRWhSm/mli4gwehMRwanN4Aae9Kbpo1jmZ3PrM90NMLuYePKu
+         nPKuT0vqhhqP/JYE/1255D/6XoheYYkZES6bkP5O7mkPhj9YOYkEG1A/KJTigWDm0PcX
+         xq1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:in-reply-to:references:message-id:subject:date:mime-version
+         :content-transfer-encoding:from:dkim-signature
+         :arc-authentication-results;
+        bh=u7FmzhmJLiiXVeJhctTMFmWeCZr8hhq5hDTaUFnGywU=;
+        b=yPBHWlxCMidVMmxMGKWy0aXrfzg2baGvvSsYOkG2YftSfmsJPw7agHW/uiasNn0jco
+         N7GiLzABTdS1SQiGouzusJD7IOKV+7nNo7kSNfRUgVHawqoxyGGbe14Uesn0gpmst2mA
+         /Gc/mUEMfw9BFHt0MYw8LAfxJBZO5bPLQHcWTpZXvHGV1b8egp6Uh1ardNTn/8HfWtmH
+         jbCz7+IXK/OqpORaOnXDd3IRC8PDD+g206MMIzH7SCE3p+LOuyrsidhkSf0WyuiIw6tn
+         GLDXL5WZxZvec8SYjbFDHWeKGwZg+m6GnYRjMEMfrAZQ2NRsw1PGlbWZ+sk4a/AqV1iH
+         4QJw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 2607:f8b0:4001:c0b::235 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=gmail.com
+Return-Path: <cynthmholm@gmail.com>
+Received: from mail-it0-x235.google.com (mail-it0-x235.google.com. [2607:f8b0:4001:c0b::235])
+        by mx.google.com with ESMTPS id i78si1294430ioa.200.2017.06.03.07.33.19
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 03 Jun 2017 07:33:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cynthmholm@gmail.com designates 2607:f8b0:4001:c0b::235 as permitted sender) client-ip=2607:f8b0:4001:c0b::235;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com;
+       spf=pass (google.com: domain of cynthmholm@gmail.com designates 2607:f8b0:4001:c0b::235 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=gmail.com
+Received: by mail-it0-x235.google.com with SMTP id m47so236iti.1
+        for <darrylondunlin@gmail.com>; Sat, 03 Jun 2017 07:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:content-transfer-encoding:mime-version:date:subject:message-id
+         :references:in-reply-to:to;
+        bh=u7FmzhmJLiiXVeJhctTMFmWeCZr8hhq5hDTaUFnGywU=;
+        b=kCOm8ON8trw2XmLPSot0Dgd+FVojA8hhm8vt4lBT4VCMT+dx1i/6m0zZNPqWUtQZ73
+         vZb+4yc+NdLzurEYTiwLexLAsrsd5tf3lKPXD9qYCXmVGOWIitKCZuudV9cYblWNePdY
+         BGMUtk6bvwv4Hf7bbMSQYN0vhG0gNpbAsmpIu4LCTM7tBsHMKkcjh+OoIKq/J87oUjRf
+         8587uahcq4f4M9n5pjE6mCWtPIfCU2IgEcDngwDG0ErbTRIk1tu8B/8fkBdJ4CUq/kLU
+         SEaQ2sDVPHR/XFJs+GE9wjul+aUm9HjSfT957rBBFbes4/oiehdyEha3nv173nBKoxaX
+         07Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
+         :subject:message-id:references:in-reply-to:to;
+        bh=u7FmzhmJLiiXVeJhctTMFmWeCZr8hhq5hDTaUFnGywU=;
+        b=HCq+oK/M4K5/r6MFey4nt8/ULNTXNQ0qELQkXiY6jI/RI5t1crDlqYqMXQXoSxPHcQ
+         sboGdYhoTrvTrCQv8F0b6RszJdw/tyNbhE/yvVvRvLKGOv+qfcEGcllaIujDw/mktL6o
+         DrJHboYmuiwyXfJTeVOqjKf51gmOTA79nfy5NFk/mG5UCTsuApVc7MjLdeCMk5B0j5lO
+         zr9/EZ1Tw7Y8qYv6gMSi5bYZRDQMGZFYUw4Ulmlbh/p4ZSTSNlnGy9y5UdO673hzRJCa
+         WD/61zV5wKK81eCRARbxHLP6rkBU37fBzCFIlGewB3pQwMtYO89blDBSkjvThOBlcEit
+         5Ysg==
+X-Gm-Message-State: AODbwcBwYrtwzFdY1ATnj/tJ05wrEYp3TfRCnqjaDJjL3UNUyHS4TTVn
+	O2vc36a5ygndQPCoTjc=
+X-Received: by 10.36.5.196 with SMTP id 187mr3905432itl.29.1496500399258;
+        Sat, 03 Jun 2017 07:33:19 -0700 (PDT)
+Return-Path: <cynthmholm@gmail.com>
+Received: from [192.168.0.12] (CPE84948c8888d1-CM84948c8888d0.cpe.net.cable.rogers.com. [174.113.131.130])
+        by smtp.gmail.com with ESMTPSA id z100sm2470527ita.27.2017.06.03.07.33.18
+        for <darrylondunlin@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 03 Jun 2017 07:33:18 -0700 (PDT)
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-44C7672D-F903-4535-9457-D312DA8ABABE
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (1.0)
+Date: Sat, 3 Jun 2017 10:33:17 -0400
+Subject: Re: Todd and Evelyn's birthday this Saturday
+Message-Id: <B69E5864-3466-4A45-AC3C-DBD7F343E92D@gmail.com>
+References: <59305651.b632c80a.f5054.6277SMTPIN_ADDED_MISSING@mx.google.com> <994607E8-4B26-45C9-A8C6-ECDC8F341008@gmail.com> <CAFnbyRGarE7PAKwCqehkW7AT+A=N1k2fSAGVGJN=ZUv=hPz8Ug@mail.gmail.com> <34339E5B-89A9-41F3-9528-9544BC9B5F4B@gmail.com>
+In-Reply-To: <34339E5B-89A9-41F3-9528-9544BC9B5F4B@gmail.com>
+To: Darryl Ross <darrylondunlin@gmail.com>
+X-Mailer: iPhone Mail (14F89)
+
+
+--Apple-Mail-44C7672D-F903-4535-9457-D312DA8ABABE
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Darryl just so we are clear, I am not worried about you taking illegal drugs=
+ but I am worried about the high dose of prescribed medication you take in c=
+ombination with alcohol. I have seen the results and a medical professional w=
+ould agree not to mix the two. Those are valid concerns.
+
+Thanks confirming you will not drink. I will have the girls ready by 145. I j=
+ust ask that anyone driving them home  be sober, if it's a issue I can alway=
+s pick them up.
+
+Sent from my iPhone
+
+> On Jun 3, 2017, at 10:25 AM, Darryl Ross <darrylondunlin@gmail.com> wrote:=
+
+>=20
+> Thank you.
+>=20
+> Todd will come pick us up at about 1:45. We'll be at their place only, and=
+ he or someone will drive us back (Todd or Cindy), when it's over. (I expect=
+ 6-6:30)
+>=20
+> And as always, when I'm with the girls  - or anytime- I'll be sober (and I=
+'ve never and will never do drugs).=20
+>=20
+> Darryl
+>=20
+>> On Jun 2, 2017, at 1:38 PM, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>>=20
+>> Hi Darryl
+>>=20
+>> I switched plans so that the girls can attend the party with you. Please c=
+onfirm pick up and drop off time and who will be driving.
+>>=20
+>> Cheers,
+>>=20
+>> Cynthia
+>>=20
+>>> On Thu, Jun 1, 2017 at 5:43 PM, Darryl Ross <darrylondunlin@gmail.com> w=
+rote:
+>>> Hi,
+>>>=20
+>>> I literally didn't know about this until this afternoon. It would be gre=
+at if the girls could come, and I'll agree to the same conditions. But I und=
+erstand it's last minute.=20
+>>>=20
+>>> Darryl
+>>>=20
+>>> Begin forwarded message:
+>>>=20
+>>>> From: "McLaughlin, Cynthia" <Cynthia.McLaughlin@CSE-CST.GC.CA>
+>>>> Date: June 1, 2017 at 2:00:45 PM EDT
+>>>> To: "'younk7150@gmail.com'" <younk7150@gmail.com>, 'Angie Russell' <ang=
+ie.hush@gmail.com>, "Chris Quiroz (chrisquiroz@gmail.com)" <chrisquiroz@gmai=
+l.com>, Kevin Rounding <kevin.rounding@gmail.com>, "darrylondunlin@gmail.com=
+" <darrylondunlin@gmail.com>, "Claire McLaughlin (cmclaughlin@cccf-fcsge.ca)=
+" <cmclaughlin@cccf-fcsge.ca>, Graham O'Neil <grahamo@ca.ibm.com>, "Amelia O=
+'Neil (ameliaoneil@bell.net)" <ameliaoneil@bell.net>
+>>>> Subject: Todd and Evelyn's birthday this Saturday
+>>>>=20
+>>>> Classification: UNCLASSIFIED
+>>>>=20
+>>>> =20
+>>>>=20
+>>>> Hi all
+>>>>=20
+>>>> =20
+>>>>=20
+>>>> Todd and Evelyn always celebrate their birthdays together. So this Satu=
+rday we thought we would get together to celebrate.
+>>>>=20
+>>>> =20
+>>>>=20
+>>>> My house:  6527 Marina Drive, Manotick, ON
+>>>>=20
+>>>> When:         Saturday June 3, 2017
+>>>>=20
+>>>> Time:           2:00 pm
+>>>>=20
+>>>> What:         I will make ribs, corn, rice
+>>>>=20
+>>>> Presents:    No presents for Todd are necessary.  He has me after all J=
+.  For Evelyn, contact Angie
+>>>>=20
+>>>> What to bring:  If two people could bring a side salad and maybe Angie b=
+ring a cake that would be great.
+>>>>=20
+>>>> =20
+>>>>=20
+>>>> See you on Saturday hopefully!
+>>>>=20
+>>>> =20
+>>>>=20
+>>>> Cynthia McLaughlin
+>>>>=20
+>>>> Supervisor, Corporate Events and Protocol
+>>>>=20
+>>>> Communications Security Establishment
+>>>>=20
+>>>> (613) 991-6398
+>>>>=20
+>>>> =20
+>>>>=20
+>>=20
+
+--Apple-Mail-44C7672D-F903-4535-9457-D312DA8ABABE
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div>Darryl just so we are clear, I am not w=
+orried about you taking illegal drugs but I am worried about the high dose o=
+f prescribed medication you take in combination with alcohol. I have seen th=
+e results and a medical professional would agree not to mix the two. Those a=
+re valid concerns.</div><div id=3D"AppleMailSignature"><br></div><div id=3D"=
+AppleMailSignature">Thanks confirming you will not drink. I will have the gi=
+rls ready by 145. I just ask that anyone driving them home &nbsp;be sober, i=
+f it's a issue I can always pick them up.<br><br>Sent from my iPhone</div><d=
+iv><br>On Jun 3, 2017, at 10:25 AM, Darryl Ross &lt;<a href=3D"mailto:darryl=
+ondunlin@gmail.com">darrylondunlin@gmail.com</a>&gt; wrote:<br><br></div><bl=
+ockquote type=3D"cite"><div><meta http-equiv=3D"content-type" content=3D"tex=
+t/html; charset=3Dutf-8"><div>Thank you.</div><div id=3D"AppleMailSignature"=
+><br></div><div id=3D"AppleMailSignature">Todd will come pick us up at about=
+ 1:45. We'll be at their place only, and he or someone will drive us back (T=
+odd or Cindy), when it's over. (I expect 6-6:30)</div><div id=3D"AppleMailSi=
+gnature"><br></div><div id=3D"AppleMailSignature">And as always, when I'm wi=
+th the girls &nbsp;- or anytime- I'll be sober (and I've never and will neve=
+r do drugs).&nbsp;</div><div id=3D"AppleMailSignature"><br>Darryl</div><div>=
+<br>On Jun 2, 2017, at 1:38 PM, Cynthia Holmes &lt;<a href=3D"mailto:cynthmh=
+olm@gmail.com">cynthmholm@gmail.com</a>&gt; wrote:<br><br></div><blockquote t=
+ype=3D"cite"><div><div dir=3D"ltr"><div><div><div>Hi Darryl<br><br></div>I s=
+witched plans so that the girls can attend the party with you. Please confir=
+m pick up and drop off time and who will be driving.<br><br></div>Cheers,<br=
+><br></div>Cynthia<br></div><div class=3D"gmail_extra"><br><div class=3D"gma=
+il_quote">On Thu, Jun 1, 2017 at 5:43 PM, Darryl Ross <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank">darrylondunlin=
+@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
+auto"><div><div id=3D"m_-6001026225108313879AppleMailSignature"><span style=3D=
+"background-color:rgba(255,255,255,0)">Hi,</span></div><div id=3D"m_-6001026=
+225108313879AppleMailSignature"><span style=3D"background-color:rgba(255,255=
+,255,0)"><br></span></div><div id=3D"m_-6001026225108313879AppleMailSignatur=
+e"><span style=3D"background-color:rgba(255,255,255,0)">I literally didn't k=
+now about this until this afternoon. It would be great if the girls could co=
+me, and I'll agree to the same conditions. But I understand it's last minute=
+.&nbsp;</span></div><br>Darryl</div><div><br>Begin forwarded message:<br><br=
+></div><blockquote type=3D"cite"><div><b>From:</b> "McLaughlin, Cynthia" &lt=
+;<a href=3D"mailto:Cynthia.McLaughlin@CSE-CST.GC.CA" target=3D"_blank">Cynth=
+ia.McLaughlin@CSE-CST.<wbr>GC.CA</a>&gt;<br><b>Date:</b> June 1, 2017 at 2:0=
+0:45 PM EDT<br><b>To:</b> "'<a href=3D"mailto:younk7150@gmail.com" target=3D=
+"_blank">younk7150@gmail.com</a>'" &lt;<a href=3D"mailto:younk7150@gmail.com=
+" target=3D"_blank">younk7150@gmail.com</a>&gt;, 'Angie Russell' &lt;<a href=
+=3D"mailto:angie.hush@gmail.com" target=3D"_blank">angie.hush@gmail.com</a>&=
+gt;, "Chris Quiroz (<a href=3D"mailto:chrisquiroz@gmail.com" target=3D"_blan=
+k">chrisquiroz@gmail.com</a>)" &lt;<a href=3D"mailto:chrisquiroz@gmail.com" t=
+arget=3D"_blank">chrisquiroz@gmail.com</a>&gt;, Kevin Rounding &lt;<a href=3D=
+"mailto:kevin.rounding@gmail.com" target=3D"_blank">kevin.rounding@gmail.com=
+</a>&gt;, "<a href=3D"mailto:darrylondunlin@gmail.com" target=3D"_blank">dar=
+rylondunlin@gmail.com</a>" &lt;<a href=3D"mailto:darrylondunlin@gmail.com" t=
+arget=3D"_blank">darrylondunlin@gmail.com</a>&gt;, "Claire McLaughlin (<a hr=
+ef=3D"mailto:cmclaughlin@cccf-fcsge.ca" target=3D"_blank">cmclaughlin@cccf-f=
+csge.ca</a>)" &lt;<a href=3D"mailto:cmclaughlin@cccf-fcsge.ca" target=3D"_bl=
+ank">cmclaughlin@cccf-fcsge.ca</a>&gt;, Graham O'Neil &lt;<a href=3D"mailto:=
+grahamo@ca.ibm.com" target=3D"_blank">grahamo@ca.ibm.com</a>&gt;, "Amelia O'=
+Neil (<a href=3D"mailto:ameliaoneil@bell.net" target=3D"_blank">ameliaoneil@=
+bell.net</a>)" &lt;<a href=3D"mailto:ameliaoneil@bell.net" target=3D"_blank"=
+>ameliaoneil@bell.net</a>&gt;<br><b>Subject:</b> <b>Todd and Evelyn's birthd=
+ay this Saturday</b><br><br></div></blockquote><blockquote type=3D"cite"><di=
+v>
+
+
+
+
+
+
+<div class=3D"m_-6001026225108313879WordSection1">
+<p class=3D"MsoNormal"><a name=3D"m_-6001026225108313879_Classify_Bookmark">=
+<b><i><span style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sa=
+ns-serif&quot;;color:green">Classification: UNCLASSIFIED</span></i></b></a><=
+span style=3D"font-size:14.0pt"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Hi all<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Todd and Evelyn alwa=
+ys celebrate their birthdays together. So this Saturday we thought we would g=
+et together to celebrate.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">My house:&nbsp; 6527=
+ Marina Drive, Manotick, ON<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">When:&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Saturday June 3, 2017<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Time:&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2:00 pm <u></u>
+<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">What:&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I will make ribs, corn, rice<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Presents:&nbsp;&nbsp=
+;&nbsp; No presents for Todd are necessary.&nbsp; He has me after all
+</span><span style=3D"font-size:14.0pt;font-family:Wingdings">J</span><span s=
+tyle=3D"font-size:14.0pt">.&nbsp; For Evelyn, contact Angie<u></u><u></u></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">What to bring:&nbsp;=
+ If two people could bring a side salad and maybe Angie bring a cake that wo=
+uld be great.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">See you on Saturday h=
+opefully!<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><u></u>&nbsp;<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span>Cynthia McLaughlin<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span>Supervisor, Corporate Events and Protocol<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span>Communications Security Establishment<u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal"><span><a href=3D"tel:(613)%20991-6398" value=3D"+1613=
+9916398" target=3D"_blank">(613) 991-6398</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+
+
+</div></blockquote></div></blockquote></div><br></div>
+</div></blockquote></div></blockquote></body></html>=
+
+--Apple-Mail-44C7672D-F903-4535-9457-D312DA8ABABE--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>12951</integer>
+	<key>date-received</key>
+	<integer>1496500399</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+</dict>
+</plist>

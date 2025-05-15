@@ -1,0 +1,184 @@
+8858      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-2d-60-percent-5 by p158-mailgateway-smtp-57db9c57c6-mwcmr (mailgateway 2429B79)
+	with SMTP id 79f7fab7-c6d4-4d09-b2c3-83381c004a4f 
+	for <darrylross@icloud.com>; Thu, 6 Feb 2025 15:21:05 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 79f7fab7-c6d4-4d09-b2c3-83381c004a4f
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	by p00-icloudmta-smtpin-us-east-2d-60-percent-5.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-2d.k8s.cloud.apple.com (Postfix) with ESMTPS id 246BCC04190
+	for <darrylross@icloud.com>; Thu,  6 Feb 2025 15:21:01 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgEOTEFORhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxISARsEQU5IEBdfUQ4QVwUYFRBGFgdECxYRXBsHH0hLEUwHGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcAND8vBEBPLzMfJBYdRV8MCwcnFVF6I0YvM1weQnMpQhJWTlV3QTgAKgBKC3VBIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=axkV+1sV
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.47 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.47 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.47; helo=mail-ej1-f47.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ab777352df4so106504566b.2
+        for <darrylross@icloud.com>; Thu, 06 Feb 2025 07:21:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738855261; x=1739460061; darn=icloud.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9NZUPnJ3NFjyk5o4ncKrzWwRpu/FtdEfjqSQFsjU6io=;
+        b=axkV+1sVT1i5+hb+tncS0Iz6c0+emjYOLdBauWbyDWS6GBywFVyGi6s5loQwrorzo9
+         gNHm13bCP+lk47xzD+9UpPeosMW8sYUsP03od/6ogK25rPlJYB6WA+XWVPk8kowVowJj
+         Pymfwtgp51vQjongcdQk2ki3qK8KWLO5MdXM2t+kbXeEb0PlmY6fdYaaF3a6Zp5750eu
+         QNO++EwWv7lIAoviZH+gpj4H2ulgjvWEaDYZRScCLxSTbS1R89MlLXgCuDZ+uM5ut3YN
+         LLhOTxwYH+5/tzLpwP58HuoG4bDFATulJTMhMkVh4q1SUFn5oWkYSbLL7enFv1/oRRxR
+         ecnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738855261; x=1739460061;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9NZUPnJ3NFjyk5o4ncKrzWwRpu/FtdEfjqSQFsjU6io=;
+        b=jBq9TrnJSHEgIroSWWduIKXtxtIqv7NfLxkzdcLae6D5UBia75KhSrxXyJZGgQF4/z
+         xYb+S+qZfiT+BhRYp4rLJgwaxUsn5x3Os/14hNJOHh8VLzmaKkzQa47+TpP5A3KUOQO9
+         rCiaoU1iXRfrODvtFsHCzBrTxnLXzaRdS5mk2eli61sD7t2Pmkdx3K+Y/Q7gwTVICRVD
+         BEA1FpcWgin/C7ZO61oxY2wVezGEutF+ZS8wgvFa3lZwn2gSG8qGQ+WwwbqeIhT0/oSq
+         Rm1c8kOfgCFDP0L4+ohuuVBSDBXDUzn77d/GIJlsgdGQ/mITcPUdR0EitISKFYPxgpYm
+         oTBA==
+X-Gm-Message-State: AOJu0YwlUEGIQXKjdpD7dJ2yCdFi22bJ+9rCwPCVJR4a0kw0VeD0H0KL
+	fAYEuzTMAgThQhICTMwXCMd7SeLGjupfi8tHBctx3LOI6Oh75gvpD9A+SbgSzvezuE7ZLPfrPR0
+	za+qIlNpP8MY3LU+lVhQ6030y58MGjg==
+X-Gm-Gg: ASbGncur7WiSG3BiJ/N2EiLaOGoQHpRbHL4oHboDB6AB2mkT0dW7oDlT5K9neMpUyTm
+	9CD+RuB2z7nffnxKyNO1caeefZM6VDxlAGUUo8oUk0M4OXg4t/4mY6uNnPb7Xu0ZmoClS8JbXUk
+	oEOY+o2HkLhcUS2i9PlqMc57q8u6vioQ==
+X-Google-Smtp-Source: AGHT+IFi41FgOd55s8DoH5l6+M7+yakOMqXf20hsNxMXGOzfshEewbyj8Sf/Qtx+0U/+R8GVBxwK6axLW/n2ebyPXcU=
+X-Received: by 2002:a17:906:b008:b0:ab7:63fa:e4a8 with SMTP id
+ a640c23a62f3a-ab763fafe8amr654540066b.0.1738855260580; Thu, 06 Feb 2025
+ 07:21:00 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFnbyRHOqyczEkn6tw7mmJUst4eBCyXX3KBs4Uvp9TbF+2hVgg@mail.gmail.com>
+ <78C64767-A4F9-489F-B661-92977B2B5E17@icloud.com>
+In-Reply-To: <78C64767-A4F9-489F-B661-92977B2B5E17@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Thu, 6 Feb 2025 10:20:49 -0500
+X-Gm-Features: AWEUYZltaPW3WhwyZT7IlICi0nV3h5Sl3RsGYijSjpHDIXM9pj963liNrGFW4Fc
+Message-ID: <CAFnbyRHW4v-ZJySn-s=yraPmaLA3VU+frEK7k09-GwZuSf=sEw@mail.gmail.com>
+Subject: Re: Switch days
+To: Darryl Ross <darrylross@icloud.com>, Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="0000000000001f73bc062d7aca1a"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF1lrU0xsThl6RFNje
+ GN8Qm1Ob2xcbmhwBx5jeF9pf0xrEQpYXBcZBBoEHxsFGxoEGxwYBBkaBB8QGx4aHxoRCl5ZF08
+ YREwfEQpNXBcHGx4cEQpMWhdoa01NbxEKTEYXYk1rEQpDWhcYGhMEEh8EGBsSBB4dEQpCXhcbE
+ QpEXhcYEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2g
+ SG3x4cm54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS
+ 2lJEQpCQBdpG21pGH9IaGRhQBEKQlgXYmtOb296bGdaR0sRClpYFx4RCnBoF2NsT2RBW09jR0Z
+ jEBoRCnBoF2VJGXxhZ21LXHpDEBoRCnBoF2dzGmBlHElBZHl/EBoRCnBoF2ISeB1Lb1lSZ19mE
+ BoRCnBoF21/RUBCXm1Gfx5eEBoRCnBoF3poQB9kXHtwcl8ZEBoRCnBoF2VtS1hJZn1uQE1HEBo
+ RCnBoF2RwbkFjaR5PR2ZjEBoRCnB/F2B4fWh9ExsBYRhFEAcbGxoRCnBfF2FyaF5rHUJ6AU99E
+ AcbGR8RCnB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEBoRCm1+FxoRClhNF0sR
+X-Proofpoint-GUID: sAyfFd3PnyIRIVhGdEFvDBZ-4IRuCUfA
+X-Authority-Info: v=2.4 cv=Yt1dRJYX c=1 sm=1 tr=0 ts=67a4d35e cx=c_apl:c_pps a=9JKJlijexIvT1S7cpBUTgA==:117 a=T2h4t0Lz3GQA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=v3ZZPjhaAAAA:8 a=pGLkceISAAAA:8 a=BBHlT8_4k9Ur_Iy_bVYA:9 a=QEXdDO2ut3YA:10 a=fys2sDa9AAAA:8 a=Eoc4Cq4W5XRkPnszHxsA:9 a=fhwJKmBwNH_7hEVg:21 a=lqcHg5cX4UMA:10 a=wwAePvBONnjDQaqHVNx2:22 a=7YpECbvlQQReuXKdpsOb:22
+X-Proofpoint-ORIG-GUID: sAyfFd3PnyIRIVhGdEFvDBZ-4IRuCUfA
+x-header-kwnx51: 2025
+
+--0000000000001f73bc062d7aca1a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl.
+
+Let me check with my mom.
+
+
+
+
+On Thu, Feb 6, 2025 at 10:11=E2=80=AFAM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+> My mom is unable to drive in today due to the weather. Would you or your
+> mom be able to drop the girls off and pick them up?
+>
+> Let me know what works.
+>
+> As for Family Day, switching from Sunday to Monday is fine with me.
+>
+> Thanks,
+>
+> Darryl
+>
+> > On Feb 2, 2025, at 11:28, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+> >
+> > Hi Darryl,
+> > Can we switch Sunday to Monday in Family day? We are celebrating Sloan
+> and Des bday that Sunday, we missed them at Xmas.
+> >
+> > Mon and I can coordinate driving. 11-7?
+> >
+> >
+>
+>
+
+--0000000000001f73bc062d7aca1a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">Let me check with my mom.=C2=A0<br clear=3D"all"><br clear=3D"all"><di=
+v dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D=
+"gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleuserconten=
+t.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO5=
+0BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div><div><br></div><div><=
+br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Feb 6, 2025 at 10:11=E2=80=AFAM Darryl Ross &lt;<a =
+href=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">Hi Cynthia,<br>
+<br>
+My mom is unable to drive in today due to the weather. Would you or your mo=
+m be able to drop the girls off and pick them up? <br>
+<br>
+Let me know what works.<br>
+<br>
+As for Family Day, switching from Sunday to Monday is fine with me. <br>
+<br>
+Thanks,<br>
+<br>
+Darryl<br>
+<br>
+&gt; On Feb 2, 2025, at 11:28, Cynthia Holmes &lt;<a href=3D"mailto:cynthmh=
+olm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; Hi Darryl,<br>
+&gt; Can we switch Sunday to Monday in Family day? We are celebrating Sloan=
+ and Des bday that Sunday, we missed them at Xmas.<br>
+&gt; <br>
+&gt; Mon and I can coordinate driving. 11-7?<br>
+&gt; <br>
+&gt; <br>
+<br>
+</blockquote></div></div>
+
+--0000000000001f73bc062d7aca1a--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1316895</integer>
+	<key>date-last-viewed</key>
+	<integer>1744643439</integer>
+	<key>date-received</key>
+	<integer>1738855265</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>remote-id</key>
+	<string>12160</string>
+</dict>
+</plist>

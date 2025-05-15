@@ -1,0 +1,129 @@
+6530      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr44p00im-qukt02162302.me.com by p133-mailgateway-smtp-6897ffc74b-crghv (mailgateway 2320B100)
+	with SMTP id 00b1f698-ca6f-408d-af82-f99b93a0813f 
+	for <darrylross@icloud.com>; Tue, 18 Jul 2023 23:22:54 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 00b1f698-ca6f-408d-af82-f99b93a0813f
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	by mr44p00im-qukt02162302.me.com (Postfix) with ESMTPS id 509DD408026E
+	for <darrylross@icloud.com>; Tue, 18 Jul 2023 23:22:53 +0000 (UTC)
+X-ICL-SCORE: 3.333033030041
+X-ICL-INFO: GAtbVUseBVFGSVVESAMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdSRloQXgcZFltVFVFfDlgc
+ AkZVVgJTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEUwBGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnTSA2QixRXxAxCDwNK19xVwI0AgE7VEdfFx8kRlMCRC89GhxK
+ SGRbWi9LETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C5IAxcIN
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.41; helo=mail-ed1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-521650a7603so6729767a12.3
+        for <darrylross@icloud.com>; Tue, 18 Jul 2023 16:22:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689722572; x=1692314572;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+MyWOkfGq3TIqW3vh8+IYb5REnHAmgiaKAAolPagR9U=;
+        b=C5IAxcINxCRrNV+HWJwX1PZFczKSKA4ab9djzl5CeaDpq26q8LTc9bjTvMqy3PxxCs
+         mFGdrx/qaEBwiLEvbWnse5aQUDSo1v7wkkeRFGSabOcRf49n1sHL5ElPqzvAsuHtP3zf
+         bEFsiNirzyY7zoDdUG8A6WL0Tr2zBUazuUFoO5wizTl9fG8v3q5BEkupEa61sIYdTz4l
+         vz2ls25cRByDP6F2j0hi8pBltAEFvywIcI6XAY1hlhWiPiRafjtOcLY2yH+TURjhXCR1
+         KHd9R9RFf53h/G0rKHysJIFrztBtCh/HyiF7ZKblECv+jMPxswZxeDAvf8PVIf8PuFIz
+         Sbqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689722572; x=1692314572;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+MyWOkfGq3TIqW3vh8+IYb5REnHAmgiaKAAolPagR9U=;
+        b=Pwa45o2Egv8uzl01KZooPpJdIBgBki6HbY5CjhjyxgerZ9se1lA71WL4/61n7rjyyq
+         U0FywJL6iLkkVwZT4jc1EfSAFGL/4/C5rw494QNbxnrSZ2kEMZGMMNfGrcW11czeR7cJ
+         /GSMbmtHJUtl7Q4G5FxrBvF+EknFTJl/Wrx3OOcdMrAeAxWaWX5QIZ3U3uF3CiuK/Jew
+         EvQfdRCsI/r+B49McvEKKws6LzCMBs8KZ9gPnUeThvSXoVzvnr5IkWZwJ0gRqoS1/tTF
+         QDz+75Ko4lWjkDV7U/X18W/lfrtoP5z10hUGj15SjbbsVpaK0B0p/zeGL1ZSXVdF/7Cq
+         Houg==
+X-Gm-Message-State: ABy/qLYq0GfEZ5ivPpZod3NA1PjL7fuzT/zpUuKN1bmY23MnI0ICpU6I
+	m1YrN6fZTKnxDmuFDE+5WpA6HqGBfmFbMi8bcydptfIq
+X-Google-Smtp-Source: APBJJlHaJV+S702yBaYqoRbkNyAphdCsJdMsZo6oFKG8N12DlNOA1NgovA79qOWbqHtydh7l443j0vpdlS0fZL+YfqU=
+X-Received: by 2002:a17:906:d290:b0:988:8fce:17ba with SMTP id
+ ay16-20020a170906d29000b009888fce17bamr893854ejb.31.1689722572170; Tue, 18
+ Jul 2023 16:22:52 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 18 Jul 2023 19:22:41 -0400
+Message-ID: <CAFnbyRE8YP5TairDqZzSoG5wMdvCdq=bfB1+2rMHcz=0Tm8Z2w@mail.gmail.com>
+Subject: Tuesday drop offs
+To: Darryl Ross <darrylross@icloud.com>, Holly Ross <hollygammie@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000aeec440600cb316a"
+X-MANTSH: 1TEIXR1geHVoaGkNHB1tfQEQbGBsfGBMaGxEKTEMXGxoEGxsYBBIcBB8fEBseGh8
+ aEQpMWRcbGhofEQpZRBdiRWJBeWNMYV17TxEKWU0Xbk9GQ1xPWBEKX1kXGBsYEQpfTRdkRURPE
+ QpZSRcacRoQGncGGxMYcRscHBAadwYYGgYaEQpZXhdsbHkRCkNOF0ZbHQdaeV9fQGNNR0sHSGt
+ yXmtgRRkce1lMX3xcZVlDEQpYXBcZBBoEHxoFGxoaBB0bBBscGgQTGxAbHhofGhEKXlkXSB1nZ
+ EURCk1cFxsbGBEKTFoXaGlNTWsRCkxGF01rEQpDWhcYGhMEEh8EGBoSBB4bEQpCXhcbEQpEXhc
+ YEQpCXBcbEQpeThcbEQpCSxdjU2NrexNYfhpfXhEKQkkXY1Nja3sTWH4aX14RCkJFF2gSG3x4c
+ m54GmJjEQpCThdjU2NrexNYfhpfXhEKQkwXbB5CU2RmfHhGbkERCkJsF29LR1BBbRoSS2lJEQp
+ CQBdgXmN9Sx4bHgF8YhEKQlgXYmtOb296bGdaR0sRCk1eFxsRClpYFxgRCnBoF2hYcEcFWUFmT
+ UNEEBkaEQpwaBdrZ04bQ099Eh1QBRAZGhEKcGgXbHJgXkJlbRwcQ3MQGRoRCnBoF2FTawUSRnJ
+ yHmFTEBkaEQpwaBdiS0YFW3gcZlN6cBAZGhEKcGwXZkZrHxhbbV9Gb28QHhIRCm1+FxsRClhNF
+ 0sR
+X-CLX-Shades: Deliver
+X-Proofpoint-GUID: lq7-pSuujIgma-bAXtAJo36QsfuVvOsi
+X-Proofpoint-ORIG-GUID: lq7-pSuujIgma-bAXtAJo36QsfuVvOsi
+
+--000000000000aeec440600cb316a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Holly and Darryl,
+
+Can you give please ensure Charlotte is dropped off for soccer practice for
+7:15 pm on Tuesday night? Charlotte has been late ( after 730 pm) for the
+ three  past  weeks and the coach has asked she arrive 15 minutes early
+like the rest of the team.
+
+For competitive league we are expected to arrive 30 minutes before game and
+15 minutes before practice starts.
+
+Thanks
+
+Cynthia
+
+--000000000000aeec440600cb316a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Holly and Darryl,=C2=A0<div dir=3D"auto"><br></div><div dir=3D"auto">Can=
+ you give please ensure Charlotte is dropped off for soccer practice for 7:=
+15 pm on Tuesday night? Charlotte has been late ( after 730 pm) for the =C2=
+=A0three =C2=A0past =C2=A0weeks and the coach has asked she arrive 15 minut=
+es early like the rest of the team. =C2=A0</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">For competitive league we are expected to arrive 30 minu=
+tes before game and 15 minutes before practice starts.</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">Thanks=C2=A0</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Cynthia=C2=A0</div>
+
+--000000000000aeec440600cb316a--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1151820</integer>
+	<key>date-last-viewed</key>
+	<integer>1741105870</integer>
+	<key>date-received</key>
+	<integer>1689722574</integer>
+	<key>flags</key>
+	<integer>8590196097</integer>
+	<key>remote-id</key>
+	<string>12287</string>
+</dict>
+</plist>

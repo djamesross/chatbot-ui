@@ -1,0 +1,305 @@
+14348     
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from mr44p00im-qukt02162702.me.com by p133-mailgateway-smtp-76d5569f95-d9zq9 (mailgateway 2408B54)
+	with SMTP id 0a27ac6f-6810-4a55-bf71-49be722e5b8f 
+	for <darrylross@icloud.com>; Tue, 23 Jan 2024 19:03:13 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 0a27ac6f-6810-4a55-bf71-49be722e5b8f
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	by mr44p00im-qukt02162702.me.com (Postfix) with ESMTPS id 51EB3D4027B
+	for <darrylross@icloud.com>; Tue, 23 Jan 2024 19:03:12 +0000 (UTC)
+X-ICL-SCORE: 3.333033230041
+X-ICL-INFO: GAtbVUseBVFGSVVESgMGUkFIRFcUWUIPAApbVRYSFhEAREQZF15TQFUcAkpaU08MARELHxdcWyIS
+ FAceFB5VDRhbRhEcDRQFGBgPG1ZTWQ9XWRUeCA0UUEVASE9NHgRSTVdSRloQXgcZFltVFVFfDlgc
+ AkZVVgJTWx4JGB9cU0wWFgtVWEBCEEhbCxYRXBsHEUhLEUwBGAUaFgEbHR5VDRhbRhMcDRQFGBgP
+ G1ZTWQ9XWQseHA0UXjY4IBkaSWQnFy0fRhtYZlAxEwwuTWdHNipKLiJACX02M1JNNShqG1UiRB4n
+ D0FvJBg0ETcVUV8OWx4LFhFcGAEaFFhVWEJVX1cdBwUKSVoQGgoVNxFTWg0AHUgUF10U
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XM56ZuZO
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.208.41 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.208.41; helo=mail-ed1-f41.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-559edcee47eso3988743a12.0
+        for <darrylross@icloud.com>; Tue, 23 Jan 2024 11:03:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706036591; x=1706641391; darn=icloud.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XVvDYNHXDm+ov9FLkyy7zaVympikSrnR1KHlk1S+dd4=;
+        b=XM56ZuZO3BEbQZQ3JsCQykc5vtPmRyDrToo2/nOoWSHXySaVCqcyEcFSgYtYsmZvtV
+         ArAbUhDOimRFQWxABx7XBs1GxbzbUJUPmh7hYOM6CjkEUI3nCUJ6Czhthd0RoNSh07TJ
+         j7o4p6JdTUU9JuX6JBH2FvgAJug22aUlKNmoLxPQ4CBXoBFDC8fRaRtIGsSymFZvo7BU
+         7Odl76gIFpBM/UgM/duA9kolsmMmLo5J2pYogDz0oNmpFHQJWsH7V+/hMMxWKQbYuDKa
+         0Eio1fcLy4gk8tLixBEgurvQierFD2cG7V9PYlWWsppjBQ+7pAQg8MClqb8s1y1rxWa5
+         b7Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706036591; x=1706641391;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XVvDYNHXDm+ov9FLkyy7zaVympikSrnR1KHlk1S+dd4=;
+        b=Fl0503jUPS089bT2GpstrN/iSI9DCSdTTimapjakV8qIk6rC1AUhhOquIu52XnRAj2
+         tn6rZYChT2xqkS9xbcn9d+E4RdYSG43lWujoqZyflFq+NvDSqcBNr04y7T7nT4gmWW4g
+         73xK9bvuXooinIHWox60bcB+oa8DE+kHbV8RUCinlUCffTIFsul/j4iLfAxTOVFFzZVu
+         AvQ6t6diAwnlfEiMJS7OefTl5URc0KEXLyIxlMmy5UQB+e0jNv+CLwz0g0ygFJFfu+fS
+         oeS+YpwQ96eRXOgbsSUpU/a67E53U3eUED7ZJbf7y0EoM2Bg6FwpvyJSGvGD1rT2LCCF
+         28iw==
+X-Gm-Message-State: AOJu0YybHHTA+bNYqAunpLlJq1bL2fJmZ7/O4p6IjtNIjjVkSlV2LE5e
+	Y25ZimoQzEXDlRMs0+TjmRvKKlHk6pxKWlSTJdc351xRgMicr0fympr/FP8UnH/XcBJnKndnica
+	mKBGvY27q5b7Xtk4oN2U6OqbzM3eC/N157xU=
+X-Google-Smtp-Source: AGHT+IHG7q4NIkmSanWZhD7G0T+vGnbFtqIadJMt/EKjgfXjj8W7yoO9O0/8qLhmGQra/jv6xUnkF1QbCXi+wQPljPI=
+X-Received: by 2002:a17:906:bce3:b0:a28:d574:d4cd with SMTP id
+ op3-20020a170906bce300b00a28d574d4cdmr184069ejb.68.1706036590428; Tue, 23 Jan
+ 2024 11:03:10 -0800 (PST)
+MIME-Version: 1.0
+References: <01DB5AA9-3D0A-4442-90AB-C30CDAD764E8@icloud.com>
+ <CAFnbyRE1chtk+NT0_eanu7HrL_Ae5i9nQWUvY+Jg3gNhBA_y3g@mail.gmail.com>
+ <CAFnbyREvGZkzyTgRSrsf+F+2CDMb5z9XTR4FFz2P9C5YOJGZXA@mail.gmail.com> <446AD7B0-4DE8-46B2-BECB-3D75890B3F5F@icloud.com>
+In-Reply-To: <446AD7B0-4DE8-46B2-BECB-3D75890B3F5F@icloud.com>
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Tue, 23 Jan 2024 14:02:59 -0500
+Message-ID: <CAFnbyREbTy1chP2DjjY5WqT_3HU89KTF++BPZ-7W=xPwqYFmMw@mail.gmail.com>
+Subject: Re: Snow and Roads.
+To: Darryl Ross <darrylross@icloud.com>
+Cc: Linda holmes <holmesmorrison@hotmail.com>
+Content-Type: multipart/alternative; boundary="000000000000f24683060fa198fa"
+X-CLX-Shades: None
+X-MANTSH: 1TFkXGBgaEQpZRBdiRWJBeWNMYV17TxEKWU0XZEVETxEKWUkXGnEaEBp3BhgaGnE
+ bExMQGncGGBoGGhEKWV4XbGx5EQpDThdNQGZnG3B/b0d4H2NzfVt9WkZCRnJ9ZFt/fkxuZwdsS
+ REKWFwXGQQaBB8aBRsaGgQdGgQbExIEGxkQGx4aHxoRCl5ZF0kfSGNmEQpNXBceHREKTFoXaGt
+ NTWsRCkxGF2JNaxEKQ1oXGBoTBBIfBBgaEgQeGxEKQl4XGxEKREkXGxEKQlwXGxEKXk4XGxEKQ
+ ksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJueBpiYxEKQk4XY1Nja3s
+ TWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQkAXbn4Be0UFG0l6EwURC
+ kJYF2JrTm9vemxnWkdLEQpNXhcbEQpaWBcYEQpwaBdmYXlJX2hJAUB8YhAZGhEKcGgXbB4cT39
+ PW1JeXnsQGRoRCnBoF2tmcAUBUBpvXGNrEBkaEQpwaBdgQWBJa1BbbHtsXhAZGhEKcGgXaElif
+ Ut6bgFTWmIQGRoRCnBoF2JAfRISaGRgQ3B6EBkaEQpwaBdgX0IBS3t/GmRiaxAZGhEKcGgXbkd
+ mbGFQSVtkXVwQGRoRCnBsF2ZGax8YW21fRm9vEBkaEQptfhcbEQpYTRdLEQ==
+X-Proofpoint-GUID: gjLM1ZUEmR5IYWqWplhlXWNqUTfDM-Fc
+X-Proofpoint-ORIG-GUID: gjLM1ZUEmR5IYWqWplhlXWNqUTfDM-Fc
+
+--000000000000f24683060fa198fa
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Darryl,
+
+My mom is picking them up from here and driving them to your place.
+
+For me it is my time and money 9as well as my mom's),  the girls are happy
+to see you and have expressed they feel safe at the moment,
+
+Thus *if you can look for some suggestions on how *to drive the girls
+safely to and from your place, I am open to considering them (ie rules
+UBER, a trusted friend etc...).Currently, I can't afford to drive them more
+than I do or pay for a service.
+
+On Tue, Jan 23, 2024 at 1:46=E2=80=AFPM Darryl Ross <darrylross@icloud.com>=
+ wrote:
+
+> Hi Cynthia,
+>
+> I understood your email to mean that you were looking into solutions
+> before moving forward. My mom is still coming this evening and will drop
+> the girls off.
+>
+> Darryl
+>
+>
+>
+>
+> On Jan 15, 2024, at 15:19, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hello,
+>
+> The girls are with my mom all this week, Tuesday she is unable to drive
+> them but they can be picked up at her house.
+>
+> I am still waiting to hear back from you on solutions for driving girls o=
+n
+> unsupervised time  as we do not want to have to drive more at this point =
+as
+> it timely and costly.
+>
+>
+>
+>
+>
+> On Jan 9, 2024, at 18:13, Cynthia Holmes <cynthmholm@gmail.com> wrote:
+>
+> Hi Darryl.
+>
+> I spoke with the girls on this one as well.
+>
+> I am agreeable to unsupervised for the week night and have your mother
+> there for Sunday for the time being.
+>
+> However, because you don=E2=80=99t have a license or access to a vehicle =
+this puts
+> the responsibility on me which is more money, time and wear and tear on m=
+y
+>  vehicle. Before I agree to this I want to look into solutions for drivin=
+g.
+>
+> For this week I would ask that your mom be there until we can find a
+> solution.
+>
+> Cynthia
+>
+>
+> On Tue, Jan 9, 2024 at 10:33=E2=80=AFAM Cynthia Holmes <cynthmholm@gmail.=
+com>
+> wrote:
+>
+>> Hi Darryl.
+>>
+>> Thanks for your message.
+>>
+>> Thursday this week would work as an alternative.
+>>
+>> I am not agreeable to unsupervised.
+>>
+>> Cynthia
+>>
+>> On Tue, Jan 9, 2024 at 9:34=E2=80=AFAM Darryl Ross <darrylross@icloud.co=
+m> wrote:
+>>
+>>> Hi Cynthia,
+>>>
+>>> The forecast is calling for as much as 100 cm of snow between about 3 p=
+m
+>>> and 8 pm which is too much for my mom to drive tonight on highways and
+>>> country roads. The local roads will likely be bad too. She is available
+>>> Wednesday or Thursday.
+>>>
+>>> If the local roads are drivable I propose they be dropped off and picke=
+d
+>>> up this evening as usual. Visits have been supervised for 1.5 years now=
+ and
+>>> I think it=E2=80=99s time to move to unsupervised visits based on the r=
+ecord of the
+>>> last 18 months of perfect visits. (For comparison, in 2018 following th=
+e
+>>> direction of CAS they started after one month, so it=E2=80=99s been 18x=
+ longer). If
+>>> they are bad, I propose starting unsupervised visits Wednesday or Thurs=
+day
+>>> as alternatives.
+>>>
+>>> Please let me know:
+>>> - if you are agreeable to moving to unsupervised visits at this time (o=
+r
+>>> by the end of this month, January, 2024)
+>>> - which evening works best: Wednesday or Thursday
+>>>
+>>> Darryl
+>>
+>>
+>
+
+--000000000000f24683060fa198fa
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Darryl,<br><div><br></div><div>My mom is picking them u=
+p from here and driving them to your place.</div><div><br></div><div>For me=
+ it is my time and money 9as well as my mom&#39;s),=C2=A0 the girls are hap=
+py to see you and have expressed they=C2=A0feel safe at the=C2=A0moment,=C2=
+=A0</div><div><br></div><div>Thus=C2=A0<u>if you can look for some suggesti=
+ons on how=C2=A0</u>to drive the girls safely to and from=C2=A0your place, =
+I am open to considering=C2=A0them (ie rules UBER, a trusted friend etc...)=
+.Currently, I can&#39;t afford to drive them more than I do or pay for a se=
+rvice.</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Tue, Jan 23, 2024 at 1:46=E2=80=AFPM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com">darrylross@icloud.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Cynthia,<div=
+><br></div><div>I understood your email to mean that you were looking into =
+solutions before moving forward. My mom is still coming this evening and wi=
+ll drop the girls off.=C2=A0</div><div><br></div><div>Darryl</div><div><br>=
+</div><div><br></div><div><br></div><div><br><blockquote type=3D"cite" styl=
+e=3D"color:rgb(0,0,0)"><div>On Jan 15, 2024, at 15:19, Cynthia Holmes &lt;<=
+a href=3D"mailto:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.c=
+om</a>&gt; wrote:</div><br><div>Hello,<div dir=3D"auto"><br></div><div dir=
+=3D"auto">The girls are with my mom all this week, Tuesday she is unable to=
+ drive them but they can be picked up at her house.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">I am still waiting to hear back from you on sol=
+utions for driving girls on unsupervised time =C2=A0as we do not want to ha=
+ve to drive more at this point as it timely and costly.</div></div></blockq=
+uote><br></div><div><br></div><div><br></div><div><div><br><blockquote type=
+=3D"cite"><div>On Jan 9, 2024, at 18:13, Cynthia Holmes &lt;<a href=3D"mail=
+to:cynthmholm@gmail.com" target=3D"_blank">cynthmholm@gmail.com</a>&gt; wro=
+te:</div><br><div><div dir=3D"auto">Hi Darryl.</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">I spoke with the girls on this one as well.=C2=A0</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">I am agreeable to unsuperv=
+ised for the week night and have your mother there for Sunday for the time =
+being.</div><div dir=3D"auto"><br></div><div dir=3D"auto">However, because =
+you don=E2=80=99t have a license or access to a vehicle this puts the respo=
+nsibility on me which is more money, time and wear and tear on my =C2=A0veh=
+icle. Before I agree to this I want to look into solutions for driving.=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">For this week I woul=
+d ask that your mom be there until we can find a solution.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Cynthia=C2=A0</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jan 9, 2024 at 10:33=E2=
+=80=AFAM Cynthia Holmes &lt;<a href=3D"mailto:cynthmholm@gmail.com" target=
+=3D"_blank">cynthmholm@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"auto">Hi Darryl.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Thanks for your message.</div><div di=
+r=3D"auto"><br></div><div dir=3D"auto">Thursday this week would work as an =
+alternative.</div><div dir=3D"auto"><br></div><div dir=3D"auto">I am not ag=
+reeable to unsupervised.</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>Cynthia</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Tue, Jan 9, 2024 at 9:34=E2=80=AFAM Darryl Ross &lt;<a href=
+=3D"mailto:darrylross@icloud.com" target=3D"_blank">darrylross@icloud.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi=
+ Cynthia,<br>
+<br>
+The forecast is calling for as much as 100 cm of snow between about 3 pm an=
+d 8 pm which is too much for my mom to drive tonight on highways and countr=
+y roads. The local roads will likely be bad too. She is available Wednesday=
+ or Thursday.<br>
+<br>
+If the local roads are drivable I propose they be dropped off and picked up=
+ this evening as usual. Visits have been supervised for 1.5 years now and I=
+ think it=E2=80=99s time to move to unsupervised visits based on the record=
+ of the last 18 months of perfect visits. (For comparison, in 2018 followin=
+g the direction of CAS they started after one month, so it=E2=80=99s been 1=
+8x longer). If they are bad, I propose starting unsupervised visits Wednesd=
+ay or Thursday as alternatives.<br>
+<br>
+Please let me know:<br>
+- if you are agreeable to moving to unsupervised visits at this time (or by=
+ the end of this month, January, 2024)<br>
+- which evening works best: Wednesday or Thursday<br>
+<br>
+Darryl</blockquote></div></div>
+</blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+
+--000000000000f24683060fa198fa--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1203920</integer>
+	<key>date-last-viewed</key>
+	<integer>1741389011</integer>
+	<key>date-received</key>
+	<integer>1706036593</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+	<key>remote-id</key>
+	<string>12311</string>
+</dict>
+</plist>

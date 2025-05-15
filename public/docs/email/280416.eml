@@ -1,0 +1,119 @@
+7091      
+Return-path: <cynthmholm@gmail.com>
+Original-recipient: rfc822;darrylross@icloud.com
+Received: from p00-icloudmta-smtpin-us-east-1a-60-percent-34 by p158-mailgateway-smtp-6779d864bf-vzm8m (mailgateway 2428B53)
+	with SMTP id 57cbdff0-7cae-4a4d-8b31-8384ffd108ad 
+	for <darrylross@icloud.com>; Sat, 26 Oct 2024 17:16:48 GMT
+X-ICLOUD-MAIL-BWL: 1
+X-Apple-MoveToFolder: INBOX 
+X-Apple-Action: WL/INBOX
+X-Apple-UUID: 57cbdff0-7cae-4a4d-8b31-8384ffd108ad
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by p00-icloudmta-smtpin-us-east-1a-60-percent-34.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-1a.k8s.cloud.apple.com (Postfix) with ESMTPS id B6621C00114
+	for <darrylross@icloud.com>; Sat, 26 Oct 2024 17:16:47 +0000 (UTC)
+X-ICL-Info: GAtbRFYDBVFFSlVHSwQEUVUKE0oWX1gHVQoPB0UCBltbQVNZSgEOTEFNRhIcDVUbGw0OGhBfWg81HgsWEVwYARoURhEcDVEPFBAKWRtfW0IHGlsTGUJEGxkLCQQLcF8BGRYTE1ZTWQ9VEQMbFw1bAxwVSxISARsEQU1IEBdfUQ4QVwUYFRBGFgdECxYRXBsHH0hLEUwEGAUaFgEbHR5VDRhZAhNFV1sDHBVIFBddFg8cHVtLO3FwDBcANDEpQkEyBiM0Jy4JADcyMi4VPUNsDCRKKx5IVkZVQxo3OR16QUkDPV8ED0NnIhgYDxtWV1sDHBVIFBddCA==
+X-ICL-Score: 3.33303303423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="insufficient dmarc"
+X-ARC-Info: policy=fail; arc=none
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=gmail.com
+X-DMARC-Policy: v=DMARC1; p=none; sp=quarantine; rua=mailto:mailauth-reports@google.com
+X-DMARC-Info: pass=pass; dmarc-policy=none; s=r1; d=r1; pdomain=gmail.com
+Authentication-Results: dkim-verifier.icloud.com;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bJ7SEmNW
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.44 as permitted sender) smtp.mailfrom=cynthmholm@gmail.com
+Received-SPF: pass (spf.icloud.com: domain of cynthmholm@gmail.com designates 209.85.218.44 as permitted sender) receiver=spf.icloud.com; client-ip=209.85.218.44; helo=mail-ej1-f44.google.com; envelope-from=cynthmholm@gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a99ebb390a5so756474166b.1
+        for <darrylross@icloud.com>; Sat, 26 Oct 2024 10:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1729963007; x=1730567807; darn=icloud.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Z1IGA8ZADjBa8/la5NOZltn2aieG9Ou576SCYR99EQg=;
+        b=bJ7SEmNW8g4vs2nrXjaAMYq756Lk4cETlNRGGH6d0SclF5g3X3NaA8tC/K3N+ga/KJ
+         IQe1AqgSsVNNT9I0PRuXj5Gs+3Rw49q5WaQkZ1kT5dkKL5BeDTUA80TLOncJBf/s2Nds
+         GfwJWla7eZ/SwCZr25GPuvtkwi8A37E3q5A0stXGKbfGUzAtEzEhc/PDoQJDEjs/fIlA
+         Oob4zlRIh2ZQ3haVoBqMQP7fEQoOjs+EY8L8x/muq2mXLi8WArapLzltB/Old7E4qvWJ
+         rAi2jfJ9zMqQnDQLzL9J4JQkqROY+DWdy+Zmt8mi2G/RgWpJxdl4vLJI+gcjj8Phm4BZ
+         RE9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729963007; x=1730567807;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z1IGA8ZADjBa8/la5NOZltn2aieG9Ou576SCYR99EQg=;
+        b=aUgAC80jEAGLqL8QlU5mFRtNbleBBMYVLORTtq+Y0z2EIhcwLNLcnIY+nDYcJYRtuz
+         sIBJQlB5SzdT+4MRcZogEVrioPVaXhcFuw3NR2mUB3c7ee4f4G+mXaHeBwLcwhxri/3S
+         +aIoJPo6RfqSCRqGgcAz8cE97xcRwVtWAER+PD3o2zyoBEFf4uIue5xkoBo6r/+Qqmg8
+         wfSgPPHmGncxjfthHCYV6b8c3eHpOHVWntxtTbnhZUXpXNESkwCYSLwtZt20/+OE1Osx
+         eziz3vvyTs95GMIebOy0ftWJXmLE8KebE8h6+J5gyWeT1SoRVjFdI4m5zOMaT9d7xe4/
+         BKvQ==
+X-Gm-Message-State: AOJu0YxbT/I1Eqzhku2VWp6PxjFbW7CB3R6sKzXSiyk5nv2VZkEDmJJP
+	ePm0EHaySzwJwag3GaM/KkSm6NHXfU2G32eyOBqUuwUshbQCNTY3jCX5EMTmwbQ0pa/aT/SBatP
+	f+ri9+trWNEnCQGJ6ero23xoV4+UCJQ==
+X-Google-Smtp-Source: AGHT+IGUKiexVk6BWCJwv1hnxJY+3oTfIVshD7aANE+pHvun+aTPp7HSbL9WV3mmsw1rRfc8x2UwsaRRDyqLRPpAaFg=
+X-Received: by 2002:a17:907:6d06:b0:a9a:597:8cc9 with SMTP id
+ a640c23a62f3a-a9de35b2b0dmr285408166b.12.1729963006553; Sat, 26 Oct 2024
+ 10:16:46 -0700 (PDT)
+MIME-Version: 1.0
+From: Cynthia Holmes <cynthmholm@gmail.com>
+Date: Sat, 26 Oct 2024 13:16:35 -0400
+Message-ID: <CAFnbyRFQrwPsZRPV96UGKHbEsZnQ3Mi0fp76cQNeJw+vD9swsQ@mail.gmail.com>
+Subject: Child Supoort
+To: Darryl Ross <darrylross@icloud.com>
+Content-Type: multipart/alternative; boundary="0000000000007af79906256466d9"
+X-MANTSH: 1TFkXGxoaHxEKWUQXYkViQXljTGFde08RCllNF25PRkNcT1gRCl9ZFxsTGhEKX00
+ XZEVETxEKWUkXGnEaEBp3BhsdGnEeExAadwYYGgYaEQpZXhdsbHkRCkNOF3lHfVNFXmYTG0dSE
+ lJyc2IedWseX2BrZWVmWlB9f30cEQpYXBcZBBoEHxoFGxoEGxwfBBgYBBgfGhAbHhofGhEKXlk
+ XT39ZQ0gRCk1cFwcbEx4RCkxaF2hpTUNvEQpMRhdNaxEKQ1oXGBoTBBIfBBgbEgQeHhEKQl4XG
+ xEKQlwXGxEKXk4XGxEKQksXY1Nja3sTWH4aX14RCkJJF2NTY2t7E1h+Gl9eEQpCRRdoEht8eHJ
+ ueBpiYxEKQk4XY1Nja3sTWH4aX14RCkJMF2weQlNkZnx4Rm5BEQpCbBdvS0dQQW0aEktpSREKQ
+ kAXaB1yeBtPE3toYmcRCkJYF2JrTm9vemxnWkdLEQpaWBceEQpwaBdtWnsZaWtMEnhZYBAaEQp
+ waBdsAQFuZmBTck8FTBAaEQpwaBdpGF9nT39SWUhcWRAaEQpwaBduQBptUEBuZFtyTRAaEQpwa
+ BdsWl9aS00fXnMaSBAaEQpwaBdsc3x7WGhaU0NwehAaEQpwaBdgUFhJEk9uWGAFGxAaEQpwaBd
+ vRH9HTBNaXVxPYhAaEQpwfxdgeH1ofRMbAWEYRRAHEx4RCnBfF2FyaF5rHUJ6AU99EAcbGxkRC
+ nB9F2tcf1MYAWBnH3lEEBoRCnBsF2ZGax8YW21fRm9vEAcdGhEKbX4XGhEKWE0XSxE=
+X-Proofpoint-ORIG-GUID: SmWyotL91mx8xXYH4_A4uJAOOLpzWUW6
+X-Proofpoint-GUID: SmWyotL91mx8xXYH4_A4uJAOOLpzWUW6
+X-Authority-Info: v=2.4 cv=eP5Bj2p1 c=1 sm=1 tr=0 ts=671d2400 cx=c_pps a=Wv8LZU+Qh79jBM16Q2fFLA==:117 a=DAUX931o1VcA:10 a=f7IdgyKtn90A:10 a=x7bEGLp0ZPQA:10 a=J9XXilfK4tcA:10 a=95EFz5htlIgA:10 a=GzHqReGrnlyhOJiRcNIA:9 a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=fys2sDa9AAAA:8 a=uY7s5bYYHzmZ3liE--wA:9 a=kRUlbi9ZtHUj8zrx:21 a=wwAePvBONnjDQaqHVNx2:22 a=7YpECbvlQQReuXKdpsOb:22
+
+--0000000000007af79906256466d9
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Darryl,
+I received a large sum for child support, which is greatly appreciated. Is
+this a lump sum for retroactive payment?
+
+Is it still the plan to pay bi monthly payments until end of the year?
+
+Have you received more re information for 2025? Any information would be
+helpful.
+
+--0000000000007af79906256466d9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br clear=3D"all">Hi Darryl,</div><div dir=3D"auto">I rec=
+eived a large sum for child support, which is greatly appreciated. Is this =
+a lump sum for retroactive payment?</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">Is it still the plan to pay bi monthly payments until end of th=
+e year?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Have you r=
+eceived more re information for 2025? Any information would=C2=A0be helpful=
+.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br clear=3D"all"><div=
+ dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"=
+gmail_signature"><div dir=3D"ltr"><img src=3D"https://ci3.googleusercontent=
+.com/mail-sig/AIorK4yb5fObfGPXRAuWT3JKEl9LHxoxORcU4usTSvidi4lPwWIRAuqY1YO50=
+BJU64sS3iXon9fAkdEhi_cA"><br></div></div></div></div>
+
+--0000000000007af79906256466d9--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>1288290</integer>
+	<key>date-received</key>
+	<integer>1729963008</integer>
+	<key>flags</key>
+	<integer>8590195845</integer>
+</dict>
+</plist>
